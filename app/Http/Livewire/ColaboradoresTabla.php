@@ -2,12 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 
 class ColaboradoresTabla extends Component
 {
     public function render()
     {
-        return view('livewire.colaboradores-tabla');
+        $users = User::latest('id')->get();
+        return view('livewire.colaboradores-tabla', compact('users'));
     }
 }
