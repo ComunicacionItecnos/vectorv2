@@ -9,6 +9,8 @@ class Ruta_transporte extends Model
 {
     use HasFactory;
 
+    protected $table = 'ruta_transporte';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

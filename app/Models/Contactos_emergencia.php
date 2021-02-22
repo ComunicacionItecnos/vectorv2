@@ -9,6 +9,8 @@ class Contactos_emergencia extends Model
 {
     use HasFactory;
 
+    protected $table = 'contactos_emergencia';
+
     //* Relacion muchos a uno
     public function colaboradores(){
         return $this->belongsTo('App\Models\Colaborador');

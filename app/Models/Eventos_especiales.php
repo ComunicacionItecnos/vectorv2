@@ -9,6 +9,8 @@ class Eventos_especiales extends Model
 {
     use HasFactory;
 
+    protected $table = 'eventos_especiales';
+
     // * Relacion uno a muchos
     public function colaboradores_evento()
     {

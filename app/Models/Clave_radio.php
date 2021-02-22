@@ -9,6 +9,8 @@ class Clave_radio extends Model
 {
     use HasFactory;
 
+    protected $table = 'clave_radio';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

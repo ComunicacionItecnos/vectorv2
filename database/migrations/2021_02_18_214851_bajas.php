@@ -13,7 +13,13 @@ class Bajas extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('bajas', function (Blueprint $table){
+            
+            $table->id();
+            $table->string('no_colaborador');
+            $table->date('fecha_baja');
+
+        });
     }
 
     /**

@@ -9,6 +9,8 @@ class Escolaridad extends Model
 {
     use HasFactory;
 
+    protected $table = 'escolaridad';
+
     // * Relacion uno a muchos
     public function hijos()
     {

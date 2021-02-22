@@ -9,6 +9,8 @@ class Colaborador extends Model
 {
     use HasFactory;
 
+    protected $table = 'colaborador';
+
     //* Relacion muchos a uno
     public function generos(){
         return $this->belongsTo('App\Models\Genero');

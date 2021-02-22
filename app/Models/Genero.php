@@ -9,6 +9,8 @@ class Genero extends Model
 {
     use HasFactory;
 
+    protected $table = 'genero';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

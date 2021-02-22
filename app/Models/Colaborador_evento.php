@@ -9,6 +9,8 @@ class Colaborador_evento extends Model
 {
     use HasFactory;
 
+    protected $table = 'colaborador_evento';
+
     //* Relacion muchos a uno
     public function eventos_especiales(){
         return $this->belongsTo('App\Models\Eventos_especiales');

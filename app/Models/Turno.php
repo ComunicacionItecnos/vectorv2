@@ -9,6 +9,8 @@ class Turno extends Model
 {
     use HasFactory;
 
+    protected $table = 'turno';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

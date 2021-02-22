@@ -9,6 +9,8 @@ class Extension extends Model
 {
     use HasFactory;
 
+    protected $table = 'extension';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

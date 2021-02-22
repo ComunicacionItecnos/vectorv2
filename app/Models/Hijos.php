@@ -9,6 +9,8 @@ class Hijos extends Model
 {
     use HasFactory;
 
+    protected $table = 'hijos';
+
     //* Relacion muchos a uno
     public function escolaridades(){
         return $this->belongsTo('App\Models\Escolaridad');

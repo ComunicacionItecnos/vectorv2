@@ -9,6 +9,8 @@ class Estado_civil extends Model
 {
     use HasFactory;
 
+    protected $table = 'estado_civil';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

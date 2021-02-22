@@ -9,6 +9,8 @@ class Area extends Model
 {
     use HasFactory;
 
+    protected $table = 'area';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

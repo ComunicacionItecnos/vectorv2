@@ -9,6 +9,8 @@ class Rango_factor extends Model
 {
     use HasFactory;
 
+    protected $table = 'rango_factor';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

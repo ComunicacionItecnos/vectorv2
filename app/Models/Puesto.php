@@ -9,6 +9,8 @@ class Puesto extends Model
 {
     use HasFactory;
 
+    protected $table = 'puesto';
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

@@ -7,8 +7,8 @@ $nav_links = [
     ],
     [
         'name' => 'Crear colaborador',
-        'route' => '#',
-        'active' => false,
+        'route' => route('create'),
+        'active' => request()->routeIs('create'),
     ],
     [
         'name' => 'Documentos y constancias',
