@@ -17,7 +17,8 @@
                 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                     <div class="col-span-1 sm:col-span-1">
-                        <label for="inputNoColaborador" class="block text-sm font-medium text-gray-700">No. Colaborador</label>
+                        <label for="inputNoColaborador" class="block text-sm font-medium text-gray-700">No.
+                            Colaborador</label>
                         <input type="text" name="no_colaborador" id="inputNoColaborador"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
@@ -29,13 +30,15 @@
                     </div>
 
                     <div class="col-span-1 sm:col-span-1">
-                        <label for="inputApPaterno" class="block text-sm font-medium text-gray-700">Apellido Paterno</label>
+                        <label for="inputApPaterno" class="block text-sm font-medium text-gray-700">Apellido
+                            Paterno</label>
                         <input type="text" name="ap_paterno" id="inputApPaterno"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
 
                     <div class="col-span-1 sm:col-span-1">
-                        <label for="inputApMaterno" class="block text-sm font-medium text-gray-700">Apellido Materno</label>
+                        <label for="inputApMaterno" class="block text-sm font-medium text-gray-700">Apellido
+                            Materno</label>
                         <input type="text" name="ap_materno" id="inputApMaterno"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
@@ -55,7 +58,8 @@
                     <div class="col-span-1 sm:col-span-1">
                         <label for="inputFechaNacimiento" class="block text-sm font-medium text-gray-700">Fecha de
                             nacimiento</label>
-                        <input name="fecha_nacimiento" id="inputFechaNacimiento" type="date" autocomplete="street-address" min="1961-08-29" max=""
+                        <input name="fecha_nacimiento" id="inputFechaNacimiento" type="date"
+                            autocomplete="street-address" min="1961-08-29" max=""
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
 
@@ -120,22 +124,35 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                     <div class="col-span-1 sm:col-span-1">
-                        <label for="state" class="block text-sm font-medium text-gray-700">State /
-                            Province</label>
-                        <input type="text" name="state" id="state"
+                        <label class="block text-sm font-medium text-gray-700" for="inputDomicilio">Domicilio</label>
+                        <input type="text" name="domicilio" id="inputDomicilio"
+                            value="{{ isset($datosColaborador->domicilio) ? $datosColaborador->domicilio : old('domicilio') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
-
                     <div class="col-span-1 sm:col-span-1">
-                        <label for="postal_code" class="block text-sm font-medium text-gray-700">ZIP /
-                            Postal</label>
-                        <input type="text" name="postal_code" id="postal_code" autocomplete="postal-code"
+                        <label class="block text-sm font-medium text-gray-700" for="inputMunicipio">Municipio</label>
+                        <input type="text" name="municipio" id="inputMunicipio"
+                            value="{{ isset($datosColaborador->municipio) ? $datosColaborador->municipio : old('municipio') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="col-span-1 sm:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700" for="inputEstado">Estado</label>
+                        <input type="text" name="estado" id="inputEstado"
+                            value="{{ isset($datosColaborador->estado) ? $datosColaborador->estado : old('estado') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                    <div class="col-span-1 sm:col-span-1">
+                        <label class="block text-sm font-medium text-gray-700" for="inputCodigoPostal">Código Postal</label>
+                        <input type="text" name="codigo_postal" id="inputCodigoPostal"
+                            value="{{ isset($datosColaborador->codigo_postal) ? $datosColaborador->codigo_postal : old('codigo_postal') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
+
             </div>
             <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
                 <button type="submit"
@@ -184,8 +201,8 @@
 <script>
     $("#th_hijos").on('click', '.addHijo', function() {
         var tr = '<tr>' +
-            '<td><input type="text" name="edad_hijo[]" id="edad_hijo"'+
-                'class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm""></td>' +
+            '<td><input type="text" name="edad_hijo[]" id="edad_hijo"' +
+            'class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm""></td>' +
 
             '<td>' +
             '<select id="escolaridad_hijo" name="escolaridad_hijo[]" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">' +
@@ -205,8 +222,8 @@
 
     $("#tb_hijos").on('click', '.deleteHijo', function() {
         var ultimo = $('#tb_hijos tr').length;
-            $(this).parent().parent().remove();
-        
+        $(this).parent().parent().remove();
+
     });
 
 </script>
