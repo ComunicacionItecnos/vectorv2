@@ -19,6 +19,7 @@
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
 </head>
 
 <body class="font-sans antialiased">
@@ -28,13 +29,13 @@
         @livewire('navigation-menu')
 
         <!-- Page Heading -->
-        @if (isset($header))
+        {{-- @if (isset($header))
             <header class="bg-white shadow">
                 <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
                     {{ $header }}
                 </div>
             </header>
-        @endif
+        @endif --}}
 
         <!-- Page Content -->
         <main>

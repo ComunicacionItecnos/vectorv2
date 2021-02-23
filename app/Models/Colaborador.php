@@ -10,6 +10,9 @@ class Colaborador extends Model
     use HasFactory;
 
     protected $table = 'colaborador';
+    protected $primaryKey = 'no_colaborador';
+    protected $keyType = 'string';
+    public $incrementing = false;
 
     //* Relacion muchos a uno
     public function generos(){
