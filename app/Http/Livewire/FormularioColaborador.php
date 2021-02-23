@@ -9,6 +9,12 @@ use App\Models\Extension;
 use App\Models\Ruta_transporte;
 use App\Models\Puesto;
 use App\Models\Colaborador;
+use App\Models\Turno;
+use App\Models\Tipo_colaborador;
+use App\Models\Tipo_usuario;
+use App\Models\Genero;
+use App\Models\Estado_civil;
+use App\Models\Rango_factor;
 
 class FormularioColaborador extends Component
 {
@@ -25,7 +31,19 @@ class FormularioColaborador extends Component
 
         $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->get();
 
+        $turnos = Turno::all();
 
-        return view('livewire.formulario-colaborador', compact('clavesRadio','areas', 'extensiones', 'rutas', 'puestos', 'supervisores'));
+        $tiposColaborador = Tipo_colaborador::all();
+
+        $tiposUsuario = Tipo_usuario::all();
+
+        $generos = Genero::all();
+
+        $estadosCivil = Estado_civil::all();
+
+        $rango_factor = Rango_factor::all();
+
+
+        return view('livewire.formulario-colaborador', compact('clavesRadio','areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos','tiposColaborador','tiposUsuario','generos','estadosCivil', 'rango_factor'));
     }
 }

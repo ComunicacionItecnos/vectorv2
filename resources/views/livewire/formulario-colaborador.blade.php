@@ -26,37 +26,37 @@
 
                     <div class="col-span-1 sm:col-span-1">
                         <label for="inputNombre" class="block text-sm font-medium text-gray-700">Nombre(s)</label>
-                        <input type="text" name="nombre" id="inputNombre"
-                            value="{{ old('nombre') }}"
+                        <input type="text" name="nombre" id="inputNombre" value="{{ old('nombre') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
 
                     <div class="col-span-1 sm:col-span-1">
                         <label for="inputApPaterno" class="block text-sm font-medium text-gray-700">Apellido
                             Paterno</label>
-                        <input type="text" name="ap_paterno" id="inputApPaterno"
-                            value="{{ old('ap_paterno') }}"
+                        <input type="text" name="ap_paterno" id="inputApPaterno" value="{{ old('ap_paterno') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
 
                     <div class="col-span-1 sm:col-span-1">
                         <label for="inputApMaterno" class="block text-sm font-medium text-gray-700">Apellido
                             Materno</label>
-                        <input type="text" name="ap_materno" id="inputApMaterno"
-                            value="{{ old('ap_materno') }}"
+                        <input type="text" name="ap_materno" id="inputApMaterno" value="{{ old('ap_materno') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
-                
+
                 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                     <div class="col-span-1 sm:col-span-1">
                         <label for="inputGenero" class="block text-sm font-medium text-gray-700">Genero</label>
                         <select id="inputGenero" name="genero"
                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="1">Masculino</option>
-                            <option value="2">Femenino</option>
-                            <option value="3">No Binario</option>
+                            @if ($generos)
+                                @foreach ($generos as $genero)
+                                    <option value="{{ $genero->id }}">{{ $genero->nombre_genero }}
+                                    </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
 
@@ -64,7 +64,7 @@
                         <label for="inputFechaNacimiento" class="block text-sm font-medium text-gray-700">Fecha de
                             nacimiento</label>
                         <input name="fecha_nacimiento" id="inputFechaNacimiento" type="date"
-                        value="{{ old('fecha_nacimiento') }}" min="1961-08-29" max=""
+                            value="{{ old('fecha_nacimiento') }}" min="1961-08-29" max=""
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
 
@@ -72,15 +72,18 @@
                         <label for="edoCivil" class="block text-sm font-medium text-gray-700">Estado civil</label>
                         <select id="edoCivil" name="edoCivil"
                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="1">Soltero(a)</option>
-                            <option value="2">Casado(a)</option>
-                            <option value="3">Unión Libre</option>
+                            @if ($estadosCivil)
+                                @foreach ($estadosCivil as $estadoCivil)
+                                    <option value="{{ $estadoCivil->id }}">{{ $estadoCivil->nombre_estado }}
+                                    </option>
+                                @endforeach
+                            @endif
                         </select>
                     </div>
 
                     <div class="col-span-1 sm:col-span-1">
                         <label for="inputHijos" class="block text-sm font-medium text-gray-700">¿Tiene Hijos?</label>
-                        <select id="inputHijos" name="paternidad" autocomplete="country"
+                        <select id="inputHijos" name="paternidad"
                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                             <option value="0">No</option>
                             <option value="1">Si</option>
@@ -127,30 +130,262 @@
 
                     <div class="col-span-1 sm:col-span-1">
                         <label class="block text-sm font-medium text-gray-700" for="inputDomicilio">Domicilio</label>
-                        <input type="text" name="domicilio" id="inputDomicilio"
-                            value="{{ old('domicilio') }}"
+                        <input type="text" name="domicilio" id="inputDomicilio" value="{{ old('domicilio') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                     <div class="col-span-1 sm:col-span-1">
                         <label class="block text-sm font-medium text-gray-700" for="inputMunicipio">Municipio</label>
-                        <input type="text" name="municipio" id="inputMunicipio"
-                            value="{{ old('municipio') }}"
+                        <input type="text" name="municipio" id="inputMunicipio" value="{{ old('municipio') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                     <div class="col-span-1 sm:col-span-1">
                         <label class="block text-sm font-medium text-gray-700" for="inputEstado">Estado</label>
-                        <input type="text" name="estado" id="inputEstado"
-                            value="{{ old('estado') }}"
+                        <input type="text" name="estado" id="inputEstado" value="{{ old('estado') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                     <div class="col-span-1 sm:col-span-1">
-                        <label class="block text-sm font-medium text-gray-700" for="inputCodigoPostal">Código Postal</label>
+                        <label class="block text-sm font-medium text-gray-700" for="inputCodigoPostal">Código
+                            Postal</label>
                         <input type="text" name="codigo_postal" id="inputCodigoPostal"
                             value="{{ old('codigo_postal') }}"
                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     </div>
                 </div>
 
+                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputTipoCol" class="block text-sm font-medium text-gray-700">Tipo de
+                            Colaborador</label>
+                        <select id="inputTipoCol" name="tipo_colaborador"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @if ($tiposColaborador)
+                                @foreach ($tiposColaborador as $tipoColaborador)
+                                    <option value="{{ $tipoColaborador->id }}">{{ $tipoColaborador->nombre_tipo }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputTurno" class="block text-sm font-medium text-gray-700">Turno del
+                            Colaborador</label>
+                        <select id="inputTurno" name="turno"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @if ($turnos)
+                                @foreach ($turnos as $turno)
+                                    <option value="{{ $turno->id }}">{{ $turno->nombre_turno }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputCorreo">Correo</label>
+                        <input type="email" name="correo" id="inputCorreo" value="{{ old('correo') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputRuta" class="block text-sm font-medium text-gray-700">Ruta de
+                            Transporte</label>
+                        <select id="inputRuta" name="ruta"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @if ($rutas)
+                                @foreach ($rutas as $ruta)
+                                    <option value="{{ $ruta->id }}">{{ $ruta->nombre_ruta }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="selectNivel" class="block text-sm font-medium text-gray-700">Puesto</label>
+                        <select id="selectNivel" name="puesto"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @if (isset($puestos))
+                                @foreach ($puestos as $puesto)
+                                    <option value="{{ $puesto->id }}">{{ $puesto->nombre_nivel }}
+                                        {{ $puesto->especialidad_puesto }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="selectArea" class="block text-sm font-medium text-gray-700">Area</label>
+                        <select id="selectArea" name="area"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @if (isset($areas))
+                                @foreach ($areas as $area)
+                                    <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
+                                @endforeach
+                            @endif
+
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="selectSupervisor" class="block text-sm font-medium text-gray-700">Jefe
+                            Directo</label>
+                        <select id="selectSupervisor" name="supervisor"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value=""></option>
+                            @if (isset($supervisores))
+                                @foreach ($supervisores as $supervisor)
+                                    <option value="{{ $supervisor->no_colaborador }}">{{ $supervisor->nombre }}
+                                        {{ $supervisor->ap_paterno }} {{ $supervisor->ap_materno }}
+                                    </option>
+
+                                @endforeach
+                            @endif
+
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputTelFijo" class="block text-sm font-medium text-gray-700">Teléfono Fijo</label>
+                        <input type="text" name="tel_fijo"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            id="inputTelFijo" value="{{ old('tel_fijo') }}">
+                    </div>
+
+                </div>
+
+                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputTelMovil" class="block text-sm font-medium text-gray-700">Teléfono
+                            Móvil</label>
+                        <input type="text" name="tel_movil"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            id="inputTelMovil"
+                            value="{{ isset($datosColaborador->tel_movil) ? $datosColaborador->tel_movil : old('tel_movil') }}">
+                    </div>
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputTelRecados" class="block text-sm font-medium text-gray-700">Teléfono para
+                            Recados</label>
+                        <input type="text" name="tel_recados"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            id="inputTelRecados"
+                            value="{{ isset($datosColaborador->tel_recados) ? $datosColaborador->tel_recados : old('tel_recados') }}">
+                    </div>
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputExtension" class="block text-sm font-medium text-gray-700">Extensión</label>
+                        <select id="inputExtension" name="extension"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+
+                            @if (isset($extensiones))
+                                @foreach ($extensiones as $ext)
+                                    <option value="{{ $ext->id }}">{{ $ext->numero_extension }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputClaveRadio" class="block text-sm font-medium text-gray-700">Clave de
+                            Radio</label>
+                        <select id="inputClaveRadio" name="clave_radio"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @if (isset($clavesRadio))
+                                @foreach ($clavesRadio as $clave)
+                                    <option value="{{ $clave->id }}">{{ $clave->clave }}</option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                </div>
+
+                {{-- Inicio tabla contactos emergencia --}}
+                <div class="grid mt-4 mb-4">
+
+                    <div class="block mb-3 text-sm font-medium text-gray-700">
+                        <h5>Hijo(s)</h5>
+                    </div>
+                    <div class="flex flex-col">
+                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+                                    <table name="tablaContactos" class="min-w-full divide-y divide-gray-200">
+                                        <thead class="bg-gray-100" id="th_contactos">
+                                            <tr class="">
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                    Nombre</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                    Parentesco</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                    Teléfono</th>
+                                                <th scope="col"
+                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                    Domicilio</th>
+                                                <th scope="col" class="relative px-6 py-3 ">
+                                                    <a href="javascript:;"
+                                                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addContacto">+</a>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tb_contactos">
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {{-- Fin tabla contactos emergencia --}}
+                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputMatriculacion"
+                            class="block text-sm font-medium text-gray-700">Matriculación</label>
+                        <select id="inputMatriculacion" name="matriculacion"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value="1">Si</option>
+                            <option value="0">No</option>
+                        </select>
+                    </div>
+
+                    <div class="col-span-1 sm:col-span-1">
+                        <label for="inputTipoUsuario" class="block text-sm font-medium text-gray-700">Tipo de
+                            Usuario</label>
+                        <select id="inputTipoUsuario" name="tipo_usuario"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @if (isset($tiposUsuario))
+                                @foreach ($tiposUsuario as $tipoUsuario)
+                                    <option value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->nombre_tipo }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
+
+                    <div class="col-span-2 sm:col-span-2">
+                        <label for="inputPassword" class="block text-sm font-medium text-gray-700">Contraseña</label>
+                        <input type="text" name="password" id="inputPassword"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            value="{{ old('password') }}">
+                    </div>
+
+                </div>
+
+                <div class="grid mt-4 mb-4">
+                    
+                </div>
             </div>
             <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
                 <button type="submit"
@@ -200,7 +435,7 @@
     $("#th_hijos").on('click', '.addHijo', function() {
         var tr = '<tr>' +
             '<td><input type="text" name="edad_hijo[]" id="edad_hijo"' +
-            'class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm""></td>' +
+            'class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
 
             '<td>' +
             '<select id="escolaridad_hijo" name="escolaridad_hijo[]" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">' +
@@ -220,6 +455,31 @@
 
     $("#tb_hijos").on('click', '.deleteHijo', function() {
         var ultimo = $('#tb_hijos tr').length;
+        $(this).parent().parent().remove();
+
+    });
+
+</script>
+
+{{-- Funcion para agregar una fila a la tabla Contactos --}}
+
+<script>
+    $("#th_contactos").on('click', '.addContacto', function() {
+        var tr2 =
+
+            '<tr>' +
+            '<td><input type="text" name="nombre_contacto[]" id="nombre_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
+            '<td><input type="text" name="parentesco_contacto[]" id="parentesco_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
+            '<td><input type="text" name="telefono_contacto[]" id="telefono_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
+            '<td><input type="text" name="domicilio_contacto[]" id="domicilio_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
+            '<td class="text-center"><a href="javascript:;" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm deleteHijo hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 deleteContacto">-</a></td>' +
+            '</tr>'
+
+        $("#tb_contactos").append(tr2);
+    });
+
+    $("#tb_contactos").on('click', '.deleteContacto', function() {
+        var ultimo = $('#tb_contactos tr').length;
         $(this).parent().parent().remove();
 
     });
