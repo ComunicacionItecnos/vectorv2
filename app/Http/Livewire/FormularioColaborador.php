@@ -34,7 +34,7 @@ class FormularioColaborador extends Component
         $rutas = Ruta_transporte::all();
 
         $puestos = Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
-                            ->select('puesto.*', 'nivel.*')
+                            ->select('puesto.id','puesto.especialidad_puesto', 'nivel.nombre_nivel')
                             ->get();             
 
         $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->get();
