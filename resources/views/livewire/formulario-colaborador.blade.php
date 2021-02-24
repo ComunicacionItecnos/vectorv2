@@ -1,401 +1,442 @@
-<div class="mt-5 md:mt-0 md:col-span-2">
-    <form action="#" method="POST">
-        <div class="overflow-hidden shadow sm:rounded-md">
+<form wire:submit.prevent="store">
+    <div class="mt-5 md:mt-0 md:col-span-2">
+        <form action="#" method="POST">
+            <div class="overflow-hidden shadow sm:rounded-md">
 
-            <div class="px-4 py-5 bg-white sm:p-6">
+                <div class="px-4 py-5 bg-white sm:p-6">
 
-                <div class="grid mt-2 mb-4 font-sans text-2xl font-semibold sm:subpixel-antialiased">
-                    <h2>Datos personales</h2>
-                </div>
-
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-                    <div class="col-span-1 sm:col-span-1">
-                        <input type="file" name="foto" id="customFile">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputNoColaborador" class="block text-sm font-medium text-gray-700">No.
-                            Colaborador</label>
-                        <input type="text" name="no_colaborador" id="inputNoColaborador"
-                            value="{{ old('no_colaborador') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    <div class="grid mt-2 mb-4 font-sans text-2xl font-semibold sm:subpixel-antialiased">
+                        <h2>Datos personales</h2>
                     </div>
 
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputNombre" class="block text-sm font-medium text-gray-700">Nombre(s)</label>
-                        <input type="text" name="nombre" id="inputNombre" value="{{ old('nombre') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputApPaterno" class="block text-sm font-medium text-gray-700">Apellido
-                            Paterno</label>
-                        <input type="text" name="ap_paterno" id="inputApPaterno" value="{{ old('ap_paterno') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputApMaterno" class="block text-sm font-medium text-gray-700">Apellido
-                            Materno</label>
-                        <input type="text" name="ap_materno" id="inputApMaterno" value="{{ old('ap_materno') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputGenero" class="block text-sm font-medium text-gray-700">Genero</label>
-                        <select id="inputGenero" name="genero"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if ($generos)
-                                @foreach ($generos as $genero)
-                                    <option value="{{ $genero->id }}">{{ $genero->nombre_genero }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputFechaNacimiento" class="block text-sm font-medium text-gray-700">Fecha de
-                            nacimiento</label>
-                        <input name="fecha_nacimiento" id="inputFechaNacimiento" type="date"
-                            value="{{ old('fecha_nacimiento') }}" min="1961-08-29" max=""
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="edoCivil" class="block text-sm font-medium text-gray-700">Estado civil</label>
-                        <select id="edoCivil" name="edoCivil"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if ($estadosCivil)
-                                @foreach ($estadosCivil as $estadoCivil)
-                                    <option value="{{ $estadoCivil->id }}">{{ $estadoCivil->nombre_estado }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputHijos" class="block text-sm font-medium text-gray-700">¿Tiene Hijos?</label>
-                        <select id="inputHijos" name="paternidad"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="0">No</option>
-                            <option value="1">Si</option>
-                        </select>
-                    </div>
-
-                </div>
-                {{-- Tabla Hijos --}}
-                <div id="tablaHijos" class="grid mt-4 mb-4">
-
-                    <div class="block mb-3 text-sm font-medium text-gray-700">
-                        <h5>Hijo(s)</h5>
-                    </div>
-                    <div class="flex flex-col">
-                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                                    <table name="tablaHijos" class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-50" id="th_hijos">
-                                            <tr class="">
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                    Edad</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                    Escolaridad</th>
-                                                <th scope="col" class="relative px-6 py-3 ">
-                                                    <a href="javascript:;"
-                                                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addHijo">+</a>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tb_hijos">
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputNoColaborador" class="block text-sm font-medium text-gray-700">No.
+                                Colaborador</label>
+                            <input type="text" wire:model="no_colaborador" name="no_colaborador" id="inputNoColaborador"
+                                value="{{ old('no_colaborador') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
-                    </div>
-                </div>
 
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputNombre" class="block text-sm font-medium text-gray-700">Nombre(s)</label>
+                            <input type="text" wire:model="nombre" name="nombre" id="inputNombre"
+                                value="{{ old('nombre') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
 
-                    <div class="col-span-1 sm:col-span-1">
-                        <label class="block text-sm font-medium text-gray-700" for="inputDomicilio">Domicilio</label>
-                        <input type="text" name="domicilio" id="inputDomicilio" value="{{ old('domicilio') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-                    <div class="col-span-1 sm:col-span-1">
-                        <label class="block text-sm font-medium text-gray-700" for="inputMunicipio">Municipio</label>
-                        <input type="text" name="municipio" id="inputMunicipio" value="{{ old('municipio') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-                    <div class="col-span-1 sm:col-span-1">
-                        <label class="block text-sm font-medium text-gray-700" for="inputEstado">Estado</label>
-                        <input type="text" name="estado" id="inputEstado" value="{{ old('estado') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-                    <div class="col-span-1 sm:col-span-1">
-                        <label class="block text-sm font-medium text-gray-700" for="inputCodigoPostal">Código
-                            Postal</label>
-                        <input type="text" name="codigo_postal" id="inputCodigoPostal"
-                            value="{{ old('codigo_postal') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-                </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputApPaterno" class="block text-sm font-medium text-gray-700">Apellido
+                                Paterno</label>
+                            <input type="text" wire:model="ap_paterno" name="ap_paterno" id="inputApPaterno"
+                                value="{{ old('ap_paterno') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
 
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputTipoCol" class="block text-sm font-medium text-gray-700">Tipo de
-                            Colaborador</label>
-                        <select id="inputTipoCol" name="tipo_colaborador"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if ($tiposColaborador)
-                                @foreach ($tiposColaborador as $tipoColaborador)
-                                    <option value="{{ $tipoColaborador->id }}">{{ $tipoColaborador->nombre_tipo }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputTurno" class="block text-sm font-medium text-gray-700">Turno del
-                            Colaborador</label>
-                        <select id="inputTurno" name="turno"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if ($turnos)
-                                @foreach ($turnos as $turno)
-                                    <option value="{{ $turno->id }}">{{ $turno->nombre_turno }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputCorreo">Correo</label>
-                        <input type="email" name="correo" id="inputCorreo" value="{{ old('correo') }}"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputRuta" class="block text-sm font-medium text-gray-700">Ruta de
-                            Transporte</label>
-                        <select id="inputRuta" name="ruta"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if ($rutas)
-                                @foreach ($rutas as $ruta)
-                                    <option value="{{ $ruta->id }}">{{ $ruta->nombre_ruta }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                </div>
-
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="selectNivel" class="block text-sm font-medium text-gray-700">Puesto</label>
-                        <select id="selectNivel" name="puesto"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if (isset($puestos))
-                                @foreach ($puestos as $puesto)
-                                    <option value="{{ $puesto->id }}">{{ $puesto->nombre_nivel }}
-                                        {{ $puesto->especialidad_puesto }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="selectArea" class="block text-sm font-medium text-gray-700">Area</label>
-                        <select id="selectArea" name="area"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if (isset($areas))
-                                @foreach ($areas as $area)
-                                    <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
-                                @endforeach
-                            @endif
-
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="selectSupervisor" class="block text-sm font-medium text-gray-700">Jefe
-                            Directo</label>
-                        <select id="selectSupervisor" name="supervisor"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value=""></option>
-                            @if (isset($supervisores))
-                                @foreach ($supervisores as $supervisor)
-                                    <option value="{{ $supervisor->no_colaborador }}">{{ $supervisor->nombre }}
-                                        {{ $supervisor->ap_paterno }} {{ $supervisor->ap_materno }}
-                                    </option>
-
-                                @endforeach
-                            @endif
-
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputTelFijo" class="block text-sm font-medium text-gray-700">Teléfono Fijo</label>
-                        <input type="text" name="tel_fijo"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            id="inputTelFijo" value="{{ old('tel_fijo') }}">
-                    </div>
-
-                </div>
-
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputTelMovil" class="block text-sm font-medium text-gray-700">Teléfono
-                            Móvil</label>
-                        <input type="text" name="tel_movil"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            id="inputTelMovil"
-                            value="{{ isset($datosColaborador->tel_movil) ? $datosColaborador->tel_movil : old('tel_movil') }}">
-                    </div>
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputTelRecados" class="block text-sm font-medium text-gray-700">Teléfono para
-                            Recados</label>
-                        <input type="text" name="tel_recados"
-                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            id="inputTelRecados"
-                            value="{{ isset($datosColaborador->tel_recados) ? $datosColaborador->tel_recados : old('tel_recados') }}">
-                    </div>
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputExtension" class="block text-sm font-medium text-gray-700">Extensión</label>
-                        <select id="inputExtension" name="extension"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-
-                            @if (isset($extensiones))
-                                @foreach ($extensiones as $ext)
-                                    <option value="{{ $ext->id }}">{{ $ext->numero_extension }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputClaveRadio" class="block text-sm font-medium text-gray-700">Clave de
-                            Radio</label>
-                        <select id="inputClaveRadio" name="clave_radio"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if (isset($clavesRadio))
-                                @foreach ($clavesRadio as $clave)
-                                    <option value="{{ $clave->id }}">{{ $clave->clave }}</option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                </div>
-
-                {{-- Inicio tabla contactos emergencia --}}
-                <div class="grid mt-4 mb-4">
-
-                    <div class="block mb-3 text-sm font-medium text-gray-700">
-                        <h5>Hijo(s)</h5>
-                    </div>
-                    <div class="flex flex-col">
-                        <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-                            <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-                                <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
-                                    <table name="tablaContactos" class="min-w-full divide-y divide-gray-200">
-                                        <thead class="bg-gray-100" id="th_contactos">
-                                            <tr class="">
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                    Nombre</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                    Parentesco</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                    Teléfono</th>
-                                                <th scope="col"
-                                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                                    Domicilio</th>
-                                                <th scope="col" class="relative px-6 py-3 ">
-                                                    <a href="javascript:;"
-                                                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addContacto">+</a>
-                                                </th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tb_contactos">
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputApMaterno" class="block text-sm font-medium text-gray-700">Apellido
+                                Materno</label>
+                            <input type="text" wire:model="ap_materno" name="ap_materno" id="inputApMaterno"
+                                value="{{ old('ap_materno') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         </div>
                     </div>
 
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputGenero" class="block text-sm font-medium text-gray-700">Genero</label>
+                            <select id="inputGenero" wire:model="genero" name="genero"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if ($generos)
+                                    @foreach ($generos as $genero)
+                                        <option value="{{ $genero->id }}">{{ $genero->nombre_genero }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputFechaNacimiento" class="block text-sm font-medium text-gray-700">Fecha de
+                                nacimiento</label>
+                            <input wire:model="fecha_nacimiento" name="fecha_nacimiento" id="inputFechaNacimiento"
+                                type="date" value="{{ old('fecha_nacimiento') }}" min="1961-08-29" max=""
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="edoCivil" class="block text-sm font-medium text-gray-700">Estado civil</label>
+                            <select wire:model="estado_civil" id="edoCivil" name="edoCivil"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if ($estadosCivil)
+                                    @foreach ($estadosCivil as $estadoCivil)
+                                        <option value="{{ $estadoCivil->id }}">{{ $estadoCivil->nombre_estado }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputHijos" class="block text-sm font-medium text-gray-700">¿Tiene
+                                Hijos?</label>
+                            <select wire:model="paternidad" id="inputHijos" name="paternidad"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                <option value="0">No</option>
+                                <option value="1">Si</option>
+                            </select>
+                        </div>
+
+                    </div>
+                    {{-- Tabla Hijos --}}
+                    {{-- <div id="tablaHijos" class="grid mt-4 mb-4">
+
+                        <div class="block mb-3 text-sm font-medium text-gray-700">
+                            <h5>Hijo(s)</h5>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                    <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+                                        <table name="tablaHijos" class="min-w-full divide-y divide-gray-200">
+                                            <thead class="bg-gray-50" id="th_hijos">
+                                                <tr class="">
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                        Edad</th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                        Escolaridad</th>
+                                                    <th scope="col" class="relative px-6 py-3 ">
+                                                        <a href="javascript:;"
+                                                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addHijo">+</a>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tb_hijos">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div> --}}
+
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700"
+                                for="inputDomicilio">Domicilio</label>
+                            <input type="text" wire:model="domicilio" name="domicilio" id="inputDomicilio"
+                                value="{{ old('domicilio') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700"
+                                for="inputMunicipio">Municipio</label>
+                            <input type="text" wire:model="municipio" name="municipio" id="inputMunicipio"
+                                value="{{ old('municipio') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700" for="inputEstado">Estado</label>
+                            <input type="text" wire:model="estado" name="estado" id="inputEstado"
+                                value="{{ old('estado') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700" for="inputCodigoPostal">Código
+                                Postal</label>
+                            <input type="text" wire:model="codigo_postal" name="codigo_postal" id="inputCodigoPostal"
+                                value="{{ old('codigo_postal') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputTipoCol" class="block text-sm font-medium text-gray-700">Tipo de
+                                Colaborador</label>
+                            <select id="inputTipoCol" wire:model="tipo_colaborador" name="tipo_colaborador"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if ($tiposColaborador)
+                                    @foreach ($tiposColaborador as $tipoColaborador)
+                                        <option value="{{ $tipoColaborador->id }}">
+                                            {{ $tipoColaborador->nombre_tipo }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputTurno" class="block text-sm font-medium text-gray-700">Turno del
+                                Colaborador</label>
+                            <select id="inputTurno" wire:model="turno" name="turno"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if ($turnos)
+                                    @foreach ($turnos as $turno)
+                                        <option value="{{ $turno->id }}">{{ $turno->nombre_turno }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputCorreo" class="block text-sm font-medium text-gray-700">Correo</label>
+                            <input type="email" wire:model="correo" name="correo" id="inputCorreo"
+                                value="{{ old('correo') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputRuta" class="block text-sm font-medium text-gray-700">Ruta de
+                                Transporte</label>
+                            <select id="inputRuta" wire:model="ruta_transporte" name="ruta"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if ($rutas)
+                                    @foreach ($rutas as $ruta)
+                                        <option value="{{ $ruta->id }}">{{ $ruta->nombre_ruta }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="selectNivel" class="block text-sm font-medium text-gray-700">Puesto</label>
+                            <select id="selectNivel" wire:model="puesto" name="puesto"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if (isset($puestos))
+                                    @foreach ($puestos as $puesto)
+                                        <option value="{{ $puesto->id }}">{{ $puesto->nombre_nivel }}
+                                            {{ $puesto->especialidad_puesto }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="selectArea" class="block text-sm font-medium text-gray-700">Area</label>
+                            <select id="selectArea" wire:model="area" name="area"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if (isset($areas))
+                                    @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->nombre_area }}</option>
+                                    @endforeach
+                                @endif
+
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="selectSupervisor" class="block text-sm font-medium text-gray-700">Jefe
+                                Directo</label>
+                            <select id="selectSupervisor" wire:model="jefe_directo" name="supervisor"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option value=""></option>
+                                @if (isset($supervisores))
+                                    @foreach ($supervisores as $supervisor)
+                                        <option value="{{ $supervisor->no_colaborador }}">
+                                            {{ $supervisor->nombre }}
+                                            {{ $supervisor->ap_paterno }} {{ $supervisor->ap_materno }}
+                                        </option>
+
+                                    @endforeach
+                                @endif
+
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputTelFijo" class="block text-sm font-medium text-gray-700">Teléfono
+                                Fijo</label>
+                            <input type="text" wire:model="tel_fijo" name="tel_fijo"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="inputTelFijo" value="{{ old('tel_fijo') }}">
+                        </div>
+
+                    </div>
+
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputTelMovil" class="block text-sm font-medium text-gray-700">Teléfono
+                                Móvil</label>
+                            <input type="text" wire:model="tel_movil" name="tel_movil"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="inputTelMovil" value="{{ old('tel_movil') }}">
+                        </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputTelRecados" class="block text-sm font-medium text-gray-700">Teléfono para
+                                Recados</label>
+                            <input type="text" wire:model="tel_recados" name="tel_recados"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                id="inputTelRecados" value="{{ old('tel_recados') }}">
+                        </div>
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputExtension"
+                                class="block text-sm font-medium text-gray-700">Extensión</label>
+                            <select id="inputExtension" wire:model="extension" name="extension"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if (isset($extensiones))
+                                    @foreach ($extensiones as $ext)
+                                        <option value="{{ $ext->id }}">{{ $ext->numero_extension }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputClaveRadio" class="block text-sm font-medium text-gray-700">Clave de
+                                Radio</label>
+                            <select id="inputClaveRadio" wire:model="clave_radio" name="clave_radio"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if (isset($clavesRadio))
+                                    @foreach ($clavesRadio as $clave)
+                                        <option value="{{ $clave->id }}">{{ $clave->clave }}</option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                    </div>
+
+                    {{-- Inicio tabla contactos emergencia --}}
+                    {{-- <div class="grid mt-4 mb-4">
+
+                        <div class="block mb-3 text-sm font-medium text-gray-700">
+                            <h5>Contactos de emergencia</h5>
+                        </div>
+                        <div class="flex flex-col">
+                            <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+                                <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+                                    <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
+                                        <table name="tablaContactos" class="min-w-full divide-y divide-gray-200">
+                                            <thead class="bg-gray-100" id="th_contactos">
+                                                <tr class="">
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                        Nombre</th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                        Parentesco</th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                        Teléfono</th>
+                                                    <th scope="col"
+                                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                        Domicilio</th>
+                                                    <th scope="col" class="relative px-6 py-3 ">
+                                                        <a href="javascript:;"
+                                                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addContacto">+</a>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="tb_contactos">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div> --}}
+                    {{-- Fin tabla contactos emergencia --}}
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputMatriculacion"
+                                class="block text-sm font-medium text-gray-700">Matriculación</label>
+                            <select id="inputMatriculacion" wire:model="matriculacion" name="matriculacion"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                <option value="1">Si</option>
+                                <option value="0">No</option>
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputTipoUsuario" class="block text-sm font-medium text-gray-700">Tipo de
+                                Usuario</label>
+                            <select id="inputTipoUsuario" wire:model="tipo_usuario" name="tipo_usuario"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                <option></option>
+                                @if (isset($tiposUsuario))
+                                    @foreach ($tiposUsuario as $tipoUsuario)
+                                        <option value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->nombre_tipo }}
+                                        </option>
+                                    @endforeach
+                                @endif
+                            </select>
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputPassword"
+                                class="block text-sm font-medium text-gray-700">Contraseña</label>
+                            <input type="text" wire:model="password" name="password" id="inputPassword"
+                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                value="{{ old('password') }}">
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label for="inputFechaIngreso" class="block text-sm font-medium text-gray-700">Fecha de
+                                ingreso</label>
+                            <input wire:model="fecha_ingreso" name="fecha_ingreso" id="inputFechaIngreso" type="date"
+                                value="{{ old('fecha_ingreso') }}" min="1961-08-29" max=""
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+
+                    </div>
+
+                    <div class="grid mt-4 mb-4">
+
+                        <div class="col-span-2 sm:col-span-2">
+                            <label
+                                class="flex flex-col items-center px-4 py-6 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20">
+                                    <path
+                                        d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
+                                </svg>
+                                <span class="mt-2 text-base leading-normal">Seleccionar una Fotografía</span>
+                                <input type='file' wire:model="foto" class="hidden" />
+                            </label>
+                        </div>
+
+                    </div>
                 </div>
-                {{-- Fin tabla contactos emergencia --}}
-                <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputMatriculacion"
-                            class="block text-sm font-medium text-gray-700">Matriculación</label>
-                        <select id="inputMatriculacion" name="matriculacion"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            <option value="1">Si</option>
-                            <option value="0">No</option>
-                        </select>
-                    </div>
-
-                    <div class="col-span-1 sm:col-span-1">
-                        <label for="inputTipoUsuario" class="block text-sm font-medium text-gray-700">Tipo de
-                            Usuario</label>
-                        <select id="inputTipoUsuario" name="tipo_usuario"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            @if (isset($tiposUsuario))
-                                @foreach ($tiposUsuario as $tipoUsuario)
-                                    <option value="{{ $tipoUsuario->id }}">{{ $tipoUsuario->nombre_tipo }}
-                                    </option>
-                                @endforeach
-                            @endif
-                        </select>
-                    </div>
-
-                    <div class="col-span-2 sm:col-span-2">
-                        <label for="inputPassword" class="block text-sm font-medium text-gray-700">Contraseña</label>
-                        <input type="text" name="password" id="inputPassword"
-                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                            value="{{ old('password') }}">
-                    </div>
-
-                </div>
-
-                <div class="grid mt-4 mb-4">
-                    
+                <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
+                    <button wire:click="store" type="submit"
+                        class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        Registrar colaborador
+                    </button>
                 </div>
             </div>
-            <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-                <button type="submit"
-                    class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                    Registrar colaborador
-                </button>
-            </div>
-        </div>
-    </form>
-</div>
+        </form>
+    </div>
+</form>
 
 {{-- Modifica el valor maximo del input date fecha_ingreso --}}
 

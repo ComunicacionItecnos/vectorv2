@@ -13,6 +13,49 @@ class Colaborador extends Model
     protected $primaryKey = 'no_colaborador';
     protected $keyType = 'string';
     public $incrementing = false;
+    public $timestamps = false;
+
+    protected $fillable = [
+        'no_colaborador',
+        'nombre',
+        'ap_paterno',
+        'ap_materno',
+        'fecha_nacimiento',
+        'genero_id',
+        'estado_civil_id',
+        'domicilio',
+        'municipio',
+        'estado',
+        'codigo_postal',
+        'paternidad_id',
+        'turno_id',
+        'ruta_transporte_id',
+        'puesto_id',
+        'area_id',
+        'correo',
+        'tel_fijo',
+        'tel_movil',
+        'tel_recados',
+        'extension_id',
+        'clave_radio_id',
+        'jefe_directo',
+        'tipo_colaborador_id',
+        'fecha_ingreso',
+        'password',
+        'matriculacion',
+        'tipo_usuario_id',
+        'tipo_usuario_id',
+        'rango_factor_id',
+        'rims',
+        'autoeval_gen',
+        'autoeval_asig',
+        'autoeval_cal',
+        'eval_gen',
+        'eval_asig',
+        'eval_cal',
+        'estado_colaborador',
+        'foto',
+];
 
     //* Relacion muchos a uno
     public function generos(){
