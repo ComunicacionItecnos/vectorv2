@@ -1,4 +1,35 @@
 <form wire:submit.prevent="store">
+
+    @if (session()->has('error'))
+        <div x-data="{ show: true }" x-show="show"
+            class="relative flex items-center justify-between px-3 py-3 text-red-600 bg-red-200 rounded-lg">
+            <div>
+                <span class="font-semibold text-red-700">Error</span>
+                {{ session('error') }}
+            </div>
+            <div>
+                <button type="button" @click="show = false" class="text-red-700 ">
+                    <span class="text-2xl">&times;</span>
+                </button>
+            </div>
+        </div>
+    @endif
+
+    @if (session()->has('success'))
+        <div x-data="{ show: true }" x-show="show"
+            class="relative flex items-center justify-between px-3 py-3 text-green-600 bg-green-200 rounded-lg">
+            <div>
+                <span class="font-semibold text-green-700">Éxito</span>
+                {{ session('success') }}
+            </div>
+            <div>
+                <button type="button" @click="show = false" class="text-green-700 ">
+                    <span class="text-2xl">&times;</span>
+                </button>
+            </div>
+        </div>
+    @endif
+
     <div class="mt-5 md:mt-0 md:col-span-2">
         <form action="#" method="POST">
             <div class="overflow-hidden shadow sm:rounded-md">
