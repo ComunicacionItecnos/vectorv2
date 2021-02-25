@@ -26,6 +26,6 @@ class RangoFactor extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('rango_factor');
     }
 }

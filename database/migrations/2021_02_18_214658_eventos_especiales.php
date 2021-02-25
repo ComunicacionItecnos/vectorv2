@@ -26,6 +26,6 @@ class EventosEspeciales extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('eventos_especiales');
     }
 }

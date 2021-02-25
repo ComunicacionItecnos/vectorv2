@@ -26,6 +26,6 @@ class EstadoCivil extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('estado_civil');
     }
 }

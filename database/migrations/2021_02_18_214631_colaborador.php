@@ -115,6 +115,6 @@ class Colaborador extends Migration
      */
     public function down()
     {
-
+        Schema::dropIfExists('colaborador');
     }
 }

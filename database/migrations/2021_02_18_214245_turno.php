@@ -26,6 +26,6 @@ class Turno extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('turno');
     }
 }
