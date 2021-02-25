@@ -26,6 +26,6 @@ class TipoUsuario extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('tipo_usuario');
     }
 }

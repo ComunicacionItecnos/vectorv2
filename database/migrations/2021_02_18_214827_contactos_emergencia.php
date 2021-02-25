@@ -37,6 +37,6 @@ class ContactosEmergencia extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('contactos_emergencia');
     }
 }

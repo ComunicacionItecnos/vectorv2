@@ -26,6 +26,6 @@ class RutaTransporte extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('ruta_transporte');
     }
 }

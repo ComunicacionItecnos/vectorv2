@@ -28,6 +28,6 @@ class ClaveRadio extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('clave_radio');
     }
 }

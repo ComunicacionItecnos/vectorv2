@@ -26,6 +26,6 @@ class Extension extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('extension');
     }
 }

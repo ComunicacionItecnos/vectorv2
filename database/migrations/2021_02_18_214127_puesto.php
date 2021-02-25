@@ -33,6 +33,6 @@ class Puesto extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('puesto');
     }
 }

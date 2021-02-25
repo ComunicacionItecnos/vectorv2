@@ -27,6 +27,6 @@ class Genero extends Migration
     public function down()
     {
         //
-        Schema::drop('genero');
+        Schema::dropIfExists('genero');
     }
 }

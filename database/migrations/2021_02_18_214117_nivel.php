@@ -26,6 +26,6 @@ class Nivel extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('nivel');
     }
 }
