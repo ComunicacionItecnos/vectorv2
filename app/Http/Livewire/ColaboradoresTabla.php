@@ -9,7 +9,10 @@ use Livewire\WithPagination;
 class ColaboradoresTabla extends Component
 {
     use WithPagination;
-    public $search, $perPage='5';
+
+    protected $queryString = ['search' => ['except' => '']];
+
+    public $search, $perPage = '5';
 
     public function render()
     {
@@ -27,12 +30,13 @@ class ColaboradoresTabla extends Component
                     ->orWhere('estado_colaborador', 0)
                     ->paginate($this->perPage)
             ]);
-        }
+        } else {
 
-        return view('livewire.colaboradores-tabla', [
-            'colaboradores' => Colaborador::where('no_colaborador', 'LIKE', "%{$this->search}%")
-                ->orWhere('nombre', 'LIKE', "%{$this->search}%")
-                ->paginate($this->perPage)
-        ]);
+            return view('livewire.colaboradores-tabla', [
+                'colaboradores' => Colaborador::where('no_colaborador', 'LIKE', "%{$this->search}%")
+                    ->orWhere('nombre', 'LIKE', "%{$this->search}%")
+                    ->paginate($this->perPage)
+            ]);
+        }
     }
 }
