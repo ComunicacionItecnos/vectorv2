@@ -23,9 +23,11 @@ class FormularioColaborador extends Component
     use WithFileUploads;
 
     public $no_colaborador, $nombre, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
-        $paternidad, $domicilio, $municipio, $estado, $codigo_postal, $tipo_colaborador, $turno,
+        $paternidad, $curp, $rfc, $no_seguro_social, $domicilio, $municipio, $estado, $codigo_postal, $tipo_colaborador, $turno,
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
-        $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso, $foto;
+        $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
+
+    public $foto;
 
 
 
@@ -73,13 +75,13 @@ class FormularioColaborador extends Component
             $j_d = '';
         }
 
-        try {
+        
             $this->validate([
                 'foto' => 'image|max:1024', // 1MB Max
             ]);
 
             $foto_ruta = $this->foto->store('images', 'public');
-
+            try {
             Colaborador::create([
 
                 'no_colaborador' => $this->no_colaborador,
@@ -89,6 +91,9 @@ class FormularioColaborador extends Component
                 'fecha_nacimiento' => $this->fecha_nacimiento,
                 'genero_id' => $this->genero,
                 'estado_civil_id' => $this->estado_civil,
+                'curp' => $this->curp,
+                'rfc' => $this->rfc,
+                'no_seguro_social' => $this->no_seguro_social,
                 'domicilio' => $this->domicilio,
                 'municipio' => $this->municipio,
                 'estado' => $this->estado,
@@ -124,7 +129,7 @@ class FormularioColaborador extends Component
             ]);
 
             session()->flash('success', 'El colaborador ' . $this->no_colaborador . ' ha sido registrado con éxito');
-
+            
         } catch (Exception) {
             session()->flash('error', 'Ya existe el colaborador ' . $this->no_colaborador);
         }

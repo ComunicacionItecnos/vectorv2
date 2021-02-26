@@ -13,9 +13,8 @@
                 </button>
             </div>
         </div>
-    @endif
 
-    @if (session()->has('success'))
+    @elseif (session()->has('success'))
         <div x-data="{ show: true }" x-show="show"
             class="relative flex items-center justify-between px-3 py-3 text-green-600 bg-green-200 rounded-lg">
             <div>
@@ -158,6 +157,29 @@
                             </div>
                         </div>
                     </div> --}}
+                    <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700" for="inputCurp">CURP</label>
+                            <input type="text" wire:model="curp" name="curp" id="inputCurp" value="{{ old('curp') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+
+                        <div class="col-span-1 sm:col-span-1">
+                            <label class="block text-sm font-medium text-gray-700" for="inputRfc">RFC</label>
+                            <input type="text" wire:model="rfc" name="rfc" id="inputRfc" value="{{ old('rfc') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+
+
+                        <div class="col-span-2 sm:col-span-2">
+                            <label class="block text-sm font-medium text-gray-700" for="inputNo_seguro_docial">No. Seguro
+                                Social</label>
+                            <input type="text" wire:model="no_seguro_social" name="no_seguro_social"
+                                id="inputno_seguro_social" value="{{ old('no_seguro_social') }}"
+                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        </div>
+                    </div>
 
                     <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
