@@ -81,8 +81,10 @@ class FormularioColaborador extends Component
             ]);
 
             $foto_ruta = $this->foto->store('images', 'public');
+
             try {
-            Colaborador::create([
+
+            Colaborador::updateOrCreate([
 
                 'no_colaborador' => $this->no_colaborador,
                 'nombre' => $this->nombre,
@@ -130,7 +132,7 @@ class FormularioColaborador extends Component
 
             session()->flash('success', 'El colaborador ' . $this->no_colaborador . ' ha sido registrado con éxito');
             
-        } catch (Exception) {
+        } catch (Exception $ex) {
             session()->flash('error', 'Ya existe el colaborador ' . $this->no_colaborador);
         }
     }
