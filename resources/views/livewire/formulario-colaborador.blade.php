@@ -147,12 +147,13 @@
                                             </thead>
                                             <tbody id="tb_hijos">
                                                 <tr>
-                                                    <td><input type="text" wire:model="edad_hijo1" 
+                                                    <td><input type="text" wire:model="edad_hijo1"
                                                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     </td>
 
                                                     <td>
-                                                        <select id="escolaridad_hijo" wire:model="escolaridad_hijo1" name="escolaridad_hijo[]"
+                                                        <select id="escolaridad_hijo" wire:model="escolaridad_hijo1"
+                                                            name="escolaridad_hijo[]"
                                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                             <option value=""></option>
                                                             <option value="1">Jardín de niños</option>
@@ -164,7 +165,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input type="text" wire:model="edad_hijo2" 
+                                                    <td><input type="text" wire:model="edad_hijo2"
                                                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     </td>
 
@@ -181,7 +182,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input type="text" wire:model="edad_hijo3" 
+                                                    <td><input type="text" wire:model="edad_hijo3"
                                                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     </td>
 
@@ -198,7 +199,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input type="text" wire:model="edad_hijo4" 
+                                                    <td><input type="text" wire:model="edad_hijo4"
                                                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     </td>
 
@@ -215,7 +216,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input type="text" wire:model="edad_hijo5" 
+                                                    <td><input type="text" wire:model="edad_hijo5"
                                                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     </td>
 
@@ -232,7 +233,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <td><input type="text" wire:model="edad_hijo6" 
+                                                    <td><input type="text" wire:model="edad_hijo6"
                                                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     </td>
 
@@ -500,14 +501,85 @@
                                                     <th scope="col"
                                                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                                         Domicilio</th>
-                                                    <th scope="col" class="relative px-6 py-3 ">
-                                                        <a href="javascript:;"
-                                                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addContacto">+</a>
-                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tb_contactos">
-
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto1"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto1"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto1"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto1"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto2"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto2"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto2"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto2"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto3"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto3"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto3"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto3"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto4"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto4"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto4"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto4"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -658,7 +730,7 @@
 
 {{-- Funcion para agregar una fila a la tabla Contactos --}}
 
-<script>
+{{-- <script>
     $("#th_contactos").on('click', '.addContacto', function() {
         var tr2 =
 
@@ -679,7 +751,7 @@
 
     });
 
-</script>
+</script> --}}
 
 
 {{-- Mostrar la tabla Hijos --}}
