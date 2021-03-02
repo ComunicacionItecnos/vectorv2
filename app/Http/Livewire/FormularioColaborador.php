@@ -31,6 +31,9 @@ class FormularioColaborador extends Component
 
     public $foto;
 
+    public $edad_hijo1, $edad_hijo2, $edad_hijo3, $edad_hijo4, $edad_hijo5, $edad_hijo6;
+    public $escolaridad_hijo1, $escolaridad_hijo2, $escolaridad_hijo3, $escolaridad_hijo4, $escolaridad_hijo5, $escolaridad_hijo6;
+
 
 
 
@@ -77,14 +80,14 @@ class FormularioColaborador extends Component
             $j_d = '';
         }
 
-        
-            $this->validate([
-                'foto' => 'image|max:1024', // 1MB Max
-            ]);
 
-            $foto_ruta = $this->foto->store('images', 'public');
+        $this->validate([
+            'foto' => 'image|max:1024', // 1MB Max
+        ]);
 
-            try {
+        $foto_ruta = $this->foto->store('images', 'public');
+
+        try {
 
             Colaborador::updateOrCreate([
 
@@ -140,8 +143,68 @@ class FormularioColaborador extends Component
                 ]);
             }
 
+            for ($i = 1; $i <= 6; $i++) {
+
+                switch ($i) {
+                    
+                    case '1':
+                        if ($this->edad_hijo1 != null | $this->escolaridad_hijo1 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo1,
+                                'escolaridad_id' => $this->escolaridad_hijo1,
+                            ]);
+                            break;
+                        }
+                    case '2':
+                        if ($this->edad_hijo2 != null | $this->escolaridad_hijo2 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo2,
+                                'escolaridad_id' => $this->escolaridad_hijo2,
+                            ]);
+                            break;
+                        }
+                    case '3':
+                        if ($this->edad_hijo3 != null | $this->escolaridad_hijo3 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo3,
+                                'escolaridad_id' => $this->escolaridad_hijo3,
+                            ]);
+                            break;
+                        }
+                    case '4':
+                        if ($this->edad_hijo4 != null | $this->escolaridad_hijo4 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo4,
+                                'escolaridad_id' => $this->escolaridad_hijo4,
+                            ]);
+                            break;
+                        }
+                    case '5':
+                        if ($this->edad_hijo5 != null | $this->escolaridad_hijo5 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo5,
+                                'escolaridad_id' => $this->escolaridad_hijo5,
+                            ]);
+                            break;
+                        }
+                    case '6':
+                        if ($this->edad_hijo6 != null | $this->escolaridad_hijo6 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo6,
+                                'escolaridad_id' => $this->escolaridad_hijo6,
+                            ]);
+                            break;
+                        }
+                }
+            }
+
             session()->flash('success', 'El colaborador ' . $this->no_colaborador . ' ha sido registrado con éxito');
-            
         } catch (Exception $ex) {
             session()->flash('error', 'Ya existe el colaborador ' . $this->no_colaborador);
         }
