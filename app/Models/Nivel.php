@@ -10,6 +10,12 @@ class Nivel extends Model
     use HasFactory;
 
     protected $table = 'nivel';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_nivel'
+    ];
     
     // * Relacion uno a muchos
     public function colaboradores()

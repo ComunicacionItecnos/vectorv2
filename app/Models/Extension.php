@@ -11,6 +11,12 @@ class Extension extends Model
 
     protected $table = 'extension';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'numero_extension'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

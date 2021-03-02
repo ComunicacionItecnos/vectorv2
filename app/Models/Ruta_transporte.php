@@ -11,6 +11,12 @@ class Ruta_transporte extends Model
 
     protected $table = 'ruta_transporte';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_ruta'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

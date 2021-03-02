@@ -11,6 +11,12 @@ class Tipo_usuario extends Model
 
     protected $table = 'tipo_usuario';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_tipo'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

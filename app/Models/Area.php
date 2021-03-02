@@ -11,6 +11,12 @@ class Area extends Model
 
     protected $table = 'area';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_area'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

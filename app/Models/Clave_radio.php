@@ -11,6 +11,14 @@ class Clave_radio extends Model
 
     protected $table = 'clave_radio';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'clave',
+        'compartida',
+        'dsponibilidad',
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

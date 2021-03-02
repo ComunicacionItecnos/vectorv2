@@ -11,6 +11,13 @@ class Puesto extends Model
 
     protected $table = 'puesto';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nivel_id',
+        'especialidad_puesto'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

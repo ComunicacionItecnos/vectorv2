@@ -11,6 +11,12 @@ class Rango_factor extends Model
 
     protected $table = 'rango_factor';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_rango'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

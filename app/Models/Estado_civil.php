@@ -11,6 +11,12 @@ class Estado_civil extends Model
 
     protected $table = 'estado_civil';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_estado'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

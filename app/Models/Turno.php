@@ -11,6 +11,12 @@ class Turno extends Model
 
     protected $table = 'turno';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_turno'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {
