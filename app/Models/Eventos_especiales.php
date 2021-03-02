@@ -11,6 +11,12 @@ class Eventos_especiales extends Model
 
     protected $table = 'eventos_especiales';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_evento'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores_evento()
     {

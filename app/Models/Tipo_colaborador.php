@@ -11,6 +11,12 @@ class Tipo_colaborador extends Model
 
     protected $table = 'tipo_colaborador';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_tipo'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {

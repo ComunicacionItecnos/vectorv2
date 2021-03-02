@@ -11,6 +11,12 @@ class Escolaridad extends Model
 
     protected $table = 'escolaridad';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_escolaridad'
+    ];
+
     // * Relacion uno a muchos
     public function hijos()
     {

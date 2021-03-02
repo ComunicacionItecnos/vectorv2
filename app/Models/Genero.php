@@ -11,6 +11,12 @@ class Genero extends Model
 
     protected $table = 'genero';
 
+    public $timestamps = false;
+
+    protected $fillable = [
+        'nombre_genero'
+    ];
+
     // * Relacion uno a muchos
     public function colaboradores()
     {
