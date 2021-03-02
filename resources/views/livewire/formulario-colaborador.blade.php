@@ -123,8 +123,9 @@
                         </div>
 
                     </div>
+
                     {{-- Tabla Hijos --}}
-                    {{-- <div id="tablaHijos" class="grid mt-4 mb-4">
+                    <div id="tablaHijos" class="grid mt-4 mb-4" @if (($paternidad == '') | ($paternidad == '0')) style="display: none" @else @endif>
 
                         <div class="block mb-3 text-sm font-medium text-gray-700">
                             <h5>Hijo(s)</h5>
@@ -142,21 +143,120 @@
                                                     <th scope="col"
                                                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                                         Escolaridad</th>
-                                                    <th scope="col" class="relative px-6 py-3 ">
-                                                        <a href="javascript:;"
-                                                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addHijo">+</a>
-                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tb_hijos">
+                                                <tr>
+                                                    <td><input type="text" wire:model="edad_hijo1"
+                                                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
 
+                                                    <td>
+                                                        <select id="escolaridad_hijo" wire:model="escolaridad_hijo1"
+                                                            name="escolaridad_hijo[]"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value=""></option>
+                                                            <option value="1">Jardín de niños</option>
+                                                            <option value="2">Primaria</option>
+                                                            <option value="3">Secundaria</option>
+                                                            <option value="4">Preparatoria</option>
+                                                            <option value="5">Universidad</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="edad_hijo2"
+                                                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+
+                                                    <td>
+                                                        <select wire:model="escolaridad_hijo2"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value=""></option>
+                                                            <option value="1">Jardín de niños</option>
+                                                            <option value="2">Primaria</option>
+                                                            <option value="3">Secundaria</option>
+                                                            <option value="4">Preparatoria</option>
+                                                            <option value="5">Universidad</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="edad_hijo3"
+                                                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+
+                                                    <td>
+                                                        <select wire:model="escolaridad_hijo3"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value=""></option>
+                                                            <option value="1">Jardín de niños</option>
+                                                            <option value="2">Primaria</option>
+                                                            <option value="3">Secundaria</option>
+                                                            <option value="4">Preparatoria</option>
+                                                            <option value="5">Universidad</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="edad_hijo4"
+                                                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+
+                                                    <td>
+                                                        <select wire:model="escolaridad_hijo4"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value=""></option>
+                                                            <option value="1">Jardín de niños</option>
+                                                            <option value="2">Primaria</option>
+                                                            <option value="3">Secundaria</option>
+                                                            <option value="4">Preparatoria</option>
+                                                            <option value="5">Universidad</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="edad_hijo5"
+                                                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+
+                                                    <td>
+                                                        <select wire:model="escolaridad_hijo5"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value=""></option>
+                                                            <option value="1">Jardín de niños</option>
+                                                            <option value="2">Primaria</option>
+                                                            <option value="3">Secundaria</option>
+                                                            <option value="4">Preparatoria</option>
+                                                            <option value="5">Universidad</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="edad_hijo6"
+                                                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+
+                                                    <td>
+                                                        <select wire:model="escolaridad_hijo6"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            <option value=""></option>
+                                                            <option value="1">Jardín de niños</option>
+                                                            <option value="2">Primaria</option>
+                                                            <option value="3">Secundaria</option>
+                                                            <option value="4">Preparatoria</option>
+                                                            <option value="5">Universidad</option>
+                                                        </select>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
+
                     <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                         <div class="col-span-1 sm:col-span-1">
@@ -173,7 +273,8 @@
 
 
                         <div class="col-span-2 sm:col-span-2">
-                            <label class="block text-sm font-medium text-gray-700" for="inputNo_seguro_docial">No. Seguro
+                            <label class="block text-sm font-medium text-gray-700" for="inputNo_seguro_docial">No.
+                                Seguro
                                 Social</label>
                             <input type="text" wire:model="no_seguro_social" name="no_seguro_social"
                                 id="inputno_seguro_social" value="{{ old('no_seguro_social') }}"
@@ -376,7 +477,7 @@
                     </div>
 
                     {{-- Inicio tabla contactos emergencia --}}
-                    {{-- <div class="grid mt-4 mb-4">
+                    <div class="grid mt-4 mb-4">
 
                         <div class="block mb-3 text-sm font-medium text-gray-700">
                             <h5>Contactos de emergencia</h5>
@@ -400,14 +501,85 @@
                                                     <th scope="col"
                                                         class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                                         Domicilio</th>
-                                                    <th scope="col" class="relative px-6 py-3 ">
-                                                        <a href="javascript:;"
-                                                            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 addContacto">+</a>
-                                                    </th>
                                                 </tr>
                                             </thead>
                                             <tbody id="tb_contactos">
-
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto1"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto1"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto1"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto1"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto2"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto2"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto2"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto2"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto3"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto3"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto3"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto3"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td><input type="text" wire:model="nombre_contacto4"
+                                                            id="nombre_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="parentesco_contacto4"
+                                                            id="parentesco_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="telefono_contacto4"
+                                                            id="telefono_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    <td><input type="text" wire:model="domicilio_contacto4"
+                                                            id="domicilio_contacto"
+                                                            class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    </td>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
                                     </div>
@@ -415,8 +587,9 @@
                             </div>
                         </div>
 
-                    </div> --}}
+                    </div>
                     {{-- Fin tabla contactos emergencia --}}
+
                     <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                         <div class="col-span-1 sm:col-span-1">
@@ -525,14 +698,14 @@
 
 {{-- Funcion para agregar una fila a la tabla Hijos --}}
 
-<script>
+{{-- <script>
     $("#th_hijos").on('click', '.addHijo', function() {
         var tr = '<tr>' +
-            '<td><input type="text" name="edad_hijo[]" id="edad_hijo"' +
+            '<td><input type="text" ' +
             'class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
 
             '<td>' +
-            '<select id="escolaridad_hijo" name="escolaridad_hijo[]" class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">' +
+            '<select class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">' +
             '<option value="1">Jardín de niños</option>' +
             '<option value="2">Primaria</option>' +
             '<option value="3">Secundaria</option>' +
@@ -553,11 +726,11 @@
 
     });
 
-</script>
+</script> --}}
 
 {{-- Funcion para agregar una fila a la tabla Contactos --}}
 
-<script>
+{{-- <script>
     $("#th_contactos").on('click', '.addContacto', function() {
         var tr2 =
 
@@ -578,12 +751,12 @@
 
     });
 
-</script>
+</script> --}}
 
 
 {{-- Mostrar la tabla Hijos --}}
 
-<script>
+{{-- <script>
     $(function() {
 
         $("#inputHijos").on('change', function() {
@@ -605,4 +778,4 @@
 
     });
 
-</script>
+</script> --}}

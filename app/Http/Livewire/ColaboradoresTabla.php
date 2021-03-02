@@ -13,6 +13,7 @@ class ColaboradoresTabla extends Component
     protected $queryString = ['search' => ['except' => '']];
 
     public $search, $perPage = '5';
+    public $loadingIndicator = true;
 
     public function render()
     {

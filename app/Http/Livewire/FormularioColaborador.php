@@ -16,6 +16,9 @@ use App\Models\Tipo_usuario;
 use App\Models\Genero;
 use App\Models\Estado_civil;
 use App\Models\Rango_factor;
+use App\Models\Colaborador_evento;
+use App\Models\Contactos_emergencia;
+use App\Models\Hijos;
 use Exception;
 
 class FormularioColaborador extends Component
@@ -28,6 +31,14 @@ class FormularioColaborador extends Component
         $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
 
     public $foto;
+
+    public $edad_hijo1, $edad_hijo2, $edad_hijo3, $edad_hijo4, $edad_hijo5, $edad_hijo6;
+    public $escolaridad_hijo1, $escolaridad_hijo2, $escolaridad_hijo3, $escolaridad_hijo4, $escolaridad_hijo5, $escolaridad_hijo6;
+
+    public $nombre_contacto1, $nombre_contacto2, $nombre_contacto3, $nombre_contacto4;
+    public $parentesco_contacto1, $parentesco_contacto2, $parentesco_contacto3, $parentesco_contacto4;
+    public $telefono_contacto1, $telefono_contacto2, $telefono_contacto3, $telefono_contacto4;
+    public $domicilio_contacto1, $domicilio_contacto2, $domicilio_contacto3, $domicilio_contacto4;
 
 
 
@@ -75,14 +86,14 @@ class FormularioColaborador extends Component
             $j_d = '';
         }
 
-        
-            $this->validate([
-                'foto' => 'image|max:1024', // 1MB Max
-            ]);
 
-            $foto_ruta = $this->foto->store('images', 'public');
+        $this->validate([
+            'foto' => 'image|max:1024', // 1MB Max
+        ]);
 
-            try {
+        $foto_ruta = $this->foto->store('images', 'public');
+
+        try {
 
             Colaborador::updateOrCreate([
 
@@ -130,10 +141,150 @@ class FormularioColaborador extends Component
                 'foto' => $foto_ruta,
             ]);
 
+            for ($i = 1; $i <= 6; $i++) {
+                Colaborador_evento::updateOrCreate([
+                    'colaborador_no_colaborador' => $this->no_colaborador,
+                    'eventos_especiales_id' => $i,
+                    'entrega' => '0'
+                ]);
+            }
+
+            // ? Insert tabla Hijos
+
+            for ($i = 1; $i <= 6; $i++) {
+
+                switch ($i) {
+
+                    case '1':
+                        if ($this->edad_hijo1 != null | $this->escolaridad_hijo1 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo1,
+                                'escolaridad_id' => $this->escolaridad_hijo1,
+                            ]);
+                        }
+                        break;
+
+                    case '2':
+                        if ($this->edad_hijo2 != null | $this->escolaridad_hijo2 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo2,
+                                'escolaridad_id' => $this->escolaridad_hijo2,
+                            ]);
+                        }
+                        break;
+
+                    case '3':
+                        if ($this->edad_hijo3 != null | $this->escolaridad_hijo3 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo3,
+                                'escolaridad_id' => $this->escolaridad_hijo3,
+                            ]);
+                        }
+                        break;
+
+                    case '4':
+                        if ($this->edad_hijo4 != null | $this->escolaridad_hijo4 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo4,
+                                'escolaridad_id' => $this->escolaridad_hijo4,
+                            ]);
+                        }
+                        break;
+
+                    case '5':
+                        if ($this->edad_hijo5 != null | $this->escolaridad_hijo5 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo5,
+                                'escolaridad_id' => $this->escolaridad_hijo5,
+                            ]);
+                        }
+                        break;
+
+                    case '6':
+                        if ($this->edad_hijo6 != null | $this->escolaridad_hijo6 != null) {
+                            Hijos::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'edad' => $this->edad_hijo6,
+                                'escolaridad_id' => $this->escolaridad_hijo6,
+                            ]);
+                        }
+                        break;
+                }
+            }
+
+            // ? Insert tabla contactos_emergencia
+
+            for ($i = 1; $i <= 4; $i++) {
+
+                switch ($i) {
+
+                    case '1':
+                        if (
+                            $this->nombre_contacto1 != null | $this->parentesco_contacto1 != null |
+                            $this->telefono_contacto1 != null | $this->domicilio_contacto1 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto1,
+                                'parentesco' => $this->parentesco_contacto1,
+                                'telefono' => $this->telefono_contacto1,
+                                'domicilio' => $this->domicilio_contacto1,
+                            ]);
+                        }
+                        break;
+                    case '2':
+                        if (
+                            $this->nombre_contacto2 != null | $this->parentesco_contacto2 != null |
+                            $this->telefono_contacto2 != null | $this->domicilio_contacto2 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto2,
+                                'parentesco' => $this->parentesco_contacto2,
+                                'telefono' => $this->telefono_contacto2,
+                                'domicilio' => $this->domicilio_contacto2,
+                            ]);
+                        }
+                        break;
+                    case '3':
+                        if (
+                            $this->nombre_contacto3 != null | $this->parentesco_contacto3 != null |
+                            $this->telefono_contacto3 != null | $this->domicilio_contacto3 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto3,
+                                'parentesco' => $this->parentesco_contacto3,
+                                'telefono' => $this->telefono_contacto3,
+                                'domicilio' => $this->domicilio_contacto3,
+                            ]);
+                        }
+                        break;
+                    case '4':
+                        if (
+                            $this->nombre_contacto4 != null | $this->parentesco_contacto4 != null |
+                            $this->telefono_contacto4 != null | $this->domicilio_contacto4 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto4,
+                                'parentesco' => $this->parentesco_contacto4,
+                                'telefono' => $this->telefono_contacto4,
+                                'domicilio' => $this->domicilio_contacto4,
+                            ]);
+                        }
+                        break;
+                }
+            }
+
             session()->flash('success', 'El colaborador ' . $this->no_colaborador . ' ha sido registrado con éxito');
-            
         } catch (Exception $ex) {
-            session()->flash('error', 'Ya existe el colaborador ' . $this->no_colaborador);
+            session()->flash('error', 'Ya existe el colaborador ' . $this->no_colaborador . $ex);
         }
     }
 }

@@ -10,6 +10,13 @@ class Hijos extends Model
     use HasFactory;
 
     protected $table = 'hijos';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'colaborador_no_colaborador',
+        'edad',
+        'escolaridad_id',
+    ];
 
     //* Relacion muchos a uno
     public function escolaridades(){

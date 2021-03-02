@@ -10,6 +10,15 @@ class Contactos_emergencia extends Model
     use HasFactory;
 
     protected $table = 'contactos_emergencia';
+    public $timestamps = false;
+
+    protected $fillable = [
+        'colaborador_no_colaborador',
+        'nombre',
+        'parentesco',
+        'telefono',
+        'domicilio'
+    ];
 
     //* Relacion muchos a uno
     public function colaboradores(){
