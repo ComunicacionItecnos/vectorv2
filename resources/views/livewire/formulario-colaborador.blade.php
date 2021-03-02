@@ -124,7 +124,8 @@
 
                     </div>
                     {{-- Tabla Hijos --}}
-                    {{-- <div id="tablaHijos" class="grid mt-4 mb-4">
+                    <div id="tablaHijos" class="grid mt-4 mb-4"
+                    @if ($paternidad == '' | $paternidad == '0') style="display: none" @else @endif>
 
                         <div class="block mb-3 text-sm font-medium text-gray-700">
                             <h5>Hijo(s)</h5>
@@ -156,7 +157,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div> --}}
+                    </div>
                     <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                         <div class="col-span-1 sm:col-span-1">
@@ -376,7 +377,7 @@
                     </div>
 
                     {{-- Inicio tabla contactos emergencia --}}
-                    {{-- <div class="grid mt-4 mb-4">
+                    <div class="grid mt-4 mb-4">
 
                         <div class="block mb-3 text-sm font-medium text-gray-700">
                             <h5>Contactos de emergencia</h5>
@@ -415,8 +416,9 @@
                             </div>
                         </div>
 
-                    </div> --}}
+                    </div>
                     {{-- Fin tabla contactos emergencia --}}
+
                     <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                         <div class="col-span-1 sm:col-span-1">
@@ -583,7 +585,7 @@
 
 {{-- Mostrar la tabla Hijos --}}
 
-<script>
+{{-- <script>
     $(function() {
 
         $("#inputHijos").on('change', function() {
@@ -605,4 +607,4 @@
 
     });
 
-</script>
+</script> --}}
