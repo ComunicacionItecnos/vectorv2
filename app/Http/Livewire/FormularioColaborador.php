@@ -16,6 +16,8 @@ use App\Models\Tipo_usuario;
 use App\Models\Genero;
 use App\Models\Estado_civil;
 use App\Models\Rango_factor;
+use App\Models\Colaborador_evento;
+use App\Models\Hijos;
 use Exception;
 
 class FormularioColaborador extends Component
@@ -129,6 +131,14 @@ class FormularioColaborador extends Component
                 'estado_colaborador' => '1',
                 'foto' => $foto_ruta,
             ]);
+
+            for ($i = 1; $i <= 6; $i++) {
+                Colaborador_evento::updateOrCreate([
+                    'colaborador_no_colaborador' => $this->no_colaborador,
+                    'eventos_especiales_id' => $i,
+                    'entrega' => '0'
+                ]);
+            }
 
             session()->flash('success', 'El colaborador ' . $this->no_colaborador . ' ha sido registrado con éxito');
             
