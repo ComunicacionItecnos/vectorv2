@@ -27,14 +27,24 @@ class ColaboradoresTabla extends Component
                 'colaboradores' => Colaborador::where('no_colaborador', 'LIKE', "%{$this->search}%")
                     ->orWhere('nombre', 'LIKE', "%{$this->search}%")
                     ->orWhere('estado_colaborador', 1)
-                    ->paginate($this->perPage)
+                    ->paginate($this->perPage),
+                'areas' => Area::all(),
+                'puestos' => Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
+                    ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
+                    ->get(),
+                'extensiones' => Extension::all()
             ]);
         } else if ($this->search == 'inactivo') {
             return view('livewire.colaboradores-tabla', [
                 'colaboradores' => Colaborador::where('no_colaborador', 'LIKE', "%{$this->search}%")
                     ->orWhere('nombre', 'LIKE', "%{$this->search}%")
                     ->orWhere('estado_colaborador', 0)
-                    ->paginate($this->perPage)
+                    ->paginate($this->perPage),
+                'areas' => Area::all(),
+                'puestos' => Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
+                    ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
+                    ->get(),
+                'extensiones' => Extension::all()
             ]);
         } else {
 
