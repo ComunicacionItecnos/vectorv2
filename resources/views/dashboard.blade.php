@@ -1,7 +1,21 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-red-700">
-            Panel del administrador
+            @if (auth()->user()->role_id == 1)
+                Super usuario
+            @elseif (auth()->user()->role_id == 2)
+                Comunicación
+            @elseif (auth()->user()->role_id == 3)
+                Administración
+            @elseif (auth()->user()->role_id == 4)
+                Relaciones laborales
+            @elseif (auth()->user()->role_id == 5)
+                Reclutamiento y selección
+            @elseif (auth()->user()->role_id == 6)
+                Seguridad patrimonial
+            @elseif (auth()->user()->role_id == 7)
+                Servicio médico
+            @endif
         </h2>
     </x-slot>
 
