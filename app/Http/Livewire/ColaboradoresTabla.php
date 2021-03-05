@@ -63,21 +63,43 @@ class ColaboradoresTabla extends Component
 
     public function baja($no_colaborador)
     {
-
         DB::table('colaborador')->where('no_colaborador', $no_colaborador)
             ->update([
                 'estado_colaborador' => 0
             ]);
-        return redirect("dashboard");
+
+        $this->flash('success', 'Dado de baja correctamente', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+
+        return redirect()->route("dashboard");
     }
 
     public function alta($no_colaborador)
     {
-
         DB::table('colaborador')->where('no_colaborador', $no_colaborador)
             ->update([
                 'estado_colaborador' => 1
             ]);
-        return redirect("dashboard");
+
+        $this->flash('success', 'Dado de alta correctamente', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+
+        return redirect()->route("dashboard");
     }
 }
