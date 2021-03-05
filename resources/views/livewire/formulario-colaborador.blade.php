@@ -1,4 +1,4 @@
-<form wire:submit.prevent="store">
+<form wire:submit.prevent="triggerConfirm">
 
     @if (session()->has('error'))
         <div x-data="{ show: true }" x-show="show"
@@ -654,7 +654,7 @@
                     </div>
                 </div>
                 <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-                    <button wire:click="store" type="submit"
+                    <button wire:click="triggerConfirm" type="submit"
                         class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                         Registrar colaborador
                     </button>

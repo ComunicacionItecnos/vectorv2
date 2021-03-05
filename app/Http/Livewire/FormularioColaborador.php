@@ -40,6 +40,37 @@ class FormularioColaborador extends Component
     public $telefono_contacto1, $telefono_contacto2, $telefono_contacto3, $telefono_contacto4;
     public $domicilio_contacto1, $domicilio_contacto2, $domicilio_contacto3, $domicilio_contacto4;
 
+    protected $listeners = [
+        'store',
+        'cancelled',
+    ];
+
+    public function cancelled(){
+        $this->alert('info', 'Se canceló el registro', [
+            'position' =>  'top-end', 
+            'timer' =>  3000,  
+            'toast' =>  true, 
+            'text' =>  '', 
+            'confirmButtonText' =>  'Ok', 
+            'cancelButtonText' =>  'Cancel', 
+            'showCancelButton' =>  false, 
+            'showConfirmButton' =>  false, 
+      ]);
+    }
+
+    public function triggerConfirm()
+{
+    $this->confirm('¿Quieres agregar a este colaborador?', [
+        'toast' => false,
+        'position' => 'center',
+        'showConfirmButton' => true,
+        'confirmButtonText' =>  'Si', 
+        'cancelButtonText' => 'No',
+        'onConfirmed' => 'store',
+        'onCancelled' => 'cancelled'
+    ]);
+}
+
 
 
 
@@ -281,10 +312,31 @@ class FormularioColaborador extends Component
                         break;
                 }
             }
+            $this->flash('success', 'El colaborador se ha registrado con éxito', [
+                'position' =>  'top-end', 
+                'timer' =>  3000,  
+                'toast' =>  true, 
+                'text' =>  '', 
+                'confirmButtonText' =>  'Ok', 
+                'cancelButtonText' =>  'Cancel', 
+                'showCancelButton' =>  false, 
+                'showConfirmButton' =>  false, 
+          ]);
 
-            session()->flash('success', 'El colaborador ' . $this->no_colaborador . ' ha sido registrado con éxito');
+          return redirect()->route('dashboard');
+
         } catch (Exception $ex) {
-            session()->flash('error', 'Ya existe el colaborador ' . $this->no_colaborador . $ex);
+            $this->alert('error', 'El colaborador ya está registrado', [
+                'position' =>  'top-end', 
+                'timer' =>  3000,  
+                'toast' =>  true, 
+                'text' =>  '', 
+                'confirmButtonText' =>  'Ok', 
+                'cancelButtonText' =>  'Cancel', 
+                'showCancelButton' =>  false, 
+                'showConfirmButton' =>  false, 
+          ]);
+
         }
     }
 }

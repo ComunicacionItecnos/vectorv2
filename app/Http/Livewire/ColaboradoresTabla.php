@@ -79,7 +79,7 @@ class ColaboradoresTabla extends Component
             'showConfirmButton' =>  false,
         ]);
 
-        return redirect("dashboard");
+        return redirect()->route("dashboard");
     }
 
     public function alta($no_colaborador)
@@ -100,6 +100,6 @@ class ColaboradoresTabla extends Component
             'showConfirmButton' =>  false,
         ]);
 
-        return redirect("dashboard");
+        return redirect()->route("dashboard");
     }
 }
