@@ -1,34 +1,5 @@
 <form wire:submit.prevent="triggerConfirm">
 
-    @if (session()->has('error'))
-        <div x-data="{ show: true }" x-show="show"
-            class="relative flex items-center justify-between px-3 py-3 text-red-600 bg-red-200 rounded-lg">
-            <div>
-                <span class="font-semibold text-red-700">Error</span>
-                {{ session('error') }}
-            </div>
-            <div>
-                <button type="button" @click="show = false" class="text-red-700 ">
-                    <span class="text-2xl">&times;</span>
-                </button>
-            </div>
-        </div>
-
-    @elseif (session()->has('success'))
-        <div x-data="{ show: true }" x-show="show"
-            class="relative flex items-center justify-between px-3 py-3 text-green-600 bg-green-200 rounded-lg">
-            <div>
-                <span class="font-semibold text-green-700">Éxito</span>
-                {{ session('success') }}
-            </div>
-            <div>
-                <button type="button" @click="show = false" class="text-green-700 ">
-                    <span class="text-2xl">&times;</span>
-                </button>
-            </div>
-        </div>
-    @endif
-
     <div class="mt-5 md:mt-0 md:col-span-2">
         <form action="#" method="POST">
             <div class="overflow-hidden shadow sm:rounded-md">
@@ -47,6 +18,11 @@
                             <input type="text" wire:model="no_colaborador" name="no_colaborador" id="inputNoColaborador"
                                 value="{{ old('no_colaborador') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('no_colaborador')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -54,6 +30,11 @@
                             <input type="text" wire:model="nombre" name="nombre" id="inputNombre"
                                 value="{{ old('nombre') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('nombre')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -62,6 +43,11 @@
                             <input type="text" wire:model="ap_paterno" name="ap_paterno" id="inputApPaterno"
                                 value="{{ old('ap_paterno') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('ap_paterno')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -70,6 +56,11 @@
                             <input type="text" wire:model="ap_materno" name="ap_materno" id="inputApMaterno"
                                 value="{{ old('ap_materno') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('ap_materno')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
 
@@ -87,6 +78,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('genero')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -95,6 +91,11 @@
                             <input wire:model="fecha_nacimiento" name="fecha_nacimiento" id="inputFechaNacimiento"
                                 type="date" value="{{ old('fecha_nacimiento') }}" min="1961-08-29" max=""
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('fecha_nacimiento')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -109,6 +110,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('estado_civil')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -120,6 +126,11 @@
                                 <option value="0">No</option>
                                 <option value="1">Si</option>
                             </select>
+                            @error('paternidad')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                     </div>
@@ -263,12 +274,22 @@
                             <label class="block text-sm font-medium text-gray-700" for="inputCurp">CURP</label>
                             <input type="text" wire:model="curp" name="curp" id="inputCurp" value="{{ old('curp') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('curp')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
                             <label class="block text-sm font-medium text-gray-700" for="inputRfc">RFC</label>
                             <input type="text" wire:model="rfc" name="rfc" id="inputRfc" value="{{ old('rfc') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('rfc')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
 
@@ -279,6 +300,11 @@
                             <input type="text" wire:model="no_seguro_social" name="no_seguro_social"
                                 id="inputno_seguro_social" value="{{ old('no_seguro_social') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('no_seguro_social')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
 
@@ -290,6 +316,11 @@
                             <input type="text" wire:model="domicilio" name="domicilio" id="inputDomicilio"
                                 value="{{ old('domicilio') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('domicilio')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-1 sm:col-span-1">
                             <label class="block text-sm font-medium text-gray-700"
@@ -297,12 +328,22 @@
                             <input type="text" wire:model="municipio" name="municipio" id="inputMunicipio"
                                 value="{{ old('municipio') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('municipio')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-1 sm:col-span-1">
                             <label class="block text-sm font-medium text-gray-700" for="inputEstado">Estado</label>
                             <input type="text" wire:model="estado" name="estado" id="inputEstado"
                                 value="{{ old('estado') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('estado')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-1 sm:col-span-1">
                             <label class="block text-sm font-medium text-gray-700" for="inputCodigoPostal">Código
@@ -310,6 +351,11 @@
                             <input type="text" wire:model="codigo_postal" name="codigo_postal" id="inputCodigoPostal"
                                 value="{{ old('codigo_postal') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('codigo_postal')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                     </div>
 
@@ -329,6 +375,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('tipo_colaborador')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -344,6 +395,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('turno')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -351,6 +407,11 @@
                             <input type="email" wire:model="correo" name="correo" id="inputCorreo"
                                 value="{{ old('correo') }}"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            @error('correo')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -366,6 +427,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('ruta_transporte')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                     </div>
@@ -385,6 +451,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('puesto')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -399,6 +470,11 @@
                                 @endif
 
                             </select>
+                            @error('area')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -407,6 +483,7 @@
                             <select id="selectSupervisor" wire:model="jefe_directo" name="supervisor"
                                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option value=""></option>
+                                <option value="1">Ninguno</option>
                                 @if (isset($supervisores))
                                     @foreach ($supervisores as $supervisor)
                                         <option value="{{ $supervisor->no_colaborador }}">
@@ -418,6 +495,11 @@
                                 @endif
 
                             </select>
+                            @error('jefe_directo')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -426,6 +508,11 @@
                             <input type="text" wire:model="tel_fijo" name="tel_fijo"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 id="inputTelFijo" value="{{ old('tel_fijo') }}">
+                            @error('tel_fijo')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                     </div>
@@ -438,6 +525,11 @@
                             <input type="text" wire:model="tel_movil" name="tel_movil"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 id="inputTelMovil" value="{{ old('tel_movil') }}">
+                            @error('tel_movil')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-1 sm:col-span-1">
                             <label for="inputTelRecados" class="block text-sm font-medium text-gray-700">Teléfono para
@@ -445,6 +537,11 @@
                             <input type="text" wire:model="tel_recados" name="tel_recados"
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 id="inputTelRecados" value="{{ old('tel_recados') }}">
+                            @error('tel_recados')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
                         <div class="col-span-1 sm:col-span-1">
                             <label for="inputExtension"
@@ -458,6 +555,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('extension')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -472,6 +574,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('clave_radio')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                            @enderror
                         </div>
 
                     </div>
@@ -508,18 +615,38 @@
                                                     <td><input type="text" wire:model="nombre_contacto1"
                                                             id="nombre_contacto"
                                                             class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        @error('nombre_contacto1')
+                                                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                                {{ $message }}
+                                                            </p>
+                                                        @enderror
                                                     </td>
                                                     <td><input type="text" wire:model="parentesco_contacto1"
                                                             id="parentesco_contacto"
                                                             class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        @error('parentesco_contacto1')
+                                                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                                {{ $message }}
+                                                            </p>
+                                                        @enderror
                                                     </td>
                                                     <td><input type="text" wire:model="telefono_contacto1"
                                                             id="telefono_contacto"
                                                             class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        @error('telefono_contacto1')
+                                                            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                                {{ $message }}
+                                                            </p>
+                                                        @enderror
                                                     </td>
                                                     <td><input type="text" wire:model="domicilio_contacto1"
                                                             id="domicilio_contacto"
                                                             class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                            @error('domicilio_contacto1')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic" >
+                                    {{$message}}
+                                </p>
+                            @enderror
                                                     </td>
                                                     </td>
                                                 </tr>
@@ -601,6 +728,11 @@
                                 <option value="1">Si</option>
                                 <option value="0">No</option>
                             </select>
+                            @error('matriculacion')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic" >
+                                    {{$message}}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -616,6 +748,11 @@
                                     @endforeach
                                 @endif
                             </select>
+                            @error('tipo_usuario')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic" >
+                                    {{$message}}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -624,6 +761,11 @@
                             <input type="text" wire:model="password" name="password" id="inputPassword"
                                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 value="{{ old('password') }}">
+                                @error('password')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic" >
+                                    {{$message}}
+                                </p>
+                            @enderror
                         </div>
 
                         <div class="col-span-1 sm:col-span-1">
@@ -632,6 +774,11 @@
                             <input wire:model="fecha_ingreso" name="fecha_ingreso" id="inputFechaIngreso" type="date"
                                 value="{{ old('fecha_ingreso') }}" min="1961-08-29" max=""
                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                @error('fecha_ingreso')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic" >
+                                    {{$message}}
+                                </p>
+                            @enderror
                         </div>
 
                     </div>
@@ -649,6 +796,11 @@
                                 <span class="mt-2 text-base leading-normal">Seleccionar una Fotografía</span>
                                 <input type='file' wire:model="foto" class="hidden" />
                             </label>
+                            @error('foto')
+                                <p class="mt-1 mb-1 text-sm text-red-600 italic" >
+                                    {{$message}}
+                                </p>
+                            @enderror
                         </div>
 
                     </div>
