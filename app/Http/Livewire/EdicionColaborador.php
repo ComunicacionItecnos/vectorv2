@@ -2,24 +2,25 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use Exception;
 use App\Models\Area;
-use App\Models\Clave_radio;
-use App\Models\Extension;
-use App\Models\Ruta_transporte;
-use App\Models\Puesto;
-use App\Models\Colaborador;
+use App\Models\Hijos;
 use App\Models\Turno;
-use App\Models\Tipo_colaborador;
-use App\Models\Tipo_usuario;
 use App\Models\Genero;
+use App\Models\Puesto;
+use Livewire\Component;
+use App\Models\Extension;
+use App\Models\Clave_radio;
+use App\Models\Colaborador;
 use App\Models\Estado_civil;
 use App\Models\Rango_factor;
+use App\Models\Tipo_usuario;
+use Livewire\WithFileUploads;
+use App\Models\Ruta_transporte;
+use App\Models\Tipo_colaborador;
 use App\Models\Colaborador_evento;
 use App\Models\Contactos_emergencia;
-use App\Models\Hijos;
-use Exception;
+use Illuminate\Support\Facades\Storage;
 
 class EdicionColaborador extends Component
 {
@@ -70,15 +71,7 @@ class EdicionColaborador extends Component
     }
 
     public function downloadImage(){
-        $this->alert('info', 'Botón en contrucción', [
-            'position' =>  'top-end', 
-            'timer' =>  3000,  
-            'toast' =>  true, 
-            'text' =>  '', 
-            'confirmButtonText' =>  'Ok', 
-            'cancelButtonText' =>  'Cancel', 
-            'showCancelButton' =>  false, 
-            'showConfirmButton' =>  false, 
-      ]);
+        
+        return Storage::disk('public')->download($this->colaborador->foto);
     }
 }
