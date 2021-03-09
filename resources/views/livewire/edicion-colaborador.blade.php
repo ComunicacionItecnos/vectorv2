@@ -26,9 +26,14 @@
 
                                         <div class="flex-col row-start-1 col-start-1 col-span-1">
                                             <div>
-                                                @if (isset($colaborador->foto))
-                                                    <img src="{{ asset('storage') . '/' . $colaborador->foto }}"
-                                                        alt="" class="rounded-xl border-2 shadow-xl">
+                                                @if ($foto)
+                                                    <img src="{{ $foto->temporaryUrl() }}"
+                                                        class="rounded-xl border-2 shadow-xl">
+                                                @else
+                                                    @if (isset($colaborador->foto))
+                                                        <img src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                            alt="" class="rounded-xl border-2 shadow-xl">
+                                                    @endif
                                                 @endif
                                             </div>
                                             <div class="grid grid-rows-1 grid-cols-2 gap-2">
