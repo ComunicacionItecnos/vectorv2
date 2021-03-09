@@ -70,21 +70,9 @@ class FormularioColaborador extends Component
         'clave_radio' => 'required',
 
         'nombre_contacto1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-        'parentesco_contacto1' => 'required|regex:/^[a-zA-Z]$/',
+        'parentesco_contacto1' => 'required|regex:/[a-zA-Z]/',
         'telefono_contacto1' => 'required|regex:/^[0-9]{10}$/',
         'domicilio_contacto1' => 'required',
-
-        'nombre_contacto2' => 'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-        'parentesco_contacto2' => 'regex:/^[a-zA-Z]$/',
-        'telefono_contacto2' => 'regex:/^[0-9]{10}$/',
-
-        'nombre_contacto3' => 'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-        'parentesco_contacto3' => 'regex:/^[a-zA-Z]$/',
-        'telefono_contacto3' => 'regex:/^[0-9]{10}$/',
-
-        'nombre_contacto4' => 'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-        'parentesco_contacto4' => 'regex:/^[a-zA-Z]$/',
-        'telefono_contacto4' => 'regex:/^[0-9]{10}$/',
 
         'matriculacion' => 'required',
         'tipo_usuario' => 'required',
@@ -145,18 +133,6 @@ class FormularioColaborador extends Component
         'nombre_contacto1.regex' => 'El nombre solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
         'parentesco_contacto1.regex' => 'El parentesco solo puede contener letras mayúsculas y minúsculas',
         'telefono_contacto1.regex' => 'El número telefónico debe contener 10 dígitos',
-
-        'nombre_contacto2.regex' => 'El nombre solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-        'parentesco_contacto2.regex' => 'El parentesco solo puede contener letras mayúsculas y minúsculas',
-        'telefono_contacto2.regex' => 'El número telefónico debe contener 10 dígitos',
-
-        'nombre_contacto3.regex' => 'El nombre solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-        'parentesco_contacto3.regex' => 'El parentesco solo puede contener letras mayúsculas y minúsculas',
-        'telefono_contacto3.regex' => 'El número telefónico debe contener 10 dígitos',
-
-        'nombre_contacto4.regex' => 'El nombre solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-        'parentesco_contacto4.regex' => 'El parentesco solo puede contener letras mayúsculas y minúsculas',
-        'telefono_contacto4.regex' => 'El número telefónico debe contener 10 dígitos',
 
         'matriculacion.required' => 'Este campo no puede estar vacío',
         'tipo_usuario.required' => 'Este campo no puede estar vacío',
@@ -238,16 +214,10 @@ class FormularioColaborador extends Component
         } else {
             $r_f = 2;
         }
-        if (isset($this->jefe_directo)) {
-            $j_d = $this->jefe_directo;
-        } else {
-            $j_d = '';
-        }
-
-        $this->validate();
-        $foto_ruta = $this->foto->store('images', 'public');
 
         try {
+            $this->validate();
+        $foto_ruta = $this->foto->store('images', 'public');
 
             Colaborador::updateOrCreate([
 
@@ -276,7 +246,7 @@ class FormularioColaborador extends Component
                 'tel_recados' => $this->tel_recados,
                 'extension_id' => $this->extension,
                 'clave_radio_id' => $this->clave_radio,
-                'jefe_directo' => $j_d,
+                'jefe_directo' => $this->jefe_directo,
                 'tipo_colaborador_id' => $this->tipo_colaborador,
                 'fecha_ingreso' => $this->fecha_ingreso,
                 'password' => $this->password,
@@ -448,6 +418,7 @@ class FormularioColaborador extends Component
 
             return redirect()->route('dashboard');
         } catch (Exception $ex) {
+            
             $this->alert('error', 'El colaborador ya está registrado', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
