@@ -102,4 +102,5 @@ class ColaboradoresTabla extends Component
 
         return redirect()->route("dashboard");
     }
+    
 }
