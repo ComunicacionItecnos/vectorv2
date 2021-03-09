@@ -77,13 +77,11 @@
                                                     name="tipo_colaborador"
                                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                     <option></option>
-                                                    @if ($tiposColaborador)
-                                                        @foreach ($tiposColaborador as $tipoColaborador)
-                                                            <option value="{{ $tipoColaborador->id }}">
-                                                                {{ $tipoColaborador->nombre_tipo }}
-                                                            </option>
-                                                        @endforeach
-                                                    @endif
+                                                    @foreach ($tiposColaborador as $t_colaborador)
+                                                        <option value="{{ $t_colaborador->id }}">
+                                                            {{ $t_colaborador->nombre_tipo }}
+                                                        </option>
+                                                    @endforeach
                                                 </select>
                                                 @error('tipo_colaborador')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -889,29 +887,6 @@
                                             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         @error('fecha_ingreso')
                                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                                {{ $message }}
-                                            </p>
-                                        @enderror
-                                    </div>
-
-                                </div>
-
-                                <div class="grid mt-4 mb-4">
-
-                                    <div class="col-span-2 sm:col-span-2">
-                                        <label
-                                            class="flex flex-col items-center px-4 py-6 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                            <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20">
-                                                <path
-                                                    d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
-                                            </svg>
-                                            <span class="mt-2 text-base leading-normal">Seleccionar una
-                                                Fotografía</span>
-                                            <input type='file' wire:model="foto" class="hidden" />
-                                        </label>
-                                        @error('foto')
-                                            <p class="mt-1 mb-1 text-sm text-red-600 italic">
                                                 {{ $message }}
                                             </p>
                                         @enderror
