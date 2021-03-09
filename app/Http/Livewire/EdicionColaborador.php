@@ -23,6 +23,7 @@ use Exception;
 
 class EdicionColaborador extends Component
 {
+    use WithFileUploads;
 
     public $no_colaborador, $nombre, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
         $paternidad, $curp, $rfc, $no_seguro_social, $domicilio, $municipio, $estado, $codigo_postal, $tipo_colaborador, $turno,
@@ -66,5 +67,18 @@ class EdicionColaborador extends Component
 
 
         return view('livewire.edicion-colaborador', compact('clavesRadio', 'areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos', 'tiposColaborador', 'tiposUsuario', 'generos', 'estadosCivil', 'rango_factor'));
+    }
+
+    public function downloadImage(){
+        $this->alert('info', 'Botón en contrucción', [
+            'position' =>  'top-end', 
+            'timer' =>  3000,  
+            'toast' =>  true, 
+            'text' =>  '', 
+            'confirmButtonText' =>  'Ok', 
+            'cancelButtonText' =>  'Cancel', 
+            'showCancelButton' =>  false, 
+            'showConfirmButton' =>  false, 
+      ]);
     }
 }
