@@ -16,10 +16,6 @@
 
                             <div class="px-4 py-5 bg-white sm:p-6">
 
-                                <div class="grid mt-2 mb-4 font-sans text-2xl font-semibold sm:subpixel-antialiased">
-                                    <h2>Informacion colaborador</h2>
-                                </div>
-
                                 <div class="grid grid-rows-1 grid-cols-4 gap-2">
 
                                     <div class=" flex justify-center row-start-1 col-start-1 col-span-1">
