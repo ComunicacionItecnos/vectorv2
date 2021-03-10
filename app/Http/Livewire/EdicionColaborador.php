@@ -31,6 +31,16 @@ class EdicionColaborador extends Component
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
         $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
 
+    public $rango_factor;
+
+    public $autoEvalGen, $autoEvalAsig, $autoEvalCal, $evalGen, $evalAsig, $evalCal;
+
+    public $quinquenioAplica, $quinquenioEntrega, $quinquenioYears;
+
+    public $ddmAplica, $ddmEntrega, $ddpAplica, $ddpEntrega, $ueaplica, $ueEntrega;
+
+    public $r60Aplica, $r60Entrega, $bffAplica, $bffEntrega;
+
     public $foto;
 
     public $edad_hijo1, $edad_hijo2, $edad_hijo3, $edad_hijo4, $edad_hijo5, $edad_hijo6;
@@ -80,6 +90,7 @@ class EdicionColaborador extends Component
         $this->matriculacion = $this->colaborador->matriculacion;
         $this->tipo_usuario = $this->colaborador->tipo_usuario_id;
         $this->password = $this->colaborador->password;
+        $this->rango_factor = $this->colaborador->rango_factor_id;
         $this->fecha_ingreso = $this->colaborador->fecha_ingreso;
 
         // ? Tabla Hijos
@@ -184,10 +195,10 @@ class EdicionColaborador extends Component
 
         $estadosCivil = Estado_civil::all();
 
-        $rango_factor = Rango_factor::all();
+        $rangosFactor = Rango_factor::all();
 
 
-        return view('livewire.edicion-colaborador', compact('clavesRadio', 'areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos', 'tiposColaborador', 'tiposUsuario', 'generos', 'estadosCivil', 'rango_factor'));
+        return view('livewire.edicion-colaborador', compact('clavesRadio', 'areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos', 'tiposColaborador', 'tiposUsuario', 'generos', 'estadosCivil', 'rangosFactor'));
     }
 
     public function downloadImage()
