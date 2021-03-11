@@ -8,7 +8,7 @@
     <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg">
 
-            <form wire:submit.prevent="triggerConfirm">
+            <form wire:submit.prevent="update">
 
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <form action="#" method="POST">
@@ -50,7 +50,7 @@
                                                         <path
                                                             d="M16.88 9.1A4 4 0 0 1 16 17H5a5 5 0 0 1-1-9.9V7a3 3 0 0 1 4.52-2.59A4.98 4.98 0 0 1 17 8c0 .38-.04.74-.12 1.1zM11 11h3l-4-4-4 4h3v3h2v-3z" />
                                                     </svg>
-                                                    <input type='file' wire:click="updateFoto()" wire:model="foto" class="hidden" />
+                                                    <input type='file' wire:model="foto" class="hidden" />
                                                 </label>
 
                                             </div>
@@ -1051,7 +1051,7 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="quinquenioAplica" name="quinquenioAplica"
+                                                    <input disabled wire:model="quinquenioAplica" name="quinquenioAplica"
                                                         id="quinquenioAplica" type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
@@ -1099,10 +1099,10 @@
                                         @enderror
                                     </div>
                                     <div class="col-start-4 col-span-1 sm:col-span-1">
-                                        <input type="text" wire:model="quinquenioYears" name="quinquenioYears"
+                                        <input disabled type="text" name="quinquenioYears"
                                             id="quinquenioYears"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                            value="{{ old('quinquenioYears') }}">
+                                            value="{{ $fechaQuinquenio }} Año(s)">
                                         @error('quinquenioYears')
                                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                 {{ $message }}
@@ -1134,7 +1134,7 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="ddmAplica" name="ddmAplica"
+                                                    <input disabled wire:model="ddmAplica" name="ddmAplica"
                                                         id="ddmAplica" type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
@@ -1174,7 +1174,7 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="ddpAplica" name="ddpAplica"
+                                                    <input disabled wire:model="ddpAplica" name="ddpAplica"
                                                         id="ddpAplica" type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
@@ -1214,7 +1214,7 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="ueaplica" name="ueaplica"
+                                                    <input disabled wire:model="ueaplica" name="ueaplica"
                                                         id="ueaplica" type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
@@ -1269,7 +1269,7 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="r60Aplica" name="r60Aplica"
+                                                    <input disabled wire:model="r60Aplica" name="r60Aplica"
                                                         id="r60Aplica" type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
@@ -1309,7 +1309,7 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="bffAplica" name="bffAplica"
+                                                    <input disabled wire:model="bffAplica" name="bffAplica"
                                                         id="bffAplica" type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
@@ -1346,7 +1346,7 @@
 
                             </div>
                             <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
-                                <button wire:click="triggerConfirm" type="submit"
+                                <button wire:click="update" type="submit"
                                     class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                     Actualizar información
                                 </button>
