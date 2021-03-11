@@ -839,6 +839,11 @@
                                 </div>
                                 {{-- Fin tabla contactos emergencia --}}
                                 @if(auth()->user()->role_id == 1 | auth()->user()->role_id == 2)
+                                <div class="grid grid-cols-1 gap-4 mt-4 mb-4 bg-red-800 ">
+                                    <p class="text-center text-gray-50 text-xl">
+                                        Factor
+                                    </p>
+                                </div>
                                 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                                     <div class="col-span-1 sm:col-span-1">
@@ -913,6 +918,12 @@
                                         @enderror
                                     </div>
 
+                                </div>
+
+                                <div class="grid grid-cols-1 gap-4 mt-4 bg-red-800 ">
+                                    <p class="text-center text-gray-50 text-xl">
+                                        Evauaciones
+                                    </p>
                                 </div>
 
                                 <div class="grid grid-rows-2 grid-cols-2 gap-1 mt-4 mb-4">
@@ -1056,6 +1067,12 @@
                                     </div>
                                 </div>
 
+                                <div class="grid grid-cols-1 gap-4 mt-4 bg-red-800 ">
+                                    <p class="text-center text-gray-50 text-xl">
+                                        Quinqenio
+                                    </p>
+                                </div>
+
                                 <div class="grid grid-rows-2 grid-cols-4 gap-1 mt-4 mb-4">
 
                                     <div class="grid row-start-1 col-start-1">
@@ -1141,6 +1158,11 @@
 
                                 {{-- Seccion switches dia de la madre, del padre y utiles escolares --}}
 
+                                <div class="grid grid-cols-1 gap-4 mt-4 bg-red-800 ">
+                                    <p class="text-center text-gray-50 text-xl">
+                                        Eventos especiales
+                                    </p>
+                                </div>
                                 <div class="grid grid-rows-2 grid-cols-3 gap-1 mt-6 mb-4">
 
                                     <div class="grid row-start-1 col-start-1 gap-2">

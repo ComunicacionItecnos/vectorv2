@@ -338,7 +338,7 @@ class EdicionColaborador extends Component
 
     public function render()
     {
-        $clavesRadio = Clave_radio::where('compartida', '1')->orwhere('disponibilidad', '1')->get();
+        $clavesRadio = Clave_radio::all();
         $areas = Area::all();
         $extensiones = Extension::all();
         $rutas = Ruta_transporte::all();
