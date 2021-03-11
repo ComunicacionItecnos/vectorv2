@@ -38,7 +38,7 @@ class EdicionColaborador extends Component
 
     public $quinquenioAplica, $quinquenioEntrega, $fechaQuinquenio;
 
-    public $ddmAplica, $ddmEntrega, $ddpAplica, $ddpEntrega, $ueaplica, $ueEntrega;
+    public $ddmAplica, $ddmEntrega, $ddpAplica, $ddpEntrega, $ueAplica, $ueEntrega;
 
     public $r60Aplica, $r60Entrega, $bffAplica, $bffEntrega;
 
@@ -54,9 +54,111 @@ class EdicionColaborador extends Component
     public $telefono_contacto1, $telefono_contacto2, $telefono_contacto3, $telefono_contacto4;
     public $domicilio_contacto1, $domicilio_contacto2, $domicilio_contacto3, $domicilio_contacto4;
 
-
-
     public $colaborador;
+
+    protected $rules = [
+        'no_colaborador' => 'required|digits_between:5,6',
+        'nombre' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'ap_paterno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'ap_materno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'genero' => 'required',
+        'fecha_nacimiento' => 'required',
+        'estado_civil' => 'required',
+        'paternidad' => 'required',
+        'curp' => 'required|regex:/[A-Z0-9]/',
+        'rfc' => 'required|regex:/[A-Z0-9-]/',
+        'domicilio' => 'required',
+        'no_seguro_social' => 'required|regex:/[A-Z0-9-]/',
+        'municipio' => 'required|regex:/[a-zA-Z]/',
+        'estado' => 'required|regex:/[a-zA-Z]/',
+        'codigo_postal' => 'required|regex:/^[0-9]{5}$/',
+        'tipo_colaborador' => 'required',
+        'turno' => 'required',
+        'correo' => 'required|email',
+        'ruta_transporte' => 'required',
+        'puesto' => 'required',
+        'area' => 'required',
+        'jefe_directo' => 'required',
+        'tel_fijo' => 'required|regex:/^[0-9]{10}$/',
+        'tel_movil' => 'required|regex:/^[0-9]{10}$/',
+        'tel_recados' => 'required|regex:/^[0-9]{10}$/',
+        'extension' => 'required',
+        'clave_radio' => 'required',
+        'autoEvalCal' => ['required','regex:/^([0-9]|([1-9][0-9])|100)$/'],
+        'evalCal' => ['required','regex:/^([0-9]|([1-9][0-9])|100)$/'],
+
+        'nombre_contacto1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'parentesco_contacto1' => 'required|regex:/[a-zA-Z]/',
+        'telefono_contacto1' => 'required|regex:/^[0-9]{10}$/',
+        'domicilio_contacto1' => 'required',
+
+        'matriculacion' => 'required',
+        'tipo_usuario' => 'required',
+        'password' => 'required',
+        'fecha_ingreso' => 'required',
+    ];
+
+    protected $messages = [
+        'no_colaborador.required' => 'El Número de colaborador no puede estar vacío',
+        'no_colaborador.digits_between' => 'Solo puede tener 5 dígitos como mínimo y 6 como máximo',
+        'nombre.required' => 'El Nombre no puede estar vacío',
+        'nombre.regex' => 'El Nombre debe contener únicamente letras y espacios',
+        'ap_paterno.required' => 'El Apellido paterno no puede estar vacío',
+        'ap_paterno.regex' => 'El Apellido paterno debe contener únicamente letras y espacios',
+        'ap_materno.required' => 'El Apellido materno no puede estar vacío',
+        'ap_materno.regex' => 'El Apellido materno debe contener unicamente letras y espacios',
+        'genero.required' => 'Esta opción no puede permanecer vacía',
+        'fecha_nacimiento.required' => 'Esta opción no puede permanecer vacía',
+        'estado_civil.required' => 'Esta opción no puede permanecer vacía',
+        'paternidad.required' => 'Esta opción no puede permanecer vacía',
+        'curp.required' => 'El CURP no puede estar vacío',
+        'curp.regex' => 'El CURP solo puede contener letras mayúsculas y números',
+        'rfc.required' => 'El RFC no puede estar vacío',
+        'domicilio.required' => 'El Domicilio no puede estar vacio',
+        'rfc.regex' => 'El RFC solo puede contener letras, números y guión medio',
+        'no_seguro_social.required' => 'El No. Seguro Social no puede estar vacío',
+        'no_seguro_social.regex' => 'El No. Seguro Social solo puede contener letras mayúsculas, números y guión medio',
+        'municipio.required' => 'El Municipio no puede estar vacío',
+        'municipio.regex' => 'El Municipio solo puede contener letras mayúsculas y minúsculas',
+        'estado.required' => 'El Estado no puede estar vacío',
+        'estado.regex' => 'El Estado solo puede contener letras mayúsculas y minúsculas',
+        'codigo_postal.required' => 'El Codigo postal no puede estar vacío',
+        'codigo_posta.regex' => 'El Código postal solo puede contener 5 digitos',
+        'tipo_colaborador.required' => 'Esta opción no puede permanecer vacía',
+        'turno.required' => 'Esta opción no puede permanecer vacía',
+        'correo.required' => 'El correo no puede estar vacío',
+        'correo.email' => 'Este no es un formato válido de correo',
+        'ruta_transporte.required' => 'Esta opción no puede permanecer vacía',
+        'puesto.required' => 'Esta opción no puede permanecer vacía',
+        'area.required' => 'Esta opción no puede permanecer vacía',
+        'jefe_directo.required' => 'Esta opción no puede permanecer vacía',
+        'tel_fijo.required' => 'El Teléfono fijo no puede permanecer vacío',
+        'tel_fijo.required' => 'El Teléfono fijo debe contener 10 dígitos',
+        'tel_movil.required' => 'El Teléfono móvil no puede permanecer vacío',
+        'tel_movil.required' => 'El Teléfono móvil debe contener 10 dígitos',
+        'tel_recados.required' => 'El Teléfono para recados no puede permanecer vacío',
+        'tel_recados.required' => 'El Teléfono para recados debe contener 10 dígitos',
+        'extension.required' => 'Esta opción no puede permanecer vacía',
+        'clave_radio.required' => 'Esta opción no puede permanecer vacía',
+        'autoEvalCal.required' => 'Este campo no puede permanecer vacio',
+        'evalCal.required' => 'Este campo no puede permanecer vacio',
+        'autoEvalCal.regex' => 'Este campo solo puede contener numeros del 0 al 100 sin punto decimal',
+        'evalCal.regex' => 'Este campo solo puede contener numeros del 0 al 100 sin punto decimal',
+
+        'nombre_contacto1.required' => 'Se requiere al menos un contacto de emergencia',
+        'parentesco_contacto1.required' => 'Este campo no puede estar vacío',
+        'telefono_contacto1.required' => 'Este campo no puede estar vacío',
+        'domicilio_contacto1.required' => 'Este campo no puede estar vacío',
+
+        'nombre_contacto1.regex' => 'El nombre solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+        'parentesco_contacto1.regex' => 'El parentesco solo puede contener letras mayúsculas y minúsculas',
+        'telefono_contacto1.regex' => 'El número telefónico debe contener 10 dígitos',
+
+        'matriculacion.required' => 'Este campo no puede estar vacío',
+        'tipo_usuario.required' => 'Este campo no puede estar vacío',
+        'password.required' => 'Este campo no puede estar vacío',
+        'fecha_ingreso.required' => 'Este campo no puede estar vacío',
+    ];
 
     public function mount($no_colaborador)
     {
@@ -226,7 +328,7 @@ class EdicionColaborador extends Component
         }
 
         if ($this->paternidad == 1 && $this->banderaHijos == true) {
-            $this->ueaplica = 1;
+            $this->ueAplica = 1;
         }
 
         // * Regalo y Boleto
@@ -296,6 +398,8 @@ class EdicionColaborador extends Component
         // ? Actualizacion datos del colaborador
 
         try {
+
+            $this->validate();
 
             Colaborador::where('no_colaborador', $this->colaborador->no_colaborador)
                 ->update([
@@ -591,8 +695,6 @@ class EdicionColaborador extends Component
 
             return redirect()->to('/edit/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
-
-            dd($ex);
 
             $this->alert('error', 'Error al actualizar', [
                 'position' =>  'top-end',

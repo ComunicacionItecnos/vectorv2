@@ -964,6 +964,11 @@
                                                 <input type="text" wire:model="autoEvalCal" name="autoEvalCal"
                                                     id="autoEvalCal"
                                                     class="block w-full h-6 text-center border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                @error('autoEvalCal')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                         </div>
                                     </div>
 
@@ -1023,6 +1028,11 @@
                                                 </div>
                                                 <input type="text" wire:model="evalCal" name="evalCal" id="evalCal"
                                                     class="block w-full h-6 text-center border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                @error('evalCal')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
                                         </div>
 
                                     </div>
@@ -1051,8 +1061,9 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input disabled wire:model="quinquenioAplica" name="quinquenioAplica"
-                                                        id="quinquenioAplica" type="checkbox" class="hidden" />
+                                                    <input disabled wire:model="quinquenioAplica"
+                                                        name="quinquenioAplica" id="quinquenioAplica" type="checkbox"
+                                                        class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1073,8 +1084,8 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="quinquenioEntrega" name="quinquenioEntrega"
-                                                        id="quinquenioEntrega" type="checkbox" class="hidden" />
+                                                    <input wire:model="quinquenioEntrega" name="quinquenioEntrega" @if ($quinquenioAplica == false) disabled @endif id="quinquenioEntrega"
+                                                        type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1099,8 +1110,7 @@
                                         @enderror
                                     </div>
                                     <div class="col-start-4 col-span-1 sm:col-span-1">
-                                        <input disabled type="text" name="quinquenioYears"
-                                            id="quinquenioYears"
+                                        <input disabled type="text" name="quinquenioYears" id="quinquenioYears"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                             value="{{ $fechaQuinquenio }} Año(s)">
                                         @error('quinquenioYears')
@@ -1153,8 +1163,8 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="ddmEntrega" name="ddmEntrega"
-                                                        id="ddmEntrega" type="checkbox" class="hidden" />
+                                                    <input wire:model="ddmEntrega" name="ddmEntrega" @if ($ddmAplica == false) disabled @endif id="ddmEntrega" type="checkbox"
+                                                        class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1193,8 +1203,8 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="ddpEntrega" name="ddpEntrega"
-                                                        id="ddpEntrega" type="checkbox" class="hidden" />
+                                                    <input wire:model="ddpEntrega" name="ddpEntrega" @if ($ddpAplica == false) disabled @endif id="ddpEntrega" type="checkbox"
+                                                        class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1209,13 +1219,13 @@
                                     </div>
                                     <div class="grid row-start-2 col-start-3 grid-cols-3 gap-2">
                                         <div class="flex justify-center grid-cols-2 col-start-1 gap-2">
-                                            <label for="ueaplica" class="flex items-center cursor-pointer">
+                                            <label for="ueAplica" class="flex items-center cursor-pointer">
                                                 <div class="px-2 block text-sm font-medium text-gray-700">Aplica
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input disabled wire:model="ueaplica" name="ueaplica"
-                                                        id="ueaplica" type="checkbox" class="hidden" />
+                                                    <input disabled wire:model="ueAplica" name="ueAplica" id="ueAplica"
+                                                        type="checkbox" class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1233,8 +1243,8 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="ueEntrega" name="ueEntrega"
-                                                        id="ueEntrega" type="checkbox" class="hidden" />
+                                                    <input wire:model="ueEntrega" name="ueEntrega" @if ($ueAplica == false) disabled @endif id="ueEntrega" type="checkbox"
+                                                        class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1288,8 +1298,8 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="r60Entrega" name="r60Entrega"
-                                                        id="r60Entrega" type="checkbox" class="hidden" />
+                                                    <input wire:model="r60Entrega" name="r60Entrega" @if ($r60Aplica == false) disabled @endif id="r60Entrega" type="checkbox"
+                                                        class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1328,8 +1338,8 @@
                                                 </div>
                                                 <!-- toggle -->
                                                 <div class="relative">
-                                                    <input wire:model="bffEntrega" name="bffEntrega"
-                                                        id="bffEntrega" type="checkbox" class="hidden" />
+                                                    <input wire:model="bffEntrega" name="bffEntrega" @if ($bffAplica == false) disabled @endif id="bffEntrega" type="checkbox"
+                                                        class="hidden" />
                                                     <!-- path -->
                                                     <div
                                                         class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
