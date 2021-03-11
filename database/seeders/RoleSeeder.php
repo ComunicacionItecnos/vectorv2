@@ -21,5 +21,6 @@ class RoleSeeder extends Seeder
         Role::create(['name' => 'Reclutamiento y Selección']);
         Role::create(['name' => 'Seguridad Patrimonial']);
         Role::create(['name' => 'Servicio Médico']);
+        Role::create(['name' => 'Dirección']);
     }
 }
