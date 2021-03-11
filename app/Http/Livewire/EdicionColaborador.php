@@ -292,5 +292,318 @@ class EdicionColaborador extends Component
             }
         } else {
         }
+
+        // ? Actualizacion datos del colaborador
+
+        try {
+
+            Colaborador::where('no_colaborador', $this->colaborador->no_colaborador)
+                ->update([
+                    'no_colaborador' => $this->no_colaborador,
+                    'nombre' => $this->nombre,
+                    'ap_paterno' => $this->ap_paterno,
+                    'ap_materno' => $this->ap_materno,
+                    'fecha_nacimiento' => $this->fecha_nacimiento,
+                    'genero_id' => $this->genero,
+                    'estado_civil_id' => $this->estado_civil,
+                    'curp' => $this->curp,
+                    'rfc' => $this->rfc,
+                    'no_seguro_social' => $this->no_seguro_social,
+                    'domicilio' => $this->domicilio,
+                    'municipio' => $this->municipio,
+                    'estado' => $this->estado,
+                    'codigo_postal' => $this->codigo_postal,
+                    'paternidad_id' => $this->paternidad,
+                    'turno_id' => $this->turno,
+                    'ruta_transporte_id' => $this->ruta_transporte,
+                    'puesto_id' => $this->puesto,
+                    'area_id' => $this->area,
+                    'correo' => $this->correo,
+                    'tel_fijo' => $this->tel_fijo,
+                    'tel_movil' => $this->tel_movil,
+                    'tel_recados' => $this->tel_recados,
+                    'extension_id' => $this->extension,
+                    'clave_radio_id' => $this->clave_radio,
+                    'jefe_directo' => $this->jefe_directo,
+                    'tipo_colaborador_id' => $this->tipo_colaborador,
+                    'fecha_ingreso' => $this->fecha_ingreso,
+                    'password' => $this->password,
+                    'matriculacion' => $this->matriculacion,
+                    'tipo_usuario_id' => $this->tipo_usuario,
+                    'tipo_usuario_id' => $this->tipo_usuario,
+                    'rango_factor_id' => $this->rango_factor,
+                    'autoeval_gen' => $this->autoEvalGen,
+                    'autoeval_asig' => $this->autoEvalAsig,
+                    'autoeval_cal' => $this->autoEvalCal,
+                    'eval_gen' => $this->evalGen,
+                    'eval_asig' => $this->evalAsig,
+                    'eval_cal' => $this->evalCal,
+                ]);
+
+            // ? Eventos especiales
+
+            for ($i = 1; $i <= 6; $i++) {
+
+                switch ($i) {
+                    case '1':
+                        if ($this->quinquenioEntrega == true) {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '1'
+                                ]);
+                        } else {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '0'
+                                ]);
+                        }
+                        break;
+                    case '2':
+                        if ($this->ddmEntrega == true) {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '1'
+                                ]);
+                        } else {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '0'
+                                ]);
+                        }
+                        break;
+                    case '3':
+                        if ($this->ddpEntrega == true) {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '1'
+                                ]);
+                        } else {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '0'
+                                ]);
+                        }
+                        break;
+                    case '4':
+                        if ($this->ueEntrega == true) {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '1'
+                                ]);
+                        } else {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '0'
+                                ]);
+                        }
+                        break;
+                    case '5':
+                        if ($this->r60Entrega == true) {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '1'
+                                ]);
+                        } else {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '0'
+                                ]);
+                        }
+                        break;
+                    case '6':
+                        if ($this->bffEntrega == true) {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '1'
+                                ]);
+                        } else {
+                            Colaborador_evento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)
+                                ->where('eventos_especiales_id', $i)
+                                ->update([
+                                    'entrega' => '0'
+                                ]);
+                        }
+                        break;
+                }
+            }
+
+            // ? Update tabla Hijos
+
+            if ($this->paternidad == 0) {
+                Hijos::where('colaborador_no_colaborador', $this->no_colaborador)->delete();
+            } else {
+                Hijos::where('colaborador_no_colaborador', $this->no_colaborador)->delete();
+
+                for ($i = 1; $i <= 6; $i++) {
+
+                    switch ($i) {
+
+                        case '1':
+                            if ($this->edad_hijo1 != null | $this->escolaridad_hijo1 != null) {
+                                Hijos::updateOrCreate([
+                                    'colaborador_no_colaborador' => $this->no_colaborador,
+                                    'edad' => $this->edad_hijo1,
+                                    'escolaridad_id' => $this->escolaridad_hijo1,
+                                ]);
+                            }
+                            break;
+
+                        case '2':
+                            if ($this->edad_hijo2 != null | $this->escolaridad_hijo2 != null) {
+                                Hijos::updateOrCreate([
+                                    'colaborador_no_colaborador' => $this->no_colaborador,
+                                    'edad' => $this->edad_hijo2,
+                                    'escolaridad_id' => $this->escolaridad_hijo2,
+                                ]);
+                            }
+                            break;
+
+                        case '3':
+                            if ($this->edad_hijo3 != null | $this->escolaridad_hijo3 != null) {
+                                Hijos::updateOrCreate([
+                                    'colaborador_no_colaborador' => $this->no_colaborador,
+                                    'edad' => $this->edad_hijo3,
+                                    'escolaridad_id' => $this->escolaridad_hijo3,
+                                ]);
+                            }
+                            break;
+
+                        case '4':
+                            if ($this->edad_hijo4 != null | $this->escolaridad_hijo4 != null) {
+                                Hijos::updateOrCreate([
+                                    'colaborador_no_colaborador' => $this->no_colaborador,
+                                    'edad' => $this->edad_hijo4,
+                                    'escolaridad_id' => $this->escolaridad_hijo4,
+                                ]);
+                            }
+                            break;
+
+                        case '5':
+                            if ($this->edad_hijo5 != null | $this->escolaridad_hijo5 != null) {
+                                Hijos::updateOrCreate([
+                                    'colaborador_no_colaborador' => $this->no_colaborador,
+                                    'edad' => $this->edad_hijo5,
+                                    'escolaridad_id' => $this->escolaridad_hijo5,
+                                ]);
+                            }
+                            break;
+
+                        case '6':
+                            if ($this->edad_hijo6 != null | $this->escolaridad_hijo6 != null) {
+                                Hijos::updateOrCreate([
+                                    'colaborador_no_colaborador' => $this->no_colaborador,
+                                    'edad' => $this->edad_hijo6,
+                                    'escolaridad_id' => $this->escolaridad_hijo6,
+                                ]);
+                            }
+                            break;
+                    }
+                }
+            }
+
+            // ? Insert tabla contactos_emergencia
+
+            Contactos_emergencia::where('colaborador_no_colaborador', $this->no_colaborador)->delete();
+
+            for ($i = 1; $i <= 4; $i++) {
+
+                switch ($i) {
+
+                    case '1':
+                        if (
+                            $this->nombre_contacto1 != null | $this->parentesco_contacto1 != null |
+                            $this->telefono_contacto1 != null | $this->domicilio_contacto1 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto1,
+                                'parentesco' => $this->parentesco_contacto1,
+                                'telefono' => $this->telefono_contacto1,
+                                'domicilio' => $this->domicilio_contacto1,
+                            ]);
+                        }
+                        break;
+                    case '2':
+                        if (
+                            $this->nombre_contacto2 != null | $this->parentesco_contacto2 != null |
+                            $this->telefono_contacto2 != null | $this->domicilio_contacto2 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto2,
+                                'parentesco' => $this->parentesco_contacto2,
+                                'telefono' => $this->telefono_contacto2,
+                                'domicilio' => $this->domicilio_contacto2,
+                            ]);
+                        }
+                        break;
+                    case '3':
+                        if (
+                            $this->nombre_contacto3 != null | $this->parentesco_contacto3 != null |
+                            $this->telefono_contacto3 != null | $this->domicilio_contacto3 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto3,
+                                'parentesco' => $this->parentesco_contacto3,
+                                'telefono' => $this->telefono_contacto3,
+                                'domicilio' => $this->domicilio_contacto3,
+                            ]);
+                        }
+                        break;
+                    case '4':
+                        if (
+                            $this->nombre_contacto4 != null | $this->parentesco_contacto4 != null |
+                            $this->telefono_contacto4 != null | $this->domicilio_contacto4 != null
+                        ) {
+                            Contactos_emergencia::updateOrCreate([
+                                'colaborador_no_colaborador' => $this->no_colaborador,
+                                'nombre' => $this->nombre_contacto4,
+                                'parentesco' => $this->parentesco_contacto4,
+                                'telefono' => $this->telefono_contacto4,
+                                'domicilio' => $this->domicilio_contacto4,
+                            ]);
+                        }
+                        break;
+                }
+            }
+            $this->flash('success', 'Se actualizo correctamente la informacion', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+
+            return redirect()->to('/edit/' . $this->colaborador->no_colaborador);
+        } catch (Exception $ex) {
+
+            dd($ex);
+
+            $this->alert('error', 'Error al actualizar', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        }
     }
 }
