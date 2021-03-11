@@ -224,7 +224,7 @@
                                         @if ($colaborador->estado_colaborador == 1)
                                             <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
                                             whitespace-nowrap">
-                                                <a wire:click.prevent="showNotification" href="#"
+                                                <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
                                                     class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Editar</a>
                                                 <button wire:click="baja({{ $colaborador->no_colaborador }})"
                                                     type="submit"
@@ -234,7 +234,7 @@
                                         @else
                                             <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
                                         whitespace-nowrap">
-                                                <a href="#"
+                                                <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
                                                     class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Editar</a>
                                                 <button wire:click="alta({{ $colaborador->no_colaborador }})"
                                                     type="submit"

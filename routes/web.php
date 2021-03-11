@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Livewire\FormularioColaborador;
+use App\Http\Livewire\EdicionColaborador;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +26,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::middleware(['auth:sanctum', 'verified'])->get('/create', function () {
     return view('create');
 })->name('create');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/edit', function () {
+    return view('edit');
+})->name('edit');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
