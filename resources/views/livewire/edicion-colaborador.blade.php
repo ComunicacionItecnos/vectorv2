@@ -1,3 +1,4 @@
+@if(auth()->user()->role_id != 6)
 <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-red-700">
         Información del colaborador
@@ -32,6 +33,7 @@
                                                     @endif
                                                 @endif
                                             </div>
+                                            @if (auth()->user()->role_id == 1 | auth()->user()->role_id == 2 | auth()->user()->role_id == 3)
                                             <div class="grid grid-rows-1 grid-cols-2 gap-2">
 
                                                 <button wire:click="downloadImage" type="button"
@@ -42,7 +44,7 @@
                                                             d="m17.601 10.707c-.483-.604-1.1-.996-1.852-1.175.237-.358.356-.757.356-1.197 0-.613-.217-1.136-.65-1.57-.434-.434-.957-.65-1.57-.65-.549 0-1.029.179-1.439.538-.341-.833-.886-1.5-1.635-2.003-.749-.503-1.574-.755-2.476-.755-1.226 0-2.272.434-3.139 1.301-.867.867-1.301 1.914-1.301 3.139 0 .075.006 .199.017 .373-.682.318-1.226.795-1.63 1.431-.405.636-.607 1.33-.607 2.081 0 1.07.38 1.984 1.14 2.745.76 .76 1.675 1.141 2.745 1.141h9.436c.919 0 1.704-.325 2.354-.976.65-.65.976-1.435.976-2.355 0-.775-.242-1.464-.724-2.068zm-4.913.334-3.044 3.044c-.052.052-.118.078-.199.078-.081 0-.147-.026-.199-.078l-3.053-3.053c-.052-.052-.078-.118-.078-.199 0-.075.027-.14.082-.195.055-.055.12-.082.195-.082h1.943v-3.053c0-.075.027-.14.082-.195.055-.055.12-.082.195-.082h1.665c.075 0 .14.027 .195.082 .055.055 .082.12 .082.195v3.053h1.943c.081 0 .147.026 .199.078 .052.052 .078.118 .078.199 0 .07-.029.139-.086.208z" />
                                                     </svg>
                                                 </button>
-
+                                                
                                                 <label
                                                     class="flex flex-col items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                     <svg class="w-7 h-7" fill="currentColor"
@@ -52,8 +54,24 @@
                                                     </svg>
                                                     <input type='file' wire:model="foto" class="hidden" />
                                                 </label>
-
+                                                
                                             </div>
+                                            @else
+
+                                            <div class="grid grid-rows-1 grid-cols-2 gap-2">
+
+                                                <button wire:click="downloadImage" type="button"
+                                                    class="flex flex-col col-span-2 items-center px-4 py-2 mt-1 tracking-wide text-green-800 uppercase bg-white border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-500 hover:text-white">
+                                                    <svg class="w-8 h-8" fill="currentColor"
+                                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                                        <path
+                                                            d="m17.601 10.707c-.483-.604-1.1-.996-1.852-1.175.237-.358.356-.757.356-1.197 0-.613-.217-1.136-.65-1.57-.434-.434-.957-.65-1.57-.65-.549 0-1.029.179-1.439.538-.341-.833-.886-1.5-1.635-2.003-.749-.503-1.574-.755-2.476-.755-1.226 0-2.272.434-3.139 1.301-.867.867-1.301 1.914-1.301 3.139 0 .075.006 .199.017 .373-.682.318-1.226.795-1.63 1.431-.405.636-.607 1.33-.607 2.081 0 1.07.38 1.984 1.14 2.745.76 .76 1.675 1.141 2.745 1.141h9.436c.919 0 1.704-.325 2.354-.976.65-.65.976-1.435.976-2.355 0-.775-.242-1.464-.724-2.068zm-4.913.334-3.044 3.044c-.052.052-.118.078-.199.078-.081 0-.147-.026-.199-.078l-3.053-3.053c-.052-.052-.078-.118-.078-.199 0-.075.027-.14.082-.195.055-.055.12-.082.195-.082h1.943v-3.053c0-.075.027-.14.082-.195.055-.055.12-.082.195-.082h1.665c.075 0 .14.027 .195.082 .055.055 .082.12 .082.195v3.053h1.943c.081 0 .147.026 .199.078 .052.052 .078.118 .078.199 0 .07-.029.139-.086.208z" />
+                                                    </svg>
+                                                </button>
+                                                
+                                            </div>
+
+                                            @endif
 
                                         </div>
 
@@ -260,7 +278,7 @@
 
 
                                 {{-- Tabla Hijos --}}
-                                <div id="tablaHijos" class="grid mt-4 mb-4" @if (($paternidad == '') | ($paternidad == '0')) style="display: none" @else @endif>
+                                <div id="tablaHijos" class="grid mt-4 mb-4" @if (($paternidad == '') | ($paternidad == '0' | auth()->user()->role_id == 2 | auth()->user()->role_id == 4 | auth()->user()->role_id == 5 | auth()->user()->role_id == 7)) style="display: none" @else @endif>
 
                                     <div class="block mb-3 text-sm font-medium text-gray-700">
                                         <h5>Hijo(s)</h5>
@@ -686,7 +704,7 @@
                                 </div>
 
                                 {{-- Inicio tabla contactos emergencia --}}
-                                <div class="grid mt-4 mb-4">
+                                <div class="grid mt-4 mb-4" @if ((auth()->user()->role_id == 2 | auth()->user()->role_id == 5)) style="display: none" @else @endif>
 
                                     <div class="block mb-3 text-sm font-medium text-gray-700">
                                         <h5>Contactos de emergencia</h5>
@@ -820,7 +838,7 @@
 
                                 </div>
                                 {{-- Fin tabla contactos emergencia --}}
-
+                                @if(auth()->user()->role_id == 1 | auth()->user()->role_id == 2)
                                 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
                                     <div class="col-span-1 sm:col-span-1">
@@ -1355,6 +1373,7 @@
                                 </div>
 
                             </div>
+                            @endif
                             <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
                                 <button wire:click="update" type="submit"
                                     class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
@@ -1506,3 +1525,6 @@
     }
 
 </style>
+@else
+<h2>Sal de aqui :p</h2>
+@endif
