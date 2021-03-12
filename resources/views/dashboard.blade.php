@@ -15,6 +15,8 @@
                 Seguridad patrimonial
             @elseif (auth()->user()->role_id == 7)
                 Servicio médico
+            @elseif (auth()->user()->role_id == 8)
+                Dirección
             @endif
         </h2>
     </x-slot>

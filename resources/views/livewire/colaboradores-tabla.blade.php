@@ -132,35 +132,35 @@
                                     {{-- Encabezado Tabla Reclutamiento y Seleccion --}}
 
                                 @elseif (auth()->user()->role_id == 5)
-                                <tr>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Nombre
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        No. Colaborador </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Estado
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Fecha de ingreso
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Datos de contacto
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Puesto y Área
-                                    </th>
-                                    <th scope="col"
-                                        class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                        Opciones
-                                    </th>
-                                </tr>
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Nombre
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            No. Colaborador </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Estado
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Fecha de ingreso
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Datos de contacto
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Puesto y Área
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Opciones
+                                        </th>
+                                    </tr>
 
                                     {{-- Encabezado Tabla Seguridad Patrimonial --}}
                                 @elseif (auth()->user()->role_id == 6)
@@ -175,6 +175,27 @@
                                         <th scope="col"
                                             class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                             Estado
+                                        </th>
+                                    </tr>
+
+                                    {{-- Encabezado Tabla Direcccion --}}
+
+                                @elseif (auth()->user()->role_id == 8)
+                                    <tr>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Nombre
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            No. Colaborador </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Puesto y Area
+                                        </th>
+                                        <th scope="col"
+                                            class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                            Opciones
                                         </th>
                                     </tr>
                                 @endif
@@ -224,7 +245,7 @@
                                         @if ($colaborador->estado_colaborador == 1)
                                             <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
                                             whitespace-nowrap">
-                                                <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
+                                                <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
                                                     class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Editar</a>
                                                 <button wire:click="baja({{ $colaborador->no_colaborador }})"
                                                     type="submit"
@@ -234,7 +255,7 @@
                                         @else
                                             <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
                                         whitespace-nowrap">
-                                                <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
+                                                <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
                                                     class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Editar</a>
                                                 <button wire:click="alta({{ $colaborador->no_colaborador }})"
                                                     type="submit"
@@ -284,7 +305,7 @@
                                         </td>
                                         <td
                                             class="flex justify-items-center px-6 py-4 text-sm font-medium text-right whitespace-nowrap">
-                                            <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
+                                            <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
                                                 class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
                                         </td>
                                     </tr>
@@ -356,7 +377,7 @@
                                         </td>
                                         <td class="flex justify-items-center px-3 py-4 text-sm font-medium text-right
                                         whitespace-nowrap">
-                                        <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
+                                            <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
                                                 class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
                                         </td>
                                     </tr>
@@ -418,99 +439,100 @@
                                         </td>
                                         <td class="flex justify-items-center px-3 py-4 text-sm font-medium text-right
                                         whitespace-nowrap">
-                                        <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
+                                            <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
                                                 class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
                                         </td>
                                     </tr>
                                 @endforeach
 
-                                    {{-- Cuerpo tabla Relaciones Reclutamiento y Seleccion --}}
+                                {{-- Cuerpo tabla Relaciones Reclutamiento y Seleccion --}}
                             @elseif (auth()->user()->role_id == 5)
-                            @foreach ($colaboradores as $colaborador)
-                                <tr class="h-30">
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="flex items-center">
-                                            <div class="flex-shrink-0 w-25 h-25">
-                                                <img class="w-10 rounded shadow h-35"
-                                                    src="{{ asset('storage') . '/' . $colaborador->foto }}"
-                                                    alt="{{ $colaborador->nombre }}">
-                                            </div>
-                                            <div class="ml-4">
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $colaborador->nombre }}
+                                @foreach ($colaboradores as $colaborador)
+                                    <tr class="h-30">
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 w-25 h-25">
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                        alt="{{ $colaborador->nombre }}">
                                                 </div>
-                                                <div class="text-sm font-medium text-gray-900">
-                                                    {{ $colaborador->ap_paterno }}
-                                                    {{ $colaborador->ap_materno }}
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $colaborador->nombre }}
+                                                    </div>
+                                                    <div class="text-sm font-medium text-gray-900">
+                                                        {{ $colaborador->ap_paterno }}
+                                                        {{ $colaborador->ap_materno }}
+                                                    </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">
-                                            {{ $colaborador->no_colaborador }}
-                                        </div>
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        @if ($colaborador->estado_colaborador == 1)
-                                            <span
-                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                                Activo
-                                            </span>
-                                        @else
-                                            <span
-                                                class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                                Inactivo
-                                            </span>
-                                        @endif
-
-                                    </td>
-                                    <td class="px-6 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">
-                                            {{ $colaborador->fecha_ingreso }}
-                                        </div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        <div class="text-sm text-gray-900">Fijo: {{ $colaborador->tel_fijo }}
-                                        </div>
-                                        <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
-                                        </div>
-
-
-                                        @foreach ($extensiones as $ext)
-                                            @if ($ext->id == $colaborador->extension_id)
-                                                <div class="text-sm text-gray-900">Ext.:{{ $ext->numero_extension }}</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">
+                                                {{ $colaborador->no_colaborador }}
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            @if ($colaborador->estado_colaborador == 1)
+                                                <span
+                                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                                                    Activo
+                                                </span>
+                                            @else
+                                                <span
+                                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                                                    Inactivo
+                                                </span>
                                             @endif
-                                        @endforeach
+
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">
+                                                {{ $colaborador->fecha_ingreso }}
+                                            </div>
+                                        </td>
+                                        <td class="px-3 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">Fijo: {{ $colaborador->tel_fijo }}
+                                            </div>
+                                            <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
+                                            </div>
 
 
-                                        <div class="text-sm text-gray-900">Correo:</div>
-                                        <div class="text-sm text-gray-900">
-                                            {{ $colaborador->correo }}</div>
-                                    </td>
-                                    <td class="px-3 py-4 whitespace-nowrap">
-                                        @foreach ($puestos as $puesto)
-                                            @if ($puesto->id == $colaborador->puesto_id)
-                                                <div class="text-sm text-gray-900">{{ $puesto->nombre_nivel }}
-                                                    {{ $puesto->especialidad_puesto }}</div>
-                                            @endif
-                                        @endforeach
+                                            @foreach ($extensiones as $ext)
+                                                @if ($ext->id == $colaborador->extension_id)
+                                                    <div class="text-sm text-gray-900">
+                                                        Ext.:{{ $ext->numero_extension }}</div>
+                                                @endif
+                                            @endforeach
 
 
-                                        @foreach ($areas as $area)
-                                            @if ($area->id == $colaborador->area_id)
-                                                <div class="text-sm text-gray-500">{{ $area->nombre_area }}</div>
-                                            @endif
-                                        @endforeach
+                                            <div class="text-sm text-gray-900">Correo:</div>
+                                            <div class="text-sm text-gray-900">
+                                                {{ $colaborador->correo }}</div>
+                                        </td>
+                                        <td class="px-3 py-4 whitespace-nowrap">
+                                            @foreach ($puestos as $puesto)
+                                                @if ($puesto->id == $colaborador->puesto_id)
+                                                    <div class="text-sm text-gray-900">{{ $puesto->nombre_nivel }}
+                                                        {{ $puesto->especialidad_puesto }}</div>
+                                                @endif
+                                            @endforeach
 
-                                    </td>
-                                    <td class="flex justify-items-center px-3 py-4 text-sm font-medium text-right
+
+                                            @foreach ($areas as $area)
+                                                @if ($area->id == $colaborador->area_id)
+                                                    <div class="text-sm text-gray-500">{{ $area->nombre_area }}</div>
+                                                @endif
+                                            @endforeach
+
+                                        </td>
+                                        <td class="flex justify-items-center px-3 py-4 text-sm font-medium text-right
                                     whitespace-nowrap">
-                                    <a href="{{url('/edit/'.$colaborador->no_colaborador)}}"
-                                            class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
-                                    </td>
-                                </tr>
-                            @endforeach
+                                            <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
+                                                class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
 
                                 {{-- Cuerpo Tabla Seguridad Patrimonial --}}
 
@@ -552,10 +574,79 @@
                                         </td>
                                     </tr>
                                 @endforeach
-                            @endif
+
+                                {{-- Cuerpo Tabla Direccion --}}
+
+                                @elseif (auth()->user()->role_id == 8)
+                                    @foreach ($colaboradores as $colaborador)
+                                        <tr class="h-30">
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="flex items-center">
+                                                    <div class="flex-shrink-0 w-25 h-25">
+                                                        <img class="w-10 rounded shadow h-35"
+                                                            src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                            alt="{{ $colaborador->nombre }}">
+                                                    </div>
+                                                    <div class="ml-4">
+                                                        <div class="text-sm font-medium text-gray-900">
+                                                            {{ $colaborador->nombre }}
+                                                            {{ $colaborador->ap_paterno }}
+                                                            {{ $colaborador->ap_materno }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">
+                                                    {{ $colaborador->no_colaborador }}
+                                                </div>
+                                            </td>
+                                            <td class="px-3 py-4 whitespace-nowrap">
+                                                @foreach ($puestos as $puesto)
+                                                    @if ($puesto->id == $colaborador->puesto_id)
+                                                        <div class="text-sm text-gray-900">
+                                                            {{ $puesto->nombre_nivel }}
+                                                            {{ $puesto->especialidad_puesto }}</div>
+                                                    @endif
+                                                @endforeach
 
 
-                            <!-- More items... -->
+                                                @foreach ($areas as $area)
+                                                    @if ($area->id == $colaborador->area_id)
+                                                        <div class="text-sm text-gray-500">{{ $area->nombre_area }}
+                                                        </div>
+                                                    @endif
+                                                @endforeach
+
+                                            </td>
+                                            @if ($colaborador->estado_colaborador == 1)
+                                                <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
+                                        whitespace-nowrap">
+                                                    <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Editar</a>
+                                                    <button wire:click="baja({{ $colaborador->no_colaborador }})"
+                                                        type="submit"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">Dar
+                                                        de baja</button>
+                                                </td>
+                                            @else
+                                                <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
+                                    whitespace-nowrap">
+                                                    <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Editar</a>
+                                                    <button wire:click="alta({{ $colaborador->no_colaborador }})"
+                                                        type="submit"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800">Dar
+                                                        de alta</button>
+                                                </td>
+                                            @endif
+
+                                        </tr>
+                                    @endforeach
+                                @endif
+
+
+                                <!-- More items... -->
                         </tbody>
                     </table>
                     <div class="px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
