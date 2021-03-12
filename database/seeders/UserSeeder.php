@@ -89,12 +89,6 @@ class UserSeeder extends Seeder
         'password' => bcrypt('12345678'),
         'role_id' => '4',
     ]);
-    User::create([
-        'name' => '',
-        'email' => '@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '',
-    ]);
 
     // ! Capital Humano - Reclutamiento y Selección
     User::create([
