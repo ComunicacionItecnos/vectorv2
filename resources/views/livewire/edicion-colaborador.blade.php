@@ -84,7 +84,7 @@
                                                 <div class="row-start-1 col-start-1 col-span-1">
 
                                                     <label for="inputTipoCol"
-                                                        class="block text-sm font-medium text-gray-700">Tipo
+                                                        class="block text-sm font-black text-gray-700">Tipo
                                                         de
                                                         Colaborador</label>
                                                     <select id="inputTipoCol" wire:model="tipo_colaborador"
@@ -107,7 +107,7 @@
 
                                                 <div class="row-start-1 col-start-2 col-span-1">
                                                     <label for="inputNoColaborador"
-                                                        class="block text-sm font-medium text-gray-700">No.
+                                                        class="block text-sm font-black text-gray-700">No.
                                                         Colaborador</label>
                                                     <input type="text" wire:model="no_colaborador" name="no_colaborador"
                                                         id="inputNoColaborador" disabled
@@ -121,7 +121,7 @@
                                                 </div>
                                                 <div class="row-start-1 col-start-3 col-span-1">
                                                     <label for="inputNombre"
-                                                        class="block text-sm font-medium text-gray-700">Nombre(s)</label>
+                                                        class="block text-sm font-black text-gray-700">Nombre(s)</label>
                                                     <input type="text" wire:model="nombre" name="nombre"
                                                         id="inputNombre" value="{{ old('nombre') }}"
                                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -133,7 +133,7 @@
                                                 </div>
                                                 <div class="row-start-2 col-start-1 col-span-1">
                                                     <label for="inputApPaterno"
-                                                        class="block text-sm font-medium text-gray-700">Apellido
+                                                        class="block text-sm font-black text-gray-700">Apellido
                                                         Paterno</label>
                                                     <input type="text" wire:model="ap_paterno" name="ap_paterno"
                                                         id="inputApPaterno" value="{{ old('ap_paterno') }}"
@@ -147,7 +147,7 @@
 
                                                 <div class="row-start-2 col-start-2 col-span-1">
                                                     <label for="inputApMaterno"
-                                                        class="block text-sm font-medium text-gray-700">Apellido
+                                                        class="block text-sm font-black text-gray-700">Apellido
                                                         Materno</label>
                                                     <input type="text" wire:model="ap_materno" name="ap_materno"
                                                         id="inputApMaterno" value="{{ old('ap_materno') }}"
@@ -160,7 +160,7 @@
                                                 </div>
                                                 <div class="row-start-2 col-start-3 col-span-1">
                                                     <label for="inputGenero"
-                                                        class="block text-sm font-medium text-gray-700">Genero</label>
+                                                        class="block text-sm font-black text-gray-700">Género</label>
                                                     <select id="inputGenero" wire:model="genero" name="genero"
                                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                         <option></option>
@@ -180,7 +180,7 @@
                                                 </div>
                                                 <div class="row-start-3 col-start-1 col-span-1">
                                                     <label for="inputFechaNacimiento"
-                                                        class="block text-sm font-medium text-gray-700">Fecha de
+                                                        class="block text-sm font-black text-gray-700">Fecha de
                                                         nacimiento</label>
                                                     <input wire:model="fecha_nacimiento" name="fecha_nacimiento"
                                                         id="inputFechaNacimiento" type="date"
@@ -195,7 +195,7 @@
 
                                                 <div class="row-start-3 col-start-2 col-span-1">
                                                     <label for="edoCivil"
-                                                        class="block text-sm font-medium text-gray-700">Estado
+                                                        class="block text-sm font-black text-gray-700">Estado
                                                         civil</label>
                                                     <select wire:model="estado_civil" id="edoCivil" name="edoCivil"
                                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -215,7 +215,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="row-start-3 col-start-3 col-span-1">
-                                                    <label class="block text-sm font-medium text-gray-700"
+                                                    <label class="block text-sm font-black text-gray-700"
                                                         for="inputNo_seguro_docial">No.
                                                         Seguro
                                                         Social</label>
@@ -231,7 +231,7 @@
                                                 </div>
 
                                                 <div class="row-start-4 col-start-1 col-span-1">
-                                                    <label class="block text-sm font-medium text-gray-700"
+                                                    <label class="block text-sm font-black text-gray-700"
                                                         for="inputCurp">CURP</label>
                                                     <input type="text" wire:model="curp" name="curp" id="inputCurp"
                                                         value="{{ old('curp') }}"
@@ -243,7 +243,7 @@
                                                     @enderror
                                                 </div>
                                                 <div class="row-start-4 col-start-2 col-span-1">
-                                                    <label class="block text-sm font-medium text-gray-700"
+                                                    <label class="block text-sm font-black text-gray-700"
                                                         for="inputRfc">RFC</label>
                                                     <input type="text" wire:model="rfc" name="rfc" id="inputRfc"
                                                         value="{{ old('rfc') }}"
@@ -256,7 +256,7 @@
                                                 </div>
                                                 <div class="row-start-4 col-start-3 col-span-1">
                                                     <label for="inputHijos"
-                                                        class="block text-sm font-medium text-gray-700">¿Tiene
+                                                        class="block text-sm font-black text-gray-700">¿Tiene
                                                         Hijos?</label>
                                                     <select wire:model="paternidad" id="inputHijos" name="paternidad"
                                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -285,7 +285,7 @@
                                     style="display: none" @else
 @endif>
 
-<div class="block mb-3 text-sm font-medium text-gray-700">
+<div class="block mb-3 text-sm font-black text-gray-700">
     <h5>Hijo(s)</h5>
 </div>
 <div class="flex flex-col">
@@ -296,10 +296,10 @@
                     <thead class="bg-gray-50" id="th_hijos">
                         <tr class="">
                             <th scope="col"
-                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                class="px-6 py-3 text-xs font-black tracking-wider text-left text-gray-500 uppercase">
                                 Edad</th>
                             <th scope="col"
-                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                class="px-6 py-3 text-xs font-black tracking-wider text-left text-gray-500 uppercase">
                                 Escolaridad</th>
                         </tr>
                     </thead>
@@ -417,7 +417,7 @@
 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
     <div class="col-span-1 sm:col-span-1">
-        <label class="block text-sm font-medium text-gray-700" for="inputDomicilio">Domicilio</label>
+        <label class="block text-sm font-black text-gray-700" for="inputDomicilio">Domicilio</label>
         <input type="text" wire:model="domicilio" name="domicilio" id="inputDomicilio" value="{{ old('domicilio') }}"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         @error('domicilio')
@@ -427,7 +427,7 @@
         @enderror
     </div>
     <div class="col-span-1 sm:col-span-1">
-        <label class="block text-sm font-medium text-gray-700" for="inputMunicipio">Municipio</label>
+        <label class="block text-sm font-black text-gray-700" for="inputMunicipio">Municipio</label>
         <input type="text" wire:model="municipio" name="municipio" id="inputMunicipio" value="{{ old('municipio') }}"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         @error('municipio')
@@ -437,7 +437,7 @@
         @enderror
     </div>
     <div class="col-span-1 sm:col-span-1">
-        <label class="block text-sm font-medium text-gray-700" for="inputEstado">Estado</label>
+        <label class="block text-sm font-black text-gray-700" for="inputEstado">Estado</label>
         <input type="text" wire:model="estado" name="estado" id="inputEstado" value="{{ old('estado') }}"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         @error('estado')
@@ -447,7 +447,7 @@
         @enderror
     </div>
     <div class="col-span-1 sm:col-span-1">
-        <label class="block text-sm font-medium text-gray-700" for="inputCodigoPostal">Código
+        <label class="block text-sm font-black text-gray-700" for="inputCodigoPostal">Código
             Postal</label>
         <input type="text" wire:model="codigo_postal" name="codigo_postal" id="inputCodigoPostal"
             value="{{ old('codigo_postal') }}"
@@ -463,7 +463,7 @@
 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputTipoCol" class="block text-sm font-medium text-gray-700">Tipo
+        <label for="inputTipoCol" class="block text-sm font-black text-gray-700">Tipo
             de
             Colaborador</label>
         <select id="inputTipoCol" wire:model="tipo_colaborador" name="tipo_colaborador"
@@ -485,7 +485,7 @@
     </div>
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputTurno" class="block text-sm font-medium text-gray-700">Turno
+        <label for="inputTurno" class="block text-sm font-black text-gray-700">Turno
             del
             Colaborador</label>
         <select id="inputTurno" wire:model="turno" name="turno"
@@ -506,7 +506,7 @@
     </div>
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputCorreo" class="block text-sm font-medium text-gray-700">Correo</label>
+        <label for="inputCorreo" class="block text-sm font-black text-gray-700">Correo</label>
         <input type="email" wire:model="correo" name="correo" id="inputCorreo" value="{{ old('correo') }}"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
         @error('correo')
@@ -517,7 +517,7 @@
     </div>
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputRuta" class="block text-sm font-medium text-gray-700">Ruta de
+        <label for="inputRuta" class="block text-sm font-black text-gray-700">Ruta de
             Transporte</label>
         <select id="inputRuta" wire:model="ruta_transporte" name="ruta"
             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -541,7 +541,7 @@
 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="selectNivel" class="block text-sm font-medium text-gray-700">Puesto</label>
+        <label for="selectNivel" class="block text-sm font-black text-gray-700">Puesto</label>
         <select id="selectNivel" wire:model="puesto" name="puesto"
             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <option></option>
@@ -561,7 +561,7 @@
     </div>
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="selectArea" class="block text-sm font-medium text-gray-700">Area</label>
+        <label for="selectArea" class="block text-sm font-black text-gray-700">Área</label>
         <select id="selectArea" wire:model="area" name="area"
             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <option></option>
@@ -581,7 +581,7 @@
     </div>
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="selectSupervisor" class="block text-sm font-medium text-gray-700">Jefe
+        <label for="selectSupervisor" class="block text-sm font-black text-gray-700">Jefe
             Directo</label>
         <select id="selectSupervisor" wire:model="jefe_directo" name="supervisor"
             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -607,7 +607,7 @@
     </div>
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputTelFijo" class="block text-sm font-medium text-gray-700">Teléfono
+        <label for="inputTelFijo" class="block text-sm font-black text-gray-700">Teléfono
             Fijo</label>
         <input type="text" wire:model="tel_fijo" name="tel_fijo"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -624,7 +624,7 @@
 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputTelMovil" class="block text-sm font-medium text-gray-700">Teléfono
+        <label for="inputTelMovil" class="block text-sm font-black text-gray-700">Teléfono
             Móvil</label>
         <input type="text" wire:model="tel_movil" name="tel_movil"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -636,7 +636,7 @@
         @enderror
     </div>
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputTelRecados" class="block text-sm font-medium text-gray-700">Teléfono para
+        <label for="inputTelRecados" class="block text-sm font-black text-gray-700">Teléfono para
             Recados</label>
         <input type="text" wire:model="tel_recados" name="tel_recados"
             class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
@@ -648,7 +648,7 @@
         @enderror
     </div>
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputExtension" class="block text-sm font-medium text-gray-700">Extensión</label>
+        <label for="inputExtension" class="block text-sm font-black text-gray-700">Extensión</label>
         <select id="inputExtension" wire:model="extension" name="extension"
             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
             <option></option>
@@ -667,7 +667,7 @@
     </div>
 
     <div class="col-span-1 sm:col-span-1">
-        <label for="inputClaveRadio" class="block text-sm font-medium text-gray-700">Clave de
+        <label for="inputClaveRadio" class="block text-sm font-black text-gray-700">Clave de
             Radio</label>
         <select id="inputClaveRadio" wire:model="clave_radio" name="clave_radio"
             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -690,7 +690,7 @@
 {{-- Inicio tabla contactos emergencia --}}
 <div class="grid mt-4 mb-4" @if ((auth()->user()->role_id == 2) | (auth()->user()->role_id == 5)) style="display: none" @else @endif>
 
-    <div class="block mb-3 text-sm font-medium text-gray-700">
+    <div class="block mb-3 text-sm font-black text-gray-700">
         <h5>Contactos de emergencia</h5>
     </div>
     <div class="flex flex-col">
@@ -701,16 +701,16 @@
                         <thead class="bg-gray-100" id="th_contactos">
                             <tr class="">
                                 <th scope="col"
-                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                    class="px-6 py-3 text-xs font-black tracking-wider text-left text-gray-500 uppercase">
                                     Nombre</th>
                                 <th scope="col"
-                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                    class="px-6 py-3 text-xs font-black tracking-wider text-left text-gray-500 uppercase">
                                     Parentesco</th>
                                 <th scope="col"
-                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                    class="px-6 py-3 text-xs font-black tracking-wider text-left text-gray-500 uppercase">
                                     Teléfono</th>
                                 <th scope="col"
-                                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                    class="px-6 py-3 text-xs font-black tracking-wider text-left text-gray-500 uppercase">
                                     Domicilio</th>
                             </tr>
                         </thead>
@@ -813,7 +813,7 @@
     <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
         <div class="col-span-1 sm:col-span-1">
-            <label for="inputMatriculacion" class="block text-sm font-medium text-gray-700">Matriculación</label>
+            <label for="inputMatriculacion" class="block text-sm font-black text-gray-700">Matriculación</label>
             <select id="inputMatriculacion" wire:model="matriculacion" name="matriculacion"
                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option></option>
@@ -828,7 +828,7 @@
         </div>
 
         <div class="col-span-1 sm:col-span-1">
-            <label for="inputTipoUsuario" class="block text-sm font-medium text-gray-700">Tipo de
+            <label for="inputTipoUsuario" class="block text-sm font-black text-gray-700">Tipo de
                 Usuario</label>
             <select id="inputTipoUsuario" wire:model="tipo_usuario" name="tipo_usuario"
                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -849,7 +849,7 @@
         </div>
 
         <div class="col-span-1 sm:col-span-1">
-            <label for="inputPassword" class="block text-sm font-medium text-gray-700">Contraseña</label>
+            <label for="inputPassword" class="block text-sm font-black text-gray-700">Contraseña</label>
             <input type="text" wire:model="password" name="password" id="inputPassword"
                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                 value="{{ old('password') }}">
@@ -861,7 +861,7 @@
         </div>
 
         <div class="col-span-1 sm:col-span-1">
-            <label for="inputRangoFactor" class="block text-sm font-medium text-gray-700">Rango en Factor</label>
+            <label for="inputRangoFactor" class="block text-sm font-black text-gray-700">Rango en Factor</label>
             <select id="inputRangoFactor" wire:model="rango_factor" name="rango_factor"
                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 <option></option>
@@ -891,11 +891,11 @@
     <div class="grid grid-rows-2 grid-cols-2 gap-1 mt-4 mb-4">
 
         <div class="grid row-start-1 col-start-1 gap-2">
-            <label class="block text-sm font-medium text-gray-700">Autoevaluación</label>
+            <label class="block text-sm font-black text-gray-700">Autoevaluación</label>
         </div>
 
         <div class="grid row-start-1 col-start-2 gap-2 ml-2">
-            <label class="block text-sm font-medium text-gray-700">Evaluación</label>
+            <label class="block text-sm font-black text-gray-700">Evaluación</label>
         </div>
 
         <div class="grid row-start-2 col-start-1 grid-cols-3 gap-2">
@@ -904,7 +904,7 @@
                 <!-- This is an example component -->
                 <div class="flex justify-center">
                     <label for="autoEvalGen" class="flex items-center cursor-pointer">
-                        <div class="px-2 block text-sm font-medium text-gray-700">Generada
+                        <div class="px-2 block text-sm font-black text-gray-700">Generada
                         </div>
                         <!-- toggle -->
                         <div class="relative">
@@ -928,7 +928,7 @@
 
                 <div class="flex justify-center">
                     <label for="autoEvalAsig" class="flex items-center cursor-pointer">
-                        <div class="px-2 block text-sm font-medium text-gray-700">Asignada
+                        <div class="px-2 block text-sm font-black text-gray-700">Asignada
                         </div>
                         <!-- toggle -->
                         <div class="relative">
@@ -948,7 +948,7 @@
             </div>
             <div class="flex justify-center col-span-1 sm:col-span-1">
                 <label for="autoEvalCal" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Calificación
+                    <div class="px-2 block text-sm font-black text-gray-700">Calificación
                     </div>
                     <input type="text" wire:model="autoEvalCal" name="autoEvalCal" id="autoEvalCal"
                         class="block w-full h-6 text-center border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -966,7 +966,7 @@
                 <!-- This is an example component -->
                 <div class="flex justify-center">
                     <label for="evalGen" class="flex items-center cursor-pointer">
-                        <div class="px-2 block text-sm font-medium text-gray-700">Generada
+                        <div class="px-2 block text-sm font-black text-gray-700">Generada
                         </div>
                         <!-- toggle -->
                         <div class="relative">
@@ -988,7 +988,7 @@
                 <!-- This is an example component -->
                 <div class="flex justify-center">
                     <label for="evalAsig" class="flex items-center cursor-pointer">
-                        <div class="px-2 block text-sm font-medium text-gray-700">Asignada
+                        <div class="px-2 block text-sm font-black text-gray-700">Asignada
                         </div>
                         <!-- toggle -->
                         <div class="relative">
@@ -1008,7 +1008,7 @@
 
             <div class="flex justify-center col-span-1 sm:col-span-1">
                 <label for="evalCal" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Calificación
+                    <div class="px-2 block text-sm font-black text-gray-700">Calificación
                     </div>
                     <input type="text" wire:model="evalCal" name="evalCal" id="evalCal"
                         class="block w-full h-6 text-center border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -1024,33 +1024,33 @@
 
     <div class="grid grid-cols-1 gap-4 mt-4 bg-red-800 ">
         <p class="text-center text-gray-50 text-xl">
-            Quinqenio
+            Quinquenio
         </p>
     </div>
 
     <div class="grid grid-rows-2 grid-cols-4 gap-1 mt-4 mb-4">
 
         <div class="grid row-start-1 col-start-1">
-            <label class="block text-sm font-medium text-gray-700">Quinquenio</label>
+            <label class="block text-sm font-black text-gray-700">Quinquenio</label>
         </div>
         <div class="grid row-start-1 col-start-2 ">
-            <label class="block text-sm font-medium text-gray-700"></label>
+            <label class="block text-sm font-black text-gray-700"></label>
         </div>
         <div class="grid row-start-1 col-start-3 ">
-            <label class="block text-sm font-medium text-gray-700">Fecha de ingreso</label>
+            <label class="block text-sm font-black text-gray-700">Fecha de ingreso</label>
         </div>
         <div class="grid row-start-1 col-start-4 ">
-            <label class="block text-sm font-medium text-gray-700">Años</label>
+            <label class="block text-sm font-black text-gray-700">Años</label>
         </div>
 
         <div class="col-start-1 col-span-1 sm:col-span-1">
 
             <div class="flex justify-center">
                 <label for="quinquenioAplica" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Aplica
+                    <div class="px-2 block text-sm font-black text-gray-700">Aplica
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div class="relative cursor-not-allowed">
                         <input disabled wire:model="quinquenioAplica" name="quinquenioAplica" id="quinquenioAplica"
                             type="checkbox" class="hidden" />
                         <!-- path -->
@@ -1067,10 +1067,10 @@
         <div class="col-start-2 col-span-1 sm:col-span-1">
             <div class="flex justify-center">
                 <label for="quinquenioEntrega" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Entregado
+                    <div class="px-2 block text-sm font-black text-gray-700">Entregado
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($quinquenioAplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input wire:model="quinquenioEntrega" name="quinquenioEntrega" @if ($quinquenioAplica == false) disabled @endif
                             id="quinquenioEntrega" type="checkbox" class="hidden" />
                         <!-- path -->
@@ -1116,24 +1116,24 @@
     <div class="grid grid-rows-2 grid-cols-3 gap-1 mt-6 mb-4">
 
         <div class="grid row-start-1 col-start-1 gap-2">
-            <label class="block text-sm font-medium text-gray-700">Día de la madre</label>
+            <label class="block text-sm font-black text-gray-700">Día de la madre</label>
         </div>
 
         <div class="grid row-start-1 col-start-2 gap-2">
-            <label class="block text-sm font-medium text-gray-700">Día del padre</label>
+            <label class="block text-sm font-black text-gray-700">Día del padre</label>
         </div>
 
         <div class="grid row-start-1 col-start-3 gap-2">
-            <label class="block text-sm font-medium text-gray-700">Útiles escolares</label>
+            <label class="block text-sm font-black text-gray-700">Útiles escolares</label>
         </div>
 
         <div class="grid row-start-2 col-start-1 grid-cols-3 gap-2">
             <div class="flex justify-center grid-cols-2 col-start-1 gap-2">
                 <label for="ddmAplica" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Aplica
+                    <div class="px-2 block text-sm font-black text-gray-700">Aplica
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div class="relative cursor-not-allowed">
                         <input disabled wire:model="ddmAplica" name="ddmAplica" id="ddmAplica" type="checkbox"
                             class="hidden" />
                         <!-- path -->
@@ -1147,10 +1147,10 @@
             </div>
             <div class="flex justify-center grid-cols-2 col-start-2 gap-2">
                 <label for="ddmEntrega" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Entregado
+                    <div class="px-2 block text-sm font-black text-gray-700">Entregado
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($ddmAplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input wire:model="ddmEntrega" name="ddmEntrega" @if ($ddmAplica == false) disabled @endif id="ddmEntrega"
                             type="checkbox" class="hidden" />
                         <!-- path -->
@@ -1166,10 +1166,10 @@
         <div class="grid row-start-2 col-start-2 grid-cols-3 gap-2">
             <div class="flex justify-center grid-cols-2 col-start-1 gap-2">
                 <label for="ddpAplica" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Aplica
+                    <div class="px-2 block text-sm font-black text-gray-700">Aplica
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($ddpAplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input disabled wire:model="ddpAplica" name="ddpAplica" id="ddpAplica" type="checkbox"
                             class="hidden" />
                         <!-- path -->
@@ -1183,10 +1183,10 @@
             </div>
             <div class="flex justify-center grid-cols-2 col-start-2 gap-2">
                 <label for="ddpEntrega" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Entregado
+                    <div class="px-2 block text-sm font-black text-gray-700">Entregado
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($ddpAplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input wire:model="ddpEntrega" name="ddpEntrega" @if ($ddpAplica == false) disabled @endif id="ddpEntrega"
                             type="checkbox" class="hidden" />
                         <!-- path -->
@@ -1202,10 +1202,10 @@
         <div class="grid row-start-2 col-start-3 grid-cols-3 gap-2">
             <div class="flex justify-center grid-cols-2 col-start-1 gap-2">
                 <label for="ueAplica" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Aplica
+                    <div class="px-2 block text-sm font-black text-gray-700">Aplica
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($ueAplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input disabled wire:model="ueAplica" name="ueAplica" id="ueAplica" type="checkbox"
                             class="hidden" />
                         <!-- path -->
@@ -1219,10 +1219,10 @@
             </div>
             <div class="flex justify-center grid-cols-2 col-start-2 gap-2">
                 <label for="ueEntrega" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Entregado
+                    <div class="px-2 block text-sm font-black text-gray-700">Entregado
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($ueAplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input wire:model="ueEntrega" name="ueEntrega" @if ($ueAplica == false) disabled @endif id="ueEntrega" type="checkbox" class="hidden" />
                         <!-- path -->
                         <div class="toggle-path bg-red-500 w-9 h-5 rounded-full shadow-inner">
@@ -1240,22 +1240,22 @@
     <div class="grid grid-rows-2 grid-cols-2 gap-1 mt-8 mb-2">
 
         <div class="grid row-start-1 col-start-1 gap-2">
-            <label class="block text-sm font-medium text-gray-700">Regalo 60
+            <label class="block text-sm font-black text-gray-700">Regalo 60
                 aniversario</label>
         </div>
 
         <div class="grid row-start-1 col-start-2 gap-2">
-            <label class="block text-sm font-medium text-gray-700">Boleto fiesta fin de
+            <label class="block text-sm font-black text-gray-700">Boleto fiesta fin de
                 año</label>
         </div>
 
         <div class="grid row-start-2 col-start-1 grid-cols-3 gap-2">
             <div class="flex justify-center grid-cols-2 col-start-1 gap-2">
                 <label for="r60Aplica" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Aplica
+                    <div class="px-2 block text-sm font-black text-gray-700">Aplica
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div class="relative cursor-not-allowed">
                         <input disabled wire:model="r60Aplica" name="r60Aplica" id="r60Aplica" type="checkbox"
                             class="hidden" />
                         <!-- path -->
@@ -1269,10 +1269,10 @@
             </div>
             <div class="flex justify-center grid-cols-2 col-start-2 gap-2">
                 <label for="r60Entrega" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Entregado
+                    <div class="px-2 block text-sm font-black text-gray-700">Entregado
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($r60Aplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input wire:model="r60Entrega" name="r60Entrega" @if ($r60Aplica == false) disabled @endif id="r60Entrega"
                             type="checkbox" class="hidden" />
                         <!-- path -->
@@ -1288,10 +1288,10 @@
         <div class="grid row-start-2 col-start-2 grid-cols-3 gap-2">
             <div class="flex justify-center grid-cols-2 col-start-1 gap-2">
                 <label for="bffAplica" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Aplica
+                    <div class="px-2 block text-sm font-black text-gray-700">Aplica
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div class="relative cursor-not-allowed">
                         <input disabled wire:model="bffAplica" name="bffAplica" id="bffAplica" type="checkbox"
                             class="hidden" />
                         <!-- path -->
@@ -1305,10 +1305,10 @@
             </div>
             <div class="flex justify-center grid-cols-2 col-start-2 gap-2">
                 <label for="bffEntrega" class="flex items-center cursor-pointer">
-                    <div class="px-2 block text-sm font-medium text-gray-700">Entregado
+                    <div class="px-2 block text-sm font-black text-gray-700">Entregado
                     </div>
                     <!-- toggle -->
-                    <div class="relative">
+                    <div @if ($bffAplica == false) class="relative cursor-not-allowed" @else class="relative" @endif>
                         <input wire:model="bffEntrega" name="bffEntrega" @if ($bffAplica == false) disabled @endif id="bffEntrega"
                             type="checkbox" class="hidden" />
                         <!-- path -->
@@ -1328,7 +1328,7 @@
 @if (auth()->user()->role_id == 1 | auth()->user()->role_id == 2 | auth()->user()->role_id == 3)
     <div class="px-4 py-3 text-right bg-gray-50 sm:px-6">
         <button wire:click="update" type="submit"
-            class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+            class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
             Actualizar información
         </button>
     </div>
@@ -1392,7 +1392,7 @@
             '</select>' +
             '</td>' +
 
-            '<th class="text-center"><a href="javascript:;" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm deleteHijo hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">-</a></th>' +
+            '<th class="text-center"><a href="javascript:;" class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-red-600 border border-transparent rounded-md shadow-sm deleteHijo hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">-</a></th>' +
             '</tr>';
 
         $("#tb_hijos").append(tr);
@@ -1417,7 +1417,7 @@
             '<td><input type="text" name="parentesco_contacto[]" id="parentesco_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
             '<td><input type="text" name="telefono_contacto[]" id="telefono_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
             '<td><input type="text" name="domicilio_contacto[]" id="domicilio_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
-            '<td class="text-center"><a href="javascript:;" class="inline-flex justify-center px-4 py-2 text-sm font-medium text-white bg-red-600 border border-transparent rounded-md shadow-sm deleteHijo hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 deleteContacto">-</a></td>' +
+            '<td class="text-center"><a href="javascript:;" class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-red-600 border border-transparent rounded-md shadow-sm deleteHijo hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 deleteContacto">-</a></td>' +
             '</tr>'
 
         $("#tb_contactos").append(tr2);
