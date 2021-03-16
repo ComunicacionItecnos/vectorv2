@@ -32,6 +32,11 @@ $nav_links3 = [
         'active' => request()->routeIs('dashboard'),
     ],
     [
+        'name' => 'Crear colaborador',
+        'route' => route('create'),
+        'active' => request()->routeIs('create'),
+    ],
+    [
         'name' => 'Documentos y constancias',
         'route' => '#',
         'active' => false,
