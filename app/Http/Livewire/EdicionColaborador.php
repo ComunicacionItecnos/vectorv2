@@ -401,21 +401,33 @@ class EdicionColaborador extends Component
 
             $this->validate();
 
+            // ? Formato de palabras
+
+            $nombre_c = ucwords($this->nombre);
+            $ap_paterno_c = ucwords($this->ap_paterno);
+            $ap_materno_c = ucwords($this->ap_materno);
+            $curp_c = strtoupper($this->curp);
+            $rfc_c = strtoupper($this->rfc);
+            $no_seguro_social_c = strtoupper($this->no_seguro_social);
+            $domicilio_c = ucfirst($this->domicilio);
+            $municipio_c = ucwords($this->municipio);
+            $estado_c = ucwords($this->estado);
+
             Colaborador::where('no_colaborador', $this->colaborador->no_colaborador)
                 ->update([
                     'no_colaborador' => $this->no_colaborador,
-                    'nombre' => $this->nombre,
-                    'ap_paterno' => $this->ap_paterno,
-                    'ap_materno' => $this->ap_materno,
+                    'nombre' => $nombre_c,
+                    'ap_paterno' => $ap_paterno_c,
+                    'ap_materno' => $ap_materno_c,
                     'fecha_nacimiento' => $this->fecha_nacimiento,
                     'genero_id' => $this->genero,
                     'estado_civil_id' => $this->estado_civil,
-                    'curp' => $this->curp,
-                    'rfc' => $this->rfc,
-                    'no_seguro_social' => $this->no_seguro_social,
-                    'domicilio' => $this->domicilio,
-                    'municipio' => $this->municipio,
-                    'estado' => $this->estado,
+                    'curp' => $curp_c,
+                    'rfc' => $rfc_c,
+                    'no_seguro_social' => $no_seguro_social_c,
+                    'domicilio' => $domicilio_c,
+                    'municipio' => $municipio_c,
+                    'estado' => $estado_c,
                     'codigo_postal' => $this->codigo_postal,
                     'paternidad_id' => $this->paternidad,
                     'turno_id' => $this->turno,
@@ -629,12 +641,17 @@ class EdicionColaborador extends Component
                             $this->nombre_contacto1 != null | $this->parentesco_contacto1 != null |
                             $this->telefono_contacto1 != null | $this->domicilio_contacto1 != null
                         ) {
+
+                            $nombre_contacto1_c = ucwords($this->nombre_contacto1);
+                            $parentesco_contacto1_c = ucfirst($this->parentesco_contacto1);
+                            $domicilio_contacto1_c = ucfirst($this->domicilio_contacto1);
+
                             Contactos_emergencia::updateOrCreate([
                                 'colaborador_no_colaborador' => $this->no_colaborador,
-                                'nombre' => $this->nombre_contacto1,
-                                'parentesco' => $this->parentesco_contacto1,
-                                'telefono' => $this->telefono_contacto1,
-                                'domicilio' => $this->domicilio_contacto1,
+                                'nombre' => $nombre_contacto1_c,
+                                'parentesco' => $parentesco_contacto1_c,
+                                'telefono' => $this->telefono_contacto1_c,
+                                'domicilio' => $domicilio_contacto1_c,
                             ]);
                         }
                         break;
@@ -643,12 +660,16 @@ class EdicionColaborador extends Component
                             $this->nombre_contacto2 != null | $this->parentesco_contacto2 != null |
                             $this->telefono_contacto2 != null | $this->domicilio_contacto2 != null
                         ) {
+                            $nombre_contacto2_c = ucwords($this->nombre_contacto2);
+                            $parentesco_contacto2_c = ucfirst($this->parentesco_contacto2);
+                            $domicilio_contacto2_c = ucfirst($this->domicilio_contacto2);
+
                             Contactos_emergencia::updateOrCreate([
                                 'colaborador_no_colaborador' => $this->no_colaborador,
-                                'nombre' => $this->nombre_contacto2,
-                                'parentesco' => $this->parentesco_contacto2,
+                                'nombre' => $nombre_contacto2_c,
+                                'parentesco' => $parentesco_contacto2_c,
                                 'telefono' => $this->telefono_contacto2,
-                                'domicilio' => $this->domicilio_contacto2,
+                                'domicilio' => $domicilio_contacto2_c,
                             ]);
                         }
                         break;
@@ -657,12 +678,16 @@ class EdicionColaborador extends Component
                             $this->nombre_contacto3 != null | $this->parentesco_contacto3 != null |
                             $this->telefono_contacto3 != null | $this->domicilio_contacto3 != null
                         ) {
+                            $nombre_contacto3_c = ucwords($this->nombre_contacto3);
+                            $parentesco_contacto3_c = ucfirst($this->parentesco_contacto3);
+                            $domicilio_contacto3_c = ucfirst($this->domicilio_contacto3);
+
                             Contactos_emergencia::updateOrCreate([
                                 'colaborador_no_colaborador' => $this->no_colaborador,
-                                'nombre' => $this->nombre_contacto3,
-                                'parentesco' => $this->parentesco_contacto3,
+                                'nombre' => $nombre_contacto3_c,
+                                'parentesco' => $parentesco_contacto3_c,
                                 'telefono' => $this->telefono_contacto3,
-                                'domicilio' => $this->domicilio_contacto3,
+                                'domicilio' => $domicilio_contacto3_c,
                             ]);
                         }
                         break;
@@ -671,12 +696,16 @@ class EdicionColaborador extends Component
                             $this->nombre_contacto4 != null | $this->parentesco_contacto4 != null |
                             $this->telefono_contacto4 != null | $this->domicilio_contacto4 != null
                         ) {
+                            $nombre_contacto4_c = ucwords($this->nombre_contacto4);
+                            $parentesco_contacto4_c = ucfirst($this->parentesco_contacto4);
+                            $domicilio_contacto4_c = ucfirst($this->domicilio_contacto4);
+
                             Contactos_emergencia::updateOrCreate([
                                 'colaborador_no_colaborador' => $this->no_colaborador,
-                                'nombre' => $this->nombre_contacto4,
-                                'parentesco' => $this->parentesco_contacto4,
+                                'nombre' => $nombre_contacto4_c,
+                                'parentesco' => $parentesco_contacto4_c,
                                 'telefono' => $this->telefono_contacto4,
-                                'domicilio' => $this->domicilio_contacto4,
+                                'domicilio' => $domicilio_contacto4_c,
                             ]);
                         }
                         break;
