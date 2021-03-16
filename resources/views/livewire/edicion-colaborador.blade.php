@@ -884,7 +884,7 @@
 
     <div class="grid grid-cols-1 gap-4 mt-4 bg-red-800 ">
         <p class="text-center text-gray-50 text-xl">
-            Evauaciones
+            Evaluaciones
         </p>
     </div>
 
