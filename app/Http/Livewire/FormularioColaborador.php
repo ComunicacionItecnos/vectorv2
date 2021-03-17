@@ -372,7 +372,7 @@ class FormularioColaborador extends Component
                                 'colaborador_no_colaborador' => $this->no_colaborador,
                                 'nombre' => $nombre_contacto1_c,
                                 'parentesco' => $parentesco_contacto1_c,
-                                'telefono' => $this->telefono_contacto1_c,
+                                'telefono' => $this->telefono_contacto1,
                                 'domicilio' => $domicilio_contacto1_c,
                             ]);
                         }
