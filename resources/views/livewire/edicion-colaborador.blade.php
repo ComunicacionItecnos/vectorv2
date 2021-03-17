@@ -804,7 +804,7 @@
 
 </div>
 {{-- Fin tabla contactos emergencia --}}
-@if ((auth()->user()->role_id == 1) | (auth()->user()->role_id == 2))
+@if ((auth()->user()->role_id == 1) | (auth()->user()->role_id == 2 ) | (auth()->user()->role_id == 8))
     <div class="grid grid-cols-1 gap-4 mt-4 mb-4 bg-red-800 ">
         <p class="text-center text-gray-50 text-xl">
             Factor
