@@ -174,7 +174,7 @@
                                             No. Colaborador </th>
                                         <th scope="col"
                                             class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
-                                            Estado
+                                            Puesto y Área
                                         </th>
                                     </tr>
 
@@ -559,18 +559,21 @@
                                                 {{ $colaborador->no_colaborador }}
                                             </div>
                                         </td>
-                                        <td class="px-6 py-4 whitespace-nowrap">
-                                            @if ($colaborador->estado_colaborador == 1)
-                                                <span
-                                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
-                                                    Activo
-                                                </span>
-                                            @else
-                                                <span
-                                                    class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
-                                                    Inactivo
-                                                </span>
-                                            @endif
+                                        <td class="px-3 py-4 whitespace-nowrap">
+                                            @foreach ($puestos as $puesto)
+                                                @if ($puesto->id == $colaborador->puesto_id)
+                                                    <div class="text-sm text-gray-900">{{ $puesto->nombre_nivel }}
+                                                        {{ $puesto->especialidad_puesto }}</div>
+                                                @endif
+                                            @endforeach
+
+
+                                            @foreach ($areas as $area)
+                                                @if ($area->id == $colaborador->area_id)
+                                                    <div class="text-sm text-gray-500">{{ $area->nombre_area }}</div>
+                                                @endif
+                                            @endforeach
+
                                         </td>
                                     </tr>
                                 @endforeach
