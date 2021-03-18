@@ -650,7 +650,7 @@ class EdicionColaborador extends Component
                                 'colaborador_no_colaborador' => $this->no_colaborador,
                                 'nombre' => $nombre_contacto1_c,
                                 'parentesco' => $parentesco_contacto1_c,
-                                'telefono' => $this->telefono_contacto1_c,
+                                'telefono' => $this->telefono_contacto1,
                                 'domicilio' => $domicilio_contacto1_c,
                             ]);
                         }
@@ -724,7 +724,7 @@ class EdicionColaborador extends Component
 
             return redirect()->to('/edit/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
-
+            dd($ex);
             $this->alert('error', 'Error al actualizar', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
