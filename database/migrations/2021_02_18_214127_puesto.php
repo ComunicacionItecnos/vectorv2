@@ -22,7 +22,7 @@ class Puesto extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
             
-            $table->string('especialidad_puesto',100);
+            $table->string('especialidad_puesto',100)->nullable();
         });
     }
 
