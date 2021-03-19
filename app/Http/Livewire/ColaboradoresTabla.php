@@ -14,7 +14,10 @@ class ColaboradoresTabla extends Component
 {
     use WithPagination;
 
-    protected $queryString = ['search' => ['except' => '']];
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'perPage'
+    ];
 
     public $search, $perPage = '5';
     public $loadingIndicator = true;
