@@ -20,40 +20,14 @@ class ColaboradoresTabla extends Component
     ];
 
     public $search, $perPage = '5';
-    public $loadingIndicator = true;
     public $no_colaborador;
 
     public function render()
     {
-        if ($this->search == 'activo') {
-            return view('livewire.colaboradores-tabla', [
-                'colaboradores' => Colaborador::where('no_colaborador', 'LIKE', "%{$this->search}%")
-                    ->orWhere('nombre', 'LIKE', "%{$this->search}%")
-                    ->orWhere('estado_colaborador', 1)
-                    ->paginate($this->perPage),
-                'areas' => Area::all(),
-                'puestos' => Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
-                    ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
-                    ->get(),
-                'extensiones' => Extension::all()
-            ]);
-        } else if ($this->search == 'inactivo') {
-            return view('livewire.colaboradores-tabla', [
-                'colaboradores' => Colaborador::where('no_colaborador', 'LIKE', "%{$this->search}%")
-                    ->orWhere('nombre', 'LIKE', "%{$this->search}%")
-                    ->orWhere('estado_colaborador', 0)
-                    ->paginate($this->perPage),
-                'areas' => Area::all(),
-                'puestos' => Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
-                    ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
-                    ->get(),
-                'extensiones' => Extension::all()
-            ]);
-        } else {
 
             return view('livewire.colaboradores-tabla', [
-                'colaboradores' => Colaborador::where('no_colaborador', 'LIKE', "%{$this->search}%")
-                    ->orWhere('nombre', 'LIKE', "%{$this->search}%")
+                'colaboradores' => DB::table('infoColaborador')->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                    ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
                     ->paginate($this->perPage),
                 'areas' => Area::all(),
                 'puestos' => Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
@@ -61,7 +35,6 @@ class ColaboradoresTabla extends Component
                     ->get(),
                 'extensiones' => Extension::all()
             ]);
-        }
     }
 
     public function baja($no_colaborador)
