@@ -17,7 +17,7 @@ class Colaborador extends Migration
                         $table->string('no_colaborador', 6)->primary();
                         $table->string('nombre', 50);
                         $table->string('ap_paterno', 50);
-                        $table->string('ap_materno', 50);
+                        $table->string('ap_materno', 50)->nullable();
                         $table->date('fecha_nacimiento');
 
                         $table->foreignId('genero_id')
@@ -32,7 +32,7 @@ class Colaborador extends Migration
 
                         $table->string('curp', 18);
                         $table->string('rfc',15);
-                        $table->string('no_seguro_social',15);
+                        $table->string('no_seguro_social',15)->nullable();
 
                         $table->string('domicilio', 128);
                         $table->string('municipio', 45);
