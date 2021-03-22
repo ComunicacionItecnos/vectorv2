@@ -117,11 +117,11 @@ class FormularioColaborador extends Component
         'area.required' => 'Esta opción no puede permanecer vacía',
         'jefe_directo.required' => 'Esta opción no puede permanecer vacía',
         'tel_fijo.required' => 'El Teléfono fijo no puede permanecer vacío',
-        'tel_fijo.required' => 'El Teléfono fijo debe contener 10 dígitos',
+        'tel_fijo.regex' => 'El Teléfono fijo debe contener 10 dígitos',
         'tel_movil.required' => 'El Teléfono móvil no puede permanecer vacío',
-        'tel_movil.required' => 'El Teléfono móvil debe contener 10 dígitos',
+        'tel_movil.regex' => 'El Teléfono móvil debe contener 10 dígitos',
         'tel_recados.required' => 'El Teléfono para recados no puede permanecer vacío',
-        'tel_recados.required' => 'El Teléfono para recados debe contener 10 dígitos',
+        'tel_recados.regex' => 'El Teléfono para recados debe contener 10 dígitos',
         'extension.required' => 'Esta opción no puede permanecer vacía',
         'clave_radio.required' => 'Esta opción no puede permanecer vacía',
 
@@ -214,9 +214,9 @@ class FormularioColaborador extends Component
         } else {
             $r_f = 2;
         }
-
+        $this->validate();
         try {
-            $this->validate();
+           
             $foto_ruta = $this->foto->store('images', 'public');
 
             // ? Formato de palabras
@@ -449,7 +449,7 @@ class FormularioColaborador extends Component
             return redirect()->route('dashboard');
         } catch (Exception $ex) {
 
-            $this->alert('error', 'El colaborador ya está registrado', [
+            $this->alert('error', 'Ha ocurrido un error', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,

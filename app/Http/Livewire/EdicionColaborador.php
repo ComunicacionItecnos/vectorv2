@@ -84,8 +84,8 @@ class EdicionColaborador extends Component
         'tel_recados' => 'required|regex:/^[0-9]{10}$/',
         'extension' => 'required',
         'clave_radio' => 'required',
-        'autoEvalCal' => ['required','regex:/^([0-9]|([1-9][0-9])|100)$/'],
-        'evalCal' => ['required','regex:/^([0-9]|([1-9][0-9])|100)$/'],
+        'autoEvalCal' => ['required', 'regex:/^([0-9]|([1-9][0-9])|100)$/'],
+        'evalCal' => ['required', 'regex:/^([0-9]|([1-9][0-9])|100)$/'],
 
         'nombre_contacto1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'parentesco_contacto1' => 'required|regex:/[a-zA-Z]/',
@@ -133,11 +133,11 @@ class EdicionColaborador extends Component
         'area.required' => 'Esta opción no puede permanecer vacía',
         'jefe_directo.required' => 'Esta opción no puede permanecer vacía',
         'tel_fijo.required' => 'El Teléfono fijo no puede permanecer vacío',
-        'tel_fijo.required' => 'El Teléfono fijo debe contener 10 dígitos',
+        'tel_fijo.regex' => 'El Teléfono fijo debe contener 10 dígitos',
         'tel_movil.required' => 'El Teléfono móvil no puede permanecer vacío',
-        'tel_movil.required' => 'El Teléfono móvil debe contener 10 dígitos',
+        'tel_movil.regex' => 'El Teléfono móvil debe contener 10 dígitos',
         'tel_recados.required' => 'El Teléfono para recados no puede permanecer vacío',
-        'tel_recados.required' => 'El Teléfono para recados debe contener 10 dígitos',
+        'tel_recados.regex' => 'El Teléfono para recados debe contener 10 dígitos',
         'extension.required' => 'Esta opción no puede permanecer vacía',
         'clave_radio.required' => 'Esta opción no puede permanecer vacía',
         'autoEvalCal.required' => 'Este campo no puede permanecer vacio',
@@ -376,11 +376,10 @@ class EdicionColaborador extends Component
         // ? Actualizacion de fotografia
 
         if ($this->foto != null) {
+            $this->validate([
+                'foto' => 'required|image|max:1024'
+            ]);
             try {
-
-                $this->validate([
-                    'foto' => 'required|image|max:1024'
-                ]);
 
                 Storage::delete('public/' . $this->colaborador->foto);
 
@@ -397,9 +396,10 @@ class EdicionColaborador extends Component
 
         // ? Actualizacion datos del colaborador
 
+        $this->validate();
         try {
 
-            $this->validate();
+
 
             // ? Formato de palabras
 
@@ -724,7 +724,6 @@ class EdicionColaborador extends Component
 
             return redirect()->to('/edit/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
-            dd($ex);
             $this->alert('error', 'Error al actualizar', [
                 'position' =>  'top-end',
                 'timer' =>  3000,

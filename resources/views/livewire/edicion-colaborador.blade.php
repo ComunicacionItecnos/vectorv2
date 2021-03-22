@@ -27,10 +27,15 @@
                                                         <img src="{{ $foto->temporaryUrl() }}"
                                                             class="rounded-xl border-2 shadow-xl">
                                                     @else
-                                                        @if (isset($colaborador->foto))
-                                                            <img src="{{ asset('storage') . '/' . $colaborador->foto }}"
-                                                                alt="" class="rounded-xl border-2 shadow-xl">
-                                                        @endif
+
+                                                    @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                                                    <img class="rounded-xl border-2 shadow-xl"
+                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                        alt="">
+                                                @else
+                                                    <img class="rounded-xl border-2 shadow-xl"
+                                                        src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                @endif
                                                     @endif
                                                 </div>
                                                 @if ((auth()->user()->role_id == 1) | (auth()->user()->role_id == 2) | (auth()->user()->role_id == 3))
