@@ -319,7 +319,7 @@
                                 </tr>
                             @endforeach
 
-                            {{-- Cuerpo tabla Relaciones Administracion --}}
+                            {{-- Cuerpo tabla Administracion --}}
                         @elseif (auth()->user()->role_id == 3)
                             @foreach ($colaboradores as $colaborador)
                                 <tr class="h-30">
@@ -450,11 +450,40 @@
                                         @endforeach
 
                                     </td>
-                                    <td class="flex justify-items-center px-3 py-4 text-sm font-medium text-right
+                                    @if ($colaborador->estado_colaborador == 1)
+                                        <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
+                                            whitespace-nowrap">
+                                            <div class="grid grid-rows-2">
+                                                <div>
+                                                    <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
+                                                </div>
+                                                <div>
+                                                    <button wire:click="baja({{ $colaborador->no_colaborador }})"
+                                                        type="submit"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-red-700 rounded-lg focus:shadow-outline hover:bg-red-800">Dar
+                                                        de baja</button>
+                                                </div>
+                                            </div>
+                                        </td>
+
+                                    @else
+                                        <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
                                         whitespace-nowrap">
-                                        <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
-                                            class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
-                                    </td>
+                                            <div class="grid grid-rows-2">
+                                                <div>
+                                                    <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Mostrar</a>
+                                                </div>
+                                                <div>
+                                                    <button wire:click="alta({{ $colaborador->no_colaborador }})"
+                                                        type="submit"
+                                                        class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-green-700 rounded-lg focus:shadow-outline hover:bg-green-800">Dar
+                                                        de alta</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    @endif
                                 </tr>
                             @endforeach
 

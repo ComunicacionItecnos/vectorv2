@@ -1484,5 +1484,7 @@
 
 </style>
 @else
-<h2>Sal de aqui :p</h2>
+<h3 class="text-center text-4xl font-black ">
+    Sal de aqui :p
+</h3>
 @endif
