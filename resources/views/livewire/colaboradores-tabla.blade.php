@@ -211,7 +211,6 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-25 h-25">
-
                                                 @if (file_exists(public_path('storage/' . $colaborador->foto)))
                                                     <img class="w-10 rounded shadow h-35"
                                                         src="{{ asset('storage') . '/' . $colaborador->foto }}"
@@ -278,8 +277,14 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-25 h-25">
-                                                <img class="w-10 rounded shadow h-35"
-                                                    src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
+                                                @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                        alt="">
+                                                @else
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                @endif
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">
@@ -321,8 +326,14 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-25 h-25">
-                                                <img class="w-10 rounded shadow h-35"
-                                                    src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
+                                                @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                        alt="">
+                                                @else
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                @endif
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">
@@ -388,8 +399,14 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-25 h-25">
-                                                <img class="w-10 rounded shadow h-35"
-                                                    src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
+                                                @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                        alt="">
+                                                @else
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                @endif
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">
@@ -448,8 +465,14 @@
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="flex items-center">
                                             <div class="flex-shrink-0 w-25 h-25">
-                                                <img class="w-10 rounded shadow h-35"
-                                                    src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
+                                                @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                        alt="">
+                                                @else
+                                                    <img class="w-10 rounded shadow h-35"
+                                                        src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                @endif
                                             </div>
                                             <div class="ml-4">
                                                 <div class="text-sm font-medium text-gray-900">
@@ -534,9 +557,14 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-25 h-25">
-                                                    <img class="w-15 rounded shadow h-25"
-                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
-                                                        alt="">
+                                                    @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                                                        <img class="w-10 rounded shadow h-35"
+                                                            src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                            alt="">
+                                                    @else
+                                                        <img class="w-10 rounded shadow h-35"
+                                                            src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                    @endif
                                                 </div>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-gray-900">
@@ -582,9 +610,14 @@
                                         <td class="px-6 py-4 whitespace-nowrap">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 w-25 h-25">
-                                                    <img class="w-10 rounded shadow h-35"
-                                                        src="{{ asset('storage') . '/' . $colaborador->foto }}"
-                                                        alt="">
+                                                    @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                                                        <img class="w-10 rounded shadow h-35"
+                                                            src="{{ asset('storage') . '/' . $colaborador->foto }}"
+                                                            alt="">
+                                                    @else
+                                                        <img class="w-10 rounded shadow h-35"
+                                                            src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                    @endif
                                                 </div>
                                                 <div class="ml-4">
                                                     <div class="text-sm font-medium text-gray-900">
