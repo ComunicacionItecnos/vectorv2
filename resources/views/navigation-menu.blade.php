@@ -15,6 +15,11 @@ $nav_links1 = [
         'route' => '#',
         'active' => false,
     ],
+    [
+        'name' => 'Centro de Control',
+        'route' => route('control-center'),
+        'active' => request()->routeIs('control-center'),
+    ],
 ];
 
 $nav_links2 = [

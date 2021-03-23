@@ -31,4 +31,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/edit', function () {
     return view('edit');
 })->name('edit');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center', function () {
+    return view('controlCenter');
+})->name('control-center');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
