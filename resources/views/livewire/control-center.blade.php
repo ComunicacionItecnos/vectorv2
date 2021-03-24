@@ -58,8 +58,8 @@
                                 Nivel
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                <button wire:click="" type="submit"
-                                    class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800">Mostrar</button>
+                                <a href="{{route('tabla-niveles')}}"
+                                    class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800">Mostrar</a>
                             </td>
                         </tr>
                         <tr>
