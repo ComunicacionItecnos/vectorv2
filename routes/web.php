@@ -39,4 +39,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/area', fun
     return view('tablaArea');
 })->name('tabla-area');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/claves-radio', function () {
+    return view('tablaClavesRadio');
+})->name('tabla-claves-radio');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
