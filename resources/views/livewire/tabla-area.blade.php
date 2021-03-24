@@ -2,28 +2,15 @@
     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
 
-
-            <div class="grid grid-cols-2">
-                <div class="col-span-1 sm:col-span-1 m-4">
-                    <label for="nombre_area" class="block text-sm font-medium text-gray-700">Nombre Área</label>
-                    <input type="text" wire:model="nombre_area" name="nombre_area" id="nombre_area"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <div class="grid grid-cols-2 m-2">
+                <div class="col-span-1 sm:col-span-1 flex justify-start items-center">
+                    <label for="nombre_area" class="block text-4xl font-medium text-gray-700">Área</label>
                 </div>
-                <div class="col-span-1 sm:col-span-1 m-4">
-
-                    @if ($bandera_boton == 0)
-                        <button wire:click="registrar()"
-                            class="inline-flex justify-center px-4 py-2 ml-10 mt-6 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                            Registrar Área
-                        </button>
-                    @else
-                        <button wire:click="guardar()"
-                            class="inline-flex justify-center px-4 py-2 ml-10 mt-6 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
-                            Actualizar
-                        </button>
-                    @endif
-
-
+                <div class="col-span-1 sm:col-span-1 flex justify-end items-center">
+                    <button wire:click="confirmAreaAdd"
+                        class="inline-flex justify-center px-4 py-2 ml-10 mt-6 text-sm font-medium text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        Agregar Área
+                    </button>
                 </div>
             </div>
         </div>
@@ -116,7 +103,7 @@
                                 </td>
                                 <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
                                         whitespace-nowrap">
-                                    <button wire:click="editar({{ $area->id }})"
+                                    <button wire:click="confirmAreaEdit({{ $area->id }})"
                                         class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-indigo-700 rounded-lg focus:shadow-outline hover:bg-indigo-800">Editar</button>
 
                                     <button wire:click="triggerConfirm({{ $area->id }})"
@@ -139,4 +126,57 @@
             </div>
         </div>
     </div>
+
+    {{-- Modal para agregar una nueva area --}}
+    <x-jet-dialog-modal wire:model="confirmAreaAdd">
+        <x-slot name="title">
+            {{ __('Agregar nueva área') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Ingresa el nombre de la nueva área') }}
+
+            <div class="mt-4">
+                    <input type="text" wire:model="nombre_area" name="nombre_area" id="nombre_area"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$set('confirmAreaAdd', false)" wire:loading.attr="disabled">
+                {{ __('Cancelar') }}
+            </x-jet-secondary-button>
+
+            <x-jet-button class="ml-2" dusk="confirm-password-button" wire:click="registrar" wire:loading.attr="disabled">
+                {{ __('Agregar') }}
+            </x-jet-button>
+        </x-slot>
+    </x-jet-dialog-modal>
+
+    {{-- Modal para editar un area existente --}}
+
+    <x-jet-dialog-modal wire:model="confirmAreaEdit">
+        <x-slot name="title">
+            {{ __('Actualizar área') }}
+        </x-slot>
+
+        <x-slot name="content">
+            {{ __('Ingresa el nuevo nombre del área') }}
+
+            <div class="mt-4">
+                    <input type="text" wire:model="nombre_area" name="nombre_area" id="nombre_area"
+                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="$set('confirmAreaEdit', false)" wire:loading.attr="disabled">
+                {{ __('Cancelar') }}
+            </x-jet-secondary-button>
+
+            <x-jet-button class="ml-2" dusk="confirm-password-button" wire:click="guardar" wire:loading.attr="disabled">
+                {{ __('Actualizar') }}
+            </x-jet-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>

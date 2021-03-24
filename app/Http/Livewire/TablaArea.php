@@ -20,10 +20,21 @@ class TablaArea extends Component
     public $search, $perPage = '5';
     public $area_id;
     public $nombre_area;
-    public $bandera_boton = 0;
 
     public $sortBy = 'id';
     public $sortAsc = true;
+
+    protected $rules = [
+        'nombre_area' => 'required|max:50',
+    ];
+
+    protected $messages = [
+        'nombre_area.required' => 'Este campo no puede estar vacío',
+        'nombre_area.max' => 'Este campo no puede exceder los 50 caracteres'
+    ];
+
+    public $confirmAreaAdd = false;
+    public $confirmAreaEdit = false;
 
     protected $listeners = [
         'eliminar',
@@ -87,12 +98,14 @@ class TablaArea extends Component
 
     public function registrar()
     {
+        $this->validate();
+
         try {
             Area::updateOrInsert([
                 'nombre_area' => $this->nombre_area
             ]);
 
-            $this->flash('success', $this->nombre_area . ' fue registrado(a) correctamente', [
+            $this->flash('success', $this->nombre_area . ' fue registrada correctamente', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,
@@ -102,6 +115,8 @@ class TablaArea extends Component
                 'showCancelButton' =>  false,
                 'showConfirmButton' =>  false,
             ]);
+
+            $this->nombre_area = null;
 
             return redirect()->route("tabla-area");
         } catch (Exception $ex) {
@@ -118,35 +133,55 @@ class TablaArea extends Component
         }
     }
 
-    public function editar($area_id)
+    public function confirmAreaEdit($area_id)
     {
         $area = Area::find($area_id);
 
         $this->area_id = $area->id;
         $this->nombre_area = $area->nombre_area;
-        $this->bandera_boton = 1;
+
+        $this->confirmAreaEdit = true;
     }
 
     public function guardar()
     {
 
-        Area::where('id', $this->area_id)
-            ->update([
-                'nombre_area' => $this->nombre_area,
+        $this->validate();
+
+        try {
+            Area::where('id', $this->area_id)
+                ->update([
+                    'nombre_area' => $this->nombre_area,
+                ]);
+
+            $this->flash('success', 'Actualizado correctamente', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
             ]);
 
-        $this->flash('success', 'Actualizado correctamente', [
-            'position' =>  'top-end',
-            'timer' =>  3000,
-            'toast' =>  true,
-            'text' =>  '',
-            'confirmButtonText' =>  'Ok',
-            'cancelButtonText' =>  'Cancel',
-            'showCancelButton' =>  false,
-            'showConfirmButton' =>  false,
-        ]);
+            $this->area_id = null;
+            $this->nombre_area = null;
 
-        return redirect()->route("tabla-area");
+            return redirect()->route("tabla-area");
+            
+        } catch (Exception $ex) {
+            $this->flash('error', 'Ha ocurrido un error!!', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        }
     }
 
     public function sortBy($field)
@@ -155,5 +190,10 @@ class TablaArea extends Component
             $this->sortAsc = !$this->sortAsc;
         }
         $this->sortBy = $field;
+    }
+
+    public function confirmAreaAdd()
+    {
+        $this->confirmAreaAdd = true;
     }
 }
