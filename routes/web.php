@@ -47,4 +47,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/eventos-es
     return view('tablaEventosEspeciales');
 })->name('tabla-eventos-especiales');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/extensiones', function () {
+    return view('tablaExtensiones');
+})->name('tabla-extensiones');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
