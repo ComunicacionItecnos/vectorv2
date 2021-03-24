@@ -137,8 +137,13 @@
             {{ __('Ingresa el nombre de la nueva área') }}
 
             <div class="mt-4">
-                    <input type="text" wire:model="nombre_area" name="nombre_area" id="nombre_area"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="text" wire:model="nombre_area" name="nombre_area" id="nombre_area"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                @error('nombre_area')
+                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
         </x-slot>
 
@@ -147,7 +152,8 @@
                 {{ __('Cancelar') }}
             </x-jet-secondary-button>
 
-            <x-jet-button class="ml-2" dusk="confirm-password-button" wire:click="registrar" wire:loading.attr="disabled">
+            <x-jet-button class="ml-2" dusk="confirm-password-button" wire:click="registrar"
+                wire:loading.attr="disabled">
                 {{ __('Agregar') }}
             </x-jet-button>
         </x-slot>
@@ -164,8 +170,13 @@
             {{ __('Ingresa el nuevo nombre del área') }}
 
             <div class="mt-4">
-                    <input type="text" wire:model="nombre_area" name="nombre_area" id="nombre_area"
-                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <input type="text" wire:model="nombre_area" name="nombre_area" id="nombre_area"
+                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                @error('nombre_area')
+                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                        {{ $message }}
+                    </p>
+                @enderror
             </div>
         </x-slot>
 
