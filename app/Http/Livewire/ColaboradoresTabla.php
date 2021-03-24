@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Colaborador;
 use App\Models\Area;
 use App\Models\Extension;
 use App\Models\Puesto;

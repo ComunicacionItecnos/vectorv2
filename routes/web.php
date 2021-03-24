@@ -35,4 +35,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center', function
     return view('controlCenter');
 })->name('control-center');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/area', function () {
+    return view('tablaArea');
+})->name('tabla-area');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
