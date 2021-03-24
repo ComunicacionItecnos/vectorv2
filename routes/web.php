@@ -43,4 +43,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/claves-rad
     return view('tablaClavesRadio');
 })->name('tabla-claves-radio');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/eventos-especiales', function () {
+    return view('tablaEventosEspeciales');
+})->name('tabla-eventos-especiales');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
