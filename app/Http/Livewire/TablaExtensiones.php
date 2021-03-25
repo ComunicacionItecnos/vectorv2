@@ -185,6 +185,12 @@ class TablaExtensiones extends Component
         }
     }
 
+    public function setNull(){
+        $this->confirmExtensionAdd = false;
+        $this->confirmExtensionEdit = false;
+        $this->numero_extension = '';
+    }
+
     public function sortBy($field)
     {
         if ($field == $this->sortBy) {

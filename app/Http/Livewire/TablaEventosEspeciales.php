@@ -184,6 +184,12 @@ class TablaEventosEspeciales extends Component
         }
     }
 
+    public function setNull(){
+        $this->confirmEventoAdd = false;
+        $this->confirmEventoEdit = false;
+        $this->nombre_evento = '';
+    }
+
     public function sortBy($field)
     {
         if ($field == $this->sortBy) {

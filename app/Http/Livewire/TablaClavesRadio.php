@@ -201,6 +201,14 @@ class TablaClavesRadio extends Component
         }
     }
 
+    public function setNull(){
+        $this->confirmClaveRadioAdd = false;
+        $this->confirmClaveRadioEdit = false;
+        $this->nombreClaveRadio = '';
+        $this->compartida = null;
+        $this->disponibilidad = null;
+    }
+
     public function sortBy($field)
     {
         if ($field == $this->sortBy) {

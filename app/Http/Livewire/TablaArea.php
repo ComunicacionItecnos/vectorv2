@@ -192,6 +192,12 @@ class TablaArea extends Component
         $this->sortBy = $field;
     }
 
+    public function setNull(){
+        $this->confirmAreaAdd = false;
+        $this->confirmAreaEdit = false;
+        $this->nombre_area = '';
+    }
+
     public function confirmAreaAdd()
     {
         $this->confirmAreaAdd = true;
