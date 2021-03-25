@@ -184,6 +184,12 @@ class TablaNiveles extends Component
         }
     }
 
+    public function setNull(){
+        $this->confirmNivelAdd = false;
+        $this->confirmNivelEdit = false;
+        $this->nombre_nivel = '';
+    }
+
     public function sortBy($field)
     {
         if ($field == $this->sortBy) {

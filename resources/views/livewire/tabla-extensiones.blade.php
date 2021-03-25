@@ -152,7 +152,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('confirmExtensionAdd', false)" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="setNull" wire:loading.attr="disabled">
                 {{ __('Cancelar') }}
             </x-jet-secondary-button>
 
@@ -185,7 +185,7 @@
         </x-slot>
 
         <x-slot name="footer">
-            <x-jet-secondary-button wire:click="$set('confirmExtensionEdit', false)" wire:loading.attr="disabled">
+            <x-jet-secondary-button wire:click="setNull" wire:loading.attr="disabled">
                 {{ __('Cancelar') }}
             </x-jet-secondary-button>
 

@@ -200,6 +200,13 @@ class TablaPuestos extends Component
         }
     }
 
+    public function setNull(){
+        $this->confirmPuestoAdd = false;
+        $this->confirmPuestoEdit = false;
+        $this->nivel_id = null;
+        $this->especialidad_puesto = '';
+    }
+
     public function sortBy($field)
     {
         if ($field == $this->sortBy) {
