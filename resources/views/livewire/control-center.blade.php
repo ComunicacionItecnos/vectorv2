@@ -16,6 +16,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
+                        @if(auth()->user()->role_id == 1 | auth()->user()->role_id == 3)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 Área
@@ -26,6 +27,8 @@
                                 >Mostrar</a>
                             </td>
                         </tr>
+                        @endif
+                        @if(auth()->user()->role_id == 1 | auth()->user()->role_id == 6)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 Claves de radio
@@ -35,6 +38,8 @@
                                     class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800">Mostrar</a>
                             </td>
                         </tr>
+                        @endif
+                        @if(auth()->user()->role_id == 1 | auth()->user()->role_id == 2)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 Eventos especiales
@@ -44,6 +49,8 @@
                                     class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800">Mostrar</a>
                             </td>
                         </tr>
+                        @endif
+                        @if(auth()->user()->role_id == 1 | auth()->user()->role_id == 3)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 Extensiones telefónicas
@@ -71,6 +78,7 @@
                                     class="inline-flex items-center h-8 px-4 m-2 text-sm text-indigo-100 transition-colors duration-150 bg-blue-700 rounded-lg focus:shadow-outline hover:bg-blue-800">Mostrar</a>
                             </td>
                         </tr>
+                        @endif
 
                         <!-- More items... -->
                     </tbody>
