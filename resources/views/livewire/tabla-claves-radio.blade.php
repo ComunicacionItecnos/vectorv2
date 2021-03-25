@@ -4,7 +4,7 @@
 
             <div class="grid grid-cols-2 m-2">
                 <div class="col-span-1 sm:col-span-1 flex justify-start items-center">
-                    <label for="clave" class="block text-4xl font-medium text-gray-700">Claves de Radio</label>
+                    <label for="clave" class="block text-3xl font-medium text-gray-700">Claves de Radio</label>
                 </div>
                 <div class="col-span-1 sm:col-span-1 flex justify-end items-center">
                     <button wire:click="confirmClaveRadioAdd"

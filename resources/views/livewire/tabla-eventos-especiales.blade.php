@@ -4,7 +4,7 @@
 
             <div class="grid grid-cols-2 m-2">
                 <div class="col-span-1 sm:col-span-1 flex justify-start items-center">
-                    <label for="nombre_evento" class="block text-4xl font-medium text-gray-700">Eventos Especiales</label>
+                    <label for="nombre_evento" class="block text-3xl font-medium text-gray-700">Eventos Especiales</label>
                 </div>
                 <div class="col-span-1 sm:col-span-1 flex justify-end items-center">
                     <button wire:click="confirmEventoAdd"
