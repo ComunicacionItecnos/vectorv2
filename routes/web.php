@@ -31,4 +31,33 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/edit', function () {
     return view('edit');
 })->name('edit');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center', function () {
+    return view('controlCenter');
+})->name('control-center');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/area', function () {
+    return view('tablaArea');
+})->name('tabla-area');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/claves-radio', function () {
+    return view('tablaClavesRadio');
+})->name('tabla-claves-radio');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/eventos-especiales', function () {
+    return view('tablaEventosEspeciales');
+})->name('tabla-eventos-especiales');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/extensiones', function () {
+    return view('tablaExtensiones');
+})->name('tabla-extensiones');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/niveles', function () {
+    return view('tablaNiveles');
+})->name('tabla-niveles');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/puestos', function () {
+    return view('tablaPuestos');
+})->name('tabla-puestos');
+
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);

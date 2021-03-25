@@ -6,6 +6,11 @@ $nav_links1 = [
         'active' => request()->routeIs('dashboard'),
     ],
     [
+        'name' => 'Centro de Control',
+        'route' => route('control-center'),
+        'active' => request()->routeIs('control-center'),
+    ],
+    [
         'name' => 'Crear colaborador',
         'route' => route('create'),
         'active' => request()->routeIs('create'),
@@ -23,6 +28,11 @@ $nav_links2 = [
         'route' => route('dashboard'),
         'active' => request()->routeIs('dashboard'),
     ],
+    [
+        'name' => 'Centro de Control',
+        'route' => route('control-center'),
+        'active' => request()->routeIs('control-center'),
+    ],
 ];
 
 $nav_links3 = [
@@ -30,6 +40,11 @@ $nav_links3 = [
         'name' => 'Dashboard',
         'route' => route('dashboard'),
         'active' => request()->routeIs('dashboard'),
+    ],
+    [
+        'name' => 'Centro de Control',
+        'route' => route('control-center'),
+        'active' => request()->routeIs('control-center'),
     ],
     [
         'name' => 'Crear colaborador',
@@ -62,6 +77,18 @@ $nav_links6 = [
         'name' => 'Dashboard',
         'route' => route('dashboard'),
         'active' => request()->routeIs('dashboard'),
+    ],
+];
+$nav_links6_5 = [
+    [
+        'name' => 'Dashboard',
+        'route' => route('dashboard'),
+        'active' => request()->routeIs('dashboard'),
+    ],
+    [
+        'name' => 'Centro de Control',
+        'route' => route('control-center'),
+        'active' => request()->routeIs('control-center'),
     ],
 ];
 $nav_links7 = [
@@ -120,8 +147,14 @@ $nav_links7 = [
                                 {{ $nav_link['name'] }}
                             </x-jet-nav-link>
                         @endforeach
-                    @elseif(auth()->user()->role_id == 6)
+                    @elseif(auth()->user()->role_id == 6 && Auth::user()->email == 'spatrimonial1@itecnos.com.mx')
                         @foreach ($nav_links6 as $nav_link)
+                            <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                                {{ $nav_link['name'] }}
+                            </x-jet-nav-link>
+                        @endforeach
+                    @elseif(auth()->user()->role_id == 6 && Auth::user()->email == 'spatrimonial2@itecnos.com.mx')
+                        @foreach ($nav_links6_5 as $nav_link)
                             <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                                 {{ $nav_link['name'] }}
                             </x-jet-nav-link>
@@ -293,25 +326,31 @@ $nav_links7 = [
                         {{ $nav_link['name'] }}
                     </x-jet-responsive-nav-link>
                 @endforeach
-                @elseif (auth()->user()->role_id == 4)
+            @elseif (auth()->user()->role_id == 4)
                 @foreach ($nav_links4 as $nav_link)
                     <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                         {{ $nav_link['name'] }}
                     </x-jet-responsive-nav-link>
                 @endforeach
-                @elseif (auth()->user()->role_id == 5)
+            @elseif (auth()->user()->role_id == 5)
                 @foreach ($nav_links5 as $nav_link)
                     <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                         {{ $nav_link['name'] }}
                     </x-jet-responsive-nav-link>
                 @endforeach
-                @elseif (auth()->user()->role_id == 6)
+            @elseif (auth()->user()->role_id == 6)
                 @foreach ($nav_links6 as $nav_link)
                     <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                         {{ $nav_link['name'] }}
                     </x-jet-responsive-nav-link>
                 @endforeach
-                @elseif (auth()->user()->role_id == 7)
+            @elseif (auth()->user()->role_id == 6 && auth()->user()->email == 'spatrimonial2@itecnos.com.mx')
+                @foreach ($nav_links6_5 as $nav_link)
+                    <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                        {{ $nav_link['name'] }}
+                    </x-jet-responsive-nav-link>
+                @endforeach
+            @elseif (auth()->user()->role_id == 7)
                 @foreach ($nav_links7 as $nav_link)
                     <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                         {{ $nav_link['name'] }}
