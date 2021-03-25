@@ -55,5 +55,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/niveles', 
     return view('tablaNiveles');
 })->name('tabla-niveles');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/puestos', function () {
+    return view('tablaPuestos');
+})->name('tabla-puestos');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
