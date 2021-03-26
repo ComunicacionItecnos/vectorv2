@@ -207,12 +207,12 @@
                     <tr>
                         <td class="sm:px-6 py-2 whitespace-nowrap">
                             <div class="flex items-center">
-                                <div class="sm:flex-shrink-0 sm:w-25 sm:h-25 hidden sm:inline">
+                                <div class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
                                     @if (file_exists(public_path('storage/' . $colaborador->foto)))
-                                        <img class="w-10 rounded shadow h-35"
+                                        <img class="w-20 rounded shadow h-24"
                                             src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
                                     @else
-                                        <img class="w-10 rounded shadow h-35"
+                                        <img class="w-20 rounded shadow h-24"
                                             src="{{ asset('images/user_toolkit.jpg') }}" alt="">
                                     @endif
                                 </div>
