@@ -467,85 +467,7 @@
 
 <div class="grid grid-cols-4 gap-4 mt-4 mb-4">
 
-    <div class="col-span-1 sm:col-span-1">
-        <label for="inputTipoCol" class="block text-sm font-black text-gray-700">Tipo
-            de
-            Colaborador</label>
-        <select id="inputTipoCol" wire:model="tipo_colaborador" name="tipo_colaborador"
-            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <option></option>
-            @if ($tiposColaborador)
-                @foreach ($tiposColaborador as $tipoColaborador)
-                    <option value="{{ $tipoColaborador->id }}">
-                        {{ $tipoColaborador->nombre_tipo }}
-                    </option>
-                @endforeach
-            @endif
-        </select>
-        @error('tipo_colaborador')
-            <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                {{ $message }}
-            </p>
-        @enderror
-    </div>
-
-    <div class="col-span-1 sm:col-span-1">
-        <label for="inputTurno" class="block text-sm font-black text-gray-700">Turno
-            del
-            Colaborador</label>
-        <select id="inputTurno" wire:model="turno" name="turno"
-            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <option></option>
-            @if ($turnos)
-                @foreach ($turnos as $turno)
-                    <option value="{{ $turno->id }}">{{ $turno->nombre_turno }}
-                    </option>
-                @endforeach
-            @endif
-        </select>
-        @error('turno')
-            <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                {{ $message }}
-            </p>
-        @enderror
-    </div>
-
-    <div class="col-span-1 sm:col-span-1">
-        <label for="inputCorreo" class="block text-sm font-black text-gray-700">Correo</label>
-        <input type="email" wire:model="correo" name="correo" id="inputCorreo" value="{{ old('correo') }}"
-            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-        @error('correo')
-            <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                {{ $message }}
-            </p>
-        @enderror
-    </div>
-
-    <div class="col-span-1 sm:col-span-1">
-        <label for="inputRuta" class="block text-sm font-black text-gray-700">Ruta de
-            Transporte</label>
-        <select id="inputRuta" wire:model="ruta_transporte" name="ruta"
-            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-            <option></option>
-            @if ($rutas)
-                @foreach ($rutas as $ruta)
-                    <option value="{{ $ruta->id }}">{{ $ruta->nombre_ruta }}
-                    </option>
-                @endforeach
-            @endif
-        </select>
-        @error('ruta_transporte')
-            <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                {{ $message }}
-            </p>
-        @enderror
-    </div>
-
-</div>
-
-<div class="grid grid-cols-4 gap-4 mt-4 mb-4">
-
-    <div class="col-span-1 sm:col-span-1">
+    <div class="col-span-1 sm:col-span-2">
         <label for="selectNivel" class="block text-sm font-black text-gray-700">Puesto</label>
         <select id="selectNivel" wire:model="puesto" name="puesto"
             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -605,6 +527,62 @@
 
         </select>
         @error('jefe_directo')
+            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                {{ $message }}
+            </p>
+        @enderror
+    </div>
+
+</div>
+
+<div class="grid grid-cols-4 gap-4 mt-4 mb-4">
+
+    <div class="col-span-1 sm:col-span-1">
+        <label for="inputTurno" class="block text-sm font-black text-gray-700">Turno
+            del
+            Colaborador</label>
+        <select id="inputTurno" wire:model="turno" name="turno"
+            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option></option>
+            @if ($turnos)
+                @foreach ($turnos as $turno)
+                    <option value="{{ $turno->id }}">{{ $turno->nombre_turno }}
+                    </option>
+                @endforeach
+            @endif
+        </select>
+        @error('turno')
+            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                {{ $message }}
+            </p>
+        @enderror
+    </div>
+
+    <div class="col-span-1 sm:col-span-1">
+        <label for="inputCorreo" class="block text-sm font-black text-gray-700">Correo</label>
+        <input type="email" wire:model="correo" name="correo" id="inputCorreo" value="{{ old('correo') }}"
+            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+        @error('correo')
+            <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                {{ $message }}
+            </p>
+        @enderror
+    </div>
+
+    <div class="col-span-1 sm:col-span-1">
+        <label for="inputRuta" class="block text-sm font-black text-gray-700">Ruta de
+            Transporte</label>
+        <select id="inputRuta" wire:model="ruta_transporte" name="ruta"
+            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+            <option></option>
+            @if ($rutas)
+                @foreach ($rutas as $ruta)
+                    <option value="{{ $ruta->id }}">{{ $ruta->nombre_ruta }}
+                    </option>
+                @endforeach
+            @endif
+        </select>
+        @error('ruta_transporte')
             <p class="mt-1 mb-1 text-xs text-red-600 italic">
                 {{ $message }}
             </p>
@@ -1378,90 +1356,6 @@
     document.getElementsByName("fecha_nacimiento")[0].setAttribute('min', '1950-01-01');
 
 </script>
-
-{{-- Funcion para agregar una fila a la tabla Hijos --}}
-
-{{-- <script>
-    $("#th_hijos").on('click', '.addHijo', function() {
-        var tr = '<tr>' +
-            '<td><input type="text" ' +
-            'class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
-
-            '<td>' +
-            '<select class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">' +
-            '<option value="1">Jardín de niños</option>' +
-            '<option value="2">Primaria</option>' +
-            '<option value="3">Secundaria</option>' +
-            '<option value="4">Preparatoria</option>' +
-            '<option value="5">Universidad</option>' +
-            '</select>' +
-            '</td>' +
-
-            '<th class="text-center"><a href="javascript:;" class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-red-600 border border-transparent rounded-md shadow-sm deleteHijo hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">-</a></th>' +
-            '</tr>';
-
-        $("#tb_hijos").append(tr);
-    });
-
-    $("#tb_hijos").on('click', '.deleteHijo', function() {
-        var ultimo = $('#tb_hijos tr').length;
-        $(this).parent().parent().remove();
-
-    });
-
-</script> --}}
-
-{{-- Funcion para agregar una fila a la tabla Contactos --}}
-
-{{-- <script>
-    $("#th_contactos").on('click', '.addContacto', function() {
-        var tr2 =
-
-            '<tr>' +
-            '<td><input type="text" name="nombre_contacto[]" id="nombre_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
-            '<td><input type="text" name="parentesco_contacto[]" id="parentesco_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
-            '<td><input type="text" name="telefono_contacto[]" id="telefono_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
-            '<td><input type="text" name="domicilio_contacto[]" id="domicilio_contacto" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></td>' +
-            '<td class="text-center"><a href="javascript:;" class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-red-600 border border-transparent rounded-md shadow-sm deleteHijo hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 deleteContacto">-</a></td>' +
-            '</tr>'
-
-        $("#tb_contactos").append(tr2);
-    });
-
-    $("#tb_contactos").on('click', '.deleteContacto', function() {
-        var ultimo = $('#tb_contactos tr').length;
-        $(this).parent().parent().remove();
-
-    });
-
-</script> --}}
-
-
-{{-- Mostrar la tabla Hijos --}}
-
-{{-- <script>
-    $(function() {
-
-        $("#inputHijos").on('change', function() {
-
-            var selectValue = $(this).val();
-            switch (selectValue) {
-
-                case "0":
-                    $("#tablaHijos").hide();
-                    break;
-
-                case "1":
-                    $("#tablaHijos").show();
-                    break;
-
-            }
-
-        }).change();
-
-    });
-
-</script> --}}
 
 <style>
     .toggle-path {
