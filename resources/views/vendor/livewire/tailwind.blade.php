@@ -29,7 +29,7 @@
 
             <div class="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
                 <div>
-                    <p class="text-sm text-gray-700 leading-5">
+                    <p class="text-sm hidden lg:inline-block text-gray-700 leading-5">
                         <span>{!! __('Mostrando') !!}</span>
                         <span class="font-medium">{{ $paginator->lastItem() }}</span>
                         <span>{!! __('por página de') !!}</span>
