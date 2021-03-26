@@ -207,7 +207,8 @@
                     <tr>
                         <td class="sm:px-6 py-2 whitespace-nowrap">
                             <div class="flex items-center">
-                                <div class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
+                                <div
+                                    class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
                                     @if (file_exists(public_path('storage/' . $colaborador->foto)))
                                         <img class="w-20 rounded shadow h-24"
                                             src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
@@ -314,7 +315,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
-                                        {{ $colaborador->nombre_completo }}
+                                        {{ $colaborador->nombre }} {{ $colaborador->ap_paterno }}
                                     </div>
                                 </div>
                             </div>
@@ -362,7 +363,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
-                                        {{ $colaborador->nombre_completo }}
+                                        {{ $colaborador->nombre }} {{ $colaborador->ap_paterno }}
                                     </div>
                                 </div>
                             </div>
@@ -393,20 +394,10 @@
                                 {{ $colaborador->correo }}</div>
                         </td>
                         <td class="px-3 py-4 whitespace-nowrap">
-                            @foreach ($puestos as $puesto)
-                                @if ($puesto->id == $colaborador->puesto_id)
-                                    <div class="text-sm text-gray-900">{{ $puesto->nombre_nivel }}
-                                        {{ $puesto->especialidad_puesto }}</div>
-                                @endif
-                            @endforeach
+                            <div class="text-sm text-gray-900">
+                                {{ $colaborador->puesto }}</div>
 
-
-                            @foreach ($areas as $area)
-                                @if ($area->id == $colaborador->area_id)
-                                    <div class="text-sm text-gray-500">{{ $area->nombre_area }}</div>
-                                @endif
-
-                            @endforeach
+                            <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
 
                         </td>
                         <td class="flex justify-items-center px-3 py-4 text-sm font-medium text-right
@@ -434,7 +425,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
-                                        {{ $colaborador->nombre_completo }}
+                                        {{ $colaborador->nombre }} {{ $colaborador->ap_paterno }}
                                     </div>
                                 </div>
                             </div>
@@ -458,21 +449,8 @@
                             </div>
                         </td>
                         <td class="px-3 py-4 whitespace-nowrap">
-                            @foreach ($puestos as $puesto)
-                                @if ($puesto->id == $colaborador->puesto_id)
-                                    <div class="text-sm text-gray-900">{{ $puesto->nombre_nivel }}
-                                        {{ $puesto->especialidad_puesto }}</div>
-                                @endif
-                            @endforeach
-
-
-                            @foreach ($areas as $area)
-                                @if ($area->id == $colaborador->area_id)
-                                    <div class="text-sm text-gray-500">{{ $area->nombre_area }}</div>
-                                @endif
-
-                            @endforeach
-
+                            <div class="text-sm text-gray-900">{{ $colaborador->puesto }}</div>
+                            <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                         </td>
                         @if ($colaborador->estado_colaborador == 1)
                             <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
@@ -526,7 +504,7 @@
                                 </div>
                                 <div class="ml-4">
                                     <div class="text-sm font-medium text-gray-900">
-                                        {{ $colaborador->nombre_completo }}
+                                        {{ $colaborador->nombre }} {{ $colaborador->ap_paterno }}
                                     </div>
                                 </div>
                             </div>
@@ -565,7 +543,7 @@
                             @foreach ($extensiones as $ext)
                                 @if ($ext->id == $colaborador->extension_id)
                                     <div class="text-sm text-gray-900">
-                                        Ext.:{{ $ext->numero_extension }}</div>
+                                        Ext.:{{ $colaborador->numero_extension }}</div>
                                 @endif
                             @endforeach
 
@@ -575,20 +553,8 @@
                                 {{ $colaborador->correo }}</div>
                         </td>
                         <td class="px-3 py-4 whitespace-nowrap">
-                            @foreach ($puestos as $puesto)
-                                @if ($puesto->id == $colaborador->puesto_id)
-                                    <div class="text-sm text-gray-900">{{ $puesto->nombre_nivel }}
-                                        {{ $puesto->especialidad_puesto }}</div>
-                                @endif
-                            @endforeach
-
-
-                            @foreach ($areas as $area)
-                                @if ($area->id == $colaborador->area_id)
-                                    <div class="text-sm text-gray-500">{{ $area->nombre_area }}</div>
-                                @endif
-                            @endforeach
-
+                            <div class="text-sm text-gray-900">{{ $colaborador->puesto }}</div>
+                            <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                         </td>
                         <td class="flex justify-items-center px-3 py-4 text-sm font-medium text-right
                                     whitespace-nowrap">
@@ -617,7 +583,7 @@
                                     </div>
                                     <div class="ml-4">
                                         <div class="text-sm font-medium text-gray-900">
-                                            {{ $colaborador->nombre_completo }}
+                                            {{ $colaborador->nombre }} {{ $colaborador->ap_paterno }}
                                         </div>
                                     </div>
                                 </div>
@@ -628,22 +594,8 @@
                                 </div>
                             </td>
                             <td class="px-3 py-4 whitespace-nowrap">
-                                @foreach ($puestos as $puesto)
-                                    @if ($puesto->id == $colaborador->puesto_id)
-                                        <div class="text-sm text-gray-900">
-                                            {{ $puesto->nombre_nivel }}
-                                            {{ $puesto->especialidad_puesto }}</div>
-                                    @endif
-                                @endforeach
-
-
-                                @foreach ($areas as $area)
-                                    @if ($area->id == $colaborador->area_id)
-                                        <div class="text-sm text-gray-500">{{ $area->nombre_area }}
-                                        </div>
-                                    @endif
-                                @endforeach
-
+                                <div class="text-sm text-gray-900">{{ $colaborador->puesto }}</div>
+                                <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                             </td>
                         </tr>
                     @else
@@ -669,7 +621,7 @@
                                     </div>
                                     <div class="ml-4">
                                         <div class="text-sm font-medium text-gray-900">
-                                            {{ $colaborador->nombre_completo }}
+                                            {{ $colaborador->nombre }} {{ $colaborador->ap_paterno }}
                                         </div>
                                     </div>
                                 </div>
@@ -680,22 +632,8 @@
                                 </div>
                             </td>
                             <td class="px-3 py-4 whitespace-nowrap">
-                                @foreach ($puestos as $puesto)
-                                    @if ($puesto->id == $colaborador->puesto_id)
-                                        <div class="text-sm text-gray-900">
-                                            {{ $puesto->nombre_nivel }}
-                                            {{ $puesto->especialidad_puesto }}</div>
-                                    @endif
-                                @endforeach
-
-
-                                @foreach ($areas as $area)
-                                    @if ($area->id == $colaborador->area_id)
-                                        <div class="text-sm text-gray-500">{{ $area->nombre_area }}
-                                        </div>
-                                    @endif
-                                @endforeach
-
+                                <div class="text-sm text-gray-900">{{ $colaborador->puesto }}</div>
+                                <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                             </td>
                             <td class="flex justify-items-center px-6 py-4 text-sm font-medium text-right
                                         whitespace-nowrap">

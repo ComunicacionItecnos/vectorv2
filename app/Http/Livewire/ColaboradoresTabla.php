@@ -27,12 +27,9 @@ class ColaboradoresTabla extends Component
             return view('livewire.colaboradores-tabla', [
                 'colaboradores' => DB::table('infocolaborador')->where('no_colaborador', 'LIKE', "%{$this->search}%")
                     ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
-                    ->paginate($this->perPage),
-                'areas' => Area::all(),
-                'puestos' => Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
-                    ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
-                    ->get(),
-                'extensiones' => Extension::all()
+                    ->orWhere('puesto', 'LIKE', "%{$this->search}%")
+                    ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->paginate($this->perPage)
             ]);
     }
 
