@@ -21,6 +21,9 @@ class ColaboradoresTabla extends Component
     public $search, $perPage = '5';
     public $no_colaborador;
 
+    public $sortBy = 'no_colaborador';
+    public $sortAsc = true;
+
     public function render()
     {
 
@@ -29,8 +32,17 @@ class ColaboradoresTabla extends Component
                     ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
                     ->orWhere('puesto', 'LIKE', "%{$this->search}%")
                     ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
                     ->paginate($this->perPage)
             ]);
+    }
+
+    public function sortBy($field)
+    {
+        if ($field == $this->sortBy) {
+            $this->sortAsc = !$this->sortAsc;
+        }
+        $this->sortBy = $field;
     }
 
     public function baja($no_colaborador)
