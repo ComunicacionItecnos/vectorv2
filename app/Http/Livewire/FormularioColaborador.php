@@ -186,7 +186,7 @@ class FormularioColaborador extends Component
             ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
             ->get();
 
-        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->orderBy('ap_paterno', 'ASC')->get();
+        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->where('tipo_colaborador_id', 2)->orderBy('ap_paterno', 'ASC')->get();
 
         $turnos = Turno::all();
 
