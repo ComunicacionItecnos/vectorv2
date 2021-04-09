@@ -90,7 +90,7 @@
                                 <div class="grid grid-rows-4 sm:gap-4">
                                     <div class="sm:row-start-1 sm:row-span-1 sm:col-start-1 sm:col-span-3">
                                         <div class="sm:grid sm:grid-rows-1 sm:grid-cols-3 sm:gap-2">
-                                            <div class="sm:col-span-1 mb-3 sm:col-start-1 mb-3">
+                                            <div class="sm:col-span-1 sm:col-start-1 mb-3">
                                                 <label for="inputTipoCol"
                                                     class="block text-sm font-black text-gray-700">Tipo
                                                     de
