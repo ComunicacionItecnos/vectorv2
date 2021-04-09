@@ -347,7 +347,7 @@ class EdicionColaborador extends Component
             ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
             ->get();
 
-        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->get();
+        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->orderBy('ap_paterno', 'ASC')->get();
 
         $turnos = Turno::all();
 
