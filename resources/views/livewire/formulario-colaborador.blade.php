@@ -488,8 +488,8 @@
                                 @if (isset($supervisores))
                                     @foreach ($supervisores as $supervisor)
                                         <option value="{{ $supervisor->no_colaborador }}">
-                                            {{ $supervisor->nombre }}
                                             {{ $supervisor->ap_paterno }} {{ $supervisor->ap_materno }}
+                                            {{ $supervisor->nombre }}
                                         </option>
 
                                     @endforeach

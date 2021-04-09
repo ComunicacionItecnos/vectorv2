@@ -347,7 +347,7 @@ class EdicionColaborador extends Component
             ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
             ->get();
 
-        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->get();
+        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->orderBy('ap_paterno', 'ASC')->get();
 
         $turnos = Turno::all();
 
@@ -403,15 +403,15 @@ class EdicionColaborador extends Component
 
             // ? Formato de palabras
 
-            $nombre_c = ucwords($this->nombre);
-            $ap_paterno_c = ucwords($this->ap_paterno);
-            $ap_materno_c = ucwords($this->ap_materno);
+            $nombre_c = ucwords(strtolower($this->nombre));
+            $ap_paterno_c = ucwords(strtolower($this->ap_paterno));
+            $ap_materno_c = ucwords(strtolower($this->ap_materno));
             $curp_c = strtoupper($this->curp);
             $rfc_c = strtoupper($this->rfc);
             $no_seguro_social_c = strtoupper($this->no_seguro_social);
             $domicilio_c = ucfirst($this->domicilio);
-            $municipio_c = ucwords($this->municipio);
-            $estado_c = ucwords($this->estado);
+            $municipio_c = ucwords(strtolower($this->municipio));
+            $estado_c = ucwords(strtolower($this->estado));
 
             Colaborador::where('no_colaborador', $this->colaborador->no_colaborador)
                 ->update([
@@ -642,7 +642,7 @@ class EdicionColaborador extends Component
                             $this->telefono_contacto1 != null | $this->domicilio_contacto1 != null
                         ) {
 
-                            $nombre_contacto1_c = ucwords($this->nombre_contacto1);
+                            $nombre_contacto1_c = ucwords(strtolower($this->nombre_contacto1));
                             $parentesco_contacto1_c = ucfirst($this->parentesco_contacto1);
                             $domicilio_contacto1_c = ucfirst($this->domicilio_contacto1);
 
@@ -660,7 +660,7 @@ class EdicionColaborador extends Component
                             $this->nombre_contacto2 != null | $this->parentesco_contacto2 != null |
                             $this->telefono_contacto2 != null | $this->domicilio_contacto2 != null
                         ) {
-                            $nombre_contacto2_c = ucwords($this->nombre_contacto2);
+                            $nombre_contacto2_c = ucwords(strtolower($this->nombre_contacto2));
                             $parentesco_contacto2_c = ucfirst($this->parentesco_contacto2);
                             $domicilio_contacto2_c = ucfirst($this->domicilio_contacto2);
 
@@ -678,7 +678,7 @@ class EdicionColaborador extends Component
                             $this->nombre_contacto3 != null | $this->parentesco_contacto3 != null |
                             $this->telefono_contacto3 != null | $this->domicilio_contacto3 != null
                         ) {
-                            $nombre_contacto3_c = ucwords($this->nombre_contacto3);
+                            $nombre_contacto3_c = ucwords(strtolower($this->nombre_contacto3));
                             $parentesco_contacto3_c = ucfirst($this->parentesco_contacto3);
                             $domicilio_contacto3_c = ucfirst($this->domicilio_contacto3);
 
@@ -696,7 +696,7 @@ class EdicionColaborador extends Component
                             $this->nombre_contacto4 != null | $this->parentesco_contacto4 != null |
                             $this->telefono_contacto4 != null | $this->domicilio_contacto4 != null
                         ) {
-                            $nombre_contacto4_c = ucwords($this->nombre_contacto4);
+                            $nombre_contacto4_c = ucwords(strtolower($this->nombre_contacto4));
                             $parentesco_contacto4_c = ucfirst($this->parentesco_contacto4);
                             $domicilio_contacto4_c = ucfirst($this->domicilio_contacto4);
 
