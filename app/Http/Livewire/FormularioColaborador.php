@@ -177,8 +177,8 @@ class FormularioColaborador extends Component
 
     public function render()
     {
-        $clavesRadio = Clave_radio::where('compartida', '1')->orwhere('disponibilidad', '1')->get();
-        $areas = Area::all();
+        $clavesRadio = Clave_radio::where('compartida', '1')->orwhere('disponibilidad', '1')->orderBy('clave', 'ASC')->get();
+        $areas = Area::select('*')->orderBy('nombre_area','ASC')->get();
         $extensiones = Extension::all();
         $rutas = Ruta_transporte::all();
 

@@ -338,8 +338,8 @@ class EdicionColaborador extends Component
 
     public function render()
     {
-        $clavesRadio = Clave_radio::all();
-        $areas = Area::all();
+        $clavesRadio = Clave_radio::select('*')->orderBy('clave', 'ASC')->get();
+        $areas = Area::select('*')->orderBy('nombre_area','ASC')->get();
         $extensiones = Extension::all();
         $rutas = Ruta_transporte::all();
 
