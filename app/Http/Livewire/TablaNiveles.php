@@ -101,11 +101,14 @@ class TablaNiveles extends Component
         $this->validate();
 
         try {
+
+            $nombre_nivel_c = ucwords(strtolower($this->nombre_nivel));
+
             Nivel::updateOrInsert([
-                'nombre_nivel' => $this->nombre_nivel
+                'nombre_nivel' => $nombre_nivel_c
             ]);
 
-            $this->flash('success', $this->nombre_nivel . ' fue registrado correctamente', [
+            $this->flash('success', $nombre_nivel_c . ' fue registrado correctamente', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,
@@ -149,9 +152,12 @@ class TablaNiveles extends Component
         $this->validate();
 
         try {
+
+            $nombre_nivel_c = ucwords(strtolower($this->nombre_nivel));
+
             Nivel::where('id', $this->nivel_id)
                 ->update([
-                    'nombre_nivel' => $this->nombre_nivel,
+                    'nombre_nivel' => $nombre_nivel_c,
                 ]);
 
             $this->flash('success', 'Actualizado correctamente', [
