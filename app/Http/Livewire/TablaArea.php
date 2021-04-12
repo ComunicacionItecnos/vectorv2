@@ -101,11 +101,14 @@ class TablaArea extends Component
         $this->validate();
 
         try {
+
+            $nombre_area_c = ucwords(strtolower($this->nombre_area));
+
             Area::updateOrInsert([
-                'nombre_area' => $this->nombre_area
+                'nombre_area' => $nombre_area_c
             ]);
 
-            $this->flash('success', $this->nombre_area . ' fue registrada correctamente', [
+            $this->flash('success', $nombre_area_c . ' fue registrada correctamente', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,
@@ -149,9 +152,12 @@ class TablaArea extends Component
         $this->validate();
 
         try {
+
+            $nombre_area_c = ucwords(strtolower($this->nombre_area));
+
             Area::where('id', $this->area_id)
                 ->update([
-                    'nombre_area' => $this->nombre_area,
+                    'nombre_area' => $nombre_area_c,
                 ]);
 
             $this->flash('success', 'Actualizado correctamente', [
@@ -169,7 +175,6 @@ class TablaArea extends Component
             $this->nombre_area = null;
 
             return redirect()->route("tabla-area");
-            
         } catch (Exception $ex) {
             $this->flash('error', 'Ha ocurrido un error!!', [
                 'position' =>  'top-end',
@@ -192,7 +197,8 @@ class TablaArea extends Component
         $this->sortBy = $field;
     }
 
-    public function setNull(){
+    public function setNull()
+    {
         $this->confirmAreaAdd = false;
         $this->confirmAreaEdit = false;
         $this->nombre_area = '';

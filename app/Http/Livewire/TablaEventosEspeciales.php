@@ -101,8 +101,11 @@ class TablaEventosEspeciales extends Component
         $this->validate();
 
         try {
+
+            $nombre_evento_c = ucwords(strtolower($this->nombre_evento));
+
             Eventos_especiales::updateOrInsert([
-                'nombre_evento' => $this->nombre_evento
+                'nombre_evento' => $nombre_evento_c
             ]);
 
             $this->flash('success', $this->nombre_evento . ' fue registrada correctamente', [
@@ -149,9 +152,12 @@ class TablaEventosEspeciales extends Component
         $this->validate();
 
         try {
+
+            $nombre_evento_c = ucwords(strtolower($this->nombre_evento));
+
             Eventos_especiales::where('id', $this->evento_id)
                 ->update([
-                    'nombre_evento' => $this->nombre_evento,
+                    'nombre_evento' => $nombre_evento_c,
                 ]);
 
             $this->flash('success', 'Actualizado correctamente', [

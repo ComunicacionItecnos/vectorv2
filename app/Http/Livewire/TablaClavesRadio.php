@@ -109,13 +109,15 @@ class TablaClavesRadio extends Component
         $this->validate();
 
         try {
+            $nombreClaveRadio_c = ucwords(strtolower($this->nombreClaveRadio));
+
             Clave_radio::updateOrInsert([
-                'clave' => $this->nombreClaveRadio,
+                'clave' => $nombreClaveRadio_c,
                 'compartida' => $this->compartida,
                 'disponibilidad' => $this->disponibilidad,
             ]);
 
-            $this->flash('success', 'La clave: ' . $this->nombreClaveRadio . ' fue registrada correctamente', [
+            $this->flash('success', 'La clave: ' . $nombreClaveRadio_c . ' fue registrada correctamente', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,
@@ -163,9 +165,12 @@ class TablaClavesRadio extends Component
         $this->validate();
 
         try {
+
+            $nombreClaveRadio_c = ucwords(strtolower($this->nombreClaveRadio));
+
             Clave_radio::where('id', $this->claveRadio_id)
                 ->update([
-                    'clave' => $this->nombreClaveRadio,
+                    'clave' => $nombreClaveRadio_c,
                     'compartida' => $this->compartida,
                     'disponibilidad' => $this->disponibilidad,
                 ]);

@@ -112,12 +112,15 @@ class TablaPuestos extends Component
         $this->validate();
 
         try {
+
+            $especialidad_puesto_c = ucwords(strtolower($this->especialidad_puesto));
+
             Puesto::updateOrInsert([
                 'nivel_id' => $this->nivel_id,
-                'especialidad_puesto' => $this->especialidad_puesto
+                'especialidad_puesto' => $especialidad_puesto_c
             ]);
 
-            $this->flash('success', $this->especialidad_puesto . ' fue registrado correctamente', [
+            $this->flash('success', $especialidad_puesto_c . ' fue registrado correctamente', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,
@@ -163,10 +166,13 @@ class TablaPuestos extends Component
         $this->validate();
 
         try {
+
+            $especialidad_puesto_c = ucwords(strtolower($this->especialidad_puesto));
+
             Puesto::where('id', $this->puesto_id)
                 ->update([
                     'nivel_id' => $this->nivel_id,
-                    'especialidad_puesto' => $this->especialidad_puesto,
+                    'especialidad_puesto' => $especialidad_puesto_c,
                 ]);
 
             $this->flash('success', 'Actualizado correctamente', [
