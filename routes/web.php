@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::get('/colaborador', function () {
+    return view('comprobarColBD');
+});
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
