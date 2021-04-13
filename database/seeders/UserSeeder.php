@@ -38,12 +38,6 @@ class UserSeeder extends Seeder
 
         // ! Capital Humano - Comunicación
         User::create([
-            'name' => 'José Ángel Contreras Aguirre',
-            'email' => 'jacontrerasa@itecnos.com.mx',
-            'password' => bcrypt('12345678'),
-            'role_id' => '2',
-        ]);
-        User::create([
             'name' => 'Carlos Mazón Sánchez',
             'email' => 'cmazons@itecnos.com.mx',
             'password' => bcrypt('12345678'),
@@ -52,6 +46,26 @@ class UserSeeder extends Seeder
         User::create([
             'name' => 'José Luis Arellano Millán',
             'email' => 'jlarellano@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '2',
+        ]);
+
+        User::create([
+            'name' => 'José Luis Arellano Millán',
+            'email' => 'jlarellano@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '2',
+        ]);
+
+        User::create([
+            'name' => 'José Luis Arellano Millán',
+            'email' => 'jlarellano@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '2',
+        ]);
+        User::create([
+            'name' => 'Maylin Alexandra Gómez Salmerón',
+            'email' => 'mgomez@factoraguila.com',
             'password' => bcrypt('12345678'),
             'role_id' => '2',
         ]);
@@ -76,64 +90,71 @@ class UserSeeder extends Seeder
             'role_id' => '3',
         ]);
 
-      // ! Capital Humano - Relaciones Laborales
-      User::create([
-        'name' => 'Edgar David García Lara',
-        'email' => 'edgarcial@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '4',
-    ]);
-    User::create([
-        'name' => 'Christian Leyva Catalán',
-        'email' => 'cleyvac@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '4',
-    ]);
+        // ! Capital Humano - Relaciones Laborales
+        User::create([
+            'name' => 'Edgar David García Lara',
+            'email' => 'edgarcial@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '4',
+        ]);
+        User::create([
+            'name' => 'Christian Leyva Catalán',
+            'email' => 'cleyvac@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '4',
+        ]);
+        User::create([
+            'name' => 'Reynel Reyna Torres',
+            'email' => 'bcorlaborales@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '4',
+        ]);
 
-    // ! Capital Humano - Reclutamiento y Selección
-    User::create([
-        'name' => 'Jesús Gabriel Hernández Parra',
-        'email' => 'ghernandezp@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '5',
-    ]);
-    User::create([
-        'name' => 'Rosa Isela Ayala Torres',
-        'email' => 'bcocapitalhumano2@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '5',
-    ]);
-    User::create([
-        'name' => 'Ana Karen Brena Alejo',
-        'email' => 'akbrena@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '5',
-    ]);
-    User::create([
-        'name' => 'Ana María Castro Domínguez',
-        'email' => 'amcastrod@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '5',
-    ]);
-    User::create([
-        'name' => 'Andrea Castro García',
-        'email' => 'acastrog@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '5',
-    ]);
 
-    // ! Seguridad Patrimonial
-    User::create([
-        'name' => 'SP1',
-        'email' => 'spatrimonial1@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '6',
-    ]);
-    User::create([
-        'name' => 'SP2',
-        'email' => 'spatrimonial2@itecnos.com.mx',
-        'password' => bcrypt('12345678'),
-        'role_id' => '6',
-    ]);
+        // ! Capital Humano - Reclutamiento y Selección
+        User::create([
+            'name' => 'Jesús Gabriel Hernández Parra',
+            'email' => 'ghernandezp@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '5',
+        ]);
+        User::create([
+            'name' => 'Rosa Isela Ayala Torres',
+            'email' => 'bcocapitalhumano2@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '5',
+        ]);
+        User::create([
+            'name' => 'Ana Karen Brena Alejo',
+            'email' => 'akbrena@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '5',
+        ]);
+        User::create([
+            'name' => 'Ana María Castro Domínguez',
+            'email' => 'amcastrod@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '5',
+        ]);
+        User::create([
+            'name' => 'Andrea Castro García',
+            'email' => 'acastrog@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '5',
+        ]);
+
+        // ! Seguridad Patrimonial
+        User::create([
+            'name' => 'SP1',
+            'email' => 'spatrimonial1@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '6',
+        ]);
+        User::create([
+            'name' => 'SP2',
+            'email' => 'spatrimonial2@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '6',
+        ]);
     }
 }
