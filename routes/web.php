@@ -20,7 +20,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/colaborador', function () {
+Route::middleware('guest')->get('/colaborador', function () {
     return view('comprobarColBD');
 });
 
