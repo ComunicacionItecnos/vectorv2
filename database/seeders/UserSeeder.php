@@ -49,20 +49,6 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'role_id' => '2',
         ]);
-
-        User::create([
-            'name' => 'José Luis Arellano Millán',
-            'email' => 'jlarellano@itecnos.com.mx',
-            'password' => bcrypt('12345678'),
-            'role_id' => '2',
-        ]);
-
-        User::create([
-            'name' => 'José Luis Arellano Millán',
-            'email' => 'jlarellano@itecnos.com.mx',
-            'password' => bcrypt('12345678'),
-            'role_id' => '2',
-        ]);
         User::create([
             'name' => 'Maylin Alexandra Gómez Salmerón',
             'email' => 'mgomez@factoraguila.com',
@@ -89,6 +75,13 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'role_id' => '3',
         ]);
+        User::create([
+            'name' => 'Luis Francisco Adelaido Garcia',
+            'email' => 'ladelaidog@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '3',
+        ]);
+
 
         // ! Capital Humano - Relaciones Laborales
         User::create([
