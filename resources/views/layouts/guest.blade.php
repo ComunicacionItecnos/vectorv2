@@ -22,9 +22,12 @@
 </head>
 
 <body>
-    <div class="font-sans text-gray-900 antialiased">
-        {{ $slot }}
+    <div class="min-h-screen min-w-full bg-gray-100">
+        <main>
+            {{ $slot }}
+        </main>
     </div>
+
     @livewireScripts
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10">
