@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\EdicionColaborador;
+use App\Http\Controllers\ColaboradorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,5 +60,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/puestos', 
     return view('tablaPuestos');
 })->name('tabla-puestos');
 
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato', [ColaboradorController::class, 'createPDF']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
