@@ -31,10 +31,11 @@ class Colaborador extends Migration
                                 ->onUpdate('cascade');
 
                         $table->string('curp', 18);
-                        $table->string('rfc',15);
-                        $table->string('no_seguro_social',15)->nullable();
+                        $table->string('rfc', 15);
+                        $table->string('no_seguro_social', 15)->nullable();
 
                         $table->string('domicilio', 128);
+                        $table->string('colonia', 100);
                         $table->string('municipio', 45);
                         $table->string('estado', 45);
                         $table->string('codigo_postal', 8);
@@ -52,6 +53,11 @@ class Colaborador extends Migration
 
                         $table->foreignId('puesto_id')
                                 ->constrained('puesto')
+                                ->onDelete('cascade')
+                                ->onUpdate('cascade');
+
+                        $table->foreignId('operacion_id')
+                                ->constrained('operacion')
                                 ->onDelete('cascade')
                                 ->onUpdate('cascade');
 
@@ -79,6 +85,11 @@ class Colaborador extends Migration
 
                         $table->foreignId('tipo_colaborador_id')
                                 ->constrained('tipo_colaborador')
+                                ->onDelete('cascade')
+                                ->onUpdate('cascade');
+
+                        $table->foreignId('tipo_contrato_id')
+                                ->constrained('tipo_contrato')
                                 ->onDelete('cascade')
                                 ->onUpdate('cascade');
 
