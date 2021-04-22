@@ -108,8 +108,6 @@ class Colaborador extends Migration
                                 ->onDelete('cascade')
                                 ->onUpdate('cascade');
 
-                        $table->integer('rims')->nullable();
-
                         $table->boolean('autoeval_gen')->nullable();
                         $table->boolean('autoeval_asig')->nullable();
                         $table->integer('autoeval_cal')->nullable();
