@@ -56,6 +56,11 @@ class Colaborador extends Migration
                                 ->onDelete('cascade')
                                 ->onUpdate('cascade');
 
+                        $table->foreignId('operacion_id')
+                                ->constrained('operacion')
+                                ->onDelete('cascade')
+                                ->onUpdate('cascade');
+
                         $table->foreignId('area_id')
                                 ->constrained('area')
                                 ->onDelete('cascade')
