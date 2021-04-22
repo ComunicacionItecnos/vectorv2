@@ -15,7 +15,8 @@ class Colaborador extends Migration
         {
                 Schema::create('colaborador', function (Blueprint $table) {
                         $table->string('no_colaborador', 6)->primary();
-                        $table->string('nombre', 50);
+                        $table->string('nombre_1', 50);
+                        $table->string('nombre_2', 50);
                         $table->string('ap_paterno', 50);
                         $table->string('ap_materno', 50)->nullable();
                         $table->date('fecha_nacimiento');
