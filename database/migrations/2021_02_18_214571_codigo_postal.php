@@ -13,7 +13,10 @@ class CodigoPostal extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('codigo_postal', function (Blueprint $table) {
+            $table->id();
+            $table->string('codigo_postal', 8);
+        });
     }
 
     /**
@@ -23,6 +26,6 @@ class CodigoPostal extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('codigo_postal');
     }
 }
