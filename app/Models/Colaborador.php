@@ -44,6 +44,7 @@ class Colaborador extends Model
         'clave_radio_id',
         'jefe_directo',
         'tipo_colaborador_id',
+        'tipo_contrato_id',
         'fecha_ingreso',
         'password',
         'matriculacion',
@@ -88,6 +89,10 @@ class Colaborador extends Model
     public function tipos_colaborador()
     {
         return $this->belongsTo('App\Models\Tipo_colaborador');
+    }
+    public function tipos_contrato()
+    {
+        return $this->belongsTo('App\Models\Tipo_contrato');
     }
 
     public function tipos_usuario()
