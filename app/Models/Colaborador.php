@@ -34,6 +34,7 @@ class Colaborador extends Model
         'turno_id',
         'ruta_transporte_id',
         'puesto_id',
+        'operacion_id',
         'area_id',
         'correo',
         'tel_fijo',
@@ -58,50 +59,64 @@ class Colaborador extends Model
         'eval_cal',
         'estado_colaborador',
         'foto',
-];
+    ];
 
     //* Relacion muchos a uno
-    public function generos(){
+    public function generos()
+    {
         return $this->belongsTo('App\Models\Genero');
     }
 
-    public function areas(){
+    public function areas()
+    {
         return $this->belongsTo('App\Models\Area');
     }
 
-    public function puestos(){
+    public function puestos()
+    {
         return $this->belongsTo('App\Models\Puesto');
     }
-
-    public function claves_radio(){
+    public function operaciones()
+    {
+        return $this->belongsTo('App\Models\Operacion');
+    }
+    public function claves_radio()
+    {
         return $this->belongsTo('App\Models\Clave_radio');
     }
 
-    public function tipos_colaborador(){
+    public function tipos_colaborador()
+    {
         return $this->belongsTo('App\Models\Tipo_colaborador');
     }
 
-    public function tipos_usuario(){
+    public function tipos_usuario()
+    {
         return $this->belongsTo('App\Models\Tipo_usuario');
     }
 
-    public function turnos(){
+    public function turnos()
+    {
         return $this->belongsTo('App\Models\Turno');
     }
 
-    public function Rutas_transporte(){
+    public function Rutas_transporte()
+    {
         return $this->belongsTo('App\Models\Ruta_Transporte');
     }
 
-    public function Estados_civil(){
+    public function Estados_civil()
+    {
         return $this->belongsTo('App\Models\Estado_civil');
     }
 
-    public function Extensiones(){
+    public function Extensiones()
+    {
         return $this->belongsTo('App\Models\Extension');
     }
 
-    public function Rangos_factor(){
+    public function Rangos_factor()
+    {
         return $this->belongsTo('App\Models\Rango_Factor');
     }
 
