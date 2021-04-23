@@ -15,7 +15,8 @@ class Operacion extends Migration
     {
         Schema::create('operacion', function (Blueprint $table) {
             $table->id();
-            $table->string('nombre_operacion', 120);
+            $table->string('operacion', 120);
+            $table->string('proceso', 120);
         });
     }
 
