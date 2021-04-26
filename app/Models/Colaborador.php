@@ -72,6 +72,11 @@ class Colaborador extends Model
         return $this->belongsTo('App\Models\Area');
     }
 
+    public function codigos_postal()
+    {
+        return $this->belongsTo('App\Models\Codigo_postal');
+    }
+
     public function puestos()
     {
         return $this->belongsTo('App\Models\Puesto');
