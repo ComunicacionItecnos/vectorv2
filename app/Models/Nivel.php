@@ -18,7 +18,7 @@ class Nivel extends Model
     ];
     
     // * Relacion uno a muchos
-    public function colaboradores()
+    public function puestos()
     {
         return $this->hasMany('App\Models\Puesto');
     }
