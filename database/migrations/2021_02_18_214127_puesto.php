@@ -14,15 +14,20 @@ class Puesto extends Migration
     public function up()
     {
         //
-        Schema::create('puesto', function (Blueprint $table){
+        Schema::create('puesto', function (Blueprint $table) {
             $table->id();
-            
+
             $table->foreignId('nivel_id')
-                    ->constrained('nivel')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
-            
-            $table->string('especialidad_puesto',100)->nullable();
+                ->constrained('nivel')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('rango_puesto_id')
+                ->constrained('rango_puesto')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->string('especialidad_puesto', 100)->nullable();
         });
     }
 
