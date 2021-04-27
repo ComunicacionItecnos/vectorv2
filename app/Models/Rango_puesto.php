@@ -18,8 +18,8 @@ class Rango_puesto extends Model
     ];
 
     // * Relacion uno a muchos
-    public function niveles()
+    public function puestos()
     {
-        return $this->hasMany('App\Models\Nivel');
+        return $this->hasMany('App\Models\Puesto');
     }
 }
