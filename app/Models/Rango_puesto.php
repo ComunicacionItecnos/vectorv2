@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Nivel extends Model
+class Rango_puesto extends Model
 {
     use HasFactory;
 
-    protected $table = 'nivel';
+    protected $table = 'rango_puesto';
 
     public $timestamps = false;
 
     protected $fillable = [
-        'nombre_nivel'
+        'rango'
     ];
 
     // * Relacion uno a muchos

@@ -15,6 +15,7 @@ class Puesto extends Model
 
     protected $fillable = [
         'nivel_id',
+        'rango_puesto_id',
         'especialidad_puesto'
     ];
 
@@ -28,5 +29,11 @@ class Puesto extends Model
     public function niveles()
     {
         return $this->belongsTo('App\Models\Nivel');
+    }
+
+    //* Relacion muchos a uno
+    public function rangos_puesto()
+    {
+        return $this->belongsTo('App\Models\Rango_puesto');
     }
 }
