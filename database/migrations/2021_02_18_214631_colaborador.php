@@ -102,7 +102,6 @@ class Colaborador extends Migration
                                 ->onUpdate('cascade');
 
                         $table->date('fecha_ingreso');
-                        $table->string('password', 32);
                         $table->boolean('matriculacion');
 
                         $table->foreignId('tipo_usuario_id')
