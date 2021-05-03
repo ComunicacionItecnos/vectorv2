@@ -31,6 +31,7 @@ class Colaborador extends Model
         'colonia',
         'municipio',
         'estado',
+        'nacionalidad',
         'codigo_postal',
         'paternidad_id',
         'turno_id',
@@ -75,6 +76,10 @@ class Colaborador extends Model
     public function puestos()
     {
         return $this->belongsTo('App\Models\Puesto');
+    }
+    public function nacionalidades()
+    {
+        return $this->belongsTo('App\Models\Nacionalidad');
     }
     public function operaciones()
     {
