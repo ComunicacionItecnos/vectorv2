@@ -39,6 +39,12 @@ class Colaborador extends Migration
                         $table->string('colonia', 100);
                         $table->string('municipio', 45);
                         $table->string('estado', 45);
+
+                        $table->foreignId('nacionalidad_id')
+                                ->constrained('nacionalidad')
+                                ->onDelete('cascade')
+                                ->onUpdate('cascade');
+
                         $table->string('codigo_postal',8);
 
                         $table->boolean('paternidad_id');
