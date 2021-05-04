@@ -102,8 +102,10 @@ class EdicionColaborador extends Component
     protected $messages = [
         'no_colaborador.required' => 'El Número de colaborador no puede estar vacío',
         'no_colaborador.digits_between' => 'Solo puede tener 5 dígitos como mínimo y 6 como máximo',
-        'nombre.required' => 'El Nombre no puede estar vacío',
-        'nombre.regex' => 'El Nombre debe contener únicamente letras y espacios',
+        'nombre_1.required' => 'El primer nombre no puede estar vacío',
+        'nombre_1.regex' => 'El primer nombre debe contener únicamente letras y espacios',
+        'nombre_2.required' => 'El segundo nombre no puede estar vacío',
+        'nombre_2.regex' => 'El segundo nombre debe contener únicamente letras y espacios',
         'ap_paterno.required' => 'El Apellido paterno no puede estar vacío',
         'ap_paterno.regex' => 'El Apellido paterno debe contener únicamente letras y espacios',
         'ap_materno.required' => 'El Apellido materno no puede estar vacío',
