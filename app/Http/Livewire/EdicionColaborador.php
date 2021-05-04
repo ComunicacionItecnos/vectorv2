@@ -418,7 +418,8 @@ class EdicionColaborador extends Component
             Colaborador::where('no_colaborador', $this->colaborador->no_colaborador)
                 ->update([
                     'no_colaborador' => $this->no_colaborador,
-                    'nombre' => $nombre_c,
+                    'nombre_1' => $nombre_c_1,
+                    'nombre_2' => $nombre_c_2,
                     'ap_paterno' => $ap_paterno_c,
                     'ap_materno' => $ap_materno_c,
                     'fecha_nacimiento' => $this->fecha_nacimiento,
