@@ -404,7 +404,8 @@ class EdicionColaborador extends Component
 
             // ? Formato de palabras
 
-            $nombre_c = ucwords(strtolower($this->nombre));
+            $nombre_c_1 = ucwords(strtolower($this->nombre_1));
+            $nombre_c_2 = ucwords(strtolower($this->nombre_2));
             $ap_paterno_c = ucwords(strtolower($this->ap_paterno));
             $ap_materno_c = ucwords(strtolower($this->ap_materno));
             $curp_c = strtoupper($this->curp);
