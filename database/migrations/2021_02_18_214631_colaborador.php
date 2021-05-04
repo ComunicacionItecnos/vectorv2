@@ -74,7 +74,7 @@ class Colaborador extends Migration
                                 ->onDelete('cascade')
                                 ->onUpdate('cascade');
 
-                        $table->string('correo', 255);
+                        $table->string('correo', 255)->nullable();
                         $table->string('tel_fijo', 10);
                         $table->string('tel_movil', 10);
                         $table->string('tel_recados', 10);
