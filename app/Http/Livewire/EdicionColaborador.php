@@ -167,7 +167,8 @@ class EdicionColaborador extends Component
         $this->colaborador = $colaboradores->find($no_colaborador);
 
         $this->tipo_colaborador = $this->colaborador->tipo_colaborador_id;
-        $this->nombre = $this->colaborador->nombre;
+        $this->nombre_1 = $this->colaborador->nombre_1;
+        $this->nombre_2 = $this->colaborador->nombre_2;
         $this->ap_paterno = $this->colaborador->ap_paterno;
         $this->ap_materno = $this->colaborador->ap_materno;
         $this->genero = $this->colaborador->genero_id;
