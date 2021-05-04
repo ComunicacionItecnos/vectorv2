@@ -535,7 +535,8 @@
                                         <option value="{{ $supervisor->no_colaborador }}">
                                             {{ $supervisor->ap_paterno }}
                                             {{ $supervisor->ap_materno }}
-                                            {{ $supervisor->nombre }}
+                                            {{ $supervisor->nombre_1 }}
+                                            {{ $supervisor->nombre_2 }}
                                         </option>
 
                                         @endforeach
