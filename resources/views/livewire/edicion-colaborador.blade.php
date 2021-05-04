@@ -89,7 +89,7 @@
                             <div class="sm:row-start-1 sm:row-span-1 sm:col-start-2 sm:col-span-3 p-3 my-auto">
                                 <div class="grid grid-rows-4 sm:gap-4">
                                     <div class="sm:row-start-1 sm:row-span-1 sm:col-start-1 sm:col-span-3">
-                                        <div class="sm:grid sm:grid-rows-1 sm:grid-cols-3 sm:gap-2">
+                                        <div class="sm:grid sm:grid-rows-1 sm:grid-cols-4 sm:gap-2">
                                             <div class="sm:col-span-1 sm:col-start-1 mb-3">
                                                 <label for="inputTipoCol"
                                                     class="block text-sm font-black text-gray-700">Tipo
@@ -114,7 +114,7 @@
                                             <div class="sm:col-span-1 mb-3 sm:col-start-2">
                                                 <label for="inputNoColaborador"
                                                     class="block text-sm font-black text-gray-700">No.
-                                                    Colaborador</label>
+                                                    Col.</label>
                                                 <input type="text" wire:model="no_colaborador" name="no_colaborador"
                                                     id="inputNoColaborador" disabled value="{{ old('no_colaborador') }}"
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
@@ -126,8 +126,21 @@
                                             </div>
                                             <div class="sm:col-span-1 mb-3 sm:col-start-3">
                                                 <label for="inputNombre"
-                                                    class="block text-sm font-black text-gray-700">Nombre(s)</label>
-                                                <input type="text" wire:model="nombre" name="nombre" id="inputNombre"
+                                                    class="block text-sm font-black text-gray-700">Primer nombre</label>
+                                                <input type="text" wire:model="nombre_1" name="nombre" id="inputNombre"
+                                                    value="{{ old('nombre') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                @error('nombre')
+                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                    {{ $message }}
+                                                </p>
+                                                @enderror
+                                            </div>
+                                            <div class="sm:col-span-1 mb-3 sm:col-start-4">
+                                                <label for="inputNombre"
+                                                    class="block text-sm font-black text-gray-700">Segundo
+                                                    nombre</label>
+                                                <input type="text" wire:model="nombre_2" name="nombre" id="inputNombre"
                                                     value="{{ old('nombre') }}"
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                                 @error('nombre')
@@ -1128,8 +1141,7 @@
 
                             <div class="grid grid-rows-2 gap-4 sm:mt-4 sm:mb-4">
                                 {{-- Primera parte Switches --}}
-                                <div
-                                    class="grid row-start-1 gap-2 sm:grid-rows-1 grid-rows-3 sm:grid-cols-3">
+                                <div class="grid row-start-1 gap-2 sm:grid-rows-1 grid-rows-3 sm:grid-cols-3">
                                     <div class="grid sm:col-start-1 p-2">
                                         <p class="block text-sm font-black text-gray-700">Día de la madre</p>
                                         <div class="grid grid-cols-2">
@@ -1159,8 +1171,8 @@
                                                     <!-- toggle -->
                                                     <div @if ($ddmAplica==false) class="relative cursor-not-allowed"
                                                         @else class="relative" @endif>
-                                                        <input wire:model="ddmEntrega" name="ddmEntrega" 
-                                                        @if($ddmAplica==false) disabled @endif id="ddmEntrega"
+                                                        <input wire:model="ddmEntrega" name="ddmEntrega"
+                                                            @if($ddmAplica==false) disabled @endif id="ddmEntrega"
                                                             type="checkbox" class="hidden" />
                                                         <!-- path -->
                                                         <div
@@ -1206,7 +1218,7 @@
                                                     <div @if ($ddpAplica==false) class="relative cursor-not-allowed"
                                                         @else class="relative" @endif>
                                                         <input wire:model="ddpEntrega" name="ddpEntrega"
-                                                        @if($ddpAplica==false) disabled @endif id="ddpEntrega"
+                                                            @if($ddpAplica==false) disabled @endif id="ddpEntrega"
                                                             type="checkbox" class="hidden" />
                                                         <!-- path -->
                                                         <div
@@ -1252,7 +1264,7 @@
                                                     <div @if ($ueAplica==false) class="relative cursor-not-allowed"
                                                         @else class="relative" @endif>
                                                         <input wire:model="ueEntrega" name="ueEntrega"
-                                                        @if($ueAplica==false) disabled @endif id="ueEntrega"
+                                                            @if($ueAplica==false) disabled @endif id="ueEntrega"
                                                             type="checkbox" class="hidden" />
                                                         <!-- path -->
                                                         <div
@@ -1301,7 +1313,7 @@
                                                     <div @if ($r60Aplica==false) class="relative cursor-not-allowed"
                                                         @else class="relative" @endif>
                                                         <input wire:model="r60Entrega" name="r60Entrega"
-                                                        @if($r60Aplica==false) disabled @endif id="r60Entrega"
+                                                            @if($r60Aplica==false) disabled @endif id="r60Entrega"
                                                             type="checkbox" class="hidden" />
                                                         <!-- path -->
                                                         <div
@@ -1347,7 +1359,7 @@
                                                     <div @if ($bffAplica==false) class="relative cursor-not-allowed"
                                                         @else class="relative" @endif>
                                                         <input wire:model="bffEntrega" name="bffEntrega"
-                                                        @if($bffAplica==false) disabled @endif id="bffEntrega"
+                                                            @if($bffAplica==false) disabled @endif id="bffEntrega"
                                                             type="checkbox" class="hidden" />
                                                         <!-- path -->
                                                         <div
