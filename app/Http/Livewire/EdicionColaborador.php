@@ -483,7 +483,7 @@ class EdicionColaborador extends Component
                     'clave_radio_id' => $this->clave_radio,
                     'jefe_directo' => $this->jefe_directo,
                     'tipo_colaborador_id' => $this->tipo_colaborador,
-                    'tipo_contrato' => $this->tipo_contrato,
+                    'tipo_contrato_id' => $this->tipo_contrato,
                     'fecha_ingreso' => $this->fecha_ingreso,
                     'matriculacion' => $this->matriculacion,
                     'tipo_usuario_id' => $this->tipo_usuario,
@@ -764,6 +764,7 @@ class EdicionColaborador extends Component
 
             return redirect()->to('/edit/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
+            
             $this->alert('error', 'Error al actualizar', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
