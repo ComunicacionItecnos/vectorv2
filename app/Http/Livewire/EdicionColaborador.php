@@ -33,7 +33,7 @@ class EdicionColaborador extends Component
     public $no_colaborador, $nombre_1, $nombre_2, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
         $paternidad, $curp, $rfc, $no_seguro_social, $domicilio, $municipio, $estado, $codigo_postal, $tipo_colaborador, $turno,
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
-        $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
+        $extension, $clave_radio, $matriculacion, $tipo_usuario, $fecha_ingreso = '';
 
     public $nacionalidad, $colonia, $operacion, $proceso, $tipo_contrato;
 
@@ -100,7 +100,6 @@ class EdicionColaborador extends Component
 
         'matriculacion' => 'required',
         'tipo_usuario' => 'required',
-        'password' => 'required',
         'fecha_ingreso' => 'required',
     ];
 
@@ -164,7 +163,6 @@ class EdicionColaborador extends Component
 
         'matriculacion.required' => 'Este campo no puede estar vacío',
         'tipo_usuario.required' => 'Este campo no puede estar vacío',
-        'password.required' => 'Este campo no puede estar vacío',
         'fecha_ingreso.required' => 'Este campo no puede estar vacío',
     ];
 
@@ -208,7 +206,6 @@ class EdicionColaborador extends Component
         $this->clave_radio = $this->colaborador->clave_radio_id;
         $this->matriculacion = $this->colaborador->matriculacion;
         $this->tipo_usuario = $this->colaborador->tipo_usuario_id;
-        $this->password = $this->colaborador->password;
         $this->rango_factor = $this->colaborador->rango_factor_id;
         $this->fecha_ingreso = $this->colaborador->fecha_ingreso;
         $this->autoEvalGen = $this->colaborador->autoeval_gen;
