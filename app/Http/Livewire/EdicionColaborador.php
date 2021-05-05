@@ -20,6 +20,9 @@ use App\Models\Ruta_transporte;
 use App\Models\Tipo_colaborador;
 use App\Models\Colaborador_evento;
 use App\Models\Contactos_emergencia;
+use App\Models\Nacionalidad;
+use App\Models\Operacion;
+use App\Models\Tipo_contrato;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
@@ -27,10 +30,12 @@ class EdicionColaborador extends Component
 {
     use WithFileUploads;
 
-    public $no_colaborador, $nombre, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
+    public $no_colaborador, $nombre_1, $nombre_2, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
         $paternidad, $curp, $rfc, $no_seguro_social, $domicilio, $municipio, $estado, $codigo_postal, $tipo_colaborador, $turno,
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
-        $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
+        $extension, $clave_radio, $matriculacion, $tipo_usuario, $fecha_ingreso = '';
+
+    public $nacionalidad, $colonia, $operacion, $proceso, $tipo_contrato;
 
     public $rango_factor;
 
@@ -58,7 +63,8 @@ class EdicionColaborador extends Component
 
     protected $rules = [
         'no_colaborador' => 'required|digits_between:5,6',
-        'nombre' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'nombre_1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'nombre_2' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'ap_paterno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'ap_materno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'genero' => 'required',
@@ -94,15 +100,16 @@ class EdicionColaborador extends Component
 
         'matriculacion' => 'required',
         'tipo_usuario' => 'required',
-        'password' => 'required',
         'fecha_ingreso' => 'required',
     ];
 
     protected $messages = [
         'no_colaborador.required' => 'El Número de colaborador no puede estar vacío',
         'no_colaborador.digits_between' => 'Solo puede tener 5 dígitos como mínimo y 6 como máximo',
-        'nombre.required' => 'El Nombre no puede estar vacío',
-        'nombre.regex' => 'El Nombre debe contener únicamente letras y espacios',
+        'nombre_1.required' => 'El primer nombre no puede estar vacío',
+        'nombre_1.regex' => 'El primer nombre debe contener únicamente letras y espacios',
+        'nombre_2.required' => 'El segundo nombre no puede estar vacío',
+        'nombre_2.regex' => 'El segundo nombre debe contener únicamente letras y espacios',
         'ap_paterno.required' => 'El Apellido paterno no puede estar vacío',
         'ap_paterno.regex' => 'El Apellido paterno debe contener únicamente letras y espacios',
         'ap_materno.required' => 'El Apellido materno no puede estar vacío',
@@ -156,7 +163,6 @@ class EdicionColaborador extends Component
 
         'matriculacion.required' => 'Este campo no puede estar vacío',
         'tipo_usuario.required' => 'Este campo no puede estar vacío',
-        'password.required' => 'Este campo no puede estar vacío',
         'fecha_ingreso.required' => 'Este campo no puede estar vacío',
     ];
 
@@ -167,7 +173,8 @@ class EdicionColaborador extends Component
         $this->colaborador = $colaboradores->find($no_colaborador);
 
         $this->tipo_colaborador = $this->colaborador->tipo_colaborador_id;
-        $this->nombre = $this->colaborador->nombre;
+        $this->nombre_1 = $this->colaborador->nombre_1;
+        $this->nombre_2 = $this->colaborador->nombre_2;
         $this->ap_paterno = $this->colaborador->ap_paterno;
         $this->ap_materno = $this->colaborador->ap_materno;
         $this->genero = $this->colaborador->genero_id;
@@ -177,6 +184,8 @@ class EdicionColaborador extends Component
         $this->curp = $this->colaborador->curp;
         $this->rfc = $this->colaborador->rfc;
         $this->paternidad = $this->colaborador->paternidad_id;
+        $this->nacionalidad = $this->colaborador->nacionalidad_id;
+        $this->colonia = $this->colaborador->colonia;
         $this->domicilio = $this->colaborador->domicilio;
         $this->municipio = $this->colaborador->municipio;
         $this->estado = $this->colaborador->estado;
@@ -186,7 +195,10 @@ class EdicionColaborador extends Component
         $this->ruta_transporte = $this->colaborador->ruta_transporte_id;
         $this->puesto = $this->colaborador->puesto_id;
         $this->area = $this->colaborador->area_id;
+        $this->operacion = $this->colaborador->operacion_id;
+        $this->proceso = $this->operacion;
         $this->jefe_directo = $this->colaborador->jefe_directo;
+        $this->tipo_contrato = $this->colaborador->tipo_contrato_id;
         $this->tel_fijo = $this->colaborador->tel_fijo;
         $this->tel_movil = $this->colaborador->tel_movil;
         $this->tel_recados = $this->colaborador->tel_recados;
@@ -194,7 +206,6 @@ class EdicionColaborador extends Component
         $this->clave_radio = $this->colaborador->clave_radio_id;
         $this->matriculacion = $this->colaborador->matriculacion;
         $this->tipo_usuario = $this->colaborador->tipo_usuario_id;
-        $this->password = $this->colaborador->password;
         $this->rango_factor = $this->colaborador->rango_factor_id;
         $this->fecha_ingreso = $this->colaborador->fecha_ingreso;
         $this->autoEvalGen = $this->colaborador->autoeval_gen;
@@ -339,7 +350,7 @@ class EdicionColaborador extends Component
     public function render()
     {
         $clavesRadio = Clave_radio::select('*')->orderBy('clave', 'ASC')->get();
-        $areas = Area::select('*')->orderBy('nombre_area','ASC')->get();
+        $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
         $extensiones = Extension::all();
         $rutas = Ruta_transporte::all();
 
@@ -347,7 +358,7 @@ class EdicionColaborador extends Component
             ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
             ->get();
 
-        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->where('tipo_colaborador_id', 2)->orderBy('ap_paterno', 'ASC')->get();
+        $supervisores = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')->where('tipo_colaborador_id', 2)->orderBy('ap_paterno', 'ASC')->get();
 
         $turnos = Turno::all();
 
@@ -361,8 +372,32 @@ class EdicionColaborador extends Component
 
         $rangosFactor = Rango_factor::all();
 
+        $nacionalidades = Nacionalidad::all();
 
-        return view('livewire.edicion-colaborador', compact('clavesRadio', 'areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos', 'tiposColaborador', 'tiposUsuario', 'generos', 'estadosCivil', 'rangosFactor'));
+        $operaciones = Operacion::all();
+
+        $tipos_contrato = Tipo_contrato::all();
+
+
+
+
+        return view('livewire.edicion-colaborador', compact(
+            'clavesRadio',
+            'areas',
+            'extensiones',
+            'rutas',
+            'puestos',
+            'supervisores',
+            'turnos',
+            'tiposColaborador',
+            'tiposUsuario',
+            'generos',
+            'estadosCivil',
+            'rangosFactor',
+            'nacionalidades',
+            'operaciones',
+            'tipos_contrato'
+        ));
     }
 
     public function downloadImage()
@@ -403,20 +438,23 @@ class EdicionColaborador extends Component
 
             // ? Formato de palabras
 
-            $nombre_c = ucwords(strtolower($this->nombre));
+            $nombre_c_1 = ucwords(strtolower($this->nombre_1));
+            $nombre_c_2 = ucwords(strtolower($this->nombre_2));
             $ap_paterno_c = ucwords(strtolower($this->ap_paterno));
             $ap_materno_c = ucwords(strtolower($this->ap_materno));
             $curp_c = strtoupper($this->curp);
             $rfc_c = strtoupper($this->rfc);
             $no_seguro_social_c = strtoupper($this->no_seguro_social);
             $domicilio_c = ucfirst($this->domicilio);
+            $colonia_c = ucfirst($this->colonia);
             $municipio_c = ucwords(strtolower($this->municipio));
             $estado_c = ucwords(strtolower($this->estado));
 
             Colaborador::where('no_colaborador', $this->colaborador->no_colaborador)
                 ->update([
                     'no_colaborador' => $this->no_colaborador,
-                    'nombre' => $nombre_c,
+                    'nombre_1' => $nombre_c_1,
+                    'nombre_2' => $nombre_c_2,
                     'ap_paterno' => $ap_paterno_c,
                     'ap_materno' => $ap_materno_c,
                     'fecha_nacimiento' => $this->fecha_nacimiento,
@@ -426,13 +464,16 @@ class EdicionColaborador extends Component
                     'rfc' => $rfc_c,
                     'no_seguro_social' => $no_seguro_social_c,
                     'domicilio' => $domicilio_c,
+                    'colonia' => $colonia_c,
                     'municipio' => $municipio_c,
                     'estado' => $estado_c,
+                    'nacionalidad_id' => $this->nacionalidad,
                     'codigo_postal' => $this->codigo_postal,
                     'paternidad_id' => $this->paternidad,
                     'turno_id' => $this->turno,
                     'ruta_transporte_id' => $this->ruta_transporte,
                     'puesto_id' => $this->puesto,
+                    'operacion_id' => $this->operacion,
                     'area_id' => $this->area,
                     'correo' => $this->correo,
                     'tel_fijo' => $this->tel_fijo,
@@ -442,10 +483,9 @@ class EdicionColaborador extends Component
                     'clave_radio_id' => $this->clave_radio,
                     'jefe_directo' => $this->jefe_directo,
                     'tipo_colaborador_id' => $this->tipo_colaborador,
+                    'tipo_contrato_id' => $this->tipo_contrato,
                     'fecha_ingreso' => $this->fecha_ingreso,
-                    'password' => $this->password,
                     'matriculacion' => $this->matriculacion,
-                    'tipo_usuario_id' => $this->tipo_usuario,
                     'tipo_usuario_id' => $this->tipo_usuario,
                     'rango_factor_id' => $this->rango_factor,
                     'autoeval_gen' => $this->autoEvalGen,
@@ -724,6 +764,7 @@ class EdicionColaborador extends Component
 
             return redirect()->to('/edit/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
+            
             $this->alert('error', 'Error al actualizar', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
