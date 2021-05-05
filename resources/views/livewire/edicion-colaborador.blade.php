@@ -445,27 +445,36 @@
 
                         {{-- Segunda seccion --}}
 
-                        <div class="grid sm:grid-rows-4 p-3 gap-4">
+                        <div class="grid sm:grid-rows-5 p-3 gap-4">
                             <div class="grid sm:row-start-1 sm:grid-cols-4 gap-2">
+
                                 <div class=" sm:col-span-1 sm:col-start-1">
-                                    <label class="block text-sm font-black text-gray-700"
-                                        for="inputDomicilio">Domicilio</label>
-                                    <input type="text" wire:model="domicilio" name="domicilio" id="inputDomicilio"
-                                        value="{{ old('domicilio') }}"
-                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    @error('domicilio')
+                                    <label for="selectNacionalidad" class="block text-sm font-black text-gray-700">Pais (Nacionalidad)</label>
+                                    <select id="selectNacionalidad" wire:model="nacionalidad" name="nacionalidad"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option></option>
+                                        @if (isset($nacionalidades))
+                                        @foreach ($nacionalidades as $nacionalidad)
+                                        <option value="{{ $area->id }}">{{ $nacionalidad->pais }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                
+                                    </select>
+                                    @error('area')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
                                     @enderror
                                 </div>
+
                                 <div class=" sm:col-span-1 sm:col-start-2">
-                                    <label class="block text-sm font-black text-gray-700"
-                                        for="inputMunicipio">Municipio</label>
-                                    <input type="text" wire:model="municipio" name="municipio" id="inputMunicipio"
-                                        value="{{ old('municipio') }}"
+                                    <label class="block text-sm font-black text-gray-700" for="inputCodigoPostal">Código
+                                        Postal</label>
+                                    <input type="text" wire:model="codigo_postal" name="codigo_postal"
+                                        id="inputCodigoPostal" value="{{ old('codigo_postal') }}"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    @error('municipio')
+                                    @error('codigo_postal')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
@@ -483,23 +492,112 @@
                                     </p>
                                     @enderror
                                 </div>
+
                                 <div class=" sm:col-span-1 sm:col-start-4">
-                                    <label class="block text-sm font-black text-gray-700" for="inputCodigoPostal">Código
-                                        Postal</label>
-                                    <input type="text" wire:model="codigo_postal" name="codigo_postal"
-                                        id="inputCodigoPostal" value="{{ old('codigo_postal') }}"
+                                    <label class="block text-sm font-black text-gray-700" for="inputMunicipio">Municipio</label>
+                                    <input type="text" wire:model="municipio" name="municipio" id="inputMunicipio" value="{{ old('municipio') }}"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    @error('codigo_postal')
+                                    @error('municipio')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
                                     @enderror
                                 </div>
+                            
                             </div>
+
                             <div class="grid sm:row-start-2 sm:grid-cols-4 gap-2">
+
                                 <div class=" sm:col-span-2 sm:col-start-1">
-                                    <label for="selectNivel"
-                                        class="block text-sm font-black text-gray-700">Puesto</label>
+                                    <label class="block text-sm font-black text-gray-700" for="inputColonia">Colonia</label>
+                                    <input type="text" wire:model="colonia" name="colonia" id="inputColonia" value="{{ old('colonia') }}"
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @error('colonia')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
+                                </div>
+
+                                <div class=" sm:col-span-2 sm:col-start-3">
+                                    <label class="block text-sm font-black text-gray-700"
+                                        for="inputDomicilio">Domicilio</label>
+                                    <input type="text" wire:model="domicilio" name="domicilio" id="inputDomicilio"
+                                        value="{{ old('domicilio') }}"
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @error('domicilio')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
+                                </div>
+
+                            </div>
+                            <div class="grid sm:row-start-3 sm:grid-cols-4 gap-2">
+
+                                <div class=" sm:col-span-2 sm:col-start-1">
+                                    <label for="selectArea" class="block text-sm font-black text-gray-700">Área</label>
+                                    <select id="selectArea" wire:model="area" name="area"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option></option>
+                                        @if (isset($areas))
+                                        @foreach ($areas as $area)
+                                        <option value="{{ $area->id }}">{{ $area->nombre_area }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                
+                                    </select>
+                                    @error('area')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
+                                </div>
+                                <div class=" sm:col-span-1 sm:col-start-3">
+                                    <label for="selectOperacion" class="block text-sm font-black text-gray-700">Operación</label>
+                                    <select id="selectOperacion" wire:model="Operacion" name="Operacion"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option></option>
+                                        @if (isset($operaciones))
+                                        @foreach ($operaciones as $operacion)
+                                        <option value="{{ $operacion->id }}">{{ $operacion->operacion }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                
+                                    </select>
+                                    @error('area')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
+                                </div>
+                                <div class=" sm:col-span-1 sm:col-start-4">
+                                    <label for="selectProceso" class="block text-sm font-black text-gray-700">Proceso</label>
+                                    <select id="selectProceso" wire:model="proceso" name="proceso" disabled
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option></option>
+                                        @if (isset($operaciones))
+                                        @foreach ($operaciones as $operacion)
+                                        <option value="{{ $operacion->id }}">{{ $operacion->proceso }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                
+                                    </select>
+                                    @error('area')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror
+                                </div>
+
+                            </div>
+                            {{-- Operacion --}}
+                            <div class="grid sm:row-start-4 sm:grid-cols-4 gap-2">
+                                <div class=" sm:col-span-2 sm:col-start-1">
+                                    <label for="selectNivel" class="block text-sm font-black text-gray-700">Puesto</label>
                                     <select id="selectNivel" wire:model="puesto" name="puesto"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
@@ -518,25 +616,6 @@
                                     @enderror
                                 </div>
                                 <div class=" sm:col-span-1 sm:col-start-3">
-                                    <label for="selectArea" class="block text-sm font-black text-gray-700">Área</label>
-                                    <select id="selectArea" wire:model="area" name="area"
-                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        @if (isset($areas))
-                                        @foreach ($areas as $area)
-                                        <option value="{{ $area->id }}">{{ $area->nombre_area }}
-                                        </option>
-                                        @endforeach
-                                        @endif
-
-                                    </select>
-                                    @error('area')
-                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                        {{ $message }}
-                                    </p>
-                                    @enderror
-                                </div>
-                                <div class=" sm:col-span-1 sm:col-start-4">
                                     <label for="selectSupervisor" class="block text-sm font-black text-gray-700">Jefe
                                         Directo</label>
                                     <select id="selectSupervisor" wire:model="jefe_directo" name="supervisor"
@@ -551,10 +630,10 @@
                                             {{ $supervisor->nombre_1 }}
                                             {{ $supervisor->nombre_2 }}
                                         </option>
-
+                                
                                         @endforeach
                                         @endif
-
+                                
                                     </select>
                                     @error('jefe_directo')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -562,8 +641,25 @@
                                     </p>
                                     @enderror
                                 </div>
+                                <div class=" sm:col-span-1 sm:col-start-4">
+                                    <label for="inputTurno" class="block text-sm font-black text-gray-700">Tipo de Contrato</label>
+                                    <select id="inputTurno" wire:model="turno" name="turno"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        <option></option>
+                                        @if (isset($tipos_contrato))
+                                        @foreach ($tipos_contrato as $tipo_contrato)
+                                        <option value="{{ $tipo_contrato->id }}">{{ $tipo_contrato->contrato }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+                                    </select>
+                                    @error('turno')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                    @enderror</div>
                             </div>
-                            <div class="grid sm:row-start-3 sm:grid-cols-4 gap-2">
+                            <div class="grid sm:row-start-5 sm:grid-cols-4 gap-2">
                                 <div class=" sm:col-span-1 sm:col-start-1"><label for="inputTurno"
                                         class="block text-sm font-black text-gray-700">Turno
                                         del
@@ -571,7 +667,7 @@
                                     <select id="inputTurno" wire:model="turno" name="turno"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
-                                        @if ($turnos)
+                                        @if (isset($turnos))
                                         @foreach ($turnos as $turno)
                                         <option value="{{ $turno->id }}">{{ $turno->nombre_turno }}
                                         </option>
@@ -627,7 +723,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="grid sm:row-start-4 sm:grid-cols-4 gap-2">
+                            <div class="grid sm:row-start-6 sm:grid-cols-4 gap-2">
                                 <div class=" sm:col-span-1 sm:col-start-1">
                                     <label for="inputTelMovil" class="block text-sm font-black text-gray-700">Teléfono
                                         Móvil</label>
