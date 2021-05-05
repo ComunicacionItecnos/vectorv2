@@ -20,6 +20,9 @@ use App\Models\Ruta_transporte;
 use App\Models\Tipo_colaborador;
 use App\Models\Colaborador_evento;
 use App\Models\Contactos_emergencia;
+use App\Models\Nacionalidad;
+use App\Models\Operacion;
+use App\Models\Tipo_contrato;
 use Illuminate\Support\Facades\Storage;
 use Carbon\Carbon;
 
@@ -349,7 +352,7 @@ class EdicionColaborador extends Component
     public function render()
     {
         $clavesRadio = Clave_radio::select('*')->orderBy('clave', 'ASC')->get();
-        $areas = Area::select('*')->orderBy('nombre_area','ASC')->get();
+        $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
         $extensiones = Extension::all();
         $rutas = Ruta_transporte::all();
 
@@ -371,8 +374,32 @@ class EdicionColaborador extends Component
 
         $rangosFactor = Rango_factor::all();
 
+        $nacionalidades = Nacionalidad::all();
 
-        return view('livewire.edicion-colaborador', compact('clavesRadio', 'areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos', 'tiposColaborador', 'tiposUsuario', 'generos', 'estadosCivil', 'rangosFactor'));
+        $operaciones = Operacion::all();
+
+        $tipos_contrato = Tipo_contrato::all();
+        
+
+
+
+        return view('livewire.edicion-colaborador', compact(
+            'clavesRadio',
+            'areas',
+            'extensiones',
+            'rutas',
+            'puestos',
+            'supervisores',
+            'turnos',
+            'tiposColaborador',
+            'tiposUsuario',
+            'generos',
+            'estadosCivil',
+            'rangosFactor',
+            'nacionalidades',
+            'operaciones',
+            'tipos_contrato'
+        ));
     }
 
     public function downloadImage()

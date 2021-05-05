@@ -455,7 +455,7 @@
                                         <option></option>
                                         @if (isset($nacionalidades))
                                         @foreach ($nacionalidades as $nacionalidad)
-                                        <option value="{{ $area->id }}">{{ $nacionalidad->pais }}
+                                        <option value="{{ $nacionalidad->id }}">{{ $nacionalidad->pais }}
                                         </option>
                                         @endforeach
                                         @endif
@@ -556,7 +556,7 @@
                                 </div>
                                 <div class=" sm:col-span-1 sm:col-start-3">
                                     <label for="selectOperacion" class="block text-sm font-black text-gray-700">Operación</label>
-                                    <select id="selectOperacion" wire:model="Operacion" name="Operacion"
+                                    <select id="selectOperacion" wire:model="operacion" name="operacion"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
                                         @if (isset($operaciones))
