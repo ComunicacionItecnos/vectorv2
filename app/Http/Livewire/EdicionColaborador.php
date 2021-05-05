@@ -183,6 +183,8 @@ class EdicionColaborador extends Component
         $this->curp = $this->colaborador->curp;
         $this->rfc = $this->colaborador->rfc;
         $this->paternidad = $this->colaborador->paternidad_id;
+        $this->nacionalidad = $this->colaborador->nacionalidad_id;
+        $this->colonia = $this->colaborador->colonia;
         $this->domicilio = $this->colaborador->domicilio;
         $this->municipio = $this->colaborador->municipio;
         $this->estado = $this->colaborador->estado;
@@ -192,7 +194,9 @@ class EdicionColaborador extends Component
         $this->ruta_transporte = $this->colaborador->ruta_transporte_id;
         $this->puesto = $this->colaborador->puesto_id;
         $this->area = $this->colaborador->area_id;
+        $this->operacion = $this->colaborador->operacion_id;
         $this->jefe_directo = $this->colaborador->jefe_directo;
+        $this->tipo_contrato = $this->colaborador->tipo_contrato_id;
         $this->tel_fijo = $this->colaborador->tel_fijo;
         $this->tel_movil = $this->colaborador->tel_movil;
         $this->tel_recados = $this->colaborador->tel_recados;
