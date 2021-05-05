@@ -35,7 +35,7 @@ class EdicionColaborador extends Component
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
         $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
 
-    public $nacionalidad, $colonia, $operacion, $tipo_contrato;
+    public $nacionalidad, $colonia, $operacion, $proceso, $tipo_contrato;
 
     public $rango_factor;
 
@@ -198,6 +198,7 @@ class EdicionColaborador extends Component
         $this->puesto = $this->colaborador->puesto_id;
         $this->area = $this->colaborador->area_id;
         $this->operacion = $this->colaborador->operacion_id;
+        $this->proceso = $this->operacion;
         $this->jefe_directo = $this->colaborador->jefe_directo;
         $this->tipo_contrato = $this->colaborador->tipo_contrato_id;
         $this->tel_fijo = $this->colaborador->tel_fijo;
