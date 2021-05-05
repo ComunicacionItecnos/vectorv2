@@ -642,8 +642,8 @@
                                     @enderror
                                 </div>
                                 <div class=" sm:col-span-1 sm:col-start-4">
-                                    <label for="inputTurno" class="block text-sm font-black text-gray-700">Tipo de Contrato</label>
-                                    <select id="inputTurno" wire:model="turno" name="turno"
+                                    <label for="inputTipoContrato" class="block text-sm font-black text-gray-700">Tipo de Contrato</label>
+                                    <select id="inputTipoContrato" wire:model="tipo_contrato" name="tipo_contrato"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
                                         @if (isset($tipos_contrato))
