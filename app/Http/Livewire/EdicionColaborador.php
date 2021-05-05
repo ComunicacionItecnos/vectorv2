@@ -32,6 +32,8 @@ class EdicionColaborador extends Component
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
         $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
 
+    public $nacionalidad, $colonia, $operacion, $tipo_contrato;
+
     public $rango_factor;
 
     public $autoEvalGen, $autoEvalAsig, $autoEvalCal, $evalGen, $evalAsig, $evalCal;
