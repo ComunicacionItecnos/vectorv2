@@ -25,7 +25,7 @@ class FormularioColaborador extends Component
 {
     use WithFileUploads;
 
-    public $no_colaborador, $nombre, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
+    public $no_colaborador, $nombre_1, $nombre_2, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
         $paternidad, $curp, $rfc, $no_seguro_social, $domicilio, $municipio, $estado, $codigo_postal, $tipo_colaborador, $turno,
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
         $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
