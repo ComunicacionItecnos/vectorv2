@@ -470,7 +470,7 @@
 
                         <div class=" sm:col-span-1 sm:col-start-4">
                             <label for="selectProceso" class="block text-sm text-gray-700">Proceso</label>
-                            <select id="selectProceso" wire:model="proceso" name="proceso" disabled
+                            <select id="selectProceso" wire:model="operacion" name="proceso" disabled
                                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option></option>
                                 @if (isset($operaciones))
