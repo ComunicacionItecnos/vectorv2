@@ -2,24 +2,27 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use Exception;
 use App\Models\Area;
-use App\Models\Clave_radio;
-use App\Models\Extension;
-use App\Models\Ruta_transporte;
-use App\Models\Puesto;
-use App\Models\Colaborador;
+use App\Models\Hijos;
 use App\Models\Turno;
-use App\Models\Tipo_colaborador;
-use App\Models\Tipo_usuario;
 use App\Models\Genero;
+use App\Models\Puesto;
+use Livewire\Component;
+use App\Models\Extension;
+use App\Models\Operacion;
+use App\Models\Clave_radio;
+use App\Models\Colaborador;
 use App\Models\Estado_civil;
+use App\Models\Nacionalidad;
 use App\Models\Rango_factor;
+use App\Models\Tipo_usuario;
+use App\Models\Tipo_contrato;
+use Livewire\WithFileUploads;
+use App\Models\Ruta_transporte;
+use App\Models\Tipo_colaborador;
 use App\Models\Colaborador_evento;
 use App\Models\Contactos_emergencia;
-use App\Models\Hijos;
-use Exception;
 
 class FormularioColaborador extends Component
 {
@@ -183,7 +186,7 @@ class FormularioColaborador extends Component
     public function render()
     {
         $clavesRadio = Clave_radio::where('compartida', '1')->orwhere('disponibilidad', '1')->orderBy('clave', 'ASC')->get();
-        $areas = Area::select('*')->orderBy('nombre_area','ASC')->get();
+        $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
         $extensiones = Extension::all();
         $rutas = Ruta_transporte::all();
 
@@ -205,8 +208,30 @@ class FormularioColaborador extends Component
 
         $rango_factor = Rango_factor::all();
 
+        $nacionalidades = Nacionalidad::all();
 
-        return view('livewire.formulario-colaborador', compact('clavesRadio', 'areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos', 'tiposColaborador', 'tiposUsuario', 'generos', 'estadosCivil', 'rango_factor'));
+        $operaciones = Operacion::all();
+
+        $tipos_contrato = Tipo_contrato::all();
+
+
+        return view('livewire.formulario-colaborador', compact(
+            'clavesRadio',
+            'areas',
+            'extensiones',
+            'rutas',
+            'puestos',
+            'supervisores',
+            'turnos',
+            'tiposColaborador',
+            'tiposUsuario',
+            'generos',
+            'estadosCivil',
+            'rango_factor',
+            'nacionalidades',
+            'operaciones',
+            'tipos_contrato'
+        ));
     }
 
     public function store()
@@ -219,7 +244,7 @@ class FormularioColaborador extends Component
         }
         $this->validate();
         try {
-           
+
             $foto_ruta = $this->foto->store('images', 'public');
 
             // ? Formato de palabras
