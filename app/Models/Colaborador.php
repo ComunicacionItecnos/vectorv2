@@ -31,7 +31,7 @@ class Colaborador extends Model
         'colonia',
         'municipio',
         'estado',
-        'nacionalidad',
+        'nacionalidad_id',
         'codigo_postal',
         'paternidad_id',
         'turno_id',
