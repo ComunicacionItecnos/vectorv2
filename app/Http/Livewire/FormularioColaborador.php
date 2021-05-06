@@ -58,15 +58,19 @@ class FormularioColaborador extends Component
         'curp' => 'required|regex:/[A-Z0-9]/',
         'rfc' => 'required|regex:/[A-Z0-9-]/',
         'domicilio' => 'required',
+        'colonia'=> 'required',
         'no_seguro_social' => 'required|regex:/[A-Z0-9-]/',
         'municipio' => 'required|regex:/[a-zA-Z]/',
         'estado' => 'required|regex:/[a-zA-Z]/',
+        'nacionalidad' => 'required',
         'codigo_postal' => 'required|regex:/^[0-9]{5}$/',
         'tipo_colaborador' => 'required',
+        'tipo_contrato' => 'required',
         'turno' => 'required',
         'correo' => 'required|email',
         'ruta_transporte' => 'required',
         'puesto' => 'required',
+        'operacion' => 'required',
         'area' => 'required',
         'jefe_directo' => 'required',
         'tel_fijo' => 'regex:/^[0-9]{10}$/',
@@ -82,7 +86,6 @@ class FormularioColaborador extends Component
 
         'matriculacion' => 'required',
         'tipo_usuario' => 'required',
-        'password' => 'required',
         'fecha_ingreso' => 'required',
 
         'foto' => 'required|image|max:1024',
@@ -106,7 +109,11 @@ class FormularioColaborador extends Component
         'curp.required' => 'El CURP no puede estar vacío',
         'curp.regex' => 'El CURP solo puede contener letras mayúsculas y números',
         'rfc.required' => 'El RFC no puede estar vacío',
-        'domicilio.required' => 'El Domicilio no puede estar vacio',
+        'domicilio.required' => 'El Domicilio no puede estar vacío',
+        'colonia.required' => 'La Colonia no puede estar vacía',
+        'nacionalidad.required' => 'La Nacionalidad no puede estar vacía',
+        'tipo_operacion.required' => 'El Tipo de operación no puede estar vacío',
+        'tipo_contrato.required' => 'El Tipo de contrato no puede estar vacío',
         'rfc.regex' => 'El RFC solo puede contener letras, números y guión medio',
         'no_seguro_social.required' => 'El No. Seguro Social no puede estar vacío',
         'no_seguro_social.regex' => 'El No. Seguro Social solo puede contener letras mayúsculas, números y guión medio',
@@ -142,7 +149,6 @@ class FormularioColaborador extends Component
 
         'matriculacion.required' => 'Este campo no puede estar vacío',
         'tipo_usuario.required' => 'Este campo no puede estar vacío',
-        'password.required' => 'Este campo no puede estar vacío',
         'fecha_ingreso.required' => 'Este campo no puede estar vacío',
 
         'foto.required' => 'Es necesario que elijas una fotografía'
