@@ -48,7 +48,6 @@ class FormularioColaborador extends Component
     protected $rules = [
         'no_colaborador' => 'required|digits_between:5,6',
         'nombre_1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-        'nombre_2' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'ap_paterno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'ap_materno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'genero' => 'required',
@@ -59,7 +58,6 @@ class FormularioColaborador extends Component
         'rfc' => 'required|regex:/[A-Z0-9-]/',
         'domicilio' => 'required',
         'colonia'=> 'required',
-        'no_seguro_social' => 'required|regex:/[A-Z0-9-]/',
         'municipio' => 'required|regex:/[a-zA-Z]/',
         'estado' => 'required|regex:/[a-zA-Z]/',
         'nacionalidad' => 'required',
