@@ -461,7 +461,7 @@
                                         @endif
                                 
                                     </select>
-                                    @error('area')
+                                    @error('nacionalidad')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
@@ -567,7 +567,7 @@
                                         @endif
                                 
                                     </select>
-                                    @error('area')
+                                    @error('operacion')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
@@ -586,7 +586,7 @@
                                         @endif
                                 
                                     </select>
-                                    @error('area')
+                                    @error('proceso')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
@@ -653,7 +653,7 @@
                                         @endforeach
                                         @endif
                                     </select>
-                                    @error('turno')
+                                    @error('tipo_contrato')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
