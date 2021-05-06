@@ -257,6 +257,7 @@ class FormularioColaborador extends Component
             $rfc_c = strtoupper($this->rfc);
             $no_seguro_social_c = strtoupper($this->no_seguro_social);
             $domicilio_c = ucfirst($this->domicilio);
+            $colonia_c = ucwords(strtolower($this->colonia));
             $municipio_c = ucwords(strtolower($this->municipio));
             $estado_c = ucwords(strtolower($this->estado));
 
@@ -274,13 +275,16 @@ class FormularioColaborador extends Component
                 'rfc' => $rfc_c,
                 'no_seguro_social' => $no_seguro_social_c,
                 'domicilio' => $domicilio_c,
+                'colonia' => $colonia_c,
                 'municipio' => $municipio_c,
                 'estado' => $estado_c,
+                'nacionalidad_id' => $this->nacionalidad,
                 'codigo_postal' => $this->codigo_postal,
                 'paternidad_id' => $this->paternidad,
                 'turno_id' => $this->turno,
                 'ruta_transporte_id' => $this->ruta_transporte,
                 'puesto_id' => $this->puesto,
+                'operacion_id' => $this->operacion,
                 'area_id' => $this->area,
                 'correo' => $this->correo,
                 'tel_fijo' => $this->tel_fijo,
@@ -290,13 +294,11 @@ class FormularioColaborador extends Component
                 'clave_radio_id' => $this->clave_radio,
                 'jefe_directo' => $this->jefe_directo,
                 'tipo_colaborador_id' => $this->tipo_colaborador,
+                'tipo_contrato_id' => $this->tipo_contrato,
                 'fecha_ingreso' => $this->fecha_ingreso,
-                'password' => $this->password,
                 'matriculacion' => $this->matriculacion,
                 'tipo_usuario_id' => $this->tipo_usuario,
-                'tipo_usuario_id' => $this->tipo_usuario,
                 'rango_factor_id' => $r_f,
-                'rims' => '0',
                 'autoeval_gen' => '0',
                 'autoeval_asig' => '0',
                 'autoeval_cal' => '0',
