@@ -2,33 +2,38 @@
 
 namespace App\Http\Livewire;
 
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use Exception;
 use App\Models\Area;
-use App\Models\Clave_radio;
-use App\Models\Extension;
-use App\Models\Ruta_transporte;
-use App\Models\Puesto;
-use App\Models\Colaborador;
+use App\Models\Hijos;
 use App\Models\Turno;
-use App\Models\Tipo_colaborador;
-use App\Models\Tipo_usuario;
 use App\Models\Genero;
+use App\Models\Puesto;
+use Livewire\Component;
+use App\Models\Extension;
+use App\Models\Operacion;
+use App\Models\Clave_radio;
+use App\Models\Colaborador;
 use App\Models\Estado_civil;
+use App\Models\Nacionalidad;
 use App\Models\Rango_factor;
+use App\Models\Tipo_usuario;
+use App\Models\Tipo_contrato;
+use Livewire\WithFileUploads;
+use App\Models\Ruta_transporte;
+use App\Models\Tipo_colaborador;
 use App\Models\Colaborador_evento;
 use App\Models\Contactos_emergencia;
-use App\Models\Hijos;
-use Exception;
 
 class FormularioColaborador extends Component
 {
     use WithFileUploads;
 
-    public $no_colaborador, $nombre, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
+    public $no_colaborador, $nombre_1, $nombre_2, $ap_paterno, $ap_materno, $genero, $fecha_nacimiento, $estado_civil,
         $paternidad, $curp, $rfc, $no_seguro_social, $domicilio, $municipio, $estado, $codigo_postal, $tipo_colaborador, $turno,
         $correo, $ruta_transporte, $puesto, $area, $jefe_directo, $tel_fijo, $tel_movil, $tel_recados,
-        $extension, $clave_radio, $matriculacion, $tipo_usuario, $password, $fecha_ingreso = '';
+        $extension, $clave_radio, $matriculacion, $tipo_usuario, $fecha_ingreso = '';
+
+    public $nacionalidad, $colonia, $operacion, $tipo_contrato;
 
     public $foto;
 
@@ -42,7 +47,7 @@ class FormularioColaborador extends Component
 
     protected $rules = [
         'no_colaborador' => 'required|digits_between:5,6',
-        'nombre' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'nombre_1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'ap_paterno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'ap_materno' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
         'genero' => 'required',
@@ -52,15 +57,18 @@ class FormularioColaborador extends Component
         'curp' => 'required|regex:/[A-Z0-9]/',
         'rfc' => 'required|regex:/[A-Z0-9-]/',
         'domicilio' => 'required',
-        'no_seguro_social' => 'required|regex:/[A-Z0-9-]/',
+        'colonia'=> 'required',
         'municipio' => 'required|regex:/[a-zA-Z]/',
         'estado' => 'required|regex:/[a-zA-Z]/',
+        'nacionalidad' => 'required',
         'codigo_postal' => 'required|regex:/^[0-9]{5}$/',
         'tipo_colaborador' => 'required',
+        'tipo_contrato' => 'required',
         'turno' => 'required',
         'correo' => 'required|email',
         'ruta_transporte' => 'required',
         'puesto' => 'required',
+        'operacion' => 'required',
         'area' => 'required',
         'jefe_directo' => 'required',
         'tel_fijo' => 'regex:/^[0-9]{10}$/',
@@ -76,7 +84,6 @@ class FormularioColaborador extends Component
 
         'matriculacion' => 'required',
         'tipo_usuario' => 'required',
-        'password' => 'required',
         'fecha_ingreso' => 'required',
 
         'foto' => 'required|image|max:1024',
@@ -85,8 +92,10 @@ class FormularioColaborador extends Component
     protected $messages = [
         'no_colaborador.required' => 'El Número de colaborador no puede estar vacío',
         'no_colaborador.digits_between' => 'Solo puede tener 5 dígitos como mínimo y 6 como máximo',
-        'nombre.required' => 'El Nombre no puede estar vacío',
-        'nombre.regex' => 'El Nombre debe contener únicamente letras y espacios',
+        'nombre_1.required' => 'El Nombre no puede estar vacío',
+        'nombre_1.regex' => 'El Nombre debe contener únicamente letras y espacios',
+        'nombre_2.required' => 'El Nombre no puede estar vacío',
+        'nombre_2.regex' => 'El Nombre debe contener únicamente letras y espacios',
         'ap_paterno.required' => 'El Apellido paterno no puede estar vacío',
         'ap_paterno.regex' => 'El Apellido paterno debe contener únicamente letras y espacios',
         'ap_materno.required' => 'El Apellido materno no puede estar vacío',
@@ -98,7 +107,11 @@ class FormularioColaborador extends Component
         'curp.required' => 'El CURP no puede estar vacío',
         'curp.regex' => 'El CURP solo puede contener letras mayúsculas y números',
         'rfc.required' => 'El RFC no puede estar vacío',
-        'domicilio.required' => 'El Domicilio no puede estar vacio',
+        'domicilio.required' => 'El Domicilio no puede estar vacío',
+        'colonia.required' => 'La Colonia no puede estar vacía',
+        'nacionalidad.required' => 'La Nacionalidad no puede estar vacía',
+        'tipo_operacion.required' => 'El Tipo de operación no puede estar vacío',
+        'tipo_contrato.required' => 'El Tipo de contrato no puede estar vacío',
         'rfc.regex' => 'El RFC solo puede contener letras, números y guión medio',
         'no_seguro_social.required' => 'El No. Seguro Social no puede estar vacío',
         'no_seguro_social.regex' => 'El No. Seguro Social solo puede contener letras mayúsculas, números y guión medio',
@@ -134,7 +147,6 @@ class FormularioColaborador extends Component
 
         'matriculacion.required' => 'Este campo no puede estar vacío',
         'tipo_usuario.required' => 'Este campo no puede estar vacío',
-        'password.required' => 'Este campo no puede estar vacío',
         'fecha_ingreso.required' => 'Este campo no puede estar vacío',
 
         'foto.required' => 'Es necesario que elijas una fotografía'
@@ -178,7 +190,7 @@ class FormularioColaborador extends Component
     public function render()
     {
         $clavesRadio = Clave_radio::where('compartida', '1')->orwhere('disponibilidad', '1')->orderBy('clave', 'ASC')->get();
-        $areas = Area::select('*')->orderBy('nombre_area','ASC')->get();
+        $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
         $extensiones = Extension::all();
         $rutas = Ruta_transporte::all();
 
@@ -186,7 +198,7 @@ class FormularioColaborador extends Component
             ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
             ->get();
 
-        $supervisores = Colaborador::select('no_colaborador', 'nombre', 'ap_paterno', 'ap_materno')->where('tipo_colaborador_id', 2)->orderBy('ap_paterno', 'ASC')->get();
+        $supervisores = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')->where('tipo_colaborador_id', 2)->orderBy('ap_paterno', 'ASC')->get();
 
         $turnos = Turno::all();
 
@@ -200,8 +212,30 @@ class FormularioColaborador extends Component
 
         $rango_factor = Rango_factor::all();
 
+        $nacionalidades = Nacionalidad::select('*')->orderBy('pais', 'ASC')->get();;
 
-        return view('livewire.formulario-colaborador', compact('clavesRadio', 'areas', 'extensiones', 'rutas', 'puestos', 'supervisores', 'turnos', 'tiposColaborador', 'tiposUsuario', 'generos', 'estadosCivil', 'rango_factor'));
+        $operaciones = Operacion::all();
+
+        $tipos_contrato = Tipo_contrato::all();
+
+
+        return view('livewire.formulario-colaborador', compact(
+            'clavesRadio',
+            'areas',
+            'extensiones',
+            'rutas',
+            'puestos',
+            'supervisores',
+            'turnos',
+            'tiposColaborador',
+            'tiposUsuario',
+            'generos',
+            'estadosCivil',
+            'rango_factor',
+            'nacionalidades',
+            'operaciones',
+            'tipos_contrato'
+        ));
     }
 
     public function store()
@@ -214,25 +248,28 @@ class FormularioColaborador extends Component
         }
         $this->validate();
         try {
-           
+
             $foto_ruta = $this->foto->store('images', 'public');
 
             // ? Formato de palabras
 
-            $nombre_c = ucwords(strtolower($this->nombre));
+            $nombre_1_c = ucwords(strtolower($this->nombre_1));
+            $nombre_2_c = ucwords(strtolower($this->nombre_2));
             $ap_paterno_c = ucwords(strtolower($this->ap_paterno));
             $ap_materno_c = ucwords(strtolower($this->ap_materno));
             $curp_c = strtoupper($this->curp);
             $rfc_c = strtoupper($this->rfc);
             $no_seguro_social_c = strtoupper($this->no_seguro_social);
             $domicilio_c = ucfirst($this->domicilio);
+            $colonia_c = ucwords(strtolower($this->colonia));
             $municipio_c = ucwords(strtolower($this->municipio));
             $estado_c = ucwords(strtolower($this->estado));
 
             Colaborador::updateOrCreate([
 
                 'no_colaborador' => $this->no_colaborador,
-                'nombre' => $nombre_c,
+                'nombre_1' => $nombre_1_c,
+                'nombre_2' => $nombre_2_c,
                 'ap_paterno' => $ap_paterno_c,
                 'ap_materno' => $ap_materno_c,
                 'fecha_nacimiento' => $this->fecha_nacimiento,
@@ -242,13 +279,16 @@ class FormularioColaborador extends Component
                 'rfc' => $rfc_c,
                 'no_seguro_social' => $no_seguro_social_c,
                 'domicilio' => $domicilio_c,
+                'colonia' => $colonia_c,
                 'municipio' => $municipio_c,
                 'estado' => $estado_c,
+                'nacionalidad_id' => $this->nacionalidad,
                 'codigo_postal' => $this->codigo_postal,
                 'paternidad_id' => $this->paternidad,
                 'turno_id' => $this->turno,
                 'ruta_transporte_id' => $this->ruta_transporte,
                 'puesto_id' => $this->puesto,
+                'operacion_id' => $this->operacion,
                 'area_id' => $this->area,
                 'correo' => $this->correo,
                 'tel_fijo' => $this->tel_fijo,
@@ -258,13 +298,11 @@ class FormularioColaborador extends Component
                 'clave_radio_id' => $this->clave_radio,
                 'jefe_directo' => $this->jefe_directo,
                 'tipo_colaborador_id' => $this->tipo_colaborador,
+                'tipo_contrato_id' => $this->tipo_contrato,
                 'fecha_ingreso' => $this->fecha_ingreso,
-                'password' => $this->password,
                 'matriculacion' => $this->matriculacion,
                 'tipo_usuario_id' => $this->tipo_usuario,
-                'tipo_usuario_id' => $this->tipo_usuario,
                 'rango_factor_id' => $r_f,
-                'rims' => '0',
                 'autoeval_gen' => '0',
                 'autoeval_asig' => '0',
                 'autoeval_cal' => '0',
@@ -446,6 +484,8 @@ class FormularioColaborador extends Component
 
             return redirect()->route('dashboard');
         } catch (Exception $ex) {
+
+            dd($ex);
 
             $this->alert('error', 'Ha ocurrido un error', [
                 'position' =>  'top-end',
