@@ -487,6 +487,8 @@ class FormularioColaborador extends Component
             return redirect()->route('dashboard');
         } catch (Exception $ex) {
 
+            dd($ex);
+
             $this->alert('error', 'Ha ocurrido un error', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
