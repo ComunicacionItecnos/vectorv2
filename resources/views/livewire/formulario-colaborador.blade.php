@@ -757,20 +757,7 @@
                             @enderror
                         </div>
 
-                        <div class="col-span-1 sm:col-span-1">
-                            <label for="inputPassword"
-                                class="block text-sm font-medium text-gray-700">Contraseña</label>
-                            <input type="text" wire:model="password" name="password" id="inputPassword"
-                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                value="{{ old('password') }}">
-                                @error('password')
-                                <p class="mt-1 mb-1 text-xs text-red-600 italic" >
-                                    {{$message}}
-                                </p>
-                            @enderror
-                        </div>
-
-                        <div class="col-span-1 sm:col-span-1">
+                        <div class="col-span-1 sm:col-span-2">
                             <label for="inputFechaIngreso" class="block text-sm font-medium text-gray-700">Fecha de
                                 ingreso</label>
                             <input wire:model="fecha_ingreso" name="fecha_ingreso" id="inputFechaIngreso" type="date"
