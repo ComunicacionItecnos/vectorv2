@@ -212,7 +212,7 @@ class FormularioColaborador extends Component
 
         $rango_factor = Rango_factor::all();
 
-        $nacionalidades = Nacionalidad::all();
+        $nacionalidades = Nacionalidad::select('*')->orderBy('pais', 'ASC')->get();;
 
         $operaciones = Operacion::all();
 
