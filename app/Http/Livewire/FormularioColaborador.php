@@ -219,7 +219,8 @@ class FormularioColaborador extends Component
 
             // ? Formato de palabras
 
-            $nombre_c = ucwords(strtolower($this->nombre));
+            $nombre_1_c = ucwords(strtolower($this->nombre_1));
+            $nombre_2_c = ucwords(strtolower($this->nombre_2));
             $ap_paterno_c = ucwords(strtolower($this->ap_paterno));
             $ap_materno_c = ucwords(strtolower($this->ap_materno));
             $curp_c = strtoupper($this->curp);
@@ -232,7 +233,8 @@ class FormularioColaborador extends Component
             Colaborador::updateOrCreate([
 
                 'no_colaborador' => $this->no_colaborador,
-                'nombre' => $nombre_c,
+                'nombre_1' => $nombre_1_c,
+                'nombre_2' => $nombre_2_c,
                 'ap_paterno' => $ap_paterno_c,
                 'ap_materno' => $ap_materno_c,
                 'fecha_nacimiento' => $this->fecha_nacimiento,
