@@ -86,8 +86,7 @@
                 DE C.V., REPRESENTADA POR EL <b>LIC. EDUARDO SALVADOR YÁÑEZ PONCE DE LEÓN</b>, A QUIEN SE LE DENOMINARÁ
                 PARA
                 EFECTOS DE ESTE CONTRATO COMO "EL PATRÓN" O "EMPRESA", Y POR LA OTRA PARTE
-                <b>{{ strtoupper($datosContrato[0]->ap_paterno) }}
-                    {{ strtoupper($datosContrato[0]->ap_materno) }} {{ strtoupper($datosContrato[0]->nombre) }}</b> A
+                <b>{{ strtoupper($infoColaborador[0]->nombre_desc) }}</b> A
                 QUIEN SE LE DENOMINARÁ EN LO SUCESIVO COMO "EL
                 TRABAJADOR", ESTABLECIENDO LAS PARTES LAS DECLARACIONES Y CLÁUSULAS QUE INTEGRAN EL PRESENTE CONTRATO EN
                 EL TENOR SIGUIENTE:
@@ -705,8 +704,7 @@
                         <td class="negrita" style="text-align: center;"><br> _____________________________________ <br>
                             EDUARDO S. YÁÑEZ PONCE DE LEÓN</td>
                         <td class="negrita" style="text-align: center;"><br> _____________________________________ <br>
-                            {{ strtoupper($datosContrato[0]->ap_paterno) }}
-                            {{ strtoupper($datosContrato[0]->ap_materno) }} {{ strtoupper($datosContrato[0]->nombre) }}
+                            {{ strtoupper($infoColaborador[0]->nombre_desc) }}
                         </td>
                     </tr>
                 </table>
