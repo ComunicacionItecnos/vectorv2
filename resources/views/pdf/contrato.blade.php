@@ -77,7 +77,7 @@
     }
 </style>
 
-<body>
+<body class="arial">
     <br>
     <div class="page-break" style="margin-left: 5%;">
         <div class="header">
@@ -116,9 +116,9 @@
                 <span class="tab"></span>
                 <a class="negrita">II.- </a>Tener como <a class="negrita">DOMICILIO </a>del centro de trabajo el
                 ubicado en
-                <a class="negrita">KILOMETRO 6 DE LA CARRETERA</a>
-                CUERNAVACA A
-                TEPOZTLÁN EN AHUATEPEC, CUERNAVACA MORELOS</a> <a>, único lugar del Centro de trabajo.</a>
+                <a class="negrita">KILOMETRO 6 DE LA CARRETERA
+                    CUERNAVACA A
+                    TEPOZTLÁN EN AHUATEPEC, CUERNAVACA MORELOS</a> <a>, único lugar del Centro de trabajo.</a>
             </p>
 
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
@@ -145,23 +145,28 @@
             </p>
         </div>
         <br>
-        <div class="f-size"
-            style="margin-right: 10%; margin-left:17%; font-family: Arial, Helvetica, sans-serif; font-size: 92%;">
+        <div style="margin-right: 10%; margin-left:12%; font-family: Arial, Helvetica, sans-serif; font-size: 92%;">
             <a>Declara el </a><a class="negrita t-letra">TRABAJADOR:</a>
         </div>
 
-        {{-- Falta ingresar nuevos datos a la BD --}}
         <div class="just">
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">I.- </a>Ser de
                 NACIONALIDAD <a class="negrita">MEXICANA</a>, con DOMICILIO ubicado en <b>C.</b>
-
                 <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}</a>
+
+                <a class="negrita">COL.</a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }},</a>
+
+                <a class="negrita">MUNICIPIO DE </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}</a>
+
                 <a class="negrita">C.P.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a> con
+
                 <a>CLAVE ÚNICA DE REGISTRO DE POBLACIÓN</a>
-                <a class="negrita">{{ $datosContrato[0]->curp }}</a>, CON REGISTRO FEDERAL DE CONTRIBUYENTE
+                <a class="negrita">{{ $datosContrato[0]->curp }}</a>, con REGISTRO FEDERAL DE CONTRIBUYENTE
                 <a class="negrita">{{ $datosContrato[0]->rfc }}</a> SEXO
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
                     <b>MASCULINO.</b>
@@ -209,12 +214,11 @@
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">PRIMERA.- </a>El trabajador de NOMBRE
-                <a class="negrita">{{ strtoupper($datosContrato[0]->ap_paterno) }}
-                    {{ strtoupper($datosContrato[0]->ap_materno) }} {{ strtoupper($datosContrato[0]->nombre) }}
+                <a class="negrita">{{ strtoupper($infoColaborador[0]->nombre_desc) }}
 
                 </a> de NACIONALIDAD
                 <b>MEXICANA</b> de
-                <a class="negrita">25</a> años de edad, ESTADO CIVIL
+                <a class="negrita">{{ $infoColaborador[0]->edad }}</a> años de edad, ESTADO CIVIL
                 <a class="negrita">@if($datosContrato[0]->estado_civil_id == 1)
                     SOLTERO
                     @elseif ($datosContrato[0]->estado_civil_id == 2)
@@ -226,16 +230,18 @@
                 <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}</a>
                 {{-- FALTAN VARIABLES --}}
                 <a class="negrita">COL.</a>
-                <a class="negrita">TETELPA, </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
+                <a class="negrita">MUNICIPIO DE </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }} </a>
                 <a class="negrita">C.P.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a>
-                <a>SEXO</a>
+                <b>SEXO:</b>
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
-                    <b>MASCULINO.</b>
+                    <b>MASCULINO</b>
                     @elseif($datosContrato[0]->genero_id == 2)
-                    <b>FEMENINO.</b>
+                    <b>FEMENINO</b>
                     @else
-                    <b>NO BINARIO.</b>
+                    <b>NO BINARIO</b>
                     @endif
                 </a>
                 <a>celebra contrato de trabajo por</a>
@@ -597,14 +603,7 @@
                     <li><a class="tab-2" style="font-weight: normal;">Negarse el trabajador a adoptar las medidas
                             preventivas o a
                             seguir los procedimientos indicados para evitar
-                            accidentes o enfermedades;</a></li>
-                    <li><a class="tab-2" style="font-weight: normal;">Concurrir el trabajador a sus labores en estado de
-                            embriaguez o bajo la influencia de algún narcótico o droga
-                            enervante, salvo que, en este último caso, exista prescripción médica. Antes de iniciar su
-                            servicio, la trabajadora
-                            deberá poner el hecho en conocimiento del patrón y presentar la prescripción suscrita por el
-                            médico;
-                        </a>
+                            accidentes o enfermedades;</a>
                     </li>
                 </ol>
             </p>
@@ -624,13 +623,20 @@
                 <li style="visibility: hidden;"><a></a></li>
                 <li style="visibility: hidden;"><a></a></li>
                 <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
+                <li><a class="tab-2" style="font-weight: normal;">Concurrir el trabajador a sus labores en estado de
+                        embriaguez o bajo la influencia de algún narcótico o droga
+                        enervante, salvo que, en este último caso, exista prescripción médica. Antes de iniciar su
+                        servicio, la trabajadora
+                        deberá poner el hecho en conocimiento del patrón y presentar la prescripción suscrita por el
+                        médico;
+                    </a>
+                </li>
                 <li><a class="tab-2" style="font-weight: normal;">La sentencia ejecutoriada que imponga al trabajador
                         una pena
                         de prisión, que le impida el cumplimiento de la
                         relación de trabajo; y</a>
                 </li>
-                <li><a class="tab-2" style="font-weight: normal;">XIV. Las análogas a las establecidas en las fracciones
+                <li><a class="tab-2" style="font-weight: normal;">  Las análogas a las establecidas en las fracciones
                         anteriores,
                         de igual manera graves y de consecuencias semejantes
                         en lo que al trabajo se refiere.</a>
