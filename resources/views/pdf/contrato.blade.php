@@ -82,8 +82,15 @@
     <div class="page-break" style="margin-left: 5%;">
         <div class="header">
             <p style="font-size: 105%;">
-                CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO DETERMINADO QUE CELEBRAN POR UNA PARTE INDUSTRIAS TECNOS, S.A.
-                DE C.V., REPRESENTADA POR EL <b>LIC. EDUARDO SALVADOR YÁÑEZ PONCE DE LEÓN</b>, A QUIEN SE LE DENOMINARÁ
+                <a>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO</a>
+                @if($datosContrato[0]->tipo_contrato_id == 2)
+                DETERMINADO
+                @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                INDETERMINADO
+                @endif
+                <a>QUE CELEBRAN POR UNA PARTE INDUSTRIAS TECNOS, S.A.
+                    DE C.V., REPRESENTADA POR EL</a> <b>LIC. EDUARDO SALVADOR YÁÑEZ PONCE DE LEÓN</b>, A QUIEN SE LE
+                DENOMINARÁ
                 PARA
                 EFECTOS DE ESTE CONTRATO COMO "EL PATRÓN" O "EMPRESA", Y POR LA OTRA PARTE
                 <b>{{ strtoupper($infoColaborador[0]->nombre_desc) }}</b> A
@@ -153,7 +160,8 @@
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">I.- </a>Ser de
-                NACIONALIDAD <a class="negrita">MEXICANA</a>, con DOMICILIO ubicado en <b>C.</b>
+                NACIONALIDAD <a class="negrita">{{ strtoupper($infoColaborador[0]->nacionalidad) }}</a>, con DOMICILIO
+                ubicado en <b>C.</b>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}</a>
 
                 <a class="negrita">COL.</a>
@@ -166,7 +174,7 @@
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a> con
 
                 <a>CLAVE ÚNICA DE REGISTRO DE POBLACIÓN</a>
-                <a class="negrita">{{ $datosContrato[0]->curp }}</a>, con REGISTRO FEDERAL DE CONTRIBUYENTE
+                <a class="negrita">{{ $datosContrato[0]->curp }},</a>con REGISTRO FEDERAL DE CONTRIBUYENTE
                 <a class="negrita">{{ $datosContrato[0]->rfc }}</a> SEXO
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
                     <b>MASCULINO.</b>
@@ -180,17 +188,33 @@
                 <span class="tab"></span>
                 <a class="negrita">II.- </a>
                 Tener la capacidad física, mental para desempeñar el trabajo por el que se contrata por tiempo
-                Determinado de acuerdo a
+                @if($datosContrato[0]->tipo_contrato_id == 2)
+                Determinado
+                @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                Indeterminado
+                @endif
+                de acuerdo a
                 las cláusulas pactadas.
             </p>
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">III.- </a>
-                Que es su voluntad celebrar el presente contrato por tiempo determinado atendiendo a la naturaleza de
+                Que es su voluntad celebrar el presente contrato por tiempo
+                @if($datosContrato[0]->tipo_contrato_id == 2)
+                Determinado
+                @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                Indeterminado
+                @endif
+                atendiendo a la naturaleza de
                 los servicios que
                 se requieren y por los motivos que expresa el patrón y que a sus intereses personales así conviene el
                 contrato por
-                tiempo determinado.
+                tiempo
+                @if($datosContrato[0]->tipo_contrato_id == 2)
+                Determinado.
+                @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                Indeterminado.
+                @endif
             </p>
         </div>
     </div>
@@ -217,7 +241,7 @@
                 <a class="negrita">{{ strtoupper($infoColaborador[0]->nombre_desc) }}
 
                 </a> de NACIONALIDAD
-                <b>MEXICANA</b> de
+                <b>{{ strtoupper($infoColaborador[0]->nacionalidad) }}</b> de
                 <a class="negrita">{{ $infoColaborador[0]->edad }}</a> años de edad, ESTADO CIVIL
                 <a class="negrita">@if($datosContrato[0]->estado_civil_id == 1)
                     SOLTERO
@@ -245,7 +269,13 @@
                     @endif
                 </a>
                 <a>celebra contrato de trabajo por</a>
-                <b>tiempo Determinado</b>
+                <b>tiempo
+                    @if($datosContrato[0]->tipo_contrato_id == 2)
+                    Determinado
+                    @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                    Indeterminado
+                    @endif
+                </b>
                 <a>con su patrón </a>
                 <b>INDUSTRIAS TECNOS S.A. DE C.V. </b>
                 <a>quien es una persona moral con actividad empresarial, cuya negociación tiene como objeto fabricar,
@@ -260,13 +290,25 @@
                 {{-- FALTAN VARIABLES --}}
                 <b>del 25 DE FEBRERO 2021</b>
                 <b>al 30 DE MAYO DEL 2021, </b>
-                <a>por tiempo determinado, ello por la naturaleza del trabajo lo anterior en virtud de que se trata de
+                <a>por tiempo
+                    @if($datosContrato[0]->tipo_contrato_id == 2)
+                    Determinado,
+                    @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                    Indeterminado,
+                    @endif
+                    ello por la naturaleza del trabajo lo anterior en virtud de que se trata de
                     un exceso de
                     producción por los contratos de venta exportación (Licencia de importación 574479080J09321), que no
                     requiere mayor
                     tiempo para su realización e intervención, más que el periodo señalado; por ello la necesidad de
                     contratar los servicios
-                    del trabajador y por un tiempo determinado y porque el trabajador solamente puede por ese periodo y
+                    del trabajador y por un tiempo
+                    @if($datosContrato[0]->tipo_contrato_id == 2)
+                    Determinado
+                    @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                    Indeterminado
+                    @endif
+                    y porque el trabajador solamente puede por ese periodo y
                     está conforme con
                     ello.</a>
             </p>
@@ -478,7 +520,13 @@
                 <a class="negrita">DÉCIMA.-</a>
                 <a>El trabajador gozará en su momento y términos de sus vacaciones, conforme lo establece el artículo 76
                     de la Ley Federal
-                    del Trabajo y dada la temporalidad del contrato, conforme a la naturaleza de tiempo determinado, se
+                    del Trabajo y dada la temporalidad del contrato, conforme a la naturaleza de tiempo
+                    @if($datosContrato[0]->tipo_contrato_id == 2)
+                    Determinado
+                    @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                    Indeterminado
+                    @endif
+                    , se
                     le pagará al
                     trabajador su parte proporcional al tiempo laborado, así como la correspondiente prima vacacional a
                     razón del 45% sobre
@@ -636,7 +684,7 @@
                         de prisión, que le impida el cumplimiento de la
                         relación de trabajo; y</a>
                 </li>
-                <li><a class="tab-2" style="font-weight: normal;">  Las análogas a las establecidas en las fracciones
+                <li><a class="tab-2" style="font-weight: normal;"> Las análogas a las establecidas en las fracciones
                         anteriores,
                         de igual manera graves y de consecuencias semejantes
                         en lo que al trabajo se refiere.</a>
