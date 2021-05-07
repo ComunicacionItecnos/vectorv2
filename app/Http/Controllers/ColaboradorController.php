@@ -19,7 +19,7 @@ class ColaboradorController extends Controller
         $sueldoLetra = 'Ocho Mil Pesos';
         $descripcionPuesto = 'Realiza el arte para todo tipo de comunicado interno, gestionarlas redes sociales internas, brinda apoyo log[istico y desarrollo en proyectos, programas, campañas, eventos, etc., realiza el levantamiento de imagenes en todo tipo de evento interno de la empresa, emite y coloca los impresos en todos los tableros internos manteniendolos actualizados semanalmente.';
         //return response()->json(compact("datosContrato"));
-        $pdf = PDF::loadView('PDF/contrato', compact("datosContrato", 'infoColaborador','descripcionPuesto','sueldo','sueldoLetra'));
+        $pdf = PDF::loadView('PDF/contrato_administrativo', compact("datosContrato", 'infoColaborador','descripcionPuesto','sueldo','sueldoLetra'));
         return $pdf->stream('colaboradores.pdf');
     }
 }

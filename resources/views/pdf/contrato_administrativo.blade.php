@@ -733,6 +733,14 @@
                 <a>Todo lo no estipulado expresamente en este contrato, se regirá por las disposiciones de la Ley
                     Federal del Trabajo.</a>
             </p>
+            @if($datosContrato[0]->tipo_contrato_id == 2)
+            @elseif($datosContrato[0]->tipo_contrato_id == 3)
+            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
+                <span class="tab"></span>
+                <a class="negrita">DÉCIMA SÉPTIMA.-</a>
+                <a>La empresa para todos los efectos legales le reconoce al empleado la antigüedad del {{ \Carbon\Carbon::parse($datosContrato[0]->fecha_ingreso->format('d/m/Y') }}.</a>
+            </p>
+            @endif
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a>Las partes con libre voluntad firman el presente contrato de trabajo en los términos y condiciones
