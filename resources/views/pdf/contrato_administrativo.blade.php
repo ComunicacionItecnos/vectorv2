@@ -235,6 +235,8 @@
         </div>
         <br>
         <div class="just">
+            {{-- Clausulas contratos --}}
+            @if($datosContrato[0]->tipo_contrato_id == 2)
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">PRIMERA.- </a>El trabajador de NOMBRE
@@ -288,8 +290,10 @@
                     productos, etc; contrato
                     que se establece entre las partes por un periodo que abarca</a>
                 {{-- FALTAN VARIABLES --}}
-                <b>del 25 DE FEBRERO 2021</b>
-                <b>al 30 DE MAYO DEL 2021, </b>
+                <b>del {{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }} DEL
+                {{ strtoupper($fecha_inicial_contrato_year) }}</b>
+                <b>al {{ strtoupper($fecha_final_contrato_dia) }} DE {{ strtoupper($fecha_final_contrato_mes) }} DEL
+                {{ strtoupper($fecha_final_contrato_year) }}, </b>
                 <a>por tiempo
                     @if($datosContrato[0]->tipo_contrato_id == 2)
                     Determinado,
@@ -312,6 +316,59 @@
                     está conforme con
                     ello.</a>
             </p>
+            @elseif($datosContrato[0]->tipo_contrato_id == 3)
+            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
+                <span class="tab"></span>
+                <a class="negrita">PRIMERA.- </a>El trabajador de nombre
+                <a class="negrita">{{ strtoupper($infoColaborador[0]->nombre_desc) }}
+
+                </a> de NACIONALIDAD
+                <b>{{ strtoupper($infoColaborador[0]->nacionalidad) }}</b> de
+                <a class="negrita">{{ $infoColaborador[0]->edad }}</a> años de edad, ESTADO CIVIL
+                <a class="negrita">@if($datosContrato[0]->estado_civil_id == 1)
+                    SOLTERO
+                    @elseif ($datosContrato[0]->estado_civil_id == 2)
+                    CASADO
+                    @else
+                    UNION LIBRE
+                    @endif</a>
+                <a>con </a><b>DOMICILIO</b> en
+                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}, </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }} </a>
+                <a class="negrita">C.P.</a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a>
+                <b>SEXO:</b>
+                <a class="negrita">@if($datosContrato[0]->genero_id == 1)
+                    <b>MASCULINO</b>
+                    @elseif($datosContrato[0]->genero_id == 2)
+                    <b>FEMENINO</b>
+                    @else
+                    <b>NO BINARIO</b>
+                    @endif
+                </a>
+                <a>celebra contrato de trabajo por</a>
+                <b>tiempo
+                    @if($datosContrato[0]->tipo_contrato_id == 2)
+                    Determinado
+                    @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                    Indeterminado
+                    @endif
+                </b>
+                <a>con su patrón </a>
+                <b>INDUSTRIAS TECNOS S.A. DE C.V. </b>
+                <a>quien es una persona moral con actividad empresarial, cuya negociación tiene como objeto fabricar,
+                    ensamblar, producir,
+                    comprar, vender, distribuir, importar, exportar y en general comerciar a cualquier título con
+                    cartuchos deportivos y
+                    armas de fuego deportivas de todas clases, tipos y calibres y con máquinas, aparatos, motores,
+                    artículos de metal y
+                    equipo industrial de todos tipos de clases y con las partes accesorios y aditamentos de dichos
+                    productos, etc; contrato
+                    que se establece entre las partes por un periodo indeterminado.</a>
+            </p>
+            @endif
+
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">SEGUNDA.-</a>
@@ -738,7 +795,9 @@
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">DÉCIMA SÉPTIMA.-</a>
-                <a>La empresa para todos los efectos legales le reconoce al empleado la antigüedad del {{ \Carbon\Carbon::parse($datosContrato[0]->fecha_ingreso->format('d/m/Y') }}.</a>
+                <a>La empresa para todos los efectos legales le reconoce al empleado la antigüedad del
+                    <b>{{ strtoupper($fecha_inicio_dia) }} DE {{ strtoupper($fecha_inicio_mes) }} DEL
+                        {{ strtoupper($fecha_inicio_year) }}.</b></a>
             </p>
             @endif
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
@@ -750,7 +809,8 @@
                     en términos del artículo 5 de la Ley Federal del Trabajo y el trabajador a respetar el contenido del
                     mismo, el trabajo
                     contratado en la manera y términos señalados. Lo anterior se firma con fecha</a>
-                <b>25 DE FEBREBRO DEL 2021</b>
+                <b>{{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }} DEL
+                    {{ strtoupper($fecha_inicial_contrato_year) }}.</b>
 
             </p>
             <br>
