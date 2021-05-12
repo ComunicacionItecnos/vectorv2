@@ -13,7 +13,7 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="overflow-hidden shadow sm:rounded-md">
 
-                        <div class="grid sm:grid-rows-2 p-3 gap-4">
+                        <div class="grid sm:grid-rows-3 p-3 gap-4">
 
                             <div class="grid sm:row-start-1 sm:grid-cols-4 gap-2">
 
@@ -43,12 +43,59 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="grid sm:row-start-2 sm:grid-cols-3 gap-2">
+
+                            <div class="grid sm:row-start-2 sm:grid-cols-4 gap-2">
+                                @if($datosContrato[0]->tipo_contrato_id == 2)
+                                <div class="col-span-1 sm:col-span-2">
+                                    <label for="inputFechaIngreso" class="block text-sm font-medium text-gray-700">Fecha
+                                        de
+                                        inicio</label>
+                                    <input wire:model="fic" name="fic" id="inputFechaIngreso"
+                                        type="date" value="{{ old('fic') }}" min="1961-08-29" max=""
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @error('fic')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{$message}}
+                                    </p>
+                                    @enderror
+                                </div>
+                                <div class="col-span-1 sm:col-span-2">
+                                    <label for="inputFechaIngreso" class="block text-sm font-medium text-gray-700">Fecha
+                                        de
+                                        finalización</label>
+                                    <input wire:model="ffc" name="ffc" id="inputFechaIngreso"
+                                        type="date" value="{{ old('ffc') }}" min="1961-08-29" max=""
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @error('ffc')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{$message}}
+                                    </p>
+                                    @enderror
+                                </div>
+                                @elseif($datosContrato[0]->tipo_contrato_id == 3)
+                                <div class="col-span-1 sm:col-span-4">
+                                    <label for="inputFechaIngreso" class="block text-sm font-medium text-gray-700">Fecha
+                                        de
+                                        inicio</label>
+                                    <input wire:model="fic" name="fic" id="inputFechaIngreso"
+                                        type="date" value="{{ old('fic') }}" min="1961-08-29" max=""
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @error('fic')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{$message}}
+                                    </p>
+                                    @enderror
+                                </div>
+                                @endif
+
+                            </div>
+
+                            <div class="grid sm:row-start-3 sm:grid-cols-3 gap-2">
                                 <div class=" sm:col-span-3 sm:col-start-1">
                                     <label class="block text-sm font-black text-gray-700"
                                         for="inputDescripcionPuesto">Descripción del puesto </label>
-                                    <textarea type="text" wire:model="descripcionPuesto" name="descripcionPuesto" id="inputDescripcionPuesto"
-                                        value="{{ old('descripcionPuesto') }}"
+                                    <textarea type="text" wire:model="descripcionPuesto" name="descripcionPuesto"
+                                        id="inputDescripcionPuesto" value="{{ old('descripcionPuesto') }}"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
                                     @error('descripcionPuesto')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">

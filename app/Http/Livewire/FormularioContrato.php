@@ -12,6 +12,8 @@ class FormularioContrato extends Component
 {
     public $no_colaborador_mount;
     public $sueldo, $sueldoLetra, $descripcionPuesto;
+    public $datosContrato;
+    public $ffc, $fic;
 
     protected $rules = [
         'sueldo' => 'required',
@@ -27,32 +29,32 @@ class FormularioContrato extends Component
 
     public function mount($no_colaborador){
         $this->no_colaborador_mount = $no_colaborador;
+        $this->datosContrato = Colaborador::where('no_colaborador', $this->no_colaborador_mount)->get();
     }
 
     public function createPDF()
     {
         $this->validate();
 
-        $datosContrato = Colaborador::where('no_colaborador', $this->no_colaborador_mount)->get();
         $infoColaborador = DB::table('infocolaborador')->where('no_colaborador', $this->no_colaborador_mount)->get();
 
-        $fecha_inicio_dia = Carbon::parse($datosContrato[0]->fecha_ingreso)->isoFormat('D');
-        $fecha_inicio_mes = Carbon::parse($datosContrato[0]->fecha_ingreso)->isoFormat('MMMM');
-        $fiy = Carbon::parse($datosContrato[0]->fecha_ingreso)->isoFormat('YYYY');
+        $fecha_inicio_dia = Carbon::parse($this->datosContrato[0]->fecha_ingreso)->isoFormat('D');
+        $fecha_inicio_mes = Carbon::parse($this->datosContrato[0]->fecha_ingreso)->isoFormat('MMMM');
+        $fiy = Carbon::parse($this->datosContrato[0]->fecha_ingreso)->isoFormat('YYYY');
         $fecha_inicio_year = intval($fiy);
 
-        $fecha_inicial_contrato = '2021-05-11';
+        $fecha_inicial_contrato = $this->fic;
         $fecha_inicial_contrato_dia = Carbon::parse($fecha_inicial_contrato)->isoFormat('D');
         $fecha_inicial_contrato_mes = Carbon::parse($fecha_inicial_contrato)->isoFormat('MMMM');
         $fecha_inicial_contrato_year = Carbon::parse($fecha_inicial_contrato)->isoFormat('YYYY');
 
-        $fecha_final_contrato = '2021-06-11';
+        $fecha_final_contrato = $this->ffc;
         $fecha_final_contrato_dia = Carbon::parse($fecha_final_contrato)->isoFormat('D');
         $fecha_final_contrato_mes = Carbon::parse($fecha_final_contrato)->isoFormat('MMMM');
         $fecha_final_contrato_year = Carbon::parse($fecha_final_contrato)->isoFormat('YYYY');
 
         $viewData = [
-            'datosContrato' => $datosContrato,
+            'datosContrato' => $this->datosContrato,
             'infoColaborador' => $infoColaborador,
             'fecha_inicio_dia' => $fecha_inicio_dia,
             'fecha_inicio_mes' => $fecha_inicio_mes,
@@ -60,7 +62,7 @@ class FormularioContrato extends Component
             'fecha_inicial_contrato_dia' => $fecha_inicial_contrato_dia,
             'fecha_inicial_contrato_mes' => $fecha_inicial_contrato_mes,
             'fecha_inicial_contrato_year' => $fecha_inicial_contrato_year,
-            'fecha_final_contrato__dia' => $fecha_final_contrato_dia,
+            'fecha_final_contrato_dia' => $fecha_final_contrato_dia,
             'fecha_final_contrato_mes' => $fecha_final_contrato_mes,
             'fecha_final_contrato_year' => $fecha_final_contrato_year,
             'sueldo' => $this->sueldo,
@@ -68,14 +70,18 @@ class FormularioContrato extends Component
             'descripcionPuesto' => $this->descripcionPuesto
         ];
 
-        if($datosContrato[0]->tipo_colaborador_id == 2){
+        if($this->datosContrato[0]->tipo_colaborador_id == 2){
             $pdfContent = PDF::loadView('pdf.contrato_administrativo', $viewData)->output();
             return response()->streamDownload(
                 fn () => print($pdfContent),
-                $datosContrato[0]->no_colaborador . ".pdf"
+                $this->datosContrato[0]->no_colaborador . ".pdf"
             );
-        }elseif ($datosContrato[0]->tipo_colaborador_id == 1) {
-            
+        }elseif ($this->datosContrato[0]->tipo_colaborador_id == 1) {
+            $pdfContent = PDF::loadView('pdf.contrato_administrativo', $viewData)->output();
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                $this->datosContrato[0]->no_colaborador . ".pdf"
+            );
         }
         
     }
