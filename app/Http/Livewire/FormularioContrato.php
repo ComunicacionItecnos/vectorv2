@@ -12,6 +12,7 @@ use NumberFormatter;
 class FormularioContrato extends Component
 {
     public $no_colaborador_mount;
+    public $sueldo, $sueldoLetra, $descripcionPuesto;
 
     public function mount($no_colaborador){
         $this->no_colaborador_mount = $no_colaborador;
@@ -38,10 +39,6 @@ class FormularioContrato extends Component
         $fecha_final_contrato_mes = Carbon::parse($fecha_final_contrato)->isoFormat('MMMM');
         $fecha_final_contrato_year = Carbon::parse($fecha_final_contrato)->isoFormat('YYYY');
 
-        $sueldo = '8,000.00';
-        $sueldoLetra = 'Ocho Mil Pesos';
-        $descripcionPuesto = 'Realiza el arte para todo tipo de comunicado interno, gestionarlas redes sociales internas, brinda apoyo log[istico y desarrollo en proyectos, programas, campañas, eventos, etc., realiza el levantamiento de imagenes en todo tipo de evento interno de la empresa, emite y coloca los impresos en todos los tableros internos manteniendolos actualizados semanalmente.';
-
         $viewData = [
             'datosContrato' => $datosContrato,
             'infoColaborador' => $infoColaborador,
@@ -54,9 +51,9 @@ class FormularioContrato extends Component
             'fecha_final_contrato__dia' => $fecha_final_contrato_dia,
             'fecha_final_contrato_mes' => $fecha_final_contrato_mes,
             'fecha_final_contrato_year' => $fecha_final_contrato_year,
-            'sueldo' => $sueldo,
-            'sueldoLetra' => $sueldoLetra,
-            'descripcionPuesto' => $descripcionPuesto
+            'sueldo' => $this->sueldo,
+            'sueldoLetra' => $this->sueldoLetra,
+            'descripcionPuesto' => $this->descripcionPuesto
         ];
         
         $pdfContent = PDF::loadView('pdf.contrato_administrativo', $viewData)->output();
