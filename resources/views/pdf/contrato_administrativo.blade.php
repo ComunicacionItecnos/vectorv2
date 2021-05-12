@@ -290,10 +290,11 @@
                     productos, etc; contrato
                     que se establece entre las partes por un periodo que abarca</a>
                 {{-- FALTAN VARIABLES --}}
-                <b>del {{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }} DEL
-                {{ strtoupper($fecha_inicial_contrato_year) }}</b>
+                <b>del {{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }}
+                    DEL
+                    {{ strtoupper($fecha_inicial_contrato_year) }}</b>
                 <b>al {{ strtoupper($fecha_final_contrato_dia) }} DE {{ strtoupper($fecha_final_contrato_mes) }} DEL
-                {{ strtoupper($fecha_final_contrato_year) }}, </b>
+                    {{ strtoupper($fecha_final_contrato_year) }}, </b>
                 <a>por tiempo
                     @if($datosContrato[0]->tipo_contrato_id == 2)
                     Determinado,
@@ -796,41 +797,43 @@
                 <span class="tab"></span>
                 <a class="negrita">DÉCIMA SÉPTIMA.-</a>
                 <a>La empresa para todos los efectos legales le reconoce al empleado la antigüedad del
-                    <b>{{ strtoupper($fecha_inicio_dia) }} DE {{ strtoupper($fecha_inicio_mes) }} DEL
-                        {{ strtoupper($fecha_inicio_year) }}.</b></a>
-            </p>
-            @endif
-            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
-                <span class="tab"></span>
-                <a>Las partes con libre voluntad firman el presente contrato de trabajo en los términos y condiciones
-                    que han leído y
-                    expresado su conformidad, sometiéndose el patrón a respetar que el mismo no contenga renuncia de
-                    derechos del trabajador
-                    en términos del artículo 5 de la Ley Federal del Trabajo y el trabajador a respetar el contenido del
-                    mismo, el trabajo
-                    contratado en la manera y términos señalados. Lo anterior se firma con fecha</a>
-                <b>{{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }} DEL
-                    {{ strtoupper($fecha_inicial_contrato_year) }}.</b>
-
-            </p>
-            <br>
-            <br>
-            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
-                <table style="width:100%">
-                    <tr>
-                        <th style="text-align: center;">PATRÓN <br>
-                            INDUSTRIAS TECNOS, S.A. DE C.V.</th>
-                        <th style="text-align: center;">TRABAJADOR</th>
-                    </tr>
-                    <tr>
-                        <td class="negrita" style="text-align: center;"><br> _____________________________________ <br>
-                            EDUARDO S. YÁÑEZ PONCE DE LEÓN</td>
-                        <td class="negrita" style="text-align: center;"><br> _____________________________________ <br>
-                            {{ strtoupper($infoColaborador[0]->nombre_desc) }}
-                        </td>
-                    </tr>
-                </table>
-            </p>
+                    <b>{{ strtoupper($fecha_inicio_dia) }} DE {{ strtoupper($fecha_inicio_mes) }}
+                        @if($fecha_inicio_year <= 1999) DE @else DEL @endif
+                            {{ strtoupper($fecha_inicio_year) }}.</b> </a> </p> @endif <p
+                            class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
+                            <span class="tab"></span>
+                            <a>Las partes con libre voluntad firman el presente contrato de trabajo en los términos y
+                                condiciones
+                                que han leído y
+                                expresado su conformidad, sometiéndose el patrón a respetar que el mismo no contenga
+                                renuncia de
+                                derechos del trabajador
+                                en términos del artículo 5 de la Ley Federal del Trabajo y el trabajador a respetar el
+                                contenido del
+                                mismo, el trabajo
+                                contratado en la manera y términos señalados. Lo anterior se firma con fecha</a>
+                            <b>{{ strtoupper($fecha_inicial_contrato_dia) }} DE
+                                {{ strtoupper($fecha_inicial_contrato_mes) }} DEL
+                                    {{ strtoupper($fecha_inicial_contrato_year) }}.</b> </p> <br>
+                                    <br>
+                                    <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
+                                        <table style="width:100%">
+                                            <tr>
+                                                <th style="text-align: center;">PATRÓN <br>
+                                                    INDUSTRIAS TECNOS, S.A. DE C.V.</th>
+                                                <th style="text-align: center;">TRABAJADOR</th>
+                                            </tr>
+                                            <tr>
+                                                <td class="negrita" style="text-align: center;"><br>
+                                                    _____________________________________ <br>
+                                                    EDUARDO S. YÁÑEZ PONCE DE LEÓN</td>
+                                                <td class="negrita" style="text-align: center;"><br>
+                                                    _____________________________________ <br>
+                                                    {{ strtoupper($infoColaborador[0]->nombre_desc) }}
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </p>
         </div>
     </div>
 </body>
