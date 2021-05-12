@@ -1,4 +1,4 @@
-@if (auth()->user()->role_id != 6)
+@if (auth()->user()->role_id == 1 | auth()->user()->role_id == 3)
 <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-red-700">
         Generación de Contrato
