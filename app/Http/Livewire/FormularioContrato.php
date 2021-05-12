@@ -7,12 +7,23 @@ use Livewire\Component;
 use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Colaborador;
 use Illuminate\Support\Facades\DB;
-use NumberFormatter;
 
 class FormularioContrato extends Component
 {
     public $no_colaborador_mount;
     public $sueldo, $sueldoLetra, $descripcionPuesto;
+
+    protected $rules = [
+        'sueldo' => 'required',
+        'sueldoLetra' => 'required',
+        'descripcionPuesto' => 'required',
+    ];
+
+    protected $messages = [
+        'sueldo.required' => 'El sueldo con número no puede estar vacío',
+        'sueldoLetra.required' => 'El sueldo con letra no puede estar vacío',
+        'descripcionPuesto.required' => 'La descripción del puesto no puede estar vacía',
+    ];
 
     public function mount($no_colaborador){
         $this->no_colaborador_mount = $no_colaborador;
@@ -20,6 +31,7 @@ class FormularioContrato extends Component
 
     public function createPDF()
     {
+        $this->validate();
 
         $datosContrato = Colaborador::where('no_colaborador', $this->no_colaborador_mount)->get();
         $infoColaborador = DB::table('infocolaborador')->where('no_colaborador', $this->no_colaborador_mount)->get();
@@ -55,12 +67,17 @@ class FormularioContrato extends Component
             'sueldoLetra' => $this->sueldoLetra,
             'descripcionPuesto' => $this->descripcionPuesto
         ];
+
+        if($datosContrato[0]->tipo_colaborador_id == 2){
+            $pdfContent = PDF::loadView('pdf.contrato_administrativo', $viewData)->output();
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                $datosContrato[0]->no_colaborador . ".pdf"
+            );
+        }elseif ($datosContrato[0]->tipo_colaborador_id == 1) {
+            
+        }
         
-        $pdfContent = PDF::loadView('pdf.contrato_administrativo', $viewData)->output();
-        return response()->streamDownload(
-            fn () => print($pdfContent),
-            $datosContrato[0]->no_colaborador . ".pdf"
-        );
     }
 
     public function render()

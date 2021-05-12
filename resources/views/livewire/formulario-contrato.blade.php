@@ -23,7 +23,7 @@
                                     <input type="text" wire:model="sueldo" name="sueldoNumero" id="inputSueldoNumero"
                                         value="{{ old('sueldoNumero') }}"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                    @error('sueldoNumero')
+                                    @error('sueldo')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
