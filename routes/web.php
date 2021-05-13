@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\EdicionColaborador;
 use App\Http\Controllers\ColaboradorController;
+use App\Http\Livewire\FormularioContrato;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,6 +63,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/puestos', 
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
+/* Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_operativo_indeterminado', [ColaboradorController::class, 'createPDF']); */
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/contrato/{no_colaborador}', FormularioContrato::class);

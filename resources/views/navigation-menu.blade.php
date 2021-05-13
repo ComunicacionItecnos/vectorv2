@@ -15,11 +15,6 @@ $nav_links1 = [
         'route' => route('create'),
         'active' => request()->routeIs('create'),
     ],
-    [
-        'name' => 'Documentos y constancias',
-        'route' => '#',
-        'active' => false,
-    ],
 ];
 
 $nav_links2 = [
@@ -50,11 +45,6 @@ $nav_links3 = [
         'name' => 'Crear colaborador',
         'route' => route('create'),
         'active' => request()->routeIs('create'),
-    ],
-    [
-        'name' => 'Documentos y constancias',
-        'route' => '#',
-        'active' => false,
     ],
 ];
 
