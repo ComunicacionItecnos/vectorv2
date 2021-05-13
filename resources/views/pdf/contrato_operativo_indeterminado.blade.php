@@ -84,9 +84,9 @@
             <p style="font-size: 105%;">
                 <a>CONTRATO INDIVIDUAL DE TRABAJO POR TIEMPO</a>
                 @if($datosContrato[0]->tipo_contrato_id == 2)
-                DETERMINADO
+                <b>DETERMINADO</b>
                 @elseif($datosContrato[0]->tipo_contrato_id == 3)
-                INDETERMINADO
+                <b>INDETERMINADO</b>
                 @endif
                 <a>QUE CELEBRAN POR UNA PARTE INDUSTRIAS TECNOS, S.A.
                     DE C.V., REPRESENTADA POR EL</a> <b>LIC. EDUARDO SALVADOR YÁÑEZ PONCE DE LEÓN</b>, A QUIEN SE LE

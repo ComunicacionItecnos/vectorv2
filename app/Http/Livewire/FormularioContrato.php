@@ -18,18 +18,22 @@ class FormularioContrato extends Component
     protected $rules = [
         'sueldo' => 'required',
         'sueldoLetra' => 'required',
+        'fic' => 'required',
         'descripcionPuesto' => 'required',
     ];
 
     protected $messages = [
         'sueldo.required' => 'El sueldo con número no puede estar vacío',
         'sueldoLetra.required' => 'El sueldo con letra no puede estar vacío',
+        'fic.required' => 'Ingrese una fecha válida',
         'descripcionPuesto.required' => 'La descripción del puesto no puede estar vacía',
     ];
 
     public function mount($no_colaborador){
         $this->no_colaborador_mount = $no_colaborador;
         $this->datosContrato = Colaborador::where('no_colaborador', $this->no_colaborador_mount)->get();
+
+        $this->fic = Carbon::today()->isoFormat('YYYY-MM-DD');
     }
 
     public function createPDF()
@@ -76,8 +80,14 @@ class FormularioContrato extends Component
                 fn () => print($pdfContent),
                 $this->datosContrato[0]->no_colaborador . ".pdf"
             );
-        }elseif ($this->datosContrato[0]->tipo_colaborador_id == 1) {
-            $pdfContent = PDF::loadView('pdf.contrato_administrativo', $viewData)->output();
+        }elseif ($this->datosContrato[0]->tipo_colaborador_id == 1 && $this->datosContrato[0]->tipo_contrato_id == 2) {
+            $pdfContent = PDF::loadView('pdf.contrato_operativo', $viewData)->output();
+            return response()->streamDownload(
+                fn () => print($pdfContent),
+                $this->datosContrato[0]->no_colaborador . ".pdf"
+            );
+        } elseif ($this->datosContrato[0]->tipo_colaborador_id == 1 && $this->datosContrato[0]->tipo_contrato_id == 3) {
+            $pdfContent = PDF::loadView('pdf.contrato_operativo_indeterminado', $viewData)->output();
             return response()->streamDownload(
                 fn () => print($pdfContent),
                 $this->datosContrato[0]->no_colaborador . ".pdf"
