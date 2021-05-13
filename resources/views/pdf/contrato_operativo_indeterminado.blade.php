@@ -161,20 +161,22 @@
                 <span class="tab"></span>
                 <a class="negrita">I.- </a>Ser de
                 NACIONALIDAD <a class="negrita">{{ strtoupper($infoColaborador[0]->nacionalidad) }}</a>, con DOMICILIO
-                ubicado en <b>C.</b>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}</a>
+                ubicado en <b>Calle</b>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }},</a>
 
                 <a class="negrita">COL.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }},</a>
 
                 <a class="negrita">MUNICIPIO DE </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}</a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }},</a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->estado) }},</a>
 
                 <a class="negrita">C.P.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a> con
 
                 <a>CLAVE ÚNICA DE REGISTRO DE POBLACIÓN</a>
-                <a class="negrita">{{ $datosContrato[0]->curp }},</a>con REGISTRO FEDERAL DE CONTRIBUYENTE
+                <a class="negrita">{{ $datosContrato[0]->curp }},</a>
+                <a>con REGISTRO FEDERAL DE CONTRIBUYENTE</a>
                 <a class="negrita">{{ $datosContrato[0]->rfc }}</a> SEXO
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
                     <b>MASCULINO.</b>
@@ -189,9 +191,9 @@
                 <a class="negrita">II.- </a>
                 Tener la capacidad física, mental para desempeñar el trabajo por el que se contrata por tiempo
                 @if($datosContrato[0]->tipo_contrato_id == 2)
-                Determinado
+                determinado
                 @elseif($datosContrato[0]->tipo_contrato_id == 3)
-                Indeterminado
+                indeterminado
                 @endif
                 de acuerdo a
                 las cláusulas pactadas.
@@ -201,9 +203,9 @@
                 <a class="negrita">III.- </a>
                 Que es su voluntad celebrar el presente contrato por tiempo
                 @if($datosContrato[0]->tipo_contrato_id == 2)
-                Determinado
+                DETERMINADO
                 @elseif($datosContrato[0]->tipo_contrato_id == 3)
-                Indeterminado
+                INDETERMINADO
                 @endif
                 atendiendo a la naturaleza de
                 los servicios que
@@ -243,34 +245,26 @@
                 <a class="negrita">{{ strtoupper($infoColaborador[0]->nombre_desc) }}
 
                 </a> de NACIONALIDAD
-                <b>{{ strtoupper($infoColaborador[0]->nacionalidad) }}</b> de
-                <a class="negrita">{{ $infoColaborador[0]->edad }}</a> años de edad, ESTADO CIVIL
-                <a class="negrita">@if($datosContrato[0]->estado_civil_id == 1)
-                    SOLTERO
-                    @elseif ($datosContrato[0]->estado_civil_id == 2)
-                    CASADO
-                    @else
-                    UNION LIBRE
-                    @endif</a>
-                <a>con </a><b>DOMICILIO</b> en <b>C.</b>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}</a>
+                <b>{{ strtoupper($infoColaborador[0]->nacionalidad) }}</b>
+                <a>con </a><b>DOMICILIO</b> en <b>Calle</b>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }},</a>
                 {{-- FALTAN VARIABLES --}}
                 <a class="negrita">COL.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
                 <a class="negrita">MUNICIPIO DE </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }} </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}, </a>
                 <a class="negrita">C.P.</a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }},</a>
                 <b>SEXO:</b>
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
-                    <b>MASCULINO</b>
+                    <b>MASCULINO. </b>
                     @elseif($datosContrato[0]->genero_id == 2)
-                    <b>FEMENINO</b>
+                    <b>FEMENINO. </b>
                     @else
-                    <b>NO BINARIO</b>
+                    <b>NO BINARIO. </b>
                     @endif
                 </a>
-                <a>celebra contrato de trabajo por</a>
+                <a>Celebra contrato de trabajo por</a>
                 <b>tiempo
                     @if($datosContrato[0]->tipo_contrato_id == 2)
                     Determinado
@@ -280,6 +274,7 @@
                 </b>
                 <a>con su patrón </a>
                 <b>INDUSTRIAS TECNOS S.A. DE C.V. </b>
+
                 <a>quien es una persona moral con actividad empresarial, cuya negociación tiene como objeto fabricar,
                     ensamblar, producir,
                     comprar, vender, distribuir, importar, exportar y en general comerciar a cualquier título con
@@ -289,7 +284,6 @@
                     equipo industrial de todos tipos de clases y con las partes accesorios y aditamentos de dichos
                     productos, etc; contrato
                     que se establece entre las partes por un periodo que abarca</a>
-                {{-- FALTAN VARIABLES --}}
                 <b>del {{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }}
                     DEL
                     {{ strtoupper($fecha_inicial_contrato_year) }}</b>
@@ -322,33 +316,26 @@
                 <span class="tab"></span>
                 <a class="negrita">PRIMERA.- </a>El trabajador de nombre
                 <a class="negrita">{{ strtoupper($infoColaborador[0]->nombre_desc) }}
-
-                </a> de NACIONALIDAD
-                <b>{{ strtoupper($infoColaborador[0]->nacionalidad) }}</b> de
-                <a class="negrita">{{ $infoColaborador[0]->edad }}</a> años de edad, ESTADO CIVIL
-                <a class="negrita">@if($datosContrato[0]->estado_civil_id == 1)
-                    SOLTERO
-                    @elseif ($datosContrato[0]->estado_civil_id == 2)
-                    CASADO
-                    @else
-                    UNION LIBRE
-                    @endif</a>
-                <a>con </a><b>DOMICILIO</b> en
+                </a>
+                <a>de NACIONALIDAD</a>
+                <b>{{ strtoupper($infoColaborador[0]->nacionalidad) }}</b>
+                <a>con </a><b>DOMICILIO</b> en <b>CALLE</b>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}, </a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }} </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}, </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->estado) }}, </a>
                 <a class="negrita">C.P.</a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}, </a>
                 <b>SEXO:</b>
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
-                    <b>MASCULINO</b>
+                    <b>MASCULINO.</b>
                     @elseif($datosContrato[0]->genero_id == 2)
-                    <b>FEMENINO</b>
+                    <b>FEMENINO.</b>
                     @else
-                    <b>NO BINARIO</b>
+                    <b>NO BINARIO.</b>
                     @endif
                 </a>
-                <a>celebra contrato de trabajo por</a>
+                <a>Celebra contrato de trabajo por</a>
                 <b>tiempo
                     @if($datosContrato[0]->tipo_contrato_id == 2)
                     Determinado
@@ -366,7 +353,7 @@
                     artículos de metal y
                     equipo industrial de todos tipos de clases y con las partes accesorios y aditamentos de dichos
                     productos, etc; contrato
-                    que se establece entre las partes por un periodo indeterminado.</a>
+                    que se establece por tiempo indeterminado.</a>
             </p>
             @endif
 
@@ -420,16 +407,7 @@
                 <a>deberá dar aviso al</a>
                 <b>PATRÓN,</b>
                 <a>si existe alguna causa que le impida desempeñar su trabajo o concurrir al mismo, por el tiempo de
-                    vigencia</a>
-            </p>
-        </div>
-    </div>
-    {{-- Tercera hoja --}}
-    <br>
-    <div class="page-break" style="margin-left: 5%;">
-        <div class="just">
-            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
-                <a>del presente
+                    vigencia del presente
                     contrato. De igual forma las partes convienen en que las únicas incapacidades que el patrón
                     reconoce, son las expedidas
                     por el Instituto Mexicano del Seguro Social debidamente requisitadas, por contar el trabajador
@@ -438,11 +416,16 @@
                     régimen obligatorio de la seguridad social. Asimismo en caso de que el trabajador presente
                     alguna
                     enfermedad contagiosa,
-                    deberá informar a su</a>
-                <b>PATRÓN</b>
-                <a>para tomar las medidas necesarias para con el</a>
-                <b>INSTITUTO MEXICANO DEL SEGURO SOCIAL.</b>
+                    deberá informar a su<</a> <b>PATRÓN</b>
+                        <a>para tomar las medidas necesarias para con el</a>
+                        <b>INSTITUTO MEXICANO DEL SEGURO SOCIAL.</b>
             </p>
+        </div>
+    </div>
+    {{-- Tercera hoja --}}
+    <br>
+    <div class="page-break" style="margin-left: 5%;">
+        <div class="just">
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a>Todo lo relacionado con riesgos profesionales y enfermedades no profesionales se regirá por las
@@ -500,11 +483,9 @@
                 <b>JORNADA SEMANAL</b>
                 <a>de trabajo será de 48, 45 o 42 horas según se trate de jornada diurna, mixta o nocturna, distribución
                     de jornada que
-                    será hecha por el patrón, contando con treinta minutos para tomar sus alimentos o descansar dentro
-                    de la fuente de
-                    trabajo durante su jornada laboral y en su caso por necesidades del servicio se podrá modificar,
-                    siempre respetándose
-                    los treinta minutos dentro de su jornada de trabajo.</a>
+                    será hecha por el patrón, contando con</a>
+                <b>treinta minutos para tomar sus alimentos o descansar dentro
+                    de la fuente de trabajo.</b>
             </p>
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
@@ -526,15 +507,9 @@
                 <a>Se establece como salario que percibirá el trabajador por la prestación de sus servicios de</a>
                 <b>${{ $sueldo }}</b>
                 <b>({{ $sueldoLetra }} 00/100 M.N) mensuales</b>
-            </p>
-        </div>
-    </div>
-    <div class="page-break" style="margin-left: 5%;">
-        <div class="just">
-            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
-                <a>mismos que serán pagaderos de manera quincenal, incluyendo el pago de los días séptimo; siendo el día
+                <a>mismos que serán pagaderos de manera semanal, incluyendo el pago de los días séptimo; siendo el día
                     de pago de su
-                    salario el día 15 y último de cada mes, y si el día del pago corresponde a su día de descanso le
+                    salario el día viernes de cada semana, y si el día del pago corresponde a su día de descanso le
                     serán cubiertos sus
                     salarios un día antes, mismo que se realizará</a>
                 <b style="border-bottom: 1px solid black;">en el domicilio del PATRÓN,</b>
@@ -543,12 +518,14 @@
                     Impuesto Sobre la renta, aportaciones al Sistema de Ahorro para el retiro, e INFONAVIT, e Impuesto
                     Sobre la renta.</a>
             </p>
+        </div>
+    </div>
+    <div class="page-break" style="margin-left: 5%;">
+        <div class="just">
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
-                <a>Dicho pago se realizará por medio de depósito bancario en la cuenta de nómina con el número de Cuenta
-                    asignado por la
-                    institución bancaria Banco Santander (México), S.A. Institución de Banca Múltiple Grupo Financiero
-                    Santander,
+                <a>Dicho pago se realizará por medio de depósito bancario en la cuenta de nómina asignado por la
+                    institución bancaria Banco Santander, S.A.
                     extendiéndose el recibo de nómina correspondiente al periodo, mismo que deberá firmar el trabajador
                     al momento de
                     recibir el pago. Atento a lo anterior desde este momento el trabajador manifiesta su autorización
@@ -580,14 +557,14 @@
                     de la Ley Federal
                     del Trabajo y dada la temporalidad del contrato, conforme a la naturaleza de tiempo
                     @if($datosContrato[0]->tipo_contrato_id == 2)
-                    Determinado
+                    DETERMINADO
                     @elseif($datosContrato[0]->tipo_contrato_id == 3)
-                    Indeterminado
+                    INDETERMINADO
                     @endif
                     , se
                     le pagará al
                     trabajador su parte proporcional al tiempo laborado, así como la correspondiente prima vacacional a
-                    razón del 45% sobre
+                    razón del 33% sobre
                     las vacaciones que le correspondan. Lo anterior en términos de los artículos 79 y 80 de la Ley
                     Federal del Trabajo.</a>
             </p>
@@ -596,7 +573,7 @@
                 <a class="negrita">DÉCIMA PRIMERA.-</a>
                 <a>El trabajador percibirá de acuerdo a lo establecido por el artículo 87 de la Ley Federal del Trabajo
                     un aguinaldo a
-                    razón de treinta días anuales por año trabajado, por lo que en términos del presente contrato tendrá
+                    razón de 21 días anuales por año trabajado, por lo que en términos del presente contrato tendrá
                     derecho a su parte
                     proporcional por el tiempo de la duración del presente contrato.</a>
             </p>
@@ -629,10 +606,6 @@
                 <span class="tab"></span>
                 <a>En lo no previsto en este contrato se estará a lo dispuesto por la Ley Federal del Trabajo.</a>
             </p>
-        </div>
-    </div>
-    <div class="page-break" style="margin-left: 5%;">
-        <div class="just">
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">DÉCIMA TERCERA.-</a>
@@ -647,6 +620,10 @@
                     de la empresa en
                     cuanto todo lo que hace a la operación de trabajo y forma de desarrollarse.</a>
             </p>
+        </div>
+    </div>
+    <div class="page-break" style="margin-left: 5%;">
+        <div class="just">
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">DÉCIMA CUARTA.-</a>
@@ -711,6 +688,20 @@
                             seguir los procedimientos indicados para evitar
                             accidentes o enfermedades;</a>
                     </li>
+                    <li><a class="tab-2" style="font-weight: normal;">Concurrir el trabajador a sus labores en estado de
+                            embriaguez o bajo la influencia de algún narcótico o droga
+                            enervante, salvo que, en este último caso, exista prescripción médica. Antes de iniciar su
+                            servicio, la trabajadora
+                            deberá poner el hecho en conocimiento del patrón y presentar la prescripción suscrita por el
+                            médico;
+                        </a>
+                    </li>
+                    <li><a class="tab-2" style="font-weight: normal;">La sentencia ejecutoriada que imponga al
+                            trabajador
+                            una pena
+                            de prisión, que le impida el cumplimiento de la
+                            relación de trabajo; y</a>
+                    </li>
                 </ol>
             </p>
         </div>
@@ -729,19 +720,9 @@
                 <li style="visibility: hidden;"><a></a></li>
                 <li style="visibility: hidden;"><a></a></li>
                 <li style="visibility: hidden;"><a></a></li>
-                <li><a class="tab-2" style="font-weight: normal;">Concurrir el trabajador a sus labores en estado de
-                        embriaguez o bajo la influencia de algún narcótico o droga
-                        enervante, salvo que, en este último caso, exista prescripción médica. Antes de iniciar su
-                        servicio, la trabajadora
-                        deberá poner el hecho en conocimiento del patrón y presentar la prescripción suscrita por el
-                        médico;
-                    </a>
-                </li>
-                <li><a class="tab-2" style="font-weight: normal;">La sentencia ejecutoriada que imponga al trabajador
-                        una pena
-                        de prisión, que le impida el cumplimiento de la
-                        relación de trabajo; y</a>
-                </li>
+                <li style="visibility: hidden;"><a></a></li>
+                <li style="visibility: hidden;"><a></a></li>
+
                 <li><a class="tab-2" style="font-weight: normal;"> Las análogas a las establecidas en las fracciones
                         anteriores,
                         de igual manera graves y de consecuencias semejantes
@@ -779,15 +760,6 @@
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">DÉCIMA QUINTA.-</a>
-                <a>Siendo el puesto para que se le contrata, de confianza por las funciones de auditoría, de inspección,
-                    fiscalización,
-                    vigilancia, administración, de carácter general, se prohíbe al empleado ingresar al Sindicato. En
-                    Caso de incumplimiento
-                    de esta Cláusula se dará por rescindido el Contrato Individual de Trabajo.</a>
-            </p>
-            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
-                <span class="tab"></span>
-                <a class="negrita">DÉCIMA SEXTA.-</a>
                 <a>Todo lo no estipulado expresamente en este contrato, se regirá por las disposiciones de la Ley
                     Federal del Trabajo.</a>
             </p>
@@ -823,10 +795,10 @@
                         <th style="text-align: center;">TRABAJADOR</th>
                     </tr>
                     <tr>
-                        <td class="negrita" style="text-align: center;"><br>
+                        <td class="negrita" style="text-align: center;"><br><br>
                             _____________________________________ <br>
                             EDUARDO S. YÁÑEZ PONCE DE LEÓN</td>
-                        <td class="negrita" style="text-align: center;"><br>
+                        <td class="negrita" style="text-align: center;"><br><br>
                             _____________________________________ <br>
                             {{ strtoupper($infoColaborador[0]->nombre_desc) }}
                         </td>
