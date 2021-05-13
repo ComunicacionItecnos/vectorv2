@@ -2,10 +2,11 @@
 
 namespace App\Http\Livewire;
 
+use Exception;
 use Carbon\Carbon;
 use Livewire\Component;
-use Barryvdh\DomPDF\Facade as PDF;
 use App\Models\Colaborador;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Facades\DB;
 
 class FormularioContrato extends Component
@@ -29,7 +30,8 @@ class FormularioContrato extends Component
         'descripcionPuesto.required' => 'La descripción del puesto no puede estar vacía',
     ];
 
-    public function mount($no_colaborador){
+    public function mount($no_colaborador)
+    {
         $this->no_colaborador_mount = $no_colaborador;
         $this->datosContrato = Colaborador::where('no_colaborador', $this->no_colaborador_mount)->get();
 
@@ -74,13 +76,14 @@ class FormularioContrato extends Component
             'descripcionPuesto' => $this->descripcionPuesto
         ];
 
-        if($this->datosContrato[0]->tipo_colaborador_id == 2){
+
+        if ($this->datosContrato[0]->tipo_colaborador_id == 2) {
             $pdfContent = PDF::loadView('pdf.contrato_administrativo', $viewData)->output();
             return response()->streamDownload(
                 fn () => print($pdfContent),
                 $this->datosContrato[0]->no_colaborador . ".pdf"
             );
-        }elseif ($this->datosContrato[0]->tipo_colaborador_id == 1 && $this->datosContrato[0]->tipo_contrato_id == 2) {
+        } elseif ($this->datosContrato[0]->tipo_colaborador_id == 1 && $this->datosContrato[0]->tipo_contrato_id == 2) {
             $pdfContent = PDF::loadView('pdf.contrato_operativo', $viewData)->output();
             return response()->streamDownload(
                 fn () => print($pdfContent),
@@ -93,7 +96,6 @@ class FormularioContrato extends Component
                 $this->datosContrato[0]->no_colaborador . ".pdf"
             );
         }
-        
     }
 
     public function render()
