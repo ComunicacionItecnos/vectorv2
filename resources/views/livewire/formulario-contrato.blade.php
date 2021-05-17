@@ -20,7 +20,7 @@
                                 <div class=" sm:col-span-2 sm:col-start-1">
                                     <label class="block text-sm font-black text-gray-700" for="inputSueldoNumero">Sueldo
                                         (número)</label>
-                                    <input type="text" wire:model="sueldo" name="sueldoNumero" id="inputSueldoNumero"
+                                    <input type="text" wire:model="sueldo" name="sueldoNumero" id="inputSueldoNumero" placeholder="8,000.00"
                                         value="{{ old('sueldoNumero') }}"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @error('sueldo')
@@ -33,7 +33,7 @@
                                 <div class=" sm:col-span-2 sm:col-start-3">
                                     <label class="block text-sm font-black text-gray-700" for="inputSueldoLetra">Sueldo
                                         (letra)</label>
-                                    <input type="text" wire:model="sueldoLetra" name="sueldoLetra" id="inputSueldoLetra"
+                                    <input type="text" wire:model="sueldoLetra" name="sueldoLetra" id="inputSueldoLetra" placeholder="Ocho Mil Pesos"
                                         value="{{ old('sueldoLetra') }}"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @error('sueldoLetra')
