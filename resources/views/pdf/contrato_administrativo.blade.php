@@ -5,9 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDF</title>
+
+    <link rel="stylesheet" href="public_path(storage/css/pdf.css)">
 </head>
 
 <style>
+    @page {
+        margin-bottom: 35px;
+    }
     .header {
         text-align: justify;
         text-justify: inter-word;
@@ -78,7 +83,6 @@
 </style>
 
 <body class="arial">
-    <br>
     <div class="page-break" style="margin-left: 5%;">
         <div class="header">
             <p style="font-size: 105%;">
@@ -163,17 +167,17 @@
                 NACIONALIDAD <a class="negrita">{{ strtoupper($infoColaborador[0]->nacionalidad) }}</a>, con DOMICILIO
                 ubicado en <b>Calle</b>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }},</a>
-                
+
                 <a class="negrita">COL.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }},</a>
-                
+
                 <a class="negrita">MUNICIPIO DE </a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }},</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->estado) }},</a>
-                
+
                 <a class="negrita">C.P.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a> con
-                
+
                 <a>CLAVE ÚNICA DE REGISTRO DE POBLACIÓN</a>
                 <a class="negrita">{{ $datosContrato[0]->curp }},</a>
                 <a>con REGISTRO FEDERAL DE CONTRIBUYENTE</a>
@@ -218,12 +222,6 @@
                 Indeterminado.
                 @endif
             </p>
-        </div>
-    </div>
-    {{-- Segunda hoja --}}
-    <br>
-    <div class="page-break" style="margin-left: 5%;">
-        <div class="just">
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 Las partes celebran el presente contrato de trabajo conforme a lo dispuesto por el artículo 25 de la Ley
@@ -231,7 +229,12 @@
                 Trabajo, en los siguientes términos y conforme a las siguientes:
             </p>
         </div>
-        <p></p>
+    </div>
+
+    {{-- Segunda hoja --}}
+    <br>
+
+    <div class="page-break-auto" style="margin-left: 5%;">
         <div class="title">
             <b>CLAUSULAS</b>
         </div>
@@ -424,16 +427,7 @@
                 <a>deberá dar aviso al</a>
                 <b>PATRÓN,</b>
                 <a>si existe alguna causa que le impida desempeñar su trabajo o concurrir al mismo, por el tiempo de
-                    vigencia</a>
-            </p>
-        </div>
-    </div>
-    {{-- Tercera hoja --}}
-    <br>
-    <div class="page-break" style="margin-left: 5%;">
-        <div class="just">
-            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
-                <a>del presente
+                    vigencia del presente
                     contrato. De igual forma las partes convienen en que las únicas incapacidades que el patrón
                     reconoce, son las expedidas
                     por el Instituto Mexicano del Seguro Social debidamente requisitadas, por contar el trabajador
@@ -530,12 +524,6 @@
                 <a>Se establece como salario que percibirá el trabajador por la prestación de sus servicios de</a>
                 <b>${{ $sueldo }}</b>
                 <b>({{ $sueldoLetra }} 00/100 M.N) mensuales</b>
-            </p>
-        </div>
-    </div>
-    <div class="page-break" style="margin-left: 5%;">
-        <div class="just">
-            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <a>mismos que serán pagaderos de manera quincenal, incluyendo el pago de los días séptimo; siendo el día
                     de pago de su
                     salario el día 15 y último de cada mes, y si el día del pago corresponde a su día de descanso le
@@ -633,10 +621,6 @@
                 <span class="tab"></span>
                 <a>En lo no previsto en este contrato se estará a lo dispuesto por la Ley Federal del Trabajo.</a>
             </p>
-        </div>
-    </div>
-    <div class="page-break" style="margin-left: 5%;">
-        <div class="just">
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">DÉCIMA TERCERA.-</a>
@@ -715,56 +699,43 @@
                             seguir los procedimientos indicados para evitar
                             accidentes o enfermedades;</a>
                     </li>
+                    <li><a class="tab-2" style="font-weight: normal;">Concurrir el trabajador a sus labores en estado de
+                            embriaguez o bajo la influencia de algún narcótico o droga
+                            enervante, salvo que, en este último caso, exista prescripción médica. Antes de iniciar su
+                            servicio, la trabajadora
+                            deberá poner el hecho en conocimiento del patrón y presentar la prescripción suscrita por el
+                            médico;
+                        </a>
+                    </li>
+                    <li><a class="tab-2" style="font-weight: normal;">La sentencia ejecutoriada que imponga al
+                            trabajador
+                            una pena
+                            de prisión, que le impida el cumplimiento de la
+                            relación de trabajo; y</a>
+                    </li>
+                    <li><a class="tab-2" style="font-weight: normal;"> Las análogas a las establecidas en las fracciones
+                            anteriores,
+                            de igual manera graves y de consecuencias semejantes
+                            en lo que al trabajo se refiere.</a>
+                    </li>
+                    <li><a class="tab-2" style="font-weight: normal;">Asimismo como causa análoga no cumplir con el
+                            servicio
+                            contratado es decir Revisar, recopilar, interpretar,
+                            analizar, verificar y evaluar las operaciones y actos administrativos y financieros,
+                            verificando
+                            y determinando el
+                            cumplimiento de los procedimientos de acuerdo a las leyes y normas tanto internas como
+                            externas,
+                            a fin de garantizar que
+                            los objetivos de la EMPRESA se cumplan dentro de los criterios de eficacia y eficiencia y de
+                            gestión transparente,
+                            realizar los informes de auditoría y comunicarlos con su superior inmediato así como
+                            realizar
+                            ajustes o modificaciones
+                            que sean necesarias.</a>
+                    </li>
                 </ol>
             </p>
-        </div>
-    </div>
-    <div class="page-break-auto" style="margin-left: 5%;">
-        <div class="just">
-            <ol type="I" style="margin-left: 12%; margin-right: 5%; font-weight: bold;">
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li style="visibility: hidden;"><a></a></li>
-                <li><a class="tab-2" style="font-weight: normal;">Concurrir el trabajador a sus labores en estado de
-                        embriaguez o bajo la influencia de algún narcótico o droga
-                        enervante, salvo que, en este último caso, exista prescripción médica. Antes de iniciar su
-                        servicio, la trabajadora
-                        deberá poner el hecho en conocimiento del patrón y presentar la prescripción suscrita por el
-                        médico;
-                    </a>
-                </li>
-                <li><a class="tab-2" style="font-weight: normal;">La sentencia ejecutoriada que imponga al trabajador
-                        una pena
-                        de prisión, que le impida el cumplimiento de la
-                        relación de trabajo; y</a>
-                </li>
-                <li><a class="tab-2" style="font-weight: normal;"> Las análogas a las establecidas en las fracciones
-                        anteriores,
-                        de igual manera graves y de consecuencias semejantes
-                        en lo que al trabajo se refiere.</a>
-                </li>
-                <li><a class="tab-2" style="font-weight: normal;">Asimismo como causa análoga no cumplir con el servicio
-                        contratado es decir Revisar, recopilar, interpretar,
-                        analizar, verificar y evaluar las operaciones y actos administrativos y financieros, verificando
-                        y determinando el
-                        cumplimiento de los procedimientos de acuerdo a las leyes y normas tanto internas como externas,
-                        a fin de garantizar que
-                        los objetivos de la EMPRESA se cumplan dentro de los criterios de eficacia y eficiencia y de
-                        gestión transparente,
-                        realizar los informes de auditoría y comunicarlos con su superior inmediato así como realizar
-                        ajustes o modificaciones
-                        que sean necesarias.</a>
-                </li>
-            </ol>
-
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a>El patrón dará al trabajador aviso escrito de la fecha y causa o causas de la rescisión haciéndolo
@@ -802,9 +773,8 @@
                 <a class="negrita">DÉCIMA SÉPTIMA.-</a>
                 <a>La empresa para todos los efectos legales le reconoce al empleado la antigüedad del
                     <b>{{ strtoupper($fecha_inicio_dia) }} DE {{ strtoupper($fecha_inicio_mes) }}
-                        @if($fecha_inicio_year <= 1999) DE @else DEL @endif
-                            {{ strtoupper($fecha_inicio_year) }}.</b> </a> </p> @endif <p
-                            class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
+                        @if($fecha_inicio_year <= 1999) DE @else DEL @endif {{ strtoupper($fecha_inicio_year) }}.</b>
+                            </a> </p> @endif <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                             <span class="tab"></span>
                             <a>Las partes con libre voluntad firman el presente contrato de trabajo en los términos y
                                 condiciones
@@ -818,26 +788,26 @@
                                 contratado en la manera y términos señalados. Lo anterior se firma con fecha</a>
                             <b>{{ strtoupper($fecha_inicial_contrato_dia) }} DE
                                 {{ strtoupper($fecha_inicial_contrato_mes) }} DEL
-                                    {{ strtoupper($fecha_inicial_contrato_year) }}.</b> </p> <br>
-                                    <br>
-                                    <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
-                                        <table style="width:100%">
-                                            <tr>
-                                                <th style="text-align: center;">PATRÓN <br>
-                                                    INDUSTRIAS TECNOS, S.A. DE C.V.</th>
-                                                <th style="text-align: center;">TRABAJADOR</th>
-                                            </tr>
-                                            <tr>
-                                                <td class="negrita" style="text-align: center;"><br>
-                                                    _____________________________________ <br>
-                                                    EDUARDO S. YÁÑEZ PONCE DE LEÓN</td>
-                                                <td class="negrita" style="text-align: center;"><br>
-                                                    _____________________________________ <br>
-                                                    {{ strtoupper($infoColaborador[0]->nombre_desc) }}
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </p>
+                                {{ strtoupper($fecha_inicial_contrato_year) }}.</b> </p> <br>
+            <br>
+            <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
+                <table style="width:100%">
+                    <tr>
+                        <th style="text-align: center;">PATRÓN <br>
+                            INDUSTRIAS TECNOS, S.A. DE C.V.</th>
+                        <th style="text-align: center;">TRABAJADOR</th>
+                    </tr>
+                    <tr>
+                        <td class="negrita" style="text-align: center;"><br>
+                            _____________________________________ <br>
+                            EDUARDO S. YÁÑEZ PONCE DE LEÓN</td>
+                        <td class="negrita" style="text-align: center;"><br>
+                            _____________________________________ <br>
+                            {{ strtoupper($infoColaborador[0]->nombre_desc) }}
+                        </td>
+                    </tr>
+                </table>
+            </p>
         </div>
     </div>
 </body>
