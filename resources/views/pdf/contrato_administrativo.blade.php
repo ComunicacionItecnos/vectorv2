@@ -161,20 +161,22 @@
                 <span class="tab"></span>
                 <a class="negrita">I.- </a>Ser de
                 NACIONALIDAD <a class="negrita">{{ strtoupper($infoColaborador[0]->nacionalidad) }}</a>, con DOMICILIO
-                ubicado en <b>C.</b>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}</a>
-
+                ubicado en <b>Calle</b>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }},</a>
+                
                 <a class="negrita">COL.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }},</a>
-
+                
                 <a class="negrita">MUNICIPIO DE </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}</a>
-
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }},</a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->estado) }},</a>
+                
                 <a class="negrita">C.P.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a> con
-
+                
                 <a>CLAVE ÚNICA DE REGISTRO DE POBLACIÓN</a>
-                <a class="negrita">{{ $datosContrato[0]->curp }},</a>con REGISTRO FEDERAL DE CONTRIBUYENTE
+                <a class="negrita">{{ $datosContrato[0]->curp }},</a>
+                <a>con REGISTRO FEDERAL DE CONTRIBUYENTE</a>
                 <a class="negrita">{{ $datosContrato[0]->rfc }}</a> SEXO
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
                     <b>MASCULINO.</b>
@@ -258,7 +260,8 @@
                 <a class="negrita">COL.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
                 <a class="negrita">MUNICIPIO DE </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }} </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}, </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->estado) }}, </a>
                 <a class="negrita">C.P.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a>
                 <b>SEXO:</b>
@@ -336,7 +339,8 @@
                 <a>con </a><b>DOMICILIO</b> en
                 <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}, </a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }} </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}, </a>
+                <a class="negrita">{{ strtoupper($datosContrato[0]->estado) }},</a>
                 <a class="negrita">C.P.</a>
                 <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a>
                 <b>SEXO:</b>

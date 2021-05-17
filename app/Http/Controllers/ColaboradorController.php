@@ -14,8 +14,8 @@ class ColaboradorController extends Controller
     public function createPDF()
     {
 
-        $datosContrato = Colaborador::where('no_colaborador', '10479')->get();
-        $infoColaborador = DB::table('infocolaborador')->where('no_colaborador', '10479')->get();
+        $datosContrato = Colaborador::where('no_colaborador', '147612')->get();
+        $infoColaborador = DB::table('infocolaborador')->where('no_colaborador', '147612')->get();
 
         $fecha_inicio_dia = Carbon::parse($datosContrato[0]->fecha_ingreso)->isoFormat('D');
         $fecha_inicio_mes = Carbon::parse($datosContrato[0]->fecha_ingreso)->isoFormat('MMMM');
@@ -34,10 +34,10 @@ class ColaboradorController extends Controller
 
         $sueldo = '6,000.00';
         $sueldoLetra = 'Seis Mil Pesos';
-        $descripcionPuesto = 'Operar la máquina asignada con eficiencia, Asegurar la calidad del producto de acuerdo a especificaciones, Pesar material y poner etiqueta de lotificación (si se requiere), Mantener equipo y área de trabajo limpios, Reportar la producción del día, Realizar ajustes específicos en máquina, Llenar hojas de Control, Uso y manejo de escantillones. Respetar las reglas de seguridad y utilizar el equipo de protección personal para el manejo seguro de explosivos.';
+        $descripcionPuesto = 'Gestionar que las accion es preventivas ante Sars-cov 2 e lleven a cabo, Funcion como monitora ante la contingencia, Reportar las actividades diarias de consultas, acciones preventivas, de diagnostico, laboratorio y suministro de mdicamentos o vacunas,m para conocimiento de su jefe inmediato. Administracion de los insumos asi como su control ( citas, medicamentos/material de curaciones). Apoyar para el cumplimiento de la norma 030-STPS. Tomar y registrar datos generales y signos vitales del personal, preparandolos para consulta del medico tratante. Seguimiento y cumplimiento a los programas ya implementados en el area de salud. Mantener limpio y esterilizado el material y equipo. REalizar a los pacientes toma de muestras, estudios, examenes clinicos, conforme a las indicaciones del medico tratante. participar en la elaboracion de informes, confrme a los procedimientos establecidos para tal efecto.';
         //return response()->json(compact("datosContrato"));
         $pdf = PDF::loadView(
-            'PDF/contrato_operativo_indeterminado',
+            'PDF/contrato_administrativo',
             compact(
                 "datosContrato",
                 'infoColaborador',
