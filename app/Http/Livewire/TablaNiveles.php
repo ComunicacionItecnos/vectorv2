@@ -71,7 +71,9 @@ class TablaNiveles extends Component
     }
     public function eliminar()
     {
-        Nivel::destroy($this->nivel_id);
+        DB::transaction(function () {
+            Nivel::destroy($this->nivel_id);
+        });
 
         $this->flash('success', 'Eliminado correctamente', [
             'position' =>  'top-end',
@@ -104,9 +106,11 @@ class TablaNiveles extends Component
 
             $nombre_nivel_c = ucwords(strtolower($this->nombre_nivel));
 
-            Nivel::updateOrInsert([
-                'nombre_nivel' => $nombre_nivel_c
-            ]);
+            DB::transaction(function () use ($nombre_nivel_c) {
+                Nivel::updateOrInsert([
+                    'nombre_nivel' => $nombre_nivel_c
+                ]);
+            });
 
             $this->flash('success', $nombre_nivel_c . ' fue registrado correctamente', [
                 'position' =>  'top-end',
@@ -155,10 +159,12 @@ class TablaNiveles extends Component
 
             $nombre_nivel_c = ucwords(strtolower($this->nombre_nivel));
 
-            Nivel::where('id', $this->nivel_id)
-                ->update([
-                    'nombre_nivel' => $nombre_nivel_c,
-                ]);
+            DB::transaction(function () use ($nombre_nivel_c) {
+                Nivel::where('id', $this->nivel_id)
+                    ->update([
+                        'nombre_nivel' => $nombre_nivel_c,
+                    ]);
+            });
 
             $this->flash('success', 'Actualizado correctamente', [
                 'position' =>  'top-end',
@@ -175,7 +181,6 @@ class TablaNiveles extends Component
             $this->nombre_nivel = null;
 
             return redirect()->route("tabla-niveles");
-            
         } catch (Exception $ex) {
             $this->flash('error', 'Ha ocurrido un error!!', [
                 'position' =>  'top-end',
@@ -190,7 +195,8 @@ class TablaNiveles extends Component
         }
     }
 
-    public function setNull(){
+    public function setNull()
+    {
         $this->confirmNivelAdd = false;
         $this->confirmNivelEdit = false;
         $this->nombre_nivel = '';
