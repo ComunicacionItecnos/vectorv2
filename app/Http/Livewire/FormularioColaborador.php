@@ -252,7 +252,7 @@ class FormularioColaborador extends Component
 
             $foto_ruta = $this->foto->store('images', 'public');
 
-            DB::transaction(function () {
+            DB::transaction(function () use($r_f,$foto_ruta){
 
 
                 // ? Formato de palabras
