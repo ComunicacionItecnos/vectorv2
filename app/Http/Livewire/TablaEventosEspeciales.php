@@ -71,7 +71,9 @@ class TablaEventosEspeciales extends Component
     }
     public function eliminar()
     {
-        Eventos_especiales::destroy($this->evento_id);
+        DB::transaction(function () {
+            Eventos_especiales::destroy($this->evento_id);
+        });
 
         $this->flash('success', 'Eliminado correctamente', [
             'position' =>  'top-end',
@@ -104,9 +106,11 @@ class TablaEventosEspeciales extends Component
 
             $nombre_evento_c = ucwords(strtolower($this->nombre_evento));
 
-            Eventos_especiales::updateOrInsert([
-                'nombre_evento' => $nombre_evento_c
-            ]);
+            DB::transaction(function () use ($nombre_evento_c) {
+                Eventos_especiales::updateOrInsert([
+                    'nombre_evento' => $nombre_evento_c
+                ]);
+            });
 
             $this->flash('success', $this->nombre_evento . ' fue registrada correctamente', [
                 'position' =>  'top-end',
@@ -155,10 +159,12 @@ class TablaEventosEspeciales extends Component
 
             $nombre_evento_c = ucwords(strtolower($this->nombre_evento));
 
-            Eventos_especiales::where('id', $this->evento_id)
-                ->update([
-                    'nombre_evento' => $nombre_evento_c,
-                ]);
+            DB::transaction(function () use ($nombre_evento_c) {
+                Eventos_especiales::where('id', $this->evento_id)
+                    ->update([
+                        'nombre_evento' => $nombre_evento_c,
+                    ]);
+            });
 
             $this->flash('success', 'Actualizado correctamente', [
                 'position' =>  'top-end',
@@ -175,7 +181,6 @@ class TablaEventosEspeciales extends Component
             $this->nombre_evento = null;
 
             return redirect()->route("tabla-eventos-especiales");
-            
         } catch (Exception $ex) {
             $this->flash('error', 'Ha ocurrido un error!!', [
                 'position' =>  'top-end',
@@ -190,7 +195,8 @@ class TablaEventosEspeciales extends Component
         }
     }
 
-    public function setNull(){
+    public function setNull()
+    {
         $this->confirmEventoAdd = false;
         $this->confirmEventoEdit = false;
         $this->nombre_evento = '';
