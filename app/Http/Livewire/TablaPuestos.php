@@ -76,7 +76,9 @@ class TablaPuestos extends Component
     }
     public function eliminar()
     {
-        Puesto::destroy($this->puesto_id);
+        DB::transaction(function () {
+            Puesto::destroy($this->puesto_id);
+        });
 
         $this->flash('success', 'Eliminado correctamente', [
             'position' =>  'top-end',
@@ -97,11 +99,11 @@ class TablaPuestos extends Component
 
         return view('livewire.tabla-puestos', [
             'puestos' => Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
-            ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.id AS nivel_id', 'nivel.nombre_nivel')
-            ->where('nombre_nivel' , 'LIKE', "%{$this->search}%")
-            ->OrWhere('especialidad_puesto' , 'LIKE', "%{$this->search}%")
-            ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
-            ->paginate($this->perPage),
+                ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.id AS nivel_id', 'nivel.nombre_nivel')
+                ->where('nombre_nivel', 'LIKE', "%{$this->search}%")
+                ->OrWhere('especialidad_puesto', 'LIKE', "%{$this->search}%")
+                ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                ->paginate($this->perPage),
 
             'niveles' => Nivel::All(),
         ]);
@@ -115,10 +117,12 @@ class TablaPuestos extends Component
 
             $especialidad_puesto_c = ucwords(strtolower($this->especialidad_puesto));
 
-            Puesto::updateOrInsert([
-                'nivel_id' => $this->nivel_id,
-                'especialidad_puesto' => $especialidad_puesto_c
-            ]);
+            DB::transaction(function () use ($especialidad_puesto_c) {
+                Puesto::updateOrInsert([
+                    'nivel_id' => $this->nivel_id,
+                    'especialidad_puesto' => $especialidad_puesto_c
+                ]);
+            });
 
             $this->flash('success', $especialidad_puesto_c . ' fue registrado correctamente', [
                 'position' =>  'top-end',
@@ -169,11 +173,13 @@ class TablaPuestos extends Component
 
             $especialidad_puesto_c = ucwords(strtolower($this->especialidad_puesto));
 
-            Puesto::where('id', $this->puesto_id)
-                ->update([
-                    'nivel_id' => $this->nivel_id,
-                    'especialidad_puesto' => $especialidad_puesto_c,
-                ]);
+            DB::transaction(function () use ($especialidad_puesto_c) {
+                Puesto::where('id', $this->puesto_id)
+                    ->update([
+                        'nivel_id' => $this->nivel_id,
+                        'especialidad_puesto' => $especialidad_puesto_c,
+                    ]);
+            });
 
             $this->flash('success', 'Actualizado correctamente', [
                 'position' =>  'top-end',
@@ -191,7 +197,6 @@ class TablaPuestos extends Component
             $this->especialidad_puesto = null;
 
             return redirect()->route("tabla-puestos");
-            
         } catch (Exception $ex) {
             $this->flash('error', 'Ha ocurrido un error!!', [
                 'position' =>  'top-end',
@@ -206,7 +211,8 @@ class TablaPuestos extends Component
         }
     }
 
-    public function setNull(){
+    public function setNull()
+    {
         $this->confirmPuestoAdd = false;
         $this->confirmPuestoEdit = false;
         $this->nivel_id = null;
