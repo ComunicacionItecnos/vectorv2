@@ -79,7 +79,10 @@ class TablaClavesRadio extends Component
     }
     public function eliminar()
     {
-        Clave_radio::destroy($this->claveRadio_id);
+        DB::transaction(function () {
+            Clave_radio::destroy($this->claveRadio_id);
+        });
+        
 
         $this->flash('success', 'Eliminada correctamente', [
             'position' =>  'top-end',
@@ -109,13 +112,17 @@ class TablaClavesRadio extends Component
         $this->validate();
 
         try {
-            $nombreClaveRadio_c = ucwords(strtolower($this->nombreClaveRadio));
 
-            Clave_radio::updateOrInsert([
-                'clave' => $nombreClaveRadio_c,
-                'compartida' => $this->compartida,
-                'disponibilidad' => $this->disponibilidad,
-            ]);
+            $nombreClaveRadio_c = ucwords(strtolower($this->nombreClaveRadio));
+            DB::transaction(function () use($nombreClaveRadio_c){
+                
+
+                Clave_radio::updateOrInsert([
+                    'clave' => $nombreClaveRadio_c,
+                    'compartida' => $this->compartida,
+                    'disponibilidad' => $this->disponibilidad,
+                ]);
+            });
 
             $this->flash('success', 'La clave: ' . $nombreClaveRadio_c . ' fue registrada correctamente', [
                 'position' =>  'top-end',
@@ -161,19 +168,21 @@ class TablaClavesRadio extends Component
 
     public function guardar()
     {
-
         $this->validate();
 
         try {
 
-            $nombreClaveRadio_c = ucwords(strtolower($this->nombreClaveRadio));
+            DB::transaction(function () {
 
-            Clave_radio::where('id', $this->claveRadio_id)
-                ->update([
-                    'clave' => $nombreClaveRadio_c,
-                    'compartida' => $this->compartida,
-                    'disponibilidad' => $this->disponibilidad,
-                ]);
+                $nombreClaveRadio_c = ucwords(strtolower($this->nombreClaveRadio));
+
+                Clave_radio::where('id', $this->claveRadio_id)
+                    ->update([
+                        'clave' => $nombreClaveRadio_c,
+                        'compartida' => $this->compartida,
+                        'disponibilidad' => $this->disponibilidad,
+                    ]);
+            });
 
             $this->flash('success', 'Actualizada correctamente', [
                 'position' =>  'top-end',
@@ -206,7 +215,8 @@ class TablaClavesRadio extends Component
         }
     }
 
-    public function setNull(){
+    public function setNull()
+    {
         $this->confirmClaveRadioAdd = false;
         $this->confirmClaveRadioEdit = false;
         $this->nombreClaveRadio = '';
