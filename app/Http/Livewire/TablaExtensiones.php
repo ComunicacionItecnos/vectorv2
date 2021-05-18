@@ -71,7 +71,9 @@ class TablaExtensiones extends Component
     }
     public function eliminar()
     {
-        Extension::destroy($this->extension_id);
+        DB::transaction(function () {
+            Extension::destroy($this->extension_id);
+        });
 
         $this->flash('success', 'Eliminada correctamente', [
             'position' =>  'top-end',
@@ -101,9 +103,12 @@ class TablaExtensiones extends Component
         $this->validate();
 
         try {
-            Extension::updateOrInsert([
-                'numero_extension' => $this->numero_extension
-            ]);
+
+            DB::transaction(function () {
+                Extension::updateOrInsert([
+                    'numero_extension' => $this->numero_extension
+                ]);
+            });
 
             $this->flash('success', $this->numero_extension . ' fue registrada correctamente', [
                 'position' =>  'top-end',
@@ -150,10 +155,12 @@ class TablaExtensiones extends Component
         $this->validate();
 
         try {
-            Extension::where('id', $this->extension_id)
-                ->update([
-                    'numero_extension' => $this->numero_extension,
-                ]);
+            DB::transaction(function () {
+                Extension::where('id', $this->extension_id)
+                    ->update([
+                        'numero_extension' => $this->numero_extension,
+                    ]);
+            });
 
             $this->flash('success', 'Actualizada correctamente', [
                 'position' =>  'top-end',
@@ -170,7 +177,6 @@ class TablaExtensiones extends Component
             $this->numero_extension = null;
 
             return redirect()->route("tabla-extensiones");
-            
         } catch (Exception $ex) {
             $this->flash('error', 'Ha ocurrido un error!!', [
                 'position' =>  'top-end',
@@ -185,7 +191,8 @@ class TablaExtensiones extends Component
         }
     }
 
-    public function setNull(){
+    public function setNull()
+    {
         $this->confirmExtensionAdd = false;
         $this->confirmExtensionEdit = false;
         $this->numero_extension = '';

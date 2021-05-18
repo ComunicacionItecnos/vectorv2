@@ -71,7 +71,10 @@ class TablaArea extends Component
     }
     public function eliminar()
     {
-        Area::destroy($this->area_id);
+        DB::transaction(function () {
+            Area::destroy($this->area_id);
+        });
+
 
         $this->flash('success', 'Eliminado correctamente', [
             'position' =>  'top-end',
@@ -102,24 +105,27 @@ class TablaArea extends Component
 
         try {
 
-            $nombre_area_c = ucwords(strtolower($this->nombre_area));
+            DB::transaction(function () {
 
-            Area::updateOrInsert([
-                'nombre_area' => $nombre_area_c
-            ]);
+                $nombre_area_c = ucwords(strtolower($this->nombre_area));
 
-            $this->flash('success', $nombre_area_c . ' fue registrada correctamente', [
-                'position' =>  'top-end',
-                'timer' =>  3000,
-                'toast' =>  true,
-                'text' =>  '',
-                'confirmButtonText' =>  'Ok',
-                'cancelButtonText' =>  'Cancel',
-                'showCancelButton' =>  false,
-                'showConfirmButton' =>  false,
-            ]);
+                Area::updateOrInsert([
+                    'nombre_area' => $nombre_area_c
+                ]);
 
-            $this->nombre_area = null;
+                $this->flash('success', $nombre_area_c . ' fue registrada correctamente', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+
+                $this->nombre_area = null;
+            });
 
             return redirect()->route("tabla-area");
         } catch (Exception $ex) {
@@ -153,26 +159,29 @@ class TablaArea extends Component
 
         try {
 
-            $nombre_area_c = ucwords(strtolower($this->nombre_area));
+            DB::transaction(function () {
 
-            Area::where('id', $this->area_id)
-                ->update([
-                    'nombre_area' => $nombre_area_c,
+                $nombre_area_c = ucwords(strtolower($this->nombre_area));
+
+                Area::where('id', $this->area_id)
+                    ->update([
+                        'nombre_area' => $nombre_area_c,
+                    ]);
+
+                $this->flash('success', 'Actualizado correctamente', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
                 ]);
 
-            $this->flash('success', 'Actualizado correctamente', [
-                'position' =>  'top-end',
-                'timer' =>  3000,
-                'toast' =>  true,
-                'text' =>  '',
-                'confirmButtonText' =>  'Ok',
-                'cancelButtonText' =>  'Cancel',
-                'showCancelButton' =>  false,
-                'showConfirmButton' =>  false,
-            ]);
-
-            $this->area_id = null;
-            $this->nombre_area = null;
+                $this->area_id = null;
+                $this->nombre_area = null;
+            });
 
             return redirect()->route("tabla-area");
         } catch (Exception $ex) {
