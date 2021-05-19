@@ -24,6 +24,9 @@ Route::middleware('guest')->get('/colaborador', function () {
     return view('comprobarColBD');
 });
 
+Route::middleware('guest')->get('/descarga-alta-imss', function () {
+    return view('alta-IMSS-guest');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
