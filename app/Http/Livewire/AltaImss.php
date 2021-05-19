@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Facades\Storage;
 
 class AltaImss extends Component
 {
@@ -18,6 +19,6 @@ class AltaImss extends Component
     }
 
     public function descargarAlta(){
-        dd($this->no_colaborador);
+        return Storage::disk('public')->download('/altas_imss/' . $this->no_colaborador . '.pdf');
     }
 }
