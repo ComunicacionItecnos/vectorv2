@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\EdicionColaborador;
+use App\Http\Livewire\AltaImss;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Livewire\FormularioContrato;
 
@@ -20,6 +21,9 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::middleware('guest')->get('/colaborador', function () {
+    return view('comprobarColBD');
+});
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
@@ -68,3 +72,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrati
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/contrato/{no_colaborador}', FormularioContrato::class);
+
+Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);

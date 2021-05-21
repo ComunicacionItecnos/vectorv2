@@ -752,7 +752,7 @@ class EdicionColaborador extends Component
                     }
                 }
             });
-            $this->flash('success', 'Se actualizo correctamente la informacion', [
+            $this->flash('success', 'Se actualizó correctamente la información', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,
