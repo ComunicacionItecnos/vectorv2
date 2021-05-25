@@ -8,6 +8,6 @@ class Insignias extends Component
 {
     public function render()
     {
-        return view('livewire.insignias');
+        return view('livewire.insignias')->layout('layouts.app');
     }
 }

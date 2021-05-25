@@ -65,6 +65,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/puestos', 
     return view('tablaPuestos');
 })->name('tabla-puestos');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/insignias', function () {
+    return view('vista-insignias');
+})->name('insignias');
+
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);

@@ -135,6 +135,12 @@ class UserSeeder extends Seeder
             'password' => bcrypt('12345678'),
             'role_id' => '5',
         ]);
+        User::create([
+            'name' => 'Hilda Liz Alfaro Juantorena',
+            'email' => 'halfaroj@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '5',
+        ]);
 
         // ! Seguridad Patrimonial
         User::create([
