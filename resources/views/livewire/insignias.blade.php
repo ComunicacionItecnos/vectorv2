@@ -5,7 +5,7 @@
                 <div class="overflow-hidden shadow sm:rounded-md">
                     <div class="grid sm:grid-cols-4 sm:grid-rows-1 gap-2">
                         <div class="col-span-3 bg-red-300">
-                            <form wire:submit.prevent="asigna">
+                            <form wire:submit.prevent="asignacion">
                                 <div class="grid grid-rows-3 grid-cols-3 gap-2">
                                     <div class="row-span-1 col-span-1 col-start-1 row-start-1 bg-indigo-300 h-32">
                                         <div
@@ -88,7 +88,7 @@
                                     <div class="row-span-1 col-span-3 row-start-3 bg-indigo-300 h-32">
                                         <div
                                             class="px-4 py-3 text-right sm:px-6 flex justify-center sm:justify-end">
-                                            <button wire:click="update" type="submit"
+                                            <button wire:click="asignacion" type="submit"
                                                 class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                                 Asignar insignia
                                             </button>

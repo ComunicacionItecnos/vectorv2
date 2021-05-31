@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Exception;
 use App\Models\Area;
 use App\Models\Puesto;
 use Livewire\Component;
@@ -31,7 +32,8 @@ class Insignias extends Component
     public $tipo_insignia, $mensaje;
 
 
-    public function mount($no_colaborador){
+    public function mount($no_colaborador)
+    {
 
         $this->colaborador = Colaborador::find($no_colaborador);
         $this->col_premiado = $no_colaborador;
@@ -67,7 +69,35 @@ class Insignias extends Component
         ));
     }
 
-        public function updatedcol_premiado($col_premiado){
-        $this->puesto = Colaborador::select('puesto_id')->where('no_colaborador',$col_premiado)->get();
+    public function asignacion()
+    {
+        try {
+
+            
+
+            $this->flash('success', 'Se asignó correctamente la insignia', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+            return redirect()->to('/insignias/' . $this->colaborador->no_colaborador);
+        } catch (Exception $ex) {
+
+            $this->alert('error', 'Error al asignar', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        }
     }
 }
