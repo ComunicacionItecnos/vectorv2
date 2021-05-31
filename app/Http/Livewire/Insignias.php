@@ -28,6 +28,8 @@ class Insignias extends Component
     public $col_premiado, $foto_premiado;
     public $area, $puesto;
 
+    public $tipo_insignia, $mensaje;
+
 
     public function mount($no_colaborador){
 
