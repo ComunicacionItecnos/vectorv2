@@ -5,6 +5,7 @@ use App\Http\Livewire\EdicionColaborador;
 use App\Http\Livewire\AltaImss;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Livewire\FormularioContrato;
+use App\Http\Livewire\Insignias;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,10 +66,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/control-center/puestos', 
     return view('tablaPuestos');
 })->name('tabla-puestos');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/insignias', function () {
-    return view('vista-insignias');
-})->name('insignias');
-
 
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
@@ -76,5 +73,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrati
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/contrato/{no_colaborador}', FormularioContrato::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/insignias/{no_colaborador}', Insignias::class);
 
 Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);

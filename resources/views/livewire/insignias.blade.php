@@ -10,19 +10,19 @@
                                     <div class="row-span-1 col-span-1 col-start-1 row-start-1 bg-indigo-300 h-32">
                                         <div
                                             class="mx-auto mt-2 rounded opacity-100 flex-grow-0 flex-shrink-0 w-24 h-28 border-2 shadow-sm">
-                                            @if(!is_null($foto_premiado))
-                                            @if (file_exists(public_path('storage/' . $foto_premiado[0]->foto)))
+                                            {{-- @if(!is_null($foto_premiado[0])) --}}
+                                            @if (file_exists(public_path('storage/' . $colaborador->foto)))
                                             <img class="w-24 rounded shadow h-28"
-                                                src="{{ asset('storage') . '/' . $foto_premiado[0]->foto }}" alt="">
+                                                src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
                                             @else
                                             <img class="w-24 rounded shadow h-28"
                                                 src="{{ asset('images/user_toolkit.jpg') }}" alt="">
 
                                             @endif
-                                            @else
+                                            {{-- @else
                                             <img class="w-24 rounded shadow h-28"
                                                 src="{{ asset('images/user_toolkit.jpg') }}" alt="">
-                                            @endif
+                                            @endif --}}
                                         </div>
                                     </div>
                                     <div class="row-span-1 col-span-1 col-start-2 row-start-1 bg-purple-300 h-32 pt-5">

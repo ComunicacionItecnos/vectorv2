@@ -20,7 +20,7 @@ class Insignias extends Component
     ];
 
     public $search, $perPage = '50';
-    public $no_colaborador;
+    public $no_colaborador, $colaborador;
 
     public $sortBy = 'no_colaborador';
     public $sortAsc = true;
@@ -29,10 +29,12 @@ class Insignias extends Component
     public $area, $puesto;
 
 
-    /* public function mount(){
-        $this->puesto = Colaborador::select('puesto_id')->where('no_colaborador', '147190')->get();
-        dd($this->puesto);
-    } */
+    public function mount($no_colaborador){
+
+        $this->colaborador = Colaborador::find($no_colaborador);
+        $this->col_premiado = $no_colaborador;
+        /* dd($this->foto_premiado); */
+    }
 
     public function render()
     {

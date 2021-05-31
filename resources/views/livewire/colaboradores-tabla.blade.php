@@ -1101,8 +1101,8 @@
                     <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
 
                 </td>
-                <td class="px-6 py-3 whitespace-nowrap">
-                    <div class="w-auto ml-6 transform hover:text-yellow-500 hover:scale-130">
+                <td class="flex justify-center items-center pt-12">
+                    <div class="w-4 pb-1 mr-6 transform hover:text-yellow-500 hover:scale-130">
                         <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6"
                                 stroke="currentColor">
@@ -1113,8 +1113,16 @@
                             </svg>
                         </a>
                     </div>
+                    <div class="w-4 pb-2 mr-6 transform hover:text-indigo-500 hover:scale-130">
+                        <a href="{{ url('/insignias/' . $colaborador->no_colaborador)}}">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+                            </svg>
+                        </a>
+                    </div>
                 </td>
-
             </tr>
             @else
             @endif
