@@ -2,8 +2,12 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Area;
+use App\Models\Puesto;
 use Livewire\Component;
+use App\Models\Colaborador;
 use Livewire\WithPagination;
+use App\Models\Tipo_colaborador;
 use Illuminate\Support\Facades\DB;
 
 class Insignias extends Component
@@ -21,9 +25,29 @@ class Insignias extends Component
     public $sortBy = 'no_colaborador';
     public $sortAsc = true;
 
+    public $col_premiado, $foto_premiado;
+    public $area, $puesto;
+
+
+    /* public function mount(){
+        $this->puesto = Colaborador::select('puesto_id')->where('no_colaborador', '147190')->get();
+        dd($this->puesto);
+    } */
 
     public function render()
     {
+
+        $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
+        $puestos = Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
+            ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
+            ->get();
+        $tiposColaborador = Tipo_colaborador::all();
+
+        $premiados = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')
+            ->orderBy('ap_paterno', 'ASC')
+            ->get();
+
+
         return view('livewire.insignias', [
             'colaboradores' => DB::table('infocolaborador')->where('no_colaborador', 'LIKE', "%{$this->search}%")
                 ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
@@ -31,14 +55,15 @@ class Insignias extends Component
                 ->orWhere('area', 'LIKE', "%{$this->search}%")
                 ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
                 ->paginate($this->perPage)
-        ]);
+        ], compact(
+            'premiados',
+            'areas',
+            'puestos',
+            'tiposColaborador'
+        ));
     }
 
-    public function sortBy($field)
-    {
-        if ($field == $this->sortBy) {
-            $this->sortAsc = !$this->sortAsc;
-        }
-        $this->sortBy = $field;
+        public function updatedcol_premiado($col_premiado){
+        $this->puesto = Colaborador::select('puesto_id')->where('no_colaborador',$col_premiado)->get();
     }
 }

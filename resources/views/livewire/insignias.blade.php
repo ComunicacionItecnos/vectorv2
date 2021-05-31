@@ -6,7 +6,72 @@
                     <div class="grid sm:grid-cols-4 sm:grid-rows-1 gap-2">
                         <div class="col-span-3 bg-red-300">
                             <form wire:submit.prevent="asigna">
-                                Izquierda
+                                <div class="grid grid-rows-3 grid-cols-3 gap-2">
+                                    <div class="row-span-1 col-span-1 col-start-1 row-start-1 bg-indigo-300 h-32">
+                                        <div
+                                            class="mx-auto mt-2 rounded opacity-100 flex-grow-0 flex-shrink-0 w-24 h-28 border-2 shadow-sm">
+                                            @if(!is_null($foto_premiado))
+                                            @if (file_exists(public_path('storage/' . $foto_premiado[0]->foto)))
+                                            <img class="w-24 rounded shadow h-28"
+                                                src="{{ asset('storage') . '/' . $foto_premiado[0]->foto }}" alt="">
+                                            @else
+                                            <img class="w-24 rounded shadow h-28"
+                                                src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+
+                                            @endif
+                                            @else
+                                            <img class="w-24 rounded shadow h-28"
+                                                src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row-span-1 col-span-1 col-start-2 row-start-1 bg-purple-300 h-32 pt-5">
+                                        <label for="inputNoColaborador"
+                                            class="block text-sm font-black text-gray-700">No.
+                                            Col.</label>
+                                        <input type="text" wire:model="col_premiado" name="col_premiado"
+                                            id="inputNoColaborador" disabled value="{{ old('col_premiado') }}"
+                                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        @error('col_premiado')
+                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                        @enderror
+                                    </div>
+                                    <div class="row-span-1 col-span-1 col-start-3 row-start-1 bg-yellow-300 h-32 pt-5">
+                                        <label for="selectSupervisor"
+                                            class="block text-sm font-black text-gray-700">Nombre del
+                                            colaborador</label>
+                                        <select id="selectSupervisor" wire:model="col_premiado" name="supervisor"
+                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            <option value=""></option>
+                                            <option value="1">Ninguno</option>
+                                            @if (isset($premiados))
+                                            @foreach ($premiados as $premiado)
+                                            <option value="{{ $premiado->no_colaborador }}">
+                                                {{ $premiado->ap_paterno }}
+                                                {{ $premiado->ap_materno }}
+                                                {{ $premiado->nombre_1 }}
+                                                {{ $premiado->nombre_2 }}
+                                            </option>
+
+                                            @endforeach
+                                            @endif
+
+                                        </select>
+                                        @error('jefe_directo')
+                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                        @enderror
+                                    </div>
+                                    <div class="row-span-1 col-span-3 row-start-2 bg-green-300 h-32">
+                                        2
+                                    </div>
+                                    <div class="row-span-1 col-span-3 row-start-3 bg-indigo-300 h-32">
+                                        3
+                                    </div>
+                                </div>
                             </form>
                         </div>
                         <div class="col-span-1 flex flex-col h-screen">
