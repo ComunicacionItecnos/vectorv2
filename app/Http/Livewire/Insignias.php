@@ -33,16 +33,22 @@ class Insignias extends Component
 
     public $tipo_insignia, $mensaje, $fecha_asig;
 
+    public $yearActual, $mesActual, $diaActual, $fechaActual;
+
+    public $banderaIntentos, $banderaPremiado;
 
     public function mount($no_colaborador)
     {
         $this->colaborador = Colaborador::find($no_colaborador);
         $this->col_premiado = $no_colaborador;
+        $this->yearActual = Carbon::today()->isoFormat('YYYY');
+        $this->mesActual = Carbon::today()->isoFormat('MM');
+        $this->diaActual = Carbon::today()->isoFormat('DD');
+        $this->fechaActual = Carbon::today()->isoFormat('YYYY-MM-DD');
     }
 
     public function render()
     {
-
         $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
         $puestos = Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
             ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
@@ -53,19 +59,63 @@ class Insignias extends Component
             ->orderBy('ap_paterno', 'ASC')
             ->get();
 
-
-        return view('livewire.insignias', [
-            'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
-                ->paginate($this->perPage)
-        ], compact(
-            'premiados',
-            'areas',
-            'puestos',
-            'tiposColaborador'
-        ));
+        if (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-01-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-03-31') {
+            return view('livewire.insignias', [
+                'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-01-01', 'and', $this->yearActual . '-03-31')
+                    ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ], compact(
+                'premiados',
+                'areas',
+                'puestos',
+                'tiposColaborador'
+            ));
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-04-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-06-30') {
+            return view('livewire.insignias', [
+                'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-04-01', 'and', $this->yearActual . '-06-30')
+                    ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ], compact(
+                'premiados',
+                'areas',
+                'puestos',
+                'tiposColaborador'
+            ));
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-07-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-09-30') {
+            return view('livewire.insignias', [
+                'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-07-01', 'and', $this->yearActual . '-09-30')
+                    ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ], compact(
+                'premiados',
+                'areas',
+                'puestos',
+                'tiposColaborador'
+            ));
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-10-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-12-31') {
+            return view('livewire.insignias', [
+                'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-10-01', 'and', $this->yearActual . '-12-31')
+                    ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
+                    ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ], compact(
+                'premiados',
+                'areas',
+                'puestos',
+                'tiposColaborador'
+            ));
+        }
     }
 
     public function asignacion()
@@ -79,7 +129,7 @@ class Insignias extends Component
                     'colaborador_no_colaborador' => $this->col_premiado,
                     'insignia_id' => $this->tipo_insignia,
                     'fecha_asignacion' => $this->fecha_asig,
-                    'colaborador_asignador'=> auth()->user()->no_colaborador,
+                    'colaborador_asignador' => auth()->user()->no_colaborador,
                     'mensaje' => $this->mensaje
                 ]);
             });
@@ -95,7 +145,6 @@ class Insignias extends Component
                 'showConfirmButton' =>  false,
             ]);
             return redirect()->to('/insignias/' . $this->colaborador->no_colaborador);
-
         } catch (Exception $ex) {
 
             dd($ex);
@@ -111,5 +160,13 @@ class Insignias extends Component
                 'showConfirmButton' =>  false,
             ]);
         }
+    }
+
+    public function revisarIntentos()
+    {
+    }
+
+    public function revisarPremiado()
+    {
     }
 }
