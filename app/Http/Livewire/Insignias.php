@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use Exception;
+use Carbon\Carbon;
+use App\Models\Colaborador_insignia;
 use App\Models\Area;
 use App\Models\Puesto;
 use Livewire\Component;
@@ -23,21 +25,19 @@ class Insignias extends Component
     public $search, $perPage = '50';
     public $no_colaborador, $colaborador;
 
-    public $sortBy = 'no_colaborador';
-    public $sortAsc = true;
+    public $sortBy = 'no_colaborador_premiado';
+    public $sortAsc = false;
 
     public $col_premiado, $foto_premiado;
     public $area, $puesto;
 
-    public $tipo_insignia, $mensaje;
+    public $tipo_insignia, $mensaje, $fecha_asig;
 
 
     public function mount($no_colaborador)
     {
-
         $this->colaborador = Colaborador::find($no_colaborador);
         $this->col_premiado = $no_colaborador;
-        /* dd($this->foto_premiado); */
     }
 
     public function render()
@@ -55,10 +55,9 @@ class Insignias extends Component
 
 
         return view('livewire.insignias', [
-            'colaboradores' => DB::table('infocolaborador')->where('no_colaborador', 'LIKE', "%{$this->search}%")
-                ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
-                ->orWhere('puesto', 'LIKE', "%{$this->search}%")
-                ->orWhere('area', 'LIKE', "%{$this->search}%")
+            'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
+                ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
+                ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
                 ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
                 ->paginate($this->perPage)
         ], compact(
@@ -73,7 +72,17 @@ class Insignias extends Component
     {
         try {
 
-            
+            $this->fecha_asig = Carbon::today()->isoFormat('YYYY-MM-DD');
+
+            DB::transaction(function () {
+                Colaborador_insignia::updateOrCreate([
+                    'colaborador_no_colaborador' => $this->col_premiado,
+                    'insignia_id' => $this->tipo_insignia,
+                    'fecha_asignacion' => $this->fecha_asig,
+                    'colaborador_asignador'=> auth()->user()->no_colaborador,
+                    'mensaje' => $this->mensaje
+                ]);
+            });
 
             $this->flash('success', 'Se asignó correctamente la insignia', [
                 'position' =>  'top-end',
@@ -86,7 +95,10 @@ class Insignias extends Component
                 'showConfirmButton' =>  false,
             ]);
             return redirect()->to('/insignias/' . $this->colaborador->no_colaborador);
+
         } catch (Exception $ex) {
+
+            dd($ex);
 
             $this->alert('error', 'Error al asignar', [
                 'position' =>  'top-end',

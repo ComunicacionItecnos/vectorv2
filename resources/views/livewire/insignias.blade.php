@@ -81,8 +81,8 @@
                                     </div>
                                     <div class="row-span-1 col-span-2 row-start-2 col-start-2 bg-green-300 h-32 pt-5">
                                         <label for="textAreaMensaje"
-                                            class="block text-sm font-black text-gray-700">Mensaje</label>
-                                        <textarea name="textAreaMensaje" wire:model.defer="mensaje"
+                                            class="block text-sm font-black text-gray-700">Mensaje de retroalimentación</label>
+                                        <textarea name="textAreaMensaje" wire:model="mensaje"
                                             class="overflow-y-auto resize-none p-4 w-full rounded-md"></textarea>
                                     </div>
                                     <div class="row-span-1 col-span-3 row-start-3 bg-indigo-300 h-32">
@@ -125,7 +125,7 @@
                                                     <div class="ml-4 whitespace-pre-line">
                                                         <div class="text-sm font-medium text-gray-900">
                                                             <span class="sm:hidden">
-                                                                {{ $colaborador->no_colaborador }}</span>
+                                                                {{ $colaborador->no_colaborador_premiado }}</span>
                                                             <span
                                                                 class="sm:inline-block sm:-mt-6">{{ $colaborador->nombre }}
                                                                 {{ $colaborador->ap_paterno }}</span>
