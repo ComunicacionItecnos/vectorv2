@@ -25,7 +25,7 @@ class Insignias extends Component
     public $search, $perPage = '50';
     public $no_colaborador, $colaborador;
 
-    public $sortBy = 'no_colaborador_premiado';
+    public $sortBy = 'id';
     public $sortAsc = false;
 
     public $col_premiado, $foto_premiado;
@@ -35,7 +35,22 @@ class Insignias extends Component
 
     public $yearActual, $mesActual, $diaActual, $fechaActual;
 
+    public $tInicialP1 = '-01-01', $tFinalP1 = '-03-31';
+    public $tInicialP2 = '-04-01', $tFinalP2 = '-06-30';
+    public $tInicialP3 = '-07-01', $tFinalP3 = '-09-30';
+    public $tInicialP4 = '-10-01', $tFinalP4 = '-12-31';
+
     public $banderaIntentos, $banderaPremiado;
+
+    public $intentoOro, $intentoPlata, $intentoBronce, $finalOro, $finalPlata, $finalBronce;
+
+    protected $rules = [
+        'no_colaborador' => 'required|digits_between:5,6',
+    ];
+
+    protected $messages = [
+        'no_colaborador.required' => 'El Número de colaborador no puede estar vacío',
+    ];
 
     public function mount($no_colaborador)
     {
@@ -59,7 +74,7 @@ class Insignias extends Component
             ->orderBy('ap_paterno', 'ASC')
             ->get();
 
-        if (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-01-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-03-31') {
+        if (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-01-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-03-31') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-01-01', 'and', $this->yearActual . '-03-31')
@@ -73,7 +88,7 @@ class Insignias extends Component
                 'puestos',
                 'tiposColaborador'
             ));
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-04-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-06-30') {
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-04-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-06-30') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-04-01', 'and', $this->yearActual . '-06-30')
@@ -87,7 +102,7 @@ class Insignias extends Component
                 'puestos',
                 'tiposColaborador'
             ));
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-07-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-09-30') {
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-07-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-09-30') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-07-01', 'and', $this->yearActual . '-09-30')
@@ -101,7 +116,7 @@ class Insignias extends Component
                 'puestos',
                 'tiposColaborador'
             ));
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= '2021-10-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= '2021-12-31') {
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-10-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-12-31') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-10-01', 'and', $this->yearActual . '-12-31')
@@ -119,6 +134,44 @@ class Insignias extends Component
     }
 
     public function asignacion()
+    {
+        $this->revisarIntentosYPremiados();
+
+        if ($this->banderaPremiado == false) {
+            $this->alert('error', 'Este colaborador ya ha sido premiado', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        } else {
+
+            if ($this->tipo_insignia == 1 && $this->finalOro >= 1) {
+                $this->insercionBD();
+            } elseif ($this->tipo_insignia == 2 && $this->finalPlata >= 1) {
+                $this->insercionBD();
+            } elseif ($this->tipo_insignia == 3 && $this->finalBronce >= 1) {
+                $this->insercionBD();
+            } else {
+                $this->alert('error', 'Agotaste tus intentos para asignar esta insignia', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+            }
+        }
+    }
+
+    public function insercionBD()
     {
         try {
 
@@ -162,11 +215,98 @@ class Insignias extends Component
         }
     }
 
-    public function revisarIntentos()
+    public function revisarIntentosYPremiados()
     {
+        if (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP1 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP1) {
+            $this->asignaIntentos();
+            $this->revisarIntentosPeriodo($this->tInicialP1, $this->tFinalP1);
+            $this->revisarPremiadoPeriodo($this->tInicialP1, $this->tFinalP1);
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP2 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP2) {
+            $this->asignaIntentos();
+            $this->revisarIntentosPeriodo($this->tInicialP2, $this->tFinalP2);
+            $this->revisarPremiadoPeriodo($this->tInicialP2, $this->tFinalP2);
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP3 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP3) {
+            $this->asignaIntentos();
+            $this->revisarIntentosPeriodo($this->tInicialP3, $this->tFinalP3);
+            $this->revisarPremiadoPeriodo($this->tInicialP3, $this->tFinalP3);
+        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP4 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP4) {
+            $this->asignaIntentos();
+            $this->revisarIntentosPeriodo($this->tInicialP4, $this->tFinalP4);
+            $this->revisarPremiadoPeriodo($this->tInicialP4, $this->tFinalP4);
+        }
     }
 
-    public function revisarPremiado()
+    public function revisarIntentosPeriodo($tIinicial, $tfinal)
     {
+        // ? Intentos Oro
+
+        $tmpOro = Colaborador_insignia::all()
+            ->where('insignia_id', 1)
+            ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
+            ->count();
+
+        $this->finalOro = $this->intentoOro - $tmpOro;
+
+        if ($this->finalOro <= 0) {
+            $this->finalOro = 0;
+        }
+
+        // ? Intentos Plata
+
+        $tmpPlata = Colaborador_insignia::all()
+            ->where('insignia_id', 2)
+            ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
+            ->count();
+
+        $this->finalPlata = $this->intentoPlata - $tmpPlata;
+
+        if ($this->finalPlata <= 0) {
+            $this->finalPlata = 0;
+        }
+
+        // ? Intentos Bronce
+
+        $tmpBronce = Colaborador_insignia::all()
+            ->where('insignia_id', 3)
+            ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
+            ->count();
+
+        $this->finalBronce = $this->intentoBronce - $tmpBronce;
+
+        if ($this->finalBronce <= 0) {
+            $this->finalBronce = 0;
+        }
+    }
+
+    public function asignaIntentos()
+    {
+
+        if (auth()->user()->no_colaborador == '143010') {
+            $this->intentoOro = 2;
+            $this->intentoPlata = 2;
+            $this->intentoBronce = 1;
+        } elseif (auth()->user()->no_colaborador == '135050') {
+            $this->intentoOro = 2;
+            $this->intentoPlata = 1;
+            $this->intentoBronce = 1;
+        } else {
+            $this->intentoOro = 1;
+            $this->intentoPlata = 1;
+            $this->intentoBronce = 1;
+        }
+    }
+
+    public function revisarPremiadoPeriodo($tIinicial, $tfinal)
+    {
+        $tmpPremiado = Colaborador_insignia::all()
+            ->where('colaborador_no_colaborador', $this->col_premiado)
+            ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
+            ->count();
+
+        if ($tmpPremiado == 0) {
+            $this->banderaPremiado = true;
+        } else {
+            $this->banderaPremiado = false;
+        }
     }
 }
