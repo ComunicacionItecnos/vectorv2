@@ -74,7 +74,7 @@ class Insignias extends Component
             ->orderBy('ap_paterno', 'ASC')
             ->get();
 
-        if (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-01-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-03-31') {
+        if ($this->fechaActual >= $this->yearActual . '-01-01' && $this->fechaActual <= $this->yearActual . '-03-31') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-01-01', 'and', $this->yearActual . '-03-31')
@@ -88,7 +88,7 @@ class Insignias extends Component
                 'puestos',
                 'tiposColaborador'
             ));
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-04-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-06-30') {
+        } elseif ($this->fechaActual >= $this->yearActual . '-04-01' && $this->fechaActual <= $this->yearActual . '-06-30') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-04-01', 'and', $this->yearActual . '-06-30')
@@ -102,7 +102,7 @@ class Insignias extends Component
                 'puestos',
                 'tiposColaborador'
             ));
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-07-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-09-30') {
+        } elseif ($this->fechaActual >= $this->yearActual . '-07-01' && $this->fechaActual <= $this->yearActual . '-09-30') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-07-01', 'and', $this->yearActual . '-09-30')
@@ -116,7 +116,7 @@ class Insignias extends Component
                 'puestos',
                 'tiposColaborador'
             ));
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . '-10-01' && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . '-12-31') {
+        } elseif ($this->fechaActual >= $this->yearActual . '-10-01' && $this->fechaActual <= $this->yearActual . '-12-31') {
             return view('livewire.insignias', [
                 'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
                     ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-10-01', 'and', $this->yearActual . '-12-31')
@@ -175,7 +175,7 @@ class Insignias extends Component
     {
         try {
 
-            $this->fecha_asig = Carbon::today()->isoFormat('YYYY-MM-DD');
+            $this->fecha_asig = $this->fechaActual;
 
             DB::transaction(function () {
                 Colaborador_insignia::updateOrCreate([
@@ -217,19 +217,19 @@ class Insignias extends Component
 
     public function revisarIntentosYPremiados()
     {
-        if (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP1 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP1) {
+        if ($this->fechaActual >= $this->yearActual . $this->tInicialP1 && $this->fechaActual <= $this->yearActual . $this->tFinalP1) {
             $this->asignaIntentos();
             $this->revisarIntentosPeriodo($this->tInicialP1, $this->tFinalP1);
             $this->revisarPremiadoPeriodo($this->tInicialP1, $this->tFinalP1);
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP2 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP2) {
+        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
             $this->asignaIntentos();
             $this->revisarIntentosPeriodo($this->tInicialP2, $this->tFinalP2);
             $this->revisarPremiadoPeriodo($this->tInicialP2, $this->tFinalP2);
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP3 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP3) {
+        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP3 && $this->fechaActual <= $this->yearActual . $this->tFinalP3) {
             $this->asignaIntentos();
             $this->revisarIntentosPeriodo($this->tInicialP3, $this->tFinalP3);
             $this->revisarPremiadoPeriodo($this->tInicialP3, $this->tFinalP3);
-        } elseif (Carbon::today()->isoFormat('YYYY-MM-DD') >= $this->yearActual . $this->tInicialP4 && Carbon::today()->isoFormat('YYYY-MM-DD') <= $this->yearActual . $this->tFinalP4) {
+        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP4 && $this->fechaActual <= $this->yearActual . $this->tFinalP4) {
             $this->asignaIntentos();
             $this->revisarIntentosPeriodo($this->tInicialP4, $this->tFinalP4);
             $this->revisarPremiadoPeriodo($this->tInicialP4, $this->tFinalP4);
