@@ -79,11 +79,16 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-2 row-start-2 col-start-2 bg-green-300 h-32 pt-5">
+                                    <div class="row-span-1 col-span-2 row-start-2 col-start-2 bg-green-300 h-32 pt-1">
                                         <label for="textAreaMensaje"
                                             class="block text-sm font-black text-gray-700">Mensaje de retroalimentación</label>
-                                        <textarea name="textAreaMensaje" wire:model="mensaje"
+                                        <textarea id="textAreaMensaje" name="mensaje" wire:model="mensaje"
                                             class="overflow-y-auto resize-none p-4 w-full rounded-md"></textarea>
+                                            @error('mensaje')
+                                            <p class="mb-1 text-xs text-red-600 italic">
+                                                {{ $message }}
+                                            </p>
+                                            @enderror
                                     </div>
                                     <div class="row-span-1 col-span-3 row-start-3 bg-indigo-300 h-32">
                                         <div

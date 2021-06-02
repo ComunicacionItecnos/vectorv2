@@ -45,11 +45,13 @@ class Insignias extends Component
     public $intentoOro, $intentoPlata, $intentoBronce, $finalOro, $finalPlata, $finalBronce;
 
     protected $rules = [
-        'no_colaborador' => 'required|digits_between:5,6',
+        'tipo_insignia' => 'required',
+        'mensaje' => 'required'
     ];
 
     protected $messages = [
-        'no_colaborador.required' => 'El Número de colaborador no puede estar vacío',
+        'tipo_insignia.required' => 'Es necesario que elijas una insignia',
+        'mensaje.required' => 'Debes agregar un mensaje de retroalimentación'
     ];
 
     public function mount($no_colaborador)
@@ -135,6 +137,7 @@ class Insignias extends Component
 
     public function asignacion()
     {
+        $this->validate();
         $this->revisarIntentosYPremiados();
 
         if ($this->banderaPremiado == false) {
