@@ -4,10 +4,10 @@
             <div class="mt-5 md:mt-0 md:col-span-2">
                 <div class="overflow-hidden shadow sm:rounded-md">
                     <div class="grid sm:grid-cols-4 sm:grid-rows-1 gap-2">
-                        <div class="col-span-3 bg-red-300">
+                        <div class="col-span-3">
                             <form wire:submit.prevent="asignacion">
-                                <div class="grid grid-rows-3 grid-cols-3 gap-2">
-                                    <div class="row-span-1 col-span-1 col-start-1 row-start-1 bg-indigo-300 h-32">
+                                <div class="grid grid-rows-3 grid-cols-3 p-2 gap-2">
+                                    <div class="row-span-1 col-span-1 col-start-1 row-start-1 h-32">
                                         <div
                                             class="mx-auto mt-2 rounded opacity-100 flex-grow-0 flex-shrink-0 w-24 h-28 border-2 shadow-sm">
 
@@ -22,7 +22,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="row-span-1 col-span-1 col-start-2 row-start-1 bg-purple-300 h-32 pt-5">
+                                    <div class="row-span-1 col-span-1 col-start-2 row-start-1 h-32 pt-5">
                                         <label for="inputNoColaborador"
                                             class="block text-sm font-black text-gray-700">No.
                                             Col.</label>
@@ -35,7 +35,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-1 col-start-3 row-start-1 bg-yellow-300 h-32 pt-5">
+                                    <div class="row-span-1 col-span-1 col-start-3 row-start-1  h-32 pt-5">
                                         <label for="selectSupervisor"
                                             class="block text-sm font-black text-gray-700">Nombre del
                                             colaborador</label>
@@ -63,15 +63,15 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-1 row-start-2 col-start-1 bg-green-300 h-32 pt-5">
+                                    <div class="row-span-1 col-span-1 row-start-2 col-start-1 h-32 pt-5">
                                         <label for="inputInsignia"
                                             class="block text-sm font-black text-gray-700">Seleccionar insignia</label>
                                         <select id="inputInsignia" wire:model="tipo_insignia" name="tipo_insignia"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                             <option value=""></option>
-                                            <option value="1">Oro</option>
-                                            <option value="2">Plata</option>
-                                            <option value="3">Bronce</option>
+                                            <option value="1">Oro ({{ $finalOro }})</option>
+                                            <option value="2">Plata ({{ $finalPlata }})</option>
+                                            <option value="3">Bronce ({{ $finalBronce }})</option>
                                         </select>
                                         @error('tipo_insignia')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -79,7 +79,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-2 row-start-2 col-start-2 bg-green-300 h-32 pt-1">
+                                    <div class="row-span-1 col-span-2 row-start-2 col-start-2 h-32 pt-1">
                                         <label for="textAreaMensaje"
                                             class="block text-sm font-black text-gray-700">Mensaje de retroalimentación</label>
                                         <textarea id="textAreaMensaje" name="mensaje" wire:model="mensaje"
@@ -90,7 +90,7 @@
                                             </p>
                                             @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-3 row-start-3 bg-indigo-300 h-32">
+                                    <div class="row-span-1 col-span-3 row-start-3 h-32">
                                         <div
                                             class="px-4 py-3 text-right sm:px-6 flex justify-center sm:justify-end">
                                             <button wire:click="asignacion" type="submit"
@@ -107,11 +107,11 @@
                                 <table class="relative w-full border">
                                     <thead>
                                         <tr>
-                                            <th class="sticky top-0 px-6 py-3 text-blue-900 bg-blue-300">Colaboradores
+                                            <th class="sticky top-0 px-6 py-3 text-blue-900 bg-gray-300">Colaboradores
                                                 premiados</th>
                                         </tr>
                                     </thead>
-                                    <tbody class="divide-y bg-blue-100">
+                                    <tbody class="divide-y bg-gray-100">
                                         @foreach ($colaboradores as $colaborador)
                                         <tr>
                                             <td class="px-6 py-4 text-center">

@@ -62,6 +62,7 @@ class Insignias extends Component
         $this->mesActual = Carbon::today()->isoFormat('MM');
         $this->diaActual = Carbon::today()->isoFormat('DD');
         $this->fechaActual = Carbon::today()->isoFormat('YYYY-MM-DD');
+        $this->revisarIntentosYPremiados();
     }
 
     public function render()
