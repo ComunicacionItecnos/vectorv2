@@ -16,6 +16,9 @@ class NotificaInsignias extends Mailable
      *
      * @return void
      */
+
+     public $subject = "Saludos!!";
+
     public function __construct()
     {
         //
