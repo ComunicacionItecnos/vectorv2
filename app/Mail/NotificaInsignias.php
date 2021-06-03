@@ -17,11 +17,21 @@ class NotificaInsignias extends Mailable
      * @return void
      */
 
-     public $subject = "Saludos!!";
+    protected $nombreAsignador;
+    protected $correoAsignador;
+    protected $nombrePremiado;
+    protected $correoPremiado;
+    protected $mensaje;
+    protected $tipo_insignia;
 
-    public function __construct()
+    public function __construct($nombreAsignador, $correoAsignador, $nombrePremiado, $correoPremiado, $mensaje, $tipo_insignia)
     {
-        //
+        $this->nombreAsignador = $nombreAsignador;
+        $this->correoAsignador = $correoAsignador;
+        $this->nombrePremiado = $nombrePremiado;
+        $this->correoPremiado = $correoPremiado;
+        $this->mensaje = $mensaje;
+        $this->tipo_insignia = $tipo_insignia;
     }
 
     /**
@@ -31,6 +41,13 @@ class NotificaInsignias extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from($this->correoAsignador)->subject('Felicidades, eres acreedor a una insignia.')->view('emails.notifica-insignia')->with([
+            'nombreAsignador' => $this->nombreAsignador,
+            'correoAsignador' => $this->correoAsignador,
+            'nombrePremiado' => $this->nombrePremiado,
+            'correoPremiado' => $this->correoPremiado,
+            'mensaje' => $this->mensaje,
+            'tipo_insignia' => $this->tipo_insignia
+        ]);
     }
 }

@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire;
 
+use App\Mail\NotificaInsignias;
 use Exception;
 use Carbon\Carbon;
-use App\Models\Colaborador_insignia;
 use App\Models\Area;
 use App\Models\Puesto;
 use Livewire\Component;
@@ -12,6 +12,8 @@ use App\Models\Colaborador;
 use Livewire\WithPagination;
 use App\Models\Tipo_colaborador;
 use Illuminate\Support\Facades\DB;
+use App\Models\Colaborador_insignia;
+use Illuminate\Support\Facades\Mail;
 
 class Insignias extends Component
 {
@@ -23,7 +25,8 @@ class Insignias extends Component
     ];
 
     public $search, $perPage = '50';
-    public $no_colaborador, $colaborador;
+    public $no_colaborador, $colaborador, $infoColaborador, $infoAsignador;
+    public $correoAsignador, $correoPremiado;
 
     public $sortBy = 'id';
     public $sortAsc = false;
@@ -44,6 +47,9 @@ class Insignias extends Component
 
     public $intentoOro, $intentoPlata, $intentoBronce, $finalOro, $finalPlata, $finalBronce;
 
+    // ? Variables Email
+    public $nombreAsignador, $nombrePremiado;
+
     protected $rules = [
         'tipo_insignia' => 'required',
         'mensaje' => 'required'
@@ -57,12 +63,18 @@ class Insignias extends Component
     public function mount($no_colaborador)
     {
         $this->colaborador = Colaborador::find($no_colaborador);
+        $this->infoColaborador = DB::table('infocolaborador')->where('no_colaborador', $no_colaborador)->get();
+        $this->infoAsignador = Colaborador::find(auth()->user()->no_colaborador);
         $this->col_premiado = $no_colaborador;
         $this->yearActual = Carbon::today()->isoFormat('YYYY');
         $this->mesActual = Carbon::today()->isoFormat('MM');
         $this->diaActual = Carbon::today()->isoFormat('DD');
         $this->fechaActual = Carbon::today()->isoFormat('YYYY-MM-DD');
         $this->revisarIntentosYPremiados();
+        $this->nombreAsignador = auth()->user()->name;
+        $this->nombrePremiado = $this->infoColaborador[0]->nombre_completo;
+        $this->correoAsignador = $this->infoAsignador->correo;
+        $this->correoPremiado = $this->colaborador->correo;
     }
 
     public function render()
@@ -156,6 +168,15 @@ class Insignias extends Component
 
             if ($this->tipo_insignia == 1 && $this->finalOro >= 1) {
                 $this->insercionBD();
+
+                Mail::to('test@test.com.mx')->send(new NotificaInsignias(
+                    $this->nombreAsignador,
+                    $this->correoAsignador,
+                    $this->nombrePremiado,
+                    $this->correoPremiado,
+                    $this->mensaje,
+                    $this->tipo_insignia
+                ));
             } elseif ($this->tipo_insignia == 2 && $this->finalPlata >= 1) {
                 $this->insercionBD();
             } elseif ($this->tipo_insignia == 3 && $this->finalBronce >= 1) {
