@@ -93,7 +93,7 @@
                 DENOMINARÁ
                 PARA
                 EFECTOS DE ESTE CONTRATO COMO "EL PATRÓN" O "EMPRESA", Y POR LA OTRA PARTE
-                <b>{{ strtoupper($infoColaborador[0]->nombre_desc) }}</b> A
+                <b>{{ mb_strtoupper($infoColaborador[0]->nombre_desc) }}</b> A
                 QUIEN SE LE DENOMINARÁ EN LO SUCESIVO COMO "EL
                 TRABAJADOR", ESTABLECIENDO LAS PARTES LAS DECLARACIONES Y CLÁUSULAS QUE INTEGRAN EL PRESENTE CONTRATO EN
                 EL TENOR SIGUIENTE:
@@ -160,18 +160,18 @@
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">I.- </a>Ser de
-                NACIONALIDAD <a class="negrita">{{ strtoupper($infoColaborador[0]->nacionalidad) }}</a>, con DOMICILIO
+                NACIONALIDAD <a class="negrita">{{ mb_strtoupper($infoColaborador[0]->nacionalidad) }}</a>, con DOMICILIO
                 en <b>CALLE</b>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}, </a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->domicilio) }}, </a>
 
                 <a class="negrita">COL.</a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->colonia) }}, </a>
 
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }}, </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->estado) }}, </a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->municipio) }}, </a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->estado) }}, </a>
 
                 <a class="negrita">C.P.</a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a> con
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->codigo_postal) }}</a> con
 
                 <a>CLAVE ÚNICA DE REGISTRO DE POBLACIÓN</a>
                 <a class="negrita">{{ $datosContrato[0]->curp }}, con</a>
@@ -253,11 +253,11 @@
                 <a>con su</a>
                 <b>PATRÓN.</b>
                 <a>Contrato que se establece entre las partes por un periodo del</a>
-                <b>{{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }}
+                <b>{{ mb_strtoupper($fecha_inicial_contrato_dia) }} DE {{ mb_strtoupper($fecha_inicial_contrato_mes) }}
                     DEL
-                    {{ strtoupper($fecha_inicial_contrato_year) }}</b>
-                <b>al {{ strtoupper($fecha_final_contrato_dia) }} DE {{ strtoupper($fecha_final_contrato_mes) }} DEL
-                    {{ strtoupper($fecha_final_contrato_year) }}, </b>
+                    {{ mb_strtoupper($fecha_inicial_contrato_year) }}</b>
+                <b>al {{ mb_strtoupper($fecha_final_contrato_dia) }} DE {{ mb_strtoupper($fecha_final_contrato_mes) }} DEL
+                    {{ mb_strtoupper($fecha_final_contrato_year) }}, </b>
                 <a>por tiempo
                     @if($datosContrato[0]->tipo_contrato_id == 2)
                     determinado,
@@ -296,11 +296,11 @@
                 <a>con su</a>
                 <b>PATRÓN.</b>
                 <a>Contrato que se establece entre las partes por un periodo del</a>
-                <b>{{ strtoupper($fecha_inicial_contrato_dia) }} DE {{ strtoupper($fecha_inicial_contrato_mes) }}
+                <b>{{ mb_strtoupper($fecha_inicial_contrato_dia) }} DE {{ mb_strtoupper($fecha_inicial_contrato_mes) }}
                     DEL
-                    {{ strtoupper($fecha_inicial_contrato_year) }}</b>
-                <b>al {{ strtoupper($fecha_final_contrato_dia) }} DE {{ strtoupper($fecha_final_contrato_mes) }} DEL
-                    {{ strtoupper($fecha_final_contrato_year) }}, </b>
+                    {{ mb_strtoupper($fecha_inicial_contrato_year) }}</b>
+                <b>al {{ mb_strtoupper($fecha_final_contrato_dia) }} DE {{ mb_strtoupper($fecha_final_contrato_mes) }} DEL
+                    {{ mb_strtoupper($fecha_final_contrato_year) }}, </b>
                 <a>por tiempo
                     @if($datosContrato[0]->tipo_contrato_id == 2)
                     determinado,
@@ -327,10 +327,10 @@
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <span class="tab"></span>
                 <a class="negrita">PRIMERA.- </a>El trabajador de nombre
-                <a class="negrita">{{ strtoupper($infoColaborador[0]->nombre_desc) }}
+                <a class="negrita">{{ mb_strtoupper($infoColaborador[0]->nombre_desc) }}
 
                 </a> de NACIONALIDAD
-                <b>{{ strtoupper($infoColaborador[0]->nacionalidad) }}</b> de
+                <b>{{ mb_strtoupper($infoColaborador[0]->nacionalidad) }}</b> de
                 <a class="negrita">{{ $infoColaborador[0]->edad }}</a> años de edad, ESTADO CIVIL
                 <a class="negrita">@if($datosContrato[0]->estado_civil_id == 1)
                     SOLTERO
@@ -340,11 +340,11 @@
                     UNION LIBRE
                     @endif</a>
                 <a>con </a><b>DOMICILIO</b> en
-                <a class="negrita">{{ strtoupper($datosContrato[0]->domicilio) }}, </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->colonia) }}, </a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->municipio) }} </a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->domicilio) }}, </a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->colonia) }}, </a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->municipio) }} </a>
                 <a class="negrita">C.P.</a>
-                <a class="negrita">{{ strtoupper($datosContrato[0]->codigo_postal) }}</a>
+                <a class="negrita">{{ mb_strtoupper($datosContrato[0]->codigo_postal) }}</a>
                 <b>SEXO:</b>
                 <a class="negrita">@if($datosContrato[0]->genero_id == 1)
                     <b>MASCULINO</b>
@@ -381,7 +381,7 @@
                     <a>El trabajador es contratado con el</a>
                     <b>PUESTO</b>
                     <a>de</a>
-                    <b>{{ strtoupper($infoColaborador[0]->puesto) }}</b>
+                    <b>{{ mb_strtoupper($infoColaborador[0]->puesto) }}</b>
                     <a>en el único domicilio del</a>
                     <b>PATRÓN</b>
                     <a>sito en</a>
@@ -412,7 +412,7 @@
                         estar
                         capacitado y tener
                         los conocimientos necesarios para desempeñar el puesto de</a>
-                    <b>{{ strtoupper($infoColaborador[0]->puesto) }}</b>
+                    <b>{{ mb_strtoupper($infoColaborador[0]->puesto) }}</b>
                     <a>con las funciones que se indica en la cláusula</a>
                     <b>SEGUNDA</b>
                     <a>del presente contrato, obligándose por ello a ejecutar su trabajo en los términos pactados en
@@ -674,8 +674,8 @@
                 <span class="tab"></span>
                 <a class="negrita">DÉCIMA SÉPTIMA.-</a>
                 <a>La empresa para todos los efectos legales le reconoce al empleado la antigüedad del
-                    <b>{{ strtoupper($fecha_inicio_dia) }} DE {{ strtoupper($fecha_inicio_mes) }}
-                        @if($fecha_inicio_year <= 1999) DE @else DEL @endif {{ strtoupper($fecha_inicio_year) }}.</b>
+                    <b>{{ mb_strtoupper($fecha_inicio_dia) }} DE {{ mb_strtoupper($fecha_inicio_mes) }}
+                        @if($fecha_inicio_year <= 1999) DE @else DEL @endif {{ mb_strtoupper($fecha_inicio_year) }}.</b>
                             </a> </p> @endif <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                             <span class="tab"></span>
                             <a>Las partes con libre voluntad firman el presente contrato de trabajo en los términos y
@@ -688,9 +688,9 @@
                                 contenido del
                                 mismo, el trabajo
                                 contratado en la manera y términos señalados. Lo anterior se firma con fecha</a>
-                            <b>{{ strtoupper($fecha_inicial_contrato_dia) }} DE
-                                {{ strtoupper($fecha_inicial_contrato_mes) }} DEL
-                                {{ strtoupper($fecha_inicial_contrato_year) }}.</b> </p> <br>
+                            <b>{{ mb_strtoupper($fecha_inicial_contrato_dia) }} DE
+                                {{ mb_strtoupper($fecha_inicial_contrato_mes) }} DEL
+                                {{ mb_strtoupper($fecha_inicial_contrato_year) }}.</b> </p> <br>
             <br>
             <p class="arial margen-estandar t-letra" style=" margin-bottom:-0.5px;">
                 <table style="width:100%">
@@ -705,7 +705,7 @@
                             EDUARDO S. YÁÑEZ PONCE DE LEÓN</td>
                         <td class="negrita" style="text-align: center;"><br><br>
                             _____________________________________ <br>
-                            {{ strtoupper($infoColaborador[0]->nombre_desc) }}
+                            {{ mb_strtoupper($infoColaborador[0]->nombre_desc) }}
                         </td>
                     </tr>
                 </table>
