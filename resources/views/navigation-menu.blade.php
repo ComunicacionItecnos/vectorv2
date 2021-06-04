@@ -46,6 +46,11 @@ $nav_links3 = [
         'route' => route('create'),
         'active' => request()->routeIs('create'),
     ],
+    [
+    'name' => 'Multi Contratos',
+    'route' => route('multi-contratos'),
+    'active' => request()->routeIs('multi-contratos'),
+    ],
 ];
 
 $nav_links4 = [
