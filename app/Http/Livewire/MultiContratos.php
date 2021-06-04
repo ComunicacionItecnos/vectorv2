@@ -48,12 +48,14 @@ class MultiContratos extends Component
 
     public function render()
     {
-        return view('livewire.multi-contratos', [
-            'colaboradores' => DB::table('colaborador')->where('puesto_id', $this->puesto)
-                ->where('fecha_ingreso', $this->fecha_ingreso)
-                /* ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC') */
-                ->paginate($this->perPage),
-        ]);
+        if (auth()->user()->role_id == 3) {
+            return view('livewire.multi-contratos', [
+                'colaboradores' => DB::table('colaborador')->where('puesto_id', $this->puesto)
+                    ->where('fecha_ingreso', $this->fecha_ingreso)
+                    /* ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC') */
+                    ->paginate($this->perPage),
+            ]);
+        }
     }
 
     public function descargarContrato($no_colaborador)
@@ -64,7 +66,7 @@ class MultiContratos extends Component
         $this->setDescripcion($this->datosContrato);
 
         $this->validate();
-        
+
         $infoColaborador = DB::table('infocolaborador')->where('no_colaborador', $this->no_colaborador_mount)->get();
 
         $fecha_inicio_dia = Carbon::parse($this->datosContrato[0]->fecha_ingreso)->isoFormat('D');
