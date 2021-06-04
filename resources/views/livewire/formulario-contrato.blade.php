@@ -33,7 +33,7 @@
                                 <div class=" sm:col-span-2 sm:col-start-3">
                                     <label class="block text-sm font-black text-gray-700" for="inputSueldoLetra">Sueldo
                                         (letra)</label>
-                                    <input type="text" wire:model="sueldoLetra" name="sueldoLetra" id="inputSueldoLetra" placeholder="Ocho Mil Pesos"
+                                    <input type="text" wire:model="sueldoLetra" name="sueldoLetra" id="inputSueldoLetra" placeholder="Ocho Mil Pesos 00/100"
                                         value="{{ old('sueldoLetra') }}"
                                         class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @error('sueldoLetra')
