@@ -506,7 +506,7 @@
                 <b>FORMA Y MONTO DE PAGO DE SALARIO.-</b>
                 <a>Se establece como salario que percibirá el trabajador por la prestación de sus servicios de</a>
                 <b>${{ $sueldo }}</b>
-                <b>({{ $sueldoLetra }} 00/100 M.N) mensuales</b>
+                <b>({{ $sueldoLetra }} M.N) mensuales</b>
                 <a>mismos que serán pagaderos de manera semanal, incluyendo el pago de los días séptimo; siendo el día
                     de pago de su
                     salario el día viernes de cada semana, y si el día del pago corresponde a su día de descanso le
