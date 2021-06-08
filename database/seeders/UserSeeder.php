@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
         ]);
         User::create([
             'name' => 'Andrés Domínguez Castillo',
-            'email' => 'adominguezc@itecnos.com.mx',
+            'email' => 'acastillod@itecnos.com.mx',
             'password' => bcrypt('12345678'),
             'role_id' => '1',
             'no_colaborador' => '144963'
