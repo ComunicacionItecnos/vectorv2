@@ -137,9 +137,9 @@
                                                         </div>
                                                     </div>
                                                     <div
-                                                        class="hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24">
+                                                        class="hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-16 h-20">
                                                         <img class="px-4 mt-8 mx-2"
-                                                            src="{{ asset('images/insignia.png') }}" alt="">
+                                                            src="{{ asset($colaborador->ruta_insignia) }}" alt="">
                                                     </div>
                                                 </div>
                                             </td>
