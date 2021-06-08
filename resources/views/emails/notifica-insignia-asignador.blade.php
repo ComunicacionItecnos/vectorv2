@@ -288,18 +288,11 @@
                                                                                                 <tr>
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        <strong
-                                                                                                            style="font-size: 32px;">
-                                                                                                            FELICIDADES
-                                                                                                        </strong>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="text-16 lh-26 a-center pb-25"
-                                                                                                        style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        <b>{{ $nombreAsignador }}</b>
-                                                                                                        te ha otorgado
-                                                                                                        una insignia de
+                                                                                                        Te recordamos
+                                                                                                        que asignaste
+                                                                                                        una
+                                                                                                        <b>Insignia</b>
+                                                                                                        de
                                                                                                         <b>
                                                                                                             @if($tipo_insignia
                                                                                                             == 1)
@@ -312,39 +305,7 @@
                                                                                                             Bronce
                                                                                                             @endif
                                                                                                         </b>
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="text-16 lh-26 a-center pb-25"
-                                                                                                        style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        En <b>Aguila
-                                                                                                            Ammunition</b>
-                                                                                                        reconocemos y
-                                                                                                        premiamos el
-                                                                                                        esfuerzo de
-                                                                                                        nuestros
-                                                                                                        colaboradores,
-                                                                                                        por esta razón
-                                                                                                        has sido uno de
-                                                                                                        los
-                                                                                                        beneficiarios
-                                                                                                        del programa de
-                                                                                                        insignias.
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                                <tr>
-                                                                                                    <td class="text-16 lh-26 a-center pb-25"
-                                                                                                        style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-
-                                                                                                        Esperamos que
-                                                                                                        sigas mostrando
-                                                                                                        resultados
-                                                                                                        sobresalientes,
-                                                                                                        tu asignador
-                                                                                                        dejó el
-                                                                                                        siguiente
-                                                                                                        <b>mensaje</b>
-                                                                                                        para ti:
+                                                                                                        a:
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -362,7 +323,7 @@
                                                                                                                     <span
                                                                                                                         class="c-purple"
                                                                                                                         style="color:#222222;">
-                                                                                                                        {{ $mensaje }}
+                                                                                                                        {{ $nombrePremiado }}
                                                                                                                     </span>
                                                                                                                 </td>
                                                                                                             </tr>

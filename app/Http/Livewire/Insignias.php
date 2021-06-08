@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Mail\NotificaInsignias;
+use App\Mail\NotificaInsigniasAsignador;
 use Exception;
 use Carbon\Carbon;
 use App\Models\Area;
@@ -168,19 +169,13 @@ class Insignias extends Component
 
             if ($this->tipo_insignia == 1 && $this->finalOro >= 1) {
                 $this->insercionBD();
-
-                Mail::to('test@test.com.mx')->send(new NotificaInsignias(
-                    $this->nombreAsignador,
-                    $this->correoAsignador,
-                    $this->nombrePremiado,
-                    $this->correoPremiado,
-                    $this->mensaje,
-                    $this->tipo_insignia
-                ));
+                $this->enviarCorreo();
             } elseif ($this->tipo_insignia == 2 && $this->finalPlata >= 1) {
                 $this->insercionBD();
+                $this->enviarCorreo();
             } elseif ($this->tipo_insignia == 3 && $this->finalBronce >= 1) {
                 $this->insercionBD();
+                $this->enviarCorreo();
             } else {
                 $this->alert('error', 'Agotaste tus intentos para asignar esta insignia', [
                     'position' =>  'top-end',
@@ -333,5 +328,36 @@ class Insignias extends Component
         } else {
             $this->banderaPremiado = false;
         }
+    }
+
+    public function enviarCorreo()
+    {
+        if ($this->correoPremiado == null | $this->correoPremiado == '') {
+            Mail::to('comunicacion@itecnos.com.mx')->send(new NotificaInsignias(
+                $this->nombreAsignador,
+                $this->correoAsignador,
+                $this->nombrePremiado,
+                $this->correoPremiado,
+                $this->mensaje,
+                $this->tipo_insignia
+            ));
+        } else {
+            Mail::to($this->correoPremiado)->send(new NotificaInsignias(
+                $this->nombreAsignador,
+                $this->correoAsignador,
+                $this->nombrePremiado,
+                $this->correoPremiado,
+                $this->mensaje,
+                $this->tipo_insignia
+            ));
+        }
+        Mail::to($this->correoAsignador)->send(new NotificaInsigniasAsignador(
+            $this->nombreAsignador,
+            $this->correoAsignador,
+            $this->nombrePremiado,
+            $this->correoPremiado,
+            $this->mensaje,
+            $this->tipo_insignia
+        ));
     }
 }

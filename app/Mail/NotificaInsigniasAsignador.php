@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class NotificaInsignias extends Mailable
+class NotificaInsigniasAsignador extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -23,6 +23,7 @@ class NotificaInsignias extends Mailable
     protected $correoPremiado;
     protected $mensaje;
     protected $tipo_insignia;
+    public $nombreInsignia;
 
     public function __construct($nombreAsignador, $correoAsignador, $nombrePremiado, $correoPremiado, $mensaje, $tipo_insignia)
     {
@@ -41,7 +42,16 @@ class NotificaInsignias extends Mailable
      */
     public function build()
     {
-        return $this->from('comunicacion@factoraguila.com')->subject('Felicidades, eres acreedor a una insignia.')->view('emails.notifica-insignia')->with([
+
+        if($this->tipo_insignia == 1){
+            $this->nombreInsignia = 'Oro';
+        }elseif($this->tipo_insignia == 2){
+            $this->nombreInsignia = 'Plata';
+        }elseif($this->tipo_insignia == 3){
+            $this->nombreInsignia = 'Bronce';
+        }
+
+        return $this->from('comunicacion@factoraguila.com')->subject('Has asignado una insignia de ' . $this->nombreInsignia)->view('emails.notifica-insignia-asignador')->with([
             'nombreAsignador' => $this->nombreAsignador,
             'correoAsignador' => $this->correoAsignador,
             'nombrePremiado' => $this->nombrePremiado,
