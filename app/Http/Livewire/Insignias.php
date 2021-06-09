@@ -14,6 +14,7 @@ use Livewire\WithPagination;
 use App\Models\Tipo_colaborador;
 use Illuminate\Support\Facades\DB;
 use App\Models\Colaborador_insignia;
+use App\Models\Valores_business;
 use Illuminate\Support\Facades\Mail;
 
 class Insignias extends Component
@@ -32,7 +33,7 @@ class Insignias extends Component
     public $sortBy = 'id';
     public $sortAsc = false;
 
-    public $col_premiado, $foto_premiado;
+    public $col_premiado, $foto_premiado, $valores;
     public $area, $puesto;
 
     public $tipo_insignia, $mensaje, $fecha_asig;
@@ -67,6 +68,7 @@ class Insignias extends Component
         $this->infoColaborador = DB::table('infocolaborador')->where('no_colaborador', $no_colaborador)->get();
         $this->infoAsignador = Colaborador::find(auth()->user()->no_colaborador);
         $this->col_premiado = $no_colaborador;
+        $this->valores = Valores_business::all();
         $this->yearActual = Carbon::today()->isoFormat('YYYY');
         $this->mesActual = Carbon::today()->isoFormat('MM');
         $this->diaActual = Carbon::today()->isoFormat('DD');

@@ -84,12 +84,21 @@
                                         @enderror
                                     </div>
                                     <div class="row-span-1 col-span-1 row-start-2 col-start-2 h-32 pt-5 bg-yellow-300">
-                                        <label for="inputInsignia" class="block text-sm font-black text-gray-700">Seleccionar valor</label>
-                                        <select id="inputInsignia" wire:model="tipo_insignia" name="tipo_insignia"
+                                        <label for="inputValor"
+                                            class="block text-sm font-black text-gray-700">Seleccionar valor</label>
+                                        <select id="inputValor" wire:model="valor_business" name="valor_business"
                                             class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                             <option value=""></option>
+                                            @if (isset($valores))
+                                            @foreach ($valores as $valor)
+                                            <option value="{{ $valor->id }}">
+                                                {{ $valor->nombre }}
+                                            </option>
+
+                                            @endforeach
+                                            @endif
                                         </select>
-                                        @error('tipo_insignia')
+                                        @error('valor_business')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                             {{ $message }}
                                         </p>
@@ -97,18 +106,18 @@
                                     </div>
                                     <div class="row-span-1 col-span-1 row-start-2 col-start-3 h-32 pt-1 bg-purple-300">
                                         <label for="textAreaMensaje"
-                                            class="block text-sm font-black text-gray-700">Mensaje de retroalimentación</label>
+                                            class="block text-sm font-black text-gray-700">Mensaje de
+                                            retroalimentación</label>
                                         <textarea id="textAreaMensaje" name="mensaje" wire:model="mensaje"
                                             class="overflow-y-auto resize-none p-4 w-full rounded-md"></textarea>
-                                            @error('mensaje')
-                                            <p class="mb-1 text-xs text-red-600 italic">
-                                                {{ $message }}
-                                            </p>
-                                            @enderror
+                                        @error('mensaje')
+                                        <p class="mb-1 text-xs text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                        @enderror
                                     </div>
                                     <div class="row-span-1 col-span-3 row-start-3 h-32 bg-gray-300">
-                                        <div
-                                            class="px-4 py-3 text-right sm:px-6 flex justify-center sm:justify-end">
+                                        <div class="px-4 py-3 text-right sm:px-6 flex justify-center sm:justify-end">
                                             <button wire:click="asignacion" type="submit"
                                                 class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                                 Asignar

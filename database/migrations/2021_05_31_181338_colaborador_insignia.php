@@ -30,6 +30,11 @@ class ColaboradorInsignia extends Migration
                     ->onDelete('cascade')
                     ->onUpdate('cascade');
 
+                $table->foreignId('valores_business_id')
+                    ->constrained('valores_business')
+                    ->onDelete('cascade')
+                    ->onUpdate('cascade');
+
                 $table->date('fecha_asignacion');
 
                 $table->string('colaborador_asignador',6);
