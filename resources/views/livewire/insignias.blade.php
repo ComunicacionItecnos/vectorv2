@@ -40,7 +40,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-1 col-start-3 row-start-1  h-32 pt-5>
+                                    <div class="row-span-1 col-span-1 col-start-3 row-start-1  h-32 pt-5">
                                         <label for="selectSupervisor"
                                             class="block text-sm font-black text-gray-700">Nombre</label>
                                         <select id="selectSupervisor" wire:model="col_premiado" name="supervisor"
@@ -135,7 +135,7 @@
                                 <table class="relative w-full border">
                                     <thead>
                                         <tr>
-                                            <th class="sticky top-0 px-6 py-3 text-blue-900 bg-gray-300">Colaboradores
+                                            <th class="sticky top-0 px-6 py-3 text-gray-700 bg-gray-300">Colaboradores
                                                 premiados</th>
                                         </tr>
                                     </thead>
