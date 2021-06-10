@@ -24,8 +24,9 @@ class NotificaInsignias extends Mailable
     protected $correoPremiado;
     protected $mensaje;
     protected $tipo_insignia;
+    protected $valor_business;
 
-    public function __construct($nombreAsignador, $correoAsignador, $nombrePremiado, $correoPremiado, $mensaje, $tipo_insignia)
+    public function __construct($nombreAsignador, $correoAsignador, $nombrePremiado, $correoPremiado, $mensaje, $tipo_insignia, $valor_business)
     {
         $this->nombreAsignador = $nombreAsignador;
         $this->correoAsignador = $correoAsignador;
@@ -33,6 +34,7 @@ class NotificaInsignias extends Mailable
         $this->correoPremiado = $correoPremiado;
         $this->mensaje = $mensaje;
         $this->tipo_insignia = $tipo_insignia;
+        $this->valor_business = $valor_business;
     }
 
     /**
@@ -48,7 +50,8 @@ class NotificaInsignias extends Mailable
             'nombrePremiado' => $this->nombrePremiado,
             'correoPremiado' => $this->correoPremiado,
             'mensaje' => $this->mensaje,
-            'tipo_insignia' => $this->tipo_insignia
+            'tipo_insignia' => $this->tipo_insignia,
+            'valor_business' => $this->valor_business
         ]);
     }
 }

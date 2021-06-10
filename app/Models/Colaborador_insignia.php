@@ -15,6 +15,7 @@ class Colaborador_insignia extends Model
     protected $fillable = [
         'colaborador_no_colaborador',
         'insignia_id',
+        'valores_business_id',
         'fecha_asignacion',
         'colaborador_asignador',
         'mensaje'
@@ -29,6 +30,11 @@ class Colaborador_insignia extends Model
     public function colaboradores()
     {
         return $this->belongsTo('App\Models\Colaborador');
+    }
+
+    public function valores_business()
+    {
+        return $this->belongsTo('App\Models\Valores_business');
     }
 
 }
