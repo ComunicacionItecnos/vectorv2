@@ -77,6 +77,9 @@
                                             <option value="2">Plata ({{ $finalPlata }})</option>
                                             <option value="3">Bronce ({{ $finalBronce }})</option>
                                         </select>
+                                        <a wire:click= "popupInsignia()" class="mt-1 mb-1 text-xs text-blue-600 italic hover:text-red-600 cursor-pointer">
+                                            ¿Qué son las insignias?
+                                        </a>
                                         @error('tipo_insignia')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                             {{ $message }}
@@ -179,4 +182,21 @@
             </div>
         </div>
     </div>
+    <x-jet-dialog-modal wire:model="popupInsignia">
+        <x-slot name="title">
+        </x-slot>
+    
+        <x-slot name="content">
+    
+            <div class="mt-4 ml-3">
+                    <img src="{{ asset('images/Descripcion-Insignias.png') }}" alt="">
+            </div>
+        </x-slot>
+    
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="setNull()" wire:loading.attr="disabled">
+                {{ __('Cerrar') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>

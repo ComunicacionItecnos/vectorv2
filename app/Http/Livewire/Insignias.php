@@ -46,6 +46,7 @@ class Insignias extends Component
     public $tInicialP4 = '-10-01', $tFinalP4 = '-12-31';
 
     public $banderaIntentos, $banderaPremiado;
+    public $popupInsignia = false;
 
     public $intentoOro, $intentoPlata, $intentoBronce, $finalOro, $finalPlata, $finalBronce;
 
@@ -374,5 +375,13 @@ class Insignias extends Component
             $this->mensaje,
             $this->tipo_insignia,
         ));
+    }
+    public function setNull()
+    {
+        $this->popupInsignia = false;
+    }
+
+    public function popupInsignia(){
+        $this->popupInsignia = true;
     }
 }
