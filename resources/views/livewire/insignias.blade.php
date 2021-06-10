@@ -11,8 +11,8 @@
                                 </h2>
                             </x-slot>
                             <form wire:submit.prevent="asignacion">
-                                <div class="grid grid-rows-3 grid-cols-3 p-8 gap-2 bg-indigo-300">
-                                    <div class="row-span-1 col-span-1 col-start-1 row-start-1 h-32 bg-red-300">
+                                <div class="grid grid-rows-3 grid-cols-3 p-8 gap-2">
+                                    <div class="row-span-1 col-span-1 col-start-1 row-start-1 h-32">
                                         <div
                                             class="mx-auto mt-2 rounded opacity-100 flex-grow-0 flex-shrink-0 w-24 h-28 border-2 shadow-sm">
 
@@ -27,7 +27,7 @@
 
                                         </div>
                                     </div>
-                                    <div class="row-span-1 col-span-1 col-start-2 row-start-1 h-32 pt-5 bg-green-300">
+                                    <div class="row-span-1 col-span-1 col-start-2 row-start-1 h-32 pt-5">
                                         <label for="inputNoColaborador"
                                             class="block text-sm font-black text-gray-700">No.
                                             Col.</label>
@@ -40,7 +40,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-1 col-start-3 row-start-1  h-32 pt-5 bg-yellow-300">
+                                    <div class="row-span-1 col-span-1 col-start-3 row-start-1  h-32 pt-5>
                                         <label for="selectSupervisor"
                                             class="block text-sm font-black text-gray-700">Nombre</label>
                                         <select id="selectSupervisor" wire:model="col_premiado" name="supervisor"
@@ -67,7 +67,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-1 row-start-2 col-start-1 h-32 pt-5 bg-pink-300">
+                                    <div class="row-span-1 col-span-1 row-start-2 col-start-1 h-32 pt-5">
                                         <label for="inputInsignia"
                                             class="block text-sm font-black text-gray-700">Seleccionar insignia</label>
                                         <select id="inputInsignia" wire:model="tipo_insignia" name="tipo_insignia"
@@ -83,7 +83,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-1 row-start-2 col-start-2 h-32 pt-5 bg-yellow-300">
+                                    <div class="row-span-1 col-span-1 row-start-2 col-start-2 h-32 pt-5">
                                         <label for="inputValor"
                                             class="block text-sm font-black text-gray-700">Seleccionar valor</label>
                                         <select id="inputValor" wire:model="valor_business" name="valor_business"
@@ -104,7 +104,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-1 row-start-2 col-start-3 h-32 pt-1 bg-purple-300">
+                                    <div class="row-span-1 col-span-1 row-start-2 col-start-3 h-32 pt-1">
                                         <label for="textAreaMensaje"
                                             class="block text-sm font-black text-gray-700">Mensaje de
                                             retroalimentación</label>
@@ -116,7 +116,7 @@
                                         </p>
                                         @enderror
                                     </div>
-                                    <div class="row-span-1 col-span-3 row-start-3 h-32 bg-gray-300">
+                                    <div class="row-span-1 col-span-3 row-start-3 h-32">
                                         <div class="px-4 py-3 text-right sm:px-6 flex justify-center sm:justify-end">
                                             <button wire:click="asignacion" type="submit"
                                                 class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
