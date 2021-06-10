@@ -286,6 +286,21 @@
                                                                                                 cellspacing="0"
                                                                                                 cellpadding="0">
                                                                                                 <tr>
+                                                                                                    <td class="fluid-img img-center pb-50"
+                                                                                                        style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 30px;">
+                                                                                                        <img @if($tipo_insignia==1)
+                                                                                                            src="{{ asset('images/Oro-Insignia.png') }}"
+                                                                                                            @elseif($tipo_insignia==2)
+                                                                                                            src="{{ asset('images/Plata-Insignia.png') }}"
+                                                                                                            @elseif($tipo_insignia==3)
+                                                                                                            src="{{ asset('images/Bronce-Insignia.png') }}"
+                                                                                                            @endif
+                                                                                                            width="15%"
+                                                                                                            border="0"
+                                                                                                            alt="" />
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
                                                                                                         <strong
@@ -297,7 +312,9 @@
                                                                                                 <tr>
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        <b>{{ $nombreAsignador }}</b>
+                                                                                                        <b>{{
+                                                                                                            $nombreAsignador
+                                                                                                            }}</b>
                                                                                                         te ha otorgado
                                                                                                         una insignia de
                                                                                                         <b>
@@ -312,6 +329,37 @@
                                                                                                             Bronce
                                                                                                             @endif
                                                                                                         </b>
+                                                                                                        por representar
+                                                                                                        el valor
+
+                                                                                                        @if($valor_business
+                                                                                                        == 1)
+                                                                                                        del: <b>Trabajo
+                                                                                                            en
+                                                                                                            equipo</b>
+                                                                                                        @elseif($valor_business
+                                                                                                        == 2)
+                                                                                                        de la:
+                                                                                                        <b>Responsabilidad</b>
+                                                                                                        @elseif($valor_business
+                                                                                                        == 3)
+                                                                                                        del:
+                                                                                                        <b>Respeto</b>
+                                                                                                        @elseif($valor_business
+                                                                                                        == 4)
+                                                                                                        de la:
+                                                                                                        <b>Honestidad</b>
+                                                                                                        @elseif($valor_business
+                                                                                                        == 5)
+                                                                                                        del: <b>Amor a
+                                                                                                            la
+                                                                                                            camiseta</b>
+                                                                                                        @elseif($valor_business
+                                                                                                        == 6)
+                                                                                                        de la:
+                                                                                                        <b>Innovación</b>
+                                                                                                        @endif
+
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -362,7 +410,9 @@
                                                                                                                     <span
                                                                                                                         class="c-purple"
                                                                                                                         style="color:#222222;">
-                                                                                                                        {{ $mensaje }}
+                                                                                                                        {{
+                                                                                                                        $mensaje
+                                                                                                                        }}
                                                                                                                     </span>
                                                                                                                 </td>
                                                                                                             </tr>

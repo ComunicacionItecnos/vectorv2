@@ -33,7 +33,7 @@ class Insignias extends Component
     public $sortBy = 'id';
     public $sortAsc = false;
 
-    public $col_premiado, $foto_premiado, $valores;
+    public $col_premiado, $foto_premiado, $valor_business, $valores;
     public $area, $puesto;
 
     public $tipo_insignia, $mensaje, $fecha_asig;
@@ -54,11 +54,13 @@ class Insignias extends Component
 
     protected $rules = [
         'tipo_insignia' => 'required',
+        'valor_business' => 'required',
         'mensaje' => 'required'
     ];
 
     protected $messages = [
         'tipo_insignia.required' => 'Es necesario que elijas una insignia',
+        'valor_business.required' => 'Es necesario que elijas un valor', 
         'mensaje.required' => 'Debes agregar un mensaje de retroalimentación'
     ];
 
@@ -203,6 +205,7 @@ class Insignias extends Component
                 Colaborador_insignia::updateOrCreate([
                     'colaborador_no_colaborador' => $this->col_premiado,
                     'insignia_id' => $this->tipo_insignia,
+                    'valores_business_id' => $this->valor_business,
                     'fecha_asignacion' => $this->fecha_asig,
                     'colaborador_asignador' => auth()->user()->no_colaborador,
                     'mensaje' => $this->mensaje
@@ -341,7 +344,8 @@ class Insignias extends Component
                 $this->nombrePremiado,
                 $this->correoPremiado,
                 $this->mensaje,
-                $this->tipo_insignia
+                $this->tipo_insignia,
+                $this->valor_business
             ));
         } else {
             Mail::to($this->correoPremiado)->send(new NotificaInsignias(
@@ -350,7 +354,8 @@ class Insignias extends Component
                 $this->nombrePremiado,
                 $this->correoPremiado,
                 $this->mensaje,
-                $this->tipo_insignia
+                $this->tipo_insignia,
+                $this->valor_business
             ));
         }
         Mail::to($this->correoAsignador)->send(new NotificaInsigniasAsignador(
@@ -359,7 +364,7 @@ class Insignias extends Component
             $this->nombrePremiado,
             $this->correoPremiado,
             $this->mensaje,
-            $this->tipo_insignia
+            $this->tipo_insignia,
         ));
     }
 }
