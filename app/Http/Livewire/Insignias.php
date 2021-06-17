@@ -69,7 +69,7 @@ class Insignias extends Component
     {
         $this->colaborador = Colaborador::find($no_colaborador);
         $this->infoColaborador = DB::table('infocolaborador')->where('no_colaborador', $no_colaborador)->get();
-        $this->infoAsignador = Colaborador::find(auth()->user()->no_colaborador);
+        $this->infoAsignador = Colaborador::find(auth()->user()->colaborador_no_colaborador);
         $this->col_premiado = $no_colaborador;
         $this->valores = Valores_business::all();
         $this->yearActual = Carbon::today()->isoFormat('YYYY');
