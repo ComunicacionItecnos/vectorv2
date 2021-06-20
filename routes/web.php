@@ -6,6 +6,7 @@ use App\Http\Livewire\AltaImss;
 use App\Http\Controllers\ColaboradorController;
 use App\Http\Livewire\FormularioContrato;
 use App\Http\Livewire\Insignias;
+use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +82,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/contrato/{no_colaborador}
 Route::middleware(['auth:sanctum', 'verified'])->get('/insignias/{no_colaborador}', Insignias::class);
 
 Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);
+
+Route::get('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class);
