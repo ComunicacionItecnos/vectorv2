@@ -124,6 +124,14 @@ class UserSeeder extends Seeder
             'role_id' => '2',
             'colaborador_no_colaborador' => '307'
         ]); */
+        User::create([
+            'name' => 'Misael Juárez Quinto',
+            'email' => 'jmjuarezqq@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '2',
+            'colaborador_no_colaborador' => '132040'
+        ]);
+
 
         // ! Capital Humano - Administración
         User::create([

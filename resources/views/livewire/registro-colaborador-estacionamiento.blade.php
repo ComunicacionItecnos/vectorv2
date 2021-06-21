@@ -80,9 +80,9 @@
         </div>
         <div class="h-16 p-4 grid grid-cols-2">
             <div class="flex justify-start px-4 col-span-1 col-start-1">
-                <button wire:click="setFalse"
+                <a href="https://factoraguila.com/"
                     class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                    Regresar</button>
+                    Regresar</a>
             </div>
             <div class="flex justify-end px-4 col-span-1 col-start-2">
                 <button wire:click="registro" type="submit"
