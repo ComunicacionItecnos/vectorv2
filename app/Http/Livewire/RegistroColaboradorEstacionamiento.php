@@ -7,7 +7,7 @@ use Livewire\Component;
 
 class RegistroColaboradorEstacionamiento extends Component
 {
-    public $colaborador;
+    public $colaborador, $tiposVehiculo;
 
     public function mount($no_colaborador){
         $this->colaborador = Colaborador::find($no_colaborador);
