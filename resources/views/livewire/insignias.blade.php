@@ -50,6 +50,7 @@
                                 </p>
                                 @enderror
                             </div>
+                            @if(auth()->user()->colaborador_no_colaborador == '135050')
                             <div class="col-span1">
                                 <label for="inputInsignia" class="block text-sm font-black text-gray-700">Seleccionar
                                     insignia</label>
@@ -57,6 +58,24 @@
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     <option value=""></option>
                                     <option value="1">Platino ({{ $finalPlatino }})</option>
+                                </select>
+                                <a wire:click="popupInsignia()"
+                                    class="mt-1 mb-1 text-xs text-blue-600 italic hover:text-red-600 cursor-pointer">
+                                    ¿Qué son las insignias?
+                                </a>
+                                @error('tipo_insignia')
+                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                    {{ $message }}
+                                </p>
+                                @enderror
+                            </div>
+                            @else
+                            <div class="col-span1">
+                                <label for="inputInsignia" class="block text-sm font-black text-gray-700">Seleccionar
+                                    insignia</label>
+                                <select id="inputInsignia" wire:model="tipo_insignia" name="tipo_insignia"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    <option value=""></option>
                                     <option value="2">Oro ({{ $finalOro }})</option>
                                     <option value="3">Plata ({{ $finalPlata }})</option>
                                     <option value="3">Bronce ({{ $finalBronce }})</option>
@@ -71,6 +90,7 @@
                                 </p>
                                 @enderror
                             </div>
+                            @endif
                         </div>
                     </div>
                     <div class="row-start-3 sm:row-start-1 sm:col-start-3">

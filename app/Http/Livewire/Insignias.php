@@ -316,9 +316,9 @@ class Insignias extends Component
         if (auth()->user()->colaborador_no_colaborador == 135050) {
 
             $tmpPlatino = Colaborador_insignia::all()
-            ->where('insignia_id', 1)
-            ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
-            ->count();
+                ->where('insignia_id', 1)
+                ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
+                ->count();
 
             $this->finalPlatino = $this->intentoPlatino - $tmpPlatino;
 
@@ -369,18 +369,18 @@ class Insignias extends Component
 
     public function asignaIntentos()
     {
-
-        if (auth()->user()->colaborador_no_colaborador == '143010') {
+        if (auth()->user()->colaborador_no_colaborador == '135050') {
+            $this->intentoPlatino = 3;
+        } elseif (
+            auth()->user()->colaborador_no_colaborador == '143010' ||
+            auth()->user()->colaborador_no_colaborador == '129300' ||
+            auth()->user()->colaborador_no_colaborador == '131901' ||
+            auth()->user()->colaborador_no_colaborador == '152090'
+        ) {
             $this->intentoOro = 2;
             $this->intentoPlata = 2;
             $this->intentoBronce = 1;
-        } elseif (auth()->user()->colaborador_no_colaborador == '135050') {
-            $this->intentoPlatino = 1;
-            $this->intentoOro = 2;
-            $this->intentoPlata = 1;
-            $this->intentoBronce = 1;
-        } 
-        else {
+        } else {
             $this->intentoOro = 1;
             $this->intentoPlata = 1;
             $this->intentoBronce = 1;
