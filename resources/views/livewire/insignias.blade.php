@@ -11,13 +11,13 @@
                 <div class="grid grid-rows-1 sm:grid-cols-4 gap-4 p-4">
                     <div class="row-start-1 sm:row-start-1 sm:col-start-1">
                         <div
-                            class="mx-auto mt-6 rounded opacity-100 flex-grow-0 flex-shrink-0 w-32 h-36 border-2 shadow-sm">
+                            class="mx-auto mt-6 rounded opacity-100 flex-grow-0 flex-shrink-0 w-28 h-34 border-2 shadow-sm">
 
                             @if (file_exists(public_path('storage/' . $colaborador->foto)))
-                            <img class="w-32 rounded shadow h-36"
+                            <img class="w-28 rounded shadow h-34"
                                 src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
                             @else
-                            <img class="w-32 rounded shadow h-36" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                            <img class="w-28 rounded shadow h-34" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
 
                             @endif
                         </div>
