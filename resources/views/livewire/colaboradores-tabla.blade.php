@@ -540,30 +540,6 @@
                         @endif
                     </div>
                 </th>
-                <th scope="col"
-                    class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase hidden sm:inline-block">
-                    <div class="flex justify-center text-center">
-                        No. Colaborador
-                        @if ($sortAsc)
-                        <span class="cursor-pointer" wire:click="sortBy('no_colaborador')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
-                            </svg>
-                        </span>
-                        @endif
-                        @if (!$sortAsc)
-                        <span class="cursor-pointer" wire:click="sortBy('no_colaborador')">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
-                            </svg>
-                        </span>
-                        @endif
-                    </div>
-                </th>
                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Puesto y Area
                 </th>
@@ -1081,17 +1057,10 @@
                         </div>
                         <div class="ml-4 whitespace-pre-line">
                             <div class="text-sm font-medium text-gray-900">
-                                <span class="sm:hidden"> {{ $colaborador->no_colaborador }}</span>
                                 <span class="sm:inline-block sm:-mt-6">{{ $colaborador->nombre }}
                                     {{ $colaborador->ap_paterno }}</span>
                             </div>
                         </div>
-                    </div>
-                </td>
-                <td
-                    class="sm:px-6 sm:py-2 sm:mt-11 whitespace-nowrap hidden sm:inline-block text-sm sm:text-left text-gray-900">
-                    <div class="sm:flex sm:justify-start sm:px-2 sm:items-center text-sm">
-                        {{ $colaborador->no_colaborador }}
                     </div>
                 </td>
                 <td class="px-3 py-4">
