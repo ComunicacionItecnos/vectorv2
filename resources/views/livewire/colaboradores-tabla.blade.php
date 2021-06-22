@@ -543,7 +543,7 @@
                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Puesto y Area
                 </th>
-                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                <th scope="col" class="text-center px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase">
                     Opciones
                 </th>
             </tr>
@@ -1070,39 +1070,19 @@
                     <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
 
                 </td>
-                <td class="flex justify-center items-center pt-12">
-                    <div class="w-4 pb-1 mr-6 transform hover:text-yellow-500 hover:scale-130">
-                        <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="h-6 w-6"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                            </svg>
+                <td class="flex flex-col sm:flex-wrap sm:flex-row sm:justify-center p-4">
+                    <div class="pb-2 sm:pr-1 mx-auto sm:mx-0 sm:pt-4">
+                        <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
+                        class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-yellow-600 border border-transparent
+                        rounded-md shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                        Ver
                         </a>
                     </div>
-                    <div class="w-4 pb-2 mr-6 transform hover:text-indigo-500 hover:scale-130">
-                        <a href="{{ url('/insignias/' . $colaborador->no_colaborador)}}">
-                            {{-- <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-                            </svg> --}}
-                            <svg xmlns="http://www.w3.org/2000/svg" height="18pt" version="1.1" fill="none" viewBox="-61 0 512 512" stroke="currentColor"
-                                width="18pt">
-                                <g id="surface1">
-                                    <path
-                                        d="M 147.566406 214.105469 L 141.503906 249.4375 C 140.539062 255.066406 142.851562 260.753906 147.472656 264.109375 C 152.089844 267.464844 158.214844 267.910156 163.269531 265.253906 L 195 248.570312 L 226.730469 265.253906 C 231.835938 267.933594 237.953125 267.433594 242.527344 264.109375 C 247.148438 260.753906 249.460938 255.066406 248.496094 249.4375 L 242.433594 214.105469 L 268.105469 189.085938 C 272.191406 185.097656 273.664062 179.136719 271.898438 173.707031 C 270.136719 168.277344 265.441406 164.320312 259.792969 163.5 L 224.316406 158.34375 L 208.449219 126.195312 C 205.925781 121.078125 200.710938 117.835938 195 117.835938 C 189.289062 117.835938 184.074219 121.078125 181.550781 126.195312 L 165.683594 158.34375 L 130.207031 163.5 C 124.558594 164.320312 119.863281 168.277344 118.101562 173.707031 C 116.335938 179.136719 117.808594 185.097656 121.894531 189.085938 Z M 177.800781 186.898438 C 182.6875 186.1875 186.910156 183.121094 189.097656 178.691406 L 195 166.730469 L 200.902344 178.691406 C 203.089844 183.121094 207.3125 186.1875 212.199219 186.898438 L 225.398438 188.816406 L 215.847656 198.128906 C 212.3125 201.574219 210.699219 206.539062 211.53125 211.40625 L 213.789062 224.554688 L 201.980469 218.347656 C 199.792969 217.199219 197.398438 216.625 195 216.625 C 192.601562 216.625 190.203125 217.199219 188.019531 218.347656 L 176.210938 224.554688 L 178.46875 211.40625 C 179.300781 206.539062 177.6875 201.574219 174.152344 198.128906 L 164.601562 188.816406 Z M 177.800781 186.898438 "
-                                        style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" />
-                                    <path
-                                        d="M 60 336.574219 L 60 437 C 60 442.683594 63.210938 447.875 68.292969 450.417969 L 188.292969 510.417969 C 190.402344 511.472656 192.699219 512 195 512 C 197.300781 512 199.597656 511.472656 201.707031 510.417969 L 321.707031 450.417969 C 326.789062 447.875 330 442.683594 330 437 L 330 336.574219 C 366.960938 301.070312 390 251.175781 390 196 C 390 88.40625 302.675781 0 195 0 C 87.4375 0 0 88.285156 0 196 C 0 251.175781 23.039062 301.070312 60 336.574219 Z M 90 360.253906 C 99.472656 366.332031 109.507812 371.601562 120 375.992188 L 120 442.730469 L 90 427.730469 Z M 195 480.230469 L 150 457.730469 L 150 385.75 C 164.449219 389.175781 179.515625 391 195 391 C 210.484375 391 225.550781 389.175781 240 385.75 L 240 457.730469 Z M 300 427.730469 L 270 442.730469 L 270 375.992188 C 280.492188 371.601562 290.527344 366.328125 300 360.253906 Z M 195 30 C 285.980469 30 360 104.46875 360 196 C 360 286.980469 285.980469 361 195 361 C 104.019531 361 30 286.980469 30 196 C 30 104.46875 104.019531 30 195 30 Z M 195 30 "
-                                        style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" />
-                                    <path
-                                        d="M 195 331 C 269.4375 331 330 270.4375 330 196 C 330 121.5625 269.4375 61 195 61 C 120.5625 61 60 121.5625 60 196 C 60 270.4375 120.5625 331 195 331 Z M 195 91 C 252.898438 91 300 138.101562 300 196 C 300 253.898438 252.898438 301 195 301 C 137.101562 301 90 253.898438 90 196 C 90 138.101562 137.101562 91 195 91 Z M 195 91 "
-                                        style=" stroke:none;fill-rule:nonzero;fill:rgb(0%,0%,0%);fill-opacity:1;" />
-                                </g>
-                            </svg>
+                    <div class="pb-2 sm:pl-1 sm:pt-4">
+                        <a href="{{ url('/insignias/' . $colaborador->no_colaborador) }}"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
+                                                rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Insignia
                         </a>
                     </div>
                 </td>
