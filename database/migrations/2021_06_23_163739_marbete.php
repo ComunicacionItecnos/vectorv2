@@ -13,7 +13,10 @@ class Marbete extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('marbete', function (Blueprint $table) {
+            $table->id();
+            $table->string('tipo', 12);
+        });
     }
 
     /**
@@ -23,6 +26,6 @@ class Marbete extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('marbete');
     }
 }
