@@ -15,7 +15,14 @@ class Marbete extends Migration
     {
         Schema::create('marbete', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo', 12);
+            
+            $table->foreignId('tipo_vehiculo_id')
+                ->constrained('tipo_vehiculo')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->string('numero', 3);
+            $table->boolean('estado');
         });
     }
 

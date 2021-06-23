@@ -14,10 +14,15 @@ class Vehiculo extends Migration
     public function up()
     {
         Schema::create('vehiculo', function (Blueprint $table) {
-            
+
             $table->id();
             $table->string('placa', 16);
-            $table->string('tipo_vehiculo');
+
+            $table->foreignId('tipo_vehiculo_id')
+                ->constrained('tipo_vehiculo')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->string('marca', 32);
             $table->string('modelo', 32);
             $table->integer('fecha_modelo');

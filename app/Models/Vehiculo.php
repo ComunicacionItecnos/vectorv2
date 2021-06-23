@@ -15,7 +15,7 @@ class Vehiculo extends Model
 
     protected $fillable = [
         'placa',
-        'tipo_vehiculo',
+        'tipo_vehiculo_id',
         'marca',
         'modelo',
         'fecha_modelo',
@@ -33,5 +33,11 @@ class Vehiculo extends Model
     public function colaboradores()
     {
         return $this->belongsTo('App\Models\Colaborador');
+    }
+
+    //* Relacion muchos a uno
+    public function vehiculos()
+    {
+        return $this->belongsTo('App\Models\Tipo_vehiculo');
     }
 }
