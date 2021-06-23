@@ -16,7 +16,7 @@ class Marbete extends Model
     protected $fillable = [
         'tipo_vehiculo_id',
         'numero',
-        'estado'
+        'estado',
     ];
 
     // * Relacion uno a muchos
@@ -26,7 +26,7 @@ class Marbete extends Model
     }
 
     //* Relacion muchos a uno
-    public function tipo_vehiculo()
+    public function tipos_vehiculo()
     {
         return $this->belongsTo('App\Models\Tipo_vehiculo');
     }

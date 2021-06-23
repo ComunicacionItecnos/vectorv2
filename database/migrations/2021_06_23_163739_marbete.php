@@ -14,8 +14,9 @@ class Marbete extends Migration
     public function up()
     {
         Schema::create('marbete', function (Blueprint $table) {
+
             $table->id();
-            
+
             $table->foreignId('tipo_vehiculo_id')
                 ->constrained('tipo_vehiculo')
                 ->onDelete('cascade')
