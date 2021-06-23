@@ -1,4 +1,3 @@
-@if($bandera == true)
 <div class="sm:p-8 p-2 mx-auto bg-gray-100">
     <header class="bg-white rounded-md shadow">
         <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -8,8 +7,7 @@
         </div>
     </header>
 
-    <form wire:submit.prevent="actualizar">
-
+    <form wire:submit.prevent="confirmed" enctype="multipart/form-data">
         <div class="p-4 grid grid-rows-1 rounded-md shadow-2xl">
             <div class="p-4 grid">
                 <div class="mt-4 mb-4 bg-red-800 ">
@@ -86,8 +84,11 @@
                                 <option></option>
                                 @if ($generos)
                                 @foreach ($generos as $genero)
-                                <option value="{{ $genero->id }}">{{ $genero->nombre_genero }}
-                                </option>
+                                    @if ($genero === $genero->id)
+                                        <option value="{{ $genero->id }}" selected>{{ $genero->nombre_genero }}</option>
+                                    @endif
+                                    <option value="{{ $genero->id }}">{{ $genero->nombre_genero }}
+                                    </option>
                                 @endforeach
                                 @endif
                             </select>
@@ -103,10 +104,15 @@
                                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option></option>
                                 @if ($estadosCivil)
-                                @foreach ($estadosCivil as $estadoCivil)
-                                <option value="{{ $estadoCivil->id }}">{{ $estadoCivil->nombre_estado }}
-                                </option>
-                                @endforeach
+                                    @foreach ($estadosCivil as $estadoCivil)
+                                        @if ($estado_civil === $estadoCivil->id)
+                                            <option value="{{ $estadoCivil->id }}" selected>{{ $estadoCivil->nombre_estado }}</option>
+                                        @else
+                                            <option value="{{ $estadoCivil->id }}">{{ $estadoCivil->nombre_estado }}
+                                            </option>
+                                        @endif
+                                        
+                                    @endforeach
                                 @endif
                             </select>
                             @error('estado_civil')
@@ -121,8 +127,13 @@
                             <select wire:model="paternidad" id="inputHijos" name="paternidad"
                                 class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 <option></option>
-                                <option value="0">No</option>
-                                <option value="1">Si</option>
+                               @foreach ($paternidadArray as $pA)
+                                   @if ($paternidad === $pA)
+                                       <option value="{{ $pA['id'] }}" selected>{!! $pA['nom'] !!}</option>
+                                   @else
+                                        <option value="{{ $pA['id'] }}">{!! $pA['nom'] !!}</option>
+                                   @endif
+                               @endforeach
                             </select>
                             @error('paternidad')
                             <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -262,12 +273,43 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </div>
+                                        
+                                        @if ($permisoSubiractas2 == true)
+                                        <div class="h-18 p-4 opacity-50">
+                                            <label class="text-center block text-sm font-medium text-gray-700">Desabilitado debido a que ya contamos con la acta de su hijo(s)</label>
+                                            <label
+                                                class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path
+                                                        d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                    <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                </svg>
+                                                <input type='file' wire:model="actasNacimientoHijo" accept=".pdf" disabled class="hidden" multiple   
+                                                    />
+                                            </label>
+                                        </div>
+                                        @else
+                                            <div class="h-18 p-4">
+                                                <label class="text-center block text-sm font-medium text-gray-700">Sube aqui la acta de nacimiento de tu hijo(s)</label>
+                                                <label
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                        <path
+                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                    </svg>
+                                                    <input type='file' wire:model="actasNacimientoHijo" accept=".pdf" class="hidden"  multiple   
+                                                        />
+                                                </label>
+                                            </div>
+                                        @endif
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+                
+
                 <div class="mt-4 mb-4 bg-red-800 ">
                     <p class="text-center text-gray-50 text-xl">
                         Datos de Contacto
@@ -498,25 +540,46 @@
                     </div>
                 </div>
             </div>
-            <div class="h-16 p-4">
-                <label
-                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                        <path
-                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                    </svg>
-                    <input type='file' wire:model="fotos" class="hidden" multiple/>
-                </label>
-            </div>
-            <div class="h-16 p-4 grid grid-cols-2">
-                <div class="flex justify-start px-4 col-span-1 col-start-1">
-                    <button wire:click="setFalse"
-                        class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                        Regresar</button>
+
+            @if ($permisoSubircomprobante2===true)
+                <div class="mt-2">
+                    <label class="text-center block text-sm font-medium opacity-50 text-gray-700">Desabilitado debido a que ya contamos con su comprobante de domicilio</label>
                 </div>
-                <div class="flex justify-end px-4 col-span-1 col-start-2">
-                    <button wire:click="actualizar" type="submit"
+                <div class="h-16 p-4 opacity-50">
+                    <label
+                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                        </svg>
+                        <input type='file' name="comprobante" id="comprobante" wire:model="comprobante" disabled accept=".pdf" class="hidden"/>
+                    </label>
+                </div>
+            @else
+                <div class="mt-2">
+                    <label class="text-center block text-sm font-medium text-gray-700">Sube aqui tu comprobante de domicilio</label>
+                </div>
+                <div class="h-16 p-4">
+                    <label
+                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path
+                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                        </svg>
+                        <input type='file' name="comprobante" id="comprobante" wire:model="comprobante" accept=".pdf" class="hidden"/>
+                    </label>
+                </div>
+            @endif
+            <div class="h-16 p-4 grid grid-cols-2">
+                <div class="flex justify-start px-2 col-span-1 col-start-1">
+                    <a href="https://factoraguila.com"
+                        class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                        Regresar</a>
+                </div>
+                <div class="flex justify-end px-2 col-span-1 col-start-2">
+                    <button type="submit" wire:model="confirmed"
                         class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                         Actualizar</button>
                 </div>
@@ -525,29 +588,3 @@
     </form>
 
 </div>
-@else
-<div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-    <a href="https://factoraguila.com">
-        <img src="{{ asset('images/logo_factor-c.png') }}" alt="Logo" class="h-25 mx-auto w-25">
-    </a>
-
-    <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
-
-        <div>
-            <x-jet-label for="no_colaborador" value="{{ __('Numero de colaborador') }}" />
-            <x-jet-input id="no_colaborador" wire:model="no_colaborador" class="block w-full mt-1" type="text"
-                name="no_colaborador" :value="old('no_colaborador')" required autofocus />
-        </div>
-        <div class="flex flex-col items-center justify-center mt-4">
-            <button wire:click="comprueba"
-                class="mx-auto mb-4 inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-green">
-                Comprobar
-            </button>
-            <button wire:click="redirect"
-                class="mx-auto inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-green">
-                Regresar a Factor
-            </button>
-        </div>
-    </div>
-</div>
-@endif
