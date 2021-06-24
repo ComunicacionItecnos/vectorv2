@@ -7,7 +7,7 @@
         </div>
     </header>
 
-    <form wire:submit.prevent="confirmed" enctype="multipart/form-data">
+    <form wire:submit.prevent="triggerConfirm" enctype="multipart/form-data">
         <div class="p-4 grid grid-rows-1 rounded-md shadow-2xl">
             <div class="p-4 grid">
                 <div class="mt-4 mb-4 bg-red-800 ">
@@ -579,7 +579,7 @@
                         Regresar</a>
                 </div>
                 <div class="flex justify-end px-2 col-span-1 col-start-2">
-                    <button type="submit" wire:model="confirmed"
+                    <button type="submit" wire:model="triggerConfirm"
                         class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                         Actualizar</button>
                 </div>
