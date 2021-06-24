@@ -87,7 +87,7 @@ class ComprobarColaborador extends Component
 
 
     protected $listeners = [
-        'confirmed',
+        'actualizar',
         'cancelled',
     ];
 
@@ -105,7 +105,7 @@ class ComprobarColaborador extends Component
         ]);
     }
 
-    public function confirmed()
+    public function triggerConfirm()
     {
         $this->confirm('¿Quieres actualizar tus datos?', [
             'toast' => false,
