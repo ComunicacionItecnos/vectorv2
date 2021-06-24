@@ -211,7 +211,7 @@ class ComprobarColaborador extends Component
 
         //Validar botones de subida de archivo
         $this->colString= $this->colaborador->no_colaborador;
-        if (Storage::exists('public/documentos/actasHijos/'.$this->colString)) {
+        if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/')) {
             $this->permisoSubiractas= true;
             // Existe las actas
         }else{
@@ -219,7 +219,7 @@ class ComprobarColaborador extends Component
             // No existe las actas   
         }
 
-        if (Storage::exists('public/documentos/comprobanteDomicilio/'.$this->colString.'_comprobanteDomicilio.pdf')) {
+        if (Storage::exists('public/documentos/'.$this->colString.'/'.$this->colString.'_comprobanteDomicilio.pdf')) {
             $this->permisoSubircomprobante= true;
             
             //Existe comprobante
@@ -463,14 +463,14 @@ class ComprobarColaborador extends Component
             
                 }else{
                     foreach ($this->actasNacimientoHijo as $anH) {
-                        $anH->store('documentos/actasHijos/'.$this->colString,'public');
+                        $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
                     }
                 }
         
                 if ($this->permisoSubircomprobante === true) {
                     
                 } else {
-                    $this->comprobante->storeAs('public/documentos/comprobanteDomicilio',$this->colString.'_comprobanteDomicilio.pdf');
+                    $this->comprobante->storeAs('public/documentos/'.$this->colString,$this->colString.'_comprobanteDomicilio.pdf');
                 }
 
             });
