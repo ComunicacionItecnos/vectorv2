@@ -1,8 +1,8 @@
 <div class="sm:p-8 p-2 mx-auto bg-gray-100">
     <header class="bg-white rounded-md shadow">
         <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <h2 class="text-xl font-semibold leading-tight text-red-700">
-                Formulario de actualización de datos
+            <h2 class="text-xl text-center font-semibold leading-tight text-red-700">
+                ACTUALIZACION DE DATOS
             </h2>
         </div>
     </header>
@@ -10,7 +10,7 @@
     <form wire:submit.prevent="triggerConfirm" enctype="multipart/form-data">
         <div class="p-4 grid grid-rows-1 rounded-md shadow-2xl">
             <div class="p-4 grid">
-                <div class="mt-4 mb-4 bg-red-800 ">
+                <div class="mt-4 mb-4 bg-red-800 rounded-md">
                     <p class="text-center text-gray-50 text-xl">
                         Datos demográficos
                     </p>
@@ -146,7 +146,7 @@
                         <div id="tablaHijos" class="grid mt-4 mb-4" @if (($paternidad=='' ) | ($paternidad=='0' ))
                             style="display: none" @else @endif>
 
-                            <div class="mt-4 mb-4 bg-red-800 ">
+                            <div class="mt-4 mb-4 bg-red-800 rounded-md">
                                 <p class="text-center text-gray-50 text-xl">
                                     Hijo(s)
                                 </p>
@@ -310,7 +310,7 @@
                 </div>
                 
 
-                <div class="mt-4 mb-4 bg-red-800 ">
+                <div class="mt-4 mb-4 bg-red-800 rounded-md">
                     <p class="text-center text-gray-50 text-xl">
                         Datos de Contacto
                     </p>
@@ -364,7 +364,7 @@
                         @enderror
                     </div>
                 </div>
-                <div class="mt-4 mb-4 bg-red-800 ">
+                <div class="mt-4 mb-4 bg-red-800 rounded-md ">
                     <p class="text-center text-gray-50 text-xl">
                         Contactos de Emergencia
                     </p>
