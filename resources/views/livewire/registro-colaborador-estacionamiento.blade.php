@@ -130,11 +130,11 @@
                     @if($tipo_vehiculo)
                     @if($tipo_vehiculo == 1)
                     @if($m_info)
-                    A-{{ $m_info[0]->marbete_id }}
+                    A-{{ $m_info[0]->numero }}
                     @endif
                     @else
                     @if($m_info)
-                    M-{{ $m_info[0]->marbete_id }}
+                    M-{{ $m_info[0]->numero }}
                     @endif
                     @endif <br><br>
                     @endif
