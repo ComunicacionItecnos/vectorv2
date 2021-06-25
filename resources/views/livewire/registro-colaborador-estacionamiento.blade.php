@@ -1,13 +1,13 @@
 <div class="sm:p-8 p-2 mx-auto bg-gray-100">
     <header class="bg-white rounded-md shadow">
         <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <h2 class="text-xl font-semibold leading-tight text-red-700">
-                Registro vehicular para uso del estacionamiento
+            <h2 class="text-xl text-center font-semibold leading-tight text-red-700">
+                Registro para uso del estacionamiento
             </h2>
         </div>
     </header>
 
-    <form wire:submit.prevent="registra">
+    <form {{-- wire:submit.prevent="acciones" --}}>
 
         <div class="p-4 mt-4 grid grid-rows-1 rounded-md shadow-2xl">
             <div class="p-4 grid">
@@ -104,9 +104,13 @@
                         Regresar</a>
                 </div>
                 <div class="flex justify-end px-4 col-span-1 col-start-2">
-                    <button wire:click="registra" type="submit"
+                    <button wire:click="acciones" type="submit"
                         class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                        Registrar</button>
+                        @if($banderaExiste == true)
+                        Actualizar
+                        @else
+                        Registrar
+                        @endif</button>
                 </div>
             </div>
         </div>
