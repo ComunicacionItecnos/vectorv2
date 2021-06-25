@@ -7,7 +7,7 @@
         </div>
     </header>
 
-    <form {{-- wire:submit.prevent="acciones" --}}>
+    <form wire:submit.prevent="acciones">
 
         <div class="p-4 mt-4 grid grid-rows-1 rounded-md shadow-2xl">
             <div class="p-4 grid">
@@ -104,7 +104,7 @@
                         Regresar</a>
                 </div>
                 <div class="flex justify-end px-4 col-span-1 col-start-2">
-                    <button wire:click="acciones" type="submit"
+                    <button type="submit"
                         class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                         @if($banderaExiste == true)
                         Actualizar
