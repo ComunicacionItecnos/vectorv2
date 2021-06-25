@@ -80,4 +80,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/insignias/{no_colaborador
 
 Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);
 
-Route::post('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class);
+Route::get('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class);
