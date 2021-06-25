@@ -20,7 +20,7 @@ class RegistroColaboradorEstacionamiento extends Component
     public $tipo_vehiculo_original;
     public $marbete, $marbete_numero;
     public $vehiculo_id;
-    public $m_id;
+    public $m_id, $m_info;
 
     public $banderaExiste = false;
     public $popupRegistro = false;
@@ -67,7 +67,8 @@ class RegistroColaboradorEstacionamiento extends Component
         } else {
             $this->banderaExiste = true;
             $this->setTrue();
-            
+
+            $this->m_info = ModelsEstacionamiento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
             $this->tipo_vehiculo = $vehiculo[0]->tipo_vehiculo_id;
             $this->tipo_vehiculo_original = $this->tipo_vehiculo;
             $this->placa = $vehiculo[0]->placa;
