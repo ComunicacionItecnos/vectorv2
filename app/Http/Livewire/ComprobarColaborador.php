@@ -215,7 +215,17 @@ class ComprobarColaborador extends Component
         $this->colString= $this->colaborador->no_colaborador;
         if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/')) {
             $this->permisoSubiractas= true;
-            // Existe las actas
+            // Existe el directorio de actasHijos
+
+            $image_path2 = Storage::allFiles('/public/documentos/'.$this->colString.'/actasHijos');
+            if ($image_path2 === []) {
+                dd('Existe la carpeta pero no tiene archivos');
+            }else{
+                dd($image_path2);
+            }
+            // dd(Storage::delete($image_path2));
+            
+
         }else{
            $this->permisoSubiractas = false;
             // No existe las actas   
@@ -445,6 +455,12 @@ class ComprobarColaborador extends Component
                         $rutaActas = NULL;
                     }else{
                         foreach ($this->actasNacimientoHijo as $anH) {
+                            
+                            $image_path2 = Storage::allFiles('/public/documentos/'.$this->colString.'/actasHijos');
+
+                            // dd(Storage::delete($image_path2));
+                            dd($image_path2);
+
                             $rutaActas[]= $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
                         }
                     }

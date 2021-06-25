@@ -22,12 +22,6 @@
                             Datos demográficos
                         </p>
                     </div>
-
-                    <div class="mt-4 mb-4 bg-red-800 rounded-md">
-                        <p class="text-center text-gray-50 text-xl">
-                            Datos demográficos
-                        </p>
-                    </div>
                     <div class="grid gap-2">
                         <div class="sm:grid row-start-1 grid-cols-4 gap-2">
                             <div class="mb-2 sm:m-0 col-span-1 col-start-1">
