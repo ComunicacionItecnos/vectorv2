@@ -144,4 +144,9 @@ class Colaborador extends Model
     {
         return $this->hasMany('App\Models\Contactos_emergencia');
     }
+
+    public function actualizar_colaboradors(){
+        return $this->hasMany('App\Models\Actualizar_colaborador');
+    }
+
 }

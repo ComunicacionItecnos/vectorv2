@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Actualizar_colaborador;
 use Exception;
 use App\Models\Hijos;
 use App\Models\Genero;
@@ -23,6 +24,8 @@ class ComprobarColaborador extends Component
     public $colString;
 
     public $habilitarForm = true;
+
+    
 
     public $colaborador,$no_colaborador;
     public $direccion,$colonia,$municipio,$estado,$codigo_postal,$contactoEmergencia;
