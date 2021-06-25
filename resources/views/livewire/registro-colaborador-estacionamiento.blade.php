@@ -1,4 +1,5 @@
 <div class="sm:p-8 p-2 mx-auto bg-gray-100">
+
     <header class="bg-white rounded-md shadow">
         <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
             <h2 class="text-xl text-center font-semibold leading-tight text-red-700">
@@ -115,5 +116,27 @@
             </div>
         </div>
     </form>
+    <x-jet-dialog-modal wire:model="popupRegistro">
+        <x-slot name="title">
+            <p class="text-center text-2xl font-medium text-red-700">
+                Registro realizado
+            </p>
+        </x-slot>
 
+        <x-slot name="content">
+            <div class="mt-4 ml-3">
+                <p class="text-center text-xl font-medium text-gray-700">
+                    Has realizado exitosamente tu registro. <br><br>
+                    Si te has equivocado puedes modificar los datos que ingresaste 
+                    o puedes volver a Factor con el botón "Regresar".
+                </p>
+            </div>
+        </x-slot>
+
+        <x-slot name="footer">
+            <x-jet-secondary-button wire:click="setNull()">
+                {{ __('Cerrar') }}
+            </x-jet-secondary-button>
+        </x-slot>
+    </x-jet-dialog-modal>
 </div>
