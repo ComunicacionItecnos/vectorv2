@@ -129,9 +129,13 @@
                     El número asignado de tu marbete es:
                     @if($tipo_vehiculo)
                     @if($tipo_vehiculo == 1)
+                    @if($m_info)
                     A-{{ $m_info[0]->marbete_id }}
+                    @endif
                     @else
+                    @if($m_info)
                     M-{{ $m_info[0]->marbete_id }}
+                    @endif
                     @endif <br><br>
                     @endif
 
