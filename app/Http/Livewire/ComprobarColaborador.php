@@ -20,10 +20,11 @@ class ComprobarColaborador extends Component
 
     public $actasNacimientoHijo = [],$permisoSubiractas;
     public $comprobante,$permisoSubircomprobante;
-
     public $colString;
 
-    public $colaborador, $bandera = true, $no_colaborador;
+    public $habilitarForm = true;
+
+    public $colaborador,$no_colaborador;
     public $direccion,$colonia,$municipio,$estado,$codigo_postal,$contactoEmergencia;
     public $genero, $estado_civil, $paternidad,$correo, $tel_fijo, $tel_movil, $tel_recados;
 
@@ -239,43 +240,14 @@ class ComprobarColaborador extends Component
 
         $permisoSubiractas2= $this->permisoSubiractas;
         $permisoSubircomprobante2=$this->permisoSubircomprobante;
-        
-        return view('livewire.comprobar-colaborador', compact('generos', 'estadosCivil','paternidadArray','permisoSubiractas2','permisoSubircomprobante2'))->layout('layouts.guest');
+        $habilitarForm = $this->habilitarForm;
+
+        return view('livewire.comprobar-colaborador', compact('generos','estadosCivil','paternidadArray','permisoSubiractas2','permisoSubircomprobante2','habilitarForm'))->layout('layouts.guest');
     }
 
-    public function comprueba()
+    public function habilitar()
     {
-
-        $prueba = Colaborador::find($this->no_colaborador);
-
-        if ($prueba != null) {
-            $this->alert('success', 'El numero de colaborador ' . $this->no_colaborador . ' existe', [
-                'position' =>  'top-end',
-                'timer' =>  3000,
-                'toast' =>  true,
-                'text' =>  '',
-                'confirmButtonText' =>  'Ok',
-                'cancelButtonText' =>  'Cancel',
-                'showCancelButton' =>  false,
-                'showConfirmButton' =>  false,
-            ]);
-            $this->bandera = true;
-        } else {
-            $this->alert('error', 'El numero de colaborador ' . $this->no_colaborador . ' no existe', [
-                'position' =>  'top-end',
-                'timer' =>  3000,
-                'toast' =>  true,
-                'text' =>  '',
-                'confirmButtonText' =>  'Ok',
-                'cancelButtonText' =>  'Cancel',
-                'showCancelButton' =>  false,
-                'showConfirmButton' =>  false,
-            ]);
-        }
-    }
-    public function setFalse()
-    {
-        $this->bandera = false;
+        $this->habilitarForm= !$this->habilitarForm;
     }
 
 
