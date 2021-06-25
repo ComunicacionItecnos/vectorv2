@@ -2,7 +2,7 @@
 
     <header class="bg-white rounded-md shadow">
         <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
-            <h2 class="text-xl text-center font-semibold leading-tight text-red-700">
+            <h2 class="uppercase text-xl text-center font-semibold leading-tight text-red-700">
                 Registro para uso del estacionamiento
             </h2>
         </div>
@@ -12,7 +12,7 @@
 
         <div class="p-4 mt-4 grid grid-rows-1 rounded-md shadow-2xl">
             <div class="p-4 grid">
-                <div class="mt-4 mb-4 bg-red-800 ">
+                <div class="mt-4 mb-4 bg-red-800 rounded-md shadow-2xl">
                     <p class="text-center text-gray-50 text-xl">
                         Datos del vehículo
                     </p>
@@ -119,14 +119,19 @@
     <x-jet-dialog-modal wire:model="popupRegistro">
         <x-slot name="title">
             <p class="text-center text-2xl font-medium text-red-700">
-                Registro realizado
+                Registro realizado exitosamente
             </p>
         </x-slot>
 
         <x-slot name="content">
             <div class="mt-4 ml-3">
                 <p class="text-center text-xl font-medium text-gray-700">
-                    Has realizado exitosamente tu registro. <br><br>
+                    El número asignado de tu marbete es: 
+                    @if($tipo_vehiculo == 1)
+                        A-{{ $m_info[0]->marbete_id }}
+                    @else
+                        M-{{ $m_info[0]->marbete_id }}
+                    @endif <br><br>
                     Si te has equivocado puedes modificar los datos que ingresaste 
                     o puedes volver a Factor con el botón "Regresar".
                 </p>
