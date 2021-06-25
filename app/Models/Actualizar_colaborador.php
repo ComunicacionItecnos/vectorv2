@@ -13,7 +13,7 @@ class Actualizar_colaborador extends Model
 
     protected $fillable =[
         'colaborador_no_colaborador',
-        'direccion',
+        'domicilio',
         'colonia',
         'municipio',
         'estado',
@@ -22,7 +22,7 @@ class Actualizar_colaborador extends Model
         'estado_civil_id',
         'paternidad_id',
         'rutaActas',
-        'rutacomporbante'
+        'rutacomprobante'
     ];
 
     /* Relacion de muchos a uno */

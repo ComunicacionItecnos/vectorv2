@@ -8,14 +8,21 @@
     </header>
 
     <div class="p-4 grid grid-rows-1 rounded-md shadow-2xl">
-        <button wire:click="habilitar"
+        {{-- <button wire:click="habilitar"
             class="text-center items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
             Modificar
-        </button>
+        </button> --}}
 
         @if ($habilitarForm === true)
             <form wire:submit.prevent="triggerConfirm" enctype="multipart/form-data">
                 <div class="p-4 grid">
+
+                    <div class="mt-4 mb-4 bg-red-800 rounded-md">
+                        <p class="text-center text-gray-50 text-xl">
+                            Datos demográficos
+                        </p>
+                    </div>
+
                     <div class="mt-4 mb-4 bg-red-800 rounded-md">
                         <p class="text-center text-gray-50 text-xl">
                             Datos demográficos
@@ -578,8 +585,9 @@
                         </div>
                     @else
                         <div class="mt-2">
-                            <label class="text-center block text-sm font-medium text-gray-700">Sube aqui tu comprobante de
-                                domicilio</label>
+                            <label class="text-center block text-sm font-medium text-gray-700">
+                                <p class=" text-red-600">*<span> Sube aqui tu comprobante de domicilio
+                            </label> 
                         </div>
                         <div class="h-16 p-4">
                             <label
@@ -591,7 +599,7 @@
                                     <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
                                 </svg>
                                 <input type='file' name="comprobante" id="comprobante" wire:model="comprobante"
-                                    accept=".pdf" class="hidden" />
+                                    accept=".pdf" class="hidden"/>
                             </label>
                         </div>
                     @endif
@@ -602,7 +610,7 @@
                                 Regresar</a>
                         </div>
                         <div class="flex justify-end px-2 col-span-1 col-start-2">
-                            <button type="submit" wire:model="triggerConfirm"
+                            <button type="submit"
                                 class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                 Actualizar</button>
                         </div>

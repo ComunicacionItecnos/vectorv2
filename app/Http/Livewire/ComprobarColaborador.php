@@ -2,13 +2,13 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Actualizar_colaborador;
 use Exception;
 use App\Models\Hijos;
 use App\Models\Genero;
 use Livewire\Component;
 use App\Models\Colaborador;
 use App\Models\Estado_civil;
+use App\Models\Actualizar_colaborador;
 use Illuminate\Support\Facades\DB;
 use App\Models\Contactos_emergencia;
 use Illuminate\Support\Facades\Storage;
@@ -24,8 +24,6 @@ class ComprobarColaborador extends Component
     public $colString;
 
     public $habilitarForm = true;
-
-    
 
     public $colaborador,$no_colaborador;
     public $direccion,$colonia,$municipio,$estado,$codigo_postal,$contactoEmergencia;
@@ -58,7 +56,7 @@ class ComprobarColaborador extends Component
         'telefono_contacto1' => 'required|regex:/^[0-9]{10}$/',
         'domicilio_contacto1' => 'required',
         'comprobante.*' => 'mimes:pdf|max:5120',
-        'actasNacimientoHijo.*'  => 'mimes:pdf|max:10240',
+        'actasNacimientoHijo.*'  => 'mimes:pdf|max:10240'
     ];
 
     protected $messages = [
@@ -225,7 +223,6 @@ class ComprobarColaborador extends Component
 
         if (Storage::exists('public/documentos/'.$this->colString.'/'.$this->colString.'_comprobanteDomicilio.pdf')) {
             $this->permisoSubircomprobante= true;
-            
             //Existe comprobante
         } else {
             $this->permisoSubircomprobante= false;
@@ -245,6 +242,13 @@ class ComprobarColaborador extends Component
         $permisoSubircomprobante2=$this->permisoSubircomprobante;
         $habilitarForm = $this->habilitarForm;
 
+        /* Validar si hay un cambio en los input de direccion,colonia,municipio,estado,cod_postal. */
+        if ($this->direccion != $this->colaborador->domicilio || $this->colonia != $this->colaborador->colonia || $this->municipio != $this->colaborador->municipio || $this->estado != $this->colaborador->estado || $this->codigo_postal != $this->colaborador->codigo_postal) {
+            $permisoSubircomprobante2= !$this->permisoSubircomprobante;
+        } else {
+            $permisoSubircomprobante2=$this->permisoSubircomprobante;
+        }
+   
         return view('livewire.comprobar-colaborador', compact('generos','estadosCivil','paternidadArray','permisoSubiractas2','permisoSubircomprobante2','habilitarForm'))->layout('layouts.guest');
     }
 
@@ -435,18 +439,43 @@ class ComprobarColaborador extends Component
 
                 /* Validar si esta activo los input de actas y comprobante */
                 if ($this->permisoSubiractas === true) {
-            
+                    $rutaActas = NULL;
                 }else{
-                    foreach ($this->actasNacimientoHijo as $anH) {
-                        $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
+                    if (empty($this->actasNacimientoHijo) || $this->actasNacimientoHijo=== '') {
+                        $rutaActas = NULL;
+                    }else{
+                        foreach ($this->actasNacimientoHijo as $anH) {
+                            $rutaActas[]= $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
+                        }
                     }
                 }
         
                 if ($this->permisoSubircomprobante === true) {
+                    $rutaComprobante='';
+                }else{
+                    if (empty($this->comprobante) || $this->comprobante==='') {
+                        $rutaComprobante = '';
+                    } else {
+                        $rutaComprobante=$this->comprobante->storeAs('public/documentos/'.$this->colString,$this->colString.'_comprobanteDomicilio.pdf');
+                    }
                     
-                } else {
-                    $this->comprobante->storeAs('public/documentos/'.$this->colString,$this->colString.'_comprobanteDomicilio.pdf');
                 }
+
+                /* Guardar datos que cambio el colaborador */
+                $rutaActas= json_encode($rutaActas);
+                Actualizar_colaborador::create([
+                    'colaborador_no_colaborador' =>$this->no_colaborador,
+                    'domicilio' =>$domicilio_c,
+                    'colonia'=>$colonia_c,
+                    'municipio'=>$municipio_c,
+                    'estado'=>$estado_c,
+                    'codigo_postal'=>$this->codigo_postal,
+                    'genero_id'=>$this->genero,
+                    'estado_civil_id' =>$this->estado_civil,
+                    'paternidad_id' => $this->paternidad,
+                    'rutaActas'=>$rutaActas,
+                    'rutacomprobante'=>$rutaComprobante
+                ]);
 
             });
 
