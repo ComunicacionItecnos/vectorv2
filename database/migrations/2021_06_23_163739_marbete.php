@@ -22,7 +22,7 @@ class Marbete extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->string('numero', 3);
+            $table->string('numero', 4);
             $table->boolean('estado');
         });
     }
