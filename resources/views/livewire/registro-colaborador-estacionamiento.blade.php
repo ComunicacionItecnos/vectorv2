@@ -126,13 +126,16 @@
         <x-slot name="content">
             <div class="mt-4 ml-3">
                 <p class="text-center text-xl font-medium text-gray-700">
-                    El número asignado de tu marbete es: 
+                    El número asignado de tu marbete es:
+                    @if($tipo_vehiculo)
                     @if($tipo_vehiculo == 1)
-                        A-{{ $m_info[0]->marbete_id }}
+                    A-{{ $m_info[0]->marbete_id }}
                     @else
-                        M-{{ $m_info[0]->marbete_id }}
+                    M-{{ $m_info[0]->marbete_id }}
                     @endif <br><br>
-                    Si te has equivocado puedes modificar los datos que ingresaste 
+                    @endif
+
+                    Si te has equivocado puedes modificar los datos que ingresaste
                     o puedes volver a Factor con el botón "Regresar".
                 </p>
             </div>
