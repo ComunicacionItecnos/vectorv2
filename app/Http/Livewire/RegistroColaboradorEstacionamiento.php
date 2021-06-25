@@ -10,10 +10,8 @@ use App\Models\Tipo_vehiculo;
 use App\Models\Vehiculo;
 use Carbon\Carbon;
 use Estacionamiento;
+use Exception;
 use Illuminate\Support\Facades\DB;
-
-use function PHPUnit\Framework\isEmpty;
-use function PHPUnit\Framework\isNull;
 
 class RegistroColaboradorEstacionamiento extends Component
 {
@@ -22,8 +20,28 @@ class RegistroColaboradorEstacionamiento extends Component
     public $tipo_vehiculo_original;
     public $marbete, $marbete_numero;
     public $vehiculo_id;
+    public $m_id;
 
     public $banderaExiste = false;
+
+    protected $rules = [
+        'tipo_vehiculo' => 'required',
+        'placa' => 'required',
+        'marca' => 'required',
+        'modelo' => 'required',
+        'fecha_modelo' => ['required', 'regex:/(?:(?:19|20)[0-9]{2})/'],
+        'color' => 'required',
+    ];
+
+    protected $messages = [
+        'tipo_vehiculo.required' => 'Debe elegir un tipo de vehículo',
+        'placa.required' => 'El campo Placa no puede estar vacío',
+        'marca.required' => 'El campo Marca no puede estar vacío',
+        'modelo.required' => 'El campo Modelo no puede estar vacío',
+        'color.required' => 'El campo Color no puede estar vacío',
+        'fechamodelo.required' => 'El campo Año no puede estar vacío',
+        'fecha_modelo.regex' => 'El Año solo puede contener 4 dígitos y debe ser una fecha válida',
+    ];
 
     public function mount($no_colaborador)
     {
@@ -43,8 +61,7 @@ class RegistroColaboradorEstacionamiento extends Component
     public function existe()
     {
         $vehiculo = Vehiculo::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
-
-        if ($this->vehiculo) {
+        if (count($vehiculo) == 0) {
             $this->banderaExiste = false;
         } else {
             $this->banderaExiste = true;
@@ -60,6 +77,8 @@ class RegistroColaboradorEstacionamiento extends Component
 
     public function acciones()
     {
+        $this->validate();
+
         if ($this->banderaExiste == true) {
             $this->actualiza();
         } else {
@@ -84,10 +103,10 @@ class RegistroColaboradorEstacionamiento extends Component
 
         if ($this->tipo_vehiculo_original != $this->tipo_vehiculo) {
 
-            $m_id = ModelsEstacionamiento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
+            $this->m_id = ModelsEstacionamiento::where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
 
             DB::transaction(function () {
-                Marbete::where('id', $m_id[0]->marbete_id)
+                Marbete::where('id', $this->m_id[0]->marbete_id)
                     ->update([
                         'estado' => 1,
                     ]);
@@ -124,7 +143,7 @@ class RegistroColaboradorEstacionamiento extends Component
     {
         DB::transaction(function () {
             Vehiculo::updateOrCreate([
-                'placa' => $this->placa,
+                'placa' => mb_strtoupper($this->placa),
                 'tipo_vehiculo_id' => $this->tipo_vehiculo,
                 'marca' => $this->marca,
                 'modelo' => $this->modelo,
@@ -164,8 +183,8 @@ class RegistroColaboradorEstacionamiento extends Component
                 'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
                 'vehiculo_id' => $this->vehiculo_id[0]->id,
                 'marbete_id' => $this->marbete[0]->id,
-                'created_at' => Carbon::now('America/Mexico/Mexico City'),
-                'updated_at' => Carbon::now('America/Mexico/Mexico City')
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]);
         });
     }
