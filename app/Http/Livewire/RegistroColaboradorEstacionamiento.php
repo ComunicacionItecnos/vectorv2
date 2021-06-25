@@ -23,6 +23,7 @@ class RegistroColaboradorEstacionamiento extends Component
     public $m_id;
 
     public $banderaExiste = false;
+    public $popupRegistro = false;
 
     protected $rules = [
         'tipo_vehiculo' => 'required',
@@ -65,6 +66,8 @@ class RegistroColaboradorEstacionamiento extends Component
             $this->banderaExiste = false;
         } else {
             $this->banderaExiste = true;
+            $this->setTrue();
+            
             $this->tipo_vehiculo = $vehiculo[0]->tipo_vehiculo_id;
             $this->tipo_vehiculo_original = $this->tipo_vehiculo;
             $this->placa = $vehiculo[0]->placa;
@@ -195,4 +198,15 @@ class RegistroColaboradorEstacionamiento extends Component
         $cambio->estado = 0;
         $cambio->save();
     }
+
+    public function setNull()
+    {
+        $this->popupRegistro = false;
+    }
+
+    public function setTrue()
+    {
+        $this->popupRegistro = true;
+    }
+    
 }
