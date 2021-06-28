@@ -296,12 +296,15 @@
                                                                                                         <b>
                                                                                                             @if($tipo_insignia
                                                                                                             == 1)
-                                                                                                            Oro
+                                                                                                            Platino
                                                                                                             @elseif($tipo_insignia
                                                                                                             == 2)
-                                                                                                            Plata
+                                                                                                            Oro
                                                                                                             @elseif($tipo_insignia
                                                                                                             == 3)
+                                                                                                            Plata
+                                                                                                            @elseif($tipo_insignia
+                                                                                                            == 4)
                                                                                                             Bronce
                                                                                                             @endif
                                                                                                         </b>

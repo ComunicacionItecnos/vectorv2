@@ -289,10 +289,12 @@
                                                                                                     <td class="fluid-img img-center pb-50"
                                                                                                         style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 30px;">
                                                                                                         <img @if($tipo_insignia==1)
-                                                                                                            src="{{ asset('images/Oro-Insignia.png') }}"
+                                                                                                            src="{{ asset('images/Platino-Insignia.png') }}"
                                                                                                             @elseif($tipo_insignia==2)
-                                                                                                            src="{{ asset('images/Plata-Insignia.png') }}"
+                                                                                                            src="{{ asset('images/Oro-Insignia.png') }}"
                                                                                                             @elseif($tipo_insignia==3)
+                                                                                                            src="{{ asset('images/Plata-Insignia.png') }}"
+                                                                                                            @elseif($tipo_insignia==4)
                                                                                                             src="{{ asset('images/Bronce-Insignia.png') }}"
                                                                                                             @endif
                                                                                                             width="15%"
@@ -320,12 +322,15 @@
                                                                                                         <b>
                                                                                                             @if($tipo_insignia
                                                                                                             == 1)
-                                                                                                            Oro
+                                                                                                            Platino
                                                                                                             @elseif($tipo_insignia
                                                                                                             == 2)
-                                                                                                            Plata
+                                                                                                            Oro
                                                                                                             @elseif($tipo_insignia
                                                                                                             == 3)
+                                                                                                            Plata
+                                                                                                            @elseif($tipo_insignia
+                                                                                                            == 4)
                                                                                                             Bronce
                                                                                                             @endif
                                                                                                         </b>
