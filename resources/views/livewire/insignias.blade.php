@@ -3,11 +3,14 @@
         Asignador de Insignias
     </h2>
 </x-slot>
-
 <div class="py-8">
     <div class="mx-auto max-w-7xl sm:px-2 lg:px-4">
         <div class="overflow-hidden bg-white shadow-xl sm:rounded-lg ">
             <form wire:submit.prevent="asignacion">
+                <a href="https://factoraguila.com"
+                    class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-red-800 border border-transparent rounded-md shadow-sm hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
+                    Volver a Factor
+                </a>
                 <div class="grid grid-rows-1 sm:grid-cols-4 gap-4 p-4">
                     <div class="row-start-1 sm:row-start-1 sm:col-start-1">
                         <div
