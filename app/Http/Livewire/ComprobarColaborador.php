@@ -8,11 +8,11 @@ use App\Models\Genero;
 use Livewire\Component;
 use App\Models\Colaborador;
 use App\Models\Estado_civil;
-use App\Models\Actualizar_colaborador;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 use App\Models\Contactos_emergencia;
+use App\Models\Actualizar_colaborador;
 use Illuminate\Support\Facades\Storage;
-use Livewire\WithFileUploads;
 
 class ComprobarColaborador extends Component
 {
@@ -22,6 +22,7 @@ class ComprobarColaborador extends Component
     public $actasNacimientoHijo = [],$permisoSubiractas;
     public $comprobante,$permisoSubircomprobante;
     public $colString;
+    public $contador,$archivosActas;
 
     public $habilitarForm = true;
 
@@ -84,7 +85,7 @@ class ComprobarColaborador extends Component
 
         'nombre_contacto1.regex' => 'El nombre solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
         'parentesco_contacto1.regex' => 'El parentesco solo puede contener letras mayúsculas y minúsculas',
-        'telefono_contacto1.regex' => 'El número telefónico debe contener 10 dígitos'
+        'telefono_contacto1.regex' => 'El número telefónico debe contener 10 dígitos',
     ];
 
 
@@ -137,9 +138,8 @@ class ComprobarColaborador extends Component
         
         // Hijos
         $hijosColaborador = Hijos::where('colaborador_no_colaborador', $no_colaborador)->get();
-        $noHijos = Hijos::where('colaborador_no_colaborador', $no_colaborador)->count();
-
-        for ($i = 0; $i <= $noHijos; $i++) {
+        
+        for ($i = 0; $i <= count($hijosColaborador); $i++) {
 
             switch ($i) {
                 case '1':
@@ -175,9 +175,8 @@ class ComprobarColaborador extends Component
 
         //Contactos de emergencia
         $contactosColaborador = Contactos_emergencia::where('colaborador_no_colaborador', $no_colaborador)->get();
-        $noContactos = Contactos_emergencia::where('colaborador_no_colaborador', $no_colaborador)->count();
 
-        for ($i = 0; $i <= $noContactos; $i++) {
+        for ($i = 0; $i <= count($contactosColaborador); $i++) {
 
             switch ($i) {
                 case '1':
@@ -217,15 +216,62 @@ class ComprobarColaborador extends Component
             $this->permisoSubiractas= true;
             // Existe el directorio de actasHijos
 
-            $image_path2 = Storage::allFiles('/public/documentos/'.$this->colString.'/actasHijos');
-            if ($image_path2 === []) {
-                dd('Existe la carpeta pero no tiene archivos');
+            $this->archivosActas = Storage::allFiles('/public/documentos/'.$this->colString.'/actasHijos');
+            if ($this->archivosActas === []) {
+                $this->permisoSubiractas= false;
+                $this->contador = 0;
+                
+                if ($this->edad_hijo1 != null | $this->escolaridad_hijo1 != null) {
+                    $this->contador = $this->contador+1;
+                }
+                if ($this->edad_hijo2 != null | $this->escolaridad_hijo2 != null) {
+                    $this->contador=$this->contador +1;
+                }
+                if ($this->edad_hijo3 != null | $this->escolaridad_hijo3 != null) {
+                    $this->contador=$this->contador +1;
+                }
+                if ($this->edad_hijo4 != null | $this->escolaridad_hijo4 != null) {
+                    $this->contador=$this->contador +1;
+                }
+                if ($this->edad_hijo5 != null | $this->escolaridad_hijo5 != null) {
+                    $this->contador=$this->contador +1;
+                }
+                if ($this->edad_hijo6 != null | $this->escolaridad_hijo6 != null) {
+                    $this->contador=$this->contador +1;
+                }
             }else{
-                dd($image_path2);
-            }
-            // dd(Storage::delete($image_path2));
-            
+                $this->contador = 0;
+                
+                if ($this->edad_hijo1 != null | $this->escolaridad_hijo1 != null) {
+                    $this->contador= $this->contador+1;
+                }
 
+                if ($this->edad_hijo2 != null | $this->escolaridad_hijo2 != null) {
+                    $this->contador= $this->contador+1;
+                }
+
+                if ($this->edad_hijo3 != null | $this->escolaridad_hijo3 != null) {
+                    $this->contador= $this->contador+1;
+                }
+
+                if ($this->edad_hijo4 != null | $this->escolaridad_hijo4 != null) {
+                    $this->contador= $this->contador+1;
+                }
+
+                if ($this->edad_hijo5 != null | $this->escolaridad_hijo5 != null) {
+                    $this->contador= $this->contador+1;
+                }
+
+                if ($this->edad_hijo6 != null | $this->escolaridad_hijo6 != null) {
+                    $this->contador= $this->contador+1;
+                }
+                
+                if (count($this->archivosActas) === $this->contador) { 
+                    $this->permisoSubiractas= true;
+                }else{
+                    $this->permisoSubiractas= false;
+                }
+            }
         }else{
            $this->permisoSubiractas = false;
             // No existe las actas   
@@ -234,7 +280,7 @@ class ComprobarColaborador extends Component
         if (Storage::exists('public/documentos/'.$this->colString.'/'.$this->colString.'_comprobanteDomicilio.pdf')) {
             $this->permisoSubircomprobante= true;
             //Existe comprobante
-        } else {
+        }else{
             $this->permisoSubircomprobante= false;
             // No existe combrobante
         }        
@@ -454,14 +500,13 @@ class ComprobarColaborador extends Component
                     if (empty($this->actasNacimientoHijo) || $this->actasNacimientoHijo=== '') {
                         $rutaActas = NULL;
                     }else{
-                        foreach ($this->actasNacimientoHijo as $anH) {
-                            
-                            $image_path2 = Storage::allFiles('/public/documentos/'.$this->colString.'/actasHijos');
-
-                            // dd(Storage::delete($image_path2));
-                            dd($image_path2);
-
-                            $rutaActas[]= $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
+                        if (count($this->archivosActas) === $this->contador) {
+                            dd('Son iguales no es necesario sbuir nuevamente');
+                        } else {
+                            Storage::delete($this->archivosActas);
+                            foreach ($this->actasNacimientoHijo as $anH) {
+                                $rutaActas[]= $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
+                            }
                         }
                     }
                 }
@@ -507,7 +552,6 @@ class ComprobarColaborador extends Component
             ]);
             return redirect()->to('/colaborador/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
-            // dd($ex);
             $this->alert('error', 'Ha ocurrido un error:'.$ex, [
                 'position' =>  'top-end',
                 'timer' =>  3000,

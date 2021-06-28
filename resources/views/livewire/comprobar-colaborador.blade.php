@@ -8,6 +8,7 @@
     </header>
 
     <div class="p-4 grid grid-rows-1 rounded-md shadow-2xl">
+        {{-- <embed src="{{ asset('storage/documentos/'.$no_colaborador.'/actasHijos/test.pdf') }}" type="application/pdf"> --}}
         {{-- <button wire:click="habilitar"
             class="text-center items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
             Modificar
