@@ -40,15 +40,17 @@ class Insignias extends Component
 
     public $yearActual, $mesActual, $diaActual, $fechaActual;
 
-    public $tInicialP1 = '-01-01', $tFinalP1 = '-03-31';
-    public $tInicialP2 = '-04-01', $tFinalP2 = '-06-30';
-    public $tInicialP3 = '-07-01', $tFinalP3 = '-09-30';
-    public $tInicialP4 = '-10-01', $tFinalP4 = '-12-31';
+    public $tInicialP1 = '-01-01', $tFinalP1 = '-02-28';
+    public $tInicialP2 = '-03-01', $tFinalP2 = '-04-30';
+    public $tInicialP3 = '-05-01', $tFinalP3 = '-06-30';
+    public $tInicialP4 = '-07-01', $tFinalP4 = '-08-31';
+    public $tInicialP5 = '-09-01', $tFinalP5 = '-10-31';
+    public $tInicialP6 = '-11-01', $tFinalP6 = '-12-31';
 
     public $banderaIntentos, $banderaPremiado;
     public $popupInsignia = false;
 
-    public $intentoOro, $intentoPlata, $intentoBronce, $finalOro, $finalPlata, $finalBronce;
+    public $intentoPlatino, $intentoOro, $intentoPlata, $intentoBronce, $finalPlatino, $finalOro, $finalPlata, $finalBronce;
 
     // ? Variables Email
     public $nombreAsignador, $nombrePremiado;
@@ -61,7 +63,7 @@ class Insignias extends Component
 
     protected $messages = [
         'tipo_insignia.required' => 'Es necesario que elijas una insignia',
-        'valor_business.required' => 'Es necesario que elijas un valor', 
+        'valor_business.required' => 'Es necesario que elijas un valor',
         'mensaje.required' => 'Debes agregar un mensaje de retroalimentación'
     ];
 
@@ -85,6 +87,7 @@ class Insignias extends Component
 
     public function render()
     {
+        $this->esBisiesto($this->yearActual);
         $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
         $puestos = Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
             ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
@@ -100,10 +103,10 @@ class Insignias extends Component
         if (auth()->user()->role_id == 8) {
             # code...
 
-            if ($this->fechaActual >= $this->yearActual . '-01-01' && $this->fechaActual <= $this->yearActual . '-03-31') {
+            if ($this->fechaActual >= $this->yearActual . $this->tInicialP1 && $this->fechaActual <= $this->yearActual . $this->tFinalP1) {
                 return view('livewire.insignias', [
                     'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-01-01', 'and', $this->yearActual . '-03-31')
+                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP1, 'and', $this->yearActual . $this->tFinalP1)
                         ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
                         ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
                         ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
@@ -114,10 +117,10 @@ class Insignias extends Component
                     'puestos',
                     'tiposColaborador'
                 ));
-            } elseif ($this->fechaActual >= $this->yearActual . '-04-01' && $this->fechaActual <= $this->yearActual . '-06-30') {
+            } elseif ($this->fechaActual >= $this->yearActual . $this->tFinalP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
                 return view('livewire.insignias', [
                     'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-04-01', 'and', $this->yearActual . '-06-30')
+                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP2, 'and', $this->yearActual . $this->tFinalP2)
                         ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
                         ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
                         ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
@@ -128,10 +131,10 @@ class Insignias extends Component
                     'puestos',
                     'tiposColaborador'
                 ));
-            } elseif ($this->fechaActual >= $this->yearActual . '-07-01' && $this->fechaActual <= $this->yearActual . '-09-30') {
+            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP3 && $this->fechaActual <= $this->yearActual . $this->tFinalP3) {
                 return view('livewire.insignias', [
                     'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-07-01', 'and', $this->yearActual . '-09-30')
+                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP3, 'and', $this->yearActual . $this->tFinalP3)
                         ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
                         ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
                         ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
@@ -142,10 +145,38 @@ class Insignias extends Component
                     'puestos',
                     'tiposColaborador'
                 ));
-            } elseif ($this->fechaActual >= $this->yearActual . '-10-01' && $this->fechaActual <= $this->yearActual . '-12-31') {
+            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP4 && $this->fechaActual <= $this->yearActual . $this->tFinalP4) {
                 return view('livewire.insignias', [
                     'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . '-10-01', 'and', $this->yearActual . '-12-31')
+                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP4, 'and', $this->yearActual . $this->tFinalP4)
+                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
+                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
+                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                        ->paginate($this->perPage)
+                ], compact(
+                    'premiados',
+                    'areas',
+                    'puestos',
+                    'tiposColaborador'
+                ));
+            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP5 && $this->fechaActual <= $this->yearActual . $this->tFinalP5) {
+                return view('livewire.insignias', [
+                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
+                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP5, 'and', $this->yearActual . $this->tFinalP5)
+                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
+                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
+                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                        ->paginate($this->perPage)
+                ], compact(
+                    'premiados',
+                    'areas',
+                    'puestos',
+                    'tiposColaborador'
+                ));
+            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP6 && $this->fechaActual <= $this->yearActual . $this->tFinalP6) {
+                return view('livewire.insignias', [
+                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
+                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP6, 'and', $this->yearActual . $this->tFinalP6)
                         ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
                         ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
                         ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
@@ -180,16 +211,19 @@ class Insignias extends Component
             ]);
         } else {
 
-            if ($this->tipo_insignia == 1 && $this->finalOro >= 1) {
+            if ($this->tipo_insignia == 1 && $this->finalPlatino >= 1) {
                 $this->insercionBD();
                 $this->enviarCorreo();
-            } elseif ($this->tipo_insignia == 2 && $this->finalPlata >= 1) {
+            } elseif ($this->tipo_insignia == 2 && $this->finalOro >= 1) {
                 $this->insercionBD();
                 $this->enviarCorreo();
-            } elseif ($this->tipo_insignia == 3 && $this->finalBronce >= 1) {
+            } elseif ($this->tipo_insignia == 3 && $this->finalPlata >= 1) {
                 $this->insercionBD();
                 $this->enviarCorreo();
-            } else {
+            } elseif ($this->tipo_insignia == 4 && $this->finalBronce >= 1) {
+                $this->insercionBD();
+                $this->enviarCorreo();
+            }else {
                 $this->alert('error', 'Agotaste tus intentos para asignar esta insignia', [
                     'position' =>  'top-end',
                     'timer' =>  3000,
@@ -216,7 +250,7 @@ class Insignias extends Component
                     'insignia_id' => $this->tipo_insignia,
                     'valores_business_id' => $this->valor_business,
                     'fecha_asignacion' => $this->fecha_asig,
-                    'colaborador_asignador' => auth()->user()->no_colaborador,
+                    'colaborador_asignador' => auth()->user()->colaborador_no_colaborador,
                     'mensaje' => $this->mensaje
                 ]);
             });
@@ -267,15 +301,39 @@ class Insignias extends Component
             $this->asignaIntentos();
             $this->revisarIntentosPeriodo($this->tInicialP4, $this->tFinalP4);
             $this->revisarPremiadoPeriodo($this->tInicialP4, $this->tFinalP4);
+        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP5 && $this->fechaActual <= $this->yearActual . $this->tFinalP5) {
+            $this->asignaIntentos();
+            $this->revisarIntentosPeriodo($this->tInicialP5, $this->tFinalP5);
+            $this->revisarPremiadoPeriodo($this->tInicialP5, $this->tFinalP5);
+        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP6 && $this->fechaActual <= $this->yearActual . $this->tFinalP6) {
+            $this->asignaIntentos();
+            $this->revisarIntentosPeriodo($this->tInicialP6, $this->tFinalP6);
+            $this->revisarPremiadoPeriodo($this->tInicialP6, $this->tFinalP6);
         }
     }
 
     public function revisarIntentosPeriodo($tIinicial, $tfinal)
     {
+        // ? Intentos Platino
+
+        if (auth()->user()->colaborador_no_colaborador == 135050) {
+
+            $tmpPlatino = Colaborador_insignia::all()
+                ->where('insignia_id', 1)
+                ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
+                ->count();
+
+            $this->finalPlatino = $this->intentoPlatino - $tmpPlatino;
+
+            if ($this->finalPlatino <= 0) {
+                $this->finalPlatino = 0;
+            }
+        }
+
         // ? Intentos Oro
 
         $tmpOro = Colaborador_insignia::all()
-            ->where('insignia_id', 1)
+            ->where('insignia_id', 2)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
@@ -288,7 +346,7 @@ class Insignias extends Component
         // ? Intentos Plata
 
         $tmpPlata = Colaborador_insignia::all()
-            ->where('insignia_id', 2)
+            ->where('insignia_id', 3)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
@@ -301,7 +359,7 @@ class Insignias extends Component
         // ? Intentos Bronce
 
         $tmpBronce = Colaborador_insignia::all()
-            ->where('insignia_id', 3)
+            ->where('insignia_id', 4)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
@@ -314,14 +372,16 @@ class Insignias extends Component
 
     public function asignaIntentos()
     {
-
-        if (auth()->user()->no_colaborador == '143010') {
+        if (auth()->user()->colaborador_no_colaborador == '135050') {
+            $this->intentoPlatino = 3;
+        } elseif (
+            auth()->user()->colaborador_no_colaborador == '143010' ||
+            auth()->user()->colaborador_no_colaborador == '129300' ||
+            auth()->user()->colaborador_no_colaborador == '131901' ||
+            auth()->user()->colaborador_no_colaborador == '152090'
+        ) {
             $this->intentoOro = 2;
             $this->intentoPlata = 2;
-            $this->intentoBronce = 1;
-        } elseif (auth()->user()->no_colaborador == '135050') {
-            $this->intentoOro = 2;
-            $this->intentoPlata = 1;
             $this->intentoBronce = 1;
         } else {
             $this->intentoOro = 1;
@@ -376,12 +436,22 @@ class Insignias extends Component
             $this->tipo_insignia,
         ));
     }
+
+    public function esBisiesto($year)
+    {
+        if ((!($year % 4) && ($year % 100)) || !($year % 400)) {
+            $this->tFinalP1 = '-02-29';
+        } else {
+        }
+    }
+
     public function setNull()
     {
         $this->popupInsignia = false;
     }
 
-    public function popupInsignia(){
+    public function popupInsignia()
+    {
         $this->popupInsignia = true;
     }
 }
