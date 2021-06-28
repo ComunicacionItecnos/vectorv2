@@ -211,16 +211,19 @@ class Insignias extends Component
             ]);
         } else {
 
-            if ($this->tipo_insignia == 1 && $this->finalOro >= 1) {
+            if ($this->tipo_insignia == 1 && $this->finalPlatino >= 1) {
                 $this->insercionBD();
                 $this->enviarCorreo();
-            } elseif ($this->tipo_insignia == 2 && $this->finalPlata >= 1) {
+            } elseif ($this->tipo_insignia == 2 && $this->finalOro >= 1) {
                 $this->insercionBD();
                 $this->enviarCorreo();
-            } elseif ($this->tipo_insignia == 3 && $this->finalBronce >= 1) {
+            } elseif ($this->tipo_insignia == 3 && $this->finalPlata >= 1) {
                 $this->insercionBD();
                 $this->enviarCorreo();
-            } else {
+            } elseif ($this->tipo_insignia == 4 && $this->finalBronce >= 1) {
+                $this->insercionBD();
+                $this->enviarCorreo();
+            }else {
                 $this->alert('error', 'Agotaste tus intentos para asignar esta insignia', [
                     'position' =>  'top-end',
                     'timer' =>  3000,
