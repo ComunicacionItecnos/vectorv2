@@ -12,6 +12,7 @@ use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 use App\Models\Contactos_emergencia;
 use App\Models\Actualizar_colaborador;
+use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
 class ComprobarColaborador extends Component
@@ -19,10 +20,11 @@ class ComprobarColaborador extends Component
 
     use WithFileUploads;
 
-    public $actasNacimientoHijo = [],$permisoSubiractas;
+    public $actaNacimientoHijo1,$actaNacimientoHijo2,$actaNacimientoHijo3,$actaNacimientoHijo4,$actaNacimientoHijo5,$actaNacimientoHijo6;
+    public $permisoSubiracta1,$permisoSubiracta2,$permisoSubiracta3,$permisoSubiracta4,$permisoSubiracta5,$permisoSubiracta6;
     public $comprobante,$permisoSubircomprobante;
     public $colString;
-    public $contador,$archivosActas;
+    public $contador,$archivosActas,$hijosColaborador;
 
     public $habilitarForm = true;
 
@@ -57,7 +59,12 @@ class ComprobarColaborador extends Component
         'telefono_contacto1' => 'required|regex:/^[0-9]{10}$/',
         'domicilio_contacto1' => 'required',
         'comprobante.*' => 'mimes:pdf|max:5120',
-        'actasNacimientoHijo.*'  => 'mimes:pdf|max:10240'
+        'actaNacimientoHijo1.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo2.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo3.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo4.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo5.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo6.*'  => 'mimes:pdf|max:5120',
     ];
 
     protected $messages = [
@@ -137,34 +144,32 @@ class ComprobarColaborador extends Component
         $this->correo = $this->colaborador->correo;
         
         // Hijos
-        $hijosColaborador = Hijos::where('colaborador_no_colaborador', $no_colaborador)->get();
-        
-        for ($i = 0; $i <= count($hijosColaborador); $i++) {
-
+        $this->hijosColaborador = Hijos::where('colaborador_no_colaborador', $no_colaborador)->get();
+        for ($i = 1; $i <= count($this->hijosColaborador); $i++) {
             switch ($i) {
                 case '1':
-                    $this->edad_hijo1 = $hijosColaborador[0]->edad;
-                    $this->escolaridad_hijo1 = $hijosColaborador[0]->escolaridad_id;
+                    $this->edad_hijo1 = $this->hijosColaborador[0]->edad;
+                    $this->escolaridad_hijo1 = $this->hijosColaborador[0]->escolaridad_id;
                     break;
                 case '2':
-                    $this->edad_hijo2 = $hijosColaborador[1]->edad;
-                    $this->escolaridad_hijo2 = $hijosColaborador[1]->escolaridad_id;
+                    $this->edad_hijo2 = $this->hijosColaborador[1]->edad;
+                    $this->escolaridad_hijo2 = $this->hijosColaborador[1]->escolaridad_id;
                     break;
                 case '3':
-                    $this->edad_hijo3 = $hijosColaborador[2]->edad;
-                    $this->escolaridad_hijo3 = $hijosColaborador[2]->escolaridad_id;
+                    $this->edad_hijo3 = $this->hijosColaborador[2]->edad;
+                    $this->escolaridad_hijo3 = $this->hijosColaborador[2]->escolaridad_id;
                     break;
                 case '4':
-                    $this->edad_hijo4 = $hijosColaborador[3]->edad;
-                    $this->escolaridad_hijo4 = $hijosColaborador[3]->escolaridad_id;
+                    $this->edad_hijo4 = $this->hijosColaborador[3]->edad;
+                    $this->escolaridad_hijo4 = $this->hijosColaborador[3]->escolaridad_id;
                     break;
                 case '5':
-                    $this->edad_hijo5 = $hijosColaborador[4]->edad;
-                    $this->escolaridad_hijo5 = $hijosColaborador[4]->escolaridad_id;
+                    $this->edad_hijo5 = $this->hijosColaborador[4]->edad;
+                    $this->escolaridad_hijo5 = $this->hijosColaborador[4]->escolaridad_id;
                     break;
                 case '6':
-                    $this->edad_hijo6 = $hijosColaborador[5]->edad;
-                    $this->escolaridad_hijo6 = $hijosColaborador[5]->escolaridad_id;
+                    $this->edad_hijo6 = $this->hijosColaborador[5]->edad;
+                    $this->escolaridad_hijo6 = $this->hijosColaborador[5]->escolaridad_id;
                     break;
 
                 default:
@@ -203,7 +208,18 @@ class ComprobarColaborador extends Component
                     $this->telefono_contacto4 = $contactosColaborador[3]->telefono;
                     $this->domicilio_contacto4 = $contactosColaborador[3]->domicilio;
                     break;
-
+                case '5':
+                    $this->nombre_contacto4 = $contactosColaborador[4]->nombre;
+                    $this->parentesco_contacto4 = $contactosColaborador[4]->parentesco;
+                    $this->telefono_contacto4 = $contactosColaborador[4]->telefono;
+                    $this->domicilio_contacto4 = $contactosColaborador[4]->domicilio;
+                    break;
+                case '6':
+                    $this->nombre_contacto4 = $contactosColaborador[5]->nombre;
+                    $this->parentesco_contacto4 = $contactosColaborador[5]->parentesco;
+                    $this->telefono_contacto4 = $contactosColaborador[5]->telefono;
+                    $this->domicilio_contacto4 = $contactosColaborador[5]->domicilio;
+                    break;
                 default:
 
                     break;
@@ -212,79 +228,9 @@ class ComprobarColaborador extends Component
 
         //Validar botones de subida de archivo
         $this->colString= $this->colaborador->no_colaborador;
-        if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/')) {
-            $this->permisoSubiractas= true;
-            // Existe el directorio de actasHijos
 
-            $this->archivosActas = Storage::allFiles('/public/documentos/'.$this->colString.'/actasHijos');
-            if ($this->archivosActas === []) {
-                $this->permisoSubiractas= false;
-                $this->contador = 0;
-                
-                if ($this->edad_hijo1 != null | $this->escolaridad_hijo1 != null) {
-                    $this->contador = $this->contador+1;
-                }
-                if ($this->edad_hijo2 != null | $this->escolaridad_hijo2 != null) {
-                    $this->contador=$this->contador +1;
-                }
-                if ($this->edad_hijo3 != null | $this->escolaridad_hijo3 != null) {
-                    $this->contador=$this->contador +1;
-                }
-                if ($this->edad_hijo4 != null | $this->escolaridad_hijo4 != null) {
-                    $this->contador=$this->contador +1;
-                }
-                if ($this->edad_hijo5 != null | $this->escolaridad_hijo5 != null) {
-                    $this->contador=$this->contador +1;
-                }
-                if ($this->edad_hijo6 != null | $this->escolaridad_hijo6 != null) {
-                    $this->contador=$this->contador +1;
-                }
-            }else{
-                $this->contador = 0;
-                
-                if ($this->edad_hijo1 != null | $this->escolaridad_hijo1 != null) {
-                    $this->contador= $this->contador+1;
-                }
-
-                if ($this->edad_hijo2 != null | $this->escolaridad_hijo2 != null) {
-                    $this->contador= $this->contador+1;
-                }
-
-                if ($this->edad_hijo3 != null | $this->escolaridad_hijo3 != null) {
-                    $this->contador= $this->contador+1;
-                }
-
-                if ($this->edad_hijo4 != null | $this->escolaridad_hijo4 != null) {
-                    $this->contador= $this->contador+1;
-                }
-
-                if ($this->edad_hijo5 != null | $this->escolaridad_hijo5 != null) {
-                    $this->contador= $this->contador+1;
-                }
-
-                if ($this->edad_hijo6 != null | $this->escolaridad_hijo6 != null) {
-                    $this->contador= $this->contador+1;
-                }
-                
-                if (count($this->archivosActas) === $this->contador) { 
-                    $this->permisoSubiractas= true;
-                }else{
-                    $this->permisoSubiractas= false;
-                }
-            }
-        }else{
-           $this->permisoSubiractas = false;
-            // No existe las actas   
-        }
-
-        if (Storage::exists('public/documentos/'.$this->colString.'/'.$this->colString.'_comprobanteDomicilio.pdf')) {
-            $this->permisoSubircomprobante= true;
-            //Existe comprobante
-        }else{
-            $this->permisoSubircomprobante= false;
-            // No existe combrobante
-        }        
-
+        /* Validar si existe el archivo de comprobante de domicilio */
+        Storage::exists('public/documentos/'.$this->colString.'/'.$this->colString.'_comprobanteDomicilio.pdf') ? $this->permisoSubircomprobante= true : $this->permisoSubircomprobante= false;
     }
 
     public function render()
@@ -294,18 +240,46 @@ class ComprobarColaborador extends Component
         $paternidadArray = [ array('id'=>0,'nom'=>'No'),array('id'=>1,'nom'=>'Si') ];
         $paternidadArray = collect($paternidadArray);
 
-        $permisoSubiractas2= $this->permisoSubiractas;
+        $this->edad_hijo1 !=null && $this->escolaridad_hijo1 !=null ?
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/1.pdf') ? $this->permisoSubiracta1=false : $this->permisoSubiracta1=true)  
+        : $this->permisoSubiracta1=false;
+        
+        $this->edad_hijo2 !=null && $this->escolaridad_hijo2 !=null ?
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/2.pdf') ? $this->permisoSubiracta2=false : $this->permisoSubiracta2=true)  
+        : $this->permisoSubiracta2=false;
+        
+        $this->edad_hijo3 !=null && $this->escolaridad_hijo3 !=null ?
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/3.pdf') ? $this->permisoSubiracta3=false : $this->permisoSubiracta3=true)  
+        : $this->permisoSubiracta3=false;
+        
+        $this->edad_hijo4 !=null && $this->escolaridad_hijo4 !=null ?
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/4.pdf') ? $this->permisoSubiracta4=false : $this->permisoSubiracta4=true)  
+        : $this->permisoSubiracta4=false;
+
+        $this->edad_hijo5 !=null && $this->escolaridad_hijo5 !=null ?
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/5.pdf') ? $this->permisoSubiracta5=false : $this->permisoSubiracta5=true)  
+        : $this->permisoSubiracta5=false;
+
+        $this->edad_hijo6 !=null && $this->escolaridad_hijo6 !=null ?
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/6.pdf') ? $this->permisoSubiracta6=false : $this->permisoSubiracta6=true)  
+        : $this->permisoSubiracta6=false;
+
+        $permisoSubiractasRender1= $this->permisoSubiracta1;
+        $permisoSubiractasRender2= $this->permisoSubiracta2;
+        $permisoSubiractasRender3= $this->permisoSubiracta3;
+        $permisoSubiractasRender4= $this->permisoSubiracta4;
+        $permisoSubiractasRender5= $this->permisoSubiracta5;
+        $permisoSubiractasRender6= $this->permisoSubiracta6;
         $permisoSubircomprobante2=$this->permisoSubircomprobante;
         $habilitarForm = $this->habilitarForm;
 
         /* Validar si hay un cambio en los input de direccion,colonia,municipio,estado,cod_postal. */
-        if ($this->direccion != $this->colaborador->domicilio || $this->colonia != $this->colaborador->colonia || $this->municipio != $this->colaborador->municipio || $this->estado != $this->colaborador->estado || $this->codigo_postal != $this->colaborador->codigo_postal) {
-            $permisoSubircomprobante2= !$this->permisoSubircomprobante;
-        } else {
-            $permisoSubircomprobante2=$this->permisoSubircomprobante;
-        }
-   
-        return view('livewire.comprobar-colaborador', compact('generos','estadosCivil','paternidadArray','permisoSubiractas2','permisoSubircomprobante2','habilitarForm'))->layout('layouts.guest');
+        $this->direccion != $this->colaborador->domicilio || $this->colonia != $this->colaborador->colonia || $this->municipio != $this->colaborador->municipio || $this->estado != $this->colaborador->estado || $this->codigo_postal != $this->colaborador->codigo_postal ? $permisoSubircomprobante2= !$this->permisoSubircomprobante : $permisoSubircomprobante2=$this->permisoSubircomprobante;
+
+        return view('livewire.comprobar-colaborador', compact('generos',
+        'estadosCivil','paternidadArray',
+        'permisoSubiractasRender1','permisoSubiractasRender2','permisoSubiractasRender3','permisoSubiractasRender4','permisoSubiractasRender5','permisoSubiractasRender6'
+        ,'permisoSubircomprobante2','habilitarForm'))->layout('layouts.guest');
     }
 
     public function habilitar()
@@ -493,24 +467,28 @@ class ComprobarColaborador extends Component
                     }
                 }
 
-                /* Validar si esta activo los input de actas y comprobante */
-                if ($this->permisoSubiractas === true) {
-                    $rutaActas = NULL;
-                }else{
-                    if (empty($this->actasNacimientoHijo) || $this->actasNacimientoHijo=== '') {
-                        $rutaActas = NULL;
-                    }else{
-                        if (count($this->archivosActas) === $this->contador) {
-                            dd('Son iguales no es necesario sbuir nuevamente');
-                        } else {
-                            Storage::delete($this->archivosActas);
-                            foreach ($this->actasNacimientoHijo as $anH) {
-                                $rutaActas[]= $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
-                            }
-                        }
-                    }
-                }
+                /* Validar si esta activo el input de actas */
+                // if ($this->permisoSubiractas === false) {
+                //     $rutaActas = NULL;
+                // }else{
+                //     if (empty($this->actasNacimientoHijo) || $this->actasNacimientoHijo=== '') {
+                //         $rutaActas = NULL;
+                //     }else{
+                //         if (count($this->archivosActas) === $this->contador) {
+                //         } else {
+                //             Storage::delete($this->archivosActas);
+                //             foreach ($this->actasNacimientoHijo as $anH) {
+                //                 $rutaActas[]= $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
+                //             }
+                //         }
+                //     }
+                // }
+                // $var=$this->actaNacimientoHijo1->storeAs('public/documentos/'.$this->colString.'/actasHijos','1.pdf');
+                // $var== null ? $this->actaNacimientoHijo1= '': 
+                $this->actaNacimientoHijo2->storeAs('public/documentos/'.$this->colString.'/actasHijos','2.pdf');
+                
         
+                /* Validar si esta activo el input de Comprobante */
                 if ($this->permisoSubircomprobante === true) {
                     $rutaComprobante='';
                 }else{
@@ -523,7 +501,7 @@ class ComprobarColaborador extends Component
                 }
 
                 /* Guardar datos que cambio el colaborador */
-                $rutaActas= json_encode($rutaActas);
+                // $rutaActas= json_encode($rutaActas);
                 Actualizar_colaborador::create([
                     'colaborador_no_colaborador' =>$this->no_colaborador,
                     'domicilio' =>$domicilio_c,
@@ -534,7 +512,7 @@ class ComprobarColaborador extends Component
                     'genero_id'=>$this->genero,
                     'estado_civil_id' =>$this->estado_civil,
                     'paternidad_id' => $this->paternidad,
-                    'rutaActas'=>$rutaActas,
+                    // 'rutaActas'=>$rutaActas,
                     'rutacomprobante'=>$rutaComprobante
                 ]);
 
@@ -542,7 +520,7 @@ class ComprobarColaborador extends Component
 
             $this->flash('success', 'El colaborador se ha actualizado con éxito', [
                 'position' =>  'top-end',
-                'timer' =>  3000,
+                'timer' =>  3500,
                 'toast' =>  true,
                 'text' =>  '',
                 'confirmButtonText' =>  'Ok',

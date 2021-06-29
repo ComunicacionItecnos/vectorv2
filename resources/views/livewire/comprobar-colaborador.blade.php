@@ -8,7 +8,6 @@
     </header>
 
     <div class="p-4 grid grid-rows-1 rounded-md shadow-2xl">
-        {{-- <embed src="{{ asset('storage/documentos/'.$no_colaborador.'/actasHijos/test.pdf') }}" type="application/pdf"> --}}
         {{-- <button wire:click="habilitar"
             class="text-center items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
             Modificar
@@ -162,6 +161,12 @@
                                     </p>
                                 </div>
                                 <div class="flex flex-col">
+
+                                    <label class="py-4 text-center block text-sm font-bold  text-red-700">
+                                        * Deben estar rellandos los campos de edad/escolaridad para poder subir
+                                        la acta
+                                    </label>
+
                                     <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                                         <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
                                             <div class="overflow-hidden border-b border-gray-200 shadow sm:rounded-lg">
@@ -169,17 +174,21 @@
                                                     <thead class="bg-gray-50" id="th_hijos">
                                                         <tr class="">
                                                             <th scope="col"
-                                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                                class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                                                 Edad</th>
                                                             <th scope="col"
-                                                                class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                                class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                                                                 Escolaridad</th>
+                                                                <th scope="col"
+                                                                class="px-4 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                                                                Accion</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody id="tb_hijos">
                                                         <tr>
                                                             <td><input type="text" wire:model="edad_hijo1"
-                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                                             </td>
 
                                                             <td>
@@ -194,10 +203,39 @@
                                                                     <option value="5">Universidad</option>
                                                                 </select>
                                                             </td>
+                                                            <td>
+                                                                @if ($permisoSubiractasRender1 == true)
+                                                                    <label
+                                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo1" accept=".pdf"
+                                                                            class="hidden" required/>
+                                                                    </label>
+                                                                @else
+                                                                    <label
+                                                                        class="opacity-50 flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo1" accept=".pdf"
+                                                                            class="hidden" disabled/>
+                                                                    </label>
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="text" wire:model="edad_hijo2"
-                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                                             </td>
 
                                                             <td>
@@ -211,10 +249,39 @@
                                                                     <option value="5">Universidad</option>
                                                                 </select>
                                                             </td>
+                                                            <td>
+                                                                @if ($permisoSubiractasRender2 == true)
+                                                                    <label
+                                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo2" accept=".pdf"
+                                                                            class="hidden" required/>
+                                                                    </label>
+                                                                @else
+                                                                    <label
+                                                                        class="opacity-50 flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo2" accept=".pdf"
+                                                                            class="hidden" disabled/>
+                                                                    </label>
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="text" wire:model="edad_hijo3"
-                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                                             </td>
 
                                                             <td>
@@ -228,10 +295,39 @@
                                                                     <option value="5">Universidad</option>
                                                                 </select>
                                                             </td>
+                                                            <td>
+                                                                @if ($permisoSubiractasRender3 == true)
+                                                                    <label
+                                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo3" accept=".pdf"
+                                                                            class="hidden" required/>
+                                                                    </label>
+                                                                @else
+                                                                    <label
+                                                                        class="opacity-50 flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo3" accept=".pdf"
+                                                                            class="hidden" disabled/>
+                                                                    </label>
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="text" wire:model="edad_hijo4"
-                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                                             </td>
 
                                                             <td>
@@ -245,10 +341,39 @@
                                                                     <option value="5">Universidad</option>
                                                                 </select>
                                                             </td>
+                                                            <td>
+                                                                @if ($permisoSubiractasRender4 == true)
+                                                                    <label
+                                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo4" accept=".pdf"
+                                                                            class="hidden" required/>
+                                                                    </label>
+                                                                @else
+                                                                    <label
+                                                                        class="opacity-50 flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo4" accept=".pdf"
+                                                                            class="hidden" disabled/>
+                                                                    </label>
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="text" wire:model="edad_hijo5"
-                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                                             </td>
 
                                                             <td>
@@ -262,10 +387,39 @@
                                                                     <option value="5">Universidad</option>
                                                                 </select>
                                                             </td>
+                                                            <td>
+                                                                @if ($permisoSubiractasRender5 == true)
+                                                                    <label
+                                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo5" accept=".pdf"
+                                                                            class="hidden" required/>
+                                                                    </label>
+                                                                @else
+                                                                    <label
+                                                                        class="opacity-50 flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo5" accept=".pdf"
+                                                                            class="hidden" disabled/>
+                                                                    </label>
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                         <tr>
                                                             <td><input type="text" wire:model="edad_hijo6"
-                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                                             </td>
 
                                                             <td>
@@ -279,45 +433,39 @@
                                                                     <option value="5">Universidad</option>
                                                                 </select>
                                                             </td>
+                                                            <td>
+                                                                @if ($permisoSubiractasRender6 == true)
+                                                                    <label
+                                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo6" accept=".pdf"
+                                                                            class="hidden" required/>
+                                                                    </label>
+                                                                @else
+                                                                    <label
+                                                                        class="opacity-50 flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                                            <path
+                                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                                        </svg>
+                                                                        <input type='file' wire:model="actaNacimientoHijo6" accept=".pdf"
+                                                                            class="hidden" disabled/>
+                                                                    </label>
+                                                                @endif
+                                                                
+                                                            </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
 
-                                            @if ($permisoSubiractas2 == true)
-                                                <div class="h-18 p-4 opacity-50">
-                                                    <label
-                                                        class="text-center block text-sm font-medium text-gray-700">Desabilitado
-                                                        debido a que ya contamos con la acta de su hijo(s)</label>
-                                                    <label
-                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                            viewBox="0 0 20 20" fill="currentColor">
-                                                            <path
-                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                        </svg>
-                                                        <input type='file' wire:model="actasNacimientoHijo" accept=".pdf"
-                                                            disabled class="hidden" multiple />
-                                                    </label>
-                                                </div>
-                                            @else
-                                                <div class="h-18 p-4">
-                                                    <label class="text-center block text-sm font-medium text-gray-700">Sube
-                                                        aqui la acta de nacimiento de tu hijo(s)</label>
-                                                    <label
-                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                            viewBox="0 0 20 20" fill="currentColor">
-                                                            <path
-                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                        </svg>
-                                                        <input type='file' wire:model="actasNacimientoHijo" accept=".pdf"
-                                                            class="hidden" multiple />
-                                                    </label>
-                                                </div>
-                                            @endif
                                         </div>
                                     </div>
                                 </div>
@@ -336,7 +484,7 @@
                                     Fijo</label>
                                 <input type="text" wire:model="tel_fijo" name="tel_fijo"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    id="inputTelFijo" value="{{ old('tel_fijo') }}">
+                                    id="inputTelFijo" value="{{ old('tel_fijo') }}" type="number"  pattern="[0-9]*" inputmode="numeric">
                                 @error('tel_fijo')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
@@ -348,7 +496,7 @@
                                     Móvil</label>
                                 <input type="text" wire:model="tel_movil" name="tel_movil"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    id="inputTelMovil" value="{{ old('tel_movil') }}">
+                                    id="inputTelMovil" value="{{ old('tel_movil') }}" type="number"  pattern="[0-9]*" inputmode="numeric">
                                 @error('tel_movil')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
@@ -360,7 +508,7 @@
                                     Recados</label>
                                 <input type="text" wire:model="tel_recados" name="tel_recados"
                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                    id="inputTelRecados" value="{{ old('tel_recados') }}">
+                                    id="inputTelRecados" value="{{ old('tel_recados') }}" type="number"  pattern="[0-9]*" inputmode="numeric">
                                 @error('tel_recados')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
@@ -421,7 +569,8 @@
                                                 <label for="telefono_contacto"
                                                     class="block text-sm font-medium text-gray-700">Teléfono</label>
                                                 <input type="text" wire:model="telefono_contacto1" id="telefono_contacto"
-                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                                 @error('telefono_contacto1')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -469,7 +618,8 @@
                                                 <label for="telefono_contacto"
                                                     class="block text-sm font-medium text-gray-700">Teléfono</label>
                                                 <input type="text" wire:model="telefono_contacto2" id="telefono_contacto"
-                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                             </div>
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label for="domicilio_contacto"
@@ -507,7 +657,8 @@
                                                 <label for="telefono_contacto"
                                                     class="block text-sm font-medium text-gray-700">Teléfono</label>
                                                 <input type="text" wire:model="telefono_contacto3" id="telefono_contacto"
-                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                             </div>
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label for="domicilio_contacto"
@@ -545,7 +696,8 @@
                                                 <label for="telefono_contacto"
                                                     class="block text-sm font-medium text-gray-700">Teléfono</label>
                                                 <input type="text" wire:model="telefono_contacto4" id="telefono_contacto"
-                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    class="block w-full mt-1 mb-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    type="number"  pattern="[0-9]*" inputmode="numeric">
                                             </div>
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label for="domicilio_contacto"
