@@ -265,7 +265,57 @@ class ComprobarColaborador extends Component
             $this->permisoSubiracta2=false;
         }
 
-        
+        if ($this->edad_hijo3 !=null && $this->escolaridad_hijo3 !=null) {
+            $this->permisoSubiracta3=true;
+            if ( $this->hijosColaborador->get(2)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[2]->id.'.pdf')) {
+                    $this->permisoSubiracta3=false;
+                } else {
+                    $this->permisoSubiracta3=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta3=false;
+        }
+
+        if ($this->edad_hijo4 !=null && $this->escolaridad_hijo4 !=null) {
+            $this->permisoSubiracta4=true;
+            if ( $this->hijosColaborador->get(3)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[3]->id.'.pdf')) {
+                    $this->permisoSubiracta4=false;
+                } else {
+                    $this->permisoSubiracta4=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta4=false;
+        }
+
+        if ($this->edad_hijo5 !=null && $this->escolaridad_hijo5 !=null) {
+            $this->permisoSubiracta5=true;
+            if ( $this->hijosColaborador->get(4)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[4]->id.'.pdf')) {
+                    $this->permisoSubiracta5=false;
+                } else {
+                    $this->permisoSubiracta5=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta5=false;
+        }
+
+        if ($this->edad_hijo6 !=null && $this->escolaridad_hijo6 !=null) {
+            $this->permisoSubiracta6=true;
+            if ( $this->hijosColaborador->get(5)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[5]->id.'.pdf')) {
+                    $this->permisoSubiracta6=false;
+                } else {
+                    $this->permisoSubiracta6=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta6=false;
+        }
 
         $permisoSubiractasRender1= $this->permisoSubiracta1;
         $permisoSubiractasRender2= $this->permisoSubiracta2;
@@ -462,6 +512,12 @@ class ComprobarColaborador extends Component
                     }
                 }
             });
+
+            /* Eliminar todos los hijosActas si selecciona la opcion No(0) */
+            if ($this->paternidad == 0) {
+                Hijos::where('colaborador_no_colaborador',$this->colString)->delete();
+                Storage::deleteDirectory('public/documentos/'.$this->colString.'/actasHijos');
+            }
 
             /* Eliminar a un hijo & acta */
             if( ($this->edad_hijo1 === null || empty($this->edad_hijo1) ) && ($this->escolaridad_hijo1 === null || empty($this->escolaridad_hijo1) )){
