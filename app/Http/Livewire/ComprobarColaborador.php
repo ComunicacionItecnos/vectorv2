@@ -7,12 +7,12 @@ use App\Models\Hijos;
 use App\Models\Genero;
 use Livewire\Component;
 use App\Models\Colaborador;
+use Illuminate\Support\Arr;
 use App\Models\Estado_civil;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 use App\Models\Contactos_emergencia;
 use App\Models\Actualizar_colaborador;
-use Illuminate\Contracts\Cache\Store;
 use Illuminate\Support\Facades\Storage;
 
 class ComprobarColaborador extends Component
@@ -23,10 +23,7 @@ class ComprobarColaborador extends Component
     public $actaNacimientoHijo1,$actaNacimientoHijo2,$actaNacimientoHijo3,$actaNacimientoHijo4,$actaNacimientoHijo5,$actaNacimientoHijo6;
     public $permisoSubiracta1,$permisoSubiracta2,$permisoSubiracta3,$permisoSubiracta4,$permisoSubiracta5,$permisoSubiracta6;
     public $comprobante,$permisoSubircomprobante;
-    public $colString;
-    public $contador,$archivosActas,$hijosColaborador;
-
-    public $habilitarForm = true;
+    public $colString,$hijosColaborador;
 
     public $colaborador,$no_colaborador;
     public $direccion,$colonia,$municipio,$estado,$codigo_postal,$contactoEmergencia;
@@ -39,7 +36,6 @@ class ComprobarColaborador extends Component
     public $parentesco_contacto1, $parentesco_contacto2, $parentesco_contacto3, $parentesco_contacto4;
     public $telefono_contacto1, $telefono_contacto2, $telefono_contacto3, $telefono_contacto4;
     public $domicilio_contacto1, $domicilio_contacto2, $domicilio_contacto3, $domicilio_contacto4;
-
 
     protected $rules = [
         'genero' => 'required',
@@ -240,28 +236,44 @@ class ComprobarColaborador extends Component
         $paternidadArray = [ array('id'=>0,'nom'=>'No'),array('id'=>1,'nom'=>'Si') ];
         $paternidadArray = collect($paternidadArray);
 
-        $this->edad_hijo1 !=null && $this->escolaridad_hijo1 !=null ?
-            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/1.pdf') ? $this->permisoSubiracta1=false : $this->permisoSubiracta1=true)  
-        : $this->permisoSubiracta1=false;
+        // $this->edad_hijo1 !=null && $this->escolaridad_hijo1 !=null ? $this->permisoSubiracta1=true 
+        // (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[0]->id.'.pdf') ? $this->permisoSubiracta1=false : $this->permisoSubiracta1=true)  
+        // : $this->permisoSubiracta1=false;
         
+        if ($this->edad_hijo1 !=null && $this->escolaridad_hijo1 !=null) {
+            $this->permisoSubiracta1=true;
+            if ( $this->hijosColaborador->every(function ($value){ return$value >2; }) ){
+                $this->permisoSubiracta1=true;
+            }else{
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[0]->id.'.pdf')) {
+                    $this->permisoSubiracta1=false;
+                } else {
+                    $this->permisoSubiracta1=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta1=false;
+        }
+        
+
         $this->edad_hijo2 !=null && $this->escolaridad_hijo2 !=null ?
-            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/2.pdf') ? $this->permisoSubiracta2=false : $this->permisoSubiracta2=true)  
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[1]->id.'.pdf') ? $this->permisoSubiracta2=false : $this->permisoSubiracta2=true)  
         : $this->permisoSubiracta2=false;
         
         $this->edad_hijo3 !=null && $this->escolaridad_hijo3 !=null ?
-            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/3.pdf') ? $this->permisoSubiracta3=false : $this->permisoSubiracta3=true)  
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[2]->id.'.pdf') ? $this->permisoSubiracta3=false : $this->permisoSubiracta3=true)  
         : $this->permisoSubiracta3=false;
         
         $this->edad_hijo4 !=null && $this->escolaridad_hijo4 !=null ?
-            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/4.pdf') ? $this->permisoSubiracta4=false : $this->permisoSubiracta4=true)  
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[3]->id.'.pdf') ? $this->permisoSubiracta4=false : $this->permisoSubiracta4=true)  
         : $this->permisoSubiracta4=false;
 
         $this->edad_hijo5 !=null && $this->escolaridad_hijo5 !=null ?
-            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/5.pdf') ? $this->permisoSubiracta5=false : $this->permisoSubiracta5=true)  
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[4]->id.'.pdf') ? $this->permisoSubiracta5=false : $this->permisoSubiracta5=true)  
         : $this->permisoSubiracta5=false;
 
         $this->edad_hijo6 !=null && $this->escolaridad_hijo6 !=null ?
-            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/6.pdf') ? $this->permisoSubiracta6=false : $this->permisoSubiracta6=true)  
+            (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[5]->id.'.pdf') ? $this->permisoSubiracta6=false : $this->permisoSubiracta6=true)  
         : $this->permisoSubiracta6=false;
 
         $permisoSubiractasRender1= $this->permisoSubiracta1;
@@ -271,7 +283,6 @@ class ComprobarColaborador extends Component
         $permisoSubiractasRender5= $this->permisoSubiracta5;
         $permisoSubiractasRender6= $this->permisoSubiracta6;
         $permisoSubircomprobante2=$this->permisoSubircomprobante;
-        $habilitarForm = $this->habilitarForm;
 
         /* Validar si hay un cambio en los input de direccion,colonia,municipio,estado,cod_postal. */
         $this->direccion != $this->colaborador->domicilio || $this->colonia != $this->colaborador->colonia || $this->municipio != $this->colaborador->municipio || $this->estado != $this->colaborador->estado || $this->codigo_postal != $this->colaborador->codigo_postal ? $permisoSubircomprobante2= !$this->permisoSubircomprobante : $permisoSubircomprobante2=$this->permisoSubircomprobante;
@@ -279,14 +290,8 @@ class ComprobarColaborador extends Component
         return view('livewire.comprobar-colaborador', compact('generos',
         'estadosCivil','paternidadArray',
         'permisoSubiractasRender1','permisoSubiractasRender2','permisoSubiractasRender3','permisoSubiractasRender4','permisoSubiractasRender5','permisoSubiractasRender6'
-        ,'permisoSubircomprobante2','habilitarForm'))->layout('layouts.guest');
+        ,'permisoSubircomprobante2'))->layout('layouts.guest');
     }
-
-    public function habilitar()
-    {
-        $this->habilitarForm= !$this->habilitarForm;
-    }
-
 
     public function actualizar()
     {
@@ -320,7 +325,6 @@ class ComprobarColaborador extends Component
 
                 // Hijos datos
                 for ($i = 1; $i <= 6; $i++) {
-
                     switch ($i) {
 
                         case '1':
@@ -467,27 +471,128 @@ class ComprobarColaborador extends Component
                     }
                 }
 
+                /* Eliminar a un hijo & acta */
+                if( ($this->edad_hijo1 === null || empty($this->edad_hijo1) ) && ($this->escolaridad_hijo1 === null || empty($this->escolaridad_hijo1) )){
+                    try {
+                        Hijos::where('id',$this->hijosColaborador[0]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[0]->id.'.pdf');
+                    } catch (Exception $ex) {
+                        dd($ex);
+                    }
+                }
+
+                if( ($this->edad_hijo2 === null || empty($this->edad_hijo2) ) && ($this->escolaridad_hijo2 === null || empty($this->escolaridad_hijo2) )){
+                    try {
+                        Hijos::where('id',$this->hijosColaborador[1]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[1]->id.'.pdf');
+                    } catch (Exception $ex) {
+                        dd($ex);
+                    }
+                }
+
+                if( ($this->edad_hijo3 === null || empty($this->edad_hijo3) ) && ($this->escolaridad_hijo3 === null || empty($this->escolaridad_hijo3) )){
+                    try {
+                        Hijos::where('id',$this->hijosColaborador[2]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[2]->id.'.pdf');
+                    } catch (Exception $ex) {
+                        dd($ex);
+                    }
+                }
+
+                if( ($this->edad_hijo4 === null || empty($this->edad_hijo4) ) && ($this->escolaridad_hijo4 === null || empty($this->escolaridad_hijo4) )){
+                    try {
+                        Hijos::where('id',$this->hijosColaborador[3]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[3]->id.'.pdf');
+                    } catch (Exception $ex) {
+                        dd($ex);
+                    }
+                }
+
+                if( ($this->edad_hijo5 === null || empty($this->edad_hijo5) ) && ($this->escolaridad_hijo5 === null || empty($this->escolaridad_hijo5) )){
+                    try {
+                        Hijos::where('id',$this->hijosColaborador[4]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[4]->id.'.pdf');
+                    } catch (Exception $ex) {
+                        dd($ex);
+                    }
+                }
+
+                if( ($this->edad_hijo6 === null || empty($this->edad_hijo6) ) && ($this->escolaridad_hijo6 === null || empty($this->escolaridad_hijo6) )){
+                    try {
+                        Hijos::where('id',$this->hijosColaborador[5]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[5]->id.'.pdf');
+                    } catch (Exception $ex) {
+                        dd($ex);
+                    }
+                }
+
                 /* Validar si esta activo el input de actas */
-                // if ($this->permisoSubiractas === false) {
-                //     $rutaActas = NULL;
-                // }else{
-                //     if (empty($this->actasNacimientoHijo) || $this->actasNacimientoHijo=== '') {
-                //         $rutaActas = NULL;
-                //     }else{
-                //         if (count($this->archivosActas) === $this->contador) {
-                //         } else {
-                //             Storage::delete($this->archivosActas);
-                //             foreach ($this->actasNacimientoHijo as $anH) {
-                //                 $rutaActas[]= $anH->store('documentos/'.$this->colString.'/actasHijos/','public');
-                //             }
-                //         }
-                //     }
-                // }
-                // $var=$this->actaNacimientoHijo1->storeAs('public/documentos/'.$this->colString.'/actasHijos','1.pdf');
-                // $var== null ? $this->actaNacimientoHijo1= '': 
-                $this->actaNacimientoHijo2->storeAs('public/documentos/'.$this->colString.'/actasHijos','2.pdf');
+                if ($this->permisoSubiracta1 === false) {
+                    $rutaActas[]=$rutaActa1=NULL;
+                } else {
+                    if (empty($this->actaNacimientoHijo1) || $this->actaNacimientoHijo1==='') {
+                        $rutaActas[]=$rutaActa1=NULL;
+                    }else{
+                        $rutaActa1= $this->actaNacimientoHijo1->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[0]->id.'.pdf');
+                        $rutaActas[]=$rutaActa1;
+                    }
+                }
+
+                if ($this->permisoSubiracta2 === false) {
+                    $rutaActas[]=$rutaActa2=NULL;
+                } else {
+                    if (empty($this->actaNacimientoHijo2) || $this->actaNacimientoHijo2==='') {
+                        $rutaActas[]=$rutaActa2=NULL;
+                    }else{
+                        $rutaActa2= $this->actaNacimientoHijo2->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[1]->id.'.pdf');
+                        $rutaActas[]=$rutaActa2;
+                    }
+                }
+
+                if ($this->permisoSubiracta3 === false) {
+                    $rutaActas[]=$rutaActa3=NULL;
+                } else {
+                    if (empty($this->actaNacimientoHijo3) || $this->actaNacimientoHijo3==='') {
+                        $rutaActas[]=$rutaActa3=NULL;
+                    }else{
+                        $rutaActa3= $this->actaNacimientoHijo3->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[2]->id.'.pdf');
+                        $rutaActas[]=$rutaActa3;
+                    }
+                }
+
+                if ($this->permisoSubiracta4 === false) {
+                    $rutaActas[]=$rutaActa4=NULL;
+                } else {
+                    if (empty($this->actaNacimientoHijo4) || $this->actaNacimientoHijo4==='') {
+                        $rutaActas[]=$rutaActa4=NULL;
+                    }else{
+                        $rutaActa4= $this->actaNacimientoHijo4->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[3]->id.'.pdf');
+                        $rutaActas[]=$rutaActa4;
+                    }
+                }
+
+                if ($this->permisoSubiracta5 === false) {
+                    $rutaActas[]=$rutaActa5=NULL;
+                } else {
+                    if (empty($this->actaNacimientoHijo5) || $this->actaNacimientoHijo5==='') {
+                        $rutaActas[]=$rutaActa5=NULL;
+                    }else{
+                        $rutaActa5= $this->actaNacimientoHijo5->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[4]->id.'.pdf');
+                        $rutaActas[]=$rutaActa5;
+                    }
+                }
+
+                if ($this->permisoSubiracta6 === false) {
+                    $rutaActas[]=$rutaActa6=NULL;
+                } else {
+                    if (empty($this->actaNacimientoHijo6) || $this->actaNacimientoHijo6==='') {
+                        $rutaActas[]=$rutaActa6=NULL;
+                    }else{
+                        $rutaActa6= $this->actaNacimientoHijo6->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[5]->id.'.pdf');
+                        $rutaActas[]=$rutaActa6;
+                    }
+                }
                 
-        
                 /* Validar si esta activo el input de Comprobante */
                 if ($this->permisoSubircomprobante === true) {
                     $rutaComprobante='';
@@ -496,12 +601,11 @@ class ComprobarColaborador extends Component
                         $rutaComprobante = '';
                     } else {
                         $rutaComprobante=$this->comprobante->storeAs('public/documentos/'.$this->colString,$this->colString.'_comprobanteDomicilio.pdf');
-                    }
-                    
+                    } 
                 }
 
                 /* Guardar datos que cambio el colaborador */
-                // $rutaActas= json_encode($rutaActas);
+                $rutaActas= json_encode($rutaActas);
                 Actualizar_colaborador::create([
                     'colaborador_no_colaborador' =>$this->no_colaborador,
                     'domicilio' =>$domicilio_c,
@@ -512,7 +616,7 @@ class ComprobarColaborador extends Component
                     'genero_id'=>$this->genero,
                     'estado_civil_id' =>$this->estado_civil,
                     'paternidad_id' => $this->paternidad,
-                    // 'rutaActas'=>$rutaActas,
+                    'rutaActas'=>$rutaActas,
                     'rutacomprobante'=>$rutaComprobante
                 ]);
 
