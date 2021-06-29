@@ -7,23 +7,25 @@ use App\Models\Hijos;
 use App\Models\Genero;
 use Livewire\Component;
 use App\Models\Colaborador;
+use Illuminate\Support\Arr;
 use App\Models\Estado_civil;
+use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;
 use App\Models\Contactos_emergencia;
+use App\Models\Actualizar_colaborador;
 use Illuminate\Support\Facades\Storage;
-use Livewire\WithFileUploads;
 
 class ComprobarColaborador extends Component
 {
 
     use WithFileUploads;
 
-    public $actasNacimientoHijo = [],$permisoSubiractas;
+    public $actaNacimientoHijo1,$actaNacimientoHijo2,$actaNacimientoHijo3,$actaNacimientoHijo4,$actaNacimientoHijo5,$actaNacimientoHijo6;
+    public $permisoSubiracta1,$permisoSubiracta2,$permisoSubiracta3,$permisoSubiracta4,$permisoSubiracta5,$permisoSubiracta6;
     public $comprobante,$permisoSubircomprobante;
+    public $colString,$hijosColaborador;
 
-    public $colString;
-
-    public $colaborador, $bandera = true, $no_colaborador;
+    public $colaborador,$no_colaborador;
     public $direccion,$colonia,$municipio,$estado,$codigo_postal,$contactoEmergencia;
     public $genero, $estado_civil, $paternidad,$correo, $tel_fijo, $tel_movil, $tel_recados;
 
@@ -34,7 +36,6 @@ class ComprobarColaborador extends Component
     public $parentesco_contacto1, $parentesco_contacto2, $parentesco_contacto3, $parentesco_contacto4;
     public $telefono_contacto1, $telefono_contacto2, $telefono_contacto3, $telefono_contacto4;
     public $domicilio_contacto1, $domicilio_contacto2, $domicilio_contacto3, $domicilio_contacto4;
-
 
     protected $rules = [
         'genero' => 'required',
@@ -54,7 +55,12 @@ class ComprobarColaborador extends Component
         'telefono_contacto1' => 'required|regex:/^[0-9]{10}$/',
         'domicilio_contacto1' => 'required',
         'comprobante.*' => 'mimes:pdf|max:5120',
-        'actasNacimientoHijo.*'  => 'mimes:pdf|max:10240',
+        'actaNacimientoHijo1.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo2.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo3.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo4.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo5.*'  => 'mimes:pdf|max:5120',
+        'actaNacimientoHijo6.*'  => 'mimes:pdf|max:5120',
     ];
 
     protected $messages = [
@@ -82,7 +88,7 @@ class ComprobarColaborador extends Component
 
         'nombre_contacto1.regex' => 'El nombre solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
         'parentesco_contacto1.regex' => 'El parentesco solo puede contener letras mayúsculas y minúsculas',
-        'telefono_contacto1.regex' => 'El número telefónico debe contener 10 dígitos'
+        'telefono_contacto1.regex' => 'El número telefónico debe contener 10 dígitos',
     ];
 
 
@@ -134,35 +140,32 @@ class ComprobarColaborador extends Component
         $this->correo = $this->colaborador->correo;
         
         // Hijos
-        $hijosColaborador = Hijos::where('colaborador_no_colaborador', $no_colaborador)->get();
-        $noHijos = Hijos::where('colaborador_no_colaborador', $no_colaborador)->count();
-
-        for ($i = 0; $i <= $noHijos; $i++) {
-
+        $this->hijosColaborador = Hijos::where('colaborador_no_colaborador', $no_colaborador)->get();
+        for ($i = 1; $i <= count($this->hijosColaborador); $i++) {
             switch ($i) {
                 case '1':
-                    $this->edad_hijo1 = $hijosColaborador[0]->edad;
-                    $this->escolaridad_hijo1 = $hijosColaborador[0]->escolaridad_id;
+                    $this->edad_hijo1 = $this->hijosColaborador[0]->edad;
+                    $this->escolaridad_hijo1 = $this->hijosColaborador[0]->escolaridad_id;
                     break;
                 case '2':
-                    $this->edad_hijo2 = $hijosColaborador[1]->edad;
-                    $this->escolaridad_hijo2 = $hijosColaborador[1]->escolaridad_id;
+                    $this->edad_hijo2 = $this->hijosColaborador[1]->edad;
+                    $this->escolaridad_hijo2 = $this->hijosColaborador[1]->escolaridad_id;
                     break;
                 case '3':
-                    $this->edad_hijo3 = $hijosColaborador[2]->edad;
-                    $this->escolaridad_hijo3 = $hijosColaborador[2]->escolaridad_id;
+                    $this->edad_hijo3 = $this->hijosColaborador[2]->edad;
+                    $this->escolaridad_hijo3 = $this->hijosColaborador[2]->escolaridad_id;
                     break;
                 case '4':
-                    $this->edad_hijo4 = $hijosColaborador[3]->edad;
-                    $this->escolaridad_hijo4 = $hijosColaborador[3]->escolaridad_id;
+                    $this->edad_hijo4 = $this->hijosColaborador[3]->edad;
+                    $this->escolaridad_hijo4 = $this->hijosColaborador[3]->escolaridad_id;
                     break;
                 case '5':
-                    $this->edad_hijo5 = $hijosColaborador[4]->edad;
-                    $this->escolaridad_hijo5 = $hijosColaborador[4]->escolaridad_id;
+                    $this->edad_hijo5 = $this->hijosColaborador[4]->edad;
+                    $this->escolaridad_hijo5 = $this->hijosColaborador[4]->escolaridad_id;
                     break;
                 case '6':
-                    $this->edad_hijo6 = $hijosColaborador[5]->edad;
-                    $this->escolaridad_hijo6 = $hijosColaborador[5]->escolaridad_id;
+                    $this->edad_hijo6 = $this->hijosColaborador[5]->edad;
+                    $this->escolaridad_hijo6 = $this->hijosColaborador[5]->escolaridad_id;
                     break;
 
                 default:
@@ -173,9 +176,8 @@ class ComprobarColaborador extends Component
 
         //Contactos de emergencia
         $contactosColaborador = Contactos_emergencia::where('colaborador_no_colaborador', $no_colaborador)->get();
-        $noContactos = Contactos_emergencia::where('colaborador_no_colaborador', $no_colaborador)->count();
 
-        for ($i = 0; $i <= $noContactos; $i++) {
+        for ($i = 0; $i <= count($contactosColaborador); $i++) {
 
             switch ($i) {
                 case '1':
@@ -202,7 +204,18 @@ class ComprobarColaborador extends Component
                     $this->telefono_contacto4 = $contactosColaborador[3]->telefono;
                     $this->domicilio_contacto4 = $contactosColaborador[3]->domicilio;
                     break;
-
+                case '5':
+                    $this->nombre_contacto4 = $contactosColaborador[4]->nombre;
+                    $this->parentesco_contacto4 = $contactosColaborador[4]->parentesco;
+                    $this->telefono_contacto4 = $contactosColaborador[4]->telefono;
+                    $this->domicilio_contacto4 = $contactosColaborador[4]->domicilio;
+                    break;
+                case '6':
+                    $this->nombre_contacto4 = $contactosColaborador[5]->nombre;
+                    $this->parentesco_contacto4 = $contactosColaborador[5]->parentesco;
+                    $this->telefono_contacto4 = $contactosColaborador[5]->telefono;
+                    $this->domicilio_contacto4 = $contactosColaborador[5]->domicilio;
+                    break;
                 default:
 
                     break;
@@ -211,23 +224,9 @@ class ComprobarColaborador extends Component
 
         //Validar botones de subida de archivo
         $this->colString= $this->colaborador->no_colaborador;
-        if (Storage::exists('public/documentos/actasHijos/'.$this->colString)) {
-            $this->permisoSubiractas= true;
-            // Existe las actas
-        }else{
-           $this->permisoSubiractas = false;
-            // No existe las actas   
-        }
 
-        if (Storage::exists('public/documentos/comprobanteDomicilio/'.$this->colString.'_comprobanteDomicilio.pdf')) {
-            $this->permisoSubircomprobante= true;
-            
-            //Existe comprobante
-        } else {
-            $this->permisoSubircomprobante= false;
-            // No existe combrobante
-        }        
-
+        /* Validar si existe el archivo de comprobante de domicilio */
+        Storage::exists('public/documentos/'.$this->colString.'/'.$this->colString.'_comprobanteDomicilio.pdf') ? $this->permisoSubircomprobante= true : $this->permisoSubircomprobante= false;
     }
 
     public function render()
@@ -237,47 +236,103 @@ class ComprobarColaborador extends Component
         $paternidadArray = [ array('id'=>0,'nom'=>'No'),array('id'=>1,'nom'=>'Si') ];
         $paternidadArray = collect($paternidadArray);
 
-        $permisoSubiractas2= $this->permisoSubiractas;
-        $permisoSubircomprobante2=$this->permisoSubircomprobante;
-        
-        return view('livewire.comprobar-colaborador', compact('generos', 'estadosCivil','paternidadArray','permisoSubiractas2','permisoSubircomprobante2'))->layout('layouts.guest');
-    }
-
-    public function comprueba()
-    {
-
-        $prueba = Colaborador::find($this->no_colaborador);
-
-        if ($prueba != null) {
-            $this->alert('success', 'El numero de colaborador ' . $this->no_colaborador . ' existe', [
-                'position' =>  'top-end',
-                'timer' =>  3000,
-                'toast' =>  true,
-                'text' =>  '',
-                'confirmButtonText' =>  'Ok',
-                'cancelButtonText' =>  'Cancel',
-                'showCancelButton' =>  false,
-                'showConfirmButton' =>  false,
-            ]);
-            $this->bandera = true;
+        if ($this->edad_hijo1 !=null && $this->escolaridad_hijo1 !=null) {
+            $this->permisoSubiracta1=true;
+            
+            if ($this->hijosColaborador->isempty()){
+                $this->permisoSubiracta1=true;
+            }else{
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[0]->id.'.pdf')) {
+                    $this->permisoSubiracta1=false;
+                } else {
+                    $this->permisoSubiracta1=true;
+                }
+            }
         } else {
-            $this->alert('error', 'El numero de colaborador ' . $this->no_colaborador . ' no existe', [
-                'position' =>  'top-end',
-                'timer' =>  3000,
-                'toast' =>  true,
-                'text' =>  '',
-                'confirmButtonText' =>  'Ok',
-                'cancelButtonText' =>  'Cancel',
-                'showCancelButton' =>  false,
-                'showConfirmButton' =>  false,
-            ]);
+            $this->permisoSubiracta1=false;
         }
-    }
-    public function setFalse()
-    {
-        $this->bandera = false;
-    }
+        
+        if ($this->edad_hijo2 !=null && $this->escolaridad_hijo2 !=null) {
+            $this->permisoSubiracta2=true;
+            if ( $this->hijosColaborador->get(1)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[1]->id.'.pdf')) {
+                    $this->permisoSubiracta2=false;
+                } else {
+                    $this->permisoSubiracta2=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta2=false;
+        }
 
+        if ($this->edad_hijo3 !=null && $this->escolaridad_hijo3 !=null) {
+            $this->permisoSubiracta3=true;
+            if ( $this->hijosColaborador->get(2)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[2]->id.'.pdf')) {
+                    $this->permisoSubiracta3=false;
+                } else {
+                    $this->permisoSubiracta3=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta3=false;
+        }
+
+        if ($this->edad_hijo4 !=null && $this->escolaridad_hijo4 !=null) {
+            $this->permisoSubiracta4=true;
+            if ( $this->hijosColaborador->get(3)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[3]->id.'.pdf')) {
+                    $this->permisoSubiracta4=false;
+                } else {
+                    $this->permisoSubiracta4=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta4=false;
+        }
+
+        if ($this->edad_hijo5 !=null && $this->escolaridad_hijo5 !=null) {
+            $this->permisoSubiracta5=true;
+            if ( $this->hijosColaborador->get(4)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[4]->id.'.pdf')) {
+                    $this->permisoSubiracta5=false;
+                } else {
+                    $this->permisoSubiracta5=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta5=false;
+        }
+
+        if ($this->edad_hijo6 !=null && $this->escolaridad_hijo6 !=null) {
+            $this->permisoSubiracta6=true;
+            if ( $this->hijosColaborador->get(5)) {
+                if (Storage::exists('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[5]->id.'.pdf')) {
+                    $this->permisoSubiracta6=false;
+                } else {
+                    $this->permisoSubiracta6=true;
+                }
+            }
+        } else {
+            $this->permisoSubiracta6=false;
+        }
+
+        $permisoSubiractasRender1= $this->permisoSubiracta1;
+        $permisoSubiractasRender2= $this->permisoSubiracta2;
+        $permisoSubiractasRender3= $this->permisoSubiracta3;
+        $permisoSubiractasRender4= $this->permisoSubiracta4;
+        $permisoSubiractasRender5= $this->permisoSubiracta5;
+        $permisoSubiractasRender6= $this->permisoSubiracta6;
+        $permisoSubircomprobante2=$this->permisoSubircomprobante;
+
+        /* Validar si hay un cambio en los input de direccion,colonia,municipio,estado,cod_postal. */
+        $this->direccion != $this->colaborador->domicilio || $this->colonia != $this->colaborador->colonia || $this->municipio != $this->colaborador->municipio || $this->estado != $this->colaborador->estado || $this->codigo_postal != $this->colaborador->codigo_postal ? $permisoSubircomprobante2= !$this->permisoSubircomprobante : $permisoSubircomprobante2=$this->permisoSubircomprobante;
+
+        return view('livewire.comprobar-colaborador', compact('generos',
+        'estadosCivil','paternidadArray',
+        'permisoSubiractasRender1','permisoSubiractasRender2','permisoSubiractasRender3','permisoSubiractasRender4','permisoSubiractasRender5','permisoSubiractasRender6'
+        ,'permisoSubircomprobante2'))->layout('layouts.guest');
+    }
 
     public function actualizar()
     {
@@ -311,7 +366,6 @@ class ComprobarColaborador extends Component
 
                 // Hijos datos
                 for ($i = 1; $i <= 6; $i++) {
-
                     switch ($i) {
 
                         case '1':
@@ -457,27 +511,189 @@ class ComprobarColaborador extends Component
                             break;
                     }
                 }
+            });
 
-                /* Validar si esta activo los input de actas y comprobante */
-                if ($this->permisoSubiractas === true) {
-            
+            /* Eliminar todos los hijosActas si selecciona la opcion No(0) */
+            if ($this->paternidad == 0) {
+                Hijos::where('colaborador_no_colaborador',$this->colString)->delete();
+                Storage::deleteDirectory('public/documentos/'.$this->colString.'/actasHijos');
+            }
+
+            /* Eliminar a un hijo & acta */
+            if( ($this->edad_hijo1 === null || empty($this->edad_hijo1) ) && ($this->escolaridad_hijo1 === null || empty($this->escolaridad_hijo1) )){
+                try {
+                    Hijos::where('id',$this->hijosColaborador[0]->id)->delete();
+                    Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[0]->id.'.pdf');
+                } catch (Exception $ex) {
+                }
+            }
+
+            if( ($this->edad_hijo2 === null || empty($this->edad_hijo2) ) && ($this->escolaridad_hijo2 === null || empty($this->escolaridad_hijo2) )){
+                try {
+                    if ($this->hijosColaborador->get(1)) {
+                        Hijos::where('id',$this->hijosColaborador[1]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[1]->id.'.pdf');
+                    }
+                    
+                } catch (Exception $ex) {
+                }
+            }
+
+            if( ($this->edad_hijo3 === null || empty($this->edad_hijo3) ) && ($this->escolaridad_hijo3 === null || empty($this->escolaridad_hijo3) )){
+                try {
+                    if ($this->hijosColaborador->get(2)) {
+                        Hijos::where('id',$this->hijosColaborador[2]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[2]->id.'.pdf');
+                    }
+                } catch (Exception $ex) {
+                }
+            }
+
+            if( ($this->edad_hijo4 === null || empty($this->edad_hijo4) ) && ($this->escolaridad_hijo4 === null || empty($this->escolaridad_hijo4) )){
+                try {
+                    if ($this->hijosColaborador->get(3)) {
+                        Hijos::where('id',$this->hijosColaborador[3]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[3]->id.'.pdf');
+                    }
+                    
+                } catch (Exception $ex) {
+                }
+            }
+
+            if( ($this->edad_hijo5 === null || empty($this->edad_hijo5) ) && ($this->escolaridad_hijo5 === null || empty($this->escolaridad_hijo5) )){
+                try {
+                    if ($this->hijosColaborador->get(4)) {
+                        Hijos::where('id',$this->hijosColaborador[4]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[4]->id.'.pdf');
+                    }
+                    
+                } catch (Exception $ex) {
+                }
+            }
+
+            if( ($this->edad_hijo6 === null || empty($this->edad_hijo6) ) && ($this->escolaridad_hijo6 === null || empty($this->escolaridad_hijo6) )){
+                try {
+                    if ($this->hijosColaborador->get(5)) {
+                        Hijos::where('id',$this->hijosColaborador[5]->id)->delete();
+                        Storage::delete('public/documentos/'.$this->colString.'/actasHijos/'.$this->hijosColaborador[5]->id.'.pdf');
+                    }
+                    
+                } catch (Exception $ex) {
+                }
+            }
+
+            /* Validar si esta activo el input de actas */
+            $this->hijosColaborador= Hijos::where('colaborador_no_colaborador',$this->colString)->get();
+            if ($this->permisoSubiracta1 === false) {
+                $rutaActas[]=$rutaActa1=NULL;
+            } else {
+                if (empty($this->actaNacimientoHijo1) || $this->actaNacimientoHijo1==='') {
+                    $rutaActas[]=$rutaActa1=NULL;
                 }else{
-                    foreach ($this->actasNacimientoHijo as $anH) {
-                        $anH->store('documentos/actasHijos/'.$this->colString,'public');
+                    if ($this->hijosColaborador->get('0')) {
+                        $rutaActa1= $this->actaNacimientoHijo1->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[0]->id.'.pdf');
+                        // dd($rutaActa1);
+                        $rutaActas[]=$rutaActa1;
                     }
                 }
-        
-                if ($this->permisoSubircomprobante === true) {
-                    
-                } else {
-                    $this->comprobante->storeAs('public/documentos/comprobanteDomicilio',$this->colString.'_comprobanteDomicilio.pdf');
-                }
+            }
 
-            });
+            if ($this->permisoSubiracta2 === false) {
+                $rutaActas[]=$rutaActa2=NULL;
+            } else {
+                if (empty($this->actaNacimientoHijo2) || $this->actaNacimientoHijo2==='') {
+                    $rutaActas[]=$rutaActa2=NULL;
+                }else{
+                    if ($this->hijosColaborador->get(1)) {
+                        $rutaActa2= $this->actaNacimientoHijo2->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[1]->id.'.pdf');
+                        $rutaActas[]=$rutaActa2;
+                    }
+                }
+            }
+
+            if ($this->permisoSubiracta3 === false) {
+                $rutaActas[]=$rutaActa3=NULL;
+            } else {
+                if (empty($this->actaNacimientoHijo3) || $this->actaNacimientoHijo3==='') {
+                    $rutaActas[]=$rutaActa3=NULL;
+                }else{
+                    if ($this->hijosColaborador->get(2)) {
+                        $rutaActa3= $this->actaNacimientoHijo3->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[2]->id.'.pdf');
+                        $rutaActas[]=$rutaActa3;
+                    }
+                    
+                }
+            }
+
+            if ($this->permisoSubiracta4 === false) {
+                $rutaActas[]=$rutaActa4=NULL;
+            } else {
+                if (empty($this->actaNacimientoHijo4) || $this->actaNacimientoHijo4==='') {
+                    $rutaActas[]=$rutaActa4=NULL;
+                }else{
+                    if ($this->hijosColaborador->get(3)) {
+                        $rutaActa4= $this->actaNacimientoHijo4->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[3]->id.'.pdf');
+                        $rutaActas[]=$rutaActa4;
+                    }
+                }
+            }
+
+            if ($this->permisoSubiracta5 === false) {
+                $rutaActas[]=$rutaActa5=NULL;
+            } else {
+                if (empty($this->actaNacimientoHijo5) || $this->actaNacimientoHijo5==='') {
+                    $rutaActas[]=$rutaActa5=NULL;
+                }else{
+                    if ($this->hijosColaborador->get(4)) {
+                        $rutaActa5= $this->actaNacimientoHijo5->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[4]->id.'.pdf');
+                        $rutaActas[]=$rutaActa5;
+                    }
+                }
+            }
+
+            if ($this->permisoSubiracta6 === false) {
+                $rutaActas[]=$rutaActa6=NULL;
+            } else {
+                if (empty($this->actaNacimientoHijo6) || $this->actaNacimientoHijo6==='') {
+                    $rutaActas[]=$rutaActa6=NULL;
+                }else{
+                    if ($this->hijosColaborador->get(5)) {
+                        $rutaActa6= $this->actaNacimientoHijo6->storeAs('public/documentos/'.$this->colString.'/actasHijos',$this->hijosColaborador[5]->id.'.pdf');
+                        $rutaActas[]=$rutaActa6;
+                    }  
+                }
+            }
+            
+            /* Validar si esta activo el input de Comprobante */
+            if ($this->permisoSubircomprobante === true) {
+                $rutaComprobante='';
+            }else{
+                if (empty($this->comprobante) || $this->comprobante==='') {
+                    $rutaComprobante = '';
+                } else {
+                    $rutaComprobante=$this->comprobante->storeAs('public/documentos/'.$this->colString,$this->colString.'_comprobanteDomicilio.pdf');
+                } 
+            }
+
+            /* Guardar datos que cambio el colaborador */
+            $rutaActas= json_encode($rutaActas);
+            Actualizar_colaborador::create([
+                'colaborador_no_colaborador' =>$this->no_colaborador,
+                'domicilio' =>$this->direccion,
+                'colonia'=>$this->colonia,
+                'municipio'=>$this->municipio,
+                'estado'=>$this->estado,
+                'codigo_postal'=>$this->codigo_postal,
+                'genero_id'=>$this->genero,
+                'estado_civil_id' =>$this->estado_civil,
+                'paternidad_id' => $this->paternidad,
+                'rutaActas'=>$rutaActas,
+                'rutacomprobante'=>$rutaComprobante
+            ]);
 
             $this->flash('success', 'El colaborador se ha actualizado con éxito', [
                 'position' =>  'top-end',
-                'timer' =>  3000,
+                'timer' =>  3500,
                 'toast' =>  true,
                 'text' =>  '',
                 'confirmButtonText' =>  'Ok',
@@ -487,7 +703,6 @@ class ComprobarColaborador extends Component
             ]);
             return redirect()->to('/colaborador/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
-            // dd($ex);
             $this->alert('error', 'Ha ocurrido un error:'.$ex, [
                 'position' =>  'top-end',
                 'timer' =>  3000,
