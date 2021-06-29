@@ -6,7 +6,7 @@
                     <thead class="bg-gray-50">
                         <tr>
                             <div class="grid grid-cols-4">
-                                <div class=" col-span-1 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
+                                <div class=" col-span-1 flex px-2 py-2  border-t border-gray-200 sm:px-3 bg-white">
                                     <select wire:model='perPage'
                                         class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
                                         <option value="5">5 por página</option>
@@ -15,8 +15,13 @@
                                         <option value="50">50 por página</option>
                                         <option value="100">100 por página</option>
                                     </select>
+                                    <button wire:click="export" type="button"
+                                        class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent
+                                                                                    rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                        Excel
+                                    </button>
                                 </div>
-                                <div class=" col-span-3 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
+                                <div class=" col-span-3 flex px-2 py-2  border-t border-gray-200 sm:px-3 bg-white">
                                     <input wire:model="search" type="text" placeholder="Buscar"
                                         class="w-full col-span-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                 </div>
@@ -42,7 +47,8 @@
                                     Datos del vehículo
                                 </div>
                             </th>
-                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            <th scope="col"
+                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 <div class="flex text-left">
                                     Tipo de vehículo
                                 </div>
