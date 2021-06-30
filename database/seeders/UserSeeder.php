@@ -117,13 +117,13 @@ class UserSeeder extends Seeder
             'role_id' => '2',
             'colaborador_no_colaborador' => '103541'
         ]);
-        /* User::create([
+        User::create([
             'name' => 'Maylin Alexandra Gómez Salmerón',
             'email' => 'mgomez@factoraguila.com',
             'password' => bcrypt('12345678'),
             'role_id' => '2',
             'colaborador_no_colaborador' => '307'
-        ]); */
+        ]);
         User::create([
             'name' => 'Misael Juárez Quinto',
             'email' => 'mjuarezq@itecnos.com.mx',
@@ -179,13 +179,13 @@ class UserSeeder extends Seeder
             'role_id' => '4',
             'colaborador_no_colaborador' => '53016'
         ]);
-        /* User::create([
+        User::create([
             'name' => 'Reynel Reyna Torres',
             'email' => 'bcorlaborales@itecnos.com.mx',
             'password' => bcrypt('12345678'),
             'role_id' => '4',
-            'colaborador_no_colaborador' => '308'
-        ]); */
+            'colaborador_no_colaborador' => '00306'
+        ]);
 
 
         // ! Capital Humano - Reclutamiento y Selección
