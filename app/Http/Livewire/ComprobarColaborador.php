@@ -693,7 +693,7 @@ class ComprobarColaborador extends Component
                 'estado_civil_id' => $this->estado_civil,
                 'paternidad_id' => $this->paternidad,
                 'rutaActas' => $rutaActas,
-                'rutacomporbante' => $rutaComprobante
+                'rutacomprobante' => $rutaComprobante
             ]);
 
             $this->flash('success', 'El colaborador se ha actualizado con éxito', [
