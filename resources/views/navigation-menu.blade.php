@@ -85,6 +85,11 @@ $nav_links6_5 = [
 'route' => route('control-center'),
 'active' => request()->routeIs('control-center'),
 ],
+[
+'name' => 'Lista Vehículos',
+'route' => route('lista-vehiculos'),
+'active' => request()->routeIs('lista-vehiculos'),
+],
 ];
 $nav_links7 = [
 [
