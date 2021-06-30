@@ -8,7 +8,7 @@
                             <div class="grid grid-cols-4">
                                 <div class=" col-span-1 flex px-2 py-2  border-t border-gray-200 sm:px-3 bg-white">
                                     <select wire:model='perPage'
-                                        class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
+                                        class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-2">
                                         <option value="5">5 por página</option>
                                         <option value="10">10 por página</option>
                                         <option value="25">25 por página</option>
@@ -19,6 +19,11 @@
                                         class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent
                                                                                     rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         Excel
+                                    </button>
+                                    <button wire:click="registrar" type="button"
+                                        class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
+                                                                                                                        rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                        Nuevo
                                     </button>
                                 </div>
                                 <div class=" col-span-3 flex px-2 py-2  border-t border-gray-200 sm:px-3 bg-white">
@@ -91,12 +96,24 @@
                             </td>
                             <td>
                                 <div class="flex justify-center py-4 cursor-pointer">
+                                    <div class="transform text-yellow-500 hover:text-yellow-700 hover:scale-150">
+                                        <a wire:click="editar({{ $vehiculo->id  }})">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20"
+                                                fill="currentColor">
+                                                <path
+                                                    d="M17.414 2.586a2 2 0 00-2.828 0L7 10.172V13h2.828l7.586-7.586a2 2 0 000-2.828z" />
+                                                <path fill-rule="evenodd"
+                                                    d="M2 6a2 2 0 012-2h4a1 1 0 010 2H4v10h10v-4a1 1 0 112 0v4a2 2 0 01-2 2H4a2 2 0 01-2-2V6z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                    </div>
                                     <div class="transform text-red-500 hover:text-red-700 hover:scale-150">
                                         <a wire:click="triggerConfirm({{ $vehiculo->id }})">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20"
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" viewBox="0 0 20 20"
                                                 fill="currentColor">
                                                 <path fill-rule="evenodd"
-                                                    d="M6.707 4.879A3 3 0 018.828 4H15a3 3 0 013 3v6a3 3 0 01-3 3H8.828a3 3 0 01-2.12-.879l-4.415-4.414a1 1 0 010-1.414l4.414-4.414zm4 2.414a1 1 0 00-1.414 1.414L10.586 10l-1.293 1.293a1 1 0 101.414 1.414L12 11.414l1.293 1.293a1 1 0 001.414-1.414L13.414 10l1.293-1.293a1 1 0 00-1.414-1.414L12 8.586l-1.293-1.293z"
+                                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 000 2h6a1 1 0 100-2H7z"
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </a>
@@ -118,6 +135,150 @@
                 </div>
                 @endif
             </div>
+            <x-jet-dialog-modal wire:model="editbool">
+                <x-slot name="title">
+                    <p class="text-center text-2xl font-medium text-red-700">
+                        @if ($banderaExiste == true)
+                        Editar datos del vehículo
+                        @else
+                        Registrar datos
+                        @endif
+                    </p>
+                </x-slot>
+
+                <x-slot name="content">
+                    <div class="mt-4">
+                        <label for="selectcolaborador" class="block text-sm 
+                        @if ($banderaRegistro == true)
+                            text-red-700 animate-bounce
+                            @else
+                            text-gray-700
+                            @endif
+                        ">
+                            @if ($banderaRegistro == true)
+                            Colaborador (Este colaborador ya está registrado, elige uno diferente)
+                            @else
+                            Colaborador
+                            @endif
+
+                        </label>
+                        <select id="selectcolaborador" wire:model="ColaboradorRegistro" name="colaborador"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option value=""></option>
+                            @if (isset($colaboradores))
+                            @foreach ($colaboradores as $colaborador)
+                            <option value="{{ $colaborador->no_colaborador }}">
+                                {{ $colaborador->ap_paterno }}
+                                {{ $colaborador->ap_materno }}
+                                {{ $colaborador->nombre_1 }}
+                                {{ $colaborador->nombre_2 }}
+                            </option>
+
+                            @endforeach
+                            @endif
+
+                        </select>
+                        @error('colaborador_registro')
+                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    @if ($banderaRegistro == true)
+                    @else
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700" for="inputTipoVehiculo">Tipo de
+                            vehículo</label>
+                        <select id="inputTipoVehiculo" wire:model="tipo_vehiculo" name="tipo_vehiculo"
+                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                            <option></option>
+                            @if ($tiposVehiculo)
+                            @foreach ($tiposVehiculo as $tipo)
+                            <option value="{{ $tipo->id }}">
+                                {{ $tipo->nombre }}
+                            </option>
+                            @endforeach
+                            @else
+                            @endif
+                        </select>
+                        @error('tipo_vehiculo')
+                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700" for="inputPlaca">Placa</label>
+                        <input type="text" wire:model="placa" name="placa" id="inputPlaca" value="{{ old('placa') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        @error('placa')
+                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700" for="inputMarca">Marca</label>
+                        <input type="text" wire:model="marca" name="marca" id="inputMarca" value="{{ old('marca') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        @error('marca')
+                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700" for="inputModelo">Modelo</label>
+                        <input type="text" wire:model="modelo" name="modelo" id="inputModelo"
+                            value="{{ old('modelo') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        @error('modelo')
+                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700" for="inputFechaModelo">Año</label>
+                        <input type="text" wire:model="fecha_modelo" name="fecha_modelo" id="inputFechaModelo"
+                            value="{{ old('fecha_modelo') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        @error('fecha_modelo')
+                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    <div class="mt-4">
+                        <label class="block text-sm font-medium text-gray-700" for="inputColor">Color</label>
+                        <input type="text" wire:model="color" name="color" id="inputColor" value="{{ old('color') }}"
+                            class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        @error('color')
+                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                            {{ $message }}
+                        </p>
+                        @enderror
+                    </div>
+                    @endif
+                </x-slot>
+
+                <x-slot name="footer">
+                    <x-jet-secondary-button wire:click="setNull()">
+                        {{ __('Cerrar') }}
+                    </x-jet-secondary-button>
+
+                    @if ($banderaRegistro == true)
+                    @else
+                    <x-jet-button class="ml-2" wire:click="acciones" wire:loading.attr="disabled">
+                        @if ($banderaExiste == true)
+                        {{ __('Actualizar') }}
+                        @else
+                        {{ __('Registrar') }}
+                        @endif
+                    </x-jet-button>
+                    @endif
+                </x-slot>
+            </x-jet-dialog-modal>
         </div>
     </div>
 </div>
