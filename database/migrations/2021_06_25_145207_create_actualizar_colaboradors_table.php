@@ -35,7 +35,7 @@ class CreateActualizarColaboradorsTable extends Migration
                     ->onUpdate('cascade');
             $table->boolean('paternidad_id');
             $table->string('rutaActas',null);
-            $table->string('rutacomporbante',null);
+            $table->string('rutacomprobante',null);
             $table->timestamps();
         });
     }
