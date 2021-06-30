@@ -240,19 +240,27 @@ class UserSeeder extends Seeder
         ]);
 
         // ! Seguridad Patrimonial
-        /* User::create([
-            'name' => 'SP1',
+        User::create([
+            'name' => 'Luisa Gabriela Espina Ramírez',
             'email' => 'spatrimonial1@itecnos.com.mx',
             'password' => bcrypt('12345678'),
             'role_id' => '6',
-            'colaborador_no_colaborador' => '999999'
-        ]); */
+            'colaborador_no_colaborador' => '115985'
+        ]);
         User::create([
             'name' => 'Mariana Garcia Garcia',
             'email' => 'mgarciag@itecnos.com.mx',
             'password' => bcrypt('12345678'),
             'role_id' => '6',
             'colaborador_no_colaborador' => '124000'
+        ]);
+
+        User::create([
+            'name' => 'Uriel Iván Basilio Gómez',
+            'email' => 'ibasiliog@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '6',
+            'colaborador_no_colaborador' => '103043'
         ]);
     }
 }
