@@ -122,7 +122,7 @@ class UserSeeder extends Seeder
             'email' => 'mgomez@factoraguila.com',
             'password' => bcrypt('12345678'),
             'role_id' => '2',
-            'colaborador_no_colaborador' => '307'
+            'colaborador_no_colaborador' => '00307'
         ]);
         User::create([
             'name' => 'Misael Juárez Quinto',
