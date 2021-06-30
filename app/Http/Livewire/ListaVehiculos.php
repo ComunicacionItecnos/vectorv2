@@ -37,7 +37,6 @@ class ListaVehiculos extends Component
     public $tiposVehiculo, $banderaExiste, $colaborador, $vehiculo_2;
     public $tipo_vehiculo, $placa, $marca, $modelo, $fecha_modelo, $color;
     public $tipo_vehiculo_original;
-    public $revbool = false;
     public $ColaboradorRegistro, $colaboradores, $banderaRegistro = false;
 
     protected $rules = [
@@ -238,17 +237,6 @@ class ListaVehiculos extends Component
         $this->restaMarbete();
         $this->resetVariables();
         $this->setNull();
-    }
-
-    public function revisarColaborador()
-    {
-        $revision = Estacionamiento::where('colaborador_no_colaborador', '147190')->get();
-
-        if (count($revision) == 0) {
-            $this->revbool = false;
-        } else {
-            $this->revbool = true;
-        }
     }
 
     public function registraVehiculo()

@@ -147,6 +147,8 @@
                 </x-slot>
 
                 <x-slot name="content">
+                    @if ($banderaExiste == true)
+                    @else
                     <div class="mt-4">
                         <label for="selectcolaborador" class="block text-sm 
                         @if ($banderaRegistro == true)
@@ -184,6 +186,7 @@
                         </p>
                         @enderror
                     </div>
+                    @endif
                     @if ($banderaRegistro == true)
                     @else
                     <div class="mt-4">
