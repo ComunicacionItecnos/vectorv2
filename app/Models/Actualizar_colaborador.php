@@ -13,7 +13,7 @@ class Actualizar_colaborador extends Model
 
     protected $fillable =[
         'colaborador_no_colaborador',
-        'domicilio',
+        'direccion',
         'colonia',
         'municipio',
         'estado',
