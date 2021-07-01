@@ -511,6 +511,9 @@
                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Puesto y Área
                 </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Datos de contacto
+                </th>
             </tr>
 
             {{-- Encabezado Tabla Direcccion --}}
@@ -543,7 +546,8 @@
                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Puesto y Area
                 </th>
-                <th scope="col" class="text-center px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase">
+                <th scope="col"
+                    class="text-center px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase">
                     Opciones
                 </th>
             </tr>
@@ -1033,6 +1037,24 @@
                     <div class="text-sm text-gray-900">{{ $colaborador->puesto }}</div>
                     <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                 </td>
+                <td class="px-3 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Extensión: {{ $colaborador->numero_extension }}
+                    </div>
+                    <div class="text-sm text-gray-900">Clave:
+                        {{ $colaborador->clave }}</div>
+                    <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
+                    </div>
+                    <div class="text-sm text-gray-900">Supervisor:
+                        @php
+                            $j_f = DB::table('infocolaborador')->where('no_colaborador',$colaborador->jefe_directo)->get();
+                        @endphp
+                        @if(count($j_f) == 0)
+                            Ninguno
+                        @else
+                        {{$j_f[0]->nombre_desc}}
+                        @endif
+                    </div>
+                </td>
             </tr>
             @else
             @endif
@@ -1073,9 +1095,9 @@
                 <td class="flex flex-col sm:flex-wrap sm:flex-row sm:justify-center p-4">
                     <div class="pb-2 sm:pr-1 mx-auto sm:mx-0 sm:pt-4">
                         <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
-                        class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-yellow-600 border border-transparent
+                            class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-yellow-600 border border-transparent
                         rounded-md shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                        Ver
+                            Ver
                         </a>
                     </div>
                     <div class="pb-2 sm:pl-1 sm:pt-4">
