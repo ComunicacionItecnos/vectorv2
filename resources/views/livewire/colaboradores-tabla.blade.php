@@ -763,6 +763,8 @@
                     </div>
                 </td>
                 <td class="px-3 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Extensión: {{ $colaborador->numero_extension }}
+                    </div>
                     <div class="text-sm text-gray-900">Fijo: {{ $colaborador->tel_fijo }}
                     </div>
                     <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
