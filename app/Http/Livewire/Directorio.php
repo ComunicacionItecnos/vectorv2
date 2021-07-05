@@ -30,6 +30,9 @@ class Directorio extends Component
                 'colaboradores' => DB::table('directorio')->where('nombre', 'LIKE', "%{$this->search}%")
                     ->orWhere('puesto', 'LIKE', "%{$this->search}%")
                     ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->orWhere('correo', 'LIKE', "%{$this->search}%")
+                    ->orWhere('extension', 'LIKE', "%{$this->search}%")
+                    ->orWhere('clave', 'LIKE', "%{$this->search}%")
                     ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
                     ->paginate($this->perPage)
             ]
