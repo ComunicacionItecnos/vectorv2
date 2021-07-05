@@ -174,7 +174,27 @@ $nav_links8 = [
                     @endforeach
                     @endif
 
+                    <!-- Requisicion -->
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-jet-dropdown align="right">
+                            <x-slot name="trigger">
+                                <button type="button"
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    Servicios
+                                </button>
+                            </x-slot>
 
+                            <x-slot name="content">
+
+                                <!-- Team Settings -->
+                                <x-jet-dropdown-link href="{{  route('directorio') }}">
+                                    {{ __('Directorio') }}
+                                </x-jet-dropdown-link>
+
+                            </x-slot>
+
+                        </x-jet-dropdown>
+                    </div>
 
                 </div>
             </div>
@@ -362,6 +382,19 @@ $nav_links8 = [
             </x-jet-responsive-nav-link>
             @endforeach
             @endif
+
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="flex items-center px-4">
+                    <div class="text-base font-medium text-gray-800">{{ __('Servicios') }}</div>
+                </div>
+
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{  route('directorio') }}">
+                        {{ __('Directorio') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+            </div>
 
         </div>
 
