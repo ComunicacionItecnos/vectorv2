@@ -72,6 +72,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/lista-vehiculos', functio
     return view('listaVehiculos');
 })->name('lista-vehiculos');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/directorio', function () {
+    return view('directorioPersonal');
+})->name('directorio');
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
 
