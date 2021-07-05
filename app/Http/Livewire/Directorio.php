@@ -2,9 +2,12 @@
 
 namespace App\Http\Livewire;
 
-use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Exports\DirectorioExport;
+use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Directorio extends Component
 {
@@ -20,7 +23,7 @@ class Directorio extends Component
 
     public $sortBy = 'area';
     public $sortAsc = true;
-    public $j_f;
+    public $directorio;
 
     public function render()
     {
@@ -44,6 +47,13 @@ class Directorio extends Component
             $this->sortAsc = !$this->sortAsc;
         }
         $this->sortBy = $field;
+    }
+
+    public function export()
+    {
+        $this->fecha_actual = Carbon::now();
+        $this->directorio = DB::table('directorio')->get();
+        return Excel::download(new DirectorioExport($this->directorio), 'Directorio-Aguila(' . $this->fecha_actual . ').xlsx');
     }
 
 }
