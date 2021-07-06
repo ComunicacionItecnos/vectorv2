@@ -13,7 +13,17 @@ class UnidadNegocio extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('unidad_negocio', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('nombre_unidad',24);
+
+            $table->string('gerente_id', 6);
+            $table->foreign('colaborador_no_colaborador')
+            ->references('no_colaborador')->on('colaborador')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+        });
     }
 
     /**
@@ -23,6 +33,6 @@ class UnidadNegocio extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('unidad_negocio');
     }
 }

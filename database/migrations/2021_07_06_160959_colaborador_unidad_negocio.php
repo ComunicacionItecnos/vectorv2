@@ -13,7 +13,20 @@ class ColaboradorUnidadNegocio extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('colaborador_unidad_negocio', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('colaborador_no_colaborador', 6);
+            $table->foreign('colaborador_no_colaborador')
+            ->references('no_colaborador')->on('colaborador')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+
+            $table->foreignId('unidad_negocio_grupo_id')
+            ->constrained('unidad_negocio_grupo')
+            ->onDelete('cascade')
+            ->onUpdate('cascade');
+        });
     }
 
     /**
@@ -23,6 +36,6 @@ class ColaboradorUnidadNegocio extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('colaborador_unidad_negocio');
     }
 }
