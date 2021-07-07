@@ -18,7 +18,7 @@ class UnidadNegocio extends Migration
 
             $table->string('nombre_unidad',24);
 
-            $table->string('gerente_id', 6);
+            $table->string('colaborador_no_colaborador', 6);
             $table->foreign('colaborador_no_colaborador')
             ->references('no_colaborador')->on('colaborador')
             ->onDelete('cascade')

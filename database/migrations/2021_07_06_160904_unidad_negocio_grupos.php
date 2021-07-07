@@ -23,7 +23,7 @@ class UnidadNegocioGrupos extends Migration
             ->onDelete('cascade')
             ->onUpdate('cascade');
 
-            $table->string('supervisor_id', 6);
+            $table->string('colaborador_no_colaborador', 6);
             $table->foreign('colaborador_no_colaborador')
             ->references('no_colaborador')->on('colaborador')
             ->onDelete('cascade')
