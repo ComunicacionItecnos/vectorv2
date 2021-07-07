@@ -15,6 +15,12 @@ class Area extends Migration
     {
         Schema::create('area', function (Blueprint $table){
             $table->id();
+            
+            $table->foreignId('centro_costos_id')
+                ->constrained('centro_costos')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
             $table->string('nombre_area',50);
         });
     }

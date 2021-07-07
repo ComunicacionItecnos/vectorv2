@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Centro_Costos extends Model
 {
     use HasFactory;
+
+    protected $table = 'centro_costos';
+
+    public $timestamps = false;
+
+    protected $fillable = [
+        'no_centro_costo'
+    ];
+
+    // * Relacion uno a muchos
+    public function areas()
+    {
+        return $this->hasMany('App\Models\Area');
+    }
 }
