@@ -13,9 +13,10 @@ class CentroCostos extends Migration
      */
     public function up()
     {
-        Schema::create('colaborador_evento', function (Blueprint $table) {
+        Schema::create('centro_costos', function (Blueprint $table) {
             $table->id();
             $table->string('no_centro_costo',4);
+            $table->string('descripcion',50)->nullable();
         });
     }
 

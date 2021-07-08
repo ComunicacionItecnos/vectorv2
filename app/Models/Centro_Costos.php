@@ -14,7 +14,8 @@ class Centro_Costos extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'no_centro_costo'
+        'no_centro_costo',
+        'descripcion'
     ];
 
     // * Relacion uno a muchos
