@@ -1,10 +1,6 @@
 <?php
 
 namespace App\Http\Livewire;
-
-use App\Models\Area;
-use App\Models\Extension;
-use App\Models\Puesto;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -23,19 +19,62 @@ class ColaboradoresTabla extends Component
 
     public $sortBy = 'no_colaborador';
     public $sortAsc = true;
+
+    // ? No eliminar esta variable $j_f ya que sirve para traer el nombre del jefe directo en la vista de seguridad patrimonial
     public $j_f;
 
     public function render()
     {
-
-        return view('livewire.colaboradores-tabla', [
-            'colaboradores' => DB::table('infocolaborador')->where('no_colaborador', 'LIKE', "%{$this->search}%")
-                ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
-                ->orWhere('puesto', 'LIKE', "%{$this->search}%")
-                ->orWhere('area', 'LIKE', "%{$this->search}%")
-                ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
-                ->paginate($this->perPage)
-        ]);
+        if (auth()->user()->role_id == 9 && auth()->user()->colaborador_no_colaborador == 110899) {
+            return view('livewire.colaboradores-tabla', [
+                'colaboradores' => DB::table('unriflecolaborador')
+                    ->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                    ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
+                    ->orWhere('puesto', 'LIKE', "%{$this->search}%")
+                    ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ]);
+        } elseif (auth()->user()->role_id == 9 && auth()->user()->colaborador_no_colaborador == 102050) {
+            return view('livewire.colaboradores-tabla', [
+                'colaboradores' => DB::table('unpistolacolaborador')
+                    ->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                    ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
+                    ->orWhere('puesto', 'LIKE', "%{$this->search}%")
+                    ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ]);
+        } elseif (auth()->user()->role_id == 9 && auth()->user()->colaborador_no_colaborador == 137355) {
+            return view('livewire.colaboradores-tabla', [
+                'colaboradores' => DB::table('unmisccolaborador')
+                    ->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                    ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
+                    ->orWhere('puesto', 'LIKE', "%{$this->search}%")
+                    ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ]);
+        } elseif (auth()->user()->role_id == 9 && auth()->user()->colaborador_no_colaborador == 135870) {
+            return view('livewire.colaboradores-tabla', [
+                'colaboradores' => DB::table('unl22colaborador')
+                    ->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                    ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
+                    ->orWhere('puesto', 'LIKE', "%{$this->search}%")
+                    ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ]);
+        } else {
+            return view('livewire.colaboradores-tabla', [
+                'colaboradores' => DB::table('infocolaborador')->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                    ->orWhere('nombre_completo', 'LIKE', "%{$this->search}%")
+                    ->orWhere('puesto', 'LIKE', "%{$this->search}%")
+                    ->orWhere('area', 'LIKE', "%{$this->search}%")
+                    ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    ->paginate($this->perPage)
+            ]);
+        }
     }
 
     public function sortBy($field)
