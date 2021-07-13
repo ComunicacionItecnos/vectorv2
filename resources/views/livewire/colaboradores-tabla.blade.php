@@ -1176,7 +1176,7 @@
                 </td>
                 <td class="flex flex-col sm:flex-wrap sm:flex-row sm:justify-center p-4">
                     <div class="pb-2 sm:pl-1 sm:pt-4 my-8">
-                        <a href="{{ url('/insignias/' . $colaborador->no_colaborador) }}"
+                        <a href="{{ url('/insignias-unidad-negocio/' . $colaborador->no_colaborador) }}"
                             class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
                                                             rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Insignia
