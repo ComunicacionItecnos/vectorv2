@@ -14,7 +14,7 @@ class UnidadNegocioColaboradorInsignia extends Migration
     public function up()
     {
         Schema::create(
-            'unidad_negocio_colaborador_insignia',
+            'un_col_insignia',
             function (Blueprint $table) {
 
                 $table->id();
@@ -55,6 +55,6 @@ class UnidadNegocioColaboradorInsignia extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unidad_negocio_colaborador_insignia');
+        Schema::dropIfExists('un_col_insignia');
     }
 }

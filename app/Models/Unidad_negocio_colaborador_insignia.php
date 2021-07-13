@@ -9,7 +9,7 @@ class Unidad_negocio_colaborador_insignia extends Model
 {
     use HasFactory;
 
-    protected $table = 'unidad_negocio_colaborador_insignia';
+    protected $table = 'un_col_insignia';
     public $timestamps = false;
 
     protected $fillable = [
