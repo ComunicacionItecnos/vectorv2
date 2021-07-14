@@ -77,6 +77,9 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/directorio', function () 
     return view('directorioPersonal');
 })->name('directorio');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/supervisores-unidad-negocio', function () {
+    return view('tablasuperun');
+})->name('tablaSupervisor');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
 
