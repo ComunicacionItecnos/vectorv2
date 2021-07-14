@@ -105,88 +105,40 @@ class InsigniaUN extends Component
 
             if ($this->fechaActual >= $this->yearActual . $this->tInicialP1 && $this->fechaActual <= $this->yearActual . $this->tFinalP1) {
                 return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP1, 'and', $this->yearActual . $this->tFinalP1)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
-                ));
+                ]);
             } elseif ($this->fechaActual >= $this->yearActual . $this->tFinalP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
                 return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP2, 'and', $this->yearActual . $this->tFinalP2)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
-                ));
+                ]);
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP3 && $this->fechaActual <= $this->yearActual . $this->tFinalP3) {
                 return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP3, 'and', $this->yearActual . $this->tFinalP3)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
-                ));
+                ]);
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP4 && $this->fechaActual <= $this->yearActual . $this->tFinalP4) {
                 return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP4, 'and', $this->yearActual . $this->tFinalP4)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
-                ));
+                ]);
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP5 && $this->fechaActual <= $this->yearActual . $this->tFinalP5) {
                 return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP5, 'and', $this->yearActual . $this->tFinalP5)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
-                ));
+                ]);
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP6 && $this->fechaActual <= $this->yearActual . $this->tFinalP6) {
                 return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP6, 'and', $this->yearActual . $this->tFinalP6)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
-                ));
+                ]);
             }
         } else {
             abort(404);

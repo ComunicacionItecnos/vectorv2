@@ -1162,6 +1162,9 @@
                         {{ $colaborador->puesto }}</div>
                     <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                     <div class="mt-1">
+                        <a class=" text-sm text-gray-900">OP:</a> <a class="text-sm text-gray-500">{{ $colaborador->operacion  }}</a>
+                    </div>
+                    <div class="mt-1">
                         <a class=" text-sm text-gray-900">UN:</a> <a
                             class="text-sm text-gray-500">{{ $colaborador->nombre_unidad  }}</a>
                     </div>
