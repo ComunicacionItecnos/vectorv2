@@ -88,11 +88,6 @@ class InsigniaUN extends Component
     public function render()
     {
         $this->esBisiesto($this->yearActual);
-        $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
-        $puestos = Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
-            ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
-            ->get();
-        $tiposColaborador = Tipo_colaborador::all();
 
         $premiados = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')
             ->orderBy('ap_paterno', 'ASC')
@@ -108,37 +103,52 @@ class InsigniaUN extends Component
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ]);
+                ], compact(
+                    'premiados',
+                    'areas',
+                    'puestos',
+                    'tiposColaborador'
+                ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tFinalP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
                 return view('livewire.insignia-u-n', [
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ]);
+                ], compact(
+                    'premiados'
+                ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP3 && $this->fechaActual <= $this->yearActual . $this->tFinalP3) {
                 return view('livewire.insignia-u-n', [
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ]);
+                ], compact(
+                    'premiados'
+                ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP4 && $this->fechaActual <= $this->yearActual . $this->tFinalP4) {
                 return view('livewire.insignia-u-n', [
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ]);
+                ], compact(
+                    'premiados'
+                ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP5 && $this->fechaActual <= $this->yearActual . $this->tFinalP5) {
                 return view('livewire.insignia-u-n', [
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ]);
+                ], compact(
+                    'premiados'
+                ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP6 && $this->fechaActual <= $this->yearActual . $this->tFinalP6) {
                 return view('livewire.insignia-u-n', [
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
-                ]);
+                ], compact(
+                    'premiados'
+                ));
             }
         } else {
             abort(404);
@@ -286,6 +296,7 @@ class InsigniaUN extends Component
 
         $tmpOro = Unidad_negocio_colaborador_insignia::all()
             ->where('insignia_id', 2)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
@@ -299,6 +310,7 @@ class InsigniaUN extends Component
 
         $tmpPlata = Unidad_negocio_colaborador_insignia::all()
             ->where('insignia_id', 3)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
@@ -312,6 +324,7 @@ class InsigniaUN extends Component
 
         $tmpBronce = Unidad_negocio_colaborador_insignia::all()
             ->where('insignia_id', 4)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 

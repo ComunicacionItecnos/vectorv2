@@ -47,8 +47,8 @@
                                         {{ $premiado->nombre_1 }}
                                         {{ $premiado->nombre_2 }}
                                     </option>
-
                                     @endforeach
+                                    @else
                                     @endif
 
                                 </select>
