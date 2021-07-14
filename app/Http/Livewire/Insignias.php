@@ -334,6 +334,7 @@ class Insignias extends Component
 
         $tmpOro = Colaborador_insignia::all()
             ->where('insignia_id', 2)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
@@ -347,6 +348,7 @@ class Insignias extends Component
 
         $tmpPlata = Colaborador_insignia::all()
             ->where('insignia_id', 3)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
@@ -360,6 +362,7 @@ class Insignias extends Component
 
         $tmpBronce = Colaborador_insignia::all()
             ->where('insignia_id', 4)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
