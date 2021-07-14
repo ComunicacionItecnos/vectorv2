@@ -104,10 +104,7 @@ class InsigniaUN extends Component
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
+                    'premiados'
                 ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tFinalP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
                 return view('livewire.insignia-u-n', [
