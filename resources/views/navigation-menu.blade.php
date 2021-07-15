@@ -105,6 +105,18 @@ $nav_links8 = [
 'active' => request()->routeIs('dashboard'),
 ],
 ];
+$nav_links9 = [
+[
+'name' => 'Listado',
+'route' => route('dashboard'),
+'active' => request()->routeIs('dashboard'),
+],
+[
+'name' => 'Listado Supervisores',
+'route' => route('tablaSupervisor'),
+'active' => request()->routeIs('tablaSupervisor'),
+],
+];
 
 @endphp
 
@@ -168,6 +180,12 @@ $nav_links8 = [
                     @endforeach
                     @elseif(auth()->user()->role_id == 8)
                     @foreach ($nav_links8 as $nav_link)
+                    <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                        {{ $nav_link['name'] }}
+                    </x-jet-nav-link>
+                    @endforeach
+                    @elseif(auth()->user()->role_id == 9)
+                    @foreach ($nav_links9 as $nav_link)
                     <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                         {{ $nav_link['name'] }}
                     </x-jet-nav-link>
@@ -377,6 +395,12 @@ $nav_links8 = [
             @endforeach
             @elseif (auth()->user()->role_id == 8)
             @foreach ($nav_links8 as $nav_link)
+            <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                {{ $nav_link['name'] }}
+            </x-jet-responsive-nav-link>
+            @endforeach
+            @elseif (auth()->user()->role_id == 9)
+            @foreach ($nav_links9 as $nav_link)
             <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                 {{ $nav_link['name'] }}
             </x-jet-responsive-nav-link>

@@ -17,6 +17,8 @@
                 Servicio médico
             @elseif (auth()->user()->role_id == 8)
                 Dirección
+                @elseif (auth()->user()->role_id == 9)
+                Gerente Unidad de Negocio
             @endif
         </h2>
     </x-slot>
