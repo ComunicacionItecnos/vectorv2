@@ -4,6 +4,8 @@ namespace App\Http\Livewire;
 
 use App\Mail\NotificaInsignias;
 use App\Mail\NotificaInsigniasAsignador;
+use App\Mail\NotificaUNAsignador;
+use App\Mail\NotificaUNPremiado;
 use Exception;
 use Carbon\Carbon;
 use Livewire\Component;
@@ -357,7 +359,7 @@ class InsigniaUN extends Component
     public function enviarCorreo()
     {
         if ($this->correoPremiado == null | $this->correoPremiado == '') {
-            Mail::to('comunicacion@itecnos.com.mx')->send(new NotificaInsignias(
+            Mail::to('comunicacion@itecnos.com.mx')->send(new NotificaUNPremiado(
                 $this->nombreAsignador,
                 $this->correoAsignador,
                 $this->nombrePremiado,
@@ -366,9 +368,8 @@ class InsigniaUN extends Component
                 $this->tipo_insignia,
                 $this->valor_business
             ));
-            dd('1');
         } else {
-            Mail::to($this->correoPremiado)->send(new NotificaInsignias(
+            Mail::to($this->correoPremiado)->send(new NotificaUNPremiado(
                 $this->nombreAsignador,
                 $this->correoAsignador,
                 $this->nombrePremiado,
@@ -377,9 +378,8 @@ class InsigniaUN extends Component
                 $this->tipo_insignia,
                 $this->valor_business
             ));
-            dd('2');
         }
-        Mail::to($this->correoAsignador)->send(new NotificaInsigniasAsignador(
+        Mail::to($this->correoAsignador)->send(new NotificaUNAsignador(
             $this->nombreAsignador,
             $this->correoAsignador,
             $this->nombrePremiado,
@@ -387,7 +387,6 @@ class InsigniaUN extends Component
             $this->mensaje,
             $this->tipo_insignia,
         ));
-        dd('3');
     }
 
     public function esBisiesto($year)
