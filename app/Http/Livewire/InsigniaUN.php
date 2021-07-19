@@ -6,12 +6,9 @@ use App\Mail\NotificaInsignias;
 use App\Mail\NotificaInsigniasAsignador;
 use Exception;
 use Carbon\Carbon;
-use App\Models\Area;
-use App\Models\Puesto;
 use Livewire\Component;
 use App\Models\Colaborador;
 use Livewire\WithPagination;
-use App\Models\Tipo_colaborador;
 use Illuminate\Support\Facades\DB;
 use App\Models\Unidad_negocio_colaborador_insignia;
 use App\Models\Valores_business;
@@ -369,6 +366,7 @@ class InsigniaUN extends Component
                 $this->tipo_insignia,
                 $this->valor_business
             ));
+            dd('1');
         } else {
             Mail::to($this->correoPremiado)->send(new NotificaInsignias(
                 $this->nombreAsignador,
@@ -379,6 +377,7 @@ class InsigniaUN extends Component
                 $this->tipo_insignia,
                 $this->valor_business
             ));
+            dd('2');
         }
         Mail::to($this->correoAsignador)->send(new NotificaInsigniasAsignador(
             $this->nombreAsignador,
@@ -388,6 +387,7 @@ class InsigniaUN extends Component
             $this->mensaje,
             $this->tipo_insignia,
         ));
+        dd('3');
     }
 
     public function esBisiesto($year)

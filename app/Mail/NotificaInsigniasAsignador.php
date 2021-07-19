@@ -45,10 +45,12 @@ class NotificaInsigniasAsignador extends Mailable
     {
 
         if($this->tipo_insignia == 1){
-            $this->nombreInsignia = 'Oro';
+            $this->nombreInsignia = 'Platino';
         }elseif($this->tipo_insignia == 2){
-            $this->nombreInsignia = 'Plata';
+            $this->nombreInsignia = 'Oro';
         }elseif($this->tipo_insignia == 3){
+            $this->nombreInsignia = 'Plata';
+        } elseif ($this->tipo_insignia == 4) {
             $this->nombreInsignia = 'Bronce';
         }
 
