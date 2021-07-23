@@ -69,7 +69,6 @@ class Incidencias extends Component
 
     public function mount()
     {
-        
     }
 
     public function render()
@@ -139,8 +138,6 @@ class Incidencias extends Component
 
     public function registrarIncidencia()
     {
-
-        /* dd(Carbon::now()->timezoneName); */
         $this->fecha_actual = Carbon::now('-05:00')->toDateTimeString();
 
         $this->incidencia = ModelsIncidencias::updateOrCreate([
@@ -191,9 +188,9 @@ class Incidencias extends Component
             // ? Correo
 
             $this->nombre_colaborador = DB::table('infocolaborador')
-            ->select('nombre_desc')
-            ->where('no_colaborador', $this->ColaboradorRegistro)
-            ->get();
+                ->select('nombre_desc')
+                ->where('no_colaborador', $this->ColaboradorRegistro)
+                ->get();
             $this->nombre_colaborador = $this->nombre_colaborador[0]->nombre_desc;
 
             $this->enviarCorreo();
@@ -227,8 +224,8 @@ class Incidencias extends Component
 
     public function export()
     {
-        $this->fecha_actual = Carbon::now();
-        $this->lista = DB::table('colaborador_estacionamiento')->get();
-        return Excel::download(new IncidenciasExport($this->lista), 'registro-vehiculos(' . $this->fecha_actual . ').xlsx');
+        $this->fecha_actual = Carbon::now('-05:00');
+        $this->lista = DB::table('v_incidencias_simp')->get();
+        return Excel::download(new IncidenciasExport($this->lista), 'incidencias(' . $this->fecha_actual . ').xlsx');
     }
 }
