@@ -59,6 +59,11 @@ $nav_links4 = [
 'route' => route('dashboard'),
 'active' => request()->routeIs('dashboard'),
 ],
+[
+'name' => 'Incidencias',
+'route' => route('incidencias'),
+'active' => request()->routeIs('incidencias'),
+],
 ];
 $nav_links5 = [
 [
@@ -89,6 +94,11 @@ $nav_links6_5 = [
 'name' => 'Lista Vehículos',
 'route' => route('lista-vehiculos'),
 'active' => request()->routeIs('lista-vehiculos'),
+],
+[
+'name' => 'Incidencias',
+'route' => route('incidencias'),
+'active' => request()->routeIs('incidencias'),
 ],
 ];
 $nav_links7 = [
