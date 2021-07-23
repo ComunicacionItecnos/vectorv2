@@ -15,11 +15,14 @@
                                         <option value="50">50 por página</option>
                                         <option value="100">100 por página</option>
                                     </select>
+                                    @if (auth()->user()->role_id == 4)
                                     <button wire:click="export" type="button"
                                         class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent
                                                                                     rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         Excel
                                     </button>
+                                    @else
+                                    @endif
                                     <button wire:click="registrar" type="button"
                                         class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
                                                                                                                         rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
@@ -58,10 +61,13 @@
                                     Fecha
                                 </div>
                             </th>
+                            @if (auth()->user()->role_id == 4)
                             <th scope="col"
                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acciones
                             </th>
+                            @else
+                            @endif
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -98,6 +104,7 @@
                             <td class="px-8 py-4 whitespace-nowrap text-left text-sm text-gray-800">
                                 {{ $incidencia->fecha_incidencia }}
                             </td>
+                            @if (auth()->user()->role_id == 4)
                             <td>
                                 <div class="flex justify-center py-4 cursor-pointer">
                                     <div class="transform text-yellow-500 hover:text-yellow-700 hover:scale-150">
@@ -124,6 +131,8 @@
                                     </div>
                                 </div>
                             </td>
+                            @else
+                            @endif
                         </tr>
                         @endforeach
                         <!-- More items... -->
