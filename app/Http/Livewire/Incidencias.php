@@ -73,14 +73,18 @@ class Incidencias extends Component
 
     public function render()
     {
-        return view('livewire.incidencias', [
-            'incidencias' => DB::table('v_incidencias')->where('no_colaborador', 'LIKE', "%{$this->search}%")
+        if (auth()->user()->role_id == 4 || auth()->user()->role_id == 6) {
+            return view('livewire.incidencias', [
+                'incidencias' => DB::table('v_incidencias')->where('no_colaborador', 'LIKE', "%{$this->search}%")
                 ->OrWhere('nombre_completo', 'LIKE', "%{$this->search}%")
                 ->OrWhere('nombre_incidencia', 'LIKE', "%{$this->search}%")
                 ->OrWhere('area', 'LIKE', "%{$this->search}%")
                 ->orderBy('id', 'DESC')
-                ->paginate($this->perPage),
-        ]);
+                    ->paginate($this->perPage),
+            ]);
+        } else {
+            abort(404);
+        }
     }
 
     public function acciones()
