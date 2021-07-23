@@ -15,7 +15,7 @@ class Incidencias extends Model
     protected $fillable = [
         'colaborador_no_colaborador',
         'tipo_incidencia_id',
-        'fecha_asignacion',
+        'fecha_incidencia',
     ];
 
     //* Relacion muchos a uno
