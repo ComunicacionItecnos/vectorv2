@@ -4,20 +4,19 @@ namespace App\Http\Livewire;
 
 use App\Mail\NotificaInsignias;
 use App\Mail\NotificaInsigniasAsignador;
+use App\Mail\NotificaUNAsignador;
+use App\Mail\NotificaUNPremiado;
 use Exception;
 use Carbon\Carbon;
-use App\Models\Area;
-use App\Models\Puesto;
 use Livewire\Component;
 use App\Models\Colaborador;
 use Livewire\WithPagination;
-use App\Models\Tipo_colaborador;
 use Illuminate\Support\Facades\DB;
-use App\Models\Colaborador_insignia;
+use App\Models\Unidad_negocio_colaborador_insignia;
 use App\Models\Valores_business;
 use Illuminate\Support\Facades\Mail;
 
-class Insignias extends Component
+class InsigniaUN extends Component
 {
     use WithPagination;
 
@@ -88,11 +87,6 @@ class Insignias extends Component
     public function render()
     {
         $this->esBisiesto($this->yearActual);
-        $areas = Area::select('*')->orderBy('nombre_area', 'ASC')->get();
-        $puestos = Puesto::join('nivel', 'nivel.id', 'puesto.nivel_id')
-            ->select('puesto.id', 'puesto.especialidad_puesto', 'nivel.nombre_nivel')
-            ->get();
-        $tiposColaborador = Tipo_colaborador::all();
 
         $premiados = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')
             ->orderBy('ap_paterno', 'ASC')
@@ -100,92 +94,56 @@ class Insignias extends Component
 
         // ? Restriccion de usuario para accesar a esta vista
 
-        if (auth()->user()->role_id == 8) {
+        if (auth()->user()->role_id == 9) {
             # code...
 
             if ($this->fechaActual >= $this->yearActual . $this->tInicialP1 && $this->fechaActual <= $this->yearActual . $this->tFinalP1) {
-                return view('livewire.insignias', [
-                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP1, 'and', $this->yearActual . $this->tFinalP1)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                return view('livewire.insignia-u-n', [
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
+                    'premiados'
                 ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tFinalP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
-                return view('livewire.insignias', [
-                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP2, 'and', $this->yearActual . $this->tFinalP2)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                return view('livewire.insignia-u-n', [
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
+                    'premiados'
                 ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP3 && $this->fechaActual <= $this->yearActual . $this->tFinalP3) {
-                return view('livewire.insignias', [
-                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP3, 'and', $this->yearActual . $this->tFinalP3)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                return view('livewire.insignia-u-n', [
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
+                    'premiados'
                 ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP4 && $this->fechaActual <= $this->yearActual . $this->tFinalP4) {
-                return view('livewire.insignias', [
-                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP4, 'and', $this->yearActual . $this->tFinalP4)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                return view('livewire.insignia-u-n', [
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
+                    'premiados'
                 ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP5 && $this->fechaActual <= $this->yearActual . $this->tFinalP5) {
-                return view('livewire.insignias', [
-                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP5, 'and', $this->yearActual . $this->tFinalP5)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                return view('livewire.insignia-u-n', [
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
+                    'premiados'
                 ));
             } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP6 && $this->fechaActual <= $this->yearActual . $this->tFinalP6) {
-                return view('livewire.insignias', [
-                    'colaboradores' => DB::table('v_insignias')->where('no_colaborador_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicialP6, 'and', $this->yearActual . $this->tFinalP6)
-                        ->orWhere('nombre_completo_premiado', 'LIKE', "%{$this->search}%")
-                        ->orWhere('insignia_id', 'LIKE', "%{$this->search}%")
-                        ->orderBy($this->sortBy, $this->sortAsc ? 'ASC' : 'DESC')
+                return view('livewire.insignia-u-n', [
+                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
-                    'premiados',
-                    'areas',
-                    'puestos',
-                    'tiposColaborador'
+                    'premiados'
                 ));
             }
         } else {
@@ -223,7 +181,7 @@ class Insignias extends Component
             } elseif ($this->tipo_insignia == 4 && $this->finalBronce >= 1) {
                 $this->insercionBD();
                 $this->enviarCorreo();
-            }else {
+            } else {
                 $this->alert('error', 'Agotaste tus intentos para asignar esta insignia', [
                     'position' =>  'top-end',
                     'timer' =>  3000,
@@ -245,7 +203,7 @@ class Insignias extends Component
             $this->fecha_asig = $this->fechaActual;
 
             DB::transaction(function () {
-                Colaborador_insignia::updateOrCreate([
+                Unidad_negocio_colaborador_insignia::updateOrCreate([
                     'colaborador_no_colaborador' => $this->col_premiado,
                     'insignia_id' => $this->tipo_insignia,
                     'valores_business_id' => $this->valor_business,
@@ -265,7 +223,7 @@ class Insignias extends Component
                 'showCancelButton' =>  false,
                 'showConfirmButton' =>  false,
             ]);
-            return redirect()->to('/insignias/' . $this->colaborador->no_colaborador);
+            return redirect()->to('/insignias-unidad-negocio/' . $this->colaborador->no_colaborador);
         } catch (Exception $ex) {
 
             dd($ex);
@@ -318,7 +276,7 @@ class Insignias extends Component
 
         if (auth()->user()->colaborador_no_colaborador == 135050) {
 
-            $tmpPlatino = Colaborador_insignia::all()
+            $tmpPlatino = Unidad_negocio_colaborador_insignia::all()
                 ->where('insignia_id', 1)
                 ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
                 ->count();
@@ -332,7 +290,7 @@ class Insignias extends Component
 
         // ? Intentos Oro
 
-        $tmpOro = Colaborador_insignia::all()
+        $tmpOro = Unidad_negocio_colaborador_insignia::all()
             ->where('insignia_id', 2)
             ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
@@ -346,7 +304,7 @@ class Insignias extends Component
 
         // ? Intentos Plata
 
-        $tmpPlata = Colaborador_insignia::all()
+        $tmpPlata = Unidad_negocio_colaborador_insignia::all()
             ->where('insignia_id', 3)
             ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
@@ -360,7 +318,7 @@ class Insignias extends Component
 
         // ? Intentos Bronce
 
-        $tmpBronce = Colaborador_insignia::all()
+        $tmpBronce = Unidad_negocio_colaborador_insignia::all()
             ->where('insignia_id', 4)
             ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
@@ -377,25 +335,16 @@ class Insignias extends Component
     {
         if (auth()->user()->colaborador_no_colaborador == '135050') {
             $this->intentoPlatino = 3;
-        } elseif (
-            auth()->user()->colaborador_no_colaborador == '143010' ||
-            auth()->user()->colaborador_no_colaborador == '129300' ||
-            auth()->user()->colaborador_no_colaborador == '131901' ||
-            auth()->user()->colaborador_no_colaborador == '152090'
-        ) {
-            $this->intentoOro = 2;
-            $this->intentoPlata = 2;
-            $this->intentoBronce = 1;
         } else {
-            $this->intentoOro = 1;
-            $this->intentoPlata = 1;
+            $this->intentoOro = 3;
+            $this->intentoPlata = 2;
             $this->intentoBronce = 1;
         }
     }
 
     public function revisarPremiadoPeriodo($tIinicial, $tfinal)
     {
-        $tmpPremiado = Colaborador_insignia::all()
+        $tmpPremiado = Unidad_negocio_colaborador_insignia::all()
             ->where('colaborador_no_colaborador', $this->col_premiado)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
@@ -410,7 +359,7 @@ class Insignias extends Component
     public function enviarCorreo()
     {
         if ($this->correoPremiado == null | $this->correoPremiado == '') {
-            Mail::to('comunicacion@itecnos.com.mx')->send(new NotificaInsignias(
+            Mail::to('comunicacion@itecnos.com.mx')->send(new NotificaUNPremiado(
                 $this->nombreAsignador,
                 $this->correoAsignador,
                 $this->nombrePremiado,
@@ -420,7 +369,7 @@ class Insignias extends Component
                 $this->valor_business
             ));
         } else {
-            Mail::to($this->correoPremiado)->send(new NotificaInsignias(
+            Mail::to($this->correoPremiado)->send(new NotificaUNPremiado(
                 $this->nombreAsignador,
                 $this->correoAsignador,
                 $this->nombrePremiado,
@@ -430,7 +379,7 @@ class Insignias extends Component
                 $this->valor_business
             ));
         }
-        Mail::to($this->correoAsignador)->send(new NotificaInsigniasAsignador(
+        Mail::to($this->correoAsignador)->send(new NotificaUNAsignador(
             $this->nombreAsignador,
             $this->correoAsignador,
             $this->nombrePremiado,

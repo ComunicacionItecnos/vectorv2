@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Sichikawa\LaravelSendgridDriver\SendGrid;
 
-class NotificaInsigniasAsignador extends Mailable
+class NotificaUNPremiado extends Mailable
 {
     use SendGrid;
 
@@ -24,9 +24,10 @@ class NotificaInsigniasAsignador extends Mailable
     protected $correoPremiado;
     protected $mensaje;
     protected $tipo_insignia;
-    public $nombreInsignia;
+    protected $valor_business;
 
-    public function __construct($nombreAsignador, $correoAsignador, $nombrePremiado, $correoPremiado, $mensaje, $tipo_insignia)
+
+    public function __construct($nombreAsignador, $correoAsignador, $nombrePremiado, $correoPremiado, $mensaje, $tipo_insignia, $valor_business)
     {
         $this->nombreAsignador = $nombreAsignador;
         $this->correoAsignador = $correoAsignador;
@@ -34,6 +35,7 @@ class NotificaInsigniasAsignador extends Mailable
         $this->correoPremiado = $correoPremiado;
         $this->mensaje = $mensaje;
         $this->tipo_insignia = $tipo_insignia;
+        $this->valor_business = $valor_business;
     }
 
     /**
@@ -43,24 +45,14 @@ class NotificaInsigniasAsignador extends Mailable
      */
     public function build()
     {
-
-        if($this->tipo_insignia == 1){
-            $this->nombreInsignia = 'Platino';
-        }elseif($this->tipo_insignia == 2){
-            $this->nombreInsignia = 'Oro';
-        }elseif($this->tipo_insignia == 3){
-            $this->nombreInsignia = 'Plata';
-        } elseif ($this->tipo_insignia == 4) {
-            $this->nombreInsignia = 'Bronce';
-        }
-
-        return $this->from('comunicacion@factoraguila.com')->subject('Has asignado una insignia de ' . $this->nombreInsignia)->view('emails.notifica-insignia-asignador')->with([
+        return $this->from('comunicacion@factoraguila.com')->subject('Felicidades, eres acreedor a una insignia.')->view('emails.notifica-insignia')->with([
             'nombreAsignador' => $this->nombreAsignador,
             'correoAsignador' => $this->correoAsignador,
             'nombrePremiado' => $this->nombrePremiado,
             'correoPremiado' => $this->correoPremiado,
             'mensaje' => $this->mensaje,
-            'tipo_insignia' => $this->tipo_insignia
+            'tipo_insignia' => $this->tipo_insignia,
+            'valor_business' => $this->valor_business
         ]);
     }
 }

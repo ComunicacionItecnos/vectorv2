@@ -149,4 +149,14 @@ class Colaborador extends Model
         return $this->hasMany('App\Models\Actualizar_colaborador');
     }
 
+    public function estacionamientos()
+    {
+        return $this->hasMany('App\Models\Estacionamiento');
+    }
+
+    public function colaboradores_unidad_negocio()
+    {
+        return $this->hasMany('App\Models\Colaborador_unidad_negocio');
+    }
+
 }

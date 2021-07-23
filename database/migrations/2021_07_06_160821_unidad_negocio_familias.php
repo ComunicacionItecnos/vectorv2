@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class Area extends Migration
+class UnidadNegocioFamilias extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,15 @@ class Area extends Migration
      */
     public function up()
     {
-        Schema::create('area', function (Blueprint $table){
+        Schema::create('unidad_negocio_familia', function (Blueprint $table) {
             $table->id();
-            
-            $table->foreignId('centro_costos_id')
-                ->constrained('centro_costos')
+
+            $table->string('nombre_familia', 24);
+
+            $table->foreignId('unidad_negocio_id')
+                ->constrained('unidad_negocio')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-
-            $table->string('nombre_area',50);
         });
     }
 
@@ -32,6 +32,6 @@ class Area extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('area');
+        Schema::dropIfExists('unidad_negocio_familia');
     }
 }

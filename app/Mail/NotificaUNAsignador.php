@@ -8,7 +8,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Sichikawa\LaravelSendgridDriver\SendGrid;
 
-class NotificaInsigniasAsignador extends Mailable
+class NotificaUNAsignador extends Mailable
 {
     use SendGrid;
 
@@ -43,17 +43,6 @@ class NotificaInsigniasAsignador extends Mailable
      */
     public function build()
     {
-
-        if($this->tipo_insignia == 1){
-            $this->nombreInsignia = 'Platino';
-        }elseif($this->tipo_insignia == 2){
-            $this->nombreInsignia = 'Oro';
-        }elseif($this->tipo_insignia == 3){
-            $this->nombreInsignia = 'Plata';
-        } elseif ($this->tipo_insignia == 4) {
-            $this->nombreInsignia = 'Bronce';
-        }
-
         return $this->from('comunicacion@factoraguila.com')->subject('Has asignado una insignia de ' . $this->nombreInsignia)->view('emails.notifica-insignia-asignador')->with([
             'nombreAsignador' => $this->nombreAsignador,
             'correoAsignador' => $this->correoAsignador,

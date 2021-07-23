@@ -7,6 +7,7 @@ use App\Http\Controllers\ColaboradorController;
 use App\Http\Livewire\ComprobarColaborador;
 use App\Http\Livewire\FormularioContrato;
 use App\Http\Livewire\Insignias;
+use App\Http\Livewire\InsigniaUN;
 use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 
 /*
@@ -72,6 +73,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/lista-vehiculos', functio
     return view('listaVehiculos');
 })->name('lista-vehiculos');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/directorio', function () {
+    return view('directorioPersonal');
+})->name('directorio');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/supervisores-unidad-negocio', function () {
+    return view('tablasuperun');
+})->name('tablaSupervisor');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
 
@@ -80,6 +88,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', E
 Route::middleware(['auth:sanctum', 'verified'])->get('/contrato/{no_colaborador}', FormularioContrato::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/insignias/{no_colaborador}', Insignias::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/insignias-unidad-negocio/{no_colaborador}', InsigniaUN::class);
 
 Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);
 

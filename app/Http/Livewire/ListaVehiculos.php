@@ -150,6 +150,9 @@ class ListaVehiculos extends Component
     }
     public function registrar()
     {
+        $this->colaborador = null;
+        $this->banderaRegistro = false;
+        $this->resetVariables();
         $this->colaboradores = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')->orderBy('ap_paterno', 'ASC')->get();
         $this->existe();
         $this->editbool = true;

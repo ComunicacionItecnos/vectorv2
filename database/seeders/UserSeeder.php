@@ -242,7 +242,7 @@ class UserSeeder extends Seeder
         // ! Seguridad Patrimonial
         User::create([
             'name' => 'Luisa Gabriela Espina Ramírez',
-            'email' => 'spatrimonial1@itecnos.com.mx',
+            'email' => 'spatrimonial@itecnos.com.mx',
             'password' => bcrypt('12345678'),
             'role_id' => '6',
             'colaborador_no_colaborador' => '115985'

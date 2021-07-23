@@ -511,6 +511,9 @@
                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Puesto y Área
                 </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Datos de contacto
+                </th>
             </tr>
 
             {{-- Encabezado Tabla Direcccion --}}
@@ -543,7 +546,26 @@
                 <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
                     Puesto y Area
                 </th>
-                <th scope="col" class="text-center px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase">
+                <th scope="col"
+                    class="text-center px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase">
+                    Opciones
+                </th>
+            </tr>
+
+            {{-- Encabezado Tabla GenrenteUN --}}
+
+            @elseif (auth()->user()->role_id == 9)
+            <tr>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    <div class="flex justify-start text-left">
+                        Nombre
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Puesto y Area
+                </th>
+                <th scope="col"
+                    class="text-center px-6 py-3 text-xs font-medium tracking-wider text-gray-500 uppercase">
                     Opciones
                 </th>
             </tr>
@@ -759,6 +781,8 @@
                     </div>
                 </td>
                 <td class="px-3 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Extensión: {{ $colaborador->numero_extension }}
+                    </div>
                     <div class="text-sm text-gray-900">Fijo: {{ $colaborador->tel_fijo }}
                     </div>
                     <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
@@ -1033,6 +1057,24 @@
                     <div class="text-sm text-gray-900">{{ $colaborador->puesto }}</div>
                     <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                 </td>
+                <td class="px-3 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Extensión: {{ $colaborador->numero_extension }}
+                    </div>
+                    <div class="text-sm text-gray-900">Clave:
+                        {{ $colaborador->clave }}</div>
+                    <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
+                    </div>
+                    <div class="text-sm text-gray-900">Supervisor:
+                        @php
+                        $j_f = DB::table('infocolaborador')->where('no_colaborador',$colaborador->jefe_directo)->get();
+                        @endphp
+                        @if(count($j_f) == 0)
+                        Ninguno
+                        @else
+                        {{$j_f[0]->nombre_desc}}
+                        @endif
+                    </div>
+                </td>
             </tr>
             @else
             @endif
@@ -1073,15 +1115,73 @@
                 <td class="flex flex-col sm:flex-wrap sm:flex-row sm:justify-center p-4">
                     <div class="pb-2 sm:pr-1 mx-auto sm:mx-0 sm:pt-4">
                         <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
-                        class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-yellow-600 border border-transparent
+                            class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-yellow-600 border border-transparent
                         rounded-md shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
-                        Ver
+                            Ver
                         </a>
                     </div>
                     <div class="pb-2 sm:pl-1 sm:pt-4">
                         <a href="{{ url('/insignias/' . $colaborador->no_colaborador) }}"
                             class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
                                                 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                            Insignia
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            @else
+            @endif
+            @endforeach
+
+            {{-- Cuerpo Tabla GerenteUN --}}
+
+            @elseif (auth()->user()->role_id == 9)
+            @foreach ($colaboradores as $colaborador)
+            @if ($colaborador->estado_colaborador == 1)
+            <tr>
+                <td class="sm:px-6 py-2 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div
+                            class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
+                            @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                            <img class="w-20 rounded shadow h-24"
+                                src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
+                            @else
+                            <img class="w-20 rounded shadow h-24" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                            @endif
+                        </div>
+                        <div class="ml-4 whitespace-pre-line">
+                            <div class="text-sm font-medium text-gray-900">
+                                <span class="sm:inline-block sm:-mt-6">{{ $colaborador->nombre_completo }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-3 py-4">
+                    <div class="flex flex-wrap text-sm text-gray-900">
+                        {{ $colaborador->puesto }}</div>
+                    <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
+                    <div class="mt-1">
+                        <a class=" text-sm text-gray-900">OP:</a> <a class="text-sm text-gray-500">{{ $colaborador->operacion  }}</a>
+                    </div>
+                    <div class="mt-1">
+                        <a class=" text-sm text-gray-900">UN:</a> <a
+                            class="text-sm text-gray-500">{{ $colaborador->nombre_unidad  }}</a>
+                    </div>
+                    <div class="">
+                        <a class=" text-sm text-gray-900">FAM:</a> <a
+                            class="text-sm text-gray-500">{{ $colaborador->nombre_familia }}</a>
+                    </div>
+                    <div class="">
+                        <a class=" text-sm text-gray-900">GPO:</a> <a
+                            class="text-sm text-gray-500">{{ $colaborador->nombre_grupo  }}</a>
+                    </div>
+                </td>
+                <td class="flex flex-col sm:flex-wrap sm:flex-row sm:justify-center p-4">
+                    <div class="pb-2 sm:pl-1 sm:pt-4 my-8">
+                        <a href="{{ url('/insignias-unidad-negocio/' . $colaborador->no_colaborador) }}"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
+                                                            rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Insignia
                         </a>
                     </div>
