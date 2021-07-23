@@ -100,6 +100,12 @@ class Incidencias extends Component
             $this->incidencia_colaborador->delete();
         });
 
+        $this->incidencia_colaborador = Incidencias_historial::find($id);
+
+        DB::transaction(function () {
+            $this->incidencia_colaborador->delete();
+        });
+
         return redirect()->route('incidencias');
     }
 
