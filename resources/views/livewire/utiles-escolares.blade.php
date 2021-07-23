@@ -1,3 +1,7 @@
-<div>
-    {{-- To attain knowledge, add things every day; To attain wisdom, subtract things every day. --}}
-</div>
+<x-guest-layout>
+    <div class="">
+        <div class="mx-auto">
+            DENTRO 
+        </div>
+    </div>
+</x-guest-layout>
