@@ -7,7 +7,6 @@ use App\Models\Hijos;
 use App\Models\Genero;
 use Livewire\Component;
 use App\Models\Colaborador;
-use Illuminate\Support\Arr;
 use App\Models\Estado_civil;
 use Livewire\WithFileUploads;
 use Illuminate\Support\Facades\DB;

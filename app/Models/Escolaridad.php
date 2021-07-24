@@ -22,4 +22,8 @@ class Escolaridad extends Model
     {
         return $this->hasMany('App\Models\Hijos');
     }
+
+    public function utiles_escolares(){
+        return $this->hasMany('App\Models\UtilesEscolares');
+    }
 }
