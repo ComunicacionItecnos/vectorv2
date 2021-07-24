@@ -82,6 +82,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/supervisores-unidad-negoc
     return view('tablasuperun');
 })->name('tablaSupervisor');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/incidencias', function () {
+    return view('incidenciasSPRL');
+})->name('incidencias');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);

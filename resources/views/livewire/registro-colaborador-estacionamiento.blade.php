@@ -100,7 +100,7 @@
             </div>
             <div class="h-16 p-4 grid grid-cols-2">
                 <div class="flex justify-start px-4 col-span-1 col-start-1">
-                    <a href="https://factoraguila.com/"
+                    <a href="https://factoraguila.com/blog/2021/07/20/aviso-importante-estacionamiento/"
                         class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                         Regresar</a>
                 </div>
@@ -138,7 +138,12 @@
                     @endif
                     @endif <br><br>
                     @endif
-
+                    <p>
+                        La entrega de marbetes e imanes será en un horario de 08:00 A.M a 07:00 P.M en caseta de
+                        vigilancia con Mariana Garcia y
+                        el comandante Iván Basilio.
+                    </p>
+                    <br>
                     Si te has equivocado puedes modificar los datos que ingresaste
                     o puedes volver a Factor con el botón "Regresar".
                 </p>
