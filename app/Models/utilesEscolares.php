@@ -13,8 +13,8 @@ class utilesEscolares extends Model
 
     protected $fillable =[
         'colaborador_no_colaborador',
-        'escolaridad_id',
-        'no_kits'
+        'escolaridad_id1',
+        'escolaridad_id2'
     ];
 
     public function colaborador(){

@@ -25,7 +25,6 @@ class CreateUtilesEscolaresTable extends Migration
                 ->constrained('escolaridad')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
-            $table->integer('no_kits');
             $table->timestamps();
         });
     }
