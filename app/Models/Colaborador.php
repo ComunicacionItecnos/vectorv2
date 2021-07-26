@@ -63,9 +63,6 @@ class Colaborador extends Model
     ];
 
     //* Relacion muchos a uno
-    public function utiles_escolares(){
-        return $this->hasMany('App\Models\UtilesEscolares');
-    }
     
     public function generos()
     {
@@ -161,6 +158,11 @@ class Colaborador extends Model
     public function colaboradores_unidad_negocio()
     {
         return $this->hasMany('App\Models\Colaborador_unidad_negocio');
+    }
+
+    public function utiles_escolares()
+    {
+        return $this->hasMany('App\Models\UtilesEscolares');
     }
 
 }
