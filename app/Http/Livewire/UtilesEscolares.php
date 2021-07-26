@@ -14,6 +14,8 @@ class UtilesEscolares extends Component
     public $escolaridad_id1, $escolaridad_id2, $escolaridad;
     public $no_kits;
 
+    public $popupRegistro = false;
+
     public function mount($no_colaborador)
     {
         $this->colaborador = Colaborador::find($no_colaborador);
@@ -65,7 +67,7 @@ class UtilesEscolares extends Component
             }
         }
 
-        // ? Insert para un kit
+        // ? Insert para dos kits
 
         if ($this->no_kits == 2) {
             $validateData = $this->validate(
@@ -79,13 +81,21 @@ class UtilesEscolares extends Component
                 ]
             );
 
-            $comprobar = ModelsUtilesEscolares::create([
-                ['colaborador_no_colaborador' => $this->colaborador->no_colaborador, 'escolaridad_id' => $validateData['escolaridad_id1']],
-                ['colaborador_no_colaborador' => $this->colaborador->no_colaborador, 'escolaridad_id' => $validateData['escolaridad_id2']],
-            ]);
+            $comprobar = ModelsUtilesEscolares::upsert(
+                [
+                    [
+                        'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
+                        'escolaridad_id' => $validateData['escolaridad_id1']
+                    ],
+                    [
+                        'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
+                        'escolaridad_id' => $validateData['escolaridad_id2']
+                    ]
+                ],
+                ['colaborador_no_colaborador', 'escolaridad_id']
+            );
 
             if ($comprobar) {
-                // dd('Se inserto');
                 $this->no_kits = '';
                 $this->escolaridad_id1 = '';
                 $this->escolaridad_id2 = '';
@@ -93,5 +103,15 @@ class UtilesEscolares extends Component
                 return redirect()->to('/utiles-escolares/' . $this->colaborador->no_colaborador);
             }
         }
+    }
+
+    public function setNull()
+    {
+        $this->popupRegistro = false;
+    }
+
+    public function setTrue()
+    {
+        $this->popupRegistro = true;
     }
 }
