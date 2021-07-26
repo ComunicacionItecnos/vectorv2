@@ -14,7 +14,7 @@
                 <p>No puedes añadir mas kits de utiles.</p>
                 <p>Solo dos kits por colaborador.</p>
             @else
-                @if ($no_colaborador->tipo_contrato_id == 3)
+                @if ($colaborador->tipo_contrato_id == 3)
                     <p>Tienes {{ count($utiles)}} te faltan {{ 2-count($utiles) }}</p>
                     <form wire:submit.prevent="triggerConfirm" enctype="multipart/form-data">
                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
