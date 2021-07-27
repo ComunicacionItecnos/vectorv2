@@ -22,13 +22,15 @@ class NotificaIncidencias extends Mailable
     protected $ColaboradorRegistro;
     protected $nombre_colaborador;
     protected $tipo_incidencia;
+    protected $incidencias_correo;
 
 
-    public function __construct($ColaboradorRegistro, $nombre_colaborador, $tipo_incidencia)
+    public function __construct($ColaboradorRegistro, $nombre_colaborador, $tipo_incidencia, $incidencias_correo)
     {
         $this->ColaboradorRegistro = $ColaboradorRegistro;
         $this->nombre_colaborador = $nombre_colaborador;
         $this->tipo_incidencia = $tipo_incidencia;
+        $this->incidencias_correo = $incidencias_correo;
     }
 
     /**
@@ -42,6 +44,7 @@ class NotificaIncidencias extends Mailable
             'no_colaborador' => $this->ColaboradorRegistro,
             'nombre_colaborador' => $this->nombre_colaborador,
             'tipo_incidencia' => $this->tipo_incidencia,
+            'incidencias_correo' => $this->incidencias_correo,
         ]);
     }
 }
