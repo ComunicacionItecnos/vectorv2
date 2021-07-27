@@ -14,7 +14,14 @@ class Bajas extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'no_colaborador',
+        'colaborador_no_colaborador',
+        'autorizoBaja',
         'fecha_baja'
     ];
+
+
+    public function colaborador()
+    {
+        return $this->belongsTo('App\Models\Colaborador');
+    }
 }
