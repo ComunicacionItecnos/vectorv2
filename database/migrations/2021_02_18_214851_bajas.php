@@ -13,12 +13,24 @@ class Bajas extends Migration
      */
     public function up()
     {
-        Schema::create('bajas', function (Blueprint $table){
-            
-            $table->id();
-            $table->string('no_colaborador');
-            $table->date('fecha_baja');
+        Schema::create('bajas', function (Blueprint $table) {
 
+            $table->id();
+
+            $table->string('colaborador_no_colaborador', 6);
+            $table->foreign('colaborador_no_colaborador')
+                ->references('no_colaborador')->on('colaborador')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+
+            $table->string('autorizoBaja', 6);
+            $table->foreign('autorizoBaja')
+                ->references('no_colaborador')->on('colaborador')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->dateTime('fecha_baja');
         });
     }
 
