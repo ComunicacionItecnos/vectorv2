@@ -15,14 +15,11 @@
                                         <option value="50">50 por página</option>
                                         <option value="100">100 por página</option>
                                     </select>
-                                    @if (auth()->user()->role_id == 4)
                                     <button wire:click="export" type="button"
                                         class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent
                                                                                     rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         Excel
                                     </button>
-                                    @else
-                                    @endif
                                     <button wire:click="registrar" type="button"
                                         class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
                                                                                                                         rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

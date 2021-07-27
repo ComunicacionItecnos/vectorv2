@@ -29,6 +29,7 @@ class Incidencias extends Component
 
     public $fecha_actual, $incidencia, $nombre_colaborador;
     public $incidencia_colaborador, $incidencia_id;
+    public $incidencias_correo;
 
     public $modalbool = false;
     public $tiposIncidencia, $banderaExiste = false, $colaborador;
@@ -189,6 +190,9 @@ class Incidencias extends Component
             ->count();
 
         if ($contador_incidencias >= 3) {
+
+            $this->incidencias_correo = DB::table('incidencias')->where('colaborador_no_colaborador', $this->ColaboradorRegistro)->get();
+
             DB::table('incidencias')->where('colaborador_no_colaborador', $this->ColaboradorRegistro)
                 ->where('tipo_incidencia_id', $this->tipo_incidencia)
                 ->delete();
@@ -225,10 +229,13 @@ class Incidencias extends Component
 
     public function enviarCorreo()
     {
-        Mail::to('edgarcial@itecnos.com.mx')->send(new NotificaIncidencias(
+        Mail::to('edgarcial@itecnos.com.mx')
+        ->cc(['abigailcarretod@gmail.com', 'cleyvac@itecnos.com.mx', 'rreynat@itecnos.com.mx'])
+        ->send(new NotificaIncidencias(
             $this->ColaboradorRegistro,
             $this->nombre_colaborador,
             $this->tipo_incidencia,
+            $this->incidencias_correo,
         ));
     }
 

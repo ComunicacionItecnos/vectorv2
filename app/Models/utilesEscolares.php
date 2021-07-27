@@ -13,15 +13,14 @@ class utilesEscolares extends Model
 
     protected $fillable =[
         'colaborador_no_colaborador',
-        'escolaridad_id1',
-        'escolaridad_id2'
+        'escolaridad_id',
     ];
 
-    public function colaborador(){
+    public function colaboradores(){
         return $this->belongsTo('App\Models\Colaborador');
     }
 
-    public function escolaridad(){
+    public function escolaridades(){
         return $this->belongsTo('App\Models\Escolaridad');
     }
 

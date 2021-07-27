@@ -321,6 +321,15 @@
                                                                                                         </b>
                                                                                                     </td>
                                                                                                 </tr>
+                                                                                                <tr>
+                                                                                                    <td class="text-16 lh-26 a-center pb-25"
+                                                                                                        style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
+                                                                                                    <b>Fechas de incidencias: </b>
+                                                                                                    <p>1.- {{ $incidencias_correo[0]->fecha_incidencia }}</p>
+                                                                                                    <p>2.- {{ $incidencias_correo[1]->fecha_incidencia }}</p>
+                                                                                                    <p>3.- {{ $incidencias_correo[2]->fecha_incidencia }}</p>
+                                                                                                    </td>
+                                                                                                </tr>
                                                                                     </tr>
                                                                         </tr>
                                                                     </table>
