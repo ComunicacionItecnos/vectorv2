@@ -194,10 +194,21 @@
         </x-slot>
 
         <x-slot name="content">
-
-            <div class="mt-4 ml-3">
-                <img src="{{ asset('images/Descripcion-Insignias.png') }}" alt="">
+            @if (auth()->user()->colaborador_no_colaborador == '135050')
+            <div class="mt-4 ml-3 p-2">
+                <img src="{{ asset('images/Descripcion_insignias/Platino_Descripcion_Correct.png') }}" alt="">
             </div>
+            @else
+            <div class="mt-4 ml-3 p-2">
+                <img src="{{ asset('images/Descripcion_insignias/Oro_Descripcion_Correct.png') }}" alt="">
+            </div>
+            <div class="mt-4 ml-3 p-2">
+                <img src="{{ asset('images/Descripcion_insignias/Plata_Descripcion_Correct.png') }}" alt="">
+            </div>
+            <div class="mt-4 ml-3 p-2">
+                <img src="{{ asset('images/Descripcion_insignias/Bronce_Descripcion_Correct.png') }}" alt="">
+            </div>
+            @endif
         </x-slot>
 
         <x-slot name="footer">
