@@ -1,9 +1,12 @@
 <?php
 
 namespace App\Http\Livewire;
-use Illuminate\Support\Facades\DB;
+
+use App\Models\Bajas;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class ColaboradoresTabla extends Component
 {
@@ -23,8 +26,7 @@ class ColaboradoresTabla extends Component
     // ? No eliminar esta variable $j_f ya que sirve para traer el nombre del jefe directo en la vista de seguridad patrimonial
     public $j_f;
 
-    public function render()
-    {
+    public function render(){
         if (auth()->user()->role_id == 9 && auth()->user()->colaborador_no_colaborador == 110899) {
             return view('livewire.colaboradores-tabla', [
                 'colaboradores' => DB::table('unriflecolaborador')
@@ -85,15 +87,20 @@ class ColaboradoresTabla extends Component
         $this->sortBy = $field;
     }
 
-    public function baja($no_colaborador)
-    {
+    public function baja($no_colaborador){
         DB::transaction(function () use ($no_colaborador) {
-
 
             DB::table('colaborador')->where('no_colaborador', $no_colaborador)
                 ->update([
                     'estado_colaborador' => 0
                 ]);
+
+            Bajas::create([
+                'colaborador_no_colaborador'=>$no_colaborador,
+                'autorizoBaja'=> auth()->user()->colaborador_no_colaborador,
+                'fecha_baja'=> Carbon::now('-05:00')->toDateTimeString()
+            ]);
+
         });
 
         $this->flash('success', 'Dado de baja correctamente', [
@@ -115,7 +122,8 @@ class ColaboradoresTabla extends Component
         DB::transaction(function () use ($no_colaborador) {
             DB::table('colaborador')->where('no_colaborador', $no_colaborador)
                 ->update([
-                    'estado_colaborador' => 1
+                    'estado_colaborador' => 1,
+                    'fecha_ingreso'=> Carbon::now('-05:00')->format('Y-m-d'),
                 ]);
         });
 
