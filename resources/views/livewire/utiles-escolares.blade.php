@@ -32,7 +32,7 @@
                     </p>
                 </div>
                 <div class="flex justify-center px-4 col-span-1 col-start-1">
-                    <a href="https://factoraguila.com/blog/2021/07/20/aviso-importante-estacionamiento/"
+                    <a href="https://factoraguila.com/blog/2021/07/28/paquetes/"
                         class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                         Regresar</a>
                 </div>
@@ -167,7 +167,7 @@
 
                 <div class="h-16 p-3 mt-6 grid grid-cols-2">
                     <div class="flex justify-start px-4 col-span-1 col-start-1">
-                        <a href="https://factoraguila.com/blog/2021/07/20/aviso-importante-estacionamiento/"
+                        <a href="https://factoraguila.com/blog/2021/07/28/paquetes/"
                             class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                             Regresar</a>
                     </div>
@@ -191,7 +191,7 @@
                     </p>
                 </div>
                 <div class="flex justify-center px-4 col-span-1 col-start-1">
-                    <a href="https://factoraguila.com/blog/2021/07/20/aviso-importante-estacionamiento/"
+                    <a href="https://factoraguila.com/blog/2021/07/28/paquetes/"
                         class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                         Regresar</a>
                 </div>
