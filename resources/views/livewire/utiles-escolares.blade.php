@@ -8,7 +8,23 @@
     </header>
 
     <div class="p-2 grid grid-rows-1 rounded-md shadow-2xl">
-
+        @if ($banderaPrimaria && $banderaSecundaria == true)
+        <div class="">
+            <div class="text-xl text-center font-medium text-gray-800 mb-4">
+                <p>
+                    Lo sentimos, no se pudieron registrar tus kits, el cupo ha llegado a su límite, puedes regresar a
+                    Factor usando el siguiente
+                    botón.
+                </p>
+                <br>
+            </div>
+            <div class="flex justify-center px-4 col-span-1 col-start-1">
+                <a href="https://factoraguila.com/blog/2021/07/28/paquetes/"
+                    class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                    Regresar</a>
+            </div>
+        </div>
+        @else
         <div class="p-4 grid">
             @if (count($utiles) == 1)
             <div class="mb-4">
@@ -20,15 +36,49 @@
 
             @endif
             @if (count($utiles) >= 2)
-
             <div class="">
                 <div class="text-xl text-center font-medium text-gray-800 mb-4">
                     <p>
-                        No puedes añadir mas kits de útiles.
+                        <p>
+                            Has registrado con éxito los siguientes kits:
+                        </p><br>
+                        <p>
+                            @if (count($conteoRegistros) == 1)
+                            Kit 1:
+                            @if($conteoRegistros[0]->escolaridad_id == 2)
+                            Primaria
+                            @elseif($conteoRegistros[0]->escolaridad_id == 3)
+                            Secundaria
+                            @endif
+                        </p>
+
+                        @elseif(count($conteoRegistros) == 2)
+                        <p>
+                            Kit 1:
+                            @if($conteoRegistros[0]->escolaridad_id == 2)
+                            Primaria
+                            @elseif($conteoRegistros[0]->escolaridad_id == 3)
+                            Secundaria
+                            @endif
+                        </p>
+                        <p>
+                            Kit 2:
+                            @if($conteoRegistros[1]->escolaridad_id == 2)
+                            Primaria
+                            @elseif($conteoRegistros[1]->escolaridad_id == 3)
+                            Secundaria
+                            @endif
+                        </p>
+
+                        @endif
                     </p>
                     <br>
                     <p>
-                        Solo dos kits por colaborador.
+                        Ya no puedes añadir mas kits de útiles.
+                    </p>
+                    <br>
+                    <p>
+                        Recuerda que solo puedes apartar dos kits.
                     </p>
                 </div>
                 <div class="flex justify-center px-4 col-span-1 col-start-1">
@@ -88,11 +138,14 @@
                     <select id="escolaridad_id1" wire:model="escolaridad_id1" name="escolaridad_id1"
                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option></option>
-                        @if ($escolaridad)
-                        @foreach ($escolaridad as $Es)
-                        <option value="{{ $Es->id }}"> {{ $Es->nombre_escolaridad }}
-                        </option>
-                        @endforeach
+                        @if($banderaPrimaria == true)
+                        <option value="3">Secundaria</option>
+                        @elseif ($banderaSecundaria == true)
+                        <option value="2">Primaria</option>
+                        @elseif ($banderaPrimaria && $banderaSecundaria == true)
+                        @else
+                        <option value="2">Primaria</option>
+                        <option value="3">Secundaria</option>
                         @endif
                     </select>
                     @error('escolaridad_id1')
@@ -109,11 +162,14 @@
                     <select id="escolaridad_id1" wire:model="escolaridad_id1" name="escolaridad_id1"
                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option></option>
-                        @if ($escolaridad)
-                        @foreach ($escolaridad as $Es)
-                        <option value="{{ $Es->id }}"> {{ $Es->nombre_escolaridad }}
-                        </option>
-                        @endforeach
+                        @if($banderaPrimaria == true)
+                        <option value="3">Secundaria</option>
+                        @elseif ($banderaSecundaria == true)
+                        <option value="2">Primaria</option>
+                        @elseif ($banderaPrimaria && $banderaSecundaria == true)
+                        @else
+                        <option value="2">Primaria</option>
+                        <option value="3">Secundaria</option>
                         @endif
                     </select>
                     @error('escolaridad_id1')
@@ -129,11 +185,14 @@
                     <select id="escolaridad_id1" wire:model="escolaridad_id1" name="escolaridad_id1"
                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option></option>
-                        @if ($escolaridad)
-                        @foreach ($escolaridad as $Es)
-                        <option value="{{ $Es->id }}"> {{ $Es->nombre_escolaridad }}
-                        </option>
-                        @endforeach
+                        @if($banderaPrimaria == true)
+                        <option value="3">Secundaria</option>
+                        @elseif ($banderaSecundaria == true)
+                        <option value="2">Primaria</option>
+                        @elseif ($banderaPrimaria && $banderaSecundaria == true)
+                        @else
+                        <option value="2">Primaria</option>
+                        <option value="3">Secundaria</option>
                         @endif
                     </select>
                     @error('escolaridad_id1')
@@ -147,11 +206,14 @@
                     <select id="escolaridad_id2" wire:model="escolaridad_id2" name="escolaridad_id2"
                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                         <option></option>
-                        @if ($escolaridad)
-                        @foreach ($escolaridad as $Es)
-                        <option value="{{ $Es->id }}"> {{ $Es->nombre_escolaridad }}
-                        </option>
-                        @endforeach
+                        @if($banderaPrimaria == true)
+                        <option value="3">Secundaria</option>
+                        @elseif ($banderaSecundaria == true)
+                        <option value="2">Primaria</option>
+                        @elseif ($banderaPrimaria && $banderaSecundaria == true)
+                        @else
+                        <option value="2">Primaria</option>
+                        <option value="3">Secundaria</option>
                         @endif
                     </select>
                     @error('escolaridad_id2')
@@ -178,7 +240,6 @@
                     </div>
                 </div>
             </form>
-
             @else
             <div class="">
                 <div class="text-xl text-center font-medium text-gray-800 mb-4">
@@ -196,10 +257,10 @@
                         Regresar</a>
                 </div>
             </div>
-
             @endif
             @endif
         </div>
+        @endif
     </div>
 
     <x-jet-dialog-modal wire:model="popupRegistro">

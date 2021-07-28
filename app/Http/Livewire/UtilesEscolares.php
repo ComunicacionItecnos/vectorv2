@@ -10,14 +10,19 @@ use Livewire\Component;
 class UtilesEscolares extends Component
 {
 
-    public $colaborador, $utiles;
+    public $colaborador, $no_colaborador, $utiles;
     public $escolaridad_id1, $escolaridad_id2, $escolaridad;
     public $no_kits;
 
     public $popupRegistro = false;
+    public $conteoPrimaria, $conteoSecundaria, $conteoRegistros;
+    public $banderaPrimaria = false, $banderaSecundaria = false;
 
     public function mount($no_colaborador)
     {
+        $this->revisarRegistros();
+        $this->revisarCupo();
+        $this->no_colaborador = $no_colaborador;
         $this->colaborador = Colaborador::find($no_colaborador);
         $this->utiles = DB::table('utiles_escolares')->where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
     }
@@ -28,79 +33,112 @@ class UtilesEscolares extends Component
         return view('livewire.utiles-escolares')->layout('layouts.guest');
     }
 
+    public function revisarCupo()
+    {
+        $this->conteoPrimaria = DB::table('utiles_escolares')
+            ->where('escolaridad_id', 2)
+            ->get()
+            ->count();
+
+        $this->conteoSecundaria = DB::table('utiles_escolares')
+            ->where('escolaridad_id', 3)
+            ->get()
+            ->count();
+
+        if ($this->conteoPrimaria >= 180) {
+            $this->banderaPrimaria = true;
+        }
+        if ($this->conteoSecundaria >= 180) {
+            $this->banderaSecundaria = true;
+        }
+    }
+
+    public function revisarRegistros()
+    {
+        $this->conteoRegistros = DB::table('utiles_escolares')
+            ->where('colaborador_no_colaborador', $this->no_colaborador)
+            ->get();
+    }
+
     public function triggerConfirm()
     {
-        if ($this->no_kits == '' || empty($this->no_kits)) {
-            $validateData = $this->validate(
-                [
-                    'no_kits' => 'required'
-                ],
-                [
-                    'no_kits.required' => 'Este campo no puede permanecer vacio'
-                ]
-            );
-        }
+        $this->revisarCupo();
 
-        // ? Insert para un kit
+        if ($this->banderaPrimaria && $this->banderaSecundaria >= 180) {
+        } else {
 
-        if ($this->no_kits == 1) {
-            $validateData = $this->validate(
-                [
-                    'escolaridad_id1' => 'required'
-                ],
-                [
-                    'escolaridad_id1.required' => 'Este campo no puede permanecer vacio',
-                ]
-            );
-
-            $comprobar = ModelsUtilesEscolares::create([
-                'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
-                'escolaridad_id' => $validateData['escolaridad_id1'],
-            ]);
-
-            if ($comprobar) {
-                $this->no_kits = '';
-                $this->escolaridad_id1 = '';
-                if (count($this->utiles) >= 0 || count($this->utiles) <= 1) {
-                    return redirect()->to('/utiles-escolares/' . $this->colaborador->no_colaborador);
-                }
-            }
-        }
-
-        // ? Insert para dos kits
-
-        if ($this->no_kits == 2) {
-            $validateData = $this->validate(
-                [
-                    'escolaridad_id1' => 'required',
-                    'escolaridad_id2' => 'required'
-                ],
-                [
-                    'escolaridad_id1.required' => 'Este campo no puede permanecer vacio',
-                    'escolaridad_id2.required' => 'Este campo no puede permanecer vacio'
-                ]
-            );
-
-            $comprobar = ModelsUtilesEscolares::upsert(
-                [
+            if ($this->no_kits == '' || empty($this->no_kits)) {
+                $validateData = $this->validate(
                     [
-                        'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
-                        'escolaridad_id' => $validateData['escolaridad_id1']
+                        'no_kits' => 'required'
                     ],
                     [
-                        'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
-                        'escolaridad_id' => $validateData['escolaridad_id2']
+                        'no_kits.required' => 'Este campo no puede permanecer vacio'
                     ]
-                ],
-                ['colaborador_no_colaborador', 'escolaridad_id']
-            );
+                );
+            }
 
-            if ($comprobar) {
-                $this->no_kits = '';
-                $this->escolaridad_id1 = '';
-                $this->escolaridad_id2 = '';
+            // ? Insert para un kit
 
-                return redirect()->to('/utiles-escolares/' . $this->colaborador->no_colaborador);
+            if ($this->no_kits == 1) {
+                $validateData = $this->validate(
+                    [
+                        'escolaridad_id1' => 'required'
+                    ],
+                    [
+                        'escolaridad_id1.required' => 'Este campo no puede permanecer vacio',
+                    ]
+                );
+
+                $comprobar = ModelsUtilesEscolares::create([
+                    'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
+                    'escolaridad_id' => $validateData['escolaridad_id1'],
+                ]);
+
+                if ($comprobar) {
+                    $this->no_kits = '';
+                    $this->escolaridad_id1 = '';
+                    if (count($this->utiles) >= 0 || count($this->utiles) <= 1) {
+                        return redirect()->to('/utiles-escolares/' . $this->colaborador->no_colaborador);
+                    }
+                }
+            }
+
+            // ? Insert para dos kits
+
+            if ($this->no_kits == 2) {
+                $validateData = $this->validate(
+                    [
+                        'escolaridad_id1' => 'required',
+                        'escolaridad_id2' => 'required'
+                    ],
+                    [
+                        'escolaridad_id1.required' => 'Este campo no puede permanecer vacio',
+                        'escolaridad_id2.required' => 'Este campo no puede permanecer vacio'
+                    ]
+                );
+
+                $comprobar = ModelsUtilesEscolares::upsert(
+                    [
+                        [
+                            'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
+                            'escolaridad_id' => $validateData['escolaridad_id1']
+                        ],
+                        [
+                            'colaborador_no_colaborador' => $this->colaborador->no_colaborador,
+                            'escolaridad_id' => $validateData['escolaridad_id2']
+                        ]
+                    ],
+                    ['colaborador_no_colaborador', 'escolaridad_id']
+                );
+
+                if ($comprobar) {
+                    $this->no_kits = '';
+                    $this->escolaridad_id1 = '';
+                    $this->escolaridad_id2 = '';
+
+                    return redirect()->to('/utiles-escolares/' . $this->colaborador->no_colaborador);
+                }
             }
         }
     }
