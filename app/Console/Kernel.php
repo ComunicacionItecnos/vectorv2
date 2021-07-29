@@ -27,7 +27,8 @@ class Kernel extends ConsoleKernel
         // $schedule->command('inspire')->hourly();
         $schedule->command('enviar:correocumple')
             ->timezone('America/Mexico_City')
-            ->everyMinute();
+            ->dailyAt('08:00')
+            ->runInBackground();
     }
 
     /**
