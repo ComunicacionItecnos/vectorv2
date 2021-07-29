@@ -16,9 +16,12 @@ class NotificaCumpleanios extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    protected $col;
+
+    public function __construct($col)
     {
-        //
+        $this->col = $col;
     }
 
     /**
@@ -28,6 +31,8 @@ class NotificaCumpleanios extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('comunicacion@factoraguila.com')->subject('Feliz Cumpleaños')->view('emails.notifica-cumpleanio')->with([
+            'colaborador' => $this->col,
+        ]);
     }
 }
