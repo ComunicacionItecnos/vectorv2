@@ -7,7 +7,6 @@ use Carbon\Carbon;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class CorreoCumpleanios extends Command
 {
@@ -42,7 +41,7 @@ class CorreoCumpleanios extends Command
      */
     public function handle()
     {
-        $cumpleDia = DB::table('cumples')
+        $cumpleDia = DB::table('cumples_aniversarios')
             ->where('cumple', Carbon::now()->isoFormat('MM-D'))
             ->get();
 
