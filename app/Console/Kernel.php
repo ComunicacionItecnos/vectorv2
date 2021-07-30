@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\CorreoCumpleanios::class
+        Commands\CorreoCumpleanios::class,
+        Commands\CorreoAniversario::class
     ];
 
     /**
@@ -25,10 +26,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
-        $schedule->command('enviar:correocumple')
+        /* $schedule->command('enviar:correocumple')
             ->timezone('America/Mexico_City')
             ->dailyAt('08:00')
-            ->runInBackground();
+            ->runInBackground(); */
+
+        $schedule->command('enviar:correoaniversario')
+            ->timezone('America/Mexico_City')
+            ->dailyAt('08:00');
     }
 
     /**
