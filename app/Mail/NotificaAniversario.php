@@ -16,9 +16,15 @@ class NotificaAniversario extends Mailable
      *
      * @return void
      */
-    public function __construct()
+
+    protected $col;
+    protected $anios;
+
+
+    public function __construct($col, $anios)
     {
-        //
+        $this->col = $col;
+        $this->anios = $anios;
     }
 
     /**
@@ -28,6 +34,9 @@ class NotificaAniversario extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->from('comunicacion@factoraguila.com')->subject('Feliz Aniversario')->view('emails.notifica-aniversario')->with([
+            'colaborador' => $this->col,
+            'anios' => $this->anios,
+        ]);
     }
 }
