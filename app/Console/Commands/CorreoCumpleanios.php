@@ -42,7 +42,7 @@ class CorreoCumpleanios extends Command
     public function handle()
     {
         $cumpleDia = DB::table('cumples_aniversarios')
-            ->where('cumple', Carbon::now()->isoFormat('MM-D'))
+            ->where('cumple', Carbon::now()->isoFormat('MM-DD'))
             ->get();
 
         foreach ($cumpleDia as $key) {
