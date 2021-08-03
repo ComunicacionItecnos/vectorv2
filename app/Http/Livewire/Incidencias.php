@@ -80,7 +80,7 @@ class Incidencias extends Component
                 ->OrWhere('nombre_completo', 'LIKE', "%{$this->search}%")
                 ->OrWhere('nombre_incidencia', 'LIKE', "%{$this->search}%")
                 ->OrWhere('area', 'LIKE', "%{$this->search}%")
-                ->orderBy('id', 'DESC')
+                ->orderBy('fecha_incidencia', 'DESC')
                     ->paginate($this->perPage),
             ]);
         } else {
