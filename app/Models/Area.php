@@ -23,6 +23,11 @@ class Area extends Model
         return $this->hasMany('App\Models\Colaborador');
     }
 
+    public function externos()
+    {
+        return $this->hasMany('App\Models\Externo');
+    }
+
     // * Relacion muchos a uno
     public function centros_costos(){
         return $this->belongsTo('App\Models\Centro_costos');
