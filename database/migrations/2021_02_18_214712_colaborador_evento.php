@@ -14,6 +14,7 @@ class ColaboradorEvento extends Migration
     public function up()
     {
         Schema::create('colaborador_evento', function (Blueprint $table){
+            $table->id();
             $table->string('colaborador_no_colaborador', 6);
             $table->foreign('colaborador_no_colaborador')
                     ->references('no_colaborador')->on('colaborador')
