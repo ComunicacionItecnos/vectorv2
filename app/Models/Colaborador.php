@@ -165,4 +165,9 @@ class Colaborador extends Model
         return $this->hasMany('App\Models\UtilesEscolares');
     }
 
+    public function recordatorios()
+    {
+        return $this->hasMany('App\Models\Recordatorios');
+    }
+
 }
