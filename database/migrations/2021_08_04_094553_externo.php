@@ -16,7 +16,7 @@ class Externo extends Migration
         Schema::create('externo', function (Blueprint $table) {
             $table->id();
             $table->string('nombre_1', 24);
-            $table->string('nombre_2', 24);
+            $table->string('nombre_2', 24)->nullable();
             $table->string('ap_paterno', 24);
             $table->string('ap_materno', 24);
             $table->date('fecha_nacimiento');
@@ -27,7 +27,7 @@ class Externo extends Migration
                 ->onUpdate('cascade');
 
             $table->string('curp', 18);
-            $table->string('rfc', 15);
+            $table->string('rfc', 15)->unique();
 
             $table->foreignId('area_id')
                 ->constrained('area')
