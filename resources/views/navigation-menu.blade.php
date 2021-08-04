@@ -1,28 +1,15 @@
 @php
 $nav_links1 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 [
 'name' => 'Centro de Control',
 'route' => route('control-center'),
 'active' => request()->routeIs('control-center'),
 ],
-[
-'name' => 'Crear colaborador',
-'route' => route('create'),
-'active' => request()->routeIs('create'),
-],
 ];
 
 $nav_links2 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 [
 'name' => 'Centro de Control',
 'route' => route('control-center'),
@@ -31,20 +18,11 @@ $nav_links2 = [
 ];
 
 $nav_links3 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 [
 'name' => 'Centro de Control',
 'route' => route('control-center'),
 'active' => request()->routeIs('control-center'),
-],
-[
-'name' => 'Crear colaborador',
-'route' => route('create'),
-'active' => request()->routeIs('create'),
 ],
 [
 'name' => 'Multi Contratos',
@@ -54,11 +32,7 @@ $nav_links3 = [
 ];
 
 $nav_links4 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 [
 'name' => 'Incidencias',
 'route' => route('incidencias'),
@@ -66,25 +40,13 @@ $nav_links4 = [
 ],
 ];
 $nav_links5 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 ];
 $nav_links6 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 ];
 $nav_links6_5 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 [
 'name' => 'Centro de Control',
 'route' => route('control-center'),
@@ -102,25 +64,13 @@ $nav_links6_5 = [
 ],
 ];
 $nav_links7 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 ];
 $nav_links8 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 ];
 $nav_links9 = [
-[
-'name' => 'Listado',
-'route' => route('dashboard'),
-'active' => request()->routeIs('dashboard'),
-],
+
 [
 'name' => 'Listado Supervisores',
 'route' => route('tablaSupervisor'),
@@ -144,6 +94,60 @@ $nav_links9 = [
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+
+                    @if(auth()->user()->role_id != 9)
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-jet-dropdown align="right">
+                            <x-slot name="trigger">
+                                <button type="button"
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    Listados
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+
+                                <!-- Team Settings -->
+                                <x-jet-dropdown-link href="{{  route('dashboard') }}">
+                                    {{ __('Colaborador interno') }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{  route('dashboard') }}">
+                                    {{ __('Colaborador externo') }}
+                                </x-jet-dropdown-link>
+
+                            </x-slot>
+
+                        </x-jet-dropdown>
+                    </div>
+                    @endif
+
+                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 6)
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-jet-dropdown align="right">
+                            <x-slot name="trigger">
+                                <button type="button"
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    Crear colaborador
+                                </button>
+                            </x-slot>
+
+                            <x-slot name="content">
+
+                                <!-- Team Settings -->
+                                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
+                                <x-jet-dropdown-link href="{{  route('create') }}">
+                                    {{ __('Interno') }}
+                                </x-jet-dropdown-link>
+                                @endif
+                                <x-jet-dropdown-link href="{{  route('registro-externos') }}">
+                                    {{ __('Externo') }}
+                                </x-jet-dropdown-link>
+
+                            </x-slot>
+
+                        </x-jet-dropdown>
+                    </div>
+                    @endif
 
                     @if (auth()->user()->role_id == 1)
                     @foreach ($nav_links1 as $nav_link)
@@ -202,7 +206,7 @@ $nav_links9 = [
                     @endforeach
                     @endif
 
-                    <!-- Requisicion -->
+                    <!-- Servicios -->
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-jet-dropdown align="right">
                             <x-slot name="trigger">
