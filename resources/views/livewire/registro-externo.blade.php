@@ -1,6 +1,6 @@
 <x-slot name="header">
     <h2 class="text-xl font-semibold leading-tight text-red-700">
-        Registro
+        Registro Colaborador
         <a class="italic">
             Externo
         </a>
