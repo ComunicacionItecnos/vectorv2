@@ -288,7 +288,7 @@
                                                                                                 <tr>
                                                                                                     <td class="fluid-img img-center pb-50"
                                                                                                         style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 30px;">
-                                                                                                        <img src="{{ asset('images/NotificacionesCorreo/Cumple_Correo.gif') }}" width="100%" border="0" alt="" />
+                                                                                                        <img src="https://factoraguila.com/wp-content/uploads/2021/08/Cumple_Correo.gif" width="100%" border="0" alt="" />
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>

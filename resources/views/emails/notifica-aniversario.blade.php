@@ -290,13 +290,13 @@
                                                                                                         style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 30px;">
                                                                                                         @if ($anios ==
                                                                                                         1)
-                                                                                                        <img src="{{ asset('images/NotificacionesCorreo/1Anio_Correo.gif') }}"
+                                                                                                        <img src="https://factoraguila.com/wp-content/uploads/2021/08/1Anio_Correo.gif"
                                                                                                             width="100%"
                                                                                                             border="0"
                                                                                                             alt="" />
                                                                                                         @elseif($anios >
                                                                                                         1)
-                                                                                                        <img src="{{ asset('images/NotificacionesCorreo/Anios_Correo.gif') }}"
+                                                                                                        <img src="https://factoraguila.com/wp-content/uploads/2021/08/Anios_Correo.gif"
                                                                                                             width="100%"
                                                                                                             border="0"
                                                                                                             alt="" />
