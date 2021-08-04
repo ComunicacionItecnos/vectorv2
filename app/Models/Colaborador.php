@@ -164,5 +164,10 @@ class Colaborador extends Model
     {
         return $this->hasMany('App\Models\UtilesEscolares');
     }
+    
+    public function externos()
+    {
+        return $this->hasMany('App\Models\Externo');
+    }
 
 }
