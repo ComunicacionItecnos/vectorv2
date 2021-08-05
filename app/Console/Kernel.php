@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\CorreoCumpleanios::class,
         Commands\CorreoAniversario::class
+        Commands\recordatorios::class
     ];
 
     /**
@@ -34,6 +35,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('enviar:correoaniversario')
             ->timezone('America/Mexico_City')
             ->dailyAt('08:00')
+            ->runInBackground();
+
+        $schedule->command('enviar:recordatorio')
+            ->timezone('America/Mexico_City')
+            ->dailyAt('08:30')
+            // ->appendOutputTo('public/test2.txt');
             ->runInBackground();
     }
 
