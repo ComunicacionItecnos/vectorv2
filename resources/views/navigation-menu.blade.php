@@ -111,7 +111,7 @@ $nav_links9 = [
                                 <x-jet-dropdown-link href="{{  route('dashboard') }}">
                                     {{ __('Colaborador interno') }}
                                 </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{  route('dashboard') }}">
+                                <x-jet-dropdown-link href="{{  route('dashboard-externos') }}">
                                     {{ __('Colaborador externo') }}
                                 </x-jet-dropdown-link>
 
@@ -379,7 +379,7 @@ $nav_links9 = [
                 </div>
                 <div class="mt-3 space-y-1">
                     <!-- Account Management -->
-                    <x-jet-responsive-nav-link href="{{  route('dashboard') }}">
+                    <x-jet-responsive-nav-link href="{{  route('dashboard-externos') }}">
                         {{ __('- Colaborador Externo') }}
                     </x-jet-responsive-nav-link>
                 </div>
