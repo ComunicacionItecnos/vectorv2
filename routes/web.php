@@ -30,6 +30,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard-externos', function () {
+    return view('dashboardExternos');
+})->name('dashboard-externos');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/create', function () {
     return view('create');
 })->name('create');
