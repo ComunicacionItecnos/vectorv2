@@ -285,92 +285,105 @@
                                                                                                 border="0"
                                                                                                 cellspacing="0"
                                                                                                 cellpadding="0">
-                                                                                                <tr>
-                                                                                                    <td class="fluid-img img-center pb-50"
-                                                                                                        style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 30px;">
-                                                                                                        <img src="{{ asset('images/Cumple_Banner.png') }}" width="100%" border="0" alt="" />
-                                                                                                    </td>
-                                                                                                </tr>
+                                                                                            
                                                                                                 <tr>
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
                                                                                                         <strong
-                                                                                                            style="font-size: 32px;">
-                                                                                                            Hola 
-                                                                                                            <br><br>
-                                                                                                            <b>{{ $recordatorio->nombre_1 }}</b>
+                                                                                                            style="font-size: 30px;">
+                                                                                                            Hola <b>{{ $recordatorio->nombre_1 }}</b>
                                                                                                         </strong>
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
-                                                                                                        style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        Se te notifica que  tienes un recordatorio: <i>{{ $recordatorio->descripcionRecordatorio }}</i>.
-                                                                                                        
-                                                                                                        Este recordatorio se te notificara 
-                                                                                                        @if ( $recordatorio->frecuencia == 0)
-                                                                                                            <b>{{ __('Diario') }}</b>
-                                                                                                        @endif
-                                                                                                        @if ( $recordatorio->frecuencia == 1)
-                                                                                                            <b>{{ __('<b>Semanal') }}</b>
-                                                                                                        @endif
-                                                                                                        @if ( $recordatorio->frecuencia == 2)
-                                                                                                            <b>{{ __('<b>Mensual') }}</b>
-                                                                                                        @endif
-                                                                                                        @if ( $recordatorio->frecuencia == 3)
-                                                                                                            <b>{{ __('<b>Anual') }}</b>
-                                                                                                        @endif
+                                                                                                        style="font-size:20px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
+                                                                                                        Se te notifica que  tienes un recordatorio: 
+                                                                                                    </td>
+                                                                                                </tr>
+                                                                                                <tr>
+                                                                                                    <td class="pb-30"
+                                                                                                        style="padding-bottom: 30px;">
+                                                                                                        <table
+                                                                                                            width="100%"
+                                                                                                            border="0"
+                                                                                                            cellspacing="10px"
+                                                                                                            cellpadding="0">
+                                                                                                            <tr>
+                                                                                                                <td class="title-22 a-center py-20 px-50 mpx-15"
+                                                                                                                    style="border-radius: 10px; border: 1px dashed #b4b4d4; font-size:22px; line-height:26px; color:#7997aa; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; text-align:center; padding-top: 20px; padding-bottom: 20px; padding-left: 50px; padding-right: 50px;"
+                                                                                                                    bgcolor="#dae9f2">
+                                                                                                                    <strong>
+                                                                                                                        <span class="c-purple" style="color:#222222;">
+                                                                                                                            {{ $recordatorio->descripcionRecordatorio }}
+                                                                                                                        </span>
+                                                                                                                    </strong>
+                                                                                                                </td>
+                                                                                                            </tr>
+                                                                                                            <tr>
+                                                                                                                <td class="text-16 lh-26 a-center pb-25" style="font-size:20px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
+                                                                                                                    Este recordatorio se te notificara 
+                                                                                                                    @if ( $recordatorio->frecuencia == 0)
+                                                                                                                        <b>{{ __('Diario') }}</b>
+                                                                                                                    @endif
+                                                                                                                    @if ( $recordatorio->frecuencia == 1)
+                                                                                                                        <b>{{ __('Semanal') }}</b>
+                                                                                                                    @endif
+                                                                                                                    @if ( $recordatorio->frecuencia == 2)
+                                                                                                                        <b>{{ __('Mensual') }}</b>
+                                                                                                                    @endif
+                                                                                                                    @if ( $recordatorio->frecuencia == 3)
+                                                                                                                        <b>{{ __('Anual') }}</b>
+                                                                                                                    @endif
+            
+                                                                                                                    hasta la fecha de vencimiento: <b><i>{{ $recordatorio->fechaVencimiento }}</i></b>.
+                                                                                                                </td>
+                                                                                                            </tr>
 
-                                                                                                        hasta la fecha de vencimiento: <b><i>{{ $recordatorio->fechaVencimiento }}</i></b> del recordatorio.
+                                                                                                        </table>
                                                                                                     </td>
-                                                                                                </tr>
-<tr>
-                                                                                                    <td class="text-16 lh-26 a-center pb-25"
-                                                                                                        style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        
-                                                                                                    </td>
-                                                                                                </tr>
-                                                                                            </table>
-                                                                                            <!-- END Button -->
-                                                                                        </td>
                                                                                     </tr>
                                                                                 </table>
+                                                                                <!-- END Button -->
                                                                             </td>
                                                                         </tr>
                                                                     </table>
-                                                                    <!-- END Section - Intro -->
                                                                 </td>
                                                             </tr>
                                                         </table>
-                                                        <!-- END Main -->
+                                                        <!-- END Section - Intro -->
                                                     </td>
                                                 </tr>
                                             </table>
+                                            <!-- END Main -->
                                         </td>
                                     </tr>
                                 </table>
-                                <!-- END Container -->
-
-                                <!-- Footer -->
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                    <tr>
-                                        <td class="p-50 mpx-15" bgcolor="#e1251b"
-                                            style="border-radius: 0 0 10px 10px; padding: 50px;">
-                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                <td class="text-14 lh-24 a-center c-white l-white pb-20"
-                                                    style="font-size:14px; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 24px; text-align:center; color:#ffffff; padding-bottom: px;">
-                                                    <a target="_blank"><img
-                                                            src="https://factoraguila.com/wp-content/uploads/2020/12/Factor_Inv_Footer_Logo-1.png"
-                                                            width="120" border="0" alt="" /></a>
-                                                </td>
-                                    </tr>
-                                </table>
-                                <!-- END Download App -->
                             </td>
                         </tr>
                     </table>
+                    <!-- END Container -->
+
+                    <!-- Footer -->
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td class="p-50 mpx-15" bgcolor="#e1251b"
+                                style="border-radius: 0 0 10px 10px; padding: 50px;">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <td class="text-14 lh-24 a-center c-white l-white pb-20"
+                                        style="font-size:14px; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 24px; text-align:center; color:#ffffff; padding-bottom: px;">
+                                        <a target="_blank"><img
+                                                src="https://factoraguila.com/wp-content/uploads/2020/12/Factor_Inv_Footer_Logo-1.png"
+                                                width="120" border="0" alt="" /></a>
+                                    </td>
+                        </tr>
+                    </table>
+                    <!-- END Download App -->
                 </td>
             </tr>
+        </table>
+        </td>
+        </tr>
         </table> <!-- END Footer -->
 
         <!-- Bottom -->
@@ -379,7 +392,7 @@
                 <td class="text-12 lh-22 a-center py-20"
                     style="font-size:6px; color:#edf1f4; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 22px; text-align:center; padding-top: 20px; padding-bottom: 20px;">
                     <a href="#" target="_blank" style="text-decoration:none; color:#edf1f4;"><span
-                            style="white-space: nowrap; text-decoration:none; color:#d3dbe0;"></span></a>
+                            style="white-space: nowrap; text-decoration:none; color:#d3dbe0;">DESINSCRIBIRSE</span></a>
                 </td>
             </tr>
         </table> <!-- END Bottom -->
