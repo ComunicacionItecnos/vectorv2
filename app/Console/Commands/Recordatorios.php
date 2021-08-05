@@ -42,7 +42,7 @@ class recordatorios extends Command
      */
     public function handle()
     {
-        /* $carbon = new \Carbon\Carbon();
+        $carbon = new \Carbon\Carbon();
 
        $carbon = new \Carbon\Carbon();
        
@@ -60,14 +60,11 @@ class recordatorios extends Command
             // $carbon::create(2021, 7, 31) -> funcion para asignar fecha manual
 
             $this->compararVencimiento($recordatorio,$recordatorio->id,$carbon::now(),$recordatorio->fechaVencimiento,$carbon = new \Carbon\Carbon(),$recordatorio->frecuencia,$fechaFrecuencia);
-        } */
-
-        $texto ="Prueba sin funcion";
-        Storage::append("archivo.txt",$texto);
+        }
 
     }
 
-    /* public function compararVencimiento($recordatorio,$id,$fechaActual,$fechaVencimiento,$carbon,$frecuencia,$fechaFrecuencia){
+    public function compararVencimiento($recordatorio,$id,$fechaActual,$fechaVencimiento,$carbon,$frecuencia,$fechaFrecuencia){
         $carbon = $carbon;
         $fechaActual = $carbon::parse($fechaActual)->format('Y-m-d');
         $fechaVencimiento = $carbon::parse($fechaVencimiento)->format('Y-m-d');
@@ -139,5 +136,6 @@ class recordatorios extends Command
             
         }
 
-    }*/
+    }
+    
 }
