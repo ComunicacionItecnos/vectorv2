@@ -14,7 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         Commands\CorreoCumpleanios::class,
-        Commands\CorreoAniversario::class
+        Commands\CorreoAniversario::class,
         Commands\recordatorios::class
     ];
 
