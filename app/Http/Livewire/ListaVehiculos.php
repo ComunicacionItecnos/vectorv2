@@ -8,7 +8,6 @@ use Livewire\Component;
 
 use App\Models\Vehiculo;
 use App\Models\Colaborador;
-use App\Exports\UsersExport;
 use Livewire\WithPagination;
 use App\Models\Tipo_vehiculo;
 use App\Models\Estacionamiento;

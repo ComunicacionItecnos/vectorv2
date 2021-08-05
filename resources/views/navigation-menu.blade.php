@@ -111,7 +111,7 @@ $nav_links9 = [
                                 <x-jet-dropdown-link href="{{  route('dashboard') }}">
                                     {{ __('Colaborador interno') }}
                                 </x-jet-dropdown-link>
-                                <x-jet-dropdown-link href="{{  route('dashboard') }}">
+                                <x-jet-dropdown-link href="{{  route('dashboard-externos') }}">
                                     {{ __('Colaborador externo') }}
                                 </x-jet-dropdown-link>
 
@@ -365,6 +365,50 @@ $nav_links9 = [
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
 
+            @if(auth()->user()->role_id != 9)
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="flex items-center px-4">
+                    <div class="text-base font-medium text-gray-800">{{ __('Listados') }}</div>
+                </div>
+
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{  route('dashboard') }}">
+                        {{ __('- Colaborador Interno') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{  route('dashboard-externos') }}">
+                        {{ __('- Colaborador Externo') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+            </div>
+            @endif
+
+            @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 6)
+            <div class="pt-4 pb-1 border-t border-gray-200">
+                <div class="flex items-center px-4">
+                    <div class="text-base font-medium text-gray-800">{{ __('Crear colaborador') }}</div>
+                </div>
+            
+                @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{  route('create') }}">
+                        {{ __('- Colaborador Interno') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                @endif
+                <div class="mt-3 space-y-1">
+                    <!-- Account Management -->
+                    <x-jet-responsive-nav-link href="{{  route('registro-externos') }}">
+                        {{ __('- Colaborador Externo') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+            </div>
+            @endif
+
             @if (auth()->user()->role_id == 1)
             @foreach ($nav_links1 as $nav_link)
             <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
@@ -429,7 +473,7 @@ $nav_links9 = [
                 <div class="mt-3 space-y-1">
                     <!-- Account Management -->
                     <x-jet-responsive-nav-link href="{{  route('directorio') }}">
-                        {{ __('Directorio') }}
+                        {{ __('- Directorio') }}
                     </x-jet-responsive-nav-link>
                 </div>
             </div>
