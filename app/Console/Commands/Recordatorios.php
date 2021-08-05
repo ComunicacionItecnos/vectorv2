@@ -2,44 +2,23 @@
 
 namespace App\Console\Commands;
 
-use Exception;
 use Illuminate\Console\Command;
 use App\Mail\NotificaRecordatorio;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Storage;
 
 class recordatorios extends Command
 {
-    /**
-     * The name and signature of the console command.
-     *
-     * @var string
-     */
+
     protected $signature = 'enviar:recordatorio';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
     protected $description = 'Recordatorios';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         parent::__construct();
     }
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
     public function handle()
     {
         $carbon = new \Carbon\Carbon();
@@ -71,7 +50,8 @@ class recordatorios extends Command
         
         if ($fechaActual == $fechaVencimiento) {
             // enviar correo indicando la finalizacion del recordatorio.
-            Recordatorios::where('id',$id)->update(['estado_recordatorio'=>0,'updated_at'=>$fechaActual]);
+            DB::table('recordatorios')->select('recordatorios.id,recordatorios.estado_recordatorio')
+                ->where('id','=',$id)->update(['estado_recordatorio'=>0]);
             Mail::to($recordatorio->correo)->send(new NotificaRecordatorio(
                 $recordatorio
             ));
@@ -92,8 +72,8 @@ class recordatorios extends Command
                 $fechaFrecuencia= $fechaFrecuencia->addDay(1);
                 $fechaFrecuencia = $carbon::parse($fechaFrecuencia)->format('Y-m-d');
                 
-                Recordatorios::where('id',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia]);
-
+                DB::table('recordatorios')->where('id','=',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia]);
+                 // Enviar correo del recordatorio
                 Mail::to($recordatorio->correo)->send(new NotificaRecordatorio(
                     $recordatorio
                 ));
@@ -103,7 +83,7 @@ class recordatorios extends Command
                 $fechaFrecuencia= $fechaFrecuencia->addWeek(1);
                 $fechaFrecuencia = $carbon::parse($fechaFrecuencia)->format('Y-m-d');
     
-                Recordatorios::where('id',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia,'updated_at'=> $fechaActual ]);
+                DB::table('recordatorios')->where('id','=',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia]);
                 // Enviar correo del recordatorio
                 Mail::to($recordatorio->correo)->send(new NotificaRecordatorio(
                     $recordatorio
@@ -114,7 +94,7 @@ class recordatorios extends Command
                 $fechaFrecuencia= $fechaFrecuencia->addMonth(1);
                 $fechaFrecuencia = $carbon::parse($fechaFrecuencia)->format('Y-m-d');
     
-                Recordatorios::where('id',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia,'updated_at'=> $fechaActual ]);
+                DB::table('recordatorios')->where('id','=',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia]);
                 // Enviar correo del recordatorio
                 Mail::to($recordatorio->correo)->send(new NotificaRecordatorio(
                     $recordatorio
@@ -125,7 +105,7 @@ class recordatorios extends Command
                 $fechaFrecuencia= $fechaFrecuencia->addYear(1);
                 $fechaFrecuencia = $carbon::parse($fechaFrecuencia)->format('Y-m-d');
     
-                Recordatorios::where('id',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia,'updated_at'=>$fechaActual]);
+                DB::table('recordatorios')->where('id','=',$id)->update(['fechaFrecuencia'=>$fechaFrecuencia]);
                 // Enviar correo del recordatorio
                 Mail::to($recordatorio->correo)->send(new NotificaRecordatorio(
                     $recordatorio
@@ -137,5 +117,5 @@ class recordatorios extends Command
         }
 
     }
-    
+
 }

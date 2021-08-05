@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        Commands\CorreoCumpleanios::class
+        Commands\CorreoCumpleanios::class,
+        Commands\recordatorios::class
     ];
 
     /**
@@ -28,6 +29,12 @@ class Kernel extends ConsoleKernel
         $schedule->command('enviar:correocumple')
             ->timezone('America/Mexico_City')
             ->dailyAt('08:00')
+            ->runInBackground();
+
+        $schedule->command('enviar:recordatorio')
+            ->timezone('America/Mexico_City')
+            ->dailyAt('08:30')
+            // ->appendOutputTo('public/test2.txt');
             ->runInBackground();
     }
 
