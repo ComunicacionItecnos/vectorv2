@@ -26,4 +26,9 @@ class Genero extends Model
     public function actualizar_colaboradors(){
         return $this->hasMany('App\Models\Actualizar_colaborador');
     }
+
+    public function externos()
+    {
+        return $this->hasMany('App\Models\Externo');
+    }
 }

@@ -140,8 +140,7 @@
                     @endif
                     <p>
                         La entrega de marbetes e imanes será en un horario de 08:00 A.M a 07:00 P.M en caseta de
-                        vigilancia con Mariana Garcia y
-                        el comandante Iván Basilio.
+                        vigilancia con Mariana Garcia.
                     </p>
                     <br>
                     Si te has equivocado puedes modificar los datos que ingresaste

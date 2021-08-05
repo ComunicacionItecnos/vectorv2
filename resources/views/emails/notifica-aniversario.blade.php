@@ -288,7 +288,19 @@
                                                                                                 <tr>
                                                                                                     <td class="fluid-img img-center pb-50"
                                                                                                         style="font-size:0pt; line-height:0pt; text-align:center; padding-bottom: 30px;">
-                                                                                                        <img src="https://factoraguila.com/wp-content/uploads/2021/08/Cumple_Correo.gif" width="100%" border="0" alt="" />
+                                                                                                        @if ($anios ==
+                                                                                                        1)
+                                                                                                        <img src="https://factoraguila.com/wp-content/uploads/2021/08/1Anio_Correo.gif"
+                                                                                                            width="100%"
+                                                                                                            border="0"
+                                                                                                            alt="" />
+                                                                                                        @elseif($anios >
+                                                                                                        1)
+                                                                                                        <img src="https://factoraguila.com/wp-content/uploads/2021/08/Anios_Correo.gif"
+                                                                                                            width="100%"
+                                                                                                            border="0"
+                                                                                                            alt="" />
+                                                                                                        @endif
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
@@ -296,9 +308,7 @@
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
                                                                                                         <strong
                                                                                                             style="font-size: 32px;">
-                                                                                                            Feliz
-                                                                                                            Cumpleaños
-                                                                                                            <br><br>
+                                                                                                            Gracias
                                                                                                             <b>{{ $colaborador->nombre_1 }}</b>
                                                                                                         </strong>
                                                                                                     </td>
@@ -306,28 +316,61 @@
                                                                                                 <tr>
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        Esperamos de
-                                                                                                        corazón que
-                                                                                                        disfrutes este
-                                                                                                        día
-                                                                                                        en compañía de
-                                                                                                        tus seres
-                                                                                                        queridos
-                                                                                                        y te deseamos
-                                                                                                        éxito y salud en
-                                                                                                        esta nueva
-                                                                                                        vuelta al sol.
+                                                                                                        @if ($anios ==
+                                                                                                        1)
+                                                                                                        Este primer
+                                                                                                        aniversario
+                                                                                                        queremos
+                                                                                                        celebrarlo
+                                                                                                        porque gracias a
+                                                                                                        tu esfuerzo y
+                                                                                                        dedicación,
+                                                                                                        juntos hemos
+                                                                                                        logrado que
+                                                                                                        Aguila
+                                                                                                        Ammunition se
+                                                                                                        convierta poco a
+                                                                                                        poco en la
+                                                                                                        empresa que
+                                                                                                        puede llegar a
+                                                                                                        ser.
+                                                                                                        @elseif($anios >
+                                                                                                        1)
+                                                                                                        {{ $anios }}
+                                                                                                        años se dicen
+                                                                                                        fácil, pero
+                                                                                                        queremos
+                                                                                                        reconocer el
+                                                                                                        esfuerzo y
+                                                                                                        dedicación que
+                                                                                                        viertes en tu
+                                                                                                        trabajo todos
+                                                                                                        los días. Juntos
+                                                                                                        hemos logrado
+                                                                                                        que Aguila
+                                                                                                        Ammunition se
+                                                                                                        convierta poco a
+                                                                                                        poco en la
+                                                                                                        empresa que
+                                                                                                        puede llegar a
+                                                                                                        ser.
+                                                                                                        @endif
                                                                                                     </td>
                                                                                                 </tr>
                                                                                                 <tr>
                                                                                                     <td class="text-16 lh-26 a-center pb-25"
                                                                                                         style="font-size:16px; color:#6e6e6e; font-family:'PT Sans', Arial, sans-serif; min-width:auto !important; line-height: 26px; text-align:center; padding-bottom: 25px;">
-                                                                                                        Todos en
-                                                                                                        <b>Aguila
-                                                                                                            Ammunition</b>
-                                                                                                        celebramos
-                                                                                                        contigo este
-                                                                                                        especial día.
+
+                                                                                                        Por tu lealtad,
+                                                                                                        dedicación y
+                                                                                                        esfuerzo, este
+                                                                                                        reconocimiento
+                                                                                                        marca un hito en
+                                                                                                        nuestro camino
+                                                                                                        juntos.
+                                                                                                        <br><br>
+                                                                                                        De corazón,
+                                                                                                        gracias.
                                                                                                     </td>
                                                                                                 </tr>
                                                                                             </table>

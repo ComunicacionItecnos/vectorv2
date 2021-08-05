@@ -86,6 +86,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/incidencias', function ()
     return view('incidenciasSPRL');
 })->name('incidencias');
 
+// * Externos
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/registro-externos', function () {
+    return view('registroExterno');
+})->name('registro-externos');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
@@ -98,7 +104,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/insignias-unidad-negocio/
 
 Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);
 
-Route::get('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class);
+/* Route::get('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class); */
 
 Route::get('/colaborador/{no_colaborador}', ComprobarColaborador::class);
 
