@@ -31,4 +31,9 @@ class Genero extends Model
     {
         return $this->hasMany('App\Models\Externo');
     }
+
+    public function nuevo_ingreso(){
+        return $this->hasMany('App\Models\Nuevo_ingreso');
+    }
+    
 }

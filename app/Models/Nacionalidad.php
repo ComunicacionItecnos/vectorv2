@@ -24,4 +24,8 @@ class Nacionalidad extends Model
     {
         return $this->hasMany('App\Models\Colaborador');
     }
+
+    public function nuevo_ingreso(){
+        return $this->hasMany('App\Models\Nuevo_ingreso');
+    }
 }
