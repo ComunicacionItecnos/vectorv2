@@ -56,7 +56,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->longText('cartasRecomendacion');
             $table->string('cartillaMilitar');
             $table->string('cartaNoPenales');
-            $table->string('credencilIFE');
+            $table->string('credencialIFE');
             $table->string('buroCredito');
             $table->string('foto');
             $table->string('correo');

@@ -40,7 +40,7 @@ class Nuevo_ingreso extends Model
         'cartasRecomendacion',
         'cartillaMilitar',
         'cartaNoPenales',
-        'credencilIFE',
+        'credencialIFE',
         'buroCredito',
         'foto',
         'correo',
