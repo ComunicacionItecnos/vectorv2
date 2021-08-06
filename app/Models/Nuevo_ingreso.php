@@ -45,7 +45,8 @@ class Nuevo_ingreso extends Model
         'foto',
         'correo',
         'tel_fijo',
-        'tel_movil'
+        'tel_movil',
+        'cvOsolicitudEmpleo'
     ];
 
     public function escolaridad(){

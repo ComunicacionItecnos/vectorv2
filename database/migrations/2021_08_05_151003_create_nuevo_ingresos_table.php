@@ -62,6 +62,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('correo');
             $table->integer('tel_fijo')->length(10);
             $table->integer('tel_movil')->length(10);
+            $table->string('cvOsolicitudEmpleo');
             $table->timestamps();
         });
     }
