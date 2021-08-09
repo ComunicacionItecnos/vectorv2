@@ -30,10 +30,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard-externos', function () {
-    return view('dashboardExternos');
-})->name('dashboard-externos');
-
 Route::middleware(['auth:sanctum', 'verified'])->get('/create', function () {
     return view('create');
 })->name('create');
@@ -96,6 +92,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/registro-externos', funct
     return view('registroExterno');
 })->name('registro-externos');
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard-externos', function () {
+    return view('dashboardExternos');
+})->name('dashboard-externos');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/lista-vehiculos-externos', function () {
+    return view('listaVehiculosExternos');
+})->name('lista-vehiculos-externos');
+
+// * Formularios internos
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/pdf/contrato_administrativo', [ColaboradorController::class, 'createPDF']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/edit/{no_colaborador}', EdicionColaborador::class);
@@ -106,9 +112,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/insignias/{no_colaborador
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/insignias-unidad-negocio/{no_colaborador}', InsigniaUN::class);
 
+// * Formularios colaborador desde Factor
+
 Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);
 
-/* Route::get('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class); */
+Route::get('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class);
 
 Route::get('/colaborador/{no_colaborador}', ComprobarColaborador::class);
 
