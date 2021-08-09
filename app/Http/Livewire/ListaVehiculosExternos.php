@@ -6,12 +6,14 @@ use Carbon\Carbon;
 use App\Models\Marbete;
 use Livewire\Component;
 
-use App\Models\Vehiculo;
+use App\Models\Vehiculo_externo;
 use App\Models\Colaborador;
 use Livewire\WithPagination;
 use App\Models\Tipo_vehiculo;
-use App\Models\Estacionamiento;
+use App\Models\Estacionamiento_externo;
 use App\Exports\VehiculosExport;
+use App\Models\Externo;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -39,6 +41,7 @@ class ListaVehiculosExternos extends Component
     public $ColaboradorRegistro, $colaboradores, $banderaRegistro = false;
 
     protected $rules = [
+        'ColaboradorRegistro' => 'required',
         'tipo_vehiculo' => 'required',
         'placa' => 'required',
         'marca' => 'required',
@@ -108,30 +111,67 @@ class ListaVehiculosExternos extends Component
     public function export()
     {
         $this->fecha_actual = Carbon::now();
-        $this->lista = DB::table('colaborador_estacionamiento-externo')->get();
-        return Excel::download(new VehiculosExport($this->lista), 'registro-vehiculos(' . $this->fecha_actual . ').xlsx');
+        $this->lista = DB::table('colaborador_estacionamiento_externo')->select('id','externo_id','placa','marca','modelo','fecha_modelo','color','tipo_vehiculo','no_marbete')->get();
+        if(count($this->lista) == 0){
+            $this->alert('info', 'No hay ningún colaborador registrado', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        }else{
+            return Excel::download(new VehiculosExport($this->lista), 'registro-vehiculos-externos(' . $this->fecha_actual . ').xlsx');
+        }
     }
 
     public function eliminar($id)
     {
-        $this->vehiculo_colaborador = Estacionamiento::find($id);
-        $this->vehiculo = Vehiculo::find($this->vehiculo_colaborador->vehiculo_id);
-        $this->marbete = Marbete::find($this->vehiculo_colaborador->marbete_id);
+        try {
 
-        DB::transaction(function () {
-            Marbete::where('id', $this->vehiculo_colaborador->marbete_id)
-                ->update([
-                    'estado' => 1,
-                ]);
-            $this->vehiculo->delete();
-        });
+            $this->vehiculo_colaborador = Estacionamiento_externo::find($id);
+            $this->vehiculo = Vehiculo_externo::find($this->vehiculo_colaborador->vehiculo_externo_id);
+            $this->marbete = Marbete::find($this->vehiculo_colaborador->marbete_id);
 
-        return redirect()->route('lista-vehiculos');
+            DB::transaction(function () {
+                Marbete::where('id', $this->vehiculo_colaborador->marbete_id)
+                    ->update([
+                        'estado' => 1,
+                    ]);
+                $this->vehiculo->delete();
+            });
+
+            $this->flash('success', 'Se eliminó correctamente el registro', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+            return redirect()->route('lista-vehiculos-externos');
+        } catch (Exception $ex) {
+            $this->alert('error', 'Error al registrar', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        }
     }
 
     public function updatedColaboradorRegistro($no_col)
     {
-        $temp = Estacionamiento::where('colaborador_no_colaborador', $no_col)->get();
+        $temp = Estacionamiento_externo::where('externo_id', $no_col)->get();
 
         if (count($temp) == 0) {
             $this->banderaRegistro = false;
@@ -142,17 +182,18 @@ class ListaVehiculosExternos extends Component
 
     public function editar($id)
     {
-        $this->estacionamiento = Estacionamiento::find($id);
-        $this->colaborador = $this->estacionamiento->colaborador_no_colaborador;
+        $this->estacionamiento = Estacionamiento_externo::find($id);
+        $this->colaborador = $this->estacionamiento->externo_id;
         $this->existe();
         $this->editbool = true;
+        $this->ColaboradorRegistro = $this->colaborador;
     }
     public function registrar()
     {
         $this->colaborador = null;
         $this->banderaRegistro = false;
         $this->resetVariables();
-        $this->colaboradores = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')->orderBy('ap_paterno', 'ASC')->get();
+        $this->colaboradores = Externo::select('id', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')->orderBy('ap_paterno', 'ASC')->get();
         $this->existe();
         $this->editbool = true;
     }
@@ -160,14 +201,14 @@ class ListaVehiculosExternos extends Component
     public function existe()
     {
         $this->tiposVehiculo = Tipo_vehiculo::all();
-        $vehiculo_2 = Vehiculo::where('colaborador_no_colaborador', $this->colaborador)->get();
+        $vehiculo_2 = Vehiculo_externo::where('externo_id', $this->colaborador)->get();
 
         if (count($vehiculo_2) == 0) {
             $this->banderaExiste = false;
         } else {
             $this->banderaExiste = true;
 
-            $m_temp = Estacionamiento::where('colaborador_no_colaborador', $this->colaborador)->get();
+            $m_temp = Estacionamiento_externo::where('externo_id', $this->colaborador)->get();
             $this->m_info = Marbete::where('id', $m_temp[0]->marbete_id)->get();
             $this->tipo_vehiculo = $vehiculo_2[0]->tipo_vehiculo_id;
             $this->tipo_vehiculo_original = $this->tipo_vehiculo;
@@ -184,16 +225,66 @@ class ListaVehiculosExternos extends Component
         $this->validate();
 
         if ($this->banderaExiste == true) {
-            $this->actualiza();
+
+            try {
+                $this->actualiza();
+                $this->flash('success', 'Se actualizó correctamente la información', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->route('lista-vehiculos-externos');
+            } catch (Exception $ex) {
+                $this->alert('error', 'Error al actualizar', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+            }
         } else {
-            $this->registra();
+            try {
+                $this->registra();
+
+                $this->flash('success', 'Se registró correctamente el colaborador', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->route('lista-vehiculos-externos');
+            } catch (Exception $ex) {
+                $this->alert('error', 'Error al registrar', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+            }
         }
     }
 
     public function actualiza()
     {
         DB::transaction(function () {
-            Vehiculo::where('colaborador_no_colaborador', $this->colaborador)
+            Vehiculo_externo::where('externo_id', $this->colaborador)
                 ->update([
                     'placa' => $this->placa,
                     'tipo_vehiculo_id' => $this->tipo_vehiculo,
@@ -207,7 +298,7 @@ class ListaVehiculosExternos extends Component
 
         if ($this->tipo_vehiculo_original != $this->tipo_vehiculo) {
 
-            $this->m_id = Estacionamiento::where('colaborador_no_colaborador', $this->colaborador)->get();
+            $this->m_id = Estacionamiento_externo::where('externo_id', $this->colaborador)->get();
 
             DB::transaction(function () {
                 Marbete::where('id', $this->m_id[0]->marbete_id)
@@ -218,7 +309,7 @@ class ListaVehiculosExternos extends Component
 
             $this->consultaMarbete();
             DB::transaction(function () {
-                Estacionamiento::where('colaborador_no_colaborador', $this->colaborador)
+                Estacionamiento_externo::where('externo_id', $this->colaborador)
                     ->update([
                         'marbete_id' => $this->marbete[0]->id,
                         'updated_at' => Carbon::now(),
@@ -244,27 +335,27 @@ class ListaVehiculosExternos extends Component
     public function registraVehiculo()
     {
         DB::transaction(function () {
-            Vehiculo::updateOrCreate([
+            Vehiculo_externo::updateOrCreate([
                 'placa' => mb_strtoupper($this->placa),
                 'tipo_vehiculo_id' => $this->tipo_vehiculo,
                 'marca' => $this->marca,
                 'modelo' => $this->modelo,
                 'fecha_modelo' => $this->fecha_modelo,
                 'color' => $this->color,
-                'colaborador_no_colaborador' => $this->ColaboradorRegistro,
+                'externo_id' => $this->ColaboradorRegistro,
             ]);
         });
     }
 
     public function registraEstacionamiento()
     {
-        $this->vehiculo_id = Vehiculo::where('colaborador_no_colaborador', '=', $this->ColaboradorRegistro)->get();
+        $this->vehiculo_id = Vehiculo_externo::where('externo_id', '=', $this->ColaboradorRegistro)->get();
 
         DB::transaction(function () {
 
-            Estacionamiento::updateOrCreate([
-                'colaborador_no_colaborador' => $this->ColaboradorRegistro,
-                'vehiculo_id' => $this->vehiculo_id[0]->id,
+            Estacionamiento_externo::updateOrCreate([
+                'externo_id' => $this->ColaboradorRegistro,
+                'vehiculo_externo_id' => $this->vehiculo_id[0]->id,
                 'marbete_id' => $this->marbete[0]->id,
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -277,13 +368,14 @@ class ListaVehiculosExternos extends Component
         if ($this->tipo_vehiculo == 1) {
             DB::transaction(function () {
                 $this->marbete = Marbete::where('tipo_vehiculo_id', '=', $this->tipo_vehiculo)
-                    ->where('numero', '>=', 46)
+                    ->where('numero', '>=', 1300)
                     ->where('estado', '=', 1)
                     ->get();
             });
         } else {
             DB::transaction(function () {
                 $this->marbete = Marbete::where('tipo_vehiculo_id', '=', $this->tipo_vehiculo)
+                    ->where('numero', '>=', 180)
                     ->where('estado', '=', 1)
                     ->get();
             });
