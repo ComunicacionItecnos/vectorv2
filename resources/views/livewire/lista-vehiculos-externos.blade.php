@@ -43,12 +43,6 @@
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 <div class="flex text-left">
-                                    Placa
-                                </div>
-                            </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div class="flex text-left">
                                     Datos del vehículo
                                 </div>
                             </th>
@@ -89,10 +83,8 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                {{ $vehiculo->placa }}
-                            </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <p><a class="text-black">Placa:</a> {{ $vehiculo->placa }}</p>
                                 <p><a class="text-black">Marca:</a> {{ $vehiculo->marca }}</p>
                                 <p><a class="text-black">Modelo:</a> {{ $vehiculo->modelo }}</p>
                                 <p><a class="text-black">Año:</a> {{ $vehiculo->fecha_modelo }}</p>
