@@ -18,7 +18,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('curp')->length(18)->unique();
             $table->string('curpDocumento');
             $table->string('nombre_1')->length(50);
-            $table->string('nombre_2')->length(50);
+            $table->string('nombre_2')->length(50)->nullable();
             $table->string('ap_paterno')->length(50);
             $table->string('ap_materno')->length(50);
             $table->date('fecha_nacimiento');
@@ -53,7 +53,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('comprobanteDomicilio');
             $table->boolean('paternidad_id');
             $table->string('actasHijo')->nullable();
-            $table->longText('cartasRecomendacion');
+            $table->longText('cartasRecomendacion')->nullable();
             $table->string('cartillaMilitar');
             $table->string('cartaNoPenales');
             $table->string('credencialIFE');
