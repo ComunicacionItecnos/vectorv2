@@ -48,4 +48,10 @@ class Externo extends Model
     {
         return $this->belongsTo('App\Models\Tipo_externo');
     }
+
+    // * Relacion uno a muchos
+
+    public function vehiculos(){
+        return $this->hasMany('App\Models\Vehiculo_externo');
+    }
 }

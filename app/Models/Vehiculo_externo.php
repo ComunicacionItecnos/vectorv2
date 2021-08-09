@@ -5,33 +5,37 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Marbete extends Model
+class Vehiculo_externo extends Model
 {
     use HasFactory;
 
-    protected $table = 'marbete';
+    protected $table = 'vehiculo_externo';
 
     public $timestamps = false;
 
     protected $fillable = [
+        'placa',
         'tipo_vehiculo_id',
-        'numero',
-        'estado',
+        'marca',
+        'modelo',
+        'fecha_modelo',
+        'color',
+        'externo_id',
     ];
 
     // * Relacion uno a muchos
-    public function estacionamientos()
-    {
-        return $this->hasMany('App\Models\Estacionamiento');
-    }
-
-    public function estacionamientos_externo()
+    public function estacionamiento()
     {
         return $this->hasMany('App\Models\Estacionamiento_externo');
     }
 
     //* Relacion muchos a uno
-    public function tipos_vehiculo()
+    public function externos()
+    {
+        return $this->belongsTo('App\Models\Externo');
+    }
+    
+    public function vehiculos()
     {
         return $this->belongsTo('App\Models\Tipo_vehiculo');
     }
