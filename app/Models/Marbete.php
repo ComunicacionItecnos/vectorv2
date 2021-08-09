@@ -25,6 +25,11 @@ class Marbete extends Model
         return $this->hasMany('App\Models\Estacionamiento');
     }
 
+    public function estacionamientos_externo()
+    {
+        return $this->hasMany('App\Models\Estacionamiento_externo');
+    }
+
     //* Relacion muchos a uno
     public function tipos_vehiculo()
     {

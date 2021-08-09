@@ -28,4 +28,9 @@ class Tipo_vehiculo extends Model
     {
         return $this->hasMany('App\Models\Vehiculo');
     }
+
+    public function vehiculos_externo()
+    {
+        return $this->hasMany('App\Models\Vehiculo_externo');
+    }
 }
