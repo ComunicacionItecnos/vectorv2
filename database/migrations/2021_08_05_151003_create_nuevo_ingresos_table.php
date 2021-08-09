@@ -41,7 +41,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('rfcDocumento');
             $table->string('no_seguro_social')->length(15)->unique();
             $table->string('altaImssDoc');
-            $table->string('domicilio')->length(128);
+            $table->string('calle')->length(128);
             $table->string('colonia')->length(100);
             $table->string('municipio')->length(45);
             $table->string('estado')->length(45);
@@ -63,6 +63,11 @@ class CreateNuevoIngresosTable extends Migration
             $table->integer('tel_fijo')->length(10);
             $table->integer('tel_movil')->length(10);
             $table->string('cvOsolicitudEmpleo');
+            $table->string('tallaPantalon');
+            $table->string('tallaPlayera');
+            $table->string('tallaZapatos');
+            $table->integer('numExt')->nullable();
+            $table->integer('numInt')->nullable();
             $table->timestamps();
         });
     }

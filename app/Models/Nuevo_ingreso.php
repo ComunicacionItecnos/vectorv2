@@ -46,7 +46,12 @@ class Nuevo_ingreso extends Model
         'correo',
         'tel_fijo',
         'tel_movil',
-        'cvOsolicitudEmpleo'
+        'cvOsolicitudEmpleo',
+        'tallaPantalon',
+        'tallaPlayera',
+        'TallaZapato',
+        'numExt',
+        'numInt',
     ];
 
     public function escolaridad(){
