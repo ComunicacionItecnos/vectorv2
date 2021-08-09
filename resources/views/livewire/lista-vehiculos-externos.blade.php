@@ -176,7 +176,7 @@
                             <option value=""></option>
                             @if (isset($colaboradores))
                             @foreach ($colaboradores as $colaborador)
-                            <option value="{{ $colaborador->no_colaborador }}">
+                            <option value="{{ $colaborador->id }}">
                                 {{ $colaborador->ap_paterno }}
                                 {{ $colaborador->ap_materno }}
                                 {{ $colaborador->nombre_1 }}
@@ -187,7 +187,7 @@
                             @endif
 
                         </select>
-                        @error('colaborador_registro')
+                        @error('ColaboradorRegistro')
                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
                             {{ $message }}
                         </p>
