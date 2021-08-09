@@ -16,7 +16,7 @@
                             <div class="sm:grid row-start-1 grid-cols-1 gap-1">
                                 <div class="mb-2 sm:m-0 col-span-2 col-start-1">
                                     <input type="text" name="curp" id="curp" wire:model="curp"
-                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                        class="uppercase block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @error('curp')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                             {{ $message }}
@@ -325,7 +325,7 @@
 
 										<div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="actaNacimiento"
-												class="block text-sm font-medium text-gray-700">Acta de nacimiento</label>
+												class="block text-base font-medium text-gray-700">Acta de nacimiento</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -374,7 +374,7 @@
                                                 for="rfc">RFC</label>
                                             <input type="text" wire:model="rfc" name="rfc" id="rfc"
                                                 value="{{ old('rfc') }}"
-                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                class="uppercase block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                             @error('rfc')
                                                 <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                     {{ $message }}
@@ -558,6 +558,27 @@
                                                         </p>
                                                     @enderror
                                                 </div>
+                                            @elseif ($genero_id == 3)
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label class="block text-base font-medium text-gray-700"
+                                                        for="tallaPantalon">Talla de pantalon</label>
+                                                    <select id="tallaPantalon" wire:model="tallaPantalon" name="tallaPantalon"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        <option></option>
+                                                        <option value="28">28</option>
+                                                        <option value="30">30</option>
+                                                        <option value="32">32</option>
+                                                        <option value="34">34</option>
+                                                        <option value="36">36</option>
+                                                        <option value="38">38</option>
+                                                        <option value="40">40</option>
+                                                    </select>
+                                                    @error('tallaPantalon')
+                                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>
                                             @endif
     
                                             @if ($genero_id == 1 )
@@ -596,6 +617,24 @@
                                                         </p>
                                                     @enderror
                                                 </div>
+                                            @elseif ($genero_id == 3)
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label class="block text-base font-medium text-gray-700"
+                                                        for="tallaPlayera">Talla de playera</label>
+                                                    <select id="tallaPlayera" wire:model="tallaPlayera" name="tallaPlayera"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        <option></option>
+                                                        <option value="Chica">Chica</option>
+                                                        <option value="Mediana">Mediana</option>
+                                                        <option value="Grandre">Grandre</option>
+                                                        <option value="Extra grande">Extra grande</option>
+                                                    </select>
+                                                    @error('tallaPlayera')
+                                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>      
                                             @endif
 
                                             @if ($genero_id == 1 )
@@ -638,6 +677,27 @@
                                                         </p>
                                                     @enderror
                                                 </div>
+                                            @elseif ($genero_id == 3)
+                                                <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                                    <label class="block text-base font-medium text-gray-700"
+                                                        for="tallazapatos">Talla de calzado</label>
+                                                    <select id="tallazapatos" wire:model="tallazapatos" name="tallazapatos"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        <option></option>
+                                                        <option value="24">24</option>
+                                                        <option value="25">25</option>
+                                                        <option value="26">26</option>
+                                                        <option value="27">27</option>
+                                                        <option value="28">28</option>
+                                                        <option value="29">29</option>
+                                                        <option value="30">30</option>
+                                                    </select>
+                                                    @error('tallazapatos')
+                                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                            {{ $message }}
+                                                        </p>
+                                                    @enderror
+                                                </div>
                                             @endif
     
                                         </div>
@@ -664,9 +724,9 @@
                                 </div>
                                 <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
                                     
-                                    <div class="sm:grid row-start-1 grid-cols-3 gap-2">
+                                    <div class="sm:grid row-start-1 grid-cols-4 gap-2">
 
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                        <div class="mb-2 sm:m-0 col-span-2 col-start-1">
                                             <label class="block text-base font-medium text-gray-700"
                                                 for="domicilio">Calle</label>
                                             <input type="text" wire:model="domicilio" name="domicilio" id="domicilio"
@@ -679,10 +739,10 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                        <div class="mb-2 sm:m-0 col-span-1 col-start-3">
                                             <label class="block text-base font-medium text-gray-700"
-                                                for="numeroExterior">Numero exterior</label>
-                                            <input type="text" wire:model="numeroExterior" name="numeroExterior" id="numeroExterior"
+                                                for="numeroExterior">Núm Exterior</label>
+                                            <input type="number" wire:model="numeroExterior" name="numeroExterior" id="numeroExterior"
                                                 value="{{ old('numeroExterior') }}"
                                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                             @error('numeroExterior')
@@ -692,10 +752,10 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                        <div class="mb-2 sm:m-0 col-span-1 col-start-4">
                                             <label class="block text-base font-medium text-gray-700"
-                                                for="numeroInterior">Numero interior</label>
-                                            <input type="text" wire:model="numeroInterior" name="numeroInterior" id="numeroInterior"
+                                                for="numeroInterior">Núm Interior</label>
+                                            <input type="number" wire:model="numeroInterior" name="numeroInterior" id="numeroInterior"
                                                 value="{{ old('numeroInterior') }}"
                                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                             @error('numeroInterior')
@@ -838,7 +898,7 @@
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                             <label class="block text-base font-medium text-gray-700"
                                                 for="tel_fijo">Telefono fijo</label>
-                                            <input type="text" wire:model="tel_fijo" name="tel_fijo" id="tel_fijo"
+                                            <input type="tel" wire:model="tel_fijo" name="tel_fijo" id="tel_fijo"
                                                 value="{{ old('tel_fijo') }}"
                                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                             @error('tel_fijo')
@@ -851,7 +911,7 @@
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                             <label class="block text-base font-medium text-gray-700"
                                                 for="tel_movil">Telefono celular</label>
-                                            <input type="text" wire:model="tel_movil" name="tel_movil" id="tel_movil"
+                                            <input type="tel" wire:model="tel_movil" name="tel_movil" id="tel_movil"
                                                 value="{{ old('tel_movil') }}"
                                                 class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                             @error('tel_movil')
@@ -944,7 +1004,7 @@
 
                                     </div>
 
-                                    @if ($escolaridad_id >=4)
+                                    @if ($escolaridad_id >=5)
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                             <label class="block text-base font-medium text-gray-700"
                                                 for="especialidadEstudios">Especialidad de estudios</label>
