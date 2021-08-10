@@ -54,14 +54,11 @@
 
                                 <p class="block text-base font-medium text-gray-700">
                                     1) Los campos con el siguiente signo <span
-                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span> son de forma
-                                    obligatoria.
+                                        class="mt-1 mb-1 text-base text-red-600 italic m-1">*</span>  son obligatorios.
                                 </p>
                                 <br>
                                 <p class="space-y-6 block text-base font-medium text-gray-700">
-                                    2) Los campos con el siguiente signo <span
-                                        class="mt-1 mb-1 text-base text-indigo-600 italic">#</span> te permiten subir
-                                    más de un archivo.
+                                    2) Los campos con el siguiente signo <span class="mt-1 mb-1 text-base text-red-600 italic m-1">+</span> te permiten subir más de un archivo.
                                 </p>
 
                             </div>
@@ -166,7 +163,7 @@
                                                 <label for="genero_id"
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span>
-                                                    Genero</label>
+                                                    Género</label>
                                                 <select id="genero_id" wire:model="genero_id" name="genero_id"
                                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                     <option></option>
@@ -313,8 +310,8 @@
                                                 
                                                 @if ($paternidad_id == 1)
                                                     <label class="block text-base font-medium text-gray-700"
-                                                        for="actasHijo"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span> Actas de los hijos</label>
+                                                        for="actasHijo">
+                                                        <span class="mt-1 mb-1 text-base text-red-600 italic">+</span> Actas de los hijos</label>
                                                     <label
                                                         class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -517,17 +514,12 @@
                                             </div>
 
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
-                                                @if ($this->genero_id == 1)
-                                                    <label for="cartillaMilitar"
-                                                        class="block text-base font-medium text-gray-700"><span
-                                                            class="mt-1 mb-1 text-base text-red-600 italic">*</span>
-                                                        Cartilla militar</label>
-                                                @else
-                                                    <label for="cartillaMilitar"
-                                                        class="block text-base font-medium text-gray-700">Cartilla
-                                                        militar</label>
-                                                @endif
-
+                                                
+                                                <label for="cartillaMilitar"
+                                                    class="block text-base font-medium text-gray-700"><span
+                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Cartilla militar
+                                                </label>
                                                 <label
                                                     class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -1156,7 +1148,7 @@
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label for="cartasRecomendacion"
                                                     class="block text-base font-medium text-gray-700"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span> Cartas
+                                                        class="mt-1 mb-1 text-base text-red-600 italic">+</span> Cartas
                                                     de recomendación</label>
                                                 <label
                                                     class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
@@ -1227,14 +1219,25 @@
                                             </div>
 
                                         </div>
+                                        
+                                        <div class="sm:grid row-start-1 grid-cols-1 gap-2">
+                                            <p class="block text-base font-medium text-gray-700">
+                                                Instrucciones antes de subir la fotografía
+                                            </p>
+                                            <button class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white"
+                                                type="button" wire:click="abrirModal">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                    <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd" />
+                                                </svg>
+                                            </button>
+                                        </div>
 
                                         <div class="sm:grid row-start-1 grid-cols-1 gap-2">
 
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-1">
-                                                <label for="foto"
-                                                    class="block text-base font-medium text-gray-700"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
-                                                    Fotografia</label>
+                                                <label for="foto" class="block text-base font-medium text-gray-700"><span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Fotografia
+                                                </label>
                                                 <label
                                                     class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
@@ -1256,6 +1259,37 @@
                                         </div>
 
                                     </div>
+
+                                    <x-jet-dialog-modal wire:model="modalAbrir">
+                                        <x-slot name="title">
+                                            <p class="text-center text-2xl font-medium text-red-700">
+                                                Instrucciones
+                                            </p>
+                                        </x-slot>
+                        
+                                        <x-slot name="content">
+                                            <p class="block text-base font-medium text-gray-700">
+                                                1) Sin accesorios en el rostro (lentes, gorras, cubrebocas, etc)
+                                            </p>
+                                            <p class="block text-base font-medium text-gray-700">
+                                                2) Debe ser un fondo claro/blanco de preferencia
+                                            </p>
+                                            <p class="block text-base font-medium text-gray-700">
+                                                3) El color de tu playera/camisa debe ser contrastante al fondo
+                                            </p>
+                                            <p class="block text-base font-medium text-gray-700">
+                                                4) En la fotografía debe verse tu rostro y hombros
+                                            </p>
+                                            
+                                        </x-slot>
+                        
+                                        <x-slot name="footer">
+                                            <x-jet-secondary-button wire:click="cerrarModal()">
+                                                {{ __('Cerrar') }}
+                                            </x-jet-secondary-button>
+                                        </x-slot>
+                                    </x-jet-dialog-modal>
+
                                 @endif
 
 

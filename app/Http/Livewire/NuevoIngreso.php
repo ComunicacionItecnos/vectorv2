@@ -81,6 +81,9 @@ class NuevoIngreso extends Component
     public $totalSteps = 10;
     public $currentStep = 1;
 
+    /* Abrir modal */
+    public $modalAbrir = false;
+
     protected $listeners = [
         'registro',
         'cancelled',
@@ -468,7 +471,7 @@ class NuevoIngreso extends Component
             $rutaActaHijo = null;
         }else{
             for ($i=0; $i < count($this->actasHijo) ; $i++) { 
-                $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/actasHijos','8.-actaDeHijo'.$i.'.pdf');
+                $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/8.-actasHijos','actaDeHijo'.$i.'.pdf');
                 $rutaActaHijo[] = $rutaActasHijos2;
             }
         }
@@ -477,7 +480,7 @@ class NuevoIngreso extends Component
             $rutaRecomendacion = null;
         }else{
             for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
-                $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/cartasRecomendacion','9.-cartaDeRecomendacion'.$i.'.pdf');
+                $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/9.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
                 $rutaRecomendacion[] = $rutaRecomendacion2; 
             }
         }
@@ -535,7 +538,6 @@ class NuevoIngreso extends Component
             'numInt'=>$this->numeroInterior,
         ]);
 
-
         $this->flash('success', 'El colaborador se ha actualizado con éxito', [
             'position' =>  'top-end',
             'timer' =>  3500,
@@ -548,6 +550,15 @@ class NuevoIngreso extends Component
         ]);
         return redirect()->to('/nuevo-ingreso/');
 
+    }
+
+    public function abrirModal()
+    {
+        $this->modalAbrir = true;
+    }
+
+    public function cerrarModal(){
+        $this->modalAbrir = false;
     }
 
 }
