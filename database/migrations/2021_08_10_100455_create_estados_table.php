@@ -15,6 +15,9 @@ class CreateEstadosTable extends Migration
     {
         Schema::create('estados', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre_estado');
+            $table->unsignedBigInteger('pais');
+            $table->foreign('pais')->references('id')->on('nacionalidad');
             $table->timestamps();
         });
     }

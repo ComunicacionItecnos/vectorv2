@@ -30,8 +30,8 @@ class Nuevo_ingreso extends Model
         'altaImssDoc',
         'calle',
         'colonia',
-        'municipio',
-        'estado',
+        'municipio_id',
+        'estado_id',
         'pais',
         'nacionalidad_id',
         'codigo_postal',
@@ -69,6 +69,14 @@ class Nuevo_ingreso extends Model
 
     public function nacionalidad(){
         return $this->hasMany('App\Models\Nacionalidad');
+    }
+
+    public function estados(){
+        return $this->hasMany('App\Models\Estados');
+    }
+
+    public function municipio(){
+        return $this->hasMany('App\Models\Municipio');
     }
 
 }

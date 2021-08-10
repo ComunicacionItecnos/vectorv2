@@ -43,8 +43,12 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('altaImssDoc');
             $table->string('calle')->length(128);
             $table->string('colonia')->length(100);
-            $table->string('municipio')->length(45);
-            $table->string('estado')->length(45);
+
+            $table->unsignedBigInteger('municipio_id');
+            $table->foreign('municipio_id')->references('id')->on('municipios');
+
+            $table->unsignedBigInteger('estado_id');
+            $table->foreign('estado_id')->references('id')->on('estados');
            
             $table->unsignedBigInteger('pais');
             $table->foreign('pais')->references('id')->on('nacionalidad');

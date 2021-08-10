@@ -28,4 +28,8 @@ class Nacionalidad extends Model
     public function nuevo_ingreso(){
         return $this->hasMany('App\Models\Nuevo_ingreso');
     }
+
+    public function estados(){
+        return $this->hasMany('App\Models\Estados');
+    }
 }

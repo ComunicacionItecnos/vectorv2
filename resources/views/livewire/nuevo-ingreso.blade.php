@@ -148,9 +148,9 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                             <label for="genero_id"
-                                                class="block text-sm font-medium text-gray-700">Genero</label>
+                                                class="block text-base font-medium text-gray-700">Genero</label>
                                             <select id="genero_id" wire:model="genero_id" name="genero_id"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                 <option></option>
                                                 @if ($genero)
                                                     @foreach ($genero as $g)
@@ -166,6 +166,30 @@
                                             @enderror
                                         </div>
 
+                                    </div>
+                                    
+                                    <div class="sm:grid row-start-1 grid-cols-1 gap-2">
+                                        <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                            <label for="nacionalidad_id"
+                                                class="block text-base font-medium text-gray-700">Nacionalidad</label>
+                                            <select id="nacionalidad_id" wire:model="nacionalidad_id" name="nacionalidad_id"
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                <option></option>
+                                                @if ($nacionalidad)
+                                                    @foreach ($nacionalidad as $n)
+                                                        <option value="{{ $n->id }}">{{ $n->nacionalidad }}
+                                                        </option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                            @error('nacionalidad_id')
+                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+
+                                            
+                                        </div>
                                     </div>
 
                                 </div>
@@ -193,9 +217,9 @@
 
 										<div class="mb-2 sm:m-0 col-span-1 col-start-1">
 											<label for="estado_civil_id"
-												class="block text-sm font-medium text-gray-700">Estado civil</label>
+												class="block text-base font-medium text-gray-700">Estado civil</label>
 											<select id="estado_civil_id" wire:model="estado_civil_id" name="estado_civil_id"
-												class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+												class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
 												<option></option>
 												@if ($estado_civil)
 													@foreach ($estado_civil as $ec)
@@ -251,7 +275,7 @@
 											<label class="block text-base font-medium text-gray-700"
 												for="paternidad_id">¿Tienes hijos?</label>
                                                 <select id="paternidad_id" wire:model="paternidad_id" name="paternidad_id"
-												class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+												class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
 												<option></option>
 												<option value="0">No</option>
                                                 <option value="1">Si</option>
@@ -384,7 +408,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="rfcDoc"
-												class="block text-sm font-medium text-gray-700">RFC documento</label>
+												class="block text-base font-medium text-gray-700">RFC documento</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -423,7 +447,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="altaImssDoc"
-												class="block text-sm font-medium text-gray-700">Alta del IMSS documento</label>
+												class="block text-base font-medium text-gray-700">Alta del IMSS documento</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -449,7 +473,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
 											<label for="credencialIFE"
-												class="block text-sm font-medium text-gray-700">Credencial IFE</label>
+												class="block text-base font-medium text-gray-700">Credencial IFE</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -471,7 +495,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="cartillaMilitar"
-												class="block text-sm font-medium text-gray-700">Cartilla militar</label>
+												class="block text-base font-medium text-gray-700">Cartilla militar</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -521,7 +545,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallaPantalon">Talla de pantalon hombre</label>
                                                     <select id="tallaPantalon" wire:model="tallaPantalon" name="tallaPantalon"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="28">28</option>
                                                         <option value="30">30</option>
@@ -542,7 +566,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallaPantalon">Talla de pantalon mujer</label>
                                                     <select id="tallaPantalon" wire:model="tallaPantalon" name="tallaPantalon"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="28">28</option>
                                                         <option value="30">30</option>
@@ -563,7 +587,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallaPantalon">Talla de pantalon</label>
                                                     <select id="tallaPantalon" wire:model="tallaPantalon" name="tallaPantalon"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="28">28</option>
                                                         <option value="30">30</option>
@@ -586,7 +610,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallaPlayera">Talla de playera hombre</label>
                                                     <select id="tallaPlayera" wire:model="tallaPlayera" name="tallaPlayera"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="Chica">Chica</option>
                                                         <option value="Mediana">Mediana</option>
@@ -604,7 +628,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallaPlayera">Talla de playera mujer</label>
                                                     <select id="tallaPlayera" wire:model="tallaPlayera" name="tallaPlayera"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="Chica">Chica</option>
                                                         <option value="Mediana">Mediana</option>
@@ -622,7 +646,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallaPlayera">Talla de playera</label>
                                                     <select id="tallaPlayera" wire:model="tallaPlayera" name="tallaPlayera"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="Chica">Chica</option>
                                                         <option value="Mediana">Mediana</option>
@@ -642,7 +666,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallazapatos">Talla de calzado hombre</label>
                                                     <select id="tallazapatos" wire:model="tallazapatos" name="tallazapatos"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="24">24</option>
                                                         <option value="25">25</option>
@@ -663,7 +687,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallazapatos">Talla de calzado mujer</label>
                                                     <select id="tallazapatos" wire:model="tallazapatos" name="tallazapatos"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="23">23</option>
                                                         <option value="24">24</option>
@@ -682,7 +706,7 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="tallazapatos">Talla de calzado</label>
                                                     <select id="tallazapatos" wire:model="tallazapatos" name="tallazapatos"
-                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                         <option></option>
                                                         <option value="24">24</option>
                                                         <option value="25">25</option>
@@ -723,42 +747,42 @@
                                     <p>Domicilio particular</p>
                                 </div>
                                 <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-                                    
-                                    <div class="sm:grid row-start-1 grid-cols-4 gap-2">
 
-                                        <div class="mb-2 sm:m-0 col-span-2 col-start-1">
-                                            <label class="block text-base font-medium text-gray-700"
-                                                for="domicilio">Calle</label>
-                                            <input type="text" wire:model="domicilio" name="domicilio" id="domicilio"
-                                                value="{{ old('domicilio') }}"
-                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                            @error('domicilio')
+                                    <div class="sm:grid row-start-1 grid-cols-2 gap-2">
+                                        <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                            <label for="pais_id"
+                                                class="block text-base font-medium text-gray-700">País</label>
+                                            <select id="pais_id" wire:model="pais_id" name="pais_id" disabled
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                
+                                                @if ($pais)
+                                                    <option value="{{ $pais[0]->id }}">{{ $pais[0]->pais }}</option>
+                                                @endif
+                                            </select>
+                                            @error('pais_id')
                                                 <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
+                                            
                                         </div>
 
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                        <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                             <label class="block text-base font-medium text-gray-700"
-                                                for="numeroExterior">Núm Exterior</label>
-                                            <input type="number" wire:model="numeroExterior" name="numeroExterior" id="numeroExterior"
-                                                value="{{ old('numeroExterior') }}"
-                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                            @error('numeroExterior')
-                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
-                                        </div>
-
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-4">
-                                            <label class="block text-base font-medium text-gray-700"
-                                                for="numeroInterior">Núm Interior</label>
-                                            <input type="number" wire:model="numeroInterior" name="numeroInterior" id="numeroInterior"
-                                                value="{{ old('numeroInterior') }}"
-                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                            @error('numeroInterior')
+                                                for="estado">Estado</label>
+                                            
+                                            <select id="estado" wire:model="estado" name="estado"
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @if ($estado_id)
+                                                        @foreach ($estado_id as $ei)
+                                                            <option value="{{ $ei->id }}" selected>{{ $ei->nombre_estado }}
+                                                            </option>
+                                                        @endforeach
+                                                    @endif
+                                            </select>
+                                            
+                                            @error('estado')
                                                 <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                     {{ $message }}
                                                 </p>
@@ -771,6 +795,75 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                             <label class="block text-base font-medium text-gray-700"
+                                                for="municipio">Municipio</label>
+                                        
+                                                <select id="municipio" wire:model="municipio" name="municipio"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                        @if ($municipio_id)
+                                                            @foreach ($municipio_id as $mi)
+                                                                <option value="{{ $mi->id }}">{{ $mi->nombre_municipio }}
+                                                                </option>
+                                                            @endforeach
+                                                        @endif
+                                                </select>
+                        
+                                            
+
+                                            @error('municipio')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                        </div>
+
+                                        <div class="mb-2 sm:m-0 col-span-2 col-start-2">
+                                            <label class="block text-base font-medium text-gray-700"
+                                                for="domicilio">Calle</label>
+                                            <input type="text" wire:model="domicilio" name="domicilio" id="domicilio"
+                                                value="{{ old('domicilio') }}"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                            @error('domicilio')
+                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                    
+                                    <div class="sm:grid row-start-1 grid-cols-4 gap-2">
+
+                                        
+
+                                        <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                            <label class="block text-base font-medium text-gray-700"
+                                                for="numeroExterior">Núm Exterior</label>
+                                            <input type="number" wire:model="numeroExterior" name="numeroExterior" id="numeroExterior"
+                                                value="{{ old('numeroExterior') }}"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                            @error('numeroExterior')
+                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                            <label class="block text-base font-medium text-gray-700"
+                                                for="numeroInterior">Núm Interior</label>
+                                            <input type="number" wire:model="numeroInterior" name="numeroInterior" id="numeroInterior"
+                                                value="{{ old('numeroInterior') }}"
+                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                            @error('numeroInterior')
+                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                    {{ $message }}
+                                                </p>
+                                            @enderror
+                                        </div>
+
+                                        <div class="mb-2 sm:m-0 col-span-2 col-start-3">
+                                            <label class="block text-base font-medium text-gray-700"
                                                 for="colonia">Colonia</label>
                                             <input type="text" wire:model="colonia" name="colonia" id="colonia"
                                                 value="{{ old('colonia') }}"
@@ -782,22 +875,11 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-2">
-                                            <label class="block text-base font-medium text-gray-700"
-                                                for="municipio">Municipio</label>
-                                            <input type="text" wire:model="municipio" name="municipio" id="municipio"
-                                                value="{{ old('municipio') }}"
-                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                            @error('municipio')
-                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
-                                        </div>
-
                                     </div>
 
                                     <div class="sm:grid row-start-1 grid-cols-2 gap-2">
+
+                                        
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                             <label class="block text-base font-medium text-gray-700"
@@ -812,46 +894,10 @@
                                             @enderror
                                         </div>
 
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-2">
-                                            <label class="block text-base font-medium text-gray-700"
-                                                for="estado">Estado</label>
-                                            <input type="text" wire:model="estado" name="estado" id="estado"
-                                                value="{{ old('estado') }}"
-                                                class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                            @error('estado')
-                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
-                                        </div>
-
-                                    </div>
-
-                                    <div class="sm:grid row-start-1 grid-cols-2 gap-2">
-
-                                        <div class="mb-2 sm:m-0 col-span-1 col-start-1">
-                                            <label for="nacionalidad_id"
-                                                class="block text-sm font-medium text-gray-700">Nacionalidad</label>
-                                            <select id="nacionalidad_id" wire:model="nacionalidad_id" name="nacionalidad_id"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                <option></option>
-                                                @if ($nacionalidad)
-                                                    @foreach ($nacionalidad as $n)
-                                                        <option value="{{ $n->id }}">{{ $n->nacionalidad }}
-                                                        </option>
-                                                    @endforeach
-                                                @endif
-                                            </select>
-                                            @error('nacionalidad_id')
-                                                <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                                    {{ $message }}
-                                                </p>
-                                            @enderror
-                                        </div>
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="comprobranteDomicilio"
-												class="block text-sm font-medium text-gray-700">Comprobante de domicilio</label>
+												class="block text-base font-medium text-gray-700">Comprobante de domicilio</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -870,8 +916,10 @@
 												</p>
 											@enderror
 										</div>
+    
 
                                     </div>
+
 
                                 </div>
                             </div>
@@ -963,9 +1011,9 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                             <label for="escolaridad_id"
-                                                class="block text-sm font-medium text-gray-700">Nivel de estudios</label>
+                                                class="block text-base font-medium text-gray-700">Nivel de estudios</label>
                                             <select id="escolaridad_id" wire:model="escolaridad_id" name="escolaridad_id"
-                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                 <option></option>
                                                 <option value="3">Secundaria</option>
                                                 <option value="4">Preparatoria</option>
@@ -982,7 +1030,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="constanciaEstudios"
-												class="block text-sm font-medium text-gray-700">Constancia de estudios</label>
+												class="block text-base font-medium text-gray-700">Constancia de estudios</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -1044,7 +1092,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
 											<label for="cvOsolicitudEmpleo"
-												class="block text-sm font-medium text-gray-700">Cv ó solicitud de empleo</label>
+												class="block text-base font-medium text-gray-700">Cv ó solicitud de empleo</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -1066,7 +1114,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="cartasRecomendacion"
-												class="block text-sm font-medium text-gray-700">Cartas de recomendación</label>
+												class="block text-base font-medium text-gray-700">Cartas de recomendación</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -1092,7 +1140,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
 											<label for="cartaNoPenales"
-												class="block text-sm font-medium text-gray-700">Carta de antecedentes no penales</label>
+												class="block text-base font-medium text-gray-700">Antecedentes no penales</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -1114,7 +1162,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-2">
 											<label for="buroCredito"
-												class="block text-sm font-medium text-gray-700">Buro de credito</label>
+												class="block text-base font-medium text-gray-700">Buro de credito</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"
@@ -1140,7 +1188,7 @@
 
                                         <div class="mb-2 sm:m-0 col-span-1 col-start-1">
 											<label for="foto"
-												class="block text-sm font-medium text-gray-700">Fotografia</label>
+												class="block text-base font-medium text-gray-700">Fotografia</label>
                                             <label
                                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
                                                 <svg xmlns="http://www.w3.org/2000/svg"

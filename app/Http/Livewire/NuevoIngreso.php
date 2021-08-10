@@ -2,9 +2,11 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Escolaridad;
+
 use App\Models\Estado_civil;
+use App\Models\Estados;
 use App\Models\Genero;
+use App\Models\Municipio;
 use App\Models\Nacionalidad;
 use App\Models\Nuevo_ingreso;
 use Livewire\Component;
@@ -24,7 +26,6 @@ class NuevoIngreso extends Component
     public $fecha_nacimiento;
     public $actaNacimiento;
 
-    public $escolaridad;
     public $escolaridad_id;
     public $constanciaEstudios;
     public $especialidadEstudios;
@@ -45,9 +46,16 @@ class NuevoIngreso extends Component
     public $numeroInterior;
     
     public $colonia;
-    public $municipio;
-    public $estado;
     
+    public $municipio_id;
+    public $municipio;
+
+    public $estado;
+    public $estado_id;
+    
+    public $pais_id;
+    public $pais;
+
     public $nacionalidad;
     public $nacionalidad_id;
     
@@ -76,12 +84,19 @@ class NuevoIngreso extends Component
 
     public function mount()
     {
-        // $this->escolaridad = Escolaridad::all();
         $this->estado_civil = Estado_civil::all();
         $this->nacionalidad = Nacionalidad::where('nacionalidad','!=','NULL')->orderBy('pais','ASC')->get();
+        $this->pais = Nacionalidad::where('id','144')->get();
         $this->genero = Genero::all();
+        $this->estado_id = Estados::where('pais','144')->get();
+        $this->municipio_id = Municipio::where('estado_id',$this->estado)->get();
         $this->currentStep = 1;
         $this->curpValida = '';
+    }
+
+    public function updated(){
+        $this->estado = $this->estado;
+        $this->municipio_id = Municipio::where('estado_id',$this->estado)->get();
     }
 
     public function render()
@@ -145,6 +160,8 @@ class NuevoIngreso extends Component
                         'ap_materno'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                         'fecha_nacimiento'=>'required|date',
                         'genero_id'=>'required',
+                        'nacionalidad_id'=>'required'
+
                     ],
                     [
                         'nombre_1.required'=>'Este campo no puede permanecer vacío',
@@ -158,6 +175,7 @@ class NuevoIngreso extends Component
                         
                         'fecha_nacimiento.required'=>'Este campo no puede permanecer vacío',
                         'genero_id'=>'Esta opción no puede permanecer vacía',
+                        'nacionalidad_id.required'=>'Esta opción no puede permanecer vacía'
                     ],
     
                 );
@@ -170,6 +188,7 @@ class NuevoIngreso extends Component
                         'ap_materno'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                         'fecha_nacimiento'=>'required|date',
                         'genero_id'=>'required',
+                        'nacionalidad_id'=>'required'
                     ],
                     [
                         'nombre_1.required'=>'Este campo no puede permanecer vacío',
@@ -185,6 +204,7 @@ class NuevoIngreso extends Component
                         
                         'fecha_nacimiento.required'=>'Este campo no puede permanecer vacío',
                         'genero_id'=>'Esta opción no puede permanecer vacía',
+                        'nacionalidad_id.required'=>'Esta opción no puede permanecer vacía'
                     ],
     
                 );
@@ -230,7 +250,7 @@ class NuevoIngreso extends Component
                     'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
 
                     'credencialIFE.required'=>'Debes seleccionar un archivo',
-                    'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
+                    'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf',
 
                     'cartillaMilitar.required'=>'Debes seleccionar un archivo',
                     'cartillaMilitar.mimes'=>'Debe ser un archivo con formato: pdf'
@@ -256,10 +276,10 @@ class NuevoIngreso extends Component
                 [
                     'domicilio'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'colonia'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-                    'municipio'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                    'municipio'=>'required',
                     'codigo_postal'=>'required|regex:/^([0-9]+)$/',
-                    'estado'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-                    'nacionalidad_id'=>'required',
+                    'pais'=>'required',
+                    'estado'=>'required',
                     'comprobranteDomicilio'=>'required|mimes:pdf|max:5120',
                 ],
                 [
@@ -270,16 +290,12 @@ class NuevoIngreso extends Component
                     'colonia.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
 
                     'municipio.required'=>'Este campo no puede permanecer vacío',
-                    'municipio.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
 
                     'codigo_postal.required'=>'Este campo no puede permanecer vacío',
                     'codigo_postal.regex'=>'Solo puede contener números',
-
+                    'pais.required'=>'Este cmapo no puede permanecer vacio',
                     'estado.required'=>'Este campo no puede permanecer vacío',
-                    'estado.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
                     
-                    'nacionalidad_id.required'=>'Esta opción no puede permanecer vacía',
-
                     'comprobranteDomicilio.required'=>'Debes seleccionar un archivo',
                     'comprobranteDomicilio.mimes'=>'Debe ser un archivo con formato: pdf'
                 ],
@@ -437,8 +453,9 @@ class NuevoIngreso extends Component
             'altaImssDoc'=>$this->altaImssDoc,
             'calle'=>$this->domicilio,
             'colonia'=>$this->colonia,
-            'municipio'=>$this->municipio,
-            'estado'=>$this->estado,
+            'municipio_id'=>$this->municipio,
+            'estado_id'=>$this->estado,
+            'pais'=>$this->pais[0]->id,
             'nacionalidad_id'=>$this->nacionalidad_id,
             'codigo_postal'=>$this->codigo_postal,
             'comprobanteDomicilio'=>$this->comprobranteDomicilio,
