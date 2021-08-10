@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-
 use App\Models\Estado_civil;
 use App\Models\Estados;
 use App\Models\Genero;
@@ -79,8 +78,40 @@ class NuevoIngreso extends Component
     public $tallazapatos;
 
     public $curpValida;
-    public $totalSteps = 9;
+    public $totalSteps = 10;
     public $currentStep = 1;
+
+    protected $listeners = [
+        'registro',
+        'cancelled',
+    ];
+
+    public function cancelled()
+    {
+        $this->alert('info', 'Se canceló el registro', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+    }
+
+    public function triggerConfirm()
+    {
+        $this->confirm('¿Deseas terminar el registro?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'confirmButtonText' =>  'Si',
+            'cancelButtonText' => 'No',
+            'onConfirmed' => 'registro',
+            'onCancelled' => 'cancelled'
+        ]);
+    }
 
     public function mount()
     {
@@ -150,7 +181,7 @@ class NuevoIngreso extends Component
                 ['curp' =>'required|regex:/^([a-zA-Z0-9]+)$/'],
                 ['curp.required'=>'La CURP no puede permanecer vacia','curp.regex'=>'Solo puede contener letras y numeros']
             );
-        }elseif($this->currentStep === 2){
+        }elseif($this->currentStep === 3){
 
             if (empty($this->nombre_2)) {
                 $this->validate(
@@ -174,7 +205,7 @@ class NuevoIngreso extends Component
                         'ap_materno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
                         
                         'fecha_nacimiento.required'=>'Este campo no puede permanecer vacío',
-                        'genero_id'=>'Esta opción no puede permanecer vacía',
+                        'genero_id.required'=>'Esta opción no puede permanecer vacía',
                         'nacionalidad_id.required'=>'Esta opción no puede permanecer vacía'
                     ],
     
@@ -210,7 +241,7 @@ class NuevoIngreso extends Component
                 );
             }
             
-        }elseif($this->currentStep === 3){
+        }elseif($this->currentStep === 4){
             $this->validate(
                 [
                     'estado_civil_id'=>'required',
@@ -228,35 +259,62 @@ class NuevoIngreso extends Component
                 ],
                 
             );
-        }elseif($this->currentStep === 4){
-            $this->validate(
-                [
-                    'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/',
-                    'rfcDoc'=>'required|mimes:pdf|max:5120',
-                    'no_social_social'=>'required|regex:/^([0-9]+)$/',
-                    'altaImssDoc'=>'required|mimes:pdf|max:5120',
-                    'credencialIFE'=>'required|mimes:pdf|max:5120',
-                    'cartillaMilitar'=>'required|mimes:pdf|max:5120'
-                ],
-                [
-                    'rfc.required'=>'Este campo no puede permanecer vacío',
-                    'rfc.regex'=>'Solo puede contener letras y numeros',
-
-                    'rfcDoc.required'=>'Debes seleccionar un archivo',
-                    'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
-                    
-                    'no_social_social.required'=>'Este campo no puede permanecer vacío',
-                    'altaImssDoc.required'=>'Debes seleccionar un archivo',
-                    'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
-
-                    'credencialIFE.required'=>'Debes seleccionar un archivo',
-                    'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf',
-
-                    'cartillaMilitar.required'=>'Debes seleccionar un archivo',
-                    'cartillaMilitar.mimes'=>'Debe ser un archivo con formato: pdf'
-                ],
-            );
         }elseif($this->currentStep === 5){
+            if ($this->genero_id == 1) {
+                $this->validate(
+                    [
+                        'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/',
+                        'rfcDoc'=>'required|mimes:pdf|max:5120',
+                        'no_social_social'=>'required|regex:/^([0-9]+)$/',
+                        'altaImssDoc'=>'required|mimes:pdf|max:5120',
+                        'credencialIFE'=>'required|mimes:pdf|max:5120',
+                        'cartillaMilitar'=>'required|mimes:pdf|max:5120'
+                    ],
+                    [
+                        'rfc.required'=>'Este campo no puede permanecer vacío',
+                        'rfc.regex'=>'Solo puede contener letras y numeros',
+    
+                        'rfcDoc.required'=>'Debes seleccionar un archivo',
+                        'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
+                        
+                        'no_social_social.required'=>'Este campo no puede permanecer vacío',
+                        'altaImssDoc.required'=>'Debes seleccionar un archivo',
+                        'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
+    
+                        'credencialIFE.required'=>'Debes seleccionar un archivo',
+                        'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf',
+    
+                        'cartillaMilitar.required'=>'Debes seleccionar un archivo',
+                        'cartillaMilitar.mimes'=>'Debe ser un archivo con formato: pdf'
+                    ],
+                );
+            }else{
+                $this->validate(
+                    [
+                        'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/',
+                        'rfcDoc'=>'required|mimes:pdf|max:5120',
+                        'no_social_social'=>'required|regex:/^([0-9]+)$/',
+                        'altaImssDoc'=>'required|mimes:pdf|max:5120',
+                        'credencialIFE'=>'required|mimes:pdf|max:5120'
+                    ],
+                    [
+                        'rfc.required'=>'Este campo no puede permanecer vacío',
+                        'rfc.regex'=>'Solo puede contener letras y numeros',
+    
+                        'rfcDoc.required'=>'Debes seleccionar un archivo',
+                        'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
+                        
+                        'no_social_social.required'=>'Este campo no puede permanecer vacío',
+                        'altaImssDoc.required'=>'Debes seleccionar un archivo',
+                        'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
+    
+                        'credencialIFE.required'=>'Debes seleccionar un archivo',
+                        'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf'
+                    ],
+                );
+            }
+            
+        }elseif($this->currentStep === 6){
             $this->validate(
                 [
                     'tallaPantalon'=>'required',
@@ -270,7 +328,7 @@ class NuevoIngreso extends Component
                 ],
                 
             );
-        }elseif($this->currentStep === 6){
+        }elseif($this->currentStep === 7){
 
             $this->validate(
                 [
@@ -301,7 +359,7 @@ class NuevoIngreso extends Component
                 ],
                 
             );
-        }elseif($this->currentStep === 7){
+        }elseif($this->currentStep === 8){
             $this->validate(
                 [
                     'tel_fijo'=>'required|regex:/^([0-9]+)$/',
@@ -320,7 +378,7 @@ class NuevoIngreso extends Component
                 ],
                 
             );
-        }elseif($this->currentStep === 8){
+        }elseif($this->currentStep === 9){
 
             if ($this->escolaridad_id >=5) {
                 $this->validate(
@@ -363,7 +421,7 @@ class NuevoIngreso extends Component
     {
         $this->resetErrorBag();
 
-        if($this->currentStep === 9){
+        if($this->currentStep === 10){
             $this->validate(
                 [
                     'cvOsolicitudEmpleo'=>'required|mimes:pdf|max:5120',
@@ -389,7 +447,6 @@ class NuevoIngreso extends Component
                 ],
             );
         }
-
 
         /* Asignando las carpetas donde se guardaran los docuemntos del registro */
         $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'1.-CURP.pdf');
@@ -433,7 +490,7 @@ class NuevoIngreso extends Component
 
 
         Nuevo_ingreso::create([
-            'curp'=>$this->curp,
+            'curp'=>strtoupper($this->curp),
             'curpDocumento'=>$this->curpDoc,
             'nombre_1'=>$this->nombre_1,
             'nombre_2'=>$this->nombre_2,
@@ -447,7 +504,7 @@ class NuevoIngreso extends Component
             'genero_id'=>$this->genero_id,
             'estado_civil_id'=>$this->estado_civil_id,
             'actaMatrimonio'=>$this->actaMatrimonio,
-            'rfc'=>$this->rfc,
+            'rfc'=>strtoupper($this->rfc),
             'rfcDocumento'=>$this->rfcDoc,
             'no_seguro_social'=>$this->no_social_social,
             'altaImssDoc'=>$this->altaImssDoc,
@@ -478,7 +535,19 @@ class NuevoIngreso extends Component
             'numInt'=>$this->numeroInterior,
         ]);
 
-      
+
+        $this->flash('success', 'El colaborador se ha actualizado con éxito', [
+            'position' =>  'top-end',
+            'timer' =>  3500,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+        return redirect()->to('/nuevo-ingreso/');
+
     }
 
 }
