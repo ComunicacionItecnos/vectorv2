@@ -837,7 +837,7 @@
                                                 <option></option>
                                                 @if ($nacionalidad)
                                                     @foreach ($nacionalidad as $n)
-                                                        <option value="{{ $n->id }}">{{ $n->pais }}
+                                                        <option value="{{ $n->id }}">{{ $n->nacionalidad }}
                                                         </option>
                                                     @endforeach
                                                 @endif

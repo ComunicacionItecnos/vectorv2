@@ -9,6 +9,7 @@ use App\Models\Nacionalidad;
 use App\Models\Nuevo_ingreso;
 use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
 
 class NuevoIngreso extends Component
 {
@@ -53,8 +54,8 @@ class NuevoIngreso extends Component
     public $codigo_postal;
     public $comprobranteDomicilio;
     public $paternidad_id;
-    public $actasHijo = [];
-    public $cartasRecomendacion = [];
+    public $actasHijo;
+    public $cartasRecomendacion;
     public $cartillaMilitar;
     public $cartaNoPenales;
     public $credencialIFE;
@@ -77,7 +78,7 @@ class NuevoIngreso extends Component
     {
         // $this->escolaridad = Escolaridad::all();
         $this->estado_civil = Estado_civil::all();
-        $this->nacionalidad = Nacionalidad::orderBy('pais','ASC')->get();
+        $this->nacionalidad = Nacionalidad::where('nacionalidad','!=','NULL')->orderBy('pais','ASC')->get();
         $this->genero = Genero::all();
         $this->currentStep = 1;
         $this->curpValida = '';
@@ -373,53 +374,47 @@ class NuevoIngreso extends Component
             );
         }
 
-      /* dd(
-            'curp',$this->curp,
-            'curpDocumento',$this->curpDoc,
-            'nombre_1',$this->nombre_1,
-            'nombre_2',$this->nombre_2,
-            'ap_paterno',$this->ap_paterno,
-            'ap_materno',$this->ap_materno,
-            'fecha_nacimiento',$this->fecha_nacimiento,
-            'actaNacimiento',$this->actaNacimiento,
-            'escolaridad_id',$this->escolaridad_id,
-            'constanciaEstudios',$this->constanciaEstudios,
-            'especialidadEstudios',$this->especialidadEstudios,
-            'genero_id',$this->genero_id,
-            'estado_civil_id',$this->estado_civil_id,
-            'actaMatrimonio',$this->actaMatrimonio,
-            'rfc',$this->rfc,
-            'rfcDocumento',$this->rfcDoc,
-            'no_seguro_social',$this->no_social_social,
-            'altaImssDoc',$this->altaImssDoc,
-            'calle',$this->domicilio,
-            'colonia',$this->colonia,
-            'municipio',$this->municipio,
-            'estado',$this->estado,
-            'nacionalidad_id',$this->nacionalidad_id,
-            'codigo_postal',$this->codigo_postal,
-            'comprobanteDomicilio',$this->comprobranteDomicilio,
-            'paternidad_id',$this->paternidad_id,
-            'actasHijo',$this->actasHijo,
-            'cartasRecomendacion',$this->cartasRecomendacion,
-            'cartillaMilitar',$this->cartillaMilitar,
-            'cartaNoPenales',$this->cartaNoPenales,
-            'credencialIFE',$this->credencialIFE,
-            'buroCredito',$this->buroCredito,
-            'foto',$this->foto,       
-            'correo',$this->correo,
-            'tel_fijo',$this->tel_fijo,
-            'tel_movil',$this->tel_movil,
-            'cvOsolicitudEmpleo',$this->cvOsolicitudEmpleo,
-            'tallaPantalon',$this->tallaPantalon,
-            'tallaPlayera',$this->tallaPlayera,
-            'tallaZapatos',$this->tallazapatos,
-            'numExt',$this->numeroExterior,
-            'numInt',$this->numeroInterior,
-        ); */
 
         /* Asignando las carpetas donde se guardaran los docuemntos del registro */
+        $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'1.-CURP.pdf');
         
+        $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'2.-actaDeNacimiento.pdf');
+        $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'3.-constanciaDeEstudios.pdf');
+
+        if (empty( $this->actaMatrimonio) ) {
+            $this->actaMatrimonio = null;            
+        }else{
+            $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'4.-actaDeMatrimonio.pdf');
+        }
+
+        $this->rfcDoc = $this->rfcDoc->storeAs('public/nuevoIngreso/'.$this->curp,'5.-RFC.pdf');
+        $this->altaImssDoc = $this->altaImssDoc->storeAs('public/nuevoIngreso/'.$this->curp,'6.-altaDelImss.pdf');
+        $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'7.-comprobanteDeDomicilio.pdf');
+
+        if ($this->actasHijo == []) {
+            $rutaActaHijo = null;
+        }else{
+            for ($i=0; $i < count($this->actasHijo) ; $i++) { 
+                $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/actasHijos','8.-actaDeHijo'.$i.'.pdf');
+                $rutaActaHijo[] = $rutaActasHijos2;
+            }
+        }
+        
+        if ($this->cartasRecomendacion == '') {
+            $rutaRecomendacion = null;
+        }else{
+            for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
+                $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/cartasRecomendacion','9.-cartaDeRecomendacion'.$i.'.pdf');
+                $rutaRecomendacion[] = $rutaRecomendacion2; 
+            }
+        }
+        $this->cartillaMilitar = $this->cartillaMilitar->storeAs('public/nuevoIngreso/'.$this->curp,'10.-cartillaMilitar.pdf');
+        $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
+        $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
+        $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
+        $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
+        $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
+
 
         Nuevo_ingreso::create([
             'curp'=>$this->curp,
@@ -448,8 +443,8 @@ class NuevoIngreso extends Component
             'codigo_postal'=>$this->codigo_postal,
             'comprobanteDomicilio'=>$this->comprobranteDomicilio,
             'paternidad_id'=>$this->paternidad_id,
-            'actasHijo'=>$this->actasHijo,
-            'cartasRecomendacion'=>$this->cartasRecomendacion,
+            'actasHijo'=>json_encode($rutaActaHijo),
+            'cartasRecomendacion'=> json_encode($rutaRecomendacion),
             'cartillaMilitar'=>$this->cartillaMilitar,
             'cartaNoPenales'=>$this->cartaNoPenales,
             'credencialIFE'=>$this->credencialIFE,
@@ -461,7 +456,7 @@ class NuevoIngreso extends Component
             'cvOsolicitudEmpleo'=>$this->cvOsolicitudEmpleo,
             'tallaPantalon'=>$this->tallaPantalon,
             'tallaPlayera'=>$this->tallaPlayera,
-            'tallaZapatos'=>$this->tallazapatos,
+            'TallaZapatos'=>$this->tallazapatos,
             'numExt'=>$this->numeroExterior,
             'numInt'=>$this->numeroInterior,
         ]);

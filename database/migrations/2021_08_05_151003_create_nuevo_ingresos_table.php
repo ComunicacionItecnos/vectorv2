@@ -22,7 +22,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('ap_paterno')->length(50);
             $table->string('ap_materno')->length(50);
             $table->date('fecha_nacimiento');
-            $table->string('actaNacimiento')->length(50);
+            $table->string('actaNacimiento');
 
             $table->unsignedBigInteger('escolaridad_id');
             $table->foreign('escolaridad_id')->references('id')->on('escolaridad');
@@ -45,7 +45,10 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('colonia')->length(100);
             $table->string('municipio')->length(45);
             $table->string('estado')->length(45);
-            
+           
+            $table->unsignedBigInteger('pais');
+            $table->foreign('pais')->references('id')->on('nacionalidad');
+
             $table->unsignedBigInteger('nacionalidad_id');
             $table->foreign('nacionalidad_id')->references('id')->on('nacionalidad');
 
@@ -60,8 +63,8 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('buroCredito');
             $table->string('foto');
             $table->string('correo');
-            $table->integer('tel_fijo')->length(10);
-            $table->integer('tel_movil')->length(10);
+            $table->string('tel_fijo')->length(10);
+            $table->string('tel_movil')->length(10);
             $table->string('cvOsolicitudEmpleo');
             $table->string('tallaPantalon');
             $table->string('tallaPlayera');
