@@ -29,8 +29,8 @@
                                         @endif
                                     </div>
 
-                                    @if ((auth()->user()->role_id == 1) | (auth()->user()->role_id == 2) |
-                                    (auth()->user()->role_id == 3))
+                                    @if ((auth()->user()->role_id == 1) | (auth()->user()->role_id == 3) |
+                                    (auth()->user()->role_id == 6))
                                     <div class="grid sm:grid-rows-2 grid-cols-1 sm:gap-2 mx-auto w-36 sm:w-38">
                                         @if ($bandera == true)
                                         <div class="sm:row-start-1 sm:row-span-1 sm:col-start-1 sm:col-span-1">
@@ -63,24 +63,8 @@
                                             @enderror
                                         </div>
                                         @endif
-
-
                                     </div>
                                     @else
-
-                                    <div class="grid grid-rows-1 grid-cols-2 gap-2">
-
-                                        <button wire:click="downloadImage" type="button"
-                                            class="flex flex-col col-span-2 items-center px-4 py-2 mt-1 tracking-wide text-green-800 uppercase bg-white border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-500 hover:text-white">
-                                            <svg class="w-8 h-8" fill="currentColor" xmlns="http://www.w3.org/2000/svg"
-                                                viewBox="0 0 20 20">
-                                                <path
-                                                    d="m17.601 10.707c-.483-.604-1.1-.996-1.852-1.175.237-.358.356-.757.356-1.197 0-.613-.217-1.136-.65-1.57-.434-.434-.957-.65-1.57-.65-.549 0-1.029.179-1.439.538-.341-.833-.886-1.5-1.635-2.003-.749-.503-1.574-.755-2.476-.755-1.226 0-2.272.434-3.139 1.301-.867.867-1.301 1.914-1.301 3.139 0 .075.006 .199.017 .373-.682.318-1.226.795-1.63 1.431-.405.636-.607 1.33-.607 2.081 0 1.07.38 1.984 1.14 2.745.76 .76 1.675 1.141 2.745 1.141h9.436c.919 0 1.704-.325 2.354-.976.65-.65.976-1.435.976-2.355 0-.775-.242-1.464-.724-2.068zm-4.913.334-3.044 3.044c-.052.052-.118.078-.199.078-.081 0-.147-.026-.199-.078l-3.053-3.053c-.052-.052-.078-.118-.078-.199 0-.075.027-.14.082-.195.055-.055.12-.082.195-.082h1.943v-3.053c0-.075.027-.14.082-.195.055-.055.12-.082.195-.082h1.665c.075 0 .14.027 .195.082 .055.055 .082.12 .082.195v3.053h1.943c.081 0 .147.026 .199.078 .052.052 .078.118 .078.199 0 .07-.029.139-.086.208z" />
-                                            </svg>
-                                        </button>
-
-                                    </div>
-
                                     @endif
 
                                 </div>
