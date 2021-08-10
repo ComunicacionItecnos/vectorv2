@@ -10,6 +10,7 @@ use App\Http\Livewire\Insignias;
 use App\Http\Livewire\InsigniaUN;
 use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 use App\Http\Livewire\UtilesEscolares;
+use App\Http\Livewire\NuevoIngreso;
 
 /*
 |--------------------------------------------------------------------------
@@ -109,3 +110,5 @@ Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);
 Route::get('/colaborador/{no_colaborador}', ComprobarColaborador::class);
 
 Route::get('/utiles-escolares/{no_colaborador}',UtilesEscolares::class);
+
+Route::get('/nuevo-ingreso',NuevoIngreso::class);

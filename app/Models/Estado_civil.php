@@ -26,4 +26,9 @@ class Estado_civil extends Model
     public function actualizar_colaboradors(){
         return $this->hasMany('App\Models\Actualizar_colaborador');
     }
+    
+    public function nuevo_ingreso(){
+        return $this->hasMany('App\Models\Nuevo_ingreso');
+    }
+
 }
