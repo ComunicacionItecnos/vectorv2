@@ -16,11 +16,8 @@ class CreateContactosEmergenciaNuevosTable extends Migration
         Schema::create('contactos_emergencia_nuevos', function (Blueprint $table) {
             $table->id();
         
-            $table->string('id_nuevoIngreso');
-            $table->foreign('id_nuevoIngreso')
-                    ->references('id')->on('nuevo_ingreso')
-                    ->onDelete('cascade')
-                    ->onUpdate('cascade');
+            $table->unsignedBigInteger('id_nuevoIngreso');
+            $table->foreign('id_nuevoIngreso')->references('id')->on('nuevo_ingresos');
 
             $table->string('nombre',60);
             $table->string('parentesco',45);

@@ -75,16 +75,6 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('tallaZapatos');
             $table->integer('numExt')->nullable();
             $table->integer('numInt')->nullable();
-
-            /* contacto de emergencia */
-            $table->string('nombreEmergencia1');
-            $table->string('telEmergencia1')->length(10);
-            $table->string('correoEmergencia1')->nullable();
-
-            $table->string('nombreEmergencia2');
-            $table->string('telEmergencia2')->length(10);
-            $table->string('correoEmergencia2')->nullable();
-
             $table->timestamps();
         });
     }

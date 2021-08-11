@@ -64,12 +64,18 @@ class NuevoIngreso extends Component
     public $tallaPantalon;
     public $tallaPlayera;
     public $tallazapatos;
+
+    /* Contacto emergencia desde la tabla */
     public $nombreEmergencia1;
+    public $parentescoEmergencia1;
     public $telEmergencia1;
-    public $correoEmergencia1;
+    public $domicilioEmergencia1;
+
     public $nombreEmergencia2;
+    public $parentescoEmergencia2;
     public $telEmergencia2;
-    public $correoEmergencia2;
+    public $domicilioEmergencia2;
+
     public $curpValida;
 
     public $totalSteps = 11;
@@ -355,34 +361,43 @@ class NuevoIngreso extends Component
             $this->validate(
                 [
                     'nombreEmergencia1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                    'parentescoEmergencia1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'telEmergencia1'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
-                    'correoEmergencia1'=>'required|regex:/\S+@\S+\.\S+/',
+                    'domicilioEmergencia1'=>'required',
+
                     'nombreEmergencia2'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                    'parentescoEmergencia2'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'telEmergencia2'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
-                    'correoEmergencia2'=>'required|regex:/\S+@\S+\.\S+/',
+                    'domicilioEmergencia2'=>'required',
+
                 ],
                 [
                     'nombreEmergencia1.required'=>'Este campo no puede permanecer vacío',
                     'nombreEmergencia1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
                     
+                    'parentescoEmergencia1.required'=>'Este campo no puede permanecer vacío',
+                    'parentescoEmergencia1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
                     'telEmergencia1.required'=>'Este campo no puede permanecer vacío',
                     'telEmergencia1.regex'=>'Solo puede contener números',
                     'telEmergencia1.min'=>'Debe contener minimo 10 números',
                     'telEmergencia1.max'=>'Debe contener maximo 10 números',
 
-                    'correoEmergencia1.required'=>'Este campo no puede permanecer vacío',
-                    'correoEmergencia1.regex'=>'No es un email valido',
+                    'domicilioEmergencia1.required'=>'Este campo no puede permanecer vacío',
 
                     'nombreEmergencia2.required'=>'Este campo no puede permanecer vacío',
                     'nombreEmergencia2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
                     
+                    'parentescoEmergencia2.required'=>'Este campo no puede permanecer vacío',
+                    'parentescoEmergencia2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
                     'telEmergencia2.required'=>'Este campo no puede permanecer vacío',
                     'telEmergencia2.regex'=>'Solo puede contener números',
                     'telEmergencia2.min'=>'Debe contener minimo 10 números',
                     'telEmergencia2.max'=>'Debe contener maximo 10 números',
 
-                    'correoEmergencia2.required'=>'Este campo no puede permanecer vacío',
-                    'correoEmergencia2.regex'=>'No es un email valido',
+                    'domicilioEmergencia2.required'=>'Este campo no puede permanecer vacío',
+
                 ],
                 
             );
@@ -544,13 +559,7 @@ class NuevoIngreso extends Component
             'tallaPlayera'=>$this->tallaPlayera,
             'TallaZapatos'=>$this->tallazapatos,
             'numExt'=>$this->numeroExterior,
-            'numInt'=>$this->numeroInterior,
-            'nombreEmergencia1' =>$this->nombreEmergencia1,
-            'telEmergencia1' =>$this->telEmergencia1,
-            'correoEmergencia1'=>$this->correoEmergencia1,
-            'nombreEmergencia2' =>$this->nombreEmergencia2,
-            'telEmergencia2' =>$this->telEmergencia2,
-            'correoEmergencia2'=>$this->correoEmergencia2,
+            'numInt'=>$this->numeroInterior
         ]);
 
         $this->flash('success', 'Tu información se a registrado con éxito', [

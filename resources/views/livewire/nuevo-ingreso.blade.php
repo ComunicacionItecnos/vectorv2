@@ -1037,8 +1037,9 @@
                                             Contacto de emergencia 1
                                         </p>
 
-                                        <div class="sm:grid row-start-1 grid-cols-2 gap-2">
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                        <div class="sm:grid row-start-1 grid-cols-1 gap-2">
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label class="block text-base font-medium text-gray-700" for="nombreEmergencia1">
                                                     <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Nombre completo
@@ -1052,16 +1053,32 @@
                                                     </p>
                                                 @enderror
                                             </div>
+
                                         </div>
 
-                                        <div class="sm:grid row-start-1 grid-cols-3 gap-2">
+                                        <div class="sm:grid row-start-1 grid-cols-2 gap-2">
 
-                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
-                                                <label class="block text-base font-medium text-gray-700"
-                                                    for="telEmergencia1"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
-                                                    Telefono</label>
-                                                <input type="tel" wire:model="telEmergencia1" name="telEmergencia1" id="telEmergencia1"
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700" for="parentescoEmergencia1">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Parentesco
+                                                </label>
+                                                <input type="text" wire:model="parentescoEmergencia1" name="parentescoEmergencia1" id="parentescoEmergencia1"
+                                                    value="{{ old('parentescoEmergencia1') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('parentescoEmergencia1')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-4">
+                                                <label class="block text-base font-medium text-gray-700" for="telEmergencia1">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Telefono     
+                                                </label>
+                                                <input type="email" wire:model="telEmergencia1" name="telEmergencia1" id="telEmergencia1"
                                                     value="{{ old('telEmergencia1') }}"
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                 @error('telEmergencia1')
@@ -1071,14 +1088,20 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-2">
-                                                <label class="block text-base font-medium text-gray-700"
-                                                    for="correoEmergencia1">Correo
-                                                    electronico</label>
-                                                <input type="email" wire:model="correoEmergencia1" name="correoEmergencia1" id="correoEmergencia1"
-                                                    value="{{ old('correoEmergencia1') }}"
-                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                                @error('correoEmergencia1')
+                                        </div>
+
+                                        <div class="sm:grid row-start-1 grid-cols-4 gap-2">
+
+                                            <div class="mb-2 sm:m-0 col-span-4 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700" for="domicilioEmergencia1">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Domicilio
+                                                </label>
+                                                <textarea type="tel" wire:model="domicilioEmergencia1" name="domicilioEmergencia1" id="domicilioEmergencia1" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" 
+                                                    cols="2" rows="2">
+                                                    {{ old('domicilioEmergencia1') }}
+                                                </textarea>
+                                                @error('domicilioEmergencia1')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
                                                     </p>
@@ -1088,12 +1111,14 @@
                                         </div>
 
                                         <br>
+                                        
                                         <p>
                                             Contacto de emergencia 2
                                         </p>
 
-                                        <div class="sm:grid row-start-1 grid-cols-2 gap-2">
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                        <div class="sm:grid row-start-1 grid-cols-1 gap-2">
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label class="block text-base font-medium text-gray-700" for="nombreEmergencia2">
                                                     <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Nombre completo
@@ -1107,16 +1132,32 @@
                                                     </p>
                                                 @enderror
                                             </div>
+
                                         </div>
 
-                                        <div class="sm:grid row-start-1 grid-cols-3 gap-2">
+                                        <div class="sm:grid row-start-1 grid-cols-2 gap-2">
 
-                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
-                                                <label class="block text-base font-medium text-gray-700"
-                                                    for="telEmergencia2"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
-                                                    Telefono</label>
-                                                <input type="tel" wire:model="telEmergencia2" name="telEmergencia2" id="telEmergencia2"
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700" for="parentescoEmergencia2">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Parentesco
+                                                </label>
+                                                <input type="text" wire:model="parentescoEmergencia2" name="parentescoEmergencia2" id="parentescoEmergencia2"
+                                                    value="{{ old('parentescoEmergencia2') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('parentescoEmergencia2')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-4">
+                                                <label class="block text-base font-medium text-gray-700" for="telEmergencia2">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Telefono     
+                                                </label>
+                                                <input type="email" wire:model="telEmergencia2" name="telEmergencia2" id="telEmergencia2"
                                                     value="{{ old('telEmergencia2') }}"
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                 @error('telEmergencia2')
@@ -1126,14 +1167,20 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-2">
-                                                <label class="block text-base font-medium text-gray-700" for="correoEmergencia2">
-                                                    Correo electronico
+                                        </div>
+
+                                        <div class="sm:grid row-start-1 grid-cols-4 gap-2">
+
+                                            <div class="mb-2 sm:m-0 col-span-4 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700" for="domicilioEmergencia2">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Domicilio
                                                 </label>
-                                                <input type="email" wire:model="correoEmergencia2" name="correoEmergencia2" id="correoEmergencia2"
-                                                    value="{{ old('correoEmergencia2') }}"
-                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                                @error('correoEmergencia2')
+                                                <textarea type="tel" wire:model="domicilioEmergencia2" name="domicilioEmergencia2" id="domicilioEmergencia2" class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base" 
+                                                    cols="2" rows="2">
+                                                    {{ old('domicilioEmergencia2') }}
+                                                </textarea>
+                                                @error('domicilioEmergencia2')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
                                                     </p>
