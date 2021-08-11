@@ -640,7 +640,7 @@
                                                 <option></option>
                                                 <option value="Chica">Chica</option>
                                                 <option value="Mediana">Mediana</option>
-                                                <option value="Grandre">Grandre</option>
+                                                <option value="Grande">Grande</option>
                                                 <option value="Extra grande">Extra grande</option>
                                             </select>
                                             @error('tallaPlayera')
