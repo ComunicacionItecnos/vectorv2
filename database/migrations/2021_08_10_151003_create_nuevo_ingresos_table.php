@@ -59,7 +59,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('codigo_postal')->length(10);
             $table->string('comprobanteDomicilio');
             $table->boolean('paternidad_id');
-            $table->string('actasHijo')->nullable();
+            $table->longText('actasHijo')->nullable();
             $table->longText('cartasRecomendacion')->nullable();
             $table->string('cartillaMilitar')->nullable();
             $table->string('cartaNoPenales');

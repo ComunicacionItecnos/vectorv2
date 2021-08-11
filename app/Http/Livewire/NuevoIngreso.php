@@ -2,14 +2,16 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Estado_civil;
-use App\Models\Estados;
+use App\Models\Contactos_emergencia_nuevo;
 use App\Models\Genero;
+use App\Models\Estados;
+use Livewire\Component;
 use App\Models\Municipio;
+use App\Models\Estado_civil;
 use App\Models\Nacionalidad;
 use App\Models\Nuevo_ingreso;
-use Livewire\Component;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\DB;
 
 class NuevoIngreso extends Component
 {
@@ -471,96 +473,119 @@ class NuevoIngreso extends Component
             );
         }
 
-        /* Asignando las carpetas donde se guardaran los docuemntos del registro */
-        $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'1.-CURP.pdf');
-        $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'2.-actaDeNacimiento.pdf');
-        $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'3.-constanciaDeEstudios.pdf');
+        DB::transaction(function () {
 
-        if (empty( $this->actaMatrimonio) ) {
-            $this->actaMatrimonio = null;            
-        }else{
-            $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'4.-actaDeMatrimonio.pdf');
-        }
+            /* Asignando las carpetas donde se guardaran los docuemntos del registro */
+            $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'1.-CURP.pdf');
+            $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'2.-actaDeNacimiento.pdf');
+            $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'3.-constanciaDeEstudios.pdf');
 
-        $this->rfcDoc = $this->rfcDoc->storeAs('public/nuevoIngreso/'.$this->curp,'5.-RFC.pdf');
-        $this->altaImssDoc = $this->altaImssDoc->storeAs('public/nuevoIngreso/'.$this->curp,'6.-altaDelImss.pdf');
-        $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'7.-comprobanteDeDomicilio.pdf');
-
-        if ($this->actasHijo == []) {
-            $rutaActaHijo = null;
-        }else{
-            for ($i=0; $i < count($this->actasHijo) ; $i++) { 
-                $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/8.-actasHijos','actaDeHijo'.$i.'.pdf');
-                $rutaActaHijo[] = $rutaActasHijos2;
+            if (empty( $this->actaMatrimonio) ) {
+                $this->actaMatrimonio = null;            
+            }else{
+                $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'4.-actaDeMatrimonio.pdf');
             }
-        }
-        
-        if ($this->cartasRecomendacion == '') {
-            $rutaRecomendacion = null;
-        }else{
-            for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
-                $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/9.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
-                $rutaRecomendacion[] = $rutaRecomendacion2; 
+
+            $this->rfcDoc = $this->rfcDoc->storeAs('public/nuevoIngreso/'.$this->curp,'5.-RFC.pdf');
+            $this->altaImssDoc = $this->altaImssDoc->storeAs('public/nuevoIngreso/'.$this->curp,'6.-altaDelImss.pdf');
+            $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'7.-comprobanteDeDomicilio.pdf');
+
+            if ($this->actasHijo == []) {
+                $rutaActaHijo = null;
+            }else{
+                for ($i=0; $i < count($this->actasHijo) ; $i++) { 
+                    $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/8.-actasHijos','actaDeHijo'.$i.'.pdf');
+                    $rutaActaHijo[] = $rutaActasHijos2;
+                }
             }
-        }
+            
+            if ($this->cartasRecomendacion == '') {
+                $rutaRecomendacion = null;
+            }else{
+                for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
+                    $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/9.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
+                    $rutaRecomendacion[] = $rutaRecomendacion2; 
+                }
+            }
 
-        if ($this->cartillaMilitar != '') {
-            $this->cartillaMilitar = $this->cartillaMilitar->storeAs('public/nuevoIngreso/'.$this->curp,'10.-cartillaMilitar.pdf');
-        } else {
-            $this->cartillaMilitar = null;
-        }
+            if ($this->cartillaMilitar != '') {
+                $this->cartillaMilitar = $this->cartillaMilitar->storeAs('public/nuevoIngreso/'.$this->curp,'10.-cartillaMilitar.pdf');
+            } else {
+                $this->cartillaMilitar = null;
+            }
+            
+            $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
+            $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
+            $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
+            $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
+            $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
+
+            $nuevo_ingreso = Nuevo_ingreso::create([
+                'curp'=>strtoupper($this->curp),
+                'curpDocumento'=>$this->curpDoc,
+                'nombre_1'=>$this->nombre_1,
+                'nombre_2'=>$this->nombre_2,
+                'ap_paterno'=>$this->ap_paterno,
+                'ap_materno'=>$this->ap_materno,
+                'fecha_nacimiento'=>$this->fecha_nacimiento,
+                'actaNacimiento'=>$this->actaNacimiento,
+                'escolaridad_id'=>$this->escolaridad_id,
+                'constanciaEstudios'=>$this->constanciaEstudios,
+                'especialidadEstudios'=>$this->especialidadEstudios,
+                'genero_id'=>$this->genero_id,
+                'estado_civil_id'=>$this->estado_civil_id,
+                'actaMatrimonio'=>$this->actaMatrimonio,
+                'rfc'=>strtoupper($this->rfc),
+                'rfcDocumento'=>$this->rfcDoc,
+                'no_seguro_social'=>$this->no_social_social,
+                'altaImssDoc'=>$this->altaImssDoc,
+                'calle'=>$this->domicilio,
+                'colonia'=>$this->colonia,
+                'municipio_id'=>$this->municipio,
+                'estado_id'=>$this->estado,
+                'pais'=>$this->pais[0]->id,
+                'nacionalidad_id'=>$this->nacionalidad_id,
+                'codigo_postal'=>$this->codigo_postal,
+                'comprobanteDomicilio'=>$this->comprobranteDomicilio,
+                'paternidad_id'=>$this->paternidad_id,
+                'actasHijo'=>json_encode($rutaActaHijo),
+                'cartasRecomendacion'=> json_encode($rutaRecomendacion),
+                'cartillaMilitar'=>$this->cartillaMilitar,
+                'cartaNoPenales'=>$this->cartaNoPenales,
+                'credencialIFE'=>$this->credencialIFE,
+                'buroCredito'=>$this->buroCredito,
+                'foto'=>$this->foto,       
+                'correo'=>$this->correo,
+                'tel_fijo'=>$this->tel_fijo,
+                'tel_movil'=>$this->tel_movil,
+                'cvOsolicitudEmpleo'=>$this->cvOsolicitudEmpleo,
+                'tallaPantalon'=>$this->tallaPantalon,
+                'tallaPlayera'=>$this->tallaPlayera,
+                'TallaZapatos'=>$this->tallazapatos,
+                'numExt'=>$this->numeroExterior,
+                'numInt'=>$this->numeroInterior
+            ]);
+
+            DB::table('contactos_emergencia_nuevos')->insert([
+                [
+                    'id_nuevoIngreso'=>$nuevo_ingreso->id,
+                    'nombre'=>$this->nombreEmergencia1,
+                    'parentesco'=>$this->parentescoEmergencia1,
+                    'telefono'=>$this->telEmergencia1,
+                    'domicilio'=>$this->domicilioEmergencia1
+                ],
+                [
+                    'id_nuevoIngreso'=>$nuevo_ingreso->id,
+                    'nombre'=>$this->nombreEmergencia2,
+                    'parentesco'=>$this->parentescoEmergencia2,
+                    'telefono'=>$this->telEmergencia2,
+                    'domicilio'=>$this->domicilioEmergencia2
+                ],
+            ]);
+
+        });
+
         
-        $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
-        $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
-        $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
-        $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
-        $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
-
-        Nuevo_ingreso::create([
-            'curp'=>strtoupper($this->curp),
-            'curpDocumento'=>$this->curpDoc,
-            'nombre_1'=>$this->nombre_1,
-            'nombre_2'=>$this->nombre_2,
-            'ap_paterno'=>$this->ap_paterno,
-            'ap_materno'=>$this->ap_materno,
-            'fecha_nacimiento'=>$this->fecha_nacimiento,
-            'actaNacimiento'=>$this->actaNacimiento,
-            'escolaridad_id'=>$this->escolaridad_id,
-            'constanciaEstudios'=>$this->constanciaEstudios,
-            'especialidadEstudios'=>$this->especialidadEstudios,
-            'genero_id'=>$this->genero_id,
-            'estado_civil_id'=>$this->estado_civil_id,
-            'actaMatrimonio'=>$this->actaMatrimonio,
-            'rfc'=>strtoupper($this->rfc),
-            'rfcDocumento'=>$this->rfcDoc,
-            'no_seguro_social'=>$this->no_social_social,
-            'altaImssDoc'=>$this->altaImssDoc,
-            'calle'=>$this->domicilio,
-            'colonia'=>$this->colonia,
-            'municipio_id'=>$this->municipio,
-            'estado_id'=>$this->estado,
-            'pais'=>$this->pais[0]->id,
-            'nacionalidad_id'=>$this->nacionalidad_id,
-            'codigo_postal'=>$this->codigo_postal,
-            'comprobanteDomicilio'=>$this->comprobranteDomicilio,
-            'paternidad_id'=>$this->paternidad_id,
-            'actasHijo'=>json_encode($rutaActaHijo),
-            'cartasRecomendacion'=> json_encode($rutaRecomendacion),
-            'cartillaMilitar'=>$this->cartillaMilitar,
-            'cartaNoPenales'=>$this->cartaNoPenales,
-            'credencialIFE'=>$this->credencialIFE,
-            'buroCredito'=>$this->buroCredito,
-            'foto'=>$this->foto,       
-            'correo'=>$this->correo,
-            'tel_fijo'=>$this->tel_fijo,
-            'tel_movil'=>$this->tel_movil,
-            'cvOsolicitudEmpleo'=>$this->cvOsolicitudEmpleo,
-            'tallaPantalon'=>$this->tallaPantalon,
-            'tallaPlayera'=>$this->tallaPlayera,
-            'TallaZapatos'=>$this->tallazapatos,
-            'numExt'=>$this->numeroExterior,
-            'numInt'=>$this->numeroInterior
-        ]);
 
         $this->flash('success', 'Tu información se a registrado con éxito', [
             'position' =>  'top-end',

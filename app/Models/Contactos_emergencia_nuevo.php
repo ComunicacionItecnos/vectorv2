@@ -14,7 +14,7 @@ class Contactos_emergencia_nuevo extends Model
         'nombre',
         'parentesco',
         'telefono',
-        'domicilio'
+        'domicilio',
     ];
 
     //* Relacion muchos a uno
