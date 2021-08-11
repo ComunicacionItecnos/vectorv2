@@ -356,10 +356,10 @@ class NuevoIngreso extends Component
                 [
                     'nombreEmergencia1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'telEmergencia1'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
-                    'correoEmergencia1'=>'required|regex:/\S+@\S+\.\S+/',
+                    
                     'nombreEmergencia2'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'telEmergencia2'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
-                    'correoEmergencia2'=>'required|regex:/\S+@\S+\.\S+/',
+                    
                 ],
                 [
                     'nombreEmergencia1.required'=>'Este campo no puede permanecer vacío',
@@ -370,9 +370,6 @@ class NuevoIngreso extends Component
                     'telEmergencia1.min'=>'Debe contener minimo 10 números',
                     'telEmergencia1.max'=>'Debe contener maximo 10 números',
 
-                    'correoEmergencia1.required'=>'Este campo no puede permanecer vacío',
-                    'correoEmergencia1.regex'=>'No es un email valido',
-
                     'nombreEmergencia2.required'=>'Este campo no puede permanecer vacío',
                     'nombreEmergencia2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
                     
@@ -381,8 +378,6 @@ class NuevoIngreso extends Component
                     'telEmergencia2.min'=>'Debe contener minimo 10 números',
                     'telEmergencia2.max'=>'Debe contener maximo 10 números',
 
-                    'correoEmergencia2.required'=>'Este campo no puede permanecer vacío',
-                    'correoEmergencia2.regex'=>'No es un email valido',
                 ],
                 
             );
