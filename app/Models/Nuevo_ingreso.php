@@ -55,6 +55,12 @@ class Nuevo_ingreso extends Model
         'TallaZapatos',
         'numExt',
         'numInt',
+        'nombreEmergencia1',
+        'telEmergencia1',
+        'correoEmergencia1',
+        'nombreEmergencia2',
+        'telEmergencia2',
+        'correoEmergencia2',
     ];
 
     public function escolaridad(){
