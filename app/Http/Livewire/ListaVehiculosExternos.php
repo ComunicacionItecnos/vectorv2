@@ -156,7 +156,7 @@ class ListaVehiculosExternos extends Component
             ]);
             return redirect()->route('lista-vehiculos-externos');
         } catch (Exception $ex) {
-            $this->alert('error', 'Error al registrar', [
+            $this->alert('error', 'Error al eliminar el registro', [
                 'position' =>  'top-end',
                 'timer' =>  3000,
                 'toast' =>  true,
