@@ -85,4 +85,9 @@ class Nuevo_ingreso extends Model
         return $this->hasMany('App\Models\Municipio');
     }
 
+    public function contactos_emergencia_nuevo()
+    {
+        return $this->hasMany('App\Models\Contactos_emergencia_nuevo');
+    }
+
 }
