@@ -28,7 +28,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->foreign('escolaridad_id')->references('id')->on('escolaridad');
 
             $table->string('constanciaEstudios');
-            $table->string('especialidadEstudios');
+            $table->string('especialidadEstudios')->nullable();
 
             $table->unsignedBigInteger('genero_id');
             $table->foreign('genero_id')->references('id')->on('genero');
@@ -61,7 +61,7 @@ class CreateNuevoIngresosTable extends Migration
             $table->boolean('paternidad_id');
             $table->string('actasHijo')->nullable();
             $table->longText('cartasRecomendacion')->nullable();
-            $table->string('cartillaMilitar');
+            $table->string('cartillaMilitar')->nullable();
             $table->string('cartaNoPenales');
             $table->string('credencialIFE');
             $table->string('buroCredito');
@@ -75,6 +75,16 @@ class CreateNuevoIngresosTable extends Migration
             $table->string('tallaZapatos');
             $table->integer('numExt')->nullable();
             $table->integer('numInt')->nullable();
+
+            /* contacto de emergencia */
+            $table->string('nombreEmergencia1');
+            $table->string('telEmergencia1')->length(10);
+            $table->string('correoEmergencia1')->nullable();
+
+            $table->string('nombreEmergencia2');
+            $table->string('telEmergencia2')->length(10);
+            $table->string('correoEmergencia2')->nullable();
+
             $table->timestamps();
         });
     }

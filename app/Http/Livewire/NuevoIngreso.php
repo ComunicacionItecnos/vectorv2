@@ -10,7 +10,6 @@ use App\Models\Nacionalidad;
 use App\Models\Nuevo_ingreso;
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
 
 class NuevoIngreso extends Component
 {
@@ -24,14 +23,11 @@ class NuevoIngreso extends Component
     public $ap_materno;
     public $fecha_nacimiento;
     public $actaNacimiento;
-
     public $escolaridad_id;
     public $constanciaEstudios;
     public $especialidadEstudios;
-    
     public $genero;
     public $genero_id;
-    
     public $estado_civil;
     public $estado_civil_id;
     public $actaMatrimonio;
@@ -40,24 +36,17 @@ class NuevoIngreso extends Component
     public $no_social_social;
     public $altaImssDoc;
     public $domicilio;
-    
     public $numeroExterior;
     public $numeroInterior;
-    
     public $colonia;
-    
     public $municipio_id;
     public $municipio;
-
     public $estado;
     public $estado_id;
-    
     public $pais_id;
     public $pais;
-
     public $nacionalidad;
     public $nacionalidad_id;
-    
     public $codigo_postal;
     public $comprobranteDomicilio;
     public $paternidad_id;
@@ -72,13 +61,18 @@ class NuevoIngreso extends Component
     public $tel_fijo;
     public $tel_movil;
     public $cvOsolicitudEmpleo;
-
     public $tallaPantalon;
     public $tallaPlayera;
     public $tallazapatos;
-
+    public $nombreEmergencia1;
+    public $telEmergencia1;
+    public $correoEmergencia1;
+    public $nombreEmergencia2;
+    public $telEmergencia2;
+    public $correoEmergencia2;
     public $curpValida;
-    public $totalSteps = 10;
+
+    public $totalSteps = 11;
     public $currentStep = 1;
 
     /* Abrir modal */
@@ -182,7 +176,7 @@ class NuevoIngreso extends Component
         if ($this->currentStep === 1) {
             $this->validate(
                 ['curp' =>'required|regex:/^([a-zA-Z0-9]+)$/'],
-                ['curp.required'=>'La CURP no puede permanecer vacia','curp.regex'=>'Solo puede contener letras y numeros']
+                ['curp.required'=>'La CURP no puede permanecer vacia','curp.regex'=>'Solo puede contener letras y números']
             );
         }elseif($this->currentStep === 3){
 
@@ -279,6 +273,8 @@ class NuevoIngreso extends Component
                     'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
                     
                     'no_social_social.required'=>'Este campo no puede permanecer vacío',
+                    'no_social_social.regex'=>'Solo puede contener números',
+
                     'altaImssDoc.required'=>'Debes seleccionar un archivo',
                     'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
 
@@ -335,16 +331,20 @@ class NuevoIngreso extends Component
         }elseif($this->currentStep === 8){
             $this->validate(
                 [
-                    'tel_fijo'=>'required|regex:/^([0-9]+)$/',
-                    'tel_movil'=>'required|regex:/^([0-9]+)$/',
+                    'tel_fijo'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
+                    'tel_movil'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
                     'correo'=>'required|regex:/\S+@\S+\.\S+/',
                 ],
                 [
                     'tel_fijo.required'=>'Este campo no puede permanecer vacío',
                     'tel_fijo.regex'=>'Solo puede contener números',
+                    'tel_fijo.min'=>'Debe contener minimo 10 números',
+                    'tel_fijo.max'=>'Debe contener maximo 10 números',
                     
                     'tel_movil.required'=>'Este campo no puede permanecer vacío',
                     'tel_movil.regex'=>'Solo puede contener números',
+                    'tel_movil.min'=>'Debe contener minimo 10 números',
+                    'tel_movil.max'=>'Debe contener maximo 10 números',
 
                     'correo.required'=>'Este campo no puede permanecer vacío',
                     'correo.regex'=>'No es un email valido',
@@ -352,6 +352,41 @@ class NuevoIngreso extends Component
                 
             );
         }elseif($this->currentStep === 9){
+            $this->validate(
+                [
+                    'nombreEmergencia1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                    'telEmergencia1'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
+                    'correoEmergencia1'=>'required|regex:/\S+@\S+\.\S+/',
+                    'nombreEmergencia2'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                    'telEmergencia2'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
+                    'correoEmergencia2'=>'required|regex:/\S+@\S+\.\S+/',
+                ],
+                [
+                    'nombreEmergencia1.required'=>'Este campo no puede permanecer vacío',
+                    'nombreEmergencia1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+                    
+                    'telEmergencia1.required'=>'Este campo no puede permanecer vacío',
+                    'telEmergencia1.regex'=>'Solo puede contener números',
+                    'telEmergencia1.min'=>'Debe contener minimo 10 números',
+                    'telEmergencia1.max'=>'Debe contener maximo 10 números',
+
+                    'correoEmergencia1.required'=>'Este campo no puede permanecer vacío',
+                    'correoEmergencia1.regex'=>'No es un email valido',
+
+                    'nombreEmergencia2.required'=>'Este campo no puede permanecer vacío',
+                    'nombreEmergencia2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+                    
+                    'telEmergencia2.required'=>'Este campo no puede permanecer vacío',
+                    'telEmergencia2.regex'=>'Solo puede contener números',
+                    'telEmergencia2.min'=>'Debe contener minimo 10 números',
+                    'telEmergencia2.max'=>'Debe contener maximo 10 números',
+
+                    'correoEmergencia2.required'=>'Este campo no puede permanecer vacío',
+                    'correoEmergencia2.regex'=>'No es un email valido',
+                ],
+                
+            );
+        }elseif($this->currentStep === 10){
 
             if ($this->escolaridad_id >=5) {
                 $this->validate(
@@ -394,7 +429,7 @@ class NuevoIngreso extends Component
     {
         $this->resetErrorBag();
 
-        if($this->currentStep === 10){
+        if($this->currentStep === 11){
             $this->validate(
                 [
                     'cvOsolicitudEmpleo'=>'required|mimes:pdf|max:5120',
@@ -416,14 +451,13 @@ class NuevoIngreso extends Component
                     'buroCredito.mimes'=>'Debe ser un archivo con formato: pdf',
 
                     'foto.required'=>'Debes seleccionar una imagen',
-                    'foto.mimes'=>'Debe ser un archivo con formato: png,jpg o jpge'
+                    'foto.mimes'=>'Debe ser un archivo con formato: png, jpg o jpge'
                 ],
             );
         }
 
         /* Asignando las carpetas donde se guardaran los docuemntos del registro */
         $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'1.-CURP.pdf');
-        
         $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'2.-actaDeNacimiento.pdf');
         $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'3.-constanciaDeEstudios.pdf');
 
@@ -454,13 +488,18 @@ class NuevoIngreso extends Component
                 $rutaRecomendacion[] = $rutaRecomendacion2; 
             }
         }
-        $this->cartillaMilitar = $this->cartillaMilitar->storeAs('public/nuevoIngreso/'.$this->curp,'10.-cartillaMilitar.pdf');
+
+        if ($this->cartillaMilitar != '') {
+            $this->cartillaMilitar = $this->cartillaMilitar->storeAs('public/nuevoIngreso/'.$this->curp,'10.-cartillaMilitar.pdf');
+        } else {
+            $this->cartillaMilitar = null;
+        }
+        
         $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
         $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
         $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
         $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
         $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
-
 
         Nuevo_ingreso::create([
             'curp'=>strtoupper($this->curp),
@@ -506,9 +545,15 @@ class NuevoIngreso extends Component
             'TallaZapatos'=>$this->tallazapatos,
             'numExt'=>$this->numeroExterior,
             'numInt'=>$this->numeroInterior,
+            'nombreEmergencia1' =>$this->nombreEmergencia1,
+            'telEmergencia1' =>$this->telEmergencia1,
+            'correoEmergencia1'=>$this->correoEmergencia1,
+            'nombreEmergencia2' =>$this->nombreEmergencia2,
+            'telEmergencia2' =>$this->telEmergencia2,
+            'correoEmergencia2'=>$this->correoEmergencia2,
         ]);
 
-        $this->flash('success', 'El colaborador se ha actualizado con éxito', [
+        $this->flash('success', 'Tu información se a registrado con éxito', [
             'position' =>  'top-end',
             'timer' =>  3500,
             'toast' =>  true,

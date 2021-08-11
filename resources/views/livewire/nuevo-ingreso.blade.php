@@ -3,7 +3,33 @@
         <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div class="max-w-md mx-auto">
                 <div>
-                    <img src="https://www.aguilaammo.com.mx/assets/images/aguila-ammunition.svg" class="h-7 sm:h-8" />
+                    @if ($currentStep == 1)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-1-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 2)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-2-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 3 || $currentStep == 4 || $currentStep == 5)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-3-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 6)
+                    <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-4-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 7)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-5-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 8)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-6-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 9)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-8-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 10)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-7-01.png') }}" class="object-center" />
+                    @endif
+                    @if ($currentStep == 11)
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-9-01.png') }}" class="object-center" />
+                    @endif
                 </div>
 
                 <div class="divide-y divide-gray-200">
@@ -17,7 +43,7 @@
                                     <input type="text" name="curp" id="curp" wire:model="curp"
                                         class="uppercase block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                     @error('curp')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        <p class="mt-1 mb-1 text-base text-red-600 italic">
                                             {{ $message }}
                                         </p>
                                     @enderror
@@ -47,9 +73,6 @@
 
                         {{-- Step 2 --}}
                         @if ($currentStep == 2)
-                            <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                <p>Instrucciones</p>
-                            </div>
                             <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                 <p class="block text-base font-medium text-gray-700">
@@ -71,10 +94,6 @@
 
                                 {{-- Step 3 --}}
                                 @if ($currentStep == 3)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Datos personales - parte 1</p>
-                                    </div>
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
@@ -217,10 +236,6 @@
 
                                 {{-- Step 4 --}}
                                 @if ($currentStep == 4)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Datos personales - parte 2</p>
-                                    </div>
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
@@ -399,10 +414,6 @@
 
                                 {{-- Step 5 --}}
                                 @if ($currentStep == 5)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Datos personales - parte 3</p>
-                                    </div>
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
@@ -544,10 +555,6 @@
 
                                 {{-- Step 6 --}}
                                 @if ($currentStep == 6)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Datos personales - parte 4</p>
-                                    </div>
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
@@ -773,10 +780,6 @@
 
                                 {{-- Step 7 --}}
                                 @if ($currentStep == 7)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Domicilio particular</p>
-                                    </div>
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
@@ -971,10 +974,6 @@
 
                                 {{-- Step 8 --}}
                                 @if ($currentStep == 8)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Datos de contacto</p>
-                                    </div>
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
@@ -1033,11 +1032,121 @@
 
                                 {{-- Step 9 --}}
                                 @if ($currentStep == 9)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Escolaridad</p>
+                                    <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+                                        <p>
+                                            Contacto de emergencia 1
+                                        </p>
+
+                                        <div class="sm:grid row-start-1 grid-cols-2 gap-2">
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700" for="nombreEmergencia1">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Nombre completo
+                                                </label>
+                                                <input type="text" wire:model="nombreEmergencia1" name="nombreEmergencia1" id="nombreEmergencia1"
+                                                    value="{{ old('nombreEmergencia1') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('nombreEmergencia1')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="sm:grid row-start-1 grid-cols-3 gap-2">
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700"
+                                                    for="telEmergencia1"><span
+                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Telefono</label>
+                                                <input type="tel" wire:model="telEmergencia1" name="telEmergencia1" id="telEmergencia1"
+                                                    value="{{ old('telEmergencia1') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('telEmergencia1')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-2">
+                                                <label class="block text-base font-medium text-gray-700"
+                                                    for="correoEmergencia1">Correo
+                                                    electronico</label>
+                                                <input type="email" wire:model="correoEmergencia1" name="correoEmergencia1" id="correoEmergencia1"
+                                                    value="{{ old('correoEmergencia1') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('correoEmergencia1')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+
+                                        <br>
+                                        <p>
+                                            Contacto de emergencia 2
+                                        </p>
+
+                                        <div class="sm:grid row-start-1 grid-cols-2 gap-2">
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700" for="nombreEmergencia2">
+                                                    <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Nombre completo
+                                                </label>
+                                                <input type="text" wire:model="nombreEmergencia2" name="nombreEmergencia2" id="nombreEmergencia2"
+                                                    value="{{ old('nombreEmergencia2') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('nombreEmergencia2')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="sm:grid row-start-1 grid-cols-3 gap-2">
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label class="block text-base font-medium text-gray-700"
+                                                    for="telEmergencia2"><span
+                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    Telefono</label>
+                                                <input type="tel" wire:model="telEmergencia2" name="telEmergencia2" id="telEmergencia2"
+                                                    value="{{ old('telEmergencia2') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('telEmergencia2')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-2 col-start-2">
+                                                <label class="block text-base font-medium text-gray-700" for="correoEmergencia2">
+                                                    Correo electronico
+                                                </label>
+                                                <input type="email" wire:model="correoEmergencia2" name="correoEmergencia2" id="correoEmergencia2"
+                                                    value="{{ old('correoEmergencia2') }}"
+                                                    class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                @error('correoEmergencia2')
+                                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                                        {{ $message }}
+                                                    </p>
+                                                @enderror
+                                            </div>
+
+                                        </div>
 
                                     </div>
+                                @endif
+
+                                {{-- Step 10 --}}
+                                @if ($currentStep == 10)
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
@@ -1111,12 +1220,8 @@
                                     </div>
                                 @endif
 
-                                {{-- Step 10 --}}
-                                @if ($currentStep == 10)
-                                    <div
-                                        class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                                        <p>Anexos</p>
-                                    </div>
+                                {{-- Step 11 --}}
+                                @if ($currentStep == 11)
                                     <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
@@ -1295,7 +1400,7 @@
                                 <div class="h-16 p-8 grid grid-cols-3">
                                     @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5 ||
                                     $currentStep == 6 ||
-                                    $currentStep == 7 || $currentStep == 8 || $currentStep == 9 || $currentStep == 10)
+                                    $currentStep == 7 || $currentStep == 8 || $currentStep == 9 || $currentStep == 10 || $currentStep == 11)
                                         <div
                                             class="flex justify-start px-2 col-span-1 col-start-1 col-end-3 @if ($currentStep == 2) hidden @endif">
                                             <button type="button"
@@ -1306,7 +1411,7 @@
                                         </div>
     
     
-                                        <div class="flex justify-start px-2 col-end-7 col-span-2 @if ($currentStep == 10) hidden @endif">
+                                        <div class="flex justify-start px-2 col-end-7 col-span-2 @if ($currentStep == 11) hidden @endif">
                                             <button type="button"
                                                 class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
                                                 wire:click="increaseStep()">
@@ -1317,7 +1422,7 @@
     
     
                                     <div
-                                        class="flex justify-end px-2 col-end-7 col-span-2 @if ($currentStep != 10) hidden @endif">
+                                        class="flex justify-end px-2 col-end-7 col-span-2 @if ($currentStep != 11) hidden @endif">
                                         <button type="submit"
                                             class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                             Finalizar
