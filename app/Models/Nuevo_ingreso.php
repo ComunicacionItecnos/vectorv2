@@ -55,12 +55,6 @@ class Nuevo_ingreso extends Model
         'TallaZapatos',
         'numExt',
         'numInt',
-        'nombreEmergencia1',
-        'telEmergencia1',
-        'correoEmergencia1',
-        'nombreEmergencia2',
-        'telEmergencia2',
-        'correoEmergencia2',
     ];
 
     public function escolaridad(){
@@ -85,6 +79,11 @@ class Nuevo_ingreso extends Model
 
     public function municipio(){
         return $this->hasMany('App\Models\Municipio');
+    }
+
+    public function contactos_emergencia_nuevo()
+    {
+        return $this->hasMany('App\Models\Contactos_emergencia_nuevo');
     }
 
 }
