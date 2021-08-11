@@ -1293,36 +1293,37 @@
 
 
                                 <div class="h-16 p-8 grid grid-cols-3">
-
-                                    @if ($currentStep == 3 || $currentStep == 4 || $currentStep == 5 || $currentStep == 6 || $currentStep == 7 || $currentStep == 8 || $currentStep == 9 || $currentStep == 10)
-                                        <div class="flex justify-start px-2 col-span-1 col-start-1 col-end-3">
-                                            <button type="button"
-                                                class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
-                                                wire:click="decreaseStep()">
-                                                Regresar
-                                            </button>
-                                        </div>
+                                    @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5 ||
+                                    $currentStep == 6 ||
+                                    $currentStep == 7 || $currentStep == 8 || $currentStep == 9 || $currentStep == 10)
+                                    <div
+                                        class="flex justify-start px-2 col-span-1 col-start-1 col-end-3 @if ($currentStep == 2) hidden @endif">
+                                        <button type="button"
+                                            class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
+                                            wire:click="decreaseStep()">
+                                            Regresar
+                                        </button>
+                                    </div>
+    
+    
+                                    <div class="flex justify-start px-2 col-end-7 col-span-2 @if ($currentStep == 10) hidden @endif">
+                                        <button type="button"
+                                            class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
+                                            wire:click="increaseStep()">
+                                            Siguiente
+                                        </button>
+                                    </div>
                                     @endif
-
-                                    @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5 || $currentStep == 6 || $currentStep == 7 || $currentStep == 8 || $currentStep == 9)
-                                        <div class="flex justify-start px-2 col-end-7 col-span-2">
-                                            <button type="button"
-                                                class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
-                                                wire:click="increaseStep()">
-                                                Siguiente
-                                            </button>
-                                        </div>
+    
+    
+                                    <div
+                                        class="flex justify-end px-2 col-end-7 col-span-2 @if ($currentStep != 10) hidden @endif">
+                                        <button type="submit"
+                                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                            Finalizar
+                                        </button>
+                                    </div>
                                     @endif
-
-                                    @if ($currentStep == 10)
-                                        <div class="flex justify-end px-2 col-end-7 col-span-2">
-                                            <button type="submit"
-                                                class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                                Finalizar
-                                            </button>
-                                        </div>
-                                    @endif
-
                                 </div>
 
                             </form>
