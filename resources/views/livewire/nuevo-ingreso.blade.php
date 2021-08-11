@@ -516,8 +516,7 @@
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 
                                                 <label for="cartillaMilitar"
-                                                    class="block text-base font-medium text-gray-700"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="block text-base font-medium text-gray-700">
                                                     Cartilla militar
                                                 </label>
                                                 <label
