@@ -9,6 +9,8 @@ class Nuevo_ingreso extends Model
 {
     use HasFactory;
 
+    protected $table = 'nuevo_ingresos';
+
     protected $fillable =[
         'curp',
         'curpDocumento',
