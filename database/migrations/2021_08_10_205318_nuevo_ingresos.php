@@ -4,14 +4,14 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateNuevoIngresosTable extends Migration
+class NuevoIngresos extends Migration
 {
     /**
      * Run the migrations.
      *
      * @return void
      */
-    public function up() 
+    public function up()
     {
         Schema::create('nuevo_ingresos', function (Blueprint $table) {
             $table->id();
@@ -49,7 +49,7 @@ class CreateNuevoIngresosTable extends Migration
 
             $table->unsignedBigInteger('estado_id');
             $table->foreign('estado_id')->references('id')->on('estados');
-           
+
             $table->unsignedBigInteger('pais');
             $table->foreign('pais')->references('id')->on('nacionalidad');
 
