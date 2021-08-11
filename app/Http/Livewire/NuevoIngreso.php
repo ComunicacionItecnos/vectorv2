@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Contactos_emergencia_nuevo;
 use App\Models\Genero;
 use App\Models\Estados;
 use Livewire\Component;
