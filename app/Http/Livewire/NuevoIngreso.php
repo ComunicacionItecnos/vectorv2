@@ -263,59 +263,29 @@ class NuevoIngreso extends Component
                 
             );
         }elseif($this->currentStep === 5){
-            if ($this->genero_id == 1) {
-                $this->validate(
-                    [
-                        'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/',
-                        'rfcDoc'=>'required|mimes:pdf|max:5120',
-                        'no_social_social'=>'required|regex:/^([0-9]+)$/',
-                        'altaImssDoc'=>'required|mimes:pdf|max:5120',
-                        'credencialIFE'=>'required|mimes:pdf|max:5120',
-                        'cartillaMilitar'=>'required|mimes:pdf|max:5120'
-                    ],
-                    [
-                        'rfc.required'=>'Este campo no puede permanecer vacío',
-                        'rfc.regex'=>'Solo puede contener letras y numeros',
-    
-                        'rfcDoc.required'=>'Debes seleccionar un archivo',
-                        'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
-                        
-                        'no_social_social.required'=>'Este campo no puede permanecer vacío',
-                        'altaImssDoc.required'=>'Debes seleccionar un archivo',
-                        'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
-    
-                        'credencialIFE.required'=>'Debes seleccionar un archivo',
-                        'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf',
-    
-                        'cartillaMilitar.required'=>'Debes seleccionar un archivo',
-                        'cartillaMilitar.mimes'=>'Debe ser un archivo con formato: pdf'
-                    ],
-                );
-            }else{
-                $this->validate(
-                    [
-                        'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/',
-                        'rfcDoc'=>'required|mimes:pdf|max:5120',
-                        'no_social_social'=>'required|regex:/^([0-9]+)$/',
-                        'altaImssDoc'=>'required|mimes:pdf|max:5120',
-                        'credencialIFE'=>'required|mimes:pdf|max:5120'
-                    ],
-                    [
-                        'rfc.required'=>'Este campo no puede permanecer vacío',
-                        'rfc.regex'=>'Solo puede contener letras y numeros',
-    
-                        'rfcDoc.required'=>'Debes seleccionar un archivo',
-                        'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
-                        
-                        'no_social_social.required'=>'Este campo no puede permanecer vacío',
-                        'altaImssDoc.required'=>'Debes seleccionar un archivo',
-                        'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
-    
-                        'credencialIFE.required'=>'Debes seleccionar un archivo',
-                        'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf'
-                    ],
-                );
-            }
+            $this->validate(
+                [
+                    'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/',
+                    'rfcDoc'=>'required|mimes:pdf|max:5120',
+                    'no_social_social'=>'required|regex:/^([0-9]+)$/',
+                    'altaImssDoc'=>'required|mimes:pdf|max:5120',
+                    'credencialIFE'=>'required|mimes:pdf|max:5120'
+                ],
+                [
+                    'rfc.required'=>'Este campo no puede permanecer vacío',
+                    'rfc.regex'=>'Solo puede contener letras y numeros',
+
+                    'rfcDoc.required'=>'Debes seleccionar un archivo',
+                    'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
+                    
+                    'no_social_social.required'=>'Este campo no puede permanecer vacío',
+                    'altaImssDoc.required'=>'Debes seleccionar un archivo',
+                    'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
+
+                    'credencialIFE.required'=>'Debes seleccionar un archivo',
+                    'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf'
+                ],
+            );
             
         }elseif($this->currentStep === 6){
             $this->validate(
