@@ -12,6 +12,7 @@ use Livewire\WithPagination;
 use App\Models\Tipo_vehiculo;
 use App\Models\Estacionamiento;
 use App\Exports\VehiculosExport;
+use Exception;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -39,6 +40,7 @@ class ListaVehiculos extends Component
     public $ColaboradorRegistro, $colaboradores, $banderaRegistro = false;
 
     protected $rules = [
+        'ColaboradorRegistro' => 'required',
         'tipo_vehiculo' => 'required',
         'placa' => 'required',
         'marca' => 'required',
@@ -108,25 +110,62 @@ class ListaVehiculos extends Component
     public function export()
     {
         $this->fecha_actual = Carbon::now();
-        $this->lista = DB::table('colaborador_estacionamiento')->get();
-        return Excel::download(new VehiculosExport($this->lista), 'registro-vehiculos(' . $this->fecha_actual . ').xlsx');
+        $this->lista = DB::table('colaborador_estacionamiento')->select('id', 'no_colaborador', 'placa', 'marca', 'modelo', 'fecha_modelo', 'color', 'tipo_vehiculo', 'no_marbete')->get();
+        if (count($this->lista) == 0) {
+            $this->alert('info', 'No hay ningún colaborador registrado', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        } else {
+            return Excel::download(new VehiculosExport($this->lista), 'registro-vehiculos-externos(' . $this->fecha_actual . ').xlsx');
+        }
     }
 
     public function eliminar($id)
     {
-        $this->vehiculo_colaborador = Estacionamiento::find($id);
-        $this->vehiculo = Vehiculo::find($this->vehiculo_colaborador->vehiculo_id);
-        $this->marbete = Marbete::find($this->vehiculo_colaborador->marbete_id);
+        try {
+            $this->vehiculo_colaborador = Estacionamiento::find($id);
+            $this->vehiculo = Vehiculo::find($this->vehiculo_colaborador->vehiculo_id);
+            $this->marbete = Marbete::find($this->vehiculo_colaborador->marbete_id);
 
-        DB::transaction(function () {
-            Marbete::where('id', $this->vehiculo_colaborador->marbete_id)
-                ->update([
-                    'estado' => 1,
-                ]);
-            $this->vehiculo->delete();
-        });
+            DB::transaction(function () {
+                Marbete::where('id', $this->vehiculo_colaborador->marbete_id)
+                    ->update([
+                        'estado' => 1,
+                    ]);
+                $this->vehiculo->delete();
+            });
 
-        return redirect()->route('lista-vehiculos');
+            $this->flash('success', 'Se eliminó correctamente el registro', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+
+            return redirect()->route('lista-vehiculos');
+        } catch (Exception $ex) {
+            $this->alert('error', 'Error al eliminar el registro', [
+                'position' =>  'top-end',
+                'timer' =>  3000,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+        }
     }
 
     public function updatedColaboradorRegistro($no_col)
@@ -146,6 +185,7 @@ class ListaVehiculos extends Component
         $this->colaborador = $this->estacionamiento->colaborador_no_colaborador;
         $this->existe();
         $this->editbool = true;
+        $this->ColaboradorRegistro = $this->colaborador;
     }
     public function registrar()
     {
@@ -184,9 +224,58 @@ class ListaVehiculos extends Component
         $this->validate();
 
         if ($this->banderaExiste == true) {
-            $this->actualiza();
+            try {
+                $this->actualiza();
+                $this->flash('success', 'Se actualizó correctamente la información', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->route('lista-vehiculos-externos');
+            } catch (Exception $ex) {
+                $this->alert('error', 'Error al actualizar', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+            }
         } else {
-            $this->registra();
+            try {
+                $this->registra();
+
+                $this->flash('success', 'Se registró correctamente el colaborador', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->route('lista-vehiculos-externos');
+            } catch (Exception $ex) {
+                $this->alert('error', 'Error al registrar', [
+                    'position' =>  'top-end',
+                    'timer' =>  3000,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+            }
         }
     }
 
@@ -277,14 +366,15 @@ class ListaVehiculos extends Component
         if ($this->tipo_vehiculo == 1) {
             DB::transaction(function () {
                 $this->marbete = Marbete::where('tipo_vehiculo_id', '=', $this->tipo_vehiculo)
-                    ->where('numero', '>=', 46)
+                    ->whereBetween('numero', [46, 1299])
                     ->where('estado', '=', 1)
                     ->get();
             });
         } else {
             DB::transaction(function () {
                 $this->marbete = Marbete::where('tipo_vehiculo_id', '=', $this->tipo_vehiculo)
-                    ->where('estado', '=', 1)
+                    ->whereBetween('numero', [180, 200])    
+                ->where('estado', '=', 1)
                     ->get();
             });
         }
