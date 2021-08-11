@@ -36,14 +36,8 @@
                         <tr>
                             <th scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div class="flex justify-center text-center">
-                                    No. Colaborador
-                                </div>
-                            </th>
-                            <th scope="col"
-                                class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                                <div class="flex text-left">
-                                    Placa
+                                <div class="flex justify-start text-left">
+                                    Colaborador
                                 </div>
                             </th>
                             <th scope="col"
@@ -72,12 +66,25 @@
                         @foreach ($vehiculos as $vehiculo)
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 text-center">
-                                {{ $vehiculo->no_colaborador }}
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800">
-                                {{ $vehiculo->placa }}
+                                <div class="flex items-center">
+                                    <div class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
+                                        @if (file_exists(public_path('storage/' . $vehiculo->foto)))
+                                        <img class="w-20 rounded shadow h-24" src="{{ asset('storage') . '/' . $vehiculo->foto }}" alt="">
+                                        @else
+                                        <img class="w-20 rounded shadow h-24" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                        @endif
+                                    </div>
+                                    <div class="ml-4 whitespace-pre-line">
+                                        <div class="text-sm font-medium text-gray-900">
+                                            <span class="sm:hidden"> {{ $vehiculo->id }}</span>
+                                            <span class="sm:inline-block sm:-mt-6">{{ $vehiculo->nombre_1 }}
+                                                {{ $vehiculo->ap_paterno }}</span>
+                                        </div>
+                                    </div>
+                                </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                <p><a class="text-black">Placa:</a> {{ $vehiculo->placa }}</p>
                                 <p><a class="text-black">Marca:</a> {{ $vehiculo->marca }}</p>
                                 <p><a class="text-black">Modelo:</a> {{ $vehiculo->modelo }}</p>
                                 <p><a class="text-black">Año:</a> {{ $vehiculo->fecha_modelo }}</p>
