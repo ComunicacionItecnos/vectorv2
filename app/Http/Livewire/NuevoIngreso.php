@@ -152,7 +152,7 @@ class NuevoIngreso extends Component
             $this->currentStep++;
             $this->curpValida = false;
         }else{
-            session()->flash('message', 'La CURP ya se encuentra registrada');
+            session()->flash('message', 'Este CURP ya se encuentra registrado');
             return redirect()->to('/nuevo-ingreso');
         }
     }
@@ -183,7 +183,7 @@ class NuevoIngreso extends Component
         if ($this->currentStep === 1) {
             $this->validate(
                 ['curp' =>'required|regex:/^([a-zA-Z0-9]+)$/'],
-                ['curp.required'=>'La CURP no puede permanecer vacia','curp.regex'=>'Solo puede contener letras y números']
+                ['curp.required'=>'Este campo no puede permanecer vacío','curp.regex'=>'Solo puede contener letras y números']
             );
         }elseif($this->currentStep === 3){
 
