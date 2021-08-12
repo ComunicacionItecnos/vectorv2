@@ -227,8 +227,6 @@
                                                         {{ $message }}
                                                     </p>
                                                 @enderror
-
-
                                             </div>
                                         </div>
 
@@ -266,22 +264,34 @@
                                             </div>
 
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
-                                                
                                                 @if ($estado_civil_id == 2)
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="actaMatrimonio"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> Acta de matrimonio</label>
-                                                    <label
-                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                            viewBox="0 0 20 20" fill="currentColor">
-                                                            <path
-                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                        </svg>
-                                                        <input type='file' wire:model="actaMatrimonio" accept=".pdf"
-                                                            class="hidden" />
-                                                    </label>
+                                                    
+                                                    @if ($actaMatrimonio != '')
+                                                        <label
+                                                            class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                            </svg>
+                                                            <input type='file' wire:model="actaMatrimonio" accept=".pdf"
+                                                                class="hidden" />
+                                                        </label>
+                                                    @else
+                                                        <label
+                                                            class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                                viewBox="0 0 20 20" fill="currentColor">
+                                                                <path
+                                                                    d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                            </svg>
+                                                            <input type='file' wire:model="actaMatrimonio" accept=".pdf"
+                                                                class="hidden" />
+                                                        </label>
+                                                    @endif
+                                                        
                                                 @else
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="actaMatrimonio">Acta de matrimonio</label>
@@ -328,17 +338,30 @@
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="actasHijo">
                                                         <span class="mt-1 mb-1 text-base text-red-600 italic">+</span> Actas de los hijos</label>
-                                                    <label
-                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                    
+                                                    @if ($actasHijo != '')
+                                                        <label
+                                                            class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                            </svg>
+                                                            <input type='file' wire:model="actasHijo" accept=".pdf"
+                                                                class="hidden" multiple />
+                                                        </label>
+                                                    @else
+                                                        <label
+                                                            class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                             viewBox="0 0 20 20" fill="currentColor">
-                                                            <path
-                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                        </svg>
-                                                        <input type='file' wire:model="actasHijo" accept=".pdf"
-                                                            class="hidden" multiple />
-                                                    </label>
+                                                                <path
+                                                                    d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                                <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                            </svg>
+                                                            <input type='file' wire:model="actasHijo" accept=".pdf"
+                                                                class="hidden" multiple />
+                                                        </label>
+                                                    @endif
+                                                    
                                                 @else
                                                     <label class="block text-base font-medium text-gray-700"
                                                         for="actasHijo">Actas de los hijos</label>
@@ -354,6 +377,7 @@
                                                             class="hidden" disabled />
                                                     </label>
                                                 @endif
+
                                             </div>
 
                                         </div>
@@ -366,17 +390,28 @@
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> CURP
                                                     documento</label>
 
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="curpDoc" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                @if ($curpDoc != '')
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="curpDoc" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="curpDoc" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
                                                 @error('curpDoc')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -390,17 +425,28 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> Acta de
                                                     nacimiento</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="actaNacimiento" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                @if ($actaNacimiento)
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="actaNacimiento" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="actaNacimiento" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
                                                 @error('actaNacimiento')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -438,17 +484,30 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> RFC
                                                     documento</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="rfcDoc" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+
+                                                @if ($rfcDoc)
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="rfcDoc" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="rfcDoc" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('rfcDoc')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -480,17 +539,29 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> Alta
                                                     del IMSS documento</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="altaImssDoc" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                @if ($altaImssDoc)
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="altaImssDoc" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="altaImssDoc" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('altaImssDoc')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -507,17 +578,29 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Credencial IFE</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="credencialIFE" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                @if ($credencialIFE)
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="credencialIFE" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="credencialIFE" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('credencialIFE')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -531,17 +614,29 @@
                                                     class="block text-base font-medium text-gray-700">
                                                     Cartilla militar
                                                 </label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="cartillaMilitar" accept=".pdf"
+                                                @if ($cartillaMilitar != '')
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cartillaMilitar" accept=".pdf"
                                                         class="hidden" />
-                                                </label>
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cartillaMilitar" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('cartillaMilitar')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -800,7 +895,6 @@
                                                         {{ $message }}
                                                     </p>
                                                 @enderror
-
                                             </div>
 
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
@@ -876,8 +970,6 @@
 
                                         <div class="sm:grid row-start-1 grid-cols-4 gap-2">
 
-
-
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label class="block text-base font-medium text-gray-700"
                                                     for="numeroExterior">Núm Exterior</label>
@@ -925,8 +1017,6 @@
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
 
-
-
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label class="block text-base font-medium text-gray-700"
                                                     for="codigo_postal"><span
@@ -942,23 +1032,34 @@
                                                 @enderror
                                             </div>
 
-
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label for="comprobranteDomicilio"
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Comprobante de domicilio</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="comprobranteDomicilio" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                @if ($comprobranteDomicilio != '')
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="comprobranteDomicilio" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="comprobranteDomicilio" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('comprobranteDomicilio')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -966,9 +1067,7 @@
                                                 @enderror
                                             </div>
 
-
                                         </div>
-
 
                                     </div>
                                 @endif
@@ -1227,17 +1326,30 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Constancia de estudios</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="constanciaEstudios" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                
+                                                @if ($constanciaEstudios!= '')
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="constanciaEstudios" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="constanciaEstudios" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('constanciaEstudios')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -1265,7 +1377,6 @@
                                             </div>
                                         @endif
 
-
                                     </div>
                                 @endif
 
@@ -1280,17 +1391,30 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> Cv ó
                                                     solicitud de empleo</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="cvOsolicitudEmpleo" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                
+                                                @if ($cvOsolicitudEmpleo != '')
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cvOsolicitudEmpleo" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cvOsolicitudEmpleo" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>    
+                                                @endif
+                                                
                                                 @error('cvOsolicitudEmpleo')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -1303,17 +1427,30 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">+</span> Cartas
                                                     de recomendación</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="cartasRecomendacion" accept=".pdf"
-                                                        multiple class="hidden" />
-                                                </label>
+
+                                                @if ($cartasRecomendacion != '')
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cartasRecomendacion" accept=".pdf"
+                                                            multiple class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cartasRecomendacion" accept=".pdf"
+                                                            multiple class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('cartasRecomendacion')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -1330,17 +1467,30 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Antecedentes no penales</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="cartaNoPenales" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+                                                
+                                                @if ($cartaNoPenales != '')
+                                                   <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cartaNoPenales" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>  
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="cartaNoPenales" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('cartaNoPenales')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -1353,17 +1503,30 @@
                                                     class="block text-base font-medium text-gray-700"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> Buro de
                                                     credito</label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="buroCredito" accept=".pdf"
-                                                        class="hidden" />
-                                                </label>
+
+                                                @if ($buroCredito != '')
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="buroCredito" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @else
+                                                    <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="buroCredito" accept=".pdf"
+                                                            class="hidden" />
+                                                    </label>
+                                                @endif
+                                                
                                                 @error('buroCredito')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -1391,17 +1554,30 @@
                                                 <label for="foto" class="block text-base font-medium text-gray-700"><span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Fotografia
                                                 </label>
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                                        viewBox="0 0 20 20" fill="currentColor">
-                                                        <path
-                                                            d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
-                                                        <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
-                                                    </svg>
-                                                    <input type='file' wire:model="foto" accept="image/png,image/jpeg"
-                                                        class="hidden" />
-                                                </label>
+
+                                                @if ($foto != '')
+                                                   <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                                        </svg>
+                                                        <input type='file' wire:model="foto" accept="image/png,image/jpeg"
+                                                            class="hidden" />
+                                                    </label> 
+                                                @else
+                                                   <label
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                            viewBox="0 0 20 20" fill="currentColor">
+                                                            <path
+                                                                d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
+                                                            <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
+                                                        </svg>
+                                                        <input type='file' wire:model="foto" accept="image/png,image/jpeg"
+                                                            class="hidden" />
+                                                    </label> 
+                                                @endif
+                                                
                                                 @error('foto')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
@@ -1444,7 +1620,6 @@
                                     </x-jet-dialog-modal>
 
                                 @endif
-
 
                                 <div class="h-16 p-8 grid grid-cols-3">
                                     @if ($currentStep == 2 || $currentStep == 3 || $currentStep == 4 || $currentStep == 5 ||
