@@ -47,10 +47,21 @@
                                             {{ $message }}
                                         </p>
                                     @enderror
+
+                                    @if (session()->has('message'))
+                                        <div class="grid grid-cols-1">
+                                            <div class="flex justify-start px-2 col-span-1 col-start-1">
+                                                <p class="mt-1 mb-1 text-base text-red-600 italic">
+                                                    {{ session('message') }}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    @endif
+
                                 </div>
                             </div>
 
-                            <div class="grid grid-cols-1">
+                            <div class="grid grid-cols-3">
                                 <div class="flex justify-start px-2 col-span-1 col-start-2">
                                     <button type="button"
                                         class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-sm text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
@@ -59,16 +70,6 @@
                                     </button>
                                 </div>
                             </div>
-
-                            @if (session()->has('message'))
-                                <div class="grid grid-cols-1">
-                                    <div class="flex justify-start px-2 col-span-1 col-start-2">
-                                        <p class="mt-1 mb-1 text-md text-red-600 italic">
-                                            {{ session('message') }}
-                                        </p>
-                                    </div>
-                                </div>
-                            @endif
                         @endif
 
                         {{-- Step 2 --}}
