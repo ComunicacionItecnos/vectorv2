@@ -453,7 +453,7 @@ class NuevoIngreso extends Component
             $this->validate(
                 [
                     'cvOsolicitudEmpleo'=>'required|mimes:pdf|max:5120',
-                    'cartasRecomendacion'=>'required|array|min:1',
+                    // 'cartasRecomendacion'=>'required|array|min:1',
                     'cartaNoPenales'=>'required|mimes:pdf|max:5120',
                     'buroCredito'=>'required|mimes:pdf|max:5120',
                     'foto'=>'required|mimes:jpg,pjge,png|max:5120',
@@ -462,7 +462,7 @@ class NuevoIngreso extends Component
                     'cvOsolicitudEmpleo.required'=>'Debes seleccionar un archivo',
                     'cvOsolicitudEmpleo.mimes'=>'Debe ser un archivo con formato: pdf',
 
-                    'cartasRecomendacion.required'=>'Debes seleccionar uno ó más archivos',
+                    // 'cartasRecomendacion.required'=>'Debes seleccionar uno ó más archivos',
 
                     'cartaNoPenales.required'=>'Debes seleccionar un archivo',
                     'cartaNoPenales.mimes'=>'Debe ser un archivo con formato: pdf',
