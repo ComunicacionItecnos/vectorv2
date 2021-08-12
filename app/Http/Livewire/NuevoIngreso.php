@@ -477,7 +477,8 @@ class NuevoIngreso extends Component
         }
 
         DB::transaction(function () {
-
+            $this->curp = strtoupper( $this->curp );
+            
             /* Asignando las carpetas donde se guardaran los docuemntos del registro */
             $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'1.-CURP.pdf');
             $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'2.-actaDeNacimiento.pdf');
@@ -524,7 +525,7 @@ class NuevoIngreso extends Component
             $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
 
             $nuevo_ingreso = Nuevo_ingreso::create([
-                'curp'=>strtoupper($this->curp),
+                'curp'=>$this->curp,
                 'curpDocumento'=>$this->curpDoc,
                 'nombre_1'=>$this->nombre_1,
                 'nombre_2'=>$this->nombre_2,
@@ -590,7 +591,7 @@ class NuevoIngreso extends Component
 
         
 
-        $this->flash('success', 'Tu información se a registrado con éxito', [
+        $this->flash('success', 'Tu información se ha registrado con éxito', [
             'position' =>  'top-end',
             'timer' =>  3500,
             'toast' =>  true,
