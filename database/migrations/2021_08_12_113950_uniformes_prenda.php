@@ -13,7 +13,17 @@ class UniformesPrenda extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('uniformes_prenda', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('uniformes_proveedor_id')
+                ->constrained('uniformes_proveedor')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->string('prenda', 50);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +33,6 @@ class UniformesPrenda extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('uniformes_prenda');
     }
 }

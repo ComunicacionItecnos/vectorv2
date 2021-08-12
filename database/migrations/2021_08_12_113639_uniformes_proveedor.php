@@ -13,7 +13,11 @@ class UniformesProveedor extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('uniformes_proveedor', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_proveedor', 50);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UniformesProveedor extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('uniformes_proveedor');
     }
 }

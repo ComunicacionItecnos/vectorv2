@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class Uniformes_paquete extends Model
 {
     use HasFactory;
+
+    protected $table = 'uniformes_paquete';
+
+    protected $fillable = [
+        'nombre_paquete',
+    ];
+
+    // * Relacion uno a muchos
+    public function uniformes_paquete_prenda()
+    {
+        return $this->hasMany('App\Models\Uniformes_paquete_prenda');
+    }
 }

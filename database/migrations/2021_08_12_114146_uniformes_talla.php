@@ -13,7 +13,16 @@ class UniformesTalla extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('uniformes_talla', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('uniformes_prenda_id') 
+                ->constrained('uniformes_prenda')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->string('talla', 5);
+        });
     }
 
     /**
@@ -23,6 +32,6 @@ class UniformesTalla extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('uniformes_talla');
     }
 }

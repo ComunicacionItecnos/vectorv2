@@ -13,7 +13,20 @@ class UniformesPaquetePrenda extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('uniformes_paquete_prenda', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('uniformes_paquete_id')
+                ->constrained('uniformes_paquete')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('uniformes_prenda_id')
+                ->constrained('uniformes_prenda')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +36,6 @@ class UniformesPaquetePrenda extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('uniformes_paquete_prenda');
     }
 }

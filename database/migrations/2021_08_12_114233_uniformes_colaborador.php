@@ -13,7 +13,32 @@ class UniformesColaborador extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('uniformes_colaborador', function (Blueprint $table) {
+            $table->id();
+
+            $table->string('colaborador_no_colaborador', 6);
+            $table->foreign('colaborador_no_colaborador')
+                ->references('no_colaborador')->on('colaborador')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('uniformes_paquete_id')
+                ->constrained('uniformes_paquete')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('uniformes_prenda_id')
+                ->constrained('uniformes_prenda')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreignId('uniformes_talla_id')
+                ->constrained('uniformes_talla')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +48,6 @@ class UniformesColaborador extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('uniformes_colaborador');
     }
 }

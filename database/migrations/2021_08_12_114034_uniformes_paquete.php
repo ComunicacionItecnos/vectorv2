@@ -13,7 +13,11 @@ class UniformesPaquete extends Migration
      */
     public function up()
     {
-        //
+        Schema::create('uniformes_paquete', function (Blueprint $table) {
+            $table->id();
+            $table->string('nombre_paquete', 50);
+            $table->timestamps();
+        });
     }
 
     /**
@@ -23,6 +27,6 @@ class UniformesPaquete extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('uniformes_paquete');
     }
 }
