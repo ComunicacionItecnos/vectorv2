@@ -480,25 +480,25 @@ class NuevoIngreso extends Component
             $this->curp = strtoupper( $this->curp );
             
             /* Asignando las carpetas donde se guardaran los docuemntos del registro */
-            $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'1.-CURP.pdf');
-            $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'2.-actaDeNacimiento.pdf');
-            $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'3.-constanciaDeEstudios.pdf');
+            $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'01.-CURP.pdf');
+            $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'02.-actaDeNacimiento.pdf');
+            $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'03.-constanciaDeEstudios.pdf');
 
             if (empty( $this->actaMatrimonio) ) {
                 $this->actaMatrimonio = null;            
             }else{
-                $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'4.-actaDeMatrimonio.pdf');
+                $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'04.-actaDeMatrimonio.pdf');
             }
 
-            $this->rfcDoc = $this->rfcDoc->storeAs('public/nuevoIngreso/'.$this->curp,'5.-RFC.pdf');
-            $this->altaImssDoc = $this->altaImssDoc->storeAs('public/nuevoIngreso/'.$this->curp,'6.-altaDelImss.pdf');
-            $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'7.-comprobanteDeDomicilio.pdf');
+            $this->rfcDoc = $this->rfcDoc->storeAs('public/nuevoIngreso/'.$this->curp,'05.-RFC.pdf');
+            $this->altaImssDoc = $this->altaImssDoc->storeAs('public/nuevoIngreso/'.$this->curp,'06.-altaDelImss.pdf');
+            $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'07.-comprobanteDeDomicilio.pdf');
 
             if ($this->actasHijo == []) {
                 $rutaActaHijo = null;
             }else{
                 for ($i=0; $i < count($this->actasHijo) ; $i++) { 
-                    $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/8.-actasHijos','actaDeHijo'.$i.'.pdf');
+                    $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/08.-actasHijos','actaDeHijo'.$i.'.pdf');
                     $rutaActaHijo[] = $rutaActasHijos2;
                 }
             }
@@ -507,7 +507,7 @@ class NuevoIngreso extends Component
                 $rutaRecomendacion = null;
             }else{
                 for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
-                    $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/9.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
+                    $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/09.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
                     $rutaRecomendacion[] = $rutaRecomendacion2; 
                 }
             }
