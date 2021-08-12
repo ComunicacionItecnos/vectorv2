@@ -130,6 +130,11 @@ class NuevoIngreso extends Component
     }
 
     public function updated(){
+        
+        /* Input files resetar a null cuando cambien a vacios u otra opcion que no sea valida */
+        $this->actaMatrimonio = ($this->estado_civil_id != 2) ? $this->actaMatrimonio = '' : $this->actaMatrimonio;
+        $this->actasHijo = ($this->paternidad_id != 1) ? $this->actasHijo = [] :  $this->actasHijo;
+
         $this->estado = $this->estado;
         $this->municipio_id = Municipio::where('estado_id',$this->estado)->get();
     }
@@ -144,7 +149,6 @@ class NuevoIngreso extends Component
         /* Buscar curp para seguir con el proceso */
         $curpvalidar = Nuevo_ingreso::where('curp', $this->curp)->get();
         
-       
         if ( sizeof($curpvalidar) === 0 ) {
             $this->resetErrorBag();
             $this->validateData();
@@ -498,7 +502,7 @@ class NuevoIngreso extends Component
                 }
             }
             
-            if ($this->cartasRecomendacion == '') {
+            if ($this->cartasRecomendacion == []) {
                 $rutaRecomendacion = null;
             }else{
                 for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
