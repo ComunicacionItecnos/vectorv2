@@ -339,7 +339,7 @@
                                                         for="actasHijo">
                                                         <span class="mt-1 mb-1 text-base text-red-600 italic">+</span> Actas de los hijos</label>
                                                     
-                                                    @if ($actasHijo != '')
+                                                    @if ($actasHijo != [])
                                                         <label
                                                             class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
