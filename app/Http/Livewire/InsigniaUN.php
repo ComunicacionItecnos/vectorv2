@@ -104,7 +104,7 @@ class InsigniaUN extends Component
 
                 return view('livewire.insignia-u-n', [
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
-                        ->where('fecha_asignacion', 'BETWEEN', $this->yearActual . $this->tInicial, 'and', $this->yearActual . $this->tFinal)
+                        ->whereBetween('fecha_asignacion', [$this->yearActual . $this->tInicial, $this->yearActual . $this->tFinal])
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
