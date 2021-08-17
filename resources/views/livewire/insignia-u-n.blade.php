@@ -136,8 +136,8 @@
                                 @enderror
                             </div>
                             <div class="px-4 py-3 text-right sm:px-6 flex justify-center sm:justify-end">
-                                <button wire:click="asignacion" type="submit"
-                                    class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                                <button @if($switchButton == true) disabled @else @endif wire:click="asignacion" type="submit"
+                                    class="@if($switchButton == true) cursor-not-allowed @else @endif disabled:opacity-20 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                     Asignar
                                 </button>
                             </div>

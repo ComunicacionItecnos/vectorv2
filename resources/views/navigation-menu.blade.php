@@ -65,7 +65,11 @@ $nav_links8 = [
 
 ];
 $nav_links9 = [
-
+[
+'name' => 'Listado Colaboradores',
+'route' => route('dashboard'),
+'active' => request()->routeIs('dashboard'),
+],
 [
 'name' => 'Listado Supervisores',
 'route' => route('tablaSupervisor'),
