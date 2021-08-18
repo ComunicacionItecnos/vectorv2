@@ -45,7 +45,7 @@ class CorreoRUNS extends Command
     {
         $this->fecha_actual = Carbon::now()->format('Y-m-d');
         $this->reporte = DB::table('v_insignias_un')->select('id', 'no_colaborador_premiado', 'nombre_completo_premiado', 'nombre_insignia', 'fecha_asignacion', 'colaborador_asignador', 'nombre_completo_asignador', 'mensaje')->get();
-        Excel::store(new ReporteIUNExport($this->reporte), 'reportes/insignias_un/reporte_insignias_UN(' . $this->fecha_actual . ').xlsx','public');
+        Excel::store(new ReporteIUNExport($this->reporte), 'public/reportes/insignias_un/reporte_insignias_UN(' . $this->fecha_actual . ').xlsx','public', \Maatwebsite\Excel\Excel::XLSX);
 
         Mail::to('comunicacion@itecnos.com.mx')
         ->CC([

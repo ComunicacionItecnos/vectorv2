@@ -33,6 +33,12 @@ class NotificaReporteUN extends Mailable
     {
         $this->fecha_actual = Carbon::now()->format('Y-m-d');
         return $this->from('comunicacion@factoraguila.com')->subject('Nuevo reporte de Insignias UN')->view('emails.notifica-reporte-insigniaun')
-            ->attachFromStorage('/public/reportes/insignias_un', 'reporte_insignias_UN('.$this->fecha_actual.').xlsx');
+            ->attach(
+                storage_path('app/public/reportes/insignias_un/' . 'reporte_insignias_UN(' . $this->fecha_actual . ').xlsx'),
+                [
+                    'as' => 'reporte_insignias_UN(' . $this->fecha_actual . ').xlsx',
+                    'mime' => 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+                ]
+            );
     }
 }
