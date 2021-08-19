@@ -1464,8 +1464,7 @@
 
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label for="cartaNoPenales"
-                                                    class="block text-base font-medium text-gray-700"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">+</span>
+                                                    class="block text-base font-medium text-gray-700">
                                                     Antecedentes no penales</label>
                                                 
                                                 @if ($cartaNoPenales != '')
@@ -1500,8 +1499,7 @@
 
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label for="buroCredito"
-                                                    class="block text-base font-medium text-gray-700"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">+</span> Buro de
+                                                    class="block text-base font-medium text-gray-700">Buro de
                                                     credito</label>
 
                                                 @if ($buroCredito != '')
