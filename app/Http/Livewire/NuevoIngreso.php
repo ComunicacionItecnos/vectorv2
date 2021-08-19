@@ -34,7 +34,7 @@ class NuevoIngreso extends Component
     public $actaMatrimonio;
     public $rfc;
     public $rfcDoc;
-    public $no_social_social;
+    public $no_seguro_social;
     public $altaImssDoc;
     public $domicilio;
     public $numeroExterior;
@@ -185,7 +185,12 @@ class NuevoIngreso extends Component
         if ($this->currentStep === 1) {
             $this->validate(
                 ['curp' =>'required|regex:/^([a-zA-Z0-9]+)$/|min:18|max:18'],
-                ['curp.required'=>'Este campo no puede permanecer vacío','curp.regex'=>'Solo puede contener letras y números','curp.min'=>'Debe contener mínimo 18 caracteres','curp.max'=>'Debe contener maximo 18 caracteres']
+                [
+                    'curp.required'=>'Este campo no puede permanecer vacío',
+                    'curp.regex'=>'Solo puede contener letras y números',
+                    'curp.min'=>'Debe contener mínimo 18 caracteres',
+                    'curp.max'=>'Debe contener maximo 18 caracteres'
+                ]
             );
         }elseif($this->currentStep === 3){
 
@@ -268,9 +273,9 @@ class NuevoIngreso extends Component
         }elseif($this->currentStep === 5){
             $this->validate(
                 [
-                    'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/|min:12|max:13',
+                    'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/|min:12|max:13|unique:nuevo_ingresos,rfc',
                     'rfcDoc'=>'required|mimes:pdf|max:5120',
-                    'no_social_social'=>'required|regex:/^([0-9]+)$/|min:11|max:11',
+                    'no_seguro_social'=>'required|regex:/^([0-9]+)$/|min:11|max:11|unique:nuevo_ingresos,no_seguro_social',
                     'altaImssDoc'=>'required|mimes:pdf|max:5120',
                     'credencialIFE'=>'required|mimes:pdf|max:5120'
                 ],
@@ -279,14 +284,16 @@ class NuevoIngreso extends Component
                     'rfc.regex'=>'Solo puede contener letras y numeros',
                     'rfc.min'=>'Debe contener mínimo 13 caracteres',
                     'rfc.max'=>'Debe contener maximo 13 caracteres',
+                    'rfc.unique'=>'Este RFC ya se encuentra registrado',
 
                     'rfcDoc.required'=>'Debes seleccionar un archivo',
                     'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
                     
-                    'no_social_social.required'=>'Este campo no puede permanecer vacío',
-                    'no_social_social.regex'=>'Solo puede contener números',
-                    'no_social_social.min'=>'Debe contener mínimo 11 caracteres',
-                    'no_social_social.max'=>'Debe contener maximo 11 caracteres',
+                    'no_seguro_social.required'=>'Este campo no puede permanecer vacío',
+                    'no_seguro_social.regex'=>'Solo puede contener números',
+                    'no_seguro_social.min'=>'Debe contener mínimo 11 caracteres',
+                    'no_seguro_social.max'=>'Debe contener maximo 11 caracteres',
+                    'no_seguro_social.unique'=>'El número de seguro social ya se encuentra registrado',
 
                     'altaImssDoc.required'=>'Debes seleccionar un archivo',
                     'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
@@ -556,7 +563,7 @@ class NuevoIngreso extends Component
                 'actaMatrimonio'=>$this->actaMatrimonio,
                 'rfc'=>strtoupper($this->rfc),
                 'rfcDocumento'=>$this->rfcDoc,
-                'no_seguro_social'=>$this->no_social_social,
+                'no_seguro_social'=>$this->no_seguro_social,
                 'altaImssDoc'=>$this->altaImssDoc,
                 'calle'=>$this->domicilio,
                 'colonia'=>$this->colonia,

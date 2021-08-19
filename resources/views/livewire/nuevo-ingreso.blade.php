@@ -521,13 +521,13 @@
 
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label class="block text-base font-medium text-gray-700"
-                                                    for="no_social_social"><span
+                                                    for="no_seguro_social"><span
                                                         class="mt-1 mb-1 text-base text-red-600 italic">*</span> Número
                                                     de seguro social</label>
-                                                <input type="text" wire:model="no_social_social" name="no_social_social"
-                                                    id="no_social_social" value="{{ old('no_social_social') }}"
+                                                <input type="text" wire:model="no_seguro_social" name="no_seguro_social"
+                                                    id="no_seguro_social" value="{{ old('no_seguro_social') }}"
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                                @error('no_social_social')
+                                                @error('no_seguro_social')
                                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                                         {{ $message }}
                                                     </p>
