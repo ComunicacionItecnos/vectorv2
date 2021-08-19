@@ -4,31 +4,31 @@
             <div class="max-w-md mx-auto">
                 <div>
                     @if ($currentStep == 1)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-1-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-1-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 2)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-2-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-2-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 3 || $currentStep == 4 || $currentStep == 5)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-3-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-3-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 6)
-                    <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-4-01.png') }}" class="object-center" />
+                    <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-4-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 7)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-5-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-5-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 8)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-6-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-6-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 9)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-8-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-8-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 10)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-7-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-7-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                     @if ($currentStep == 11)
-                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-9-01.png') }}" class="object-center" />
+                        <img src="{{ asset('images/encabezadosNuevoIngreso/Banner_Screen-9-01.png') }}" class="object-center" loading="lazy"/>
                     @endif
                 </div>
 
@@ -1158,7 +1158,7 @@
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
 
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label class="block text-base font-medium text-gray-700" for="parentescoEmergencia1">
                                                     <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Parentesco
@@ -1174,12 +1174,12 @@
                                             </div>
                                             {{-- camboios --}}
 
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-4">
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label class="block text-base font-medium text-gray-700" for="telEmergencia1">
                                                     <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Telefono     
                                                 </label>
-                                                <input type="email" wire:model="telEmergencia1" name="telEmergencia1" id="telEmergencia1"
+                                                <input type="tel" wire:model="telEmergencia1" name="telEmergencia1" id="telEmergencia1"
                                                     value="{{ old('telEmergencia1') }}"
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                 @error('telEmergencia1')
@@ -1238,7 +1238,7 @@
 
                                         <div class="sm:grid row-start-1 grid-cols-2 gap-2">
 
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-1">
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label class="block text-base font-medium text-gray-700" for="parentescoEmergencia2">
                                                     <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Parentesco
@@ -1253,12 +1253,12 @@
                                                 @enderror
                                             </div>
 
-                                            <div class="mb-2 sm:m-0 col-span-2 col-start-4">
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label class="block text-base font-medium text-gray-700" for="telEmergencia2">
                                                     <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
                                                     Telefono     
                                                 </label>
-                                                <input type="email" wire:model="telEmergencia2" name="telEmergencia2" id="telEmergencia2"
+                                                <input type="tel" wire:model="telEmergencia2" name="telEmergencia2" id="telEmergencia2"
                                                     value="{{ old('telEmergencia2') }}"
                                                     class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                                 @error('telEmergencia2')
@@ -1465,7 +1465,7 @@
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-1">
                                                 <label for="cartaNoPenales"
                                                     class="block text-base font-medium text-gray-700"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                        class="mt-1 mb-1 text-base text-red-600 italic">+</span>
                                                     Antecedentes no penales</label>
                                                 
                                                 @if ($cartaNoPenales != '')
@@ -1501,7 +1501,7 @@
                                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                                 <label for="buroCredito"
                                                     class="block text-base font-medium text-gray-700"><span
-                                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span> Buro de
+                                                        class="mt-1 mb-1 text-base text-red-600 italic">+</span> Buro de
                                                     credito</label>
 
                                                 @if ($buroCredito != '')
