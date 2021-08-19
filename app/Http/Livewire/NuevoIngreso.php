@@ -130,12 +130,10 @@ class NuevoIngreso extends Component
     }
 
     public function updated(){
-        
         /* Input files resetar a null cuando cambien a vacios u otra opcion que no sea valida */
         $this->actaMatrimonio = ($this->estado_civil_id != 2) ? $this->actaMatrimonio = '' : $this->actaMatrimonio;
         $this->actasHijo = ($this->paternidad_id != 1) ? $this->actasHijo = [] :  $this->actasHijo;
 
-        $this->estado = $this->estado;
         $this->municipio_id = Municipio::where('estado_id',$this->estado)->get();
     }
 
@@ -186,8 +184,8 @@ class NuevoIngreso extends Component
     {
         if ($this->currentStep === 1) {
             $this->validate(
-                ['curp' =>'required|regex:/^([a-zA-Z0-9]+)$/'],
-                ['curp.required'=>'Este campo no puede permanecer vacío','curp.regex'=>'Solo puede contener letras y números']
+                ['curp' =>'required|regex:/^([a-zA-Z0-9]+)$/|min:18|max:18'],
+                ['curp.required'=>'Este campo no puede permanecer vacío','curp.regex'=>'Solo puede contener letras y números','curp.min'=>'Debe contener mínimo 18 caracteres','curp.max'=>'Debe contener maximo 18 caracteres']
             );
         }elseif($this->currentStep === 3){
 
@@ -270,21 +268,25 @@ class NuevoIngreso extends Component
         }elseif($this->currentStep === 5){
             $this->validate(
                 [
-                    'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/',
+                    'rfc'=>'required|regex:/^([a-zA-Z0-9]+)$/|min:12|max:13',
                     'rfcDoc'=>'required|mimes:pdf|max:5120',
-                    'no_social_social'=>'required|regex:/^([0-9]+)$/',
+                    'no_social_social'=>'required|regex:/^([0-9]+)$/|min:11|max:11',
                     'altaImssDoc'=>'required|mimes:pdf|max:5120',
                     'credencialIFE'=>'required|mimes:pdf|max:5120'
                 ],
                 [
                     'rfc.required'=>'Este campo no puede permanecer vacío',
                     'rfc.regex'=>'Solo puede contener letras y numeros',
+                    'rfc.min'=>'Debe contener mínimo 13 caracteres',
+                    'rfc.max'=>'Debe contener maximo 13 caracteres',
 
                     'rfcDoc.required'=>'Debes seleccionar un archivo',
                     'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
                     
                     'no_social_social.required'=>'Este campo no puede permanecer vacío',
                     'no_social_social.regex'=>'Solo puede contener números',
+                    'no_social_social.min'=>'Debe contener mínimo 11 caracteres',
+                    'no_social_social.max'=>'Debe contener maximo 11 caracteres',
 
                     'altaImssDoc.required'=>'Debes seleccionar un archivo',
                     'altaImssDoc.mimes'=>'Debe ser un archivo con formato: pdf',
@@ -315,7 +317,7 @@ class NuevoIngreso extends Component
                     'domicilio'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'colonia'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'municipio'=>'required',
-                    'codigo_postal'=>'required|regex:/^([0-9]+)$/',
+                    'codigo_postal'=>'required|regex:/^([0-9]+)$/|min:5|max:5',
                     'pais'=>'required',
                     'estado'=>'required',
                     'comprobranteDomicilio'=>'required|mimes:pdf|max:5120',
@@ -331,6 +333,9 @@ class NuevoIngreso extends Component
 
                     'codigo_postal.required'=>'Este campo no puede permanecer vacío',
                     'codigo_postal.regex'=>'Solo puede contener números',
+                    'codigo_postal.min'=>'Debe contener mínimo 5 números',
+                    'codigo_postal.max'=>'Debe contener maximo 5 números',
+
                     'pais.required'=>'Este cmapo no puede permanecer vacio',
                     'estado.required'=>'Este campo no puede permanecer vacío',
                     
@@ -349,12 +354,12 @@ class NuevoIngreso extends Component
                 [
                     'tel_fijo.required'=>'Este campo no puede permanecer vacío',
                     'tel_fijo.regex'=>'Solo puede contener números',
-                    'tel_fijo.min'=>'Debe contener minimo 10 números',
+                    'tel_fijo.min'=>'Debe contener mínimo 10 números',
                     'tel_fijo.max'=>'Debe contener maximo 10 números',
                     
                     'tel_movil.required'=>'Este campo no puede permanecer vacío',
                     'tel_movil.regex'=>'Solo puede contener números',
-                    'tel_movil.min'=>'Debe contener minimo 10 números',
+                    'tel_movil.min'=>'Debe contener mínimo 10 números',
                     'tel_movil.max'=>'Debe contener maximo 10 números',
 
                     'correo.required'=>'Este campo no puede permanecer vacío',
@@ -367,14 +372,13 @@ class NuevoIngreso extends Component
                 [
                     'nombreEmergencia1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'parentescoEmergencia1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-                    'telEmergencia1'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
+                    'telEmergencia1'=>'required|regex:/^([0-9]+)$/|min:10|max:10|different:tel_movil',
                     'domicilioEmergencia1'=>'required',
 
                     'nombreEmergencia2'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
                     'parentescoEmergencia2'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
-                    'telEmergencia2'=>'required|regex:/^([0-9]+)$/|min:10|max:10',
+                    'telEmergencia2'=>'required|regex:/^([0-9]+)$/|min:10|max:10|different:telEmergencia1',
                     'domicilioEmergencia2'=>'required',
-
                 ],
                 [
                     'nombreEmergencia1.required'=>'Este campo no puede permanecer vacío',
@@ -387,6 +391,7 @@ class NuevoIngreso extends Component
                     'telEmergencia1.regex'=>'Solo puede contener números',
                     'telEmergencia1.min'=>'Debe contener minimo 10 números',
                     'telEmergencia1.max'=>'Debe contener maximo 10 números',
+                    'telEmergencia1.different'=>'Debe ser diferente al número de telefono dado en datos de contacto',
 
                     'domicilioEmergencia1.required'=>'Este campo no puede permanecer vacío',
 
@@ -400,11 +405,10 @@ class NuevoIngreso extends Component
                     'telEmergencia2.regex'=>'Solo puede contener números',
                     'telEmergencia2.min'=>'Debe contener minimo 10 números',
                     'telEmergencia2.max'=>'Debe contener maximo 10 números',
+                    'telEmergencia2.different'=>'Debe ser diferente número de telefono dado en contacto de emergencia 1',
 
                     'domicilioEmergencia2.required'=>'Este campo no puede permanecer vacío',
-
                 ],
-                
             );
         }elseif($this->currentStep === 10){
 
@@ -454,8 +458,8 @@ class NuevoIngreso extends Component
                 [
                     'cvOsolicitudEmpleo'=>'required|mimes:pdf|max:5120',
                     // 'cartasRecomendacion'=>'required|array|min:1',
-                    'cartaNoPenales'=>'required|mimes:pdf|max:5120',
-                    'buroCredito'=>'required|mimes:pdf|max:5120',
+                    // 'cartaNoPenales'=>'required|mimes:pdf|max:5120',
+                    // 'buroCredito'=>'required|mimes:pdf|max:5120',
                     'foto'=>'required|mimes:jpg,pjge,png|max:5120',
                 ],
                 [
@@ -464,11 +468,11 @@ class NuevoIngreso extends Component
 
                     // 'cartasRecomendacion.required'=>'Debes seleccionar uno ó más archivos',
 
-                    'cartaNoPenales.required'=>'Debes seleccionar un archivo',
-                    'cartaNoPenales.mimes'=>'Debe ser un archivo con formato: pdf',
+                    // 'cartaNoPenales.required'=>'Debes seleccionar un archivo',
+                    // 'cartaNoPenales.mimes'=>'Debe ser un archivo con formato: pdf',
 
-                    'buroCredito.required'=>'Debes seleccionar un archivo',
-                    'buroCredito.mimes'=>'Debe ser un archivo con formato: pdf',
+                    // 'buroCredito.required'=>'Debes seleccionar un archivo',
+                    // 'buroCredito.mimes'=>'Debe ser un archivo con formato: pdf',
 
                     'foto.required'=>'Debes seleccionar una imagen',
                     'foto.mimes'=>'Debe ser un archivo con formato: png, jpg o jpge'
@@ -518,9 +522,20 @@ class NuevoIngreso extends Component
                 $this->cartillaMilitar = null;
             }
             
-            $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
+            if ($this->cartaNoPenales != '') {
+                $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
+            }else{
+                $this->cartaNoPenales = null;
+            }
+            
             $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
-            $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
+            
+            if ($this->buroCredito != '') {
+                $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
+            } else {
+                $this->buroCredito = null;
+            }
+
             $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
             $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
 

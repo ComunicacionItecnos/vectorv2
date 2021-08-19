@@ -62,9 +62,9 @@ class CreateNuevoIngresosTable extends Migration
             $table->longText('actasHijo')->nullable();
             $table->longText('cartasRecomendacion')->nullable();
             $table->string('cartillaMilitar')->nullable();
-            $table->string('cartaNoPenales');
+            $table->string('cartaNoPenales')->nullable();
             $table->string('credencialIFE');
-            $table->string('buroCredito');
+            $table->string('buroCredito')->nullable();
             $table->string('foto');
             $table->string('correo');
             $table->string('tel_fijo')->length(10);
