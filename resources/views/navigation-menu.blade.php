@@ -73,6 +73,14 @@ $nav_links9 = [
 ],
 ];
 
+$nav_links10 = [
+    [
+        'name' =>'Revisión documentos',
+        'route' => route('revision-doc'),
+        'active' => request()->routeIS('revision-doc')
+    ]
+];
+
 @endphp
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -244,6 +252,14 @@ $nav_links9 = [
 
                         </x-jet-dropdown>
                     </div>
+
+                    @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 5 )
+                        @foreach ($nav_links10 as $nav_link)
+                            <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                                {{ $nav_link['name'] }}
+                            </x-jet-nav-link>
+                        @endforeach
+                    @endif
 
                 </div>
             </div>

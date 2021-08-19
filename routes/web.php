@@ -124,3 +124,8 @@ Route::get('/colaborador/{no_colaborador}', ComprobarColaborador::class);
 Route::get('/utiles-escolares/{no_colaborador}',UtilesEscolares::class);
 
 Route::get('/nuevo-ingreso',NuevoIngreso::class);
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
+    return view('revision-doc');
+})->name('revision-doc');
