@@ -4,9 +4,13 @@ namespace App\Http\Livewire;
 
 use App\Models\Nuevo_ingreso;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class RevisionDoc extends Component
 {
+
+    use WithPagination;
+
     /* Variables */
     public $nuevoIngreso;
     public $nombreCompleto;
@@ -16,19 +20,12 @@ class RevisionDoc extends Component
 
     public function mount()
     {
-        $this->nuevoIngreso = Nuevo_ingreso::findorFail('1')->get();
-        if ($this->nuevoIngreso[0]->nombre_2 == '') {
-            $this->nombreCompleto = $this->nuevoIngreso[0]->nombre_1.' '.$this->nuevoIngreso[0]->ap_paterno.' '.$this->nuevoIngreso[0]->ap_materno;
-        } else {
-            $this->nombreCompleto = $this->nuevoIngreso[0]->nombre_1.' '.$this->nuevoIngreso[0]->nombre_2.''.$this->nuevoIngreso[0]->ap_paterno.' '.$this->nuevoIngreso[0]->ap_materno;
-        }
-        
         
     }
 
     public function render()
     {
-        return view('livewire.revision-doc');
+        return view('livewire.revision-doc',['nuevosIngresos'=> Nuevo_ingreso::paginate(2),]);
     }
 
     /* Modal */

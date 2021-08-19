@@ -1,15 +1,23 @@
-<div class="py-10">
-    <div class="grid max-w-4xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
-        <div class="col-span-1 bg-white rounded-xl">
-            <p>Test</p>
-        </div>
+<div class="py-10 ">
+    <div class="grid max-w-5xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
 
-        <div class="col-span-1 bg-yellow-700 rounded-xl">
-            <p>Test 2</p>
-        </div>
+        <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-xl shadow-md dark:bg-coolGray-900 bg-white">
+            
+            <div class="space-y-2 col-span-full lg:col-span-4">
+            
+                <p class="text-center">Test</p>
+
+                @foreach ($nuevosIngresos as $nI)
+                    <p>{{ $nI->nombre_1 }}</p>
+                @endforeach
+
+                {{ $nI->links() }}
+            
+            </div>
+            
+        </fieldset>
 
     </div>
-
 </div>
 
 
@@ -32,7 +40,7 @@
                         <div class="flex space-x-5 py-4">
                             <img alt=""
                                 class="w-36 h-36 rounded-full ring-2 ring-offset-4 ring-red-400 ring-offset-coolGray-800"
-                                src="{{ Storage::url($nuevoIngreso[0]->foto) }}">
+                                src="" alt="SIn imagen">
                         </div>
                     </div>
 
