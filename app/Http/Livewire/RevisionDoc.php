@@ -18,14 +18,26 @@ class RevisionDoc extends Component
     public $archivomodal;
     public $opcion; /* Que pdf se mostrara ejemplo: 1= credencial 2 = curp */
 
-    public function mount()
-    {
-        
+    public $search, $perPage = '1';
+
+    protected $queryString = [
+        'search' => ['except' => ''],
+        'perPage'
+    ];
+
+    public function updatingSearch(){
+        $this->resetPage();
     }
 
     public function render()
     {
-        return view('livewire.revision-doc',['nuevosIngresos'=> Nuevo_ingreso::paginate(2),]);
+        return view('livewire.revision-doc',[
+            'nuevosIngresos'=>Nuevo_ingreso::where('nombre_1','LIKE',"%{$this->search}%")
+                                            ->orWhere('curp', 'LIKE', "%{$this->search}%")
+                                            ->orWhere('rfc', 'LIKE', "%{$this->search}%")
+                                            ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
+                                            ->paginate($this->perPage),
+        ]);
     }
 
     /* Modal */

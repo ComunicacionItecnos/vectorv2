@@ -1,20 +1,95 @@
+<style>
+    .caja6:hover {
+        -werbit-box-shadow: 10px 10px 14px 2px rgba(0, 0, 0, 0.47);
+        box-shadow: 10px 10px 14px 2px rgba(0, 0, 0, 0.47);
+    }
+
+</style>
+
+
+
+<div class="flex flex-wrap overflow-hidden bg-blue-800 py-10">
+
+    <div class="w-full overflow-hidden">
+        <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-xl shadow-md dark:bg-coolGray-900 bg-white">
+        </fieldset>
+    </div>
+  
+</div>
+
+
 <div class="py-10 ">
     <div class="grid max-w-5xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
 
         <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-xl shadow-md dark:bg-coolGray-900 bg-white">
-            
+
             <div class="space-y-2 col-span-full lg:col-span-4">
-            
-                <p class="text-center">Test</p>
+                <legend></legend>
+                <div class="grid grid-cols-4">
+                    <div class=" col-span-1 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
+                        <select wire:model='perPage'
+                            class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
+                            <option value="1">1</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select>
+                    </div>
+                    <div class=" col-span-3 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
+                        <input wire:model="search" type="text" placeholder="Buscar"
+                            class="w-full col-span-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                    </div>
+                </div>
 
-                @foreach ($nuevosIngresos as $nI)
-                    <p>{{ $nI->nombre_1 }}</p>
-                @endforeach
+                @if ($nuevosIngresos->count())
 
-                {{ $nI->links() }}
-            
+                    <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2">
+                        @foreach ($nuevosIngresos as $nI)
+
+
+
+                        @endforeach
+                    </div>
+
+                    <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-3 md:-mx-2 lg:-mx-2 xl:-mx-2">
+
+                        <div
+                            class="my-2 px-2 w-full overflow-hidden sm:my-3 sm:px-3 sm:w-1/2 md:my-2 md:px-2 md:w-1/4 lg:my-2 lg:px-2 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
+                            <!-- Column Content -->
+                        </div>
+
+                        <div
+                            class="my-2 px-2 w-full overflow-hidden sm:my-3 sm:px-3 sm:w-1/2 md:my-2 md:px-2 md:w-1/4 lg:my-2 lg:px-2 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
+                            <!-- Column Content -->
+                        </div>
+
+                        <div
+                            class="my-2 px-2 w-full overflow-hidden sm:my-3 sm:px-3 sm:w-1/2 md:my-2 md:px-2 md:w-1/4 lg:my-2 lg:px-2 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
+                            <!-- Column Content -->
+                        </div>
+
+                        <div
+                            class="my-2 px-2 w-full overflow-hidden sm:my-3 sm:px-3 sm:w-1/2 md:my-2 md:px-2 md:w-1/4 lg:my-2 lg:px-2 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
+                            <!-- Column Content -->
+                        </div>
+
+                    </div>
+
+                    <div class="px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
+                        {{ $nuevosIngresos->links() }}
+                    </div>
+
+                @else
+                    <div class="px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
+                        <h6 class="text-center text-gray-500">No se encontró a ningún campo que coincida con:
+                            "{{ $search }}"</h6>
+                    </div>
+                @endif
+
             </div>
-            
+
         </fieldset>
 
     </div>
@@ -23,98 +98,6 @@
 
 <br>
 <br>
-
-<section class="py-10 ">
-    <div class="grid max-w-6xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
-
-        <form novalidate="" action=""
-            class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
-
-            <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-xl shadow-md dark:bg-coolGray-900 bg-white">
-
-                <div class="space-y-2 col-span-full lg:col-span-1">
-
-                    <p class="font-medium text-center">Información personal</p>
-
-                    <div class="flex flex-col items-center justify-center">
-                        <div class="flex space-x-5 py-4">
-                            <img alt=""
-                                class="w-36 h-36 rounded-full ring-2 ring-offset-4 ring-red-400 ring-offset-coolGray-800"
-                                src="" alt="SIn imagen">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 py-4 text-center">
-                        <div class="col-span-1">
-                            <label
-                                class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white"
-                                wire:click="modal(1,)">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                    fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M10 2a1 1 0 00-1 1v1a1 1 0 002 0V3a1 1 0 00-1-1zM4 4h3a3 3 0 006 0h3a2 2 0 012 2v9a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2zm2.5 7a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm2.45 4a2.5 2.5 0 10-4.9 0h4.9zM12 9a1 1 0 100 2h3a1 1 0 100-2h-3zm-1 4a1 1 0 011-1h2a1 1 0 110 2h-2a1 1 0 01-1-1z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </label>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div
-                    class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 px-6 md:border-l-2 lg:border-l-2 border-red-400">
-                    <div class="col-span-full sm:col-span-3">
-                        <label for="firstname" class="text-medium">First name</label>
-                        <input id="firstname" type="text" placeholder="First name"
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                    </div>
-                    <div class="col-span-full sm:col-span-3">
-                        <label for="lastname" class="text-medium">Last name</label>
-                        <input id="lastname" type="text" placeholder="Last name"
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                    </div>
-                    <div class="col-span-full sm:col-span-3">
-                        <label for="email" class="text-medium">Email</label>
-                        <input id="email" type="email" placeholder="Email"
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                    </div>
-                    <div class="col-span-full">
-                        <label for="address" class="text-medium">Address</label>
-                        <input id="address" type="text" placeholder=""
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                    </div>
-                    <div class="col-span-full sm:col-span-2">
-                        <label for="city" class="text-medium">City</label>
-                        <input id="city" type="text" placeholder=""
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                    </div>
-                    <div class="col-span-full sm:col-span-2">
-                        <label for="state" class="text-medium">State / Province</label>
-                        <input id="state" type="text" placeholder=""
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                    </div>
-                    <div class="col-span-full sm:col-span-2">
-                        <label for="zip" class="text-medium">ZIP / Postal</label>
-                        <input id="zip" type="text" placeholder=""
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                    </div>
-
-                    <div class="flex justify-start px-2 py-2 col-end-7 col-span-2 ">
-                        <button type="button"
-                            class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
-                            wire:click="increaseStep()">
-                            Siguiente
-                        </button>
-                    </div>
-
-                </div>
-
-            </fieldset>
-
-        </form>
-
-    </div>
-</section>
 
 <!-- This example requires Tailwind CSS v2.0+ -->
 {{-- <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
