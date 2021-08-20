@@ -20,11 +20,14 @@
                                                                                     rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         Excel
                                     </button>
+                                    @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <button wire:click="registrar" type="button"
                                         class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
-                                                                                                                        rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                                                                                                                                rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Nuevo
                                     </button>
+                                    @endif
+
                                 </div>
                                 <div class=" col-span-3 flex px-2 py-2  border-t border-gray-200 sm:px-3 bg-white">
                                     <input wire:model="search" type="text" placeholder="Buscar"
@@ -56,10 +59,12 @@
                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 No. Marbete
                             </th>
+                            @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                             <th scope="col"
                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acciones
                             </th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -67,11 +72,14 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 text-center">
                                 <div class="flex items-center">
-                                    <div class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
+                                    <div
+                                        class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
                                         @if (file_exists(public_path('storage/' . $vehiculo->foto)))
-                                        <img class="w-20 rounded shadow h-24" src="{{ asset('storage') . '/' . $vehiculo->foto }}" alt="">
+                                        <img class="w-20 rounded shadow h-24"
+                                            src="{{ asset('storage') . '/' . $vehiculo->foto }}" alt="">
                                         @else
-                                        <img class="w-20 rounded shadow h-24" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                        <img class="w-20 rounded shadow h-24"
+                                            src="{{ asset('images/user_toolkit.jpg') }}" alt="">
                                         @endif
                                     </div>
                                     <div class="ml-4 whitespace-pre-line">
@@ -101,6 +109,7 @@
                                 @endif
 
                             </td>
+                            @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                             <td>
                                 <div class="flex justify-center py-4 cursor-pointer">
                                     <div class="transform text-yellow-500 hover:text-yellow-700 hover:scale-150">
@@ -127,6 +136,7 @@
                                     </div>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                         <!-- More items... -->
