@@ -236,7 +236,7 @@ class ListaVehiculos extends Component
                     'showCancelButton' =>  false,
                     'showConfirmButton' =>  false,
                 ]);
-                return redirect()->route('lista-vehiculos-externos');
+                return redirect()->route('lista-vehiculos');
             } catch (Exception $ex) {
                 $this->alert('error', 'Error al actualizar', [
                     'position' =>  'top-end',
@@ -263,7 +263,7 @@ class ListaVehiculos extends Component
                     'showCancelButton' =>  false,
                     'showConfirmButton' =>  false,
                 ]);
-                return redirect()->route('lista-vehiculos-externos');
+                return redirect()->route('lista-vehiculos');
             } catch (Exception $ex) {
                 $this->alert('error', 'Error al registrar', [
                     'position' =>  'top-end',
