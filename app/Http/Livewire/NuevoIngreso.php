@@ -624,7 +624,6 @@ class NuevoIngreso extends Component
             'showConfirmButton' =>  false,
         ]);
         return redirect()->to('/nuevo-ingreso/');
-
     }
 
     public function abrirModal()
