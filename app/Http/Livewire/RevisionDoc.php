@@ -6,6 +6,8 @@ use App\Models\Nuevo_ingreso;
 use Livewire\Component;
 use Livewire\WithPagination;
 
+use function Psy\debug;
+
 class RevisionDoc extends Component
 {
 
@@ -15,15 +17,14 @@ class RevisionDoc extends Component
     public $nuevoIngreso;
     public $nombreCompleto;
 
-    public $archivomodal;
-    public $opcion; /* Que pdf se mostrara ejemplo: 1= credencial 2 = curp */
-
     public $search, $perPage = '1';
 
     protected $queryString = [
         'search' => ['except' => ''],
         'perPage'
     ];
+
+    
 
     public function updatingSearch(){
         $this->resetPage();
@@ -38,11 +39,6 @@ class RevisionDoc extends Component
                                             ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
                                             ->paginate($this->perPage),
         ]);
-    }
-
-    /* Modal */
-    public function modalPdf($opcion,$archivomodal){
-
     }
 
 }
