@@ -43,11 +43,11 @@ class Kernel extends ConsoleKernel
             // ->appendOutputTo('public/test2.txt');
             ->runInBackground();
 
-        $schedule->command('enviar:correoruns')
+        /* $schedule->command('enviar:correoruns')
         ->timezone('America/Mexico_City')
         ->thursdays()
         ->at('16:00')
-        ->runInBackground();
+        ->runInBackground(); */
     }
 
     /**
