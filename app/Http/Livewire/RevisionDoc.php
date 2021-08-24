@@ -25,6 +25,12 @@ class RevisionDoc extends Component
 
     public $curpValue = true;
     public $obseracionCurp;
+
+    public $actaNacValue = true;
+    public $observacionActaNac;
+
+    public $dirValue = true;
+    public $observacionDir;
     
 
     public function mount(){
@@ -60,8 +66,14 @@ class RevisionDoc extends Component
         ($this->curpValue) ? $this->obseracionCurp = '' : $this->curpValue ;
     }
 
+    public function actaNacToogle(){
+        ($this->actaNacValue) ? $this->observacionActaNac = '' : $this->actaNacValue;
+    }
 
-
+    public function direccionToggle()
+    {
+        ($this->dirValue) ? $this->observacionDir = '': $this->dirValue;
+    }
 
 
 }
