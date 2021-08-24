@@ -8,15 +8,9 @@ use Livewire\WithPagination;
 
 class RevisionDoc extends Component
 {
-
     use WithPagination;
 
     /* Variables */
-    public $nuevoIngreso;
-    public $nombreCompleto;
-
-    public $candidatoDoc;
-
     public $search, $perPage = '1';
     public $count = 0;
     protected $queryString = [
@@ -24,8 +18,17 @@ class RevisionDoc extends Component
         'perPage'
     ];
 
+    public $nuevoIngreso;
+    public $nombreCompleto;
+
+    public $candidatoDoc;
+
+    public $curpValue = true;
+    public $obseracionCurp;
+    
+
     public function mount(){
-        $this->candidatoDoc = Nuevo_ingreso::where('id','1')->first();
+        $this->candidatoDoc = Nuevo_ingreso::where('id','21')->first();
     }
 
     public function updatingSearch(){
@@ -50,6 +53,11 @@ class RevisionDoc extends Component
             dd('Ejecutando funcion');
         }
        
+    }
+
+    public function curpToogle()
+    {
+        ($this->curpValue) ? $this->obseracionCurp = '' : $this->curpValue ;
     }
 
 

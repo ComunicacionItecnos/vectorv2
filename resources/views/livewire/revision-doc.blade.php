@@ -185,21 +185,37 @@
                                         <path fill-rule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clip-rule="evenodd" />
                                     </svg>
                                 </a>
-                                <embed src="{{ Storage::url($candidatoDoc->credencialIFE) }}" type="application/pdf" width="100%">
+                                {{-- <embed src="{{ Storage::url($candidatoDoc->credencialIFE) }}" type="application/pdf" width="100%"> --}}
                             </div>
 
-                            <div class="col-span-full sm:col-span-2 justify-center object-center">
+                            <div class="col-span-full sm:col-span-2">
                                 <label for="city" class="text-sm">¿Datos correctos?</label>
-                                <label for="Toggle" class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
-                                    <span>Si</span>
-                                    <span class="relative">
-                                        <input id="Toggle" type="checkbox" class="hidden peer">
-                                        <div class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-blue-500"></div>
-                                        <div class="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white"></div>
-                                    </span>
+                                <label for="curpToggle" class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100" wire:click="curpToogle()">
                                     <span>No</span>
+                                    <span class="relative">
+                                        <input id="curpToggle" type="checkbox" class="hidden peer" wire:model="curpValue">
+                                        @if ($curpValue == true)
+                                            <div class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-blue-500"></div>
+                                            <div class="absolute inset-y-0 right-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white"></div>
+                                        @else
+                                            <div class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-red-500"></div>
+                                            <div class="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white"></div> 
+                                        @endif
+                                    </span>
+                                    <span>Si</span>
                                 </label>
                             </div>
+
+                            @if ($curpValue == false)
+                                <div class="col-span-full sm:col-span-6">
+                                    <label for="address" class="text-sm">Observaciones</label>
+                                    <textarea id="address" type="text" wire:model="obseracionCurp"
+                                        class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
+                                        ></textarea>
+                                </div>
+                            @endif
+                            
+
 
                         </div>
                     </fieldset>
