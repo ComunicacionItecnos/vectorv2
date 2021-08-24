@@ -396,6 +396,7 @@ class Insignias extends Component
     {
         $tmpPremiado = Colaborador_insignia::all()
             ->where('colaborador_no_colaborador', $this->col_premiado)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
