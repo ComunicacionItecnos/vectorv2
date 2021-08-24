@@ -154,7 +154,7 @@
                             <tbody class="divide-y bg-gray-100">
                                 @foreach ($colaboradores as $colaborador)
                                 <tr>
-                                    <td class="px-6 py-4 text-center">
+                                    <td class="px-2 py-4 text-center">
                                         <div class="flex items-center">
                                             <div
                                                 class="rounded  opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
@@ -173,8 +173,14 @@
                                                 </div>
                                             </div>
                                             <div class=" opacity-100 flex-grow-0 flex-shrink-0 w-16 h-20">
-                                                <img class="px-4 mt-8 mx-2"
+                                                <img class="px-4 mt-6 md:mt-4 mx-2"
                                                     src="{{ asset($colaborador->ruta_insignia) }}" alt="">
+                                            </div>
+                                            <div class="ml-4 whitespace-pre-line">
+                                                <div class="text-xs font-medium text-gray-900">
+                                                    <span class="sm:inline-block sm:-mt-6">Premiado por: 
+                                                        {{ $colaborador->nombre_corto_asignador }}</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </td>

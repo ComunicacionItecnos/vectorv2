@@ -379,13 +379,12 @@ class Insignias extends Component
             $this->intentoPlatino = 3;
         } elseif (
             auth()->user()->colaborador_no_colaborador == '143010' ||
-            auth()->user()->colaborador_no_colaborador == '129300' ||
             auth()->user()->colaborador_no_colaborador == '131901' ||
             auth()->user()->colaborador_no_colaborador == '152090'
         ) {
-            $this->intentoOro = 2;
+            $this->intentoOro = 1;
             $this->intentoPlata = 2;
-            $this->intentoBronce = 1;
+            $this->intentoBronce = 2;
         } else {
             $this->intentoOro = 1;
             $this->intentoPlata = 1;
@@ -397,6 +396,7 @@ class Insignias extends Component
     {
         $tmpPremiado = Colaborador_insignia::all()
             ->where('colaborador_no_colaborador', $this->col_premiado)
+            ->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
             ->WhereBetween('fecha_asignacion', [$this->yearActual . $tIinicial, $this->yearActual . $tfinal])
             ->count();
 
