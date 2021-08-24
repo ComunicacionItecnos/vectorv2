@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;7
+namespace App\Http\Livewire;
 
 use Exception;
 use App\Models\Genero;
@@ -488,71 +488,70 @@ class NuevoIngreso extends Component
             );
         }
 
-        DB::transaction(function () {
-            try {
+        try {
 
-                DB::transaction(function () {
-                    /* Archivos */
-                    $this->curp = strtoupper( $this->curp );
+            DB::transaction(function () {
+                /* Archivos */
+                $this->curp = strtoupper( $this->curp );
                     
-                    /* Asignando las carpetas donde se guardaran los docuemntos del registro */
-                    $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'01.-CURP.pdf');
-                    $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'02.-actaDeNacimiento.pdf');
-                    $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'03.-constanciaDeEstudios.pdf');
+                /* Asignando las carpetas donde se guardaran los docuemntos del registro */
+                $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'01.-CURP.pdf');
+                $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'02.-actaDeNacimiento.pdf');
+                $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'03.-constanciaDeEstudios.pdf');
 
-                    if (empty( $this->actaMatrimonio) ) {
+                if (empty( $this->actaMatrimonio) ) {
                         $this->actaMatrimonio = null;            
-                    }else{
+                }else{
                         $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'04.-actaDeMatrimonio.pdf');
-                    }
+                }
 
-                    $this->rfcDoc = $this->rfcDoc->storeAs('public/nuevoIngreso/'.$this->curp,'05.-RFC.pdf');
-                    $this->altaImssDoc = $this->altaImssDoc->storeAs('public/nuevoIngreso/'.$this->curp,'06.-altaDelImss.pdf');
-                    $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'07.-comprobanteDeDomicilio.pdf');
+                $this->rfcDoc = $this->rfcDoc->storeAs('public/nuevoIngreso/'.$this->curp,'05.-RFC.pdf');
+                $this->altaImssDoc = $this->altaImssDoc->storeAs('public/nuevoIngreso/'.$this->curp,'06.-altaDelImss.pdf');
+                $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'07.-comprobanteDeDomicilio.pdf');
 
-                    if ($this->actasHijo == []) {
+                if ($this->actasHijo == []) {
                         $rutaActaHijo = null;
-                    }else{
+                }else{
                         for ($i=0; $i < count($this->actasHijo) ; $i++) { 
                             $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/08.-actasHijos','actaDeHijo'.$i.'.pdf');
                             $rutaActaHijo[] = $rutaActasHijos2;
                         }
-                    }
+                }
                     
-                    if ($this->cartasRecomendacion == []) {
+                if ($this->cartasRecomendacion == []) {
                         $rutaRecomendacion = null;
-                    }else{
+                }else{
                         for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
                             $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/09.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
                             $rutaRecomendacion[] = $rutaRecomendacion2; 
                         }
-                    }
+                }
 
-                    if ($this->cartillaMilitar != '') {
+                if ($this->cartillaMilitar != '') {
                         $this->cartillaMilitar = $this->cartillaMilitar->storeAs('public/nuevoIngreso/'.$this->curp,'10.-cartillaMilitar.pdf');
-                    } else {
+                } else {
                         $this->cartillaMilitar = null;
-                    }
+                }
                     
-                    if ($this->cartaNoPenales != '') {
+                if ($this->cartaNoPenales != '') {
                         $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
-                    }else{
+                }else{
                         $this->cartaNoPenales = null;
-                    }
+                }
                     
-                    $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
+                $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
                     
-                    if ($this->buroCredito != '') {
+                if ($this->buroCredito != '') {
                         $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
-                    } else {
+                } else {
                         $this->buroCredito = null;
-                    }
+                }
 
-                    $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
-                    $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
+                $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
+                $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
                     
-                    /* Insercion */
-                    $nuevo_ingreso = Nuevo_ingreso::create([
+                /* Insercion */
+                $nuevo_ingreso = Nuevo_ingreso::create([
                         'curp'=>$this->curp,
                         'curpDocumento'=>$this->curpDoc,
                         'nombre_1'=>$this->nombre_1,
@@ -596,9 +595,9 @@ class NuevoIngreso extends Component
                         'TallaZapatos'=>$this->tallazapatos,
                         'numExt'=>$this->numeroExterior,
                         'numInt'=>$this->numeroInterior
-                    ]);
+                ]);
         
-                    DB::table('contactos_emergencia_nuevos')->insert([
+                DB::table('contactos_emergencia_nuevos')->insert([
                         [
                             'id_nuevoIngreso'=>$nuevo_ingreso->id,
                             'nombre'=>$this->nombreEmergencia1,
@@ -613,11 +612,11 @@ class NuevoIngreso extends Component
                             'telefono'=>$this->telEmergencia2,
                             'domicilio'=>$this->domicilioEmergencia2
                         ],
-                    ]);
+                ]);
 
-                });
+            });
 
-                $this->flash('success', 'Tu información se ha registrado con éxito', [
+            $this->flash('success', 'Tu información se ha registrado con éxito', [
                     'position' =>  'top-end',
                     'timer' =>  3500,
                     'toast' =>  true,
@@ -626,10 +625,10 @@ class NuevoIngreso extends Component
                     'cancelButtonText' =>  'Cancel',
                     'showCancelButton' =>  false,
                     'showConfirmButton' =>  false,
-                ]);
-                return redirect()->to('/nuevo-ingreso');
-            }catch (Exception $ex) {
-                $this->alert('error', 'Ha ocurrido un error:'.$ex, [
+            ]);
+            return redirect()->to('/nuevo-ingreso');
+        }catch (Exception $ex) {
+            $this->alert('error', 'Ha ocurrido un error:'.$ex, [
                     'position' =>  'top-end',
                     'timer' =>  3000,
                     'toast' =>  true,
@@ -638,17 +637,8 @@ class NuevoIngreso extends Component
                     'cancelButtonText' =>  'Cancel',
                     'showCancelButton' =>  false,
                     'showConfirmButton' =>  false,
-                ]);
-            }  
-
-            
-
-            
-
-        });
-
-        
-
+            ]);
+        }  
         
     }
 
