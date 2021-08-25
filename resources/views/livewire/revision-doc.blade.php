@@ -140,32 +140,32 @@
                         <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 
                             <div class="block relative col-span-full sm:col-span-6">
-                                <img src="{{ Storage::url($candidatoDoc->foto) }}" alt="Profile face"
+                                <img src="{{ Storage::url($candidatoDoc[0]->foto) }}" alt="Profile face"
                                     class="p-1 w-20 h-20 mx-auto rounded-full  object-cover">
                                 <span
                                     class="absolute w-3 border-2 left-1/2 -bottom-1 transform -translate-x-1/2 border-white h-3 bg-green-500 rounded-full">
                                 </span>
                             </div>
 
-                            @if ($candidatoDoc->nombre_2 == '')
+                            @if ($candidatoDoc[0]->nombre_2 == '')
                                 <div class="col-span-full sm:col-span-3">
                                     <label for="firstname" class="text-sm">Primer nombre</label>
                                     <input id="firstname" type="text" placeholder="First name"
                                         class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                        value="{{ $candidatoDoc->nombre_1 }}" disabled>
+                                        value="{{ $candidatoDoc[0]->nombre_1 }}" disabled>
                                 </div>
                             @else
                                 <div class="col-span-full sm:col-span-3">
                                     <label for="firstname" class="text-sm">Primer nombre</label>
                                     <input id="firstname" type="text" placeholder="First name"
                                         class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                        value="{{ $candidatoDoc->nombre_1 }}" disabled>
+                                        value="{{ $candidatoDoc[0]->nombre_1 }}" disabled>
                                 </div>
                                 <div class="col-span-full sm:col-span-3">
                                     <label for="lastname" class="text-sm">Segundo nombre</label>
                                     <input id="lastname" type="text" placeholder="Last name"
                                         class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                        value="{{ $candidatoDoc->nombre_2 }}" disabled>
+                                        value="{{ $candidatoDoc[0]->nombre_2 }}" disabled>
                                 </div>
                             @endif
 
@@ -173,17 +173,17 @@
                                 <label for="email" class="text-sm">Apellido paterno</label>
                                 <input id="email" type="email" placeholder="Email"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->ap_paterno }}" disabled>
+                                    value="{{ $candidatoDoc[0]->ap_paterno }}" disabled>
                             </div>
                             <div class="col-span-full sm:col-span-3">
                                 <label for="address" class="text-sm">Apellido materno</label>
                                 <input id="address" type="text" placeholder=""
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->ap_materno }}" disabled>
+                                    value="{{ $candidatoDoc[0]->ap_materno }}" disabled>
                             </div>
                             <div class="col-span-full sm:col-span-4 text-center object-center justify-center">
                                 <label for="city" class="text-sm">Credencial INE</label>
-                                <a href="{{ Storage::url($candidatoDoc->credencialIFE) }}" target="_blank"
+                                <a href="{{ Storage::url($candidatoDoc[0]->credencialIFE) }}" target="_blank"
                                     class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-blue-500 border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                         fill="currentColor">
@@ -196,238 +196,37 @@
                             </div>
 
                             <div class="col-span-full sm:col-span-2">
-                                <label for="city" class="text-sm">¿Datos correctos?</label>
-                                <label for="curpToggle"
-                                    class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100"
-                                    wire:click="curpToogle()">
-                                    <span>No</span>
-                                    <span class="relative">
-                                        <input id="curpToggle" type="checkbox" class="hidden peer"
-                                            wire:model="curpValue">
-                                        @if ($curpValue == true)
-                                            <div
-                                                class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-green-500">
-                                            </div>
-                                            <div
-                                                class="absolute inset-y-0 right-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
-                                            </div>
-                                        @else
-                                            <div
-                                                class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-red-500">
-                                            </div>
-                                            <div
-                                                class="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
-                                            </div>
-                                        @endif
-                                    </span>
-                                    <span>Si</span>
-                                </label>
-                            </div>
 
-                            @if ($curpValue == false)
-                                <div class="col-span-full sm:col-span-6">
-                                    <label for="address" class="text-sm">Observaciones</label>
-                                    <textarea id="address" type="text" wire:model="obseracionCurp"
-                                        class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
+                                <label for="city" class="text-sm">¿Datos correctos?</label>
+
+                                <div class="flex items-center gap-8">
+                                    <label class="inline-flex items-center">
+                                        <input type="radio"  name="vehicle" class="h-5 w-5 text-red-600" wire:model="curpValue" wire:click="curpToogle" value="0"/>
+                                        <span class="ml-2 text-gray-700">
+                                            No
+                                        </span>
+                                    </label>
+                                    <label class="inline-flex items-center">
+                                        <input type="radio"  name="vehicle" class="h-5 w-5 text-red-600" wire:model="curpValue" wire:click="curpToogle" value="1"/>
+                                        <span class="ml-2 text-gray-700">
+                                            Si
+                                        </span>
+                                    </label>
                                 </div>
-                            @endif
 
-
-
-                        </div>
-                    </fieldset>
-
-                    {{-- Fecha de nacimiento --}}
-                    <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-md dark:bg-coolGray-900">
-
-                        <div class="space-y-2 col-span-full lg:col-span-1">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M6 3a1 1 0 011-1h.01a1 1 0 010 2H7a1 1 0 01-1-1zm2 3a1 1 0 00-2 0v1a2 2 0 00-2 2v1a2 2 0 00-2 2v.683a3.7 3.7 0 011.055.485 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0 3.704 3.704 0 014.11 0 1.704 1.704 0 001.89 0A3.7 3.7 0 0118 12.683V12a2 2 0 00-2-2V9a2 2 0 00-2-2V6a1 1 0 10-2 0v1h-1V6a1 1 0 10-2 0v1H8V6zm10 8.868a3.704 3.704 0 01-4.055-.036 1.704 1.704 0 00-1.89 0 3.704 3.704 0 01-4.11 0 1.704 1.704 0 00-1.89 0A3.704 3.704 0 012 14.868V17a1 1 0 001 1h14a1 1 0 001-1v-2.132zM9 3a1 1 0 011-1h.01a1 1 0 110 2H10a1 1 0 01-1-1zm3 0a1 1 0 011-1h.01a1 1 0 110 2H13a1 1 0 01-1-1z"
-                                    clip-rule="evenodd" />
-                            </svg>
-
-                            <p class="text-base">
-                                Acta de nacimiento
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-
-                            <div class="col-span-full sm:col-span-3">
-                                <label for="date" class="text-sm">Fecha de nacimiento</label>
-                                <input id="date" type="date" placeholder="date"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->fecha_nacimiento }}" disabled>
                             </div>
 
-                            <div class="col-span-full sm:col-span-4 text-center object-center justify-center">
-                                <label for="city" class="text-sm">Acta de nacimiento</label>
-                                <a href="{{ Storage::url($candidatoDoc->actaNacimiento) }}" target="_blank"
-                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-blue-500 border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-2 justify-center object-center">
-                                <label for="city" class="text-sm">¿Datos correctos?</label>
-                                <label for="actaNacToggle"
-                                    class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100"
-                                    wire:click="actaNacToogle()">
-                                    <span>No</span>
-                                    <span class="relative">
-                                        <input id="actaNacToggle" wire:model="actaNacValue" type="checkbox"
-                                            class="hidden peer">
-                                        @if ($actaNacValue == false)
-                                            <div
-                                                class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-blue-400 bg-red-500">
-                                            </div>
-                                            <div
-                                                class="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
-                                            </div>
-                                        @else
-                                            <div
-                                                class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-blue-400 bg-green-500">
-                                            </div>
-                                            <div
-                                                class="absolute inset-y-0 right-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
-                                            </div>
-                                        @endif
-                                    </span>
-                                    <span>Si</span>
-                                </label>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-6  @if ($actaNacValue == true) hidden @else @endif">
-                                <label for="observacionesCurp" class="text-sm">Observaciones</label>
-                                <textarea id="observacionesCurp" wire:model="observacionActaNac" type="text"
+                            <div class="col-span-full sm:col-span-6  @if ($curpValue == 0) hidden @else @endif">
+                                <label for="observacionCurp" class="text-sm">Observaciones</label>
+                                <textarea id="observacionCurp" wire:model="observacionCurp" type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                             </div>
 
-                        </div>
-                    </fieldset>
 
-                    {{-- direccion --}}
-                    <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-md dark:bg-coolGray-900">
-
-                        <div class="space-y-2 col-span-full lg:col-span-1">
-
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                                    clip-rule="evenodd" />
-                            </svg>
-
-                            <p class="text-base">
-                                Dirección
-                            </p>
-                        </div>
-
-                        <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-
-                            <div class="col-span-full sm:col-span-3">
-                                <label for="text" class="text-sm">Estado</label>
-                                <input id="text" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->nombre_estado }}" disabled>
-                            </div>
-                            <div class="col-span-full sm:col-span-3">
-                                <label for="text" class="text-sm">Municipio</label>
-                                <input id="text" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->nombre_municipio }}" disabled>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-4">
-                                <label for="text" class="text-sm">Calle</label>
-                                <input id="text" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->calle }}" disabled>
-                            </div>
-                            <div class="col-span-full sm:col-span-1">
-                                <label for="text" class="text-sm">Núm Exterior </label>
-                                <input id="text" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->numExt }}" disabled>
-                            </div>
-                            <div class="col-span-full sm:col-span-1">
-                                <label for="text" class="text-sm">Núm Interior</label>
-                                <input id="text" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->numInt }}" disabled>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-4">
-                                <label for="text" class="text-sm">Colonia</label>
-                                <input id="text" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->colonia }}" disabled>
-                            </div>
-                            <div class="col-span-full sm:col-span-2">
-                                <label for="text" class="text-sm">Codigo postal</label>
-                                <input id="text" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc->codigo_postal }}" disabled>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-4 text-center object-center justify-center">
-                                <label for="city" class="text-sm">Comprobante de domicilio</label>
-                                <a href="{{ Storage::url($candidatoDoc->comprobanteDomicilio) }}" target="_blank"
-                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-blue-500 border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-2 justify-center object-center">
-                                <label for="city" class="text-sm">¿Datos correctos?</label>
-                                <label for="dirToggle"
-                                    class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100"
-                                    wire:click="direccionToggle()">
-                                    <span>No</span>
-                                    <span class="relative">
-                                        <input id="dirToggle" wire:model="dirValue" type="checkbox" class="hidden peer">
-                                        @if ($dirValue == false)
-                                            <div
-                                                class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-blue-400 bg-red-500">
-                                            </div>
-                                            <div
-                                                class="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
-                                            </div>
-                                        @else
-                                            <div
-                                                class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-blue-400 bg-green-500">
-                                            </div>
-                                            <div
-                                                class="absolute inset-y-0 right-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
-                                            </div>
-                                        @endif
-                                    </span>
-                                    <span>Si</span>
-                                </label>
-                            </div>
-
-                            <div class="col-span-full sm:col-span-6  @if ($dirValue == true) hidden @else @endif">
-                                <label for="observacionDir" class="text-sm">Observaciones</label>
-                                <textarea id="observacionDir" wire:model="observacionDir" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
-                            </div>
 
                         </div>
                     </fieldset>
-
+                   
 
                 </form>
             </section>
@@ -653,7 +452,7 @@
 
 
 
-<script>
+{{-- <script>
     $('.btn_nav').click(function() {
         // animate content
         $('.page__style').addClass('animate_content');
@@ -696,7 +495,7 @@
         $('.home').removeClass('hidden');
 
     });
-</script>
+</script> --}}
 
 
 <!-- This example requires Tailwind CSS v2.0+ -->

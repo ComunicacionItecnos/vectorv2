@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Nuevo_ingreso;
 use Livewire\Component;
 use Livewire\WithPagination;
+use App\Models\Nuevo_ingreso;
+use Illuminate\Support\Facades\DB;
 
 class RevisionDoc extends Component
 {
@@ -23,18 +24,18 @@ class RevisionDoc extends Component
 
     public $candidatoDoc;
 
-    public $curpValue = true;
-    public $obseracionCurp;
+    public $curpValue = '1';  //0 = no 1= si
+    public $observacionCurp;
 
     public $actaNacValue = true;
     public $observacionActaNac;
 
     public $dirValue = true;
     public $observacionDir;
-    
+
 
     public function mount(){
-        $this->candidatoDoc = Nuevo_ingreso::where('id','21')->first();
+        $this->candidatoDoc;
     }
 
     public function updatingSearch(){
@@ -58,12 +59,12 @@ class RevisionDoc extends Component
         } else {
             dd('Ejecutando funcion');
         }
-       
     }
+
 
     public function curpToogle()
     {
-        ($this->curpValue) ? $this->obseracionCurp = '' : $this->curpValue ;
+        ($this->curpValue == 1) ? $this->observacionCurp = '' : $this->curpValue=0 ;
     }
 
     public function actaNacToogle(){
