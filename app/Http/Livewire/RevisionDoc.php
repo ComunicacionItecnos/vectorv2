@@ -35,7 +35,7 @@ class RevisionDoc extends Component
 
 
     public function mount(){
-        $this->candidatoDoc;
+        $this->candidatoDoc = Nuevo_ingreso::join('estados','nuevo_ingresos.estado_id','estados.id')->where('nuevo_ingresos.id',1)->first();
     }
 
     public function updatingSearch(){

@@ -140,32 +140,32 @@
                         <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 
                             <div class="block relative col-span-full sm:col-span-6">
-                                <img src="{{ Storage::url($candidatoDoc[0]->foto) }}" alt="Profile face"
+                                <img src="{{ Storage::url($candidatoDoc->foto) }}" alt="Profile face"
                                     class="p-1 w-20 h-20 mx-auto rounded-full  object-cover">
                                 <span
                                     class="absolute w-3 border-2 left-1/2 -bottom-1 transform -translate-x-1/2 border-white h-3 bg-green-500 rounded-full">
                                 </span>
                             </div>
 
-                            @if ($candidatoDoc[0]->nombre_2 == '')
+                            @if ($candidatoDoc->nombre_2 == '')
                                 <div class="col-span-full sm:col-span-3">
                                     <label for="firstname" class="text-sm">Primer nombre</label>
                                     <input id="firstname" type="text" placeholder="First name"
                                         class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                        value="{{ $candidatoDoc[0]->nombre_1 }}" disabled>
+                                        value="{{ $candidatoDoc->nombre_1 }}" disabled>
                                 </div>
                             @else
                                 <div class="col-span-full sm:col-span-3">
                                     <label for="firstname" class="text-sm">Primer nombre</label>
                                     <input id="firstname" type="text" placeholder="First name"
                                         class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                        value="{{ $candidatoDoc[0]->nombre_1 }}" disabled>
+                                        value="{{ $candidatoDoc->nombre_1 }}" disabled>
                                 </div>
                                 <div class="col-span-full sm:col-span-3">
                                     <label for="lastname" class="text-sm">Segundo nombre</label>
                                     <input id="lastname" type="text" placeholder="Last name"
                                         class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                        value="{{ $candidatoDoc[0]->nombre_2 }}" disabled>
+                                        value="{{ $candidatoDoc->nombre_2 }}" disabled>
                                 </div>
                             @endif
 
@@ -173,17 +173,17 @@
                                 <label for="email" class="text-sm">Apellido paterno</label>
                                 <input id="email" type="email" placeholder="Email"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc[0]->ap_paterno }}" disabled>
+                                    value="{{ $candidatoDoc->ap_paterno }}" disabled>
                             </div>
                             <div class="col-span-full sm:col-span-3">
                                 <label for="address" class="text-sm">Apellido materno</label>
                                 <input id="address" type="text" placeholder=""
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    value="{{ $candidatoDoc[0]->ap_materno }}" disabled>
+                                    value="{{ $candidatoDoc->ap_materno }}" disabled>
                             </div>
                             <div class="col-span-full sm:col-span-4 text-center object-center justify-center">
                                 <label for="city" class="text-sm">Credencial INE</label>
-                                <a href="{{ Storage::url($candidatoDoc[0]->credencialIFE) }}" target="_blank"
+                                <a href="{{ Storage::url($candidatoDoc->credencialIFE) }}" target="_blank"
                                     class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-blue-500 border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-blue-800">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
                                         fill="currentColor">
