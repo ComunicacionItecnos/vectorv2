@@ -569,6 +569,84 @@
                     Opciones
                 </th>
             </tr>
+
+            {{-- Encabezado Tabla Capacitacion --}}
+            
+            @elseif (auth()->user()->role_id == 10)
+            <tr>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    <div class="flex justify-start text-left">
+                        Nombre
+                        @if ($sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('ap_paterno')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                            </svg>
+                        </span>
+                        @endif
+                        @if (!$sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('ap_paterno')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                            </svg>
+                        </span>
+                        @endif
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    <div class="flex justify-start text-left">
+                        No. Colaborador
+                        @if ($sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('no_colaborador')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                            </svg>
+                        </span>
+                        @endif
+                        @if (!$sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('no_colaborador')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                            </svg>
+                        </span>
+                        @endif
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Datos de contacto
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    <div class="flex justify-start text-left">
+                        Estado
+                        @if ($sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('estado_colaborador')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                            </svg>
+                        </span>
+                        @endif
+                        @if (!$sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('estado_colaborador')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                            </svg>
+                        </span>
+                        @endif
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Puesto y Área
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Opciones
+                </th>
+            </tr>
             @endif
 
         </thead>
@@ -1190,6 +1268,78 @@
             @else
             @endif
             @endforeach
+
+
+            {{-- Cuerpo tabla Capacitacion --}}
+            @elseif (auth()->user()->role_id == 10)
+            @foreach ($colaboradores as $colaborador)
+            <tr>
+                <td class="sm:px-6 py-2 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div
+                            class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
+                            @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                            <img class="w-20 rounded shadow h-24" src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
+                            @else
+                            <img class="w-20 rounded shadow h-24" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                            @endif
+                        </div>
+                        <div class="ml-4 whitespace-pre-line">
+                            <div class="text-sm font-medium text-gray-900">
+                                <span class="sm:hidden"> {{ $colaborador->no_colaborador }}</span>
+                                <span class="sm:inline-block sm:-mt-6">{{ $colaborador->nombre }}
+                                    {{ $colaborador->ap_paterno }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                        {{ $colaborador->no_colaborador }}
+                    </div>
+                </td>
+                <td class="px-3 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Fijo: {{ $colaborador->tel_fijo }}
+                    </div>
+                    <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
+                    </div>
+                    <div class="text-sm text-gray-900">
+                        Ext.: {{ $colaborador->numero_extension }}
+                    </div>
+                    <div class="text-sm text-gray-900">Correo:</div>
+                    <div class="text-sm text-gray-900">
+                        {{ $colaborador->correo }}</div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    @if ($colaborador->estado_colaborador == 1)
+                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full">
+                        Activo
+                    </span>
+                    @else
+                    <span class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full">
+                        Inactivo
+                    </span>
+                    @endif
+            
+                </td>
+                <td class="px-3 py-4">
+                    <div class="flex flex-wrap text-sm text-gray-900">
+                        {{ $colaborador->puesto }}</div>
+            
+                    <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
+                </td>
+                <td class="px-3 py-4">
+                    <div class=" flex justify-center sm:mx-0 ">
+                        <a href="{{ url('/edit/' . $colaborador->no_colaborador) }}"
+                            class="inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-yellow-600 border border-transparent 
+                                        rounded-md shadow-sm hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                            Ver
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+
             @endif
 
 

@@ -2,23 +2,25 @@
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-red-700">
             @if (auth()->user()->role_id == 1)
-                Super usuario
+            Super usuario
             @elseif (auth()->user()->role_id == 2)
-                Comunicación
+            Comunicación
             @elseif (auth()->user()->role_id == 3)
-                Administración
+            Administración
             @elseif (auth()->user()->role_id == 4)
-                Relaciones laborales
+            Relaciones laborales
             @elseif (auth()->user()->role_id == 5)
-                Reclutamiento y selección
+            Reclutamiento y selección
             @elseif (auth()->user()->role_id == 6)
-                Seguridad patrimonial
+            Seguridad patrimonial
             @elseif (auth()->user()->role_id == 7)
-                Servicio médico
+            Servicio médico
             @elseif (auth()->user()->role_id == 8)
-                Dirección
-                @elseif (auth()->user()->role_id == 9)
-                Gerente Unidad de Negocio
+            Dirección
+            @elseif (auth()->user()->role_id == 9)
+            Gerente Unidad de Negocio
+            @elseif (auth()->user()->role_id == 10)
+            Capacitación
             @endif
         </h2>
     </x-slot>
