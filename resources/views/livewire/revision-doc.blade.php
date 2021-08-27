@@ -863,7 +863,7 @@
 
                 <div class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-gray-600 hover:bg-blue-500 hover:border-transparent 
                 hover:shadow-lg group  home">
-
+                    <p>{{ $nI->areaRd }}</p>
                     <div class="block relative  btn_nav perfil_link">
                         <img src="{{ Storage::url($nI->foto) }}" alt="Profile face"
                             class="p-1 w-20 h-20 mx-auto rounded-full  object-cover" loading="lazy">

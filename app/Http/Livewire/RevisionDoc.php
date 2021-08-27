@@ -116,15 +116,6 @@ class RevisionDoc extends Component
         ]);
     }
 
-    
-    public function candidato($id){
-        if ($id == null || $id == '') {
-           $this->candidatoDoc = Nuevo_ingreso::where('id','=',$id)->get();
-        } else {
-            dd('Ejecutando funcion');
-        }
-    }
-
     public function showInfo($id){
         if ($this->mostrarCandidato == false) {
             $this->mostrarCandidato = true;
