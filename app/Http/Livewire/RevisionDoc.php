@@ -2,10 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
-use App\Models\Nuevo_ingreso;
 use Illuminate\Support\Facades\DB;
 
 class RevisionDoc extends Component
@@ -13,10 +11,15 @@ class RevisionDoc extends Component
     use WithPagination;
 
     /* Variables */
-    public $search, $perPage = '1';
+    public $search, $perPage = '8';
     protected $queryString = [
         'search' => ['except' => ''],
         'perPage'
+    ];
+
+    protected $listeners = [
+        'registro',
+        'cancelled',
     ];
 
     public $nuevoIngreso;
@@ -66,6 +69,28 @@ class RevisionDoc extends Component
     public $tallaZapatos;
     public $numExt;
     public $numInt;
+    
+    public $areard;
+    public $r_obscredencial;
+    public $r_obsfecNac;
+    public $r_obscurp;
+    public $r_obsrfc;
+    public $r_obsimss;
+    public $r_obsdomicilio;
+    public $r_obsNivelEstudios;
+    public $r_obsExtra;
+
+    public $a_obscredencial;
+    public $a_obsfecNac;
+    public $a_obscurp;
+    public $a_obsrfc;
+    public $a_obsimss;
+    public $a_obsdomicilio;
+    public $a_obsNivelEstudios;
+    public $a_obsExtra;
+    public $status;
+    public $r_userId;
+    public $a_userId;
 
     public $mostrarCandidato = false;
     public $mostrarTodos = true;
@@ -96,9 +121,13 @@ class RevisionDoc extends Component
     public $obsExtValue = false;
     public $observacionobsExt;
 
+    public $userLogin;
+
 
     public function mount(){
         $this->candidatoDoc = [];
+        // $this->userLogin = auth()->user()->role_id;
+        $this->userLogin = 5;
     }
 
     public function updatingSearch(){
@@ -107,8 +136,8 @@ class RevisionDoc extends Component
 
     public function render()
     {
-
-        return view('livewire.revision-doc',['nuevosIngresos'=>Nuevo_ingreso::where('nombre_1','LIKE',"%{$this->search}%")
+        return view('livewire.revision-doc',['nuevosIngresos'=>DB::table('v_nuevo_ingresos')
+                                        ->where('nombre_1','LIKE',"%{$this->search}%")
                                         ->orWhere('curp', 'LIKE', "%{$this->search}%")
                                         ->orWhere('rfc', 'LIKE', "%{$this->search}%")
                                         ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
@@ -167,6 +196,28 @@ class RevisionDoc extends Component
             $this->tallaZapatos = $this->candidatoDoc[0]->tallaZapatos;
             $this->numExt = $this->candidatoDoc[0]->numExt;
             $this->numInt = $this->candidatoDoc[0]->numInt;
+
+            $this->areard = $this->candidatoDoc[0]->areaRd;
+            $this->r_obscredencial = $this->candidatoDoc[0]->R_obscredencial;
+            $this->r_obsfecNac = $this->candidatoDoc[0]->R_obsfecNac;
+            $this->r_obscurp = $this->candidatoDoc[0]->R_obscurp;
+            $this->r_obsrfc = $this->candidatoDoc[0]->R_obsrfc;
+            $this->r_obsimss = $this->candidatoDoc[0]->R_obsimss;
+            $this->r_obsdomicilio = $this->candidatoDoc[0]->R_obsdomicilio;
+            $this->r_obsNivelEstudios = $this->candidatoDoc[0]->R_obsNivelEstudios;
+            $this->r_obsExtra = $this->candidatoDoc[0]->R_obsExtra;
+            $this->a_obscredencial = $this->candidatoDoc[0]->A_obscredencial;
+            $this->a_obsfecNac = $this->candidatoDoc[0]->A_obsfecNac;
+            $this->a_obscurp = $this->candidatoDoc[0]->A_obscurp;
+            $this->a_obsrfc = $this->candidatoDoc[0]->A_obsrfc;
+            $this->a_obsimss = $this->candidatoDoc[0]->A_obsimss;
+            $this->a_obsdomicilio = $this->candidatoDoc[0]->A_obsdomicilio;
+            $this->a_obsNivelEstudios = $this->candidatoDoc[0]->A_obsNivelEstudios;
+            $this->a_obsExtra = $this->candidatoDoc[0]->A_obsExtra;
+            $this->status = $this->candidatoDoc[0]->status;
+            $this->r_userId = $this->candidatoDoc[0]->R_userId;
+            $this->a_userId = $this->candidatoDoc[0]->A_userId;
+
         }
     }
 
@@ -218,5 +269,37 @@ class RevisionDoc extends Component
         ($this->obsExtValue) ? $this->observacionobsExt = '': $this->obsExtValue;
     }
 
+
+    public function cancelled()
+    {
+        $this->alert('info', 'Se canceló el registro', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+    }
+
+    public function triggerConfirm()
+    {
+        $this->confirm('¿Deseas terminar el registro?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'confirmButtonText' =>  'Si',
+            'cancelButtonText' => 'No',
+            'onConfirmed' => 'registro',
+            'onCancelled' => 'cancelled'
+        ]);
+    }
+
+    public function registro(){
+        
+        dd('dentro de registro');
+    }
 
 }
