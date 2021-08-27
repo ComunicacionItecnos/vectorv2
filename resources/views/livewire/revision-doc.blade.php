@@ -112,6 +112,23 @@
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
 
+                        @if ($userLogin == 5 && $a_obscredencial != NULL)
+                            
+                            <div class="col-span-full sm:col-span-6">
+                                <p>Mostrar comentarios admin</p>
+                                <label for="a_observacionCurp" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                                <textarea id="a_observacionCurp" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled >{{$a_obscredencial}}</textarea>
+                            </div>
+                        @elseif($userLogin == 3 && $r_obscredencial != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <p>Mostrar comentarios admin</p>
+                                <label for="r_observacionCurp" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="r_observacionCurp" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled >{{$r_obscredencial}}</textarea>
+                            </div>
+                        @endif
+
                     </div>
                 </fieldset>
 
@@ -186,6 +203,20 @@
                             <textarea id="observacionActaNac" wire:model="observacionActaNac" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
+
+                        @if ($userLogin == 5 && $a_obsfecNac != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="a_observacionActaNac" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                                <textarea id="a_observacionActaNac" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$a_obsfecNac}}</textarea>
+                            </div>
+                        @elseif($userLogin == 3 && $r_obsfecNac != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="r_observacionActaNac" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="r_observacionActaNac" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$r_obsfecNac}}</textarea>
+                            </div>
+                        @endif
 
                     </div>
                 </fieldset>
@@ -301,6 +332,20 @@
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
 
+                        @if ($userLogin == 5 && $a_obsdomicilio != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="a_observacionDir" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                                <textarea id="a_observacionDir" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$a_obsdomicilio}}</textarea>
+                            </div>
+                        @elseif($userLogin == 3 && $r_obsdomicilio != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="a_observacionDir" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="a_observacionDir" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$r_obsdomicilio}}</textarea>
+                            </div>
+                        @endif
+
                     </div>
                 </fieldset>
 
@@ -373,10 +418,26 @@
                         </div>
 
                         <div class="col-span-full sm:col-span-6  @if ($curpDocValue) hidden @else @endif">
-                            <label for="observacionCurpDoc" class="text-sm">Observaciones</label>
-                            <textarea id="observacionCurpDoc" wire:model="observacionCurpDoc" type="text"
+                            <label for="a_observacionCurpDoc" class="text-sm">Observaciones</label>
+                            <textarea id="a_observacionCurpDoc" wire:model="observacionCurpDoc" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
+
+                        @if ($userLogin == 5 && $a_obscurp != NULL)
+
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="a_observacionCurpDoc" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                                <textarea id="a_observacionCurpDoc" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$a_obscurp}}</textarea>
+                            </div>
+
+                        @elseif($userLogin == 3 && $r_obscurp != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="r_observacionDir" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="r_observacionDir" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$r_obscurp}}</textarea>
+                            </div>
+                        @endif
 
                     </div>
                 </fieldset>
@@ -456,6 +517,22 @@
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
 
+                        @if ($userLogin == 5 && $a_obsrfc != NULL)
+
+                        <div class="col-span-full sm:col-span-6">
+                            <label for="a_observacionrfc" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                            <textarea id="a_observacionrfc" type="text"
+                                class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$a_obsrfc}}</textarea>
+                        </div>
+
+                        @elseif($userLogin == 3 && $r_obsrfc != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="r_observacionrfc" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="r_observacionrfc" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$r_obsrfc}}</textarea>
+                            </div>
+                        @endif
+
                     </div>
                 </fieldset>
 
@@ -532,6 +609,22 @@
                             <textarea id="observacionimss" wire:model="observacionimss" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
+
+                        @if ($userLogin == 5 && $a_obsimss != NULL)
+
+                        <div class="col-span-full sm:col-span-6">
+                            <label for="a_observacionimss" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                            <textarea id="a_observacionimss" type="text"
+                                class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$a_obsimss}}</textarea>
+                        </div>
+
+                        @elseif($userLogin == 3 && $r_obsimss != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="r_observacionimss" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="a_observacionimss" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$r_obsimss}}</textarea>
+                            </div>
+                        @endif
 
                     </div>
                 </fieldset>
@@ -617,6 +710,22 @@
                             <textarea id="observacionescolaridad" wire:model="observacionescolaridad" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
+
+                        @if ($userLogin == 5 && $a_obsNivelEstudios != NULL)
+
+                        <div class="col-span-full sm:col-span-6">
+                            <label for="a_observacionNivelEstudios" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                            <textarea id="a_observacionNivelEstudios" type="text"
+                                class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$a_obsNivelEstudios}}</textarea>
+                        </div>
+
+                        @elseif($userLogin == 3 && $r_obsNivelEstudios != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="r_observacionNivelEstudios" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="a_observacionNivelEstudios" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$r_obsNivelEstudios}}</textarea>
+                            </div>
+                        @endif
 
                     </div>
                 </fieldset>
@@ -833,6 +942,22 @@
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
 
+                        @if ($userLogin == 5 && $a_obsExtra != NULL)
+
+                        <div class="col-span-full sm:col-span-6">
+                            <label for="a_observacionExtra" class="text-sm"><span class="text-red-600">*</span> Observaciones de administración</label>
+                            <textarea id="a_observacionExtra" type="text"
+                                class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$a_obsExtra}}</textarea>
+                        </div>
+
+                        @elseif($userLogin == 3 && $r_obsExtra != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="r_observacionExtra" class="text-sm"><span class="text-red-600">*</span> Observaciones de reclutaminto</label>
+                                <textarea id="a_observacionExtra" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900" disabled>{{$r_obsExtra}}</textarea>
+                            </div>
+                        @endif
+
                     </div>
                 </fieldset>
 
@@ -920,7 +1045,14 @@
                                     </h2>
                                     <p id="curp" class="sm:text-xs md:text-xs lg:text-xs xl:text-xs dark:text-coolGray-400">
                                         {{ $nI->curp }}</p>
-                                    <button type="button" wire:click="showInfo({{ $nI->id }})">Click</button>
+                                        
+                                    <button type="button" class="px-8 py-3 font-semibold rounded-full dark:bg-coolGray-100 dark:text-coolGray-800 bg-gray-500"
+                                        wire:click="showInfo({{ $nI->id }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+                                          </svg>
+                                    </button>
                                 </div>
                                 <div class="flex justify-center pt-2 space-x-4 align-center">
                                     <a href="whatsapp://send?phone=+521{{ $nI->tel_movil }}" target="_blank"
