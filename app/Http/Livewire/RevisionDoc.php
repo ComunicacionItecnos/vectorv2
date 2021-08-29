@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
@@ -122,6 +123,7 @@ class RevisionDoc extends Component
     public $observacionobsExt;
 
     public $userLogin;
+    public $userName;
 
 
     public function mount(){
@@ -149,7 +151,22 @@ class RevisionDoc extends Component
         if ($this->mostrarCandidato == false) {
             $this->mostrarCandidato = true;
             $this->mostrarTodos = false;
+
             $this->candidatoDoc = DB::table('v_nuevo_ingresos')->where('id',$id)->get();
+
+            if ($this->candidatoDoc[0]->R_userId == NULL) {
+                $this->r_userId = Null;
+            } else {
+                $this->r_userId = User::where('id',$this->candidatoDoc[0]->R_userId)->first();
+                $this->r_userId = $this->r_userId->name;
+            }
+            
+            if ($this->candidatoDoc[0]->A_userId == NULL) {
+                $this->a_userId = Null;
+            } else {
+                $this->a_userId = User::where('id',$this->candidatoDoc[0]->A_userId)->first();
+                $this->a_userId = $this->a_userId->name;
+            }            
 
             $this->curp = $this->candidatoDoc[0]->curp;
             $this->curpDoc = $this->candidatoDoc[0]->curpDoc;
@@ -215,9 +232,6 @@ class RevisionDoc extends Component
             $this->a_obsNivelEstudios = $this->candidatoDoc[0]->A_obsNivelEstudios;
             $this->a_obsExtra = $this->candidatoDoc[0]->A_obsExtra;
             $this->status = $this->candidatoDoc[0]->status;
-            $this->r_userId = $this->candidatoDoc[0]->R_userId;
-            $this->a_userId = $this->candidatoDoc[0]->A_userId;
-
         }
     }
 

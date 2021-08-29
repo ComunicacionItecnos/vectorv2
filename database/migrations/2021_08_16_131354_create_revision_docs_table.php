@@ -37,10 +37,10 @@ class CreateRevisionDocsTable extends Migration
             $table->integer("status")->default(0)->comment("0=no revivasado, 1=incompleto, 2=completado, 3=rechazado");
             
             $table->unsignedBigInteger("R_userId")->nullable();
-            $table->foreign('R_userId')->references('id')->on('nuevo_ingresos'); 
+            $table->foreign('R_userId')->references('id')->on('users'); 
 
             $table->unsignedBigInteger("A_userId")->nullable();
-            $table->foreign('A_userId')->references('id')->on('nuevo_ingresos'); 
+            $table->foreign('A_userId')->references('id')->on('users'); 
 
             $table->timestamps();
         });
