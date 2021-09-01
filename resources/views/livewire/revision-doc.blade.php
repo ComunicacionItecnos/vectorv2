@@ -5,9 +5,8 @@
             <p>Sin candidato</p>
             <button type="button" wire:click="showMore">Click</button>
         @else
-            <form wire:submit.prevent="triggerConfirm"
-                class="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
-
+            <form wire:submit.prevent="triggerConfirm">
+        
                 {{-- Credencial --}}
                 <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-coolGray-900">
                     <div class="space-y-2 col-span-full lg:col-span-1">
@@ -85,9 +84,9 @@
                                 class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
                                 <span>No</span>
                                 <span class="relative">
-                                    <input id="Toggle" type="checkbox" class="hidden peer" wire:model="curpValue"
-                                        wire:click="curpToogle">
-                                    @if ($curpValue)
+                                    <input id="Toggle" type="checkbox" class="hidden peer" wire:model="credencialValue"
+                                        wire:click="credencialToogle">
+                                    @if ($credencialValue)
                                         <div
                                             class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-green-600">
                                         </div>
@@ -108,9 +107,9 @@
                             </label>
                         </div>
 
-                        <div class="col-span-full sm:col-span-6  @if ($curpValue) hidden @else @endif">
-                            <label for="observacionCurp" class="text-sm">Observaciones</label>
-                            <textarea id="observacionCurp" wire:model="observacionCurp" type="text"
+                        <div class="col-span-full sm:col-span-6  @if ($credencialValue) hidden @else @endif">
+                            <label for="observacionCredencial" class="text-sm">Observaciones</label>
+                            <textarea id="observacionCredencial" wire:model="observacionCredencial" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
 
@@ -118,18 +117,18 @@
 
                             <div class="col-span-full sm:col-span-6">
                                 <p>Mostrar comentarios admin</p>
-                                <label for="a_observacionCurp" class="text-sm"><span class="text-red-600">*</span>
+                                <label for="a_observacionCredencial" class="text-sm"><span class="text-red-600">*</span>
                                     Observaciones de administración</label>
-                                <textarea id="a_observacionCurp" type="text"
+                                <textarea id="a_observacionCredencial" type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obscredencial }}</textarea>
                             </div>
                         @elseif($userLogin == 3 && $r_obscredencial != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <p>Mostrar comentarios admin</p>
-                                <label for="r_observacionCurp" class="text-sm"><span class="text-red-600">*</span>
+                                <label for="r_observacionCredencial" class="text-sm"><span class="text-red-600">*</span>
                                     Observaciones de reclutaminto</label>
-                                <textarea id="r_observacionCurp" type="text"
+                                <textarea id="r_observacionCredencial" type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obscredencial }}</textarea>
                             </div>
@@ -1072,7 +1071,7 @@
             @if ($nuevosIngresos)
                 @foreach ($nuevosIngresos as $nI)
                     @if ($userLogin == $nI->areaRd)
-                        <div  class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-gray-600 hover:bg-blue-500 hover:border-transparent hover:shadow-lg group  home">
+                        <div class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-gray-600 hover:bg-blue-500 hover:border-transparent hover:shadow-lg group  home">
                             <div class="block relative  btn_nav perfil_link">
                                 <img src="{{ Storage::url($nI->foto) }}" alt="Profile face"
                                     class="p-1 w-20 h-20 mx-auto rounded-full  object-cover" loading="lazy">

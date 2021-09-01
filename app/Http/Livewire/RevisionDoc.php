@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Revision_doc;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -25,6 +26,7 @@ class RevisionDoc extends Component
 
     public $nuevoIngreso;
     
+    public $idRev;
     public $curp;
     public $curpDoc;
     public $nombre1;
@@ -98,8 +100,8 @@ class RevisionDoc extends Component
 
     public $candidatoDoc;
 
-    public $curpValue = true;
-    public $observacionCurp;
+    public $credencialValue = true;
+    public $observacionCredencial;
 
     public $actaNacValue = true;
     public $observacionActaNac;
@@ -148,9 +150,12 @@ class RevisionDoc extends Component
     }
 
     public function showInfo($id){
+        
         if ($this->mostrarCandidato == false) {
             $this->mostrarCandidato = true;
             $this->mostrarTodos = false;
+
+            $this->idRev = $id;
 
             $this->candidatoDoc = DB::table('v_nuevo_ingresos')->where('id',$id)->get();
 
@@ -244,9 +249,9 @@ class RevisionDoc extends Component
         }   
     }
 
-    public function curpToogle()
+    public function credencialToogle()
     {
-        ($this->curpValue) ? $this->observacionCurp = '' : $this->curpValue = false ;
+        ($this->credencialValue) ? $this->observacionCredencial = '' : $this->credencialValue = false ;
     }
 
     public function actaNacToogle(){
@@ -312,8 +317,72 @@ class RevisionDoc extends Component
     }
 
     public function registro(){
+        $contar = [
+            $this->observacionCredencial,$this->observacionActaNac,$this->observacionDir,
+            $this->observacionCurpDoc,$this->observacionrfc,$this->observacionimss,
+            $this->observacionescolaridad
+        ];
+
+        $totalVacios = $this->revisarVacios($contar);
+        // dd($totalVacios);
+        if ($this->userLogin == 5) {
+
+            if ($totalVacios != 0) {
+                $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                    'R_obscredencial'=>$this->observacionCredencial,
+                    'R_obsfecNac'=>$this->observacionActaNac,
+                    'R_obscurp'=>$this->observacionCurpDoc,
+                    'R_obsrfc'=>$this->observacionrfc,
+                    'R_obsimss'=>$this->observacionimss,
+                    'R_obsdomicilio'=>$this->observacionDir,
+                    'R_obsNivelEstudios'=>$this->observacionescolaridad,
+                    'R_obsExtra'=>$this->observacionobsExt,
+                    'status'=>1,
+                    'R_userId'=>auth()->user()->id
+                ]);
+            }else{
+                $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                    'areaRd'=>3,
+                    'status'=>0,
+                    'R_userId'=>auth()->user()->id
+                ]);
+            }
+            
+        }elseif($this->userLogin == 3){
+            /* Retorna a reclutamiento si hay observaciones  */
+            if ($totalVacios != 0) {
+                $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                    'areaRd'=>5,
+                    'A_obscredencial'=>$this->observacionCredencial,
+                    'A_obsfecNac'=>$this->observacionActaNac,
+                    'A_obscurp'=>$this->observacionCurpDoc,
+                    'A_obsrfc'=>$this->observacionrfc,
+                    'A_obsimss'=>$this->observacionimss,
+                    'A_obsdomicilio'=>$this->observacionDir,
+                    'A_obsNivelEstudios'=>$this->observacionescolaridad,
+                    'A_obsExtra'=>$this->observacionobsExt,
+                    'status'=>3,
+                    'A_userId'=>auth()->user()->id
+                ]);
+            }else{
+                $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                    'status'=>2,
+                    'A_userId'=>auth()->user()->id
+                ]);
+            }
+        }
         
-        dd('dentro de registro');
+    }
+
+    public function revisarVacios($arrayObs){
+        $contador = 0;
+        $obs = count($arrayObs);
+        for ($i=0; $i <$obs ; $i++) { 
+            if ($arrayObs[$i] != Null) {
+                $contador = $contador+1;
+            }
+        }
+        return $contador;
     }
 
 }
