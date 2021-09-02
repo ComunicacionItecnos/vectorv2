@@ -2,7 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Models\Revision_doc;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -125,8 +124,6 @@ class RevisionDoc extends Component
     public $observacionobsExt;
 
     public $userLogin;
-    public $userName;
-
 
     public function mount(){
         $this->candidatoDoc = [];
@@ -220,74 +217,134 @@ class RevisionDoc extends Component
             $this->numInt = $this->candidatoDoc[0]->numInt;
 
             $this->areard = $this->candidatoDoc[0]->areaRd;
+
             $this->r_obscredencial = $this->candidatoDoc[0]->R_obscredencial;
-            $this->r_obsfecNac = $this->candidatoDoc[0]->R_obsfecNac;
-            $this->r_obscurp = $this->candidatoDoc[0]->R_obscurp;
-            $this->r_obsrfc = $this->candidatoDoc[0]->R_obsrfc;
-            $this->r_obsimss = $this->candidatoDoc[0]->R_obsimss;
-            $this->r_obsdomicilio = $this->candidatoDoc[0]->R_obsdomicilio;
-            $this->r_obsNivelEstudios = $this->candidatoDoc[0]->R_obsNivelEstudios;
-            $this->r_obsExtra = $this->candidatoDoc[0]->R_obsExtra;
             $this->a_obscredencial = $this->candidatoDoc[0]->A_obscredencial;
+            if($this->r_obscredencial != Null || $this->a_obscredencial != Null){
+                $this->credencialValue = false;
+            }else{
+                $this->credencialValue = true;
+            }
+
+            $this->r_obsfecNac = $this->candidatoDoc[0]->R_obsfecNac;
             $this->a_obsfecNac = $this->candidatoDoc[0]->A_obsfecNac;
-            $this->a_obscurp = $this->candidatoDoc[0]->A_obscurp;
-            $this->a_obsrfc = $this->candidatoDoc[0]->A_obsrfc;
-            $this->a_obsimss = $this->candidatoDoc[0]->A_obsimss;
+            if($this->r_obsfecNac != Null || $this->a_obsfecNac != Null){
+                $this->actaNacValue = false;
+            }else{
+                $this->actaNacValue = true;
+            }
+
+            $this->r_obsdomicilio = $this->candidatoDoc[0]->R_obsdomicilio;
             $this->a_obsdomicilio = $this->candidatoDoc[0]->A_obsdomicilio;
+            if($this->r_obsdomicilio != Null || $this->a_obsdomicilio != Null){
+                $this->dirValue = false;
+            }else{
+                $this->dirValue = true;
+            }
+
+            $this->r_obscurp = $this->candidatoDoc[0]->R_obscurp;
+            $this->a_obscurp = $this->candidatoDoc[0]->A_obscurp;
+            if($this->r_obscurp != Null || $this->a_obscurp != Null){
+                $this->curpDocValue = false;
+            }else{
+                $this->curpDocValue = true;
+            }
+
+            $this->r_obsrfc = $this->candidatoDoc[0]->R_obsrfc;
+            $this->a_obsrfc = $this->candidatoDoc[0]->A_obsrfc;
+            if($this->r_obsrfc != Null || $this->a_obsrfc != Null){
+                $this->rfcValue = false;
+            }else{
+                $this->rfcValue = true;
+            }
+
+            $this->r_obsimss = $this->candidatoDoc[0]->R_obsimss;
+            $this->a_obsimss = $this->candidatoDoc[0]->A_obsimss;
+            if($this->r_obsimss != Null || $this->a_obsimss != Null){
+                $this->imssValue = false;
+            }else{
+                $this->imssValue = true;
+            }
+            
+            $this->r_obsNivelEstudios = $this->candidatoDoc[0]->R_obsNivelEstudios;
             $this->a_obsNivelEstudios = $this->candidatoDoc[0]->A_obsNivelEstudios;
+            if($this->r_obsNivelEstudios != Null || $this->a_obsNivelEstudios != Null){
+                $this->escolaridadValue = false;
+            }else{
+                $this->escolaridadValue = true;
+            }
+
+            $this->r_obsExtra = $this->candidatoDoc[0]->R_obsExtra;
             $this->a_obsExtra = $this->candidatoDoc[0]->A_obsExtra;
             $this->status = $this->candidatoDoc[0]->status;
         }
     }
 
     public function showMore(){
-        ($this->mostrarTodos) ? : $this->mostrarTodos = false;
         if ($this->mostrarTodos == false) {
+
             $this->mostrarTodos = true;
             $this->mostrarCandidato = false;
             $this->candidatoDoc = [];
+
+            $this->observacionCredencial = Null;
+            $this->observacionActaNac = Null;
+            $this->observacionCurpDoc = Null;
+            $this->observacionrfc = Null;
+            $this->observacionimss = Null;
+            $this->observacionDir = Null;
+            $this->observacionescolaridad = Null;
+            $this->observacionobsExt = Null;
+
+            $this->credencialValue = true;
+            $this->actaNacValue = true;
+            $this->dirValue = true;
+            $this->curpDocValue = true;
+            $this->rfcValue = true;
+            $this->imssValue = true;
+            $this->escolaridadValue = true;
+            $this->obsExtValue = false;
         }   
     }
 
     public function credencialToogle()
     {
-        ($this->credencialValue) ? $this->observacionCredencial = '' : $this->credencialValue = false ;
+        ($this->credencialValue) ? $this->observacionCredencial = '' : $this->credencialValue = false; 
     }
 
     public function actaNacToogle(){
-        ($this->actaNacValue) ? $this->observacionActaNac = '' : $this->actaNacValue;
+        ($this->actaNacValue) ? $this->observacionActaNac = '' : $this->actaNacValue = false; 
     }
 
     public function direccionToggle()
     {
-        ($this->dirValue) ? $this->observacionDir = '': $this->dirValue;
+        ($this->dirValue) ? $this->observacionDir = '': $this->dirValue = false;  
     }
 
     public function curpDocToogle()
     {
-        ($this->curpDocValue) ? $this->observacionCurpDoc = '': $this->curpDocValue;
+        ($this->curpDocValue) ? $this->observacionCurpDoc = '': $this->curpDocValue = false; 
     }
 
     public function rfcToogle()
     {
-        ($this->rfcValue) ? $this->observacionrfc = '': $this->rfcValue;
+        ($this->rfcValue) ? $this->observacionrfc = '': $this->rfcValue = false;  
     }
 
     public function imssToogle()
     {
-        ($this->imssValue) ? $this->observacionimss = '': $this->imssValue;
+        ($this->imssValue) ? $this->observacionimss = '': $this->imssValue = false; 
     }
 
     public function escolaridadToogle()
     {
-        ($this->escolaridadValue) ? $this->observacionescolaridad = '': $this->escolaridadValue;
+        ($this->escolaridadValue) ? $this->observacionescolaridad = '': $this->escolaridadValue = false; 
     }
 
     public function obsExToogle()
     {
-        ($this->obsExtValue) ? $this->observacionobsExt = '': $this->obsExtValue;
+        ($this->obsExtValue) ? $this->observacionobsExt = '': $this->obsExtValue = false;
     }
-
 
     public function cancelled()
     {
@@ -316,41 +373,108 @@ class RevisionDoc extends Component
         ]);
     }
 
-    public function registro(){
-        $contar = [
-            $this->observacionCredencial,$this->observacionActaNac,$this->observacionDir,
-            $this->observacionCurpDoc,$this->observacionrfc,$this->observacionimss,
-            $this->observacionescolaridad
-        ];
-
-        $totalVacios = $this->revisarVacios($contar);
-        // dd($totalVacios);
+    public function registro()
+    {
+        $contar = [ $this->credencialValue, $this->actaNacValue, $this->dirValue, $this->curpDocValue,
+            $this->rfcValue, $this->imssValue, $this->escolaridadValue ];
+        
+        $totalFalsos = $this->revisarVerdadero($contar);
+        
         if ($this->userLogin == 5) {
 
-            if ($totalVacios != 0) {
+            if ($this->status == 3) {
                 $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
-                    'R_obscredencial'=>$this->observacionCredencial,
-                    'R_obsfecNac'=>$this->observacionActaNac,
-                    'R_obscurp'=>$this->observacionCurpDoc,
-                    'R_obsrfc'=>$this->observacionrfc,
-                    'R_obsimss'=>$this->observacionimss,
-                    'R_obsdomicilio'=>$this->observacionDir,
-                    'R_obsNivelEstudios'=>$this->observacionescolaridad,
-                    'R_obsExtra'=>$this->observacionobsExt,
-                    'status'=>1,
+                    'R_obscredencial'=>Null,
+                    'R_obsfecNac'=>Null,
+                    'R_obscurp'=>Null,
+                    'R_obsrfc'=>Null,
+                    'R_obsimss'=>Null,
+                    'R_obsdomicilio'=>Null,
+                    'R_obsNivelEstudios'=>Null,
+                    'R_obsExtra'=>Null,
+                    'A_obscredencial'=>Null,
+                    'A_obsfecNac'=>Null,
+                    'A_obscurp'=>Null,
+                    'A_obsrfc'=>Null,
+                    'A_obsimss'=>Null,
+                    'A_obsdomicilio'=>Null,
+                    'A_obsNivelEstudios'=>Null,
+                    'A_obsExtra'=>Null,
+                    'status'=>2,
                     'R_userId'=>auth()->user()->id
                 ]);
+                $this->flash('success', 'Se ha guardado correctamente', [
+                    'position' =>  'top-end',
+                    'timer' =>  3500,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->to('/revision-documentacion/');
             }else{
-                $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
-                    'areaRd'=>3,
-                    'status'=>0,
-                    'R_userId'=>auth()->user()->id
-                ]);
+
+                if ($totalFalsos != 0) {
+                    $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                        'R_obscredencial'=>$this->observacionCredencial,
+                        'R_obsfecNac'=>$this->observacionActaNac,
+                        'R_obscurp'=>$this->observacionCurpDoc,
+                        'R_obsrfc'=>$this->observacionrfc,
+                        'R_obsimss'=>$this->observacionimss,
+                        'R_obsdomicilio'=>$this->observacionDir,
+                        'R_obsNivelEstudios'=>$this->observacionescolaridad,
+                        'R_obsExtra'=>$this->observacionobsExt,
+                        'status'=>1,
+                        'R_userId'=>auth()->user()->id
+                    ]);
+
+                    $this->flash('success', 'Se ha guardado correctamente', [
+                        'position' =>  'top-end',
+                        'timer' =>  3500,
+                        'toast' =>  true,
+                        'text' =>  '',
+                        'confirmButtonText' =>  'Ok',
+                        'cancelButtonText' =>  'Cancel',
+                        'showCancelButton' =>  false,
+                        'showConfirmButton' =>  false,
+                    ]);
+                    return redirect()->to('/revision-documentacion/');
+
+                }else{
+                    $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                        'areaRd'=>3,
+                        'R_obscredencial'=>Null,
+                        'R_obsfecNac'=>Null,
+                        'R_obscurp'=>Null,
+                        'R_obsrfc'=>Null,
+                        'R_obsimss'=>Null,
+                        'R_obsdomicilio'=>Null,
+                        'R_obsNivelEstudios'=>Null,
+                        'R_obsExtra'=>Null,
+                        'status'=>0,
+                        'R_userId'=>auth()->user()->id
+                    ]);
+
+                    $this->flash('success', 'Se ha guardado correctamente', [
+                        'position' =>  'top-end',
+                        'timer' =>  3500,
+                        'toast' =>  true,
+                        'text' =>  '',
+                        'confirmButtonText' =>  'Ok',
+                        'cancelButtonText' =>  'Cancel',
+                        'showCancelButton' =>  false,
+                        'showConfirmButton' =>  false,
+                    ]);
+                    return redirect()->to('/revision-documentacion/');
+                }
+
             }
             
         }elseif($this->userLogin == 3){
             /* Retorna a reclutamiento si hay observaciones  */
-            if ($totalVacios != 0) {
+            if ($totalFalsos != 0) {
                 $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
                     'areaRd'=>5,
                     'A_obscredencial'=>$this->observacionCredencial,
@@ -364,21 +488,63 @@ class RevisionDoc extends Component
                     'status'=>3,
                     'A_userId'=>auth()->user()->id
                 ]);
+
+                $this->flash('success', 'Se ha guardado correctamente', [
+                    'position' =>  'top-end',
+                    'timer' =>  3500,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->to('/revision-documentacion/');
+
             }else{
                 $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                    'R_obscredencial'=>Null,
+                    'R_obsfecNac'=>Null,
+                    'R_obscurp'=>Null,
+                    'R_obsrfc'=>Null,
+                    'R_obsimss'=>Null,
+                    'R_obsdomicilio'=>Null,
+                    'R_obsNivelEstudios'=>Null,
+                    'R_obsExtra'=>Null,
+                    'A_obscredencial'=>Null,
+                    'A_obsfecNac'=>Null,
+                    'A_obscurp'=>Null,
+                    'A_obsrfc'=>Null,
+                    'A_obsimss'=>Null,
+                    'A_obsdomicilio'=>Null,
+                    'A_obsNivelEstudios'=>Null,
+                    'A_obsExtra'=>Null,
                     'status'=>2,
                     'A_userId'=>auth()->user()->id
                 ]);
+
+                $this->flash('success', 'Se ha guardado correctamente', [
+                    'position' =>  'top-end',
+                    'timer' =>  3500,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cancel',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->to('/revision-documentacion/');
             }
         }
         
     }
 
-    public function revisarVacios($arrayObs){
+    /* revisar cuantos checkbox son verdaderos */
+    public function revisarVerdadero($arrayCb){
         $contador = 0;
-        $obs = count($arrayObs);
-        for ($i=0; $i <$obs ; $i++) { 
-            if ($arrayObs[$i] != Null) {
+        $Cb = count($arrayCb);
+        for ($i=0; $i <$Cb ; $i++) { 
+            if ($arrayCb[$i] != True) {
                 $contador = $contador+1;
             }
         }
