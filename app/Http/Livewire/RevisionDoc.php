@@ -12,7 +12,7 @@ class RevisionDoc extends Component
     use WithPagination;
 
     /* Variables */
-    public $search, $perPage = '2',$mostrarStatus = Null;
+    public $search, $perPage = '2',$mostrarStatus = 0;
     protected $queryString = [
         'search' => ['except' => '']
     ];
@@ -139,11 +139,11 @@ class RevisionDoc extends Component
 
     public function render()
     {   
-        $res = DB::table('v_nuevo_ingresos')
+        /* $res = DB::table('v_nuevo_ingresos')
         ->whereIn('areaRd',["$this->userLogin"])
-        ->where('nombre_1','LIKE',"%{$this->search}%")
+        ->where('nombre_1','LIKE',"%{$this->search}%") */
         // ->orwhere('ap_paterno','LIKE',"%{$this->search}%")
-        ->paginate($this->perPage); 
+        /* ->paginate($this->perPage);  */
 
         /* 
         ->where('status','LIKE',"%{$this->mostrarStatus}%") 
@@ -156,7 +156,7 @@ class RevisionDoc extends Component
         ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
         ->orderBy('updated_at','ASC') */
        
-        return view('livewire.revision-doc',['nuevosIngresos'=> $res/* DB::table('v_nuevo_ingresos')
+        return view('livewire.revision-doc',['nuevosIngresos'=> /* $res */DB::table('v_nuevo_ingresos')
                                         ->where('areaRd','=',"%{$this->userLogin}%")
                                         ->where('status','LIKE',"%{$this->mostrarStatus}%") 
                                         ->orwhere('nombre_1','LIKE',"%{$this->search}%")
@@ -167,7 +167,7 @@ class RevisionDoc extends Component
                                         ->orWhere('rfc', 'LIKE', "%{$this->search}%")
                                         ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
                                         ->orderBy('updated_at','ASC')
-                                        ->paginate($this->perPage) */
+                                        ->paginate($this->perPage)
         ]);
     }
 

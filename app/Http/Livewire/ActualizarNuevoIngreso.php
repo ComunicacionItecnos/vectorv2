@@ -39,12 +39,18 @@ class ActualizarNuevoIngreso extends Component
     public $a_obsimss;
     public $a_obsEstudios;
 
-    public $actaMatrimonio;
+    public $paternidad;
     public $actaHijos;
-    public $carillaMilitar;
+    public $cartillaMilitar;
     public $cartaRecomendacion;
     public $cartaNoPenales;
     public $buroCredito;
+
+    public $actaHijos_update;
+    public $cartillaMilitar_update;
+    public $cartaRecomendacion_update;
+    public $cartaNoPenales_update;
+    public $buroCredito_update;
 
     public $totalSteps = 3;
     public $currentStep = 1;
@@ -83,16 +89,15 @@ class ActualizarNuevoIngreso extends Component
 
     public function mount($id_ni)
     {
-        $this->nuevo_Ingreso_Doc = Nuevo_ingreso::select('curp')->findOrFail($id_ni);  
-        $this->revisionDoc =  DB::table('v_nuevo_ingresos')->where('curp',$this->nuevo_Ingreso_Doc->curp)->get();
+        $this->nuevo_Ingreso_Doc = Nuevo_ingreso::select('curp')->findOrFail($id_ni);
+        $this->revisionDoc =  DB::table('v_nuevo_ingresos')->where('curp', $this->nuevo_Ingreso_Doc->curp)->get();
         $this->status = $this->revisionDoc[0]->status;
 
         if ($this->status == 1 || $this->status == 3) {
-            
-        }else{
+        } else {
             return abort(404);
         }
-        
+
 
         $this->r_obscredencial = $this->revisionDoc[0]->R_obscredencial;
         $this->r_obsactaNac = $this->revisionDoc[0]->R_obsfecNac;
@@ -109,7 +114,14 @@ class ActualizarNuevoIngreso extends Component
         $this->a_obsrfc = $this->revisionDoc[0]->A_obsrfc;
         $this->a_obsimss = $this->revisionDoc[0]->A_obsimss;
         $this->a_obsEstudios = $this->revisionDoc[0]->A_obsNivelEstudios;
-        
+
+        $this->paternidad = $this->revisionDoc[0]->paternidad;
+        $this->actaHijos = $this->revisionDoc[0]->actasHijo;
+        $this->cartillaMilitar = $this->revisionDoc[0]->cartillaMilitar;
+        $this->cartaRecomendacion = $this->revisionDoc[0]->cartasRecomendacion;
+        $this->cartaNoPenales = $this->revisionDoc[0]->cartaNoPenales;
+        $this->buroCredito = $this->revisionDoc[0]->buroCredito;
+
         /* $test = strpos ( $this->r_obscredencial ,'foto');
         $test2 = strpos ( $this->a_obscredencial ,'foto');
         if ($test == false || $test == false) {
@@ -149,65 +161,195 @@ class ActualizarNuevoIngreso extends Component
 
     public function validateData()
     {
-        if ($this->currentStep === 2) {
+        if ($this->currentStep == 2) {
             if ($this->r_obscurp != Null  || $this->a_obscurp != Null) {
                 $this->validate(
-                    ['curp' =>'required|mimes:pdf|max:5120'],
-                    ['curp.required'=>'Debes seleccionar un archivo',
-                    'curp.mimes'=>'Debe ser un archivo con formato: pdf']
+                    ['curp' => 'required|mimes:pdf|max:5120'],
+                    [
+                        'curp.required' => 'Debes seleccionar un archivo',
+                        'curp.mimes' => 'Debe ser un archivo con formato: pdf'
+                    ]
                 );
             }
 
             if ($this->r_obsactaNac != Null  || $this->a_obsactaNac != Null) {
                 $this->validate(
-                    ['actaNac' =>'required|mimes:pdf|max:5120'],
-                    ['actaNac.required'=>'Debes seleccionar un archivo',
-                    'actaNac.mimes'=>'Debe ser un archivo con formato: pdf']
+                    ['actaNac' => 'required|mimes:pdf|max:5120'],
+                    [
+                        'actaNac.required' => 'Debes seleccionar un archivo',
+                        'actaNac.mimes' => 'Debe ser un archivo con formato: pdf'
+                    ]
                 );
             }
 
             if ($this->r_obsrfc != Null  || $this->a_obsrfc != Null) {
                 $this->validate(
-                    ['rfc' =>'required|mimes:pdf|max:5120'],
-                    ['rfc.required'=>'Debes seleccionar un archivo',
-                    'rfc.mimes'=>'Debe ser un archivo con formato: pdf']
+                    ['rfc' => 'required|mimes:pdf|max:5120'],
+                    [
+                        'rfc.required' => 'Debes seleccionar un archivo',
+                        'rfc.mimes' => 'Debe ser un archivo con formato: pdf'
+                    ]
                 );
             }
 
             if ($this->r_obsimss != Null  || $this->a_obsimss != Null) {
                 $this->validate(
-                    ['imss' =>'required|mimes:pdf|max:5120'],
-                    ['imss.required'=>'Debes seleccionar un archivo',
-                    'imss.mimes'=>'Debe ser un archivo con formato: pdf']
+                    ['imss' => 'required|mimes:pdf|max:5120'],
+                    [
+                        'imss.required' => 'Debes seleccionar un archivo',
+                        'imss.mimes' => 'Debe ser un archivo con formato: pdf'
+                    ]
                 );
             }
 
             if ($this->r_obscredencial != Null  || $this->a_obscredencial != Null) {
                 $this->validate(
-                    ['credencialIFE' =>'required|mimes:pdf|max:5120'],
-                    ['credencialIFE.required'=>'Debes seleccionar un archivo',
-                    'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf']
+                    ['credencialIFE' => 'required|mimes:pdf|max:5120'],
+                    [
+                        'credencialIFE.required' => 'Debes seleccionar un archivo',
+                        'credencialIFE.mimes' => 'Debe ser un archivo con formato: pdf'
+                    ]
                 );
             }
 
             if ($this->r_obsDir != Null  || $this->a_obsDir != Null) {
                 $this->validate(
-                    ['domicilio' =>'required|mimes:pdf|max:5120'],
-                    ['domicilio.required'=>'Debes seleccionar un archivo',
-                    'domicilio.mimes'=>'Debe ser un archivo con formato: pdf']
+                    ['domicilio' => 'required|mimes:pdf|max:5120'],
+                    [
+                        'domicilio.required' => 'Debes seleccionar un archivo',
+                        'domicilio.mimes' => 'Debe ser un archivo con formato: pdf'
+                    ]
                 );
             }
 
             if ($this->r_obsEstudios != Null  || $this->a_obsEstudios != Null) {
                 $this->validate(
-                    ['Estudios' =>'required|mimes:pdf|max:5120'],
-                    ['Estudios.required'=>'Debes seleccionar un archivo',
-                    'Estudios.mimes'=>'Debe ser un archivo con formato: pdf']
+                    ['Estudios' => 'required|mimes:pdf|max:5120'],
+                    [
+                        'Estudios.required' => 'Debes seleccionar un archivo',
+                        'Estudios.mimes' => 'Debe ser un archivo con formato: pdf'
+                    ]
                 );
             }
-           
+        } elseif ($this->currentStep == 3) {
+            $this->validate(
+                [
+                    'actaHijos_update' => 'mimes:pdf|max:5120',
+                    'cartillaMilitar_update' => 'mimes:pdf|max:5120',
+                    'cartaRecomendacion_update' => 'mimes:pdf|max:5120',
+                    'cartaNoPenales_update' => 'mimes:pdf|max:5120',
+                    'buroCredito_update' => 'mimes:pdf|max:5120'
+                ],
+                [
+                    'actaHijos_update.mimes' => 'Debe ser un archivo con formato: pdf',
+                    'cartillaMilitar_update.mimes' => 'Debe ser un archivo con formato: pdf',
+                    'cartaRecomendacion_update.mimes' => 'Debe ser un archivo con formato: pdf',
+                    'cartaNoPenales_update.mimes' => 'Debe ser un archivo con formato: pdf',
+                    'buroCredito_update.mimes' => 'Debe ser un archivo con formato: pdf'
+                ]
+            );
         }
-        
     }
 
+    public function registro()
+    {
+
+        if ($this->r_obscurp != null || $this->a_obscurp != null) {
+            dd(
+                $this->curp->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp, '01.-CURP.pdf')
+            );
+        } else {
+            $this->curp = $this->revisionDoc[0]->curpDoc;
+        }
+
+        if ($this->r_obsactaNac != null || $this->a_obsactaNac != null) {
+            $this->actaNac = $this->actaNacimiento->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '02.-actaDeNacimiento.pdf');;
+        } else {
+            $this->actaNac = $this->revisionDoc[0]->actaNacimiento;
+        }
+
+        if ($this->r_obsrfc != null || $this->a_obsrfc != null) {
+            $this->rfc = $this->rfc->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '05.-RFC.pdf');;
+        } else {
+            $this->rfc = $this->revisionDoc[0]->rfcDocumento;
+        }
+
+        if ($this->r_obsimss != null || $this->a_obsimss != null) {
+            $this->imss = $this->altaImssDoc->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '06.-altaDelImss.pdf');;
+        } else {
+            $this->imss = $this->revisionDoc[0]->altaImssDoc;
+        }
+
+        if ($this->r_obscredencial != null || $this->a_obscredencial != null) {
+            $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '12.-credencialIFE.pdf');
+        } else {
+            $this->credencialIFE = $this->revisionDoc[0]->credencialIFE;
+        }
+
+        if ($this->r_obsDir != null || $this->a_obsDir != null) {
+            $this->domicilio = $this->domicilio->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '07.-comprobanteDeDomicilio.pdf');;
+        } else {
+            $this->domicilio = $this->revisionDoc[0]->comprobanteDomicilio;
+        }
+
+        if ($this->r_obsEstudios != null || $this->a_obsEstudios != null) {
+            $this->Estudios = $this->Estudios->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '03.-constanciaDeEstudios.pdf');
+        } else {
+            $this->Estudios = $this->revisionDoc[0]->constanciaEstudios;
+        }
+
+        if ($this->actaHijos_update == []) {
+            $rutaActaHijo = $this->revisionDoc[0]->actasHijo;
+        } else {
+            for ($i = 0; $i < count($this->actaHijos_update); $i++) {
+                $rutaActasHijos2 = $this->actaHijos_update[$i]->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp . '/08.-actasHijos', 'actaDeHijo' . $i . '.pdf');
+                $rutaActaHijo[] = $rutaActasHijos2;
+            }
+        }
+
+        if ($this->cartillaMilitar_update != '') {
+            $this->cartillaMilitar_update = $this->cartillaMilitar_update->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp, '10.-cartillaMilitar.pdf');
+        } else {
+            $this->cartillaMilitar_update = $this->revisionDoc[0]->cartillaMilitar;
+        }
+
+        if ($this->cartaRecomendacion_update == []) {
+            $rutaRecomendacion = $this->revisionDoc[0]->cartasRecomendacion;
+        } else {
+            for ($i = 0; $i < count($this->cartaRecomendacion_update); $i++) {
+                $rutaRecomendacion2 = $this->cartaRecomendacion_update[$i]->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp. '/09.-cartasRecomendacion', 'cartaDeRecomendacion' . $i . '.pdf');
+                $rutaRecomendacion[] = $rutaRecomendacion2;
+            }
+        }
+
+        if($this->cartaNoPenales_update != ''){
+            $this->cartaNoPenales_update = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
+        }else{
+            $this->cartaNoPenales_update = $this->revisionDoc[0]->cartaNoPenales;
+        }
+
+        if($this->buroCredito_update != ''){
+            $this->buroCredito_update = $this->buroCredito_update->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp,'13.-buroDeCredito.pdf');
+        }else{
+            $this->buroCredito_update = $this->revisionDoc[0]->cartaNoPenales;
+        }
+
+        dd(
+            $this->curp,
+            $this->actaNac,
+            $this->rfc,
+            $this->imss,
+            $this->credencialIFE,
+            $this->domicilio,
+            $this->Estudios,
+            
+            $this->actaHijos_update = json_encode($rutaActaHijo),
+            $this->cartillaMilitar_update,
+            $this->cartaRecomendacion_update = json_encode($rutaRecomendacion),
+            $this->cartaNoPenales_update,
+            $this->buroCredito_update,
+        );
+
+        
+    }
 }
