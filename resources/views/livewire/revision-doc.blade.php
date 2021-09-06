@@ -1225,7 +1225,7 @@
         <form class="relative">
             <div class="grid grid-cols-4">
                 <div class=" col-span-1 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
-                    <select wire:model='mostrarStatus'
+                    <select wire:model.debounce.200ms='mostrarStatus'
                         class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
                         <option value="" selected>Todos</option>
                         <option value="0">Sin revisar</option>
@@ -1235,7 +1235,7 @@
                     </select>
                 </div>
                 <div class=" col-span-3 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
-                    <input wire:model="search" type="search" placeholder="Buscar"
+                    <input wire:model.debounce.200ms="search" type="search" placeholder="Buscar"
                         class="w-full col-span-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
             </div>
@@ -1248,7 +1248,7 @@
                 @foreach ($nuevosIngresos as $nI)
                     @if ($userLogin == $nI->areaRd )
 
-                        <div class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-gray-600 hover:bg-blue-500 hover:border-transparent hover:shadow-lg group  home">
+                        <div class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-blue-200 hover:bg-blue-400 hover:border-transparent hover:shadow-lg group  home">
                             <div class="block relative  btn_nav perfil_link">
                                 <img src="{{ Storage::url($nI->foto) }}" alt="Profile face"
                                     class="p-1 w-20 h-20 mx-auto rounded-full  object-cover" loading="lazy">

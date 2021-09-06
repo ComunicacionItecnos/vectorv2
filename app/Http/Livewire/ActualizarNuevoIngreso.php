@@ -13,6 +13,8 @@ class ActualizarNuevoIngreso extends Component
 
     public $nuevo_Ingreso_Doc;
     public $revisionDoc;
+    public $idNi;
+    public $curpString;
 
     public $curp;
     public $actaNac;
@@ -92,12 +94,13 @@ class ActualizarNuevoIngreso extends Component
         $this->nuevo_Ingreso_Doc = Nuevo_ingreso::select('curp')->findOrFail($id_ni);
         $this->revisionDoc =  DB::table('v_nuevo_ingresos')->where('curp', $this->nuevo_Ingreso_Doc->curp)->get();
         $this->status = $this->revisionDoc[0]->status;
-
+        $this->idNi = $id_ni;
         if ($this->status == 1 || $this->status == 3) {
         } else {
             return abort(404);
         }
 
+        $this->curpString = $this->revisionDoc[0]->curp;
 
         $this->r_obscredencial = $this->revisionDoc[0]->R_obscredencial;
         $this->r_obsactaNac = $this->revisionDoc[0]->R_obsfecNac;
@@ -253,103 +256,120 @@ class ActualizarNuevoIngreso extends Component
 
     public function registro()
     {
-
         if ($this->r_obscurp != null || $this->a_obscurp != null) {
-            dd(
-                $this->curp->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp, '01.-CURP.pdf')
-            );
+            $this->curp = $this->curp->storeAs('public/nuevoIngreso/' . $this->curpString, '01.-CURP.pdf');
         } else {
             $this->curp = $this->revisionDoc[0]->curpDoc;
         }
 
         if ($this->r_obsactaNac != null || $this->a_obsactaNac != null) {
-            $this->actaNac = $this->actaNacimiento->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '02.-actaDeNacimiento.pdf');;
+            $this->actaNac = $this->actaNac->storeAs('public/nuevoIngreso/' . $this->curpString, '02.-actaDeNacimiento.pdf');
         } else {
-            $this->actaNac = $this->revisionDoc[0]->actaNacimiento;
+            $this->actaNac = $this->revisionDoc[0]['actaNacimiento'];
         }
 
         if ($this->r_obsrfc != null || $this->a_obsrfc != null) {
-            $this->rfc = $this->rfc->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '05.-RFC.pdf');;
+            $this->rfc = $this->rfc->storeAs('public/nuevoIngreso/' . $this->curpString, '05.-RFC.pdf');
         } else {
-            $this->rfc = $this->revisionDoc[0]->rfcDocumento;
+            $this->rfc = $this->revisionDoc[0]['rfcDocumento'];
         }
 
         if ($this->r_obsimss != null || $this->a_obsimss != null) {
-            $this->imss = $this->altaImssDoc->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '06.-altaDelImss.pdf');;
+            $this->imss = $this->imss->storeAs('public/nuevoIngreso/' . $this->curpString, '06.-altaDelImss.pdf');
         } else {
-            $this->imss = $this->revisionDoc[0]->altaImssDoc;
+            $this->imss = $this->revisionDoc[0]['altaImssDoc'];
         }
 
         if ($this->r_obscredencial != null || $this->a_obscredencial != null) {
-            $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '12.-credencialIFE.pdf');
+            $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/' . $this->curpString, '12.-credencialIFE.pdf');
         } else {
-            $this->credencialIFE = $this->revisionDoc[0]->credencialIFE;
+            $this->credencialIFE = $this->revisionDoc[0]['credencialIFE'];
         }
 
         if ($this->r_obsDir != null || $this->a_obsDir != null) {
-            $this->domicilio = $this->domicilio->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '07.-comprobanteDeDomicilio.pdf');;
+            $this->domicilio = $this->domicilio->storeAs('public/nuevoIngreso/' . $this->curpString, '07.-comprobanteDeDomicilio.pdf');
         } else {
-            $this->domicilio = $this->revisionDoc[0]->comprobanteDomicilio;
+            $this->domicilio = $this->revisionDoc[0]['comprobanteDomicilio'];
         }
 
         if ($this->r_obsEstudios != null || $this->a_obsEstudios != null) {
-            $this->Estudios = $this->Estudios->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp, '03.-constanciaDeEstudios.pdf');
+            $this->Estudios = $this->Estudios->storeAs('public/nuevoIngreso/' . $this->curpString, '03.-constanciaDeEstudios.pdf');
         } else {
-            $this->Estudios = $this->revisionDoc[0]->constanciaEstudios;
+            $this->Estudios = $this->revisionDoc[0]['constanciaEstudios'];
         }
 
         if ($this->actaHijos_update == []) {
-            $rutaActaHijo = $this->revisionDoc[0]->actasHijo;
+            $rutaActaHijo = $this->revisionDoc[0]['actasHijo'];
+            if ($rutaActaHijo == "null") {
+                $rutaActaHijo = null;
+            }
         } else {
             for ($i = 0; $i < count($this->actaHijos_update); $i++) {
-                $rutaActasHijos2 = $this->actaHijos_update[$i]->storeAs('public/nuevoIngreso/' . $this->revisionDoc[0]->curp . '/08.-actasHijos', 'actaDeHijo' . $i . '.pdf');
+                $rutaActasHijos2 = $this->actaHijos_update[$i]->storeAs('public/nuevoIngreso/' . $this->curpString . '/08.-actasHijos', 'actaDeHijo' . $i . '.pdf');
                 $rutaActaHijo[] = $rutaActasHijos2;
             }
         }
 
         if ($this->cartillaMilitar_update != '') {
-            $this->cartillaMilitar_update = $this->cartillaMilitar_update->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp, '10.-cartillaMilitar.pdf');
+            $this->cartillaMilitar_update = $this->cartillaMilitar_update->storeAs('public/nuevoIngreso/' . $this->curpString, '10.-cartillaMilitar.pdf');
         } else {
-            $this->cartillaMilitar_update = $this->revisionDoc[0]->cartillaMilitar;
+            $this->cartillaMilitar_update = $this->revisionDoc[0]['cartillaMilitar'];
         }
 
         if ($this->cartaRecomendacion_update == []) {
-            $rutaRecomendacion = $this->revisionDoc[0]->cartasRecomendacion;
+            $rutaRecomendacion = $this->revisionDoc[0]['cartasRecomendacion'];
+            if ($rutaRecomendacion == "null") {
+                $rutaRecomendacion = null;
+            }
         } else {
             for ($i = 0; $i < count($this->cartaRecomendacion_update); $i++) {
-                $rutaRecomendacion2 = $this->cartaRecomendacion_update[$i]->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp. '/09.-cartasRecomendacion', 'cartaDeRecomendacion' . $i . '.pdf');
+                $rutaRecomendacion2 = $this->cartaRecomendacion_update[$i]->storeAs('public/nuevoIngreso/' . $this->curpString . '/09.-cartasRecomendacion', 'cartaDeRecomendacion' . $i . '.pdf');
                 $rutaRecomendacion[] = $rutaRecomendacion2;
             }
         }
 
-        if($this->cartaNoPenales_update != ''){
-            $this->cartaNoPenales_update = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
-        }else{
-            $this->cartaNoPenales_update = $this->revisionDoc[0]->cartaNoPenales;
+        if ($this->cartaNoPenales_update != '') {
+            $this->cartaNoPenales_update = $this->cartaNoPenales_update->storeAs('public/nuevoIngreso/' . $this->curpString, '11.-cartaDeAntecedentesNoPenales.pdf');
+        } else {
+            $this->cartaNoPenales_update = $this->revisionDoc[0]['cartaNoPenales'];
         }
 
-        if($this->buroCredito_update != ''){
-            $this->buroCredito_update = $this->buroCredito_update->storeAs('public/nuevoIngreso/'.$this->revisionDoc[0]->curp,'13.-buroDeCredito.pdf');
-        }else{
-            $this->buroCredito_update = $this->revisionDoc[0]->cartaNoPenales;
+        if ($this->buroCredito_update != '') {
+            $this->buroCredito_update = $this->buroCredito_update->storeAs('public/nuevoIngreso/' . $this->curpString, '13.-buroDeCredito.pdf');
+        } else {
+            $this->buroCredito_update = $this->revisionDoc[0]['buroCredito'];
         }
 
-        dd(
-            $this->curp,
-            $this->actaNac,
-            $this->rfc,
-            $this->imss,
-            $this->credencialIFE,
-            $this->domicilio,
-            $this->Estudios,
-            
-            $this->actaHijos_update = json_encode($rutaActaHijo),
-            $this->cartillaMilitar_update,
-            $this->cartaRecomendacion_update = json_encode($rutaRecomendacion),
-            $this->cartaNoPenales_update,
-            $this->buroCredito_update,
-        );
+        $this->actaHijos_update = json_encode($rutaActaHijo);
+        $this->cartaRecomendacion_update = json_encode($rutaRecomendacion);
 
-        
+        $actualizar = Nuevo_ingreso::where('curp', $this->curpString)->update([
+            'curpDocumento' => $this->curp,
+            'actaNacimiento' => $this->actaNac,
+            'constanciaEstudios' => $this->Estudios,
+            'rfcDocumento' => $this->rfc,
+            'altaImssDoc' => $this->imss,
+            'comprobanteDomicilio' => $this->domicilio,
+            'actasHijo' => $this->actaHijos_update,
+            'cartasRecomendacion' => $this->cartaRecomendacion_update,
+            'cartillaMilitar' => $this->cartillaMilitar_update,
+            'cartaNoPenales' => $this->cartaNoPenales_update,
+            'credencialIFE' => $this->credencialIFE,
+            'buroCredito' => $this->buroCredito_update
+        ]);
+
+        if ($actualizar) {
+            $this->flash('success', 'Se ha guardado correctamente', [
+                'position' =>  'top-end',
+                'timer' =>  3500,
+                'toast' =>  true,
+                'text' =>  '',
+                'confirmButtonText' =>  'Ok',
+                'cancelButtonText' =>  'Cancel',
+                'showCancelButton' =>  false,
+                'showConfirmButton' =>  false,
+            ]);
+            return redirect()->to('/actualizar/nuevo-ingreso/' . $this->idNi);
+        }
     }
 }

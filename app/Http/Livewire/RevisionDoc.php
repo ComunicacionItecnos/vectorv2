@@ -12,9 +12,9 @@ class RevisionDoc extends Component
     use WithPagination;
 
     /* Variables */
-    public $search, $perPage = '2',$mostrarStatus = 0;
+    public $search, $perPage = '2',$mostrarStatus = '';
     protected $queryString = [
-        'search' => ['except' => '']
+        'search' => ['except' => ''],
     ];
 
     protected $listeners = [
@@ -138,36 +138,22 @@ class RevisionDoc extends Component
     }
 
     public function render()
-    {   
-        /* $res = DB::table('v_nuevo_ingresos')
-        ->whereIn('areaRd',["$this->userLogin"])
-        ->where('nombre_1','LIKE',"%{$this->search}%") */
-        // ->orwhere('ap_paterno','LIKE',"%{$this->search}%")
-        /* ->paginate($this->perPage);  */
+    {  
+        return view('livewire.revision-doc',['nuevosIngresos'=>
+            DB::table('v_nuevo_ingresos')
+            ->when($this->userLogin,function($query){
 
-        /* 
-        ->where('status','LIKE',"%{$this->mostrarStatus}%") 
-        ->orwhere('nombre_1','LIKE',"%{$this->search}%")
-        ->orwhere('nombre_2','LIKE',"%{$this->search}%") 
-        ->orwhere('ap_paterno','LIKE',"%{$this->search}%")
-        ->orwhere('ap_materno','LIKE',"%{$this->search}%")
-        ->orWhere('curp', 'LIKE', "%{$this->search}%")
-        ->orWhere('rfc', 'LIKE', "%{$this->search}%")
-        ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
-        ->orderBy('updated_at','ASC') */
-       
-        return view('livewire.revision-doc',['nuevosIngresos'=> /* $res */DB::table('v_nuevo_ingresos')
-                                        ->where('areaRd','=',"%{$this->userLogin}%")
-                                        ->where('status','LIKE',"%{$this->mostrarStatus}%") 
-                                        ->orwhere('nombre_1','LIKE',"%{$this->search}%")
-                                        ->orwhere('nombre_2','LIKE',"%{$this->search}%") 
-                                        ->orwhere('ap_paterno','LIKE',"%{$this->search}%")
-                                        ->orwhere('ap_materno','LIKE',"%{$this->search}%")
-                                        ->orWhere('curp', 'LIKE', "%{$this->search}%")
-                                        ->orWhere('rfc', 'LIKE', "%{$this->search}%")
-                                        ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
-                                        ->orderBy('updated_at','ASC')
-                                        ->paginate($this->perPage)
+                if ($this->mostrarStatus == '') {
+                    $query->where('areaRd',$this->userLogin)
+                    ->where('curp', 'LIKE', "%{$this->search}%");
+                }else{
+                    $query->where('areaRd',$this->userLogin)
+                    ->where('status',$this->mostrarStatus);
+                }
+                
+            })
+            ->orderBy('updated_at','DESC')
+            ->paginate($this->perPage)
         ]);
     }
 

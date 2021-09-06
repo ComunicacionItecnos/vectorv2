@@ -399,7 +399,7 @@
                                                                 clip-rule="evenodd" />
                                                         </svg>
                                                         <input type='file' wire:model="actaHijos_update" accept=".pdf"
-                                                            class="hidden" />
+                                                            class="hidden" multiple/>
                                                     </label>
                                                 @else
                                                     <label
@@ -411,7 +411,7 @@
                                                             <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
                                                         </svg>
                                                         <input type='file' wire:model="actaHijos_update" accept=".pdf"
-                                                            class="hidden" />
+                                                            class="hidden" multiple/>
                                                     </label>
                                                 @endif
 
@@ -478,7 +478,7 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                     <input type='file' wire:model="cartaRecomendacion_update" accept=".pdf"
-                                                        class="hidden" />
+                                                        class="hidden" multiple/>
                                                 </label>
                                             @else
                                                 <label
@@ -490,7 +490,7 @@
                                                         <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
                                                     </svg>
                                                     <input type='file' wire:model="cartaRecomendacion_update" accept=".pdf"
-                                                        class="hidden" />
+                                                        class="hidden" multiple/>
                                                 </label>
                                             @endif
 
