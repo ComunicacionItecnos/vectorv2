@@ -133,10 +133,6 @@ class RevisionDoc extends Component
         $this->resetPage();
     }
 
-    public function updatingMostrarStatus(){
-        $this->resetPage();
-    }
-
     public function render()
     {  
         return view('livewire.revision-doc',['nuevosIngresos'=>
@@ -146,11 +142,12 @@ class RevisionDoc extends Component
                 if ($this->mostrarStatus == '') {
                     $query->where('areaRd',$this->userLogin)
                     ->where('curp', 'LIKE', "%{$this->search}%");
-                }else{
+                }elseif($this->mostrarStatus != ''){
                     $query->where('areaRd',$this->userLogin)
-                    ->where('status',$this->mostrarStatus);
+                    ->where('status',$this->mostrarStatus)
+                    ->where('curp', 'LIKE', "%{$this->search}%");
                 }
-                
+
             })
             ->orderBy('updated_at','DESC')
             ->paginate($this->perPage)

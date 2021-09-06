@@ -399,7 +399,7 @@
                                                                 clip-rule="evenodd" />
                                                         </svg>
                                                         <input type='file' wire:model="actaHijos_update" accept=".pdf"
-                                                            class="hidden" multiple/>
+                                                            class="hidden" multiple />
                                                     </label>
                                                 @else
                                                     <label
@@ -411,7 +411,7 @@
                                                             <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
                                                         </svg>
                                                         <input type='file' wire:model="actaHijos_update" accept=".pdf"
-                                                            class="hidden" multiple/>
+                                                            class="hidden" multiple />
                                                     </label>
                                                 @endif
 
@@ -477,8 +477,8 @@
                                                             d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
                                                             clip-rule="evenodd" />
                                                     </svg>
-                                                    <input type='file' wire:model="cartaRecomendacion_update" accept=".pdf"
-                                                        class="hidden" multiple/>
+                                                    <input type='file' wire:model="cartaRecomendacion_update"
+                                                        accept=".pdf" class="hidden" multiple />
                                                 </label>
                                             @else
                                                 <label
@@ -489,8 +489,8 @@
                                                             d="M5.5 13a3.5 3.5 0 01-.369-6.98 4 4 0 117.753-1.977A4.5 4.5 0 1113.5 13H11V9.413l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 001.414 1.414L9 9.414V13H5.5z" />
                                                         <path d="M9 13h2v5a1 1 0 11-2 0v-5z" />
                                                     </svg>
-                                                    <input type='file' wire:model="cartaRecomendacion_update" accept=".pdf"
-                                                        class="hidden" multiple/>
+                                                    <input type='file' wire:model="cartaRecomendacion_update"
+                                                        accept=".pdf" class="hidden" multiple />
                                                 </label>
                                             @endif
 
@@ -545,7 +545,7 @@
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="buroCredito_update"
                                                 class="block text-base font-medium text-gray-700">
-                                            Buro de credito</label>
+                                                Buro de credito</label>
                                             @if ($buroCredito_update)
                                                 <label
                                                     class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
@@ -615,6 +615,21 @@
                             </div>
 
                         </form>
+
+                        @if ($currentStep == 4)
+                            <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+
+                                <p class="block text-base font-medium text-gray-700">
+                                    Haz finalizado correctemente la actualización de tus documentos.
+                                </p>
+
+                                <p class="block text-base font-medium text-gray-700">
+                                    Cierra esta ventana
+                                </p>
+                        
+                            </div>
+                        @endif
+
                     </div>
                 </div>
             </div>

@@ -1,8 +1,7 @@
 <div class="py-10 grid max-w-5xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
 
     {{-- Mostrar mas detallada --}}
-    <section
-        class="sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl  page__style perfil  @if ($mostrarCandidato) @else hidden @endif">
+    <section class="sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl  page__style perfil  @if ($mostrarCandidato) @else hidden @endif">
         @if ($candidatoDoc == [])
             <p>Sin candidato</p>
             <button type="button" wire:click="showMore">Click</button>
@@ -915,7 +914,7 @@
                         </svg>
                     </div>
                     <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-                        
+
                         @if ($estado_civil == 'Casado (a)')
                             <div class="col-span-full sm:col-span-6">
                                 <label for="email" class="text-sm">Acta de matrimonio</label>
@@ -1216,8 +1215,7 @@
     </section>
 
     {{-- Cards --}}
-    <section
-        class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl  page__style @if ($mostrarTodos) @else hidden @endif">
+    <section class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl  page__style @if ($mostrarTodos) @else hidden @endif">
 
         <header class="flex items-center justify-between">
             <h2 class="text-lg leading-6 font-medium text-black">Candidatos</h2>
@@ -1234,36 +1232,36 @@
                         <option value="2" class="@if ($userLogin == 5) hidden @else @endif">Completado</option>
                     </select>
                 </div>
-                <div class=" col-span-3 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
+                <div class="col-span-3 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
                     <input wire:model.debounce.200ms="search" type="search" placeholder="Buscar"
-                        class="w-full col-span-3 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                        class="w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                 </div>
             </div>
 
         </form>
 
-        <div
-            class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4  page__description">
-            @if ($nuevosIngresos)
+        @if (count($nuevosIngresos))
+            <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4  page__description">
+
                 @foreach ($nuevosIngresos as $nI)
-                    @if ($userLogin == $nI->areaRd )
+                    @if ($userLogin == $nI->areaRd)
 
                         <div class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-blue-200 hover:bg-blue-400 hover:border-transparent hover:shadow-lg group  home">
                             <div class="block relative  btn_nav perfil_link">
                                 <img src="{{ Storage::url($nI->foto) }}" alt="Profile face"
-                                    class="p-1 w-20 h-20 mx-auto rounded-full  object-cover" loading="lazy">
+                                    class="p-1 w-20 h-20 mx-auto rounded-full object-cover" loading="lazy">
                                 <span
                                     class="absolute w-3 border-2 left-1/2 -bottom-1 transform -translate-x-1/2 border-white h-3 
-                                    @if ($nI->status == 0)
-                                    bg-gray-500 animate-bounce
-                                    @elseif($nI->status == 1)
-                                        bg-yellow-500
-                                    @elseif($nI->status == 2)
-                                        bg-green-500
-                                    @elseif($nI->status == 3)
-                                        animate-pulse bg-red-500
-                                    @endif
-                                    rounded-full">
+                                        @if ($nI->status == 0)
+                                        bg-gray-500 animate-bounce
+                                        @elseif($nI->status == 1)
+                                            bg-yellow-500
+                                        @elseif($nI->status == 2)
+                                            bg-green-500
+                                        @elseif($nI->status == 3)
+                                            animate-pulse bg-red-500
+                                        @endif
+                                        rounded-full">
                                 </span>
                             </div>
 
@@ -1276,12 +1274,11 @@
                                             {{ $nI->nombre_1 . ' ' . $nI->nombre_2 . ' ' . $nI->ap_paterno . ' ' . $nI->ap_materno }}
                                         @endif
                                     </h2>
-                                    <p id="curp"
-                                        class="sm:text-xs md:text-xs lg:text-xs xl:text-xs dark:text-coolGray-400">
+                                    <p class="sm:text-xs md:text-xs lg:text-xs xl:text-xs dark:text-coolGray-400">
                                         {{ $nI->curp }}</p>
 
                                     <button type="button"
-                                        class="px-8 py-3 font-semibold rounded-full dark:bg-coolGray-100 dark:text-coolGray-800 bg-gray-500"
+                                        class="px-8 py-3 rounded-full dark:bg-coolGray-100 dark:text-coolGray-800"
                                         wire:click="showInfo({{ $nI->id }})">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                             viewBox="0 0 20 20" fill="currentColor">
@@ -1326,13 +1323,16 @@
 
                     @endif
                 @endforeach
-            @else
-                <div class="px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
-                    <h6 class="text-center text-gray-500">No se encontró a ningún campo que coincida con:
-                        "{{ $search }}"</h6>
-                </div>
-            @endif
-        </div>
+
+            </div>
+        @else
+            {{-- Error search --}}
+            <div class="grid xs:grid-cols-1 sm:grid-cols-1 px-4 py-3 bg-white border-t border-gray-200 sm:px-6 text-center justify-center object-center">
+                <h6 class="text-center text-gray-500">No se encontró a ningún campo que coincida con:
+                    "{{ $search }}"</h6>
+            </div>
+        @endif
+        {{-- Pagination --}}
         <div class="grid xs:grid-cols-1 sm:grid-cols-1 bg-white border-t border-gray-200 sm:px-6">
             {{ $nuevosIngresos->links() }}
         </div>

@@ -54,7 +54,9 @@ class ActualizarNuevoIngreso extends Component
     public $cartaNoPenales_update;
     public $buroCredito_update;
 
-    public $totalSteps = 3;
+    public $actualizar;
+
+    public $totalSteps = 4;
     public $currentStep = 1;
 
     protected $listeners = [
@@ -124,15 +126,6 @@ class ActualizarNuevoIngreso extends Component
         $this->cartaRecomendacion = $this->revisionDoc[0]->cartasRecomendacion;
         $this->cartaNoPenales = $this->revisionDoc[0]->cartaNoPenales;
         $this->buroCredito = $this->revisionDoc[0]->buroCredito;
-
-        /* $test = strpos ( $this->r_obscredencial ,'foto');
-        $test2 = strpos ( $this->a_obscredencial ,'foto');
-        if ($test == false || $test == false) {
-            $this->fotoMostrar = false;
-        } else {
-            $this->fotoMostrar = true;
-        }
-         */
 
         $this->currentStep = 1;
     }
@@ -258,44 +251,72 @@ class ActualizarNuevoIngreso extends Component
     {
         if ($this->r_obscurp != null || $this->a_obscurp != null) {
             $this->curp = $this->curp->storeAs('public/nuevoIngreso/' . $this->curpString, '01.-CURP.pdf');
+            $r_obscurp2 =  NULL;
+            $a_obscurp2 =  NULL;
         } else {
-            $this->curp = $this->revisionDoc[0]->curpDoc;
+            $this->curp = $this->revisionDoc[0]['curpDoc'];
+            $r_obscurp2 =  $this->revisionDoc[0]['R_obscurp'];
+            $a_obscurp2 =  $this->revisionDoc[0]['A_obscurp'];
         }
 
         if ($this->r_obsactaNac != null || $this->a_obsactaNac != null) {
             $this->actaNac = $this->actaNac->storeAs('public/nuevoIngreso/' . $this->curpString, '02.-actaDeNacimiento.pdf');
+            $r_obsactaNac2 = NULL;
+            $a_obsactaNac2 = NULL;
         } else {
             $this->actaNac = $this->revisionDoc[0]['actaNacimiento'];
+            $r_obsactaNac2 = $this->revisionDoc[0]['R_obsfecNac'];
+            $a_obsactaNac2 = $this->revisionDoc[0]['A_obsfecNac'];
         }
 
         if ($this->r_obsrfc != null || $this->a_obsrfc != null) {
             $this->rfc = $this->rfc->storeAs('public/nuevoIngreso/' . $this->curpString, '05.-RFC.pdf');
+            $r_obsrfc2 = NULL;
+            $a_obsrfc2 = NULL;
         } else {
             $this->rfc = $this->revisionDoc[0]['rfcDocumento'];
+            $r_obsrfc2 = $this->revisionDoc[0]['R_obsrfc'];
+            $a_obsrfc2 = $this->revisionDoc[0]['A_obsrfc'];
         }
 
         if ($this->r_obsimss != null || $this->a_obsimss != null) {
             $this->imss = $this->imss->storeAs('public/nuevoIngreso/' . $this->curpString, '06.-altaDelImss.pdf');
+            $r_obsimss2 = NULL;
+            $a_obsimss2 = NULL;
         } else {
             $this->imss = $this->revisionDoc[0]['altaImssDoc'];
+            $r_obsimss2 = $this->revisionDoc[0]['R_obsimss'];
+            $a_obsimss2 = $this->revisionDoc[0]['A_obsimss'];
         }
 
         if ($this->r_obscredencial != null || $this->a_obscredencial != null) {
             $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/' . $this->curpString, '12.-credencialIFE.pdf');
+            $r_obscredencial2 = NULL;
+            $a_obscredencial2 = NULL;
         } else {
             $this->credencialIFE = $this->revisionDoc[0]['credencialIFE'];
+            $r_obscredencial2 = $this->revisionDoc[0]['R_obscredencial'];
+            $a_obscredencial2 = $this->revisionDoc[0]['A_obscredencial'];
         }
 
         if ($this->r_obsDir != null || $this->a_obsDir != null) {
             $this->domicilio = $this->domicilio->storeAs('public/nuevoIngreso/' . $this->curpString, '07.-comprobanteDeDomicilio.pdf');
+            $r_obsDir2 = NULL;
+            $a_obsDir2 = NULL; 
         } else {
             $this->domicilio = $this->revisionDoc[0]['comprobanteDomicilio'];
+            $r_obsDir2 = $this->revisionDoc[0]['R_obsdomicilio'];
+            $a_obsDir2 = $this->revisionDoc[0]['A_obsdomicilio']; 
         }
 
         if ($this->r_obsEstudios != null || $this->a_obsEstudios != null) {
             $this->Estudios = $this->Estudios->storeAs('public/nuevoIngreso/' . $this->curpString, '03.-constanciaDeEstudios.pdf');
+            $r_obsEstudios2 = NULL;
+            $a_obsEstudios2 = NULL;
         } else {
             $this->Estudios = $this->revisionDoc[0]['constanciaEstudios'];
+            $r_obsEstudios2 = $this->revisionDoc[0]['R_obsNivelEstudios'];
+            $a_obsEstudios2 = $this->revisionDoc[0]['A_obsNivelEstudios'];
         }
 
         if ($this->actaHijos_update == []) {
@@ -343,7 +364,7 @@ class ActualizarNuevoIngreso extends Component
         $this->actaHijos_update = json_encode($rutaActaHijo);
         $this->cartaRecomendacion_update = json_encode($rutaRecomendacion);
 
-        $actualizar = Nuevo_ingreso::where('curp', $this->curpString)->update([
+        $this->actualizar = Nuevo_ingreso::where('curp', $this->curpString)->update([
             'curpDocumento' => $this->curp,
             'actaNacimiento' => $this->actaNac,
             'constanciaEstudios' => $this->Estudios,
@@ -358,8 +379,29 @@ class ActualizarNuevoIngreso extends Component
             'buroCredito' => $this->buroCredito_update
         ]);
 
-        if ($actualizar) {
-            $this->flash('success', 'Se ha guardado correctamente', [
+        if ($this->actualizar) {
+            DB::table('revision_docs')->where('id',$this->revisionDoc[0]['id'])->update([
+                'areaRd'=>5,
+                'R_obscredencial'=>$r_obscredencial2,
+                'R_obsfecNac'=>$r_obsactaNac2,
+                'R_obscurp'=>$r_obscurp2,
+                'R_obsrfc'=>$r_obsrfc2,
+                'R_obsimss'=>$r_obsimss2,
+                'R_obsdomicilio'=>$r_obsDir2,
+                'R_obsNivelEstudios'=>$r_obsEstudios2,
+                
+                'A_obscredencial'=>$a_obscurp2,
+                'A_obsfecNac'=>$a_obsactaNac2,
+                'A_obscurp'=>$a_obscredencial2,
+                'A_obsrfc'=>$a_obsrfc2,
+                'A_obsimss'=>$a_obsimss2,
+                'A_obsdomicilio'=>$a_obsDir2,
+                'A_obsNivelEstudios'=>$a_obsEstudios2,
+                
+                'status'=>0,
+            ]);
+            $this->currentStep = 4;
+            $this->alert('success', 'Se ha guardado correctamente', [
                 'position' =>  'top-end',
                 'timer' =>  3500,
                 'toast' =>  true,
@@ -369,7 +411,7 @@ class ActualizarNuevoIngreso extends Component
                 'showCancelButton' =>  false,
                 'showConfirmButton' =>  false,
             ]);
-            return redirect()->to('/actualizar/nuevo-ingreso/' . $this->idNi);
+            /* return redirect()->to('/actualizar/nuevo-ingreso/' . $this->idNi); */
         }
     }
 }
