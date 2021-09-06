@@ -12,10 +12,9 @@ class RevisionDoc extends Component
     use WithPagination;
 
     /* Variables */
-    public $search, $perPage = '8';
+    public $search, $perPage = '2',$mostrarStatus = Null;
     protected $queryString = [
-        'search' => ['except' => ''],
-        'perPage'
+        'search' => ['except' => '']
     ];
 
     protected $listeners = [
@@ -39,7 +38,6 @@ class RevisionDoc extends Component
     public $constanciaEstudios;
     public $especialidadEstudios;
     public $genero;
-    public $estado_civil_id;
     public $estado_civil;
     public $actaMatrimonio;
     public $rfc;
@@ -135,14 +133,41 @@ class RevisionDoc extends Component
         $this->resetPage();
     }
 
+    public function updatingMostrarStatus(){
+        $this->resetPage();
+    }
+
     public function render()
-    {
-        return view('livewire.revision-doc',['nuevosIngresos'=>DB::table('v_nuevo_ingresos')
-                                        ->where('nombre_1','LIKE',"%{$this->search}%")
+    {   
+        $res = DB::table('v_nuevo_ingresos')
+        ->whereIn('areaRd',["$this->userLogin"])
+        ->where('nombre_1','LIKE',"%{$this->search}%")
+        // ->orwhere('ap_paterno','LIKE',"%{$this->search}%")
+        ->paginate($this->perPage); 
+
+        /* 
+        ->where('status','LIKE',"%{$this->mostrarStatus}%") 
+        ->orwhere('nombre_1','LIKE',"%{$this->search}%")
+        ->orwhere('nombre_2','LIKE',"%{$this->search}%") 
+        ->orwhere('ap_paterno','LIKE',"%{$this->search}%")
+        ->orwhere('ap_materno','LIKE',"%{$this->search}%")
+        ->orWhere('curp', 'LIKE', "%{$this->search}%")
+        ->orWhere('rfc', 'LIKE', "%{$this->search}%")
+        ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
+        ->orderBy('updated_at','ASC') */
+       
+        return view('livewire.revision-doc',['nuevosIngresos'=> $res/* DB::table('v_nuevo_ingresos')
+                                        ->where('areaRd','=',"%{$this->userLogin}%")
+                                        ->where('status','LIKE',"%{$this->mostrarStatus}%") 
+                                        ->orwhere('nombre_1','LIKE',"%{$this->search}%")
+                                        ->orwhere('nombre_2','LIKE',"%{$this->search}%") 
+                                        ->orwhere('ap_paterno','LIKE',"%{$this->search}%")
+                                        ->orwhere('ap_materno','LIKE',"%{$this->search}%")
                                         ->orWhere('curp', 'LIKE', "%{$this->search}%")
                                         ->orWhere('rfc', 'LIKE', "%{$this->search}%")
                                         ->orWhere('no_seguro_social', 'LIKE', "%{$this->search}%")
-                                        ->paginate($this->perPage),
+                                        ->orderBy('updated_at','ASC')
+                                        ->paginate($this->perPage) */
         ]);
     }
 
@@ -183,7 +208,6 @@ class RevisionDoc extends Component
             $this->constanciaEstudios = $this->candidatoDoc[0]->constanciaEstudios;
             $this->especialidadEstudios = $this->candidatoDoc[0]->especialidadEstudios;
             $this->genero = $this->candidatoDoc[0]->genero;
-            $this->estado_civil_id = $this->candidatoDoc[0]->estado_civil_id;
             $this->estado_civil = $this->candidatoDoc[0]->estado_civil;
             $this->actaMatrimonio = $this->candidatoDoc[0]->actaMatrimonio;
             $this->rfc = $this->candidatoDoc[0]->rfc;
@@ -384,6 +408,7 @@ class RevisionDoc extends Component
 
             if ($this->status == 3) {
                 $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                    'areaRd'=>3,
                     'R_obscredencial'=>Null,
                     'R_obsfecNac'=>Null,
                     'R_obscurp'=>Null,
@@ -400,7 +425,7 @@ class RevisionDoc extends Component
                     'A_obsdomicilio'=>Null,
                     'A_obsNivelEstudios'=>Null,
                     'A_obsExtra'=>Null,
-                    'status'=>2,
+                    'status'=>0,
                     'R_userId'=>auth()->user()->id
                 ]);
                 $this->flash('success', 'Se ha guardado correctamente', [
@@ -477,6 +502,13 @@ class RevisionDoc extends Component
             if ($totalFalsos != 0) {
                 $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
                     'areaRd'=>5,
+                    'R_obscredencial'=>Null,
+                    'R_obsfecNac'=>Null,
+                    'R_obscurp'=>Null,
+                    'R_obsrfc'=>Null,
+                    'R_obsimss'=>Null,
+                    'R_obsdomicilio'=>Null,
+                    'R_obsNivelEstudios'=>Null,
                     'A_obscredencial'=>$this->observacionCredencial,
                     'A_obsfecNac'=>$this->observacionActaNac,
                     'A_obscurp'=>$this->observacionCurpDoc,
