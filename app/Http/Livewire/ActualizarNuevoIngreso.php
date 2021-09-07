@@ -320,7 +320,8 @@ class ActualizarNuevoIngreso extends Component
         }
 
         if ($this->actaHijos_update == []) {
-            $rutaActaHijo = $this->revisionDoc[0]['actasHijo'];
+            $rutaActaHijo = json_decode($this->revisionDoc[0]['actasHijo']);
+            $rutaActaHijo = json_encode($rutaActaHijo);
             if ($rutaActaHijo == "null") {
                 $rutaActaHijo = null;
             }
@@ -328,6 +329,7 @@ class ActualizarNuevoIngreso extends Component
             for ($i = 0; $i < count($this->actaHijos_update); $i++) {
                 $rutaActasHijos2 = $this->actaHijos_update[$i]->storeAs('public/nuevoIngreso/' . $this->curpString . '/08.-actasHijos', 'actaDeHijo' . $i . '.pdf');
                 $rutaActaHijo[] = $rutaActasHijos2;
+                $rutaActaHijo = json_encode($rutaActaHijo);
             }
         }
 
@@ -338,7 +340,8 @@ class ActualizarNuevoIngreso extends Component
         }
 
         if ($this->cartaRecomendacion_update == []) {
-            $rutaRecomendacion = $this->revisionDoc[0]['cartasRecomendacion'];
+            $rutaRecomendacion = json_decode($this->revisionDoc[0]['cartasRecomendacion']);
+            $rutaRecomendacion = json_encode($rutaRecomendacion);
             if ($rutaRecomendacion == "null") {
                 $rutaRecomendacion = null;
             }
@@ -346,6 +349,7 @@ class ActualizarNuevoIngreso extends Component
             for ($i = 0; $i < count($this->cartaRecomendacion_update); $i++) {
                 $rutaRecomendacion2 = $this->cartaRecomendacion_update[$i]->storeAs('public/nuevoIngreso/' . $this->curpString . '/09.-cartasRecomendacion', 'cartaDeRecomendacion' . $i . '.pdf');
                 $rutaRecomendacion[] = $rutaRecomendacion2;
+                $rutaRecomendacion = json_encode($rutaRecomendacion);
             }
         }
 
@@ -361,8 +365,8 @@ class ActualizarNuevoIngreso extends Component
             $this->buroCredito_update = $this->revisionDoc[0]['buroCredito'];
         }
 
-        $this->actaHijos_update = json_encode($rutaActaHijo);
-        $this->cartaRecomendacion_update = json_encode($rutaRecomendacion);
+        $this->actaHijos_update = $rutaActaHijo;
+        $this->cartaRecomendacion_update = $rutaRecomendacion;
 
         $this->actualizar = Nuevo_ingreso::where('curp', $this->curpString)->update([
             'curpDocumento' => $this->curp,

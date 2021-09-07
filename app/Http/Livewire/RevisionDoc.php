@@ -12,7 +12,7 @@ class RevisionDoc extends Component
     use WithPagination;
 
     /* Variables */
-    public $search, $perPage = '2',$mostrarStatus = '';
+    public $search, $perPage = '4',$mostrarStatus = '';
     protected $queryString = [
         'search' => ['except' => ''],
     ];

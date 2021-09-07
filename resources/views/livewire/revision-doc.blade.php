@@ -931,6 +931,7 @@
                         @endif
 
                         @if ($paternidad == 1)
+                        
                             @if ($actasHijo == null)
 
                             @else
@@ -1315,6 +1316,12 @@
                                             <path
                                                 d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z">
                                             </path>
+                                        </svg>
+                                    </a>
+                                    <a href="mailto:{{ $nI->correo }}?subject=Actualización%20de%20documentos&body=Link de acceso para actualizar los documentos:%20https://toolkit.factoraguila.com/nuevo-ingreso/{{$nI->id}}" aria-label="Email"
+                                        class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
                                         </svg>
                                     </a>
                                 </div>
