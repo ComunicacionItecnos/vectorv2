@@ -587,10 +587,6 @@ class NuevoIngreso extends Component
                 ],
             ]);
 
-            DB::table('revision_docs')->insert([
-                'nuevo_ingreso_id'=>$nuevo_ingreso->id
-            ]);
-
         });
 
         
