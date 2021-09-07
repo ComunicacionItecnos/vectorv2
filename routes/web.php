@@ -11,6 +11,7 @@ use App\Http\Livewire\InsigniaUN;
 use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
+use App\Http\Livewire\ActualizarNuevoIngreso;
 
 /*
 |--------------------------------------------------------------------------
@@ -124,3 +125,10 @@ Route::get('/colaborador/{no_colaborador}', ComprobarColaborador::class);
 Route::get('/utiles-escolares/{no_colaborador}',UtilesEscolares::class);
 
 Route::get('/nuevo-ingreso',NuevoIngreso::class);
+
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
+    return view('revision-doc');
+})->name('revision-doc');
+
+Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
