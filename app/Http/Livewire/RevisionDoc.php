@@ -218,7 +218,7 @@ class RevisionDoc extends Component
 
         $zip->close();
 
-        return (Storage::disk('public')->download($descarga[0]->curp.".zip")) ? Storage::delete(storage_path("app/public/".$descarga[0]->curp.".zip")) : dd("Error");
+        return Storage::disk('public')->download($descarga[0]->curp.".zip");
         
         
         
