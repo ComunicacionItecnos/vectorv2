@@ -125,8 +125,7 @@ class RevisionDoc extends Component
 
     public function mount(){
         $this->candidatoDoc = [];
-        // $this->userLogin = auth()->user()->role_id;
-        $this->userLogin = 5;
+        $this->userLogin = auth()->user()->role_id;
     }
 
     public function updatingSearch(){
