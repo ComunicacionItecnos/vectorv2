@@ -164,7 +164,7 @@ class RevisionDoc extends Component
         $descarga = DB::table('v_nuevo_ingresos')->where('id',$id)->get();
        /*  dd($descarga); */
         $zip = new ZipArchive();
-        $zip->open(storage_path("app/public/".$descarga[0]->curp.".zip"),ZipArchive::CREATE);
+        $zip->open(storage_path("app/public/zip/".$descarga[0]->curp.".zip"),ZipArchive::CREATE);
        
         foreach ($descarga as $key => $value) {
             $zip->addFile(storage_path("app/".$value->curpDoc),'01.-CURP.pdf');
