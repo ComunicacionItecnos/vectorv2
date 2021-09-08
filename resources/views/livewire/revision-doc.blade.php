@@ -932,7 +932,7 @@
 
                         @if ($paternidad == 1)
                         
-                            @if ($actasHijo == null)
+                            @if ($actasHijo == NULL)
 
                             @else
                                 <div class="col-span-full sm:col-span-6 text-center object-center justify-center">
@@ -966,7 +966,7 @@
                             </a>
                         </div>
 
-                        @if ($cartasRecomendacion == 'null')
+                        @if ($cartasRecomendacion == null || $cartasRecomendacion == NULL)
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="email" class="text-sm">Cartas de recomendación</label>
                                 <p class="flex items-center text-center">
@@ -1245,7 +1245,7 @@
             <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4  page__description">
 
                 @foreach ($nuevosIngresos as $nI)
-                    @if ($userLogin == $nI->areaRd)
+                    @if ($userLogin == $nI->areaRd || $userLogin == NULL)
 
                         <div class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-blue-200 hover:bg-blue-400 hover:border-transparent hover:shadow-lg group  home">
                             <div class="block relative  btn_nav perfil_link">
@@ -1318,12 +1318,24 @@
                                             </path>
                                         </svg>
                                     </a>
-                                    <a href="mailto:{{ $nI->correo }}?subject=Actualización%20de%20documentos&body=Link de acceso para actualizar los documentos:%20https://toolkit.factoraguila.com/nuevo-ingreso/{{$nI->id}}" aria-label="Email"
-                                        class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
-                                            <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
-                                        </svg>
-                                    </a>
+                                    @if ($userLogin == 5 && ($nI->status == 1 || $nI->status == 3))
+                                        <a href="mailto:{{ $nI->correo }}?subject=Actualización%20de%20documentos&body=Link de acceso para actualizar los documentos:%20https://toolkit.factoraguila.com/actualizar/nuevo-ingreso/{{$nI->id}}" aria-label="Email"
+                                            class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                                            </svg>
+                                        </a>
+                                    @elseif( $userLogin == 3 && $nI->status ==2 )
+                                        <a wire:click="descargarZip({{$nI->id}})"
+                                            class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400 cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
+                                            </svg>
+                                        </a>
+                                    @endif
+
+                                    
                                 </div>
                             </div>
                         </div>

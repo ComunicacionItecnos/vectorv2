@@ -500,7 +500,7 @@ class NuevoIngreso extends Component
                 $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'03.-constanciaDeEstudios.pdf');
 
                 if (empty( $this->actaMatrimonio) ) {
-                        $this->actaMatrimonio = null;            
+                        $this->actaMatrimonio = NULL;            
                 }else{
                         $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'04.-actaDeMatrimonio.pdf');
                 }
@@ -510,7 +510,7 @@ class NuevoIngreso extends Component
                 $this->comprobranteDomicilio = $this->comprobranteDomicilio->storeAs('public/nuevoIngreso/'.$this->curp,'07.-comprobanteDeDomicilio.pdf');
 
                 if ($this->actasHijo == []) {
-                        $rutaActaHijo = null;
+                        $rutaActaHijo = NULL;
                 }else{
                         for ($i=0; $i < count($this->actasHijo) ; $i++) { 
                             $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/08.-actasHijos','actaDeHijo'.$i.'.pdf');
@@ -519,7 +519,7 @@ class NuevoIngreso extends Component
                 }
                     
                 if ($this->cartasRecomendacion == []) {
-                        $rutaRecomendacion = null;
+                        $rutaRecomendacion = NULL;
                 }else{
                         for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
                             $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/09.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
@@ -530,13 +530,13 @@ class NuevoIngreso extends Component
                 if ($this->cartillaMilitar != '') {
                         $this->cartillaMilitar = $this->cartillaMilitar->storeAs('public/nuevoIngreso/'.$this->curp,'10.-cartillaMilitar.pdf');
                 } else {
-                        $this->cartillaMilitar = null;
+                        $this->cartillaMilitar = NULL;
                 }
                     
                 if ($this->cartaNoPenales != '') {
                         $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
                 }else{
-                        $this->cartaNoPenales = null;
+                        $this->cartaNoPenales = NULL;
                 }
                     
                 $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
@@ -544,7 +544,7 @@ class NuevoIngreso extends Component
                 if ($this->buroCredito != '') {
                         $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
                 } else {
-                        $this->buroCredito = null;
+                        $this->buroCredito = NULL;
                 }
 
                 $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());

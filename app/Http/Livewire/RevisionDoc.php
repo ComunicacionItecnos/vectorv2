@@ -2,17 +2,20 @@
 
 namespace App\Http\Livewire;
 
+use ZipArchive;
 use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
+use Composer\Package\Archiver\ZipArchiver;
 
 class RevisionDoc extends Component
 {
     use WithPagination;
 
     /* Variables */
-    public $search, $perPage = '4',$mostrarStatus = '';
+    public $search, $perPage = '8',$mostrarStatus = '';
     protected $queryString = [
         'search' => ['except' => ''],
     ];
@@ -126,6 +129,10 @@ class RevisionDoc extends Component
     public function mount(){
         $this->candidatoDoc = [];
         $this->userLogin = auth()->user()->role_id;
+        if ($this->userLogin == 1) {
+            $this->userLogin = NULL;
+        }
+        
     }
 
     public function updatingSearch(){
@@ -151,6 +158,71 @@ class RevisionDoc extends Component
             ->orderBy('updated_at','DESC')
             ->paginate($this->perPage)
         ]);
+    }
+
+    public function descargarZip($id){
+        $descarga = DB::table('v_nuevo_ingresos')->where('id',$id)->get();
+       /*  dd($descarga); */
+        $zip = new ZipArchive();
+        $zip->open(storage_path("app/public/".$descarga[0]->curp.".zip"),ZipArchive::CREATE);
+       
+        foreach ($descarga as $key => $value) {
+            $zip->addFile(storage_path("app/".$value->curpDoc),'01.-CURP.pdf');
+            $zip->addFile(storage_path("app/".$value->actaNacimiento),'02.-actaNacimiento.pdf');
+            $zip->addFile(storage_path("app/".$value->constanciaEstudios),'03.-constanciaEstudios.pdf');
+            if ($value->actaMatrimonio != NULL) {
+                $zip->addFile(storage_path("app/".$value->actaMatrimonio),'04.-actaMatrimonio.pdf');
+            }else{
+                
+            }
+
+            $zip->addFile(storage_path("app/".$value->rfcDocumento),'05.-rfcDocumento.pdf');
+            $zip->addFile(storage_path("app/".$value->altaImssDoc),'06.-altaImssDoc.pdf');
+            $zip->addFile(storage_path("app/".$value->comprobanteDomicilio),'07.-comprobanteDomicilio.pdf');
+
+            if ($value->actasHijo != NULL) {
+                foreach (json_decode($value->actasHijo) as $aH) {
+                    $zip->addFile(storage_path("app/".$aH),'08.-actasHijos/'.basename($aH));
+                }
+            }
+
+            if ($value->cartasRecomendacion != NULL) {
+                foreach (json_decode($value->cartasRecomendacion) as $cR) {
+                    $zip->addFile(storage_path("app/".$cR),'09.-cartasRecomendacion/'.basename($cR));
+                }
+            }
+
+            if ($value->cartillaMilitar != NULL) {
+                $zip->addFile(storage_path("app/".$value->cartillaMilitar),'10.-cartillaMilitar.pdf');
+            }else{
+
+            }
+
+            if ($value->cartaNoPenales != NULL) {
+                $zip->addFile(storage_path("app/".$value->cartaNoPenales),'11.-cartaNoPenales.pdf');
+            }else{
+
+            }
+            
+            $zip->addFile(storage_path("app/".$value->credencialIFE),'12.-credencialIFE.pdf');
+            
+            if ($value->buroCredito != NULL) {
+                $zip->addFile(storage_path("app/".$value->buroCredito),'13.-buroCredito.pdf');
+            }else{
+
+            }
+
+            $zip->addFile(storage_path("app/".$value->foto),'14.-foto.png');
+            $zip->addFile(storage_path("app/".$value->cvOsolicitudEmpleo),'15.-cvOsolicitudEmpleo.pdf');
+        }
+
+        $zip->close();
+
+        return (Storage::disk('public')->download($descarga[0]->curp.".zip")) ? Storage::delete(storage_path("app/public/".$descarga[0]->curp.".zip")) : dd("Error");
+        
+        
+        
+        /* return response()->download(); */
     }
 
     public function showInfo($id){

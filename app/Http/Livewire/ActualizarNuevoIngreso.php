@@ -323,7 +323,7 @@ class ActualizarNuevoIngreso extends Component
             $rutaActaHijo = json_decode($this->revisionDoc[0]['actasHijo']);
             $rutaActaHijo = json_encode($rutaActaHijo);
             if ($rutaActaHijo == "null") {
-                $rutaActaHijo = null;
+                $rutaActaHijo = NULL;
             }
         } else {
             for ($i = 0; $i < count($this->actaHijos_update); $i++) {
@@ -343,7 +343,7 @@ class ActualizarNuevoIngreso extends Component
             $rutaRecomendacion = json_decode($this->revisionDoc[0]['cartasRecomendacion']);
             $rutaRecomendacion = json_encode($rutaRecomendacion);
             if ($rutaRecomendacion == "null") {
-                $rutaRecomendacion = null;
+                $rutaRecomendacion = NULL;
             }
         } else {
             for ($i = 0; $i < count($this->cartaRecomendacion_update); $i++) {
