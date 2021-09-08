@@ -7,6 +7,7 @@ use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Composer\Package\Archiver\ZipArchiver;
 
@@ -162,8 +163,12 @@ class RevisionDoc extends Component
 
     public function descargarZip($id){
         $descarga = DB::table('v_nuevo_ingresos')->where('id',$id)->get();
-       /*  dd($descarga); */
+      
         $zip = new ZipArchive();
+        if(!File::isDirectory(storage_path("app/public/zip/"))){
+            Storage::makeDirectory("public/zip");    
+        }
+               
         $zip->open(storage_path("app/public/zip/".$descarga[0]->curp.".zip"),ZipArchive::CREATE);
        
         foreach ($descarga as $key => $value) {
