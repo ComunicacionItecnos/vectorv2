@@ -223,7 +223,7 @@ class RevisionDoc extends Component
 
         $zip->close();
 
-        return Storage::disk('public')->download($descarga[0]->curp.".zip");
+        return Storage::disk('public')->download(storage_path("app/public/zip/".$descarga[0]->curp.".zip"));
         
         
         
