@@ -222,12 +222,10 @@ class RevisionDoc extends Component
         }
 
         $zip->close();
-
-        return Storage::disk('public')->download("zip/".$descarga[0]->curp.".zip");
         
+        /* return Storage::disk('public')->download("zip/".$descarga[0]->curp.".zip"); */
+        return response()->download(storage_path("app/public/zip/".$descarga[0]->curp.".zip"))->deleteFileAfterSend(true);
         
-        
-        /* return response()->download(); */
     }
 
     public function showInfo($id){
