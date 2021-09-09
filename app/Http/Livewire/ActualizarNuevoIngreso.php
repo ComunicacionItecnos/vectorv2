@@ -57,7 +57,7 @@ class ActualizarNuevoIngreso extends Component
     public $actualizar;
 
     public $totalSteps = 4;
-    public $currentStep = 1;
+    public $currentStep = 4;
 
     protected $listeners = [
         'registro',
@@ -139,7 +139,7 @@ class ActualizarNuevoIngreso extends Component
     {
         $this->resetErrorBag();
         $this->validateData();
-
+        
         $this->currentStep++;
         if ($this->currentStep > $this->totalSteps) {
             $this->currentStep = $this->totalSteps;

@@ -7,8 +7,9 @@
                 </div>
 
                 <div class="divide-y divide-gray-200">
-                    <div class="py-10 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-                    
+                    <div
+                        class="py-10 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7 @if ($currentStep == 4) hidden @else @endif">
+
                         {{-- Step 1 --}}
                         @if ($currentStep == 1)
                             <p class="block font-black text-gray-500">Instrucciones</p>
@@ -20,7 +21,8 @@
                                 </p>
                                 <br>
                                 <p class="space-y-6 block text-base font-medium text-gray-500">
-                                    2. Los campos con el signo <span class="mt-1 mb-1 text-base text-red-600 font-black m-1">+</span> te permite
+                                    2. Los campos con el signo <span
+                                        class="mt-1 mb-1 text-base text-red-600 font-black m-1">+</span> te permite
                                     subir más de un archivo.
                                 </p>
 
@@ -40,7 +42,7 @@
                                                 CURP</label>
                                             @if ($curp)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -51,7 +53,8 @@
                                                         class="hidden" />
                                                 </label>
                                             @else
-                                                <label class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 uppercase bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
+                                                <label
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -87,7 +90,7 @@
                                                 Acta de nacimiento</label>
                                             @if ($actaNac)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -99,7 +102,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -135,7 +138,7 @@
                                                 RFC</label>
                                             @if ($rfc)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -147,7 +150,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -183,7 +186,7 @@
                                                 Alta del IMSS documento</label>
                                             @if ($imss)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -195,7 +198,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -232,7 +235,7 @@
                                                 Credencial IFE</label>
                                             @if ($credencialIFE)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -244,7 +247,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -283,7 +286,7 @@
                                                 Comprobante de domicilio</label>
                                             @if ($domicilio)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -295,7 +298,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -332,7 +335,7 @@
                                                 Constancia de estudios</label>
                                             @if ($Estudios)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -344,7 +347,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -389,7 +392,7 @@
                                                     Actas de los hijos</label>
                                                 @if ($actaHijos_update)
                                                     <label
-                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                             viewBox="0 0 20 20" fill="currentColor">
                                                             <path fill-rule="evenodd"
@@ -401,7 +404,7 @@
                                                     </label>
                                                 @else
                                                     <label
-                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                        class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                             viewBox="0 0 20 20" fill="currentColor">
                                                             <path
@@ -429,7 +432,7 @@
                                                 Cartilla Militar</label>
                                             @if ($cartillaMilitar_update)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -441,7 +444,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -468,7 +471,7 @@
                                                 Cartas de recomendación</label>
                                             @if ($cartaRecomendacion_update)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -480,7 +483,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -507,7 +510,7 @@
                                                 Antecedentes no penales</label>
                                             @if ($cartaNoPenales_update)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -519,7 +522,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -546,7 +549,7 @@
                                                 Buro de credito</label>
                                             @if ($buroCredito_update)
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-green-500 border border-green-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-green-800">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-green-500 bg-white border border-green-500 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-green-600 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path fill-rule="evenodd"
@@ -558,7 +561,7 @@
                                                 </label>
                                             @else
                                                 <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -581,73 +584,90 @@
                                 </div>
                             @endif
 
-                            
+                            <div class="h-16 py-8 grid grid-cols-3  @if ($currentStep == 4) hidden @else @endif">
+                                @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
+                                    <div
+                                        class="flex justify-start px-2 col-span-1 col-start-1 col-end-3 @if ($currentStep == 1) hidden @endif">
+                                        <button type="button"
+                                            class="inline-flex items-center px-4 py-2 
+                                            bg-red-600 border border-transparent rounded-md 
+                                            font-black text-xs text-white uppercase tracking-widest 
+                                            hover:bg-white active:bg-red-800 hover:border-red-600 hover:text-red-600 
+                                            focus:outline-none focus:border-red-800 focus:bg-red-800 focus:text-white focus:shadow-outline-gray 
+                                            disabled:opacity-25 
+                                            transition ease-in-out duration-150"
+                                            wire:click="decreaseStep()">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                            Regresar
+                                        </button>
+                                    </div>
+
+
+                                    <div class="flex justify-start px-2 col-end-7 col-span-2 @if ($currentStep == 3) hidden @endif">
+                                        <button type="button"
+                                            class="inline-flex items-center px-4 py-2 
+                                            bg-red-600 border border-transparent rounded-md 
+                                            font-black text-xs text-white uppercase tracking-widest 
+                                            hover:bg-white active:bg-red-800 hover:border-red-600 hover:text-red-600 
+                                            focus:outline-none focus:border-red-800 focus:bg-red-800 focus:text-white focus:shadow-outline-gray 
+                                            disabled:opacity-25 
+                                            transition ease-in-out duration-150"
+                                            wire:click="increaseStep()">
+                                            Siguiente <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </button>
+                                    </div>
+
+
+
+                                    <div class="flex justify-end px-2 col-end-7 col-span-2 @if ($currentStep != 3) hidden @endif">
+                                        <button type="submit"
+                                            class="inline-flex items-center px-4 py-2 
+                                            bg-red-800 border border-transparent rounded-md 
+                                            font-black text-xs text-white uppercase tracking-widest 
+                                            hover:bg-white active:bg-red-800 hover:border-red-900 hover:text-red-900 
+                                            focus:outline-none focus:border-red-800 focus:bg-red-800 focus:text-white focus:shadow-outline-gray 
+                                            disabled:opacity-25 
+                                            transition ease-in-out duration-150">
+                                            Finalizar
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
+
+                        </form>
 
                     </div>
                 </div>
-                <div class="h-16 py-8 grid grid-cols-3">
-                    @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
-                        <div
-                            class="flex justify-start px-2 col-span-1 col-start-1 col-end-3 @if ($currentStep == 1) hidden @endif">
-                            <button type="button"
-                                class="inline-flex items-center px-4 py-2 
-                                bg-red-600 border border-transparent rounded-md 
-                                font-black text-xs text-white uppercase tracking-widest 
-                                hover:bg-white active:bg-red-800 hover:border-red-600 hover:text-red-600 
-                                focus:outline-none focus:border-red-800 focus:bg-red-800 focus:text-white focus:shadow-outline-gray 
-                                disabled:opacity-25 
-                                transition ease-in-out duration-150"
-                                wire:click="decreaseStep()">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
-                                </svg>
-                                Regresar 
-                            </button>
-                        </div>
 
+                @if ($currentStep == 4)
+                    <div class="py-4 text-base leading-6 font-bold sm:text-lg sm:leading-7 flex items-center">
+                        
+                        <p class="block text-gray-700">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-14 w-14 text-green-600" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </p>
 
-                        <div class="flex justify-start px-2 col-end-7 col-span-2 @if ($currentStep == 3) hidden @endif">
-                            <button type="button"
-                                class="inline-flex items-center px-4 py-2 
-                                bg-red-600 border border-transparent rounded-md 
-                                font-black text-xs text-white uppercase tracking-widest 
-                                hover:bg-white active:bg-red-800 hover:border-red-600 hover:text-red-600 
-                                focus:outline-none focus:border-red-800 focus:bg-red-800 focus:text-white focus:shadow-outline-gray 
-                                disabled:opacity-25 
-                                transition ease-in-out duration-150"
-                                wire:click="increaseStep()">
-                                Siguiente <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
-                                  </svg>
-                            </button>
-                        </div>
+                        <p class="py-4 px-4 block font-medium text-sm text-gray-600">
+                            Haz finalizado correctemente la actualización de tus documentos.
+                        </p>
 
+                    </div>
+                @endif
 
-
-                        <div class="flex justify-end px-2 col-end-7 col-span-2 @if ($currentStep != 3) hidden @endif">
-                            <button type="submit"
-                                class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                Finalizar
-                            </button>
-                        </div>
-                    @endif
-                </div>
-
-            </form>
-
-            @if ($currentStep == 4)
-                <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-
-                    <p class="block text-base font-medium text-gray-700">
-                        Haz finalizado correctemente la actualización de tus documentos.
-                    </p>
-
-                    <p class="block text-base font-medium text-gray-700">
-                        Cierra esta ventana
-                    </p>
-            
-                </div>
-            @endif
             </div>
         </div>
     </div>
