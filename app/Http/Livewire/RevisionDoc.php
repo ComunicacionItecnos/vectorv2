@@ -129,7 +129,7 @@ class RevisionDoc extends Component
 
     public function mount(){
         $this->candidatoDoc = [];
-        $this->userLogin = auth()->user()->role_id;
+        $this->userLogin =1/* auth()->user()->role_id */;
         if ($this->userLogin == 1) {
             $this->userLogin = NULL;
         }

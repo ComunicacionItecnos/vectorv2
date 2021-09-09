@@ -1,28 +1,27 @@
 <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
     <div class="relative py-3 sm:max-w-xl sm:mx-auto">
-        <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
+        <div class="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-10">
             <div class="max-w-md mx-auto">
                 <div>
-                    <p class="block font-black text-gray-700 text-2xl text-center">Actualización de documentos</p>
+                    <p class="block font-black text-2xl text-center">Actualización de documentos</p>
                 </div>
 
                 <div class="divide-y divide-gray-200">
-                    <div class="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
-
+                    <div class="py-10 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                    
                         {{-- Step 1 --}}
                         @if ($currentStep == 1)
+                            <p class="block font-black text-gray-500">Instrucciones</p>
                             <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
 
-                                <p class="block text-base font-medium text-gray-700">
-                                    1) Actualiza tus documentos que tengan el siguiente signo <span
-                                        class="mt-1 mb-1 text-base text-red-600 italic m-1">*</span>.
+                                <p class="block text-base font-medium text-gray-500">
+                                    1. Actualiza los documentos que tengan el siguiente signo <span
+                                        class="mt-1 mb-1 text-base text-red-600 font-black m-1">*</span>.
                                 </p>
                                 <br>
-                                <p class="space-y-6 block text-base font-medium text-gray-700">
-                                    2) Los campos con el siguiente signo <span
-                                        class="mt-1 mb-1 text-base text-red-600 italic m-1">+</span> te permiten
-                                    subir
-                                    más de un archivo.
+                                <p class="space-y-6 block text-base font-medium text-gray-500">
+                                    2. Los campos con el signo <span class="mt-1 mb-1 text-base text-red-600 font-black m-1">+</span> te permite
+                                    subir más de un archivo.
                                 </p>
 
                             </div>
@@ -37,7 +36,7 @@
                                     @if ($r_obscurp != null || $a_obscurp != null)
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="curp" class="block text-base font-medium text-gray-700"><span
-                                                    class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 CURP</label>
                                             @if ($curp)
                                                 <label
@@ -52,8 +51,7 @@
                                                         class="hidden" />
                                                 </label>
                                             @else
-                                                <label
-                                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-blue-800 uppercase bg-white border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-blue-500 hover:text-white">
+                                                <label class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-gray-600 uppercase bg-white border border-gray-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-gray-700 hover:text-white">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
                                                         viewBox="0 0 20 20" fill="currentColor">
                                                         <path
@@ -66,7 +64,7 @@
                                             @endif
 
                                             @error('curp')
-                                                <p class="mt-1 mb-1 text-sm text-red-600 italic">
+                                                <p class="mt-1 mb-1 text-sm text-red-600 font-black">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
@@ -85,7 +83,7 @@
                                     @if ($r_obsactaNac != null || $a_obsactaNac != null)
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="actaNac" class="block text-base font-medium text-gray-700"><span
-                                                    class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 Acta de nacimiento</label>
                                             @if ($actaNac)
                                                 <label
@@ -114,7 +112,7 @@
                                             @endif
 
                                             @error('actaNac')
-                                                <p class="mt-1 mb-1 text-sm text-red-600 italic">
+                                                <p class="mt-1 mb-1 text-sm text-red-600 font-black">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
@@ -133,7 +131,7 @@
                                     @if ($r_obsrfc != null || $a_obsrfc != null)
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="rfc" class="block text-base font-medium text-gray-700"><span
-                                                    class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 RFC</label>
                                             @if ($rfc)
                                                 <label
@@ -162,7 +160,7 @@
                                             @endif
 
                                             @error('rfc')
-                                                <p class="mt-1 mb-1 text-sm text-red-600 italic">
+                                                <p class="mt-1 mb-1 text-sm text-red-600 font-black">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
@@ -181,7 +179,7 @@
                                     @if ($r_obsimss != null || $a_obsimss != null)
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="imss" class="block text-base font-medium text-gray-700"><span
-                                                    class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 Alta del IMSS documento</label>
                                             @if ($imss)
                                                 <label
@@ -210,7 +208,7 @@
                                             @endif
 
                                             @error('imss')
-                                                <p class="mt-1 mb-1 text-sm text-red-600 italic">
+                                                <p class="mt-1 mb-1 text-sm text-red-600 font-black">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
@@ -230,7 +228,7 @@
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="credencialIFE"
                                                 class="block text-base font-medium text-gray-700"><span
-                                                    class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 Credencial IFE</label>
                                             @if ($credencialIFE)
                                                 <label
@@ -259,7 +257,7 @@
                                             @endif
 
                                             @error('credencialIFE')
-                                                <p class="mt-1 mb-1 text-sm text-red-600 italic">
+                                                <p class="mt-1 mb-1 text-sm text-red-600 font-black">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
@@ -281,7 +279,7 @@
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="domicilio"
                                                 class="block text-base font-medium text-gray-700"><span
-                                                    class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 Comprobante de domicilio</label>
                                             @if ($domicilio)
                                                 <label
@@ -310,7 +308,7 @@
                                             @endif
 
                                             @error('domicilio')
-                                                <p class="mt-1 mb-1 text-sm text-red-600 italic">
+                                                <p class="mt-1 mb-1 text-sm text-red-600 font-black">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
@@ -330,7 +328,7 @@
                                         <div class="col-span-full sm:col-span-3">
                                             <label for="Estudios"
                                                 class="block text-base font-medium text-gray-700"><span
-                                                    class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 Constancia de estudios</label>
                                             @if ($Estudios)
                                                 <label
@@ -583,55 +581,73 @@
                                 </div>
                             @endif
 
-                            <div class="h-16 p-8 grid grid-cols-3">
-                                @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
-                                    <div
-                                        class="flex justify-start px-2 col-span-1 col-start-1 col-end-3 @if ($currentStep == 1) hidden @endif">
-                                        <button type="button"
-                                            class="inline-flex items-center px-4 py-2 bg-gray-500 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-800 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
-                                            wire:click="decreaseStep()">
-                                            Regresar
-                                        </button>
-                                    </div>
-
-
-                                    <div class="flex justify-start px-2 col-end-7 col-span-2 @if ($currentStep == 3) hidden @endif">
-                                        <button type="button"
-                                            class="inline-flex items-center px-4 py-2 bg-blue-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-blue-800 active:bg-blue-900 focus:outline-none focus:border-blue-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150"
-                                            wire:click="increaseStep()">
-                                            Siguiente
-                                        </button>
-                                    </div>
-
-
-
-                                    <div class="flex justify-end px-2 col-end-7 col-span-2 @if ($currentStep != 3) hidden @endif">
-                                        <button type="submit"
-                                            class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
-                                            Finalizar
-                                        </button>
-                                    </div>
-                                @endif
-                            </div>
-
-                        </form>
-
-                        @if ($currentStep == 4)
-                            <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
-
-                                <p class="block text-base font-medium text-gray-700">
-                                    Haz finalizado correctemente la actualización de tus documentos.
-                                </p>
-
-                                <p class="block text-base font-medium text-gray-700">
-                                    Cierra esta ventana
-                                </p>
-                        
-                            </div>
-                        @endif
+                            
 
                     </div>
                 </div>
+                <div class="h-16 py-8 grid grid-cols-3">
+                    @if ($currentStep == 1 || $currentStep == 2 || $currentStep == 3)
+                        <div
+                            class="flex justify-start px-2 col-span-1 col-start-1 col-end-3 @if ($currentStep == 1) hidden @endif">
+                            <button type="button"
+                                class="inline-flex items-center px-4 py-2 
+                                bg-red-600 border border-transparent rounded-md 
+                                font-black text-xs text-white uppercase tracking-widest 
+                                hover:bg-white active:bg-red-800 hover:border-red-600 hover:text-red-600 
+                                focus:outline-none focus:border-red-800 focus:bg-red-800 focus:text-white focus:shadow-outline-gray 
+                                disabled:opacity-25 
+                                transition ease-in-out duration-150"
+                                wire:click="decreaseStep()">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                                </svg>
+                                Regresar 
+                            </button>
+                        </div>
+
+
+                        <div class="flex justify-start px-2 col-end-7 col-span-2 @if ($currentStep == 3) hidden @endif">
+                            <button type="button"
+                                class="inline-flex items-center px-4 py-2 
+                                bg-red-600 border border-transparent rounded-md 
+                                font-black text-xs text-white uppercase tracking-widest 
+                                hover:bg-white active:bg-red-800 hover:border-red-600 hover:text-red-600 
+                                focus:outline-none focus:border-red-800 focus:bg-red-800 focus:text-white focus:shadow-outline-gray 
+                                disabled:opacity-25 
+                                transition ease-in-out duration-150"
+                                wire:click="increaseStep()">
+                                Siguiente <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                                  </svg>
+                            </button>
+                        </div>
+
+
+
+                        <div class="flex justify-end px-2 col-end-7 col-span-2 @if ($currentStep != 3) hidden @endif">
+                            <button type="submit"
+                                class="inline-flex items-center px-4 py-2 bg-green-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-green-800 active:bg-red-900 focus:outline-none focus:border-green-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
+                                Finalizar
+                            </button>
+                        </div>
+                    @endif
+                </div>
+
+            </form>
+
+            @if ($currentStep == 4)
+                <div class="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
+
+                    <p class="block text-base font-medium text-gray-700">
+                        Haz finalizado correctemente la actualización de tus documentos.
+                    </p>
+
+                    <p class="block text-base font-medium text-gray-700">
+                        Cierra esta ventana
+                    </p>
+            
+                </div>
+            @endif
             </div>
         </div>
     </div>

@@ -1,7 +1,7 @@
 <div class="py-10 grid max-w-5xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
 
     {{-- Mostrar mas detallada --}}
-    <section class="sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl  page__style perfil  @if ($mostrarCandidato) @else hidden @endif">
+    <section class="sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl @if ($mostrarCandidato) @else hidden @endif">
         @if ($candidatoDoc == [])
             <p>Sin candidato</p>
             <button type="button" wire:click="showMore">Click</button>
@@ -1242,13 +1242,14 @@
         </form>
 
         @if (count($nuevosIngresos))
-            <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4  page__description">
+            <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
 
                 @foreach ($nuevosIngresos as $nI)
                     @if ($userLogin == $nI->areaRd || $userLogin == NULL)
 
-                        <div class="scaled flex flex-col justify-center max-w-xs p-4 shadow-md rounded-xl sm:px-8 dark:bg-coolGray-900 dark:text-coolGray-100 bg-blue-200 hover:bg-blue-400 hover:border-transparent hover:shadow-lg group  home">
-                            <div class="block relative  btn_nav perfil_link">
+                        <div class="flex flex-col justify-center max-w-xs p-4 rounded-xl sm:px-8 border-2 border-light-gray-500 border-opacity-100 
+                        transition duration-500 ease-in-out hover:shadow-xl transform hover:-translate-y-1 hover:scale-10">
+                            <div class="block relative">
                                 <img src="{{ Storage::url($nI->foto) }}" alt="Profile face"
                                     class="p-1 w-20 h-20 mx-auto rounded-full object-cover" loading="lazy">
                                 <span
@@ -1275,59 +1276,49 @@
                                             {{ $nI->nombre_1 . ' ' . $nI->nombre_2 . ' ' . $nI->ap_paterno . ' ' . $nI->ap_materno }}
                                         @endif
                                     </h2>
-                                    <p class="sm:text-xs md:text-xs lg:text-xs xl:text-xs dark:text-coolGray-400">
-                                        {{ $nI->curp }}</p>
-
-                                    <button type="button"
-                                        class="px-8 py-3 rounded-full dark:bg-coolGray-100 dark:text-coolGray-800"
-                                        wire:click="showInfo({{ $nI->id }})">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
-                                            viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
-                                            <path fill-rule="evenodd"
-                                                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
-                                                clip-rule="evenodd" />
+                                    <p class="sm:text-xs md:text-xs lg:text-xs xl:text-xs">
+                                        {{ $nI->curp }}
+                                    </p>
+                                       
+                                    <button type="button" class="px-8 py-3 rounded-full text-gray-600" wire:click="showInfo({{ $nI->id }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
+                                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
                                         </svg>
                                     </button>
                                 </div>
                                 <div class="flex justify-center pt-2 space-x-4 align-center">
-                                    <a href="whatsapp://send?phone=+521{{ $nI->tel_movil }}" target="_blank"
-                                        aria-label="Dribble"
-                                        class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400">
-                                        <svg viewBox="0 0 448 512" xmlns="http://www.w3.org/2000/svg"
+                                    <a href="whatsapp://send?phone=+521{{ $nI->tel_movil }}" target="_blank" aria-label="Dribble" class="p-2 rounded-md text-gray-500">
+                                        <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                             class="w-4 h-4 fill-current">
-                                            <path
-                                                d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z">
+                                            <path xmlns="http://www.w3.org/2000/svg" d="M8.002 0h-.004C3.587 0 0 3.588 0 8a7.94 7.94 0 0 0 1.523 4.689l-.997 2.972 3.075-.983A7.93 7.93 0 0 0 8.002 16C12.413 16 16 12.411 16 8s-3.587-8-7.998-8zm4.655 11.297c-.193.545-.959.997-1.57 1.129-.418.089-.964.16-2.802-.602-2.351-.974-3.865-3.363-3.983-3.518-.113-.155-.95-1.265-.95-2.413s.583-1.707.818-1.947c.193-.197.512-.287.818-.287.099 0 .188.005.268.009.235.01.353.024.508.395.193.465.663 1.613.719 1.731.057.118.114.278.034.433-.075.16-.141.231-.259.367-.118.136-.23.24-.348.386-.108.127-.23.263-.094.498.136.23.606.997 1.298 1.613.893.795 1.617 1.049 1.876 1.157.193.08.423.061.564-.089.179-.193.4-.513.625-.828.16-.226.362-.254.574-.174.216.075 1.359.64 1.594.757.235.118.39.174.447.273.056.099.056.564-.137 1.11z">
                                             </path>
                                         </svg>
                                     </a>
                                     <a href="tel:+521{{ $nI->tel_movil }}" aria-label="Telephone"
-                                        class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400">
+                                        class="p-2 rounded-md text-gray-500">
                                         <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"
                                             class="w-4 h-4 fill-current">
                                             <path
                                                 d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                         </svg>
                                     </a>
-                                    <a href="mailto:{{ $nI->correo }}" aria-label="Email"
-                                        class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400">
-                                        <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg"
-                                            class="w-4 h-4 fill-current">
-                                            <path
-                                                d="M464 64H48C21.49 64 0 85.49 0 112v288c0 26.51 21.49 48 48 48h416c26.51 0 48-21.49 48-48V112c0-26.51-21.49-48-48-48zm0 48v40.805c-22.422 18.259-58.168 46.651-134.587 106.49-16.841 13.247-50.201 45.072-73.413 44.701-23.208.375-56.579-31.459-73.413-44.701C106.18 199.465 70.425 171.067 48 152.805V112h416zM48 400V214.398c22.914 18.251 55.409 43.862 104.938 82.646 21.857 17.205 60.134 55.186 103.062 54.955 42.717.231 80.509-37.199 103.053-54.947 49.528-38.783 82.032-64.401 104.947-82.653V400H48z">
-                                            </path>
-                                        </svg>
+                                    <a href="mailto:{{ $nI->correo }}" aria-label="Email" class="p-2 rounded-md text-gray-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
+                                          </svg>
                                     </a>
                                     @if ($userLogin == 5 && ($nI->status == 1 || $nI->status == 3))
                                         <a href="mailto:{{ $nI->correo }}?subject=Actualización%20de%20documentos&body=Link de acceso para actualizar los documentos:%20https://toolkit.factoraguila.com/actualizar/nuevo-ingreso/{{$nI->id}}" aria-label="Email"
-                                            class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400">
+                                            class="p-2 rounded-md text-gray-500 transform rotate-45">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
                                             </svg>
                                         </a>
-                                    @elseif( $userLogin == 3 && $nI->status ==2 || $userLogin == 1)
+                                    @elseif($userLogin == 3 && $nI->status ==2)
                                         <a wire:click="descargarZip({{$nI->id}})"
-                                            class="p-2 rounded-md dark:text-coolGray-100 hover:dark:text-violet-400 cursor-pointer">
+                                            class="p-2 rounded-md text-gray-500 cursor-pointer">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
                                                 <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
                                                 <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
