@@ -716,7 +716,7 @@
                     </div>
 
                     <div class="w-4 pb-1 mr-6 transform hover:text-indigo-500 hover:scale-130">
-                        <a href="{{ url('/contrato/' . $colaborador->no_colaborador) }}">
+                        <a href="{{ url('/contrato/' . $colaborador->no_colaborador)}}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -897,7 +897,7 @@
                         </a>
                     </div>
                     <div class="w-4 pb-1 mr-6 transform hover:text-indigo-500 hover:scale-130">
-                        <a href="{{ url('/contrato/' . $colaborador->no_colaborador) }}">
+                        <a href="{{ url('/contrato/' . $colaborador->no_colaborador)}}">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
                                 stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -1150,14 +1150,12 @@
                     </div>
                     <div class="text-sm text-gray-900">Supervisor:
                         @php
-                        $j_f = DB::table('infocolaborador')
-                        ->where('no_colaborador', $colaborador->jefe_directo)
-                        ->get();
+                        $j_f = DB::table('infocolaborador')->where('no_colaborador',$colaborador->jefe_directo)->get();
                         @endphp
-                        @if (count($j_f) == 0)
+                        @if(count($j_f) == 0)
                         Ninguno
                         @else
-                        {{ $j_f[0]->nombre_desc }}
+                        {{$j_f[0]->nombre_desc}}
                         @endif
                     </div>
                 </td>
@@ -1249,11 +1247,11 @@
                     <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
                     <div class="mt-1">
                         <a class=" text-sm text-gray-900">OP:</a> <a
-                            class="text-sm text-gray-500">{{ $colaborador->operacion }}</a>
+                            class="text-sm text-gray-500">{{ $colaborador->operacion  }}</a>
                     </div>
                     <div class="mt-1">
                         <a class=" text-sm text-gray-900">UN:</a> <a
-                            class="text-sm text-gray-500">{{ $colaborador->nombre_unidad }}</a>
+                            class="text-sm text-gray-500">{{ $colaborador->nombre_unidad  }}</a>
                     </div>
                     <div class="">
                         <a class=" text-sm text-gray-900">FAM:</a> <a
@@ -1261,7 +1259,7 @@
                     </div>
                     <div class="">
                         <a class=" text-sm text-gray-900">GPO:</a> <a
-                            class="text-sm text-gray-500">{{ $colaborador->nombre_grupo }}</a>
+                            class="text-sm text-gray-500">{{ $colaborador->nombre_grupo  }}</a>
                     </div>
                 </td>
                 <td class="flex flex-col sm:flex-wrap sm:flex-row sm:justify-center p-4">
@@ -1277,7 +1275,6 @@
             @else
             @endif
             @endforeach
-            @endif
 
 
             {{-- Cuerpo tabla Capacitacion --}}
@@ -1361,10 +1358,12 @@
     <div class="px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
         {{ $colaboradores->links() }}
     </div>
+    @else
     <div class="px-4 py-3 bg-white border-t border-gray-200 sm:px-6">
         <h6 class="text-center text-gray-500">No se encontró a ningún campo que coincida con:
             "{{ $search }}"</h6>
     </div>
+    @endif
 </div>
 </div>
 </div>
