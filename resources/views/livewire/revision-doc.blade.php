@@ -112,7 +112,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obscredencial != null || $a_obscredencial != null)
+                        @if ($r_obscredencial != NULL || $a_obscredencial != NULL)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($credencialValue) hidden @else  @endif">
@@ -124,7 +124,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obscredencial != null && $status == 1)
+                        @if ($userLogin == 5 && $r_obscredencial != NULL && $status == 1)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionCredencial" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -135,7 +135,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obscredencial != null)
+                        @if ($userLogin == 5 && $a_obscredencial != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionCredencial" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -219,7 +219,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsfecNac != null || $a_obsfecNac != null)
+                        @if ($r_obsfecNac != NULL || $a_obsfecNac != NULL)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($actaNacValue) hidden @else @endif">
@@ -231,7 +231,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsfecNac != null && $status == 1)
+                        @if ($userLogin == 5 && $r_obsfecNac != NULL && $status == 1)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionActaNac" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -250,7 +250,7 @@
                             </div> --}}
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsfecNac != null)
+                        @if ($userLogin == 5 && $a_obsfecNac != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionActaNac" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -373,7 +373,7 @@
                         </div>
 
 
-                        @if ($r_obsdomicilio != null || $a_obsdomicilio != null)
+                        @if ($r_obsdomicilio != NULL || $a_obsdomicilio != NULL)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($dirValue) hidden @else @endif">
@@ -384,7 +384,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsdomicilio != null)
+                        @if ($userLogin == 5 && $r_obsdomicilio != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionDir" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -403,7 +403,7 @@
                             </div> --}}
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsdomicilio != null)
+                        @if ($userLogin == 5 && $a_obsdomicilio != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionDir" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -488,7 +488,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obscurp != null || $a_obscurp != null)
+                        @if ($r_obscurp != NULL || $a_obscurp != NULL)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($curpDocValue) hidden @else @endif">
@@ -499,7 +499,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obscurp != null)
+                        @if ($userLogin == 5 && $r_obscurp != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionCurpDoc" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -518,7 +518,7 @@
                             </div> --}}
                         @endif
 
-                        @if ($userLogin == 5 && $a_obscurp != null)
+                        @if ($userLogin == 5 && $a_obscurp != NULL)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionCurpDoc" class="text-sm"><span
@@ -606,7 +606,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsrfc != null || $a_obsrfc != null)
+                        @if ($r_obsrfc != NULL || $a_obsrfc != NULL)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($rfcValue) hidden @else @endif">
@@ -617,7 +617,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsrfc != null)
+                        @if ($userLogin == 5 && $r_obsrfc != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionrfc" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -636,7 +636,7 @@
                             </div> --}}
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsrfc != null)
+                        @if ($userLogin == 5 && $a_obsrfc != NULL)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionrfc" class="text-sm"><span
@@ -723,7 +723,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsimss != null || $a_obsimss != null)
+                        @if ($r_obsimss != NULL || $a_obsimss != NULL)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($imssValue) hidden @else @endif">
@@ -734,7 +734,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsimss != null)
+                        @if ($userLogin == 5 && $r_obsimss != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionimss" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -753,7 +753,7 @@
                             </div> --}}
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsimss != null)
+                        @if ($userLogin == 5 && $a_obsimss != NULL)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionimss" class="text-sm"><span
@@ -848,7 +848,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsNivelEstudios != null || $a_obsNivelEstudios != null)
+                        @if ($r_obsNivelEstudios != NULL || $a_obsNivelEstudios != NULL)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($escolaridadValue) hidden @else @endif">
@@ -859,7 +859,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsNivelEstudios != null)
+                        @if ($userLogin == 5 && $r_obsNivelEstudios != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionNivelEstudios" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -878,7 +878,7 @@
                             </div> --}}
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsNivelEstudios != null)
+                        @if ($userLogin == 5 && $a_obsNivelEstudios != NULL)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionNivelEstudios" class="text-sm"><span
@@ -888,15 +888,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obsNivelEstudios }}</textarea>
                             </div>
-
-                            {{-- @elseif($userLogin == 3 && $r_obsNivelEstudios != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="r_observacionNivelEstudios" class="text-sm"><span
-                                        class="text-red-600">*</span> Observaciones realizadas por reclutamiento</label>
-                                <textarea id="a_observacionNivelEstudios" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $r_obsNivelEstudios }}</textarea>
-                            </div> --}}
                         @endif
 
                     </div>
@@ -966,7 +957,7 @@
                             </a>
                         </div>
 
-                        @if ($cartasRecomendacion == null || $cartasRecomendacion == NULL)
+                        @if ($cartasRecomendacion == NULL || $cartasRecomendacion == NULL)
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="email" class="text-sm">Cartas de recomendación</label>
                                 <p class="flex items-center text-center">
@@ -997,7 +988,7 @@
                             </div>
                         @endif
 
-                        @if ($cartillaMilitar == null)
+                        @if ($cartillaMilitar == NULL)
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="email" class="text-sm">Cartilla Militar</label>
                                 <p class="flex items-center text-center">
@@ -1027,7 +1018,7 @@
                             </div>
                         @endif
 
-                        @if ($cartaNoPenales == null)
+                        @if ($cartaNoPenales == NULL)
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="email" class="text-sm">Carta de antecedentes no penales</label>
                                 <p class="flex items-center text-center">
@@ -1057,7 +1048,7 @@
                             </div>
                         @endif
 
-                        @if ($buroCredito == null)
+                        @if ($buroCredito == NULL)
                         @else
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="city" class="text-sm">Buro de credito</label>
@@ -1111,7 +1102,7 @@
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
 
-                        @if ($userLogin == 5 && $r_obsExtra != null)
+                        @if ($userLogin == 5 && $r_obsExtra != NULL)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionExtra" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -1131,7 +1122,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsExtra != null)
+                        @if ($userLogin == 5 && $a_obsExtra != NULL)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionExtra" class="text-sm"><span
@@ -1158,18 +1149,18 @@
 
                 {{-- Revision --}}
                 <fieldset
-                    class="grid grid-cols-2 gap-6 p-6 rounded-md shadow-sm dark:bg-coolGray-900 @if ($r_userId == null && $a_userId == null) hidden @else @endif">
+                    class="grid grid-cols-2 gap-6 p-6 rounded-md shadow-sm dark:bg-coolGray-900 @if ($r_userId == NULL && $a_userId == NULL) hidden @else @endif">
                     <div
                         class="grid grid-cols-4 gap-4 col-span-full lg:col-span-3 object-center justify-center text-center">
 
-                        <div class="col-span-full sm:col-span-2 @if ($r_userId != null) @else hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($r_userId != NULL) @else hidden @endif">
                             <label for="r_userId" class="text-sm">Revisado por</label>
                             <input id="r_userId" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                 value="{{ $r_userId }}" disabled>
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if ($a_userId != null) @else hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($a_userId != NULL) @else hidden @endif">
                             <label for="a_userId" class="text-sm">Revisado por </label>
                             <input id="a_userId" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
