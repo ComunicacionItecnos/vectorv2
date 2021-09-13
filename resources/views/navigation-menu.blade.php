@@ -65,12 +65,24 @@ $nav_links8 = [
 
 ];
 $nav_links9 = [
-
+[
+'name' => 'Listado Colaboradores',
+'route' => route('dashboard'),
+'active' => request()->routeIs('dashboard'),
+],
 [
 'name' => 'Listado Supervisores',
 'route' => route('tablaSupervisor'),
 'active' => request()->routeIs('tablaSupervisor'),
 ],
+];
+
+$nav_links10 = [
+    [
+        'name' =>'Revisión documentos',
+        'route' => route('revision-doc'),
+        'active' => request()->routeIS('revision-doc')
+    ]
 ];
 
 @endphp
@@ -143,7 +155,7 @@ $nav_links9 = [
                         </x-jet-dropdown>
                     </div>
                     @endif
-                    @if(auth()->user()->role_id == 6)
+                    @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2 || auth()->user()->role_id == 6)
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
                         <x-jet-dropdown align="right">
                             <x-slot name="trigger">
@@ -244,6 +256,14 @@ $nav_links9 = [
 
                         </x-jet-dropdown>
                     </div>
+
+                    @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 5 )
+                        @foreach ($nav_links10 as $nav_link)
+                            <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                                {{ $nav_link['name'] }}
+                            </x-jet-nav-link>
+                        @endforeach
+                    @endif
 
                 </div>
             </div>
@@ -426,7 +446,7 @@ $nav_links9 = [
             </div>
             @endif
 
-            @if(auth()->user()->role_id == 6)
+            @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 2 || auth()->user()->role_id == 6)
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="flex items-center px-4">
                     <div class="text-base font-medium text-gray-800">{{ __('Lista vehículos') }}</div>

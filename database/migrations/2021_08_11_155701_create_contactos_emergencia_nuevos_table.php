@@ -17,7 +17,7 @@ class CreateContactosEmergenciaNuevosTable extends Migration
             $table->id();
         
             $table->unsignedBigInteger('id_nuevoIngreso');
-            $table->foreign('id_nuevoIngreso')->references('id')->on('nuevo_ingresos');
+            $table->foreign('id_nuevoIngreso')->references('id')->on('nuevo_ingresos')->onDelete('cascade')->onUpdate('cascade');
 
             $table->string('nombre',60);
             $table->string('parentesco',45);

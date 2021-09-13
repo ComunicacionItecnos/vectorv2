@@ -126,25 +126,26 @@
         <x-slot name="content">
             <div class="mt-4 ml-3">
                 <p class="text-center text-xl font-medium text-gray-700">
-                    El número asignado de tu marbete es:
+                    El número asignado de tu
                     @if($tipo_vehiculo)
                     @if($tipo_vehiculo == 1)
                     @if($m_info)
-                    A-{{ $m_info[0]->numero }}
+                    marbete es: <b>A-{{ $m_info[0]->numero }}</b>
                     @endif
                     @else
                     @if($m_info)
-                    M-{{ $m_info[0]->numero }}
+                    imán es: <b>M-{{ $m_info[0]->numero }}</b>
                     @endif
                     @endif <br><br>
                     @endif
                     <p>
-                        La entrega de marbetes e imanes será en un horario de 08:00 A.M a 07:00 P.M en caseta de
-                        vigilancia con Mariana Garcia.
+                        La entrega de marbetes e imanes será en un horario de <b>02:30 P.M a 04:00 P.M</b> con el equipo
+                        de <b>Comunicación</b> en <b>Capital Humano.</b>
                     </p>
                     <br>
-                    Si te has equivocado puedes modificar los datos que ingresaste
-                    o puedes volver a Factor con el botón "Regresar".
+                    Si te has equivocado puedes modificar los datos que ingresaste, <b>no puedes registrar más de un
+                        vehículo</b>
+                    ,puedes volver a <b>Factor</b> con el botón <b>Regresar.</b>
                 </p>
             </div>
         </x-slot>

@@ -2,19 +2,18 @@
 
 namespace App\Http\Livewire;
 
-use App\Mail\NotificaInsignias;
-use App\Mail\NotificaInsigniasAsignador;
-use App\Mail\NotificaUNAsignador;
-use App\Mail\NotificaUNPremiado;
 use Exception;
 use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Colaborador;
+use Carbon\CarbonImmutable;
 use Livewire\WithPagination;
-use Illuminate\Support\Facades\DB;
-use App\Models\Unidad_negocio_colaborador_insignia;
+use App\Mail\NotificaUNPremiado;
 use App\Models\Valores_business;
+use App\Mail\NotificaUNAsignador;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
+use App\Models\Unidad_negocio_colaborador_insignia;
 
 class InsigniaUN extends Component
 {
@@ -37,17 +36,14 @@ class InsigniaUN extends Component
 
     public $tipo_insignia, $mensaje, $fecha_asig;
 
-    public $yearActual, $mesActual, $diaActual, $fechaActual;
+    public $yearActual, $mesActual, $diaActual, $fechaActual, $fechaHoraActual, $endHora;
 
-    public $tInicialP1 = '-01-01', $tFinalP1 = '-02-28';
-    public $tInicialP2 = '-03-01', $tFinalP2 = '-04-30';
-    public $tInicialP3 = '-05-01', $tFinalP3 = '-06-30';
-    public $tInicialP4 = '-07-01', $tFinalP4 = '-08-31';
-    public $tInicialP5 = '-09-01', $tFinalP5 = '-10-31';
-    public $tInicialP6 = '-11-01', $tFinalP6 = '-12-31';
+    public $tInicial, $tFinal;
+
+    protected $start, $end;
 
     public $banderaIntentos, $banderaPremiado;
-    public $popupInsignia = false;
+    public $popupInsignia = false, $switchButton = false;
 
     public $intentoPlatino, $intentoOro, $intentoPlata, $intentoBronce, $finalPlatino, $finalOro, $finalPlata, $finalBronce;
 
@@ -73,21 +69,29 @@ class InsigniaUN extends Component
         $this->infoAsignador = Colaborador::find(auth()->user()->colaborador_no_colaborador);
         $this->col_premiado = $no_colaborador;
         $this->valores = Valores_business::all();
+
         $this->yearActual = Carbon::today()->isoFormat('YYYY');
         $this->mesActual = Carbon::today()->isoFormat('MM');
         $this->diaActual = Carbon::today()->isoFormat('DD');
         $this->fechaActual = Carbon::today()->isoFormat('YYYY-MM-DD');
+
+        $en = CarbonImmutable::now()->locale('en_US');
+        $this->start = $en->startOfWeek(Carbon::SATURDAY);
+        $this->end = $en->endOfWeek(Carbon::THURSDAY);
+
+        $this->tInicial = $this->start->format('-m-d');
+        $this->tFinal = $this->end->format('-m-d');
+
         $this->revisarIntentosYPremiados();
         $this->nombreAsignador = auth()->user()->name;
         $this->nombrePremiado = $this->infoColaborador[0]->nombre_completo;
         $this->correoAsignador = $this->infoAsignador->correo;
         $this->correoPremiado = $this->colaborador->correo;
+        $this->bloqueoAsignacion();
     }
 
     public function render()
     {
-        $this->esBisiesto($this->yearActual);
-
         $premiados = Colaborador::select('no_colaborador', 'nombre_1', 'nombre_2', 'ap_paterno', 'ap_materno')
             ->orderBy('ap_paterno', 'ASC')
             ->get();
@@ -95,59 +99,37 @@ class InsigniaUN extends Component
         // ? Restriccion de usuario para accesar a esta vista
 
         if (auth()->user()->role_id == 9) {
-            # code...
 
-            if ($this->fechaActual >= $this->yearActual . $this->tInicialP1 && $this->fechaActual <= $this->yearActual . $this->tFinalP1) {
+            if ($this->fechaActual >= $this->yearActual . $this->tInicial && $this->fechaActual <= $this->yearActual . $this->tFinal) {
+
                 return view('livewire.insignia-u-n', [
                     'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
+                        ->whereBetween('fecha_asignacion', [$this->yearActual . $this->tInicial, $this->yearActual . $this->tFinal])
                         ->orderBy('id', 'DESC')
                         ->paginate($this->perPage)
                 ], compact(
                     'premiados'
                 ));
-            } elseif ($this->fechaActual >= $this->yearActual . $this->tFinalP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
-                return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
-                        ->orderBy('id', 'DESC')
-                        ->paginate($this->perPage)
-                ], compact(
-                    'premiados'
-                ));
-            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP3 && $this->fechaActual <= $this->yearActual . $this->tFinalP3) {
-                return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
-                        ->orderBy('id', 'DESC')
-                        ->paginate($this->perPage)
-                ], compact(
-                    'premiados'
-                ));
-            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP4 && $this->fechaActual <= $this->yearActual . $this->tFinalP4) {
-                return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
-                        ->orderBy('id', 'DESC')
-                        ->paginate($this->perPage)
-                ], compact(
-                    'premiados'
-                ));
-            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP5 && $this->fechaActual <= $this->yearActual . $this->tFinalP5) {
-                return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
-                        ->orderBy('id', 'DESC')
-                        ->paginate($this->perPage)
-                ], compact(
-                    'premiados'
-                ));
-            } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP6 && $this->fechaActual <= $this->yearActual . $this->tFinalP6) {
-                return view('livewire.insignia-u-n', [
-                    'colaboradores' => DB::table('v_insignias_un')->where('colaborador_asignador', auth()->user()->colaborador_no_colaborador)
-                        ->orderBy('id', 'DESC')
-                        ->paginate($this->perPage)
-                ], compact(
-                    'premiados'
-                ));
+            } else {
+                abort(403, 'El día viernes no hay asignaciones');
             }
         } else {
-            abort(404);
+            abort(403, 'No eres un gerente de Unidad de Negocio');
+        }
+    }
+
+    public function bloqueoAsignacion()
+    {
+        if ($this->diaActual == $this->end->format('d')) {
+
+            $this->fechaHoraActual = Carbon::now()->format('H:i');
+
+            if ($this->fechaHoraActual >= '16:00') {
+                $this->switchButton = true;
+            } else {
+            }
+        } else {
+            $this->switchButton = false;
         }
     }
 
@@ -243,30 +225,10 @@ class InsigniaUN extends Component
 
     public function revisarIntentosYPremiados()
     {
-        if ($this->fechaActual >= $this->yearActual . $this->tInicialP1 && $this->fechaActual <= $this->yearActual . $this->tFinalP1) {
+        if ($this->fechaActual >= $this->yearActual . $this->tInicial && $this->fechaActual <= $this->yearActual . $this->tFinal) {
             $this->asignaIntentos();
-            $this->revisarIntentosPeriodo($this->tInicialP1, $this->tFinalP1);
-            $this->revisarPremiadoPeriodo($this->tInicialP1, $this->tFinalP1);
-        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP2 && $this->fechaActual <= $this->yearActual . $this->tFinalP2) {
-            $this->asignaIntentos();
-            $this->revisarIntentosPeriodo($this->tInicialP2, $this->tFinalP2);
-            $this->revisarPremiadoPeriodo($this->tInicialP2, $this->tFinalP2);
-        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP3 && $this->fechaActual <= $this->yearActual . $this->tFinalP3) {
-            $this->asignaIntentos();
-            $this->revisarIntentosPeriodo($this->tInicialP3, $this->tFinalP3);
-            $this->revisarPremiadoPeriodo($this->tInicialP3, $this->tFinalP3);
-        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP4 && $this->fechaActual <= $this->yearActual . $this->tFinalP4) {
-            $this->asignaIntentos();
-            $this->revisarIntentosPeriodo($this->tInicialP4, $this->tFinalP4);
-            $this->revisarPremiadoPeriodo($this->tInicialP4, $this->tFinalP4);
-        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP5 && $this->fechaActual <= $this->yearActual . $this->tFinalP5) {
-            $this->asignaIntentos();
-            $this->revisarIntentosPeriodo($this->tInicialP5, $this->tFinalP5);
-            $this->revisarPremiadoPeriodo($this->tInicialP5, $this->tFinalP5);
-        } elseif ($this->fechaActual >= $this->yearActual . $this->tInicialP6 && $this->fechaActual <= $this->yearActual . $this->tFinalP6) {
-            $this->asignaIntentos();
-            $this->revisarIntentosPeriodo($this->tInicialP6, $this->tFinalP6);
-            $this->revisarPremiadoPeriodo($this->tInicialP6, $this->tFinalP6);
+            $this->revisarIntentosPeriodo($this->tInicial, $this->tFinal);
+            $this->revisarPremiadoPeriodo($this->tInicial, $this->tFinal);
         }
     }
 
@@ -387,14 +349,6 @@ class InsigniaUN extends Component
             $this->mensaje,
             $this->tipo_insignia,
         ));
-    }
-
-    public function esBisiesto($year)
-    {
-        if ((!($year % 4) && ($year % 100)) || !($year % 400)) {
-            $this->tFinalP1 = '-02-29';
-        } else {
-        }
     }
 
     public function setNull()

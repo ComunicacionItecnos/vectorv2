@@ -20,11 +20,13 @@
                                                                                     rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         Excel
                                     </button>
+                                    @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <button wire:click="registrar" type="button"
                                         class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
                                                                                                                         rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                         Nuevo
                                     </button>
+                                    @endif
                                 </div>
                                 <div class=" col-span-3 flex px-2 py-2  border-t border-gray-200 sm:px-3 bg-white">
                                     <input wire:model="search" type="text" placeholder="Buscar"
@@ -56,10 +58,12 @@
                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 No. Marbete
                             </th>
+                            @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                             <th scope="col"
                                 class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Acciones
                             </th>
+                            @endif
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-200">
@@ -101,6 +105,7 @@
                                 @endif
 
                             </td>
+                            @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                             <td>
                                 <div class="flex justify-center py-4 cursor-pointer">
                                     <div class="transform text-yellow-500 hover:text-yellow-700 hover:scale-150">
@@ -127,6 +132,7 @@
                                     </div>
                                 </div>
                             </td>
+                            @endif
                         </tr>
                         @endforeach
                         <!-- More items... -->
