@@ -132,3 +132,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', 
 })->name('revision-doc');
 
 Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
+
+Route::get('/hola',
+function(){
+    return 'Hello word';
+});
