@@ -1,4 +1,3 @@
-HOLA
 <div class="py-10 grid max-w-5xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
 
     {{-- Mostrar mas detallada --}}
