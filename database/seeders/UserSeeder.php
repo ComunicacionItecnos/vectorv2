@@ -186,6 +186,13 @@ class UserSeeder extends Seeder
             'role_id' => '4',
             'colaborador_no_colaborador' => '00306'
         ]);
+        User::create([
+            'name' => 'Angel Ricardo De Jesus Moyao',
+            'email' => 'adejesus@itecnos.com.mx',
+            'password' => bcrypt('12345678'),
+            'role_id' => '4',
+            'colaborador_no_colaborador' => '103650'
+        ]);
 
 
         // ! Capital Humano - Reclutamiento y Selección
