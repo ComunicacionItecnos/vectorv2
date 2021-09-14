@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use ZipArchive;
 use App\Models\User;
+use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
@@ -496,18 +497,23 @@ class RevisionDoc extends Component
                     return redirect()->to('/revision-documentacion/');
                 } else {
                     if ($totalFalsos != 0) {
-                        dd(DB::table('revision_docs')->where('id', $this->idRev)->update([
-                            'R_obscredencial' => $this->observacionCredencial,
-                            'R_obsfecNac' => $this->observacionActaNac,
-                            'R_obscurp' => $this->observacionCurpDoc,
-                            'R_obsrfc' => $this->observacionrfc,
-                            'R_obsimss' => $this->observacionimss,
-                            'R_obsdomicilio' => $this->observacionDir,
-                            'R_obsNivelEstudios' => $this->observacionescolaridad,
-                            'R_obsExtra' => $this->observacionobsExt,
-                            'status' => 1,
-                            'R_userId' => auth()->user()->id
-                        ]));
+                        try {
+                            DB::table('revision_docs')->where('id', $this->idRev)->update([
+                                'R_obscredencial' => $this->observacionCredencial,
+                                'R_obsfecNac' => $this->observacionActaNac,
+                                'R_obscurp' => $this->observacionCurpDoc,
+                                'R_obsrfc' => $this->observacionrfc,
+                                'R_obsimss' => $this->observacionimss,
+                                'R_obsdomicilio' => $this->observacionDir,
+                                'R_obsNivelEstudios' => $this->observacionescolaridad,
+                                'R_obsExtra' => $this->observacionobsExt,
+                                'status' => 1,
+                                'R_userId' => auth()->user()->id
+                            ]);
+                        } catch (Exception $ex) {
+                            dd($ex);
+                        }
+                        
 
                         /* $this->flash('success', 'Se ha guardado correctamente', [
                             'position' =>  'top-end',
