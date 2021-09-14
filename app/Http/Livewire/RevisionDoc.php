@@ -552,7 +552,7 @@ class RevisionDoc extends Component
                         return redirect()->to('/revision-documentacion/');
                     }
                 } catch (Exception $ex) {
-                    return $ex;
+                    var_dump( $ex );
                 }
 
             }
