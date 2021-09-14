@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Exception;
 use ZipArchive;
 use App\Models\User;
 use Livewire\Component;
@@ -496,59 +497,62 @@ class RevisionDoc extends Component
                 ]);
                 return redirect()->to('/revision-documentacion/');
             }else{
+                try {
+                    if ($totalFalsos != 0) {
+                        $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                            'R_obscredencial'=>$this->observacionCredencial,
+                            'R_obsfecNac'=>$this->observacionActaNac,
+                            'R_obscurp'=>$this->observacionCurpDoc,
+                            'R_obsrfc'=>$this->observacionrfc,
+                            'R_obsimss'=>$this->observacionimss,
+                            'R_obsdomicilio'=>$this->observacionDir,
+                            'R_obsNivelEstudios'=>$this->observacionescolaridad,
+                            'R_obsExtra'=>$this->observacionobsExt,
+                            'status'=>1,
+                            'R_userId'=>auth()->user()->id
+                        ]);
 
-                if ($totalFalsos != 0) {
-                    $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
-                        'R_obscredencial'=>$this->observacionCredencial,
-                        'R_obsfecNac'=>$this->observacionActaNac,
-                        'R_obscurp'=>$this->observacionCurpDoc,
-                        'R_obsrfc'=>$this->observacionrfc,
-                        'R_obsimss'=>$this->observacionimss,
-                        'R_obsdomicilio'=>$this->observacionDir,
-                        'R_obsNivelEstudios'=>$this->observacionescolaridad,
-                        'R_obsExtra'=>$this->observacionobsExt,
-                        'status'=>1,
-                        'R_userId'=>auth()->user()->id
-                    ]);
+                        $this->flash('success', 'Se ha guardado correctamente', [
+                            'position' =>  'top-end',
+                            'timer' =>  3500,
+                            'toast' =>  true,
+                            'text' =>  '',
+                            'confirmButtonText' =>  'Ok',
+                            'cancelButtonText' =>  'Cancel',
+                            'showCancelButton' =>  false,
+                            'showConfirmButton' =>  false,
+                        ]);
+                        return redirect()->to('/revision-documentacion/');
 
-                    $this->flash('success', 'Se ha guardado correctamente', [
-                        'position' =>  'top-end',
-                        'timer' =>  3500,
-                        'toast' =>  true,
-                        'text' =>  '',
-                        'confirmButtonText' =>  'Ok',
-                        'cancelButtonText' =>  'Cancel',
-                        'showCancelButton' =>  false,
-                        'showConfirmButton' =>  false,
-                    ]);
-                    return redirect()->to('/revision-documentacion/');
+                    }else{
+                        $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
+                            'areaRd'=>3,
+                            'R_obscredencial'=>Null,
+                            'R_obsfecNac'=>Null,
+                            'R_obscurp'=>Null,
+                            'R_obsrfc'=>Null,
+                            'R_obsimss'=>Null,
+                            'R_obsdomicilio'=>Null,
+                            'R_obsNivelEstudios'=>Null,
+                            'R_obsExtra'=>Null,
+                            'status'=>0,
+                            'R_userId'=>auth()->user()->id
+                        ]);
 
-                }else{
-                    $this->validar = DB::table('revision_docs')->where('id',$this->idRev)->update([
-                        'areaRd'=>3,
-                        'R_obscredencial'=>Null,
-                        'R_obsfecNac'=>Null,
-                        'R_obscurp'=>Null,
-                        'R_obsrfc'=>Null,
-                        'R_obsimss'=>Null,
-                        'R_obsdomicilio'=>Null,
-                        'R_obsNivelEstudios'=>Null,
-                        'R_obsExtra'=>Null,
-                        'status'=>0,
-                        'R_userId'=>auth()->user()->id
-                    ]);
-
-                    $this->flash('success', 'Se ha guardado correctamente', [
-                        'position' =>  'top-end',
-                        'timer' =>  3500,
-                        'toast' =>  true,
-                        'text' =>  '',
-                        'confirmButtonText' =>  'Ok',
-                        'cancelButtonText' =>  'Cancel',
-                        'showCancelButton' =>  false,
-                        'showConfirmButton' =>  false,
-                    ]);
-                    return redirect()->to('/revision-documentacion/');
+                        $this->flash('success', 'Se ha guardado correctamente', [
+                            'position' =>  'top-end',
+                            'timer' =>  3500,
+                            'toast' =>  true,
+                            'text' =>  '',
+                            'confirmButtonText' =>  'Ok',
+                            'cancelButtonText' =>  'Cancel',
+                            'showCancelButton' =>  false,
+                            'showConfirmButton' =>  false,
+                        ]);
+                        return redirect()->to('/revision-documentacion/');
+                    }
+                } catch (Exception $ex) {
+                    return $ex;
                 }
 
             }
