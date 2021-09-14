@@ -456,6 +456,7 @@ class RevisionDoc extends Component
                 $this->credencialValue, $this->actaNacValue, $this->dirValue, $this->curpDocValue,
                 $this->rfcValue, $this->imssValue, $this->escolaridadValue
             ];
+            dd($contar);
 
             $totalFalsos = $this->revisarVerdadero($contar);
 
