@@ -498,7 +498,7 @@ class RevisionDoc extends Component
                 } else {
                     if ($totalFalsos != 0) {
                         try {
-                            if (DB::table('revision_docs')->where('id', $this->idRev)->update([
+                            $query = DB::table('revision_docs')->where('id', $this->idRev)->update([
                                 'R_obscredencial' => $this->observacionCredencial,
                                 'R_obsfecNac' => $this->observacionActaNac,
                                 'R_obscurp' => $this->observacionCurpDoc,
@@ -509,13 +509,9 @@ class RevisionDoc extends Component
                                 'R_obsExtra' => $this->observacionobsExt,
                                 'status' => 1,
                                 'R_userId' => auth()->user()->id
-                            ])) {
-                                dd('se guardo');
-                            }else{
-                                dd('error no se guardo');
-                            }
-                        } catch (Exception $ex) {
-                            dd($ex);
+                            ]);
+                        } catch (\Illuminate\Database\QueryException $ex) {
+                            return ['error' => 'error update user']; 
                         }
                         
 
