@@ -511,7 +511,7 @@ class RevisionDoc extends Component
                                 'R_userId' => auth()->user()->id
                             ]);
                         } catch (\Illuminate\Database\QueryException $ex) {
-                            return ['error' => 'error update user']; 
+                            dd( ['error' => 'error update user']); 
                         }
                         
 
