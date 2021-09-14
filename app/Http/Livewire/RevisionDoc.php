@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Revision_doc;
 use ZipArchive;
 use App\Models\User;
 use Exception;
@@ -458,7 +459,7 @@ class RevisionDoc extends Component
             ];
 
             $totalFalsos = $this->revisarVerdadero($contar);
-            dd($contar,$totalFalsos);
+            
             if ($this->userLogin == 5) {
 
                 if ($this->status == 3) {
@@ -498,7 +499,20 @@ class RevisionDoc extends Component
                 } else {
                     if ($totalFalsos != 0) {
                         try {
-                            $query = DB::table('revision_docs')->where('id', $this->idRev)->update([
+                            /* $query = DB::table('revision_docs')->where('id', $this->idRev)->update([
+                                'R_obscredencial' => $this->observacionCredencial,
+                                'R_obsfecNac' => $this->observacionActaNac,
+                                'R_obscurp' => $this->observacionCurpDoc,
+                                'R_obsrfc' => $this->observacionrfc,
+                                'R_obsimss' => $this->observacionimss,
+                                'R_obsdomicilio' => $this->observacionDir,
+                                'R_obsNivelEstudios' => $this->observacionescolaridad,
+                                'R_obsExtra' => $this->observacionobsExt,
+                                'status' => 1,
+                                'R_userId' => auth()->user()->id
+                            ]); */
+                            
+                            Revision_doc::where('id',$this->idRev)->update([
                                 'R_obscredencial' => $this->observacionCredencial,
                                 'R_obsfecNac' => $this->observacionActaNac,
                                 'R_obscurp' => $this->observacionCurpDoc,
@@ -510,7 +524,7 @@ class RevisionDoc extends Component
                                 'status' => 1,
                                 'R_userId' => auth()->user()->id
                             ]);
-                            dd($query);
+
                         } catch (\Illuminate\Database\QueryException $ex) {
                             dd( ['error' => 'error update user']); 
                         }
