@@ -144,14 +144,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obscredencial }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $r_obscredencial != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="r_observacionCredencial" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por reclutamiento</label>
-                                <textarea id="r_observacionCredencial" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $r_obscredencial }}</textarea>
-                            </div> --}}
                         @endif
 
                     </div>
@@ -240,14 +232,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obsfecNac }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $a_obsfecNac != NULL && $status==1)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionActaNac" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por administración</label>
-                                <textarea id="a_observacionActaNac" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $a_obsfecNac }}</textarea>
-                            </div> --}}
                         @endif
 
                         @if ($userLogin == 5 && $a_obsfecNac != NULL)
@@ -259,14 +243,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obsfecNac }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $r_obsfecNac != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="r_observacionActaNac" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por reclutamiento</label>
-                                <textarea id="r_observacionActaNac" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $r_obsfecNac }}</textarea>
-                            </div> --}}
                         @endif
 
                     </div>
@@ -393,14 +369,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obsdomicilio }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $a_obsdomicilio != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionDir" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por administración</label>
-                                <textarea id="a_observacionDir" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $a_obsdomicilio }}</textarea>
-                            </div> --}}
                         @endif
 
                         @if ($userLogin == 5 && $a_obsdomicilio != NULL)
@@ -412,14 +380,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obsdomicilio }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $r_obsdomicilio != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionDir" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por reclutamiento</label>
-                                <textarea id="a_observacionDir" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $r_obsdomicilio }}</textarea>
-                            </div> --}}
                         @endif
 
                     </div>
@@ -508,14 +468,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obscurp }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $a_obscurp != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionCurpDoc" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por administración</label>
-                                <textarea id="a_observacionCurpDoc" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $a_obscurp }}</textarea>
-                            </div> --}}
                         @endif
 
                         @if ($userLogin == 5 && $a_obscurp != NULL)
@@ -528,15 +480,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obscurp }}</textarea>
                             </div>
-
-                            {{-- @elseif($userLogin == 3 && $r_obscurp != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="r_observacionDir" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por reclutamiento</label>
-                                <textarea id="r_observacionDir" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $r_obscurp }}</textarea>
-                            </div> --}}
                         @endif
 
                     </div>
@@ -626,14 +569,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obsrfc }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $a_obsrfc != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionrfc" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por administración</label>
-                                <textarea id="a_observacionrfc" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $a_obsrfc }}</textarea>
-                            </div> --}}
                         @endif
 
                         @if ($userLogin == 5 && $a_obsrfc != NULL)
@@ -646,15 +581,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obsrfc }}</textarea>
                             </div>
-
-                            {{-- @elseif($userLogin == 3 && $r_obsrfc != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="r_observacionrfc" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por reclutamiento</label>
-                                <textarea id="r_observacionrfc" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $r_obsrfc }}</textarea>
-                            </div> --}}
                         @endif
 
                     </div>
@@ -743,14 +669,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obsimss }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $a_obsimss != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionimss" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por administración</label>
-                                <textarea id="a_observacionimss" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $a_obsimss }}</textarea>
-                            </div> --}}
                         @endif
 
                         @if ($userLogin == 5 && $a_obsimss != NULL)
@@ -763,15 +681,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obsimss }}</textarea>
                             </div>
-
-                            {{-- @elseif($userLogin == 3 && $r_obsimss != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="r_observacionimss" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por reclutamiento</label>
-                                <textarea id="a_observacionimss" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $r_obsimss }}</textarea>
-                            </div> --}}
                         @endif
 
                     </div>
@@ -868,14 +777,6 @@
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obsNivelEstudios }}</textarea>
                             </div>
-                            {{-- @elseif($userLogin == 3 && $a_obsNivelEstudios != NULL)
-                            <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionNivelEstudios" class="text-sm"><span class="text-red-600">*</span>
-                                    Observaciones realizadas por administración</label>
-                                <textarea id="a_observacionNivelEstudios" type="text"
-                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
-                                    disabled>{{ $a_obsNivelEstudios }}</textarea>
-                            </div> --}}
                         @endif
 
                         @if ($userLogin == 5 && $a_obsNivelEstudios != NULL)
