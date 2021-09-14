@@ -525,7 +525,7 @@ class RevisionDoc extends Component
                                 'R_userId' => auth()->user()->id
                             ]);
 
-                        } catch (\Illuminate\Database\QueryException $ex) {
+                        } catch (Exception $ex) {
                             dd( ['error' => 'error update user']); 
                         }
                         
