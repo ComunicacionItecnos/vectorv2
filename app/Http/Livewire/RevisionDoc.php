@@ -512,35 +512,36 @@ class RevisionDoc extends Component
                                 'R_userId' => auth()->user()->id
                             ]); */
                             
-                            Revision_doc::where('id',$this->idRev)->update([
-                                'R_obscredencial' => $this->observacionCredencial,
-                                'R_obsfecNac' => $this->observacionActaNac,
-                                'R_obscurp' => $this->observacionCurpDoc,
-                                'R_obsrfc' => $this->observacionrfc,
-                                'R_obsimss' => $this->observacionimss,
-                                'R_obsdomicilio' => $this->observacionDir,
-                                'R_obsNivelEstudios' => $this->observacionescolaridad,
-                                'R_obsExtra' => $this->observacionobsExt,
-                                'status' => 1,
-                                'R_userId' => auth()->user()->id
+                            $revDoc = Revision_doc::find($this->idRev);
+                            $revDoc->R_obscredencial = $this->observacionCredencial;
+                            $revDoc->R_obsfecNac = $this->observacionActaNac;
+                            $revDoc->R_obscurp = $this->observacionCurpDoc;
+                            $revDoc->R_obsrfc = $this->observacionrfc;
+                            $revDoc->R_obsimss = $this->observacionimss;
+                            $revDoc->R_obsdomicilio = $this->observacionDir;
+                            $revDoc->R_obsNivelEstudios = $this->observacionescolaridad;
+                            $revDoc->R_obsExtra = $this->observacionobsExt;
+                            $revDoc->status = 1;
+                            $revDoc->R_userId = auth()->user()->id;
+                            $revDoc->save();
+                           
+                            $this->flash('success', 'Se ha guardado correctamente', [
+                                'position' =>  'top-end',
+                                'timer' =>  3500,
+                                'toast' =>  true,
+                                'text' =>  '',
+                                'confirmButtonText' =>  'Ok',
+                                'cancelButtonText' =>  'Cancel',
+                                'showCancelButton' =>  false,
+                                'showConfirmButton' =>  false,
                             ]);
-
+                            return redirect()->to('/revision-documentacion/');
                         } catch (Exception $ex) {
-                            dd( ['error' => 'error update user']); 
+                            dd('Error: '.$ex); 
                         }
                         
 
-                        /* $this->flash('success', 'Se ha guardado correctamente', [
-                            'position' =>  'top-end',
-                            'timer' =>  3500,
-                            'toast' =>  true,
-                            'text' =>  '',
-                            'confirmButtonText' =>  'Ok',
-                            'cancelButtonText' =>  'Cancel',
-                            'showCancelButton' =>  false,
-                            'showConfirmButton' =>  false,
-                        ]);
-                        return redirect()->to('/revision-documentacion/'); */
+                        
                     } else {
                         DB::table('revision_docs')->where('id', $this->idRev)->update([
                             'areaRd' => 3,
