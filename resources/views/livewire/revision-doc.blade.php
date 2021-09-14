@@ -4,7 +4,7 @@
     <section class="sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl @if ($mostrarCandidato) @else hidden @endif">
         @if ($candidatoDoc == [])
             <p>Sin candidato</p>
-            <button type="button" wire:click="showMore">Click</button>
+            <button type="button" wire:click="showMore">Regresar</button>
         @else
             <form wire:submit.prevent="triggerConfirm">
 
@@ -69,7 +69,7 @@
                                 value="{{ $ap_materno }}" disabled>
                         </div>
                         <div class="col-span-full sm:col-span-4 text-center object-center justify-center">
-                            <label for="city" class="text-sm">Credencial INE</label>
+                            <label class="text-sm">Credencial INE</label>
                             <a href="{{ Storage::url($credencialIFE) }}" target="_blank"
                                 class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-blue-500 border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-blue-800">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
@@ -83,10 +83,9 @@
                         </div>
 
                         <div class="col-span-full sm:col-span-2">
-                            <label for="city" class="text-sm">¿Datos correctos?</label>
+                            <label class="text-sm">¿Datos correctos?</label>
 
-                            <label for="Toggle"
-                                class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
+                            <label for="Toggle" class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
                                 <span>No</span>
                                 <span class="relative">
                                     <input id="Toggle" type="checkbox" class="hidden peer"
