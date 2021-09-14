@@ -495,16 +495,6 @@ class RevisionDoc extends Component
                     ]);
                     return redirect()->to('/revision-documentacion/');
                 } else {
-                    dd(
-                        $this->observacionCredencial,
-                        $this->observacionActaNac,
-                        $this->observacionCurpDoc,
-                        $this->observacionrfc,
-                        $this->observacionimss,
-                        $this->observacionDir,
-                        $this->observacionescolaridad,
-                        $this->observacionobsExt,
-                    );
                     if ($totalFalsos != 0) {
                         DB::table('revision_docs')->where('id', $this->idRev)->update([
                             'R_obscredencial' => $this->observacionCredencial,
