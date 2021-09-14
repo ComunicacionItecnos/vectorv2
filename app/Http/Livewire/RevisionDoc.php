@@ -456,10 +456,9 @@ class RevisionDoc extends Component
                 $this->credencialValue, $this->actaNacValue, $this->dirValue, $this->curpDocValue,
                 $this->rfcValue, $this->imssValue, $this->escolaridadValue
             ];
-            dd($contar);
 
             $totalFalsos = $this->revisarVerdadero($contar);
-
+            dd($contar,$totalFalsos);
             if ($this->userLogin == 5) {
 
                 if ($this->status == 3) {
