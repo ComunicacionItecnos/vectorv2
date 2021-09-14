@@ -496,7 +496,7 @@ class RevisionDoc extends Component
                     return redirect()->to('/revision-documentacion/');
                 } else {
                     if ($totalFalsos != 0) {
-                        DB::table('revision_docs')->where('id', $this->idRev)->update([
+                        dd(DB::table('revision_docs')->where('id', $this->idRev)->update([
                             'R_obscredencial' => $this->observacionCredencial,
                             'R_obsfecNac' => $this->observacionActaNac,
                             'R_obscurp' => $this->observacionCurpDoc,
@@ -507,9 +507,9 @@ class RevisionDoc extends Component
                             'R_obsExtra' => $this->observacionobsExt,
                             'status' => 1,
                             'R_userId' => auth()->user()->id
-                        ]);
+                        ]));
 
-                        $this->flash('success', 'Se ha guardado correctamente', [
+                        /* $this->flash('success', 'Se ha guardado correctamente', [
                             'position' =>  'top-end',
                             'timer' =>  3500,
                             'toast' =>  true,
@@ -519,7 +519,7 @@ class RevisionDoc extends Component
                             'showCancelButton' =>  false,
                             'showConfirmButton' =>  false,
                         ]);
-                        return redirect()->to('/revision-documentacion/');
+                        return redirect()->to('/revision-documentacion/'); */
                     } else {
                         DB::table('revision_docs')->where('id', $this->idRev)->update([
                             'areaRd' => 3,
