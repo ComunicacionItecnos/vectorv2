@@ -458,7 +458,7 @@ class RevisionDoc extends Component
                 $this->rfcValue, $this->imssValue, $this->escolaridadValue
             ];
 
-            $totalFalsos = $this->revisarVerdadero($contar);
+            $totalFalsos = $this->revisarVerdadero($contar);            
 
             if ($this->userLogin == 5) {
 
@@ -537,6 +537,7 @@ class RevisionDoc extends Component
                         $revDoc->R_obsExtra = $this->observacionobsExt;
                         $revDoc->status = 1;
                         $revDoc->R_userId = auth()->user()->id;
+                        dd($revDoc);
                         $revDoc->save();
 
                         if ($revDoc) {
