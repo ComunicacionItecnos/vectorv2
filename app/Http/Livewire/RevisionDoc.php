@@ -527,7 +527,7 @@ class RevisionDoc extends Component
                 } else {
                     if ($totalFalsos != 0) {
                         $revDoc = Revision_doc::find($this->idRev);
-                        $revDoc->R_obscredencial = $this->observacionCredencial;
+                        dd($revDoc->R_obscredencial = $this->observacionCredencial);
                         $revDoc->R_obsfecNac = $this->observacionActaNac;
                         $revDoc->R_obscurp = $this->observacionCurpDoc;
                         $revDoc->R_obsrfc = $this->observacionrfc;
