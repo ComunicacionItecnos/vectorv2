@@ -130,7 +130,7 @@ class RevisionDoc extends Component
     public function mount()
     {
         $this->candidatoDoc = [];
-        $this->userLogin = 5/* auth()->user()->role_id */;
+        $this->userLogin = auth()->user()->role_id;
         if ($this->userLogin == 1) {
             $this->userLogin = NULL;
         }
@@ -363,14 +363,14 @@ class RevisionDoc extends Component
             $this->mostrarCandidato = false;
             $this->candidatoDoc = [];
 
-            $this->observacionCredencial = NULL;
-            $this->observacionActaNac = NULL;
-            $this->observacionCurpDoc = NULL;
-            $this->observacionrfc = NULL;
-            $this->observacionimss = NULL;
-            $this->observacionDir = NULL;
-            $this->observacionescolaridad = NULL;
-            $this->observacionobsExt = NULL;
+            $this->observacionCredencial = null;
+            $this->observacionActaNac = null;
+            $this->observacionCurpDoc = null;
+            $this->observacionrfc = null;
+            $this->observacionimss = null;
+            $this->observacionDir = null;
+            $this->observacionescolaridad = null;
+            $this->observacionobsExt = null;
 
             $this->credencialValue = true;
             $this->actaNacValue = true;
