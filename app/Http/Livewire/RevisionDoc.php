@@ -385,42 +385,42 @@ class RevisionDoc extends Component
 
     public function credencialToogle()
     {
-        ($this->credencialValue) ? $this->observacionCredencial = '' : $this->credencialValue = false;
+        ($this->credencialValue) ? $this->observacionCredencial = null : $this->credencialValue = false;
     }
 
     public function actaNacToogle()
     {
-        ($this->actaNacValue) ? $this->observacionActaNac = '' : $this->actaNacValue = false;
+        ($this->actaNacValue) ? $this->observacionActaNac = null : $this->actaNacValue = false;
     }
 
     public function direccionToggle()
     {
-        ($this->dirValue) ? $this->observacionDir = '' : $this->dirValue = false;
+        ($this->dirValue) ? $this->observacionDir = null : $this->dirValue = false;
     }
 
     public function curpDocToogle()
     {
-        ($this->curpDocValue) ? $this->observacionCurpDoc = '' : $this->curpDocValue = false;
+        ($this->curpDocValue) ? $this->observacionCurpDoc = null : $this->curpDocValue = false;
     }
 
     public function rfcToogle()
     {
-        ($this->rfcValue) ? $this->observacionrfc = '' : $this->rfcValue = false;
+        ($this->rfcValue) ? $this->observacionrfc = null : $this->rfcValue = false;
     }
 
     public function imssToogle()
     {
-        ($this->imssValue) ? $this->observacionimss = '' : $this->imssValue = false;
+        ($this->imssValue) ? $this->observacionimss = null : $this->imssValue = false;
     }
 
     public function escolaridadToogle()
     {
-        ($this->escolaridadValue) ? $this->observacionescolaridad = '' : $this->escolaridadValue = false;
+        ($this->escolaridadValue) ? $this->observacionescolaridad = null : $this->escolaridadValue = false;
     }
 
     public function obsExToogle()
     {
-        ($this->obsExtValue) ? $this->observacionobsExt = '' : $this->obsExtValue = false;
+        ($this->obsExtValue) ? $this->observacionobsExt = null : $this->obsExtValue = false;
     }
 
     public function cancelled()
@@ -466,23 +466,23 @@ class RevisionDoc extends Component
 
                     $revDoc = Revision_doc::find($this->idRev);
                     $revDoc->areaRd = 3;
-                    $revDoc->R_obscredencial = '';
-                    $revDoc->R_obsfecNac = '';
-                    $revDoc->R_obscurp = '';
-                    $revDoc->R_obsrfc = '';
-                    $revDoc->R_obsimss = '';
-                    $revDoc->R_obsdomicilio = '';
-                    $revDoc->R_obsNivelEstudios = '';
-                    $revDoc->R_obsExtra = '';
+                    $revDoc->R_obscredencial = null;
+                    $revDoc->R_obsfecNac = null;
+                    $revDoc->R_obscurp = null;
+                    $revDoc->R_obsrfc = null;
+                    $revDoc->R_obsimss = null;
+                    $revDoc->R_obsdomicilio = null;
+                    $revDoc->R_obsNivelEstudios = null;
+                    $revDoc->R_obsExtra = null;
 
-                    $revDoc->A_obscredencial = '';
-                    $revDoc->A_obsfecNac = '';
-                    $revDoc->A_obscurp = '';
-                    $revDoc->A_obsrfc = '';
-                    $revDoc->A_obsimss = '';
-                    $revDoc->A_obsdomicilio = '';
-                    $revDoc->A_obsNivelEstudios = '';
-                    $revDoc->A_obsExtra = '';
+                    $revDoc->A_obscredencial = null;
+                    $revDoc->A_obsfecNac = null;
+                    $revDoc->A_obscurp = null;
+                    $revDoc->A_obsrfc = null;
+                    $revDoc->A_obsimss = null;
+                    $revDoc->A_obsdomicilio = null;
+                    $revDoc->A_obsNivelEstudios = null;
+                    $revDoc->A_obsExtra = null;
                     $revDoc->status = 0;
                     $revDoc->R_userId = auth()->user()->id;
                     $revDoc->save();
@@ -557,14 +557,14 @@ class RevisionDoc extends Component
                     } else {
                         $revDoc = Revision_doc::find($this->idRev);
                         $revDoc->areaRd = 3;
-                        $revDoc->R_obscredencial = '';
-                        $revDoc->R_obsfecNac = '';
-                        $revDoc->R_obscurp = '';
-                        $revDoc->R_obsrfc = '';
-                        $revDoc->R_obsimss = '';
-                        $revDoc->R_obsdomicilio = '';
-                        $revDoc->R_obsNivelEstudios = '';
-                        $revDoc->R_obsExtra = '';
+                        $revDoc->R_obscredencial = null;
+                        $revDoc->R_obsfecNac = null;
+                        $revDoc->R_obscurp = null;
+                        $revDoc->R_obsrfc = null;
+                        $revDoc->R_obsimss = null;
+                        $revDoc->R_obsdomicilio = null;
+                        $revDoc->R_obsNivelEstudios = null;
+                        $revDoc->R_obsExtra = null;
                         $revDoc->status = 0;
                         $revDoc->R_userId = auth()->user()->id;
                         $revDoc->save();
@@ -605,14 +605,14 @@ class RevisionDoc extends Component
                 if ($totalFalsos != 0) {
                     $revDoc = Revision_doc::find($this->idRev);
                     $revDoc->areaRd = 5;
-                    $revDoc->R_obscredencial = '';
-                    $revDoc->R_obsfecNac = '';
-                    $revDoc->R_obscurp = '';
-                    $revDoc->R_obsrfc = '';
-                    $revDoc->R_obsimss = '';
-                    $revDoc->R_obsdomicilio = '';
-                    $revDoc->R_obsNivelEstudios = '';
-                    $revDoc->R_obsExtra = '';
+                    $revDoc->R_obscredencial = null;
+                    $revDoc->R_obsfecNac = null;
+                    $revDoc->R_obscurp = null;
+                    $revDoc->R_obsrfc = null;
+                    $revDoc->R_obsimss = null;
+                    $revDoc->R_obsdomicilio = null;
+                    $revDoc->R_obsNivelEstudios = null;
+                    $revDoc->R_obsExtra = null;
 
                     $revDoc->A_obscredencial = $this->observacionCredencial;
                     $revDoc->A_obsfecNac = $this->observacionActaNac;
@@ -665,23 +665,23 @@ class RevisionDoc extends Component
                 } else {
                     $revDoc = Revision_doc::find($this->idRev);
                     $revDoc->areaRd = 3;
-                    $revDoc->R_obscredencial = '';
-                    $revDoc->R_obsfecNac = '';
-                    $revDoc->R_obscurp = '';
-                    $revDoc->R_obsrfc = '';
-                    $revDoc->R_obsimss = '';
-                    $revDoc->R_obsdomicilio = '';
-                    $revDoc->R_obsNivelEstudios = '';
-                    $revDoc->R_obsExtra = '';
+                    $revDoc->R_obscredencial = null;
+                    $revDoc->R_obsfecNac = null;
+                    $revDoc->R_obscurp = null;
+                    $revDoc->R_obsrfc = null;
+                    $revDoc->R_obsimss = null;
+                    $revDoc->R_obsdomicilio = null;
+                    $revDoc->R_obsNivelEstudios = null;
+                    $revDoc->R_obsExtra = null;
 
-                    $revDoc->A_obscredencial = '';
-                    $revDoc->A_obsfecNac = '';
-                    $revDoc->A_obscurp = '';
-                    $revDoc->A_obsrfc = '';
-                    $revDoc->A_obsimss = '';
-                    $revDoc->A_obsdomicilio = '';
-                    $revDoc->A_obsNivelEstudios = '';
-                    $revDoc->A_obsExtra = '';
+                    $revDoc->A_obscredencial = null;
+                    $revDoc->A_obsfecNac = null;
+                    $revDoc->A_obscurp = null;
+                    $revDoc->A_obsrfc = null;
+                    $revDoc->A_obsimss = null;
+                    $revDoc->A_obsdomicilio = null;
+                    $revDoc->A_obsNivelEstudios = null;
+                    $revDoc->A_obsExtra = null;
                     $revDoc->status = 0;
                     $revDoc->A_userId = auth()->user()->id;
                     $revDoc->save();
