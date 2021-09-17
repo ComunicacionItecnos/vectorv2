@@ -385,42 +385,42 @@ class RevisionDoc extends Component
 
     public function credencialToogle()
     {
-        ($this->credencialValue) ? $this->observacionCredencial = NULL : $this->credencialValue = false;
+        ($this->credencialValue) ? $this->observacionCredencial = '' : $this->credencialValue = false;
     }
 
     public function actaNacToogle()
     {
-        ($this->actaNacValue) ? $this->observacionActaNac = NULL : $this->actaNacValue = false;
+        ($this->actaNacValue) ? $this->observacionActaNac = '' : $this->actaNacValue = false;
     }
 
     public function direccionToggle()
     {
-        ($this->dirValue) ? $this->observacionDir = NULL : $this->dirValue = false;
+        ($this->dirValue) ? $this->observacionDir = '' : $this->dirValue = false;
     }
 
     public function curpDocToogle()
     {
-        ($this->curpDocValue) ? $this->observacionCurpDoc = NULL : $this->curpDocValue = false;
+        ($this->curpDocValue) ? $this->observacionCurpDoc = '' : $this->curpDocValue = false;
     }
 
     public function rfcToogle()
     {
-        ($this->rfcValue) ? $this->observacionrfc = NULL : $this->rfcValue = false;
+        ($this->rfcValue) ? $this->observacionrfc = '' : $this->rfcValue = false;
     }
 
     public function imssToogle()
     {
-        ($this->imssValue) ? $this->observacionimss = NULL : $this->imssValue = false;
+        ($this->imssValue) ? $this->observacionimss = '' : $this->imssValue = false;
     }
 
     public function escolaridadToogle()
     {
-        ($this->escolaridadValue) ? $this->observacionescolaridad = NULL : $this->escolaridadValue = false;
+        ($this->escolaridadValue) ? $this->observacionescolaridad = '' : $this->escolaridadValue = false;
     }
 
     public function obsExToogle()
     {
-        ($this->obsExtValue) ? $this->observacionobsExt = NULL : $this->obsExtValue = false;
+        ($this->obsExtValue) ? $this->observacionobsExt = '' : $this->obsExtValue = false;
     }
 
     public function cancelled()
