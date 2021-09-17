@@ -459,7 +459,7 @@ class RevisionDoc extends Component
             ];
 
             $totalFalsos = $this->revisarVerdadero($contar);
-            
+
             if ($this->userLogin == 5) {
 
                 if ($this->status == 3) {
@@ -498,8 +498,8 @@ class RevisionDoc extends Component
                     return redirect()->to('/revision-documentacion/');
                 } else {
                     if ($totalFalsos != 0) {
-                        try {
-                            /* $query = DB::table('revision_docs')->where('id', $this->idRev)->update([
+
+                        /* $query = DB::table('revision_docs')->where('id', $this->idRev)->update([
                                 'R_obscredencial' => $this->observacionCredencial,
                                 'R_obsfecNac' => $this->observacionActaNac,
                                 'R_obscurp' => $this->observacionCurpDoc,
@@ -511,20 +511,21 @@ class RevisionDoc extends Component
                                 'status' => 1,
                                 'R_userId' => auth()->user()->id
                             ]); */
-                            
-                            $revDoc = Revision_doc::find($this->idRev);
-                            $revDoc->R_obscredencial = $this->observacionCredencial;
-                            $revDoc->R_obsfecNac = $this->observacionActaNac;
-                            $revDoc->R_obscurp = $this->observacionCurpDoc;
-                            $revDoc->R_obsrfc = $this->observacionrfc;
-                            $revDoc->R_obsimss = $this->observacionimss;
-                            $revDoc->R_obsdomicilio = $this->observacionDir;
-                            $revDoc->R_obsNivelEstudios = $this->observacionescolaridad;
-                            $revDoc->R_obsExtra = $this->observacionobsExt;
-                            $revDoc->status = 1;
-                            $revDoc->R_userId = auth()->user()->id;
-                            $revDoc->save();
-                           
+
+                        $revDoc = Revision_doc::find($this->idRev);
+                        $revDoc->R_obscredencial = $this->observacionCredencial;
+                        $revDoc->R_obsfecNac = $this->observacionActaNac;
+                        $revDoc->R_obscurp = $this->observacionCurpDoc;
+                        $revDoc->R_obsrfc = $this->observacionrfc;
+                        $revDoc->R_obsimss = $this->observacionimss;
+                        $revDoc->R_obsdomicilio = $this->observacionDir;
+                        $revDoc->R_obsNivelEstudios = $this->observacionescolaridad;
+                        $revDoc->R_obsExtra = $this->observacionobsExt;
+                        $revDoc->status = 1;
+                        $revDoc->R_userId = auth()->user()->id;
+                        $revDoc->save();
+
+                        if ($revDoc) {
                             $this->flash('success', 'Se ha guardado correctamente', [
                                 'position' =>  'top-end',
                                 'timer' =>  3500,
@@ -536,12 +537,9 @@ class RevisionDoc extends Component
                                 'showConfirmButton' =>  false,
                             ]);
                             return redirect()->to('/revision-documentacion/');
-                        } catch (Exception $ex) {
-                            dd('Error: '.$ex); 
+                        } else {
+                            dd('Error:'.$revDoc);
                         }
-                        
-
-                        
                     } else {
                         DB::table('revision_docs')->where('id', $this->idRev)->update([
                             'areaRd' => 3,
