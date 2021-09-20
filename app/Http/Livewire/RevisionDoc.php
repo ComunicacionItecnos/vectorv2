@@ -355,7 +355,7 @@ class RevisionDoc extends Component
             
             $this->r_obscartaNoPenales = $this->candidatoDoc[0]->R_obscartaNoPenales;
             $this->a_obscartaNoPenales = $this->candidatoDoc[0]->A_obscartaNoPenales;
-            if ($this->r_obscartaNoPenales == NULL || $this->a_obscartaNoPenales == NULL) {
+            if ($this->r_obscartaNoPenales != NULL || $this->a_obscartaNoPenales != NULL) {
                 $this->nopenalesValue = false;
             } else {
                 $this->nopenalesValue = true;
