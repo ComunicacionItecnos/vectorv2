@@ -556,15 +556,15 @@ class NuevoIngreso extends Component
                 $nuevo_ingreso = Nuevo_ingreso::create([
                         'curp'=>$this->curp,
                         'curpDocumento'=>$this->curpDoc,
-                        'nombre_1'=>$this->nombre_1,
-                        'nombre_2'=>$this->nombre_2,
-                        'ap_paterno'=>$this->ap_paterno,
-                        'ap_materno'=>$this->ap_materno,
+                        'nombre_1'=> ucwords(strtolower($this->nombre_1)),
+                        'nombre_2'=>ucwords(strtolower($this->nombre_2)),
+                        'ap_paterno'=>ucwords(strtolower($this->ap_paterno)),
+                        'ap_materno'=>ucwords(strtolower($this->ap_materno)),
                         'fecha_nacimiento'=>$this->fecha_nacimiento,
                         'actaNacimiento'=>$this->actaNacimiento,
                         'escolaridad_id'=>$this->escolaridad_id,
                         'constanciaEstudios'=>$this->constanciaEstudios,
-                        'especialidadEstudios'=>$this->especialidadEstudios,
+                        'especialidadEstudios'=>ucwords(strtolower($this->especialidadEstudios)),
                         'genero_id'=>$this->genero_id,
                         'estado_civil_id'=>$this->estado_civil_id,
                         'actaMatrimonio'=>$this->actaMatrimonio,
@@ -572,8 +572,8 @@ class NuevoIngreso extends Component
                         'rfcDocumento'=>$this->rfcDoc,
                         'no_seguro_social'=>$this->no_seguro_social,
                         'altaImssDoc'=>$this->altaImssDoc,
-                        'calle'=>$this->domicilio,
-                        'colonia'=>$this->colonia,
+                        'calle'=>ucwords(strtolower($this->domicilio)),
+                        'colonia'=>ucwords(strtolower($this->colonia)),
                         'municipio_id'=>$this->municipio,
                         'estado_id'=>$this->estado,
                         'pais'=>$this->pais[0]->id,
@@ -602,17 +602,17 @@ class NuevoIngreso extends Component
                 DB::table('contactos_emergencia_nuevos')->insert([
                         [
                             'id_nuevoIngreso'=>$nuevo_ingreso->id,
-                            'nombre'=>$this->nombreEmergencia1,
-                            'parentesco'=>$this->parentescoEmergencia1,
+                            'nombre'=>ucwords(strtolower($this->nombreEmergencia1)),
+                            'parentesco'=>ucwords(strtolower($this->parentescoEmergencia1)),
                             'telefono'=>$this->telEmergencia1,
-                            'domicilio'=>$this->domicilioEmergencia1
+                            'domicilio'=>ucwords(strtolower($this->domicilioEmergencia1))
                         ],
                         [
                             'id_nuevoIngreso'=>$nuevo_ingreso->id,
-                            'nombre'=>$this->nombreEmergencia2,
-                            'parentesco'=>$this->parentescoEmergencia2,
+                            'nombre'=>ucwords(strtolower($this->nombreEmergencia2)),
+                            'parentesco'=>ucwords(strtolower($this->parentescoEmergencia2)),
                             'telefono'=>$this->telEmergencia2,
-                            'domicilio'=>$this->domicilioEmergencia2
+                            'domicilio'=>ucwords(strtolower($this->domicilioEmergencia2))
                         ],
                 ]);
 
