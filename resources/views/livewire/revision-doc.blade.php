@@ -703,7 +703,7 @@
                                 value="{{ $escolaridad }}" disabled>
                         </div>
 
-                        @if ($escolaridad_id > 5)
+                        @if ($escolaridad_id >= 5)
                             <div class="col-span-full sm:col-span-3">
                                 <label for="esp_estudios" class="text-sm">Especialidad de estudios</label>
                                 <input id="esp_estudios" type="text"
