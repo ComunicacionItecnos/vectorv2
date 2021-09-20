@@ -867,8 +867,8 @@
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($nopenalesValue) hidden @else @endif">
-                                <label for="observacionnopenales" class="text-sm">Observaciones</label>
-                                <textarea id="observacionnopenales" wire:model="observacionnopenales" type="text"
+                                <label for="observacionnopenalesValue" class="text-sm">Observaciones</label>
+                                <textarea id="observacionnopenalesValue" wire:model="observacionnopenalesValue" type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     @if ($nopenalesValue)  @else required @endif></textarea>
                             </div>
@@ -876,10 +876,10 @@
 
                         @if ($userLogin == 5 && $r_obscartaNoPenales != NULL)
                             <div class="col-span-full sm:col-span-6">
-                                <label for="r_observacionnopenales" class="text-sm"><span
+                                <label for="r_observacionnopenalesValue" class="text-sm"><span
                                         class="text-red-600">*</span>
                                     Observaciones realizadas por reclutamiento</label>
-                                <textarea id="r_observacionnopenales" type="text"
+                                <textarea id="r_observacionnopenalesValue" type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $r_obscartaNoPenales }}</textarea>
                             </div>
@@ -888,10 +888,10 @@
                         @if ($userLogin == 5 && $a_obscartaNoPenales != NULL)
 
                             <div class="col-span-full sm:col-span-6">
-                                <label for="a_observacionnopenales" class="text-sm"><span
+                                <label for="a_observacionnopenalesValue" class="text-sm"><span
                                         class="text-red-600">*</span> Observaciones realizadas por
                                     administración</label>
-                                <textarea id="a_observacionnopenales" type="text"
+                                <textarea id="a_observacionnopenalesValue" type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obscartaNoPenales }}</textarea>
                             </div>
