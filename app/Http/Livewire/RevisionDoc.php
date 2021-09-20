@@ -463,28 +463,28 @@ class RevisionDoc extends Component
                 /* Comentarios de reclutamiento */
                 if ($this->status == 3) {
                     /* Si estatus es 3(Rechazado) */
-                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
-                    $revDoc->areaRd = 3;
-                    $revDoc->R_obscredencial = NULL;
-                    $revDoc->R_obsfecNac = NULL;
-                    $revDoc->R_obscurp = NULL;
-                    $revDoc->R_obsrfc = NULL;
-                    $revDoc->R_obsimss = NULL;
-                    $revDoc->R_obsdomicilio = NULL;
-                    $revDoc->R_obsNivelEstudios = NULL;
-                    $revDoc->R_obsExtra = NULL;
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev)->update([
+                        'areaRd' => 3,
+                        'R_obscredencial' => NULL,
+                        'R_obsfecNac' => NULL,
+                        'R_obscurp' => NULL,
+                        'R_obsrfc' => NULL,
+                        'R_obsimss' => NULL,
+                        'R_obsdomicilio' => NULL,
+                        'R_obsNivelEstudios' => NULL,
+                        'R_obsExtra' => NULL,
 
-                    $revDoc->A_obscredencial = NULL;
-                    $revDoc->A_obsfecNac = NULL;
-                    $revDoc->A_obscurp = NULL;
-                    $revDoc->A_obsrfc = NULL;
-                    $revDoc->A_obsimss = NULL;
-                    $revDoc->A_obsdomicilio = NULL;
-                    $revDoc->A_obsNivelEstudios = NULL;
-                    $revDoc->A_obsExtra = NULL;
-                    $revDoc->status = 0;
-                    $revDoc->R_userId = auth()->user()->id;
-                    $revDoc->save();
+                        'A_obscredencial' => NULL,
+                        'A_obsfecNac' => NULL,
+                        'A_obscurp' => NULL,
+                        'A_obsrfc' => NULL,
+                        'A_obsimss' => NULL,
+                        'A_obsdomicilio' => NULL,
+                        'A_obsNivelEstudios' => NULL,
+                        'A_obsExtra' => NULL,
+                        'status' => 0,
+                        'R_userId' => auth()->user()->id,
+                    ]);
 
                     if ($revDoc) {
                         $this->flash('success', 'Se ha guardado correctamente', [
@@ -530,19 +530,20 @@ class RevisionDoc extends Component
                         dd('Error:' . $revDoc);
                     }
                 } else {
-                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
-                    $revDoc->areaRd = 3;
-                    $revDoc->R_obscredencial = NULL;
-                    $revDoc->R_obsfecNac = NULL;
-                    $revDoc->R_obscurp = NULL;
-                    $revDoc->R_obsrfc = NULL;
-                    $revDoc->R_obsimss = NULL;
-                    $revDoc->R_obsdomicilio = NULL;
-                    $revDoc->R_obsNivelEstudios = NULL;
-                    $revDoc->R_obsExtra = NULL;
-                    $revDoc->status = 0;
-                    $revDoc->R_userId = auth()->user()->id;
-                    $revDoc->save();
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev)->update([
+                        'areaRd' => 3,
+                        'R_obscredencial' => NULL,
+                        'R_obsfecNac' => NULL,
+                        'R_obscurp' => NULL,
+                        'R_obsrfc' => NULL,
+                        'R_obsimss' => NULL,
+                        'R_obsdomicilio' => NULL,
+                        'R_obsNivelEstudios' => NULL,
+                        'R_obsExtra' => NULL,
+                        'status' => 0,
+                        'R_userId' => auth()->user()->id,
+                    ]);
+                    
                     if ($revDoc) {
                         $this->flash('success', 'Se ha guardado correctamente', [
                             'position' =>  'top-end',
@@ -563,30 +564,7 @@ class RevisionDoc extends Component
                 /* Comentarios de administrcion */
                 /* Retorna a reclutamiento si hay observaciones  */
                 if ($totalFalsos != 0) {
-                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
-                    $revDoc->areaRd = 5;
-                    $revDoc->R_obscredencial = NULL;
-                    $revDoc->R_obsfecNac = NULL;
-                    $revDoc->R_obscurp = NULL;
-                    $revDoc->R_obsrfc = NULL;
-                    $revDoc->R_obsimss = NULL;
-                    $revDoc->R_obsdomicilio = NULL;
-                    $revDoc->R_obsNivelEstudios = NULL;
-                    $revDoc->R_obsExtra = NULL;
-
-                    $revDoc->A_obscredencial = $this->observacionCredencial;
-                    $revDoc->A_obsfecNac = $this->observacionActaNac;
-                    $revDoc->A_obscurp = $this->observacionCurpDoc;
-                    $revDoc->A_obsrfc = $this->observacionrfc;
-                    $revDoc->A_obsimss = $this->observacionimss;
-                    $revDoc->A_obsdomicilio = $this->observacionDir;
-                    $revDoc->A_obsNivelEstudios = $this->observacionescolaridad;
-                    $revDoc->A_obsExtra = $this->observacionobsExt;
-                    $revDoc->status = 3;
-                    $revDoc->A_userId = auth()->user()->id;
-                    $revDoc->save();
-
-                    /* DB::table('revision_docs')->where('id', $this->idRev)->update([
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev)->update([
                         'areaRd' => 5,
                         'R_obscredencial' => NULL,
                         'R_obsfecNac' => NULL,
@@ -595,6 +573,7 @@ class RevisionDoc extends Component
                         'R_obsimss' => NULL,
                         'R_obsdomicilio' => NULL,
                         'R_obsNivelEstudios' => NULL,
+                        'R_obsExtra' => NULL,
                         'A_obscredencial' => $this->observacionCredencial,
                         'A_obsfecNac' => $this->observacionActaNac,
                         'A_obscurp' => $this->observacionCurpDoc,
@@ -604,8 +583,9 @@ class RevisionDoc extends Component
                         'A_obsNivelEstudios' => $this->observacionescolaridad,
                         'A_obsExtra' => $this->observacionobsExt,
                         'status' => 3,
-                        'A_userId' => auth()->user()->id
-                    ]); */
+                        'A_userId' => auth()->user()->id,
+                    ]);
+                
                     if ($revDoc) {
                         $this->flash('success', 'Se ha guardado correctamente', [
                             'position' =>  'top-end',
@@ -622,29 +602,7 @@ class RevisionDoc extends Component
                         dd('Error:' . $revDoc);
                     }
                 } else {
-                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
-                    $revDoc->areaRd = 3;
-                    $revDoc->R_obscredencial = NULL;
-                    $revDoc->R_obsfecNac = NULL;
-                    $revDoc->R_obscurp = NULL;
-                    $revDoc->R_obsrfc = NULL;
-                    $revDoc->R_obsimss = NULL;
-                    $revDoc->R_obsdomicilio = NULL;
-                    $revDoc->R_obsNivelEstudios = NULL;
-                    $revDoc->R_obsExtra = NULL;
-
-                    $revDoc->A_obscredencial = NULL;
-                    $revDoc->A_obsfecNac = NULL;
-                    $revDoc->A_obscurp = NULL;
-                    $revDoc->A_obsrfc = NULL;
-                    $revDoc->A_obsimss = NULL;
-                    $revDoc->A_obsdomicilio = NULL;
-                    $revDoc->A_obsNivelEstudios = NULL;
-                    $revDoc->A_obsExtra = NULL;
-                    $revDoc->status = 0;
-                    $revDoc->A_userId = auth()->user()->id;
-                    $revDoc->save();
-                    /* DB::table('revision_docs')->where('id', $this->idRev)->update([
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev)->update([
                         'R_obscredencial' => NULL,
                         'R_obsfecNac' => NULL,
                         'R_obscurp' => NULL,
@@ -662,8 +620,9 @@ class RevisionDoc extends Component
                         'A_obsNivelEstudios' => NULL,
                         'A_obsExtra' => NULL,
                         'status' => 2,
-                        'A_userId' => auth()->user()->id
-                    ]); */
+                        'A_userId' => auth()->user()->id,
+                    ]);
+                    
                     if ($revDoc) {
                         $this->flash('success', 'Se ha guardado correctamente', [
                             'position' =>  'top-end',
