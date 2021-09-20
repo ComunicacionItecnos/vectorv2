@@ -32,6 +32,7 @@ class ActualizarNuevoIngreso extends Component
     public $r_obsrfc;
     public $r_obsimss;
     public $r_obsEstudios;
+    public $r_obscartaNoPenales;
 
     public $a_obscredencial;
     public $a_obsactaNac;
@@ -40,6 +41,7 @@ class ActualizarNuevoIngreso extends Component
     public $a_obsrfc;
     public $a_obsimss;
     public $a_obsEstudios;
+    public $a_obscartaNoPenales;
 
     public $paternidad;
     public $actaHijos;
@@ -111,6 +113,7 @@ class ActualizarNuevoIngreso extends Component
         $this->r_obsrfc = $this->revisionDoc[0]->R_obsrfc;
         $this->r_obsimss = $this->revisionDoc[0]->R_obsimss;
         $this->r_obsEstudios = $this->revisionDoc[0]->R_obsNivelEstudios;
+        $this->r_obscartaNoPenales = $this->revisionDoc[0]->R_obscartaNoPenales;
 
         $this->a_obscredencial = $this->revisionDoc[0]->A_obscredencial;
         $this->a_obsactaNac = $this->revisionDoc[0]->A_obsfecNac;
@@ -119,6 +122,7 @@ class ActualizarNuevoIngreso extends Component
         $this->a_obsrfc = $this->revisionDoc[0]->A_obsrfc;
         $this->a_obsimss = $this->revisionDoc[0]->A_obsimss;
         $this->a_obsEstudios = $this->revisionDoc[0]->A_obsNivelEstudios;
+        $this->a_obscartaNoPenales = $this->revisionDoc[0]->A_obscartaNoPenales;
 
         $this->paternidad = $this->revisionDoc[0]->paternidad;
         $this->actaHijos = $this->revisionDoc[0]->actasHijo;
@@ -158,7 +162,7 @@ class ActualizarNuevoIngreso extends Component
     public function validateData()
     {
         if ($this->currentStep == 2) {
-            if ($this->r_obscurp != Null  || $this->a_obscurp != Null) {
+            if ($this->r_obscurp != NULL  || $this->a_obscurp != NULL) {
                 $this->validate(
                     ['curp' => 'required|mimes:pdf|max:5120'],
                     [
@@ -168,7 +172,7 @@ class ActualizarNuevoIngreso extends Component
                 );
             }
 
-            if ($this->r_obsactaNac != Null  || $this->a_obsactaNac != Null) {
+            if ($this->r_obsactaNac != NULL  || $this->a_obsactaNac != NULL) {
                 $this->validate(
                     ['actaNac' => 'required|mimes:pdf|max:5120'],
                     [
@@ -178,7 +182,7 @@ class ActualizarNuevoIngreso extends Component
                 );
             }
 
-            if ($this->r_obsrfc != Null  || $this->a_obsrfc != Null) {
+            if ($this->r_obsrfc != NULL  || $this->a_obsrfc != NULL) {
                 $this->validate(
                     ['rfc' => 'required|mimes:pdf|max:5120'],
                     [
@@ -188,7 +192,7 @@ class ActualizarNuevoIngreso extends Component
                 );
             }
 
-            if ($this->r_obsimss != Null  || $this->a_obsimss != Null) {
+            if ($this->r_obsimss != NULL  || $this->a_obsimss != NULL) {
                 $this->validate(
                     ['imss' => 'required|mimes:pdf|max:5120'],
                     [
@@ -198,7 +202,7 @@ class ActualizarNuevoIngreso extends Component
                 );
             }
 
-            if ($this->r_obscredencial != Null  || $this->a_obscredencial != Null) {
+            if ($this->r_obscredencial != NULL  || $this->a_obscredencial != NULL) {
                 $this->validate(
                     ['credencialIFE' => 'required|mimes:pdf|max:5120'],
                     [
@@ -208,7 +212,7 @@ class ActualizarNuevoIngreso extends Component
                 );
             }
 
-            if ($this->r_obsDir != Null  || $this->a_obsDir != Null) {
+            if ($this->r_obsDir != NULL  || $this->a_obsDir != NULL) {
                 $this->validate(
                     ['domicilio' => 'required|mimes:pdf|max:5120'],
                     [
@@ -218,7 +222,7 @@ class ActualizarNuevoIngreso extends Component
                 );
             }
 
-            if ($this->r_obsEstudios != Null  || $this->a_obsEstudios != Null) {
+            if ($this->r_obsEstudios != NULL  || $this->a_obsEstudios != NULL) {
                 $this->validate(
                     ['Estudios' => 'required|mimes:pdf|max:5120'],
                     [
@@ -228,19 +232,28 @@ class ActualizarNuevoIngreso extends Component
                 );
             }
         } elseif ($this->currentStep == 3) {
+            if ($this->r_obscartaNoPenales !=NULL ||$this->a_obscartaNoPenales !=NULL) {
+                $this->validate(
+                    [
+                        'cartaNoPenales_update' => 'required|mimes:pdf|max:5120',
+                    ],
+                    [
+                        'cartaNoPenales_update.required' => 'Debes seleccionar un archivo',
+                        'cartaNoPenales_update.mimes' => 'Debe ser un archivo con formato: pdf',
+                    ]
+                );
+            }
             $this->validate(
                 [
                     'actaHijos_update' => 'mimes:pdf|max:5120',
                     'cartillaMilitar_update' => 'mimes:pdf|max:5120',
                     'cartaRecomendacion_update' => 'mimes:pdf|max:5120',
-                    'cartaNoPenales_update' => 'mimes:pdf|max:5120',
                     'buroCredito_update' => 'mimes:pdf|max:5120'
                 ],
                 [
                     'actaHijos_update.mimes' => 'Debe ser un archivo con formato: pdf',
                     'cartillaMilitar_update.mimes' => 'Debe ser un archivo con formato: pdf',
                     'cartaRecomendacion_update.mimes' => 'Debe ser un archivo con formato: pdf',
-                    'cartaNoPenales_update.mimes' => 'Debe ser un archivo con formato: pdf',
                     'buroCredito_update.mimes' => 'Debe ser un archivo con formato: pdf'
                 ]
             );
@@ -355,8 +368,12 @@ class ActualizarNuevoIngreso extends Component
 
         if ($this->cartaNoPenales_update != '') {
             $this->cartaNoPenales_update = $this->cartaNoPenales_update->storeAs('public/nuevoIngreso/' . $this->curpString, '11.-cartaDeAntecedentesNoPenales.pdf');
+            $r_obscartaNoPenales2 = NULL;
+            $a_obscartaNoPenales2 = NULL;
         } else {
             $this->cartaNoPenales_update = $this->revisionDoc[0]['cartaNoPenales'];
+            $r_obscartaNoPenales2 = $this->revisionDoc[0]['R_obscartaNoPenales'];
+            $a_obscartaNoPenales2 = $this->revisionDoc[0]['A_obscartaNoPenales'];
         }
 
         if ($this->buroCredito_update != '') {
@@ -393,7 +410,8 @@ class ActualizarNuevoIngreso extends Component
                 'R_obsimss'=>$r_obsimss2,
                 'R_obsdomicilio'=>$r_obsDir2,
                 'R_obsNivelEstudios'=>$r_obsEstudios2,
-                
+                'R_obscartaNoPenales'=>$r_obscartaNoPenales2,
+
                 'A_obscredencial'=>$a_obscurp2,
                 'A_obsfecNac'=>$a_obsactaNac2,
                 'A_obscurp'=>$a_obscredencial2,
@@ -401,7 +419,7 @@ class ActualizarNuevoIngreso extends Component
                 'A_obsimss'=>$a_obsimss2,
                 'A_obsdomicilio'=>$a_obsDir2,
                 'A_obsNivelEstudios'=>$a_obsEstudios2,
-                
+                'A_obscartaNoPenales' =>$a_obscartaNoPenales2,
                 'status'=>0,
             ]);
             $this->currentStep = 4;
@@ -415,7 +433,7 @@ class ActualizarNuevoIngreso extends Component
                 'showCancelButton' =>  false,
                 'showConfirmButton' =>  false,
             ]);
-            /* return redirect()->to('/actualizar/nuevo-ingreso/' . $this->idNi); */
+            
         }
     }
 }

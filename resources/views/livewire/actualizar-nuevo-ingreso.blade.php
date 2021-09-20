@@ -503,10 +503,10 @@
                                         </div>
                                     @endif
 
-                                    @if ($cartaNoPenales == null)
+                                    @if ($r_obscartaNoPenales != null || $a_obscartaNoPenales != null)
                                         <div class="col-span-full sm:col-span-3">
-                                            <label for="cartaNoPenales_update"
-                                                class="block text-base font-medium text-gray-700">
+                                            <label for="cartaNoPenales_update" class="block text-base font-medium text-gray-700"><span
+                                                    class="mt-1 mb-1 text-base text-red-600 font-black">*</span>
                                                 Antecedentes no penales</label>
                                             @if ($cartaNoPenales_update)
                                                 <label
@@ -535,10 +535,19 @@
                                             @endif
 
                                             @error('cartaNoPenales_update')
-                                                <p class="mt-1 mb-1 text-sm text-red-600 italic">
+                                                <p class="mt-1 mb-1 text-sm text-red-600 font-black">
                                                     {{ $message }}
                                                 </p>
                                             @enderror
+
+                                            @if ($r_obscartaNoPenales != null)
+                                                <p class="py-2 block text-xs font-medium text-gray-500">Observaciones:
+                                                    {{ $r_obscartaNoPenales }}</p>
+                                            @endif
+                                            @if ($a_obscartaNoPenales != null)
+                                                <p class="py-2 block text-xs font-medium text-gray-500">Observaciones:
+                                                    {{ $a_obscartaNoPenales }}</p>
+                                            @endif
                                         </div>
                                     @endif
 

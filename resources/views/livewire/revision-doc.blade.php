@@ -82,7 +82,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label class="text-sm">¿Datos correctos?</label>
 
                             <label for="Toggle" class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
@@ -180,7 +180,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="city" class="text-sm">¿Datos correctos?</label>
 
                             <label for="actaNacValue"
@@ -317,7 +317,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="dirValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="dirValue"
@@ -417,7 +417,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="curpDocValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="curpDocValue"
@@ -518,7 +518,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="rfcValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="rfcValue"
@@ -618,7 +618,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="imssValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="imssValue"
@@ -726,7 +726,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="escolaridadValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="escolaridadValue"
@@ -787,6 +787,113 @@
                                 <textarea id="a_observacionNivelEstudios" type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     disabled>{{ $a_obsNivelEstudios }}</textarea>
+                            </div>
+                        @endif
+
+                    </div>
+                </fieldset>
+
+                {{-- Antecedentes no penales --}}
+                <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-coolGray-900">
+                    <div class="space-y-2 col-span-full lg:col-span-1">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2h-1.528A6 6 0 004 9.528V4z" />
+                            <path fill-rule="evenodd" d="M8 10a4 4 0 00-3.446 6.032l-1.261 1.26a1 1 0 101.414 1.415l1.261-1.261A4 4 0 108 10zm-2 4a2 2 0 114 0 2 2 0 01-4 0z" clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+
+                        @if ($cartaNoPenales == NULL)
+                            <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
+                                <label for="email" class="text-sm">Carta de antecedentes no penales</label>
+                                <p class="flex items-center text-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 sm:mr-6 text-red-600"
+                                        viewBox="0 0 20 20" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7.536 5.879a1 1 0 001.415 0 3 3 0 014.242 0 1 1 0 001.415-1.415 5 5 0 00-7.072 0 1 1 0 000 1.415z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+
+                                    <span>{{ __('No tiene archivos') }}</span>
+                                </p>
+                            </div>
+                        @else
+                            <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
+                                <label for="city" class="text-sm">Carta de antecedentes no penales</label>
+                                <a href="{{ Storage::url($cartaNoPenales) }}" target="_blank"
+                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-blue-500 border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-blue-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </a>
+
+                            </div>
+                        @endif
+
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                            <label for="nopenalesValue" class="text-sm">¿Datos correctos?</label>
+
+                            <label for="nopenalesValue"
+                                class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
+                                <span>No</span>
+                                <span class="relative">
+                                    <input id="nopenalesValue" type="checkbox" class="hidden peer"
+                                        wire:model="nopenalesValue" wire:click="escolaridadToogle">
+                                    @if ($nopenalesValue)
+                                        <div
+                                            class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-green-600">
+                                        </div>
+                                        <div
+                                            class="absolute inset-y-0 right-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
+                                        </div>
+                                    @else
+                                        <div
+                                            class="w-10 h-6 rounded-full shadow-inner dark:bg-coolGray-400 peer-checked:dark:bg-violet-400 bg-red-600">
+                                        </div>
+                                        <div
+                                            class="absolute inset-y-0 left-0 w-4 h-4 m-1 rounded-full shadow peer-checked:right-0 peer-checked:left-auto dark:bg-coolGray-800 bg-white">
+                                        </div>
+                                    @endif
+
+                                </span>
+                                <span>Si</span>
+                            </label>
+                        </div>
+
+                        @if ($r_obscartaNoPenales != NULL || $a_obscartaNoPenales != NULL)
+
+                        @else
+                            <div class="col-span-full sm:col-span-6  @if ($nopenalesValue) hidden @else @endif">
+                                <label for="observacionnopenales" class="text-sm">Observaciones</label>
+                                <textarea id="observacionnopenales" wire:model="observacionnopenales" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
+                                    @if ($nopenalesValue)  @else required @endif></textarea>
+                            </div>
+                        @endif
+
+                        @if ($userLogin == 5 && $r_obscartaNoPenales != NULL)
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="r_observacionnopenales" class="text-sm"><span
+                                        class="text-red-600">*</span>
+                                    Observaciones realizadas por reclutamiento</label>
+                                <textarea id="r_observacionnopenales" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
+                                    disabled>{{ $r_obscartaNoPenales }}</textarea>
+                            </div>
+                        @endif
+
+                        @if ($userLogin == 5 && $a_obscartaNoPenales != NULL)
+
+                            <div class="col-span-full sm:col-span-6">
+                                <label for="a_observacionnopenales" class="text-sm"><span
+                                        class="text-red-600">*</span> Observaciones realizadas por
+                                    administración</label>
+                                <textarea id="a_observacionnopenales" type="text"
+                                    class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
+                                    disabled>{{ $a_obscartaNoPenales }}</textarea>
                             </div>
                         @endif
 
@@ -918,36 +1025,6 @@
                             </div>
                         @endif
 
-                        @if ($cartaNoPenales == NULL)
-                            <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
-                                <label for="email" class="text-sm">Carta de antecedentes no penales</label>
-                                <p class="flex items-center text-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-2 sm:mr-6 text-red-600"
-                                        viewBox="0 0 20 20" fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-7.536 5.879a1 1 0 001.415 0 3 3 0 014.242 0 1 1 0 001.415-1.415 5 5 0 00-7.072 0 1 1 0 000 1.415z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-
-                                    <span>{{ __('No tiene archivos') }}</span>
-                                </p>
-                            </div>
-                        @else
-                            <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
-                                <label for="city" class="text-sm">Carta de antecedentes no penales</label>
-                                <a href="{{ Storage::url($cartaNoPenales) }}" target="_blank"
-                                    class="flex flex-col my-auto items-center px-4 py-2 mt-1 tracking-wide text-white uppercase bg-blue-500 border border-blue-600 rounded-lg shadow-lg cursor-pointer w-68 hover:bg-white hover:text-blue-800">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                        fill="currentColor">
-                                        <path fill-rule="evenodd"
-                                            d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-
-                            </div>
-                        @endif
-
                         @if ($buroCredito == NULL)
                         @else
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
@@ -965,7 +1042,7 @@
                             </div>
                         @endif
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="obsExtValue" class="text-sm">¿Quieres dejar observaciones
                                 extras?</label>
 
@@ -1083,7 +1160,7 @@
                             </button>
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <button type="button"
                                 class="px-8 py-3 font-semibold rounded-full dark:bg-coolGray-100 dark:text-coolGray-800 bg-red-500 text-white"
                                 wire:click="showMore">
@@ -1091,7 +1168,7 @@
                             </button>
                         </div>
 
-                        <div class="col-span-full sm:col-span-2">
+                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
                             <button type="submit"
                                 class="px-8 py-3 font-semibold rounded-full dark:bg-coolGray-100 dark:text-coolGray-800 bg-green-700 text-white">
                                 Guardar

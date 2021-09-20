@@ -25,7 +25,9 @@ class CreateRevisionDocsTable extends Migration
             $table->string("R_obsimss" )->nullable();
             $table->string("R_obsdomicilio")->nullable();
             $table->string("R_obsNivelEstudios" )->nullable();
+            $table->string("R_obscartaNoPenales")->nullable();
             $table->string("R_obsExtra")->nullable();
+            
             $table->string("A_obscredencial" )->nullable();
             $table->string("A_obsfecNac" )->nullable();
             $table->string("A_obscurp" )->nullable();
@@ -33,6 +35,7 @@ class CreateRevisionDocsTable extends Migration
             $table->string("A_obsimss" )->nullable();
             $table->string("A_obsdomicilio" )->nullable();
             $table->string("A_obsNivelEstudios" )->nullable();
+            $table->string("A_obscartaNoPenales")->nullable();
             $table->string("A_obsExtra" )->nullable();
             $table->integer("status")->default(0)->comment("0=no revivasado, 1=incompleto, 2=completado, 3=rechazado");
             

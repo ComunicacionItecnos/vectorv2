@@ -81,6 +81,7 @@ class RevisionDoc extends Component
     public $r_obsimss;
     public $r_obsdomicilio;
     public $r_obsNivelEstudios;
+    public $r_obscartaNoPenales;
     public $r_obsExtra;
 
     public $a_obscredencial;
@@ -90,6 +91,7 @@ class RevisionDoc extends Component
     public $a_obsimss;
     public $a_obsdomicilio;
     public $a_obsNivelEstudios;
+    public $a_obscartaNoPenales;
     public $a_obsExtra;
     public $status;
     public $r_userId;
@@ -120,6 +122,9 @@ class RevisionDoc extends Component
 
     public $escolaridadValue = true;
     public $observacionescolaridad;
+
+    public $nopenalesValue = true;
+    public $observacionnopenales;
 
     public $obsExtValue = false;
     public $observacionobsExt;
@@ -347,6 +352,14 @@ class RevisionDoc extends Component
             } else {
                 $this->escolaridadValue = true;
             }
+            
+            $this->r_obscartaNoPenales = $this->candidatoDoc[0]->R_obscartaNoPenales;
+            $this->a_obscartaNoPenales = $this->candidatoDoc[0]->A_obscartaNoPenales;
+            if ($this->r_obscartaNoPenales != NULL || $this->a_obscartaNoPenales != NULL) {
+                $this->nopenalesValue = false;
+            } else {
+                $this->nopenalesValue = true;
+            }
 
             $this->r_obsExtra = $this->candidatoDoc[0]->R_obsExtra;
             $this->a_obsExtra = $this->candidatoDoc[0]->A_obsExtra;
@@ -369,8 +382,9 @@ class RevisionDoc extends Component
             $this->observacionimss = NULL;
             $this->observacionDir = NULL;
             $this->observacionescolaridad = NULL;
+            $this->observacionnopenales = NULL;
             $this->observacionobsExt = NULL;
-
+            
             $this->credencialValue = true;
             $this->actaNacValue = true;
             $this->dirValue = true;
@@ -378,6 +392,7 @@ class RevisionDoc extends Component
             $this->rfcValue = true;
             $this->imssValue = true;
             $this->escolaridadValue = true;
+            $this->nopenalesValue = true;
             $this->obsExtValue = false;
         }
     }
@@ -417,6 +432,11 @@ class RevisionDoc extends Component
         ($this->escolaridadValue) ? $this->observacionescolaridad = NULL : $this->escolaridadValue = false;
     }
 
+    public function nopenalesToogle()
+    {
+        ($this->nopenalesValue) ? $this->observacionnopenales = NULL : $this->nopenalesValue = false;
+    }
+
     public function obsExToogle()
     {
         ($this->obsExtValue) ? $this->observacionobsExt = NULL : $this->obsExtValue = false;
@@ -454,7 +474,7 @@ class RevisionDoc extends Component
         DB::transaction(function () {
             $contar = [
                 $this->credencialValue, $this->actaNacValue, $this->dirValue, $this->curpDocValue,
-                $this->rfcValue, $this->imssValue, $this->escolaridadValue
+                $this->rfcValue, $this->imssValue, $this->escolaridadValue,$this->nopenalesValue
             ];
 
             $totalFalsos = $this->revisarVerdadero($contar);
@@ -472,6 +492,7 @@ class RevisionDoc extends Component
                         'R_obsimss' => NULL,
                         'R_obsdomicilio' => NULL,
                         'R_obsNivelEstudios' => NULL,
+                        'R_obscartaNoPenales' =>NULL,
                         'R_obsExtra' => NULL,
 
                         'A_obscredencial' => NULL,
@@ -481,6 +502,7 @@ class RevisionDoc extends Component
                         'A_obsimss' => NULL,
                         'A_obsdomicilio' => NULL,
                         'A_obsNivelEstudios' => NULL,
+                        'A_obscartaNoPenales' =>NULL,
                         'A_obsExtra' => NULL,
                         'status' => 0,
                         'R_userId' => auth()->user()->id,
@@ -510,6 +532,7 @@ class RevisionDoc extends Component
                         'R_obsimss' => $this->observacionimss,
                         'R_obsdomicilio' => $this->observacionDir,
                         'R_obsNivelEstudios' => $this->observacionescolaridad,
+                        'R_obscartaNoPenales' =>$this->observacionnopenales,
                         'R_obsExtra' => $this->observacionobsExt,
                         'status' => 1,
                         'R_userId' => auth()->user()->id,
@@ -539,6 +562,7 @@ class RevisionDoc extends Component
                         'R_obsimss' => NULL,
                         'R_obsdomicilio' => NULL,
                         'R_obsNivelEstudios' => NULL,
+                        'R_obscartaNoPenales' =>NULL,
                         'R_obsExtra' => NULL,
                         'status' => 0,
                         'R_userId' => auth()->user()->id,
@@ -573,6 +597,7 @@ class RevisionDoc extends Component
                         'R_obsimss' => NULL,
                         'R_obsdomicilio' => NULL,
                         'R_obsNivelEstudios' => NULL,
+                        'R_obscartaNoPenales' =>NULL,
                         'R_obsExtra' => NULL,
                         'A_obscredencial' => $this->observacionCredencial,
                         'A_obsfecNac' => $this->observacionActaNac,
@@ -581,6 +606,7 @@ class RevisionDoc extends Component
                         'A_obsimss' => $this->observacionimss,
                         'A_obsdomicilio' => $this->observacionDir,
                         'A_obsNivelEstudios' => $this->observacionescolaridad,
+                        'A_obscartaNoPenales' =>$this->observacionnopenales,
                         'A_obsExtra' => $this->observacionobsExt,
                         'status' => 3,
                         'A_userId' => auth()->user()->id,
@@ -610,6 +636,7 @@ class RevisionDoc extends Component
                         'R_obsimss' => NULL,
                         'R_obsdomicilio' => NULL,
                         'R_obsNivelEstudios' => NULL,
+                        'R_obscartaNoPenales' =>NULL,
                         'R_obsExtra' => NULL,
                         'A_obscredencial' => NULL,
                         'A_obsfecNac' => NULL,
@@ -618,6 +645,7 @@ class RevisionDoc extends Component
                         'A_obsimss' => NULL,
                         'A_obsdomicilio' => NULL,
                         'A_obsNivelEstudios' => NULL,
+                        'A_obscartaNoPenales' =>NULL,
                         'A_obsExtra' => NULL,
                         'status' => 2,
                         'A_userId' => auth()->user()->id,
