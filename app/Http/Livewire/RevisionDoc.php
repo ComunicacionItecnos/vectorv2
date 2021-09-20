@@ -5,7 +5,6 @@ namespace App\Http\Livewire;
 use App\Models\Revision_doc;
 use ZipArchive;
 use App\Models\User;
-use Exception;
 use Livewire\Component;
 use Livewire\WithPagination;
 use Illuminate\Support\Facades\DB;
@@ -464,7 +463,7 @@ class RevisionDoc extends Component
                 /* Comentarios de reclutamiento */
                 if ($this->status == 3) {
                     /* Si estatus es 3(Rechazado) */
-                    $revDoc = Revision_doc::find($this->idRev);
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
                     $revDoc->areaRd = 3;
                     $revDoc->R_obscredencial = NULL;
                     $revDoc->R_obsfecNac = NULL;
@@ -503,19 +502,18 @@ class RevisionDoc extends Component
                         dd('Error:' . $revDoc);
                     }
                 } elseif ($totalFalsos != 0) {
-                    $revDoc = Revision_doc::find($this->idRev);
-                    $revDoc->R_obscredencial = $this->observacionCredencial;
-                    $revDoc->R_obsfecNac = $this->observacionActaNac;
-                    $revDoc->R_obscurp = $this->observacionCurpDoc;
-                    $revDoc->R_obsrfc = $this->observacionrfc;
-                    $revDoc->R_obsimss = $this->observacionimss;
-                    $revDoc->R_obsdomicilio = $this->observacionDir;
-                    $revDoc->R_obsNivelEstudios = $this->observacionescolaridad;
-                    $revDoc->R_obsExtra = $this->observacionobsExt;
-                    $revDoc->status = 1;
-                    $revDoc->R_userId = auth()->user()->id;
-                    $revDoc->save();
-
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev)->update([
+                        'R_obscredencial'=>$this->observacionCredencial,
+                        'R_obsfecNac'=>$this->observacionActaNac,
+                        'R_obscurp' => $this->observacionCurpDoc,
+                        'R_obsrfc' => $this->observacionrfc,
+                        'R_obsimss' => $this->observacionimss,
+                        'R_obsdomicilio' => $this->observacionDir,
+                        'R_obsNivelEstudios' => $this->observacionescolaridad,
+                        'R_obsExtra' => $this->observacionobsExt,
+                        'status' => 1,
+                        'R_userId' => auth()->user()->id,
+                    ]);
                     if ($revDoc) {
                         $this->flash('success', 'Se ha guardado correctamente', [
                             'position' =>  'top-end',
@@ -532,7 +530,7 @@ class RevisionDoc extends Component
                         dd('Error:' . $revDoc);
                     }
                 } else {
-                    $revDoc = Revision_doc::find($this->idRev);
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
                     $revDoc->areaRd = 3;
                     $revDoc->R_obscredencial = NULL;
                     $revDoc->R_obsfecNac = NULL;
@@ -565,7 +563,7 @@ class RevisionDoc extends Component
                 /* Comentarios de administrcion */
                 /* Retorna a reclutamiento si hay observaciones  */
                 if ($totalFalsos != 0) {
-                    $revDoc = Revision_doc::find($this->idRev);
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
                     $revDoc->areaRd = 5;
                     $revDoc->R_obscredencial = NULL;
                     $revDoc->R_obsfecNac = NULL;
@@ -624,7 +622,7 @@ class RevisionDoc extends Component
                         dd('Error:' . $revDoc);
                     }
                 } else {
-                    $revDoc = Revision_doc::find($this->idRev);
+                    $revDoc = Revision_doc::where('nuevo_ingreso_id',$this->idRev);
                     $revDoc->areaRd = 3;
                     $revDoc->R_obscredencial = NULL;
                     $revDoc->R_obsfecNac = NULL;
