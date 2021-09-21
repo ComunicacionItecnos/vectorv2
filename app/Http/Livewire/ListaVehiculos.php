@@ -171,12 +171,12 @@ class ListaVehiculos extends Component
     public function updatedColaboradorRegistro($no_col)
     {
         $temp = Estacionamiento::where('colaborador_no_colaborador', $no_col)->get();
-
-        if (count($temp) == 0) {
+        $this->banderaRegistro = false;
+        /* if (count($temp) == 0) {
             $this->banderaRegistro = false;
         } else {
             $this->banderaRegistro = true;
-        }
+        } */
     }
 
     public function editar($id)
@@ -201,7 +201,7 @@ class ListaVehiculos extends Component
     {
         $this->tiposVehiculo = Tipo_vehiculo::all();
         $vehiculo_2 = Vehiculo::where('colaborador_no_colaborador', $this->colaborador)->get();
-
+        
         if (count($vehiculo_2) == 0) {
             $this->banderaExiste = false;
         } else {
