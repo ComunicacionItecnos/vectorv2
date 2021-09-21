@@ -620,7 +620,7 @@ class NuevoIngreso extends Component
                     DB::table('revision_docs')->insert([
                         'nuevo_ingreso_id'=>$nuevo_ingreso->id,
                         'areaRd'=>5,
-                        'R_obscartaNoPenales' =>'Aun falta este documento por subir',
+                        'R_obscartaNoPenales' =>'Falta este documento',
                         'status'=>1
                     ]);
                 }else{
