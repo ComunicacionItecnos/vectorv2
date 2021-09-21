@@ -174,11 +174,11 @@
                             text-gray-700
                             @endif
                         ">
-                            {{-- @if ($banderaRegistro == true)
+                            @if ($banderaRegistro == true)
                             Colaborador (Este colaborador ya está registrado, elige uno diferente)
-                            @else --}}
+                            @else
                             Colaborador
-                            {{-- @endif --}}
+                            @endif
 
                         </label>
                         <select id="selectcolaborador" wire:model="ColaboradorRegistro" name="colaborador"
@@ -205,7 +205,8 @@
                     </div>
                     @endif
                     @if ($banderaRegistro == true)
-                    @elseif($banderaRegistro == false)
+                    
+                    @else
                     <div class="mt-4">
                         <label class="block text-sm font-medium text-gray-700" for="inputTipoVehiculo">Tipo de
                             vehículo</label>

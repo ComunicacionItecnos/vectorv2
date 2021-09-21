@@ -171,12 +171,14 @@ class ListaVehiculos extends Component
     public function updatedColaboradorRegistro($no_col)
     {
         $temp = Estacionamiento::where('colaborador_no_colaborador', $no_col)->get();
-        $this->banderaRegistro = false;
-        /* if (count($temp) == 0) {
+        
+        if (count($temp) == 0) {
             $this->banderaRegistro = false;
-        } else {
+        } elseif(count($temp) > 0 && auth()->user()->role_id !=1) {
             $this->banderaRegistro = true;
-        } */
+        }elseif(count($temp) > 0 && auth()->user()->role_id == 1){
+            $this->banderaRegistro = false;
+        }
     }
 
     public function editar($id)
