@@ -178,54 +178,54 @@ class RevisionDoc extends Component
         $zip->open(storage_path("public/zip/".$descarga[0]->curp.".zip"), ZipArchive::CREATE);
         
         foreach ($descarga as $key => $value) {
-            $zip->addFile(storage_path("app/public/public/".$value->curpDoc), '01.-CURP.pdf');
-            $zip->addFile(storage_path("app/public/public/".$value->actaNacimiento), '02.-actaNacimiento.pdf');
-            $zip->addFile(storage_path("app/public/public/".$value->constanciaEstudios), '03.-constanciaEstudios.pdf');
+            $zip->addFile(storage_path("app/public/".$value->curpDoc), '01.-CURP.pdf');
+            $zip->addFile(storage_path("app/public/".$value->actaNacimiento), '02.-actaNacimiento.pdf');
+            $zip->addFile(storage_path("app/public/".$value->constanciaEstudios), '03.-constanciaEstudios.pdf');
             if ($value->actaMatrimonio != NULL) {
-                $zip->addFile(storage_path("app/public/public/".$value->actaMatrimonio), '04.-actaMatrimonio.pdf');
+                $zip->addFile(storage_path("app/public/".$value->actaMatrimonio), '04.-actaMatrimonio.pdf');
             } else {
             }
 
-            $zip->addFile(storage_path("app/public/public/".$value->rfcDocumento), '05.-rfcDocumento.pdf');
-            $zip->addFile(storage_path("app/public/public/".$value->altaImssDoc), '06.-altaImssDoc.pdf');
-            $zip->addFile(storage_path("app/public/public/".$value->comprobanteDomicilio), '07.-comprobanteDomicilio.pdf');
+            $zip->addFile(storage_path("app/public/".$value->rfcDocumento), '05.-rfcDocumento.pdf');
+            $zip->addFile(storage_path("app/public/".$value->altaImssDoc), '06.-altaImssDoc.pdf');
+            $zip->addFile(storage_path("app/public/".$value->comprobanteDomicilio), '07.-comprobanteDomicilio.pdf');
 
             if ($value->actasHijo != NULL) {
                 foreach (json_decode($value->actasHijo) as $aH) {
-                    $zip->addFile(storage_path("app/public/public/".$aH), '08.-actasHijos/' . basename($aH));
+                    $zip->addFile(storage_path("app/public/".$aH), '08.-actasHijos/' . basename($aH));
                 }
             }
 
             if ($value->cartasRecomendacion != NULL) {
                 foreach (json_decode($value->cartasRecomendacion) as $cR) {
-                    $zip->addFile(storage_path("app/public/public/".$cR), '09.-cartasRecomendacion/' . basename($cR));
+                    $zip->addFile(storage_path("app/public/".$cR), '09.-cartasRecomendacion/' . basename($cR));
                 }
             }
 
             if ($value->cartillaMilitar != NULL) {
-                $zip->addFile(storage_path("app/public/public/".$value->cartillaMilitar), '10.-cartillaMilitar.pdf');
+                $zip->addFile(storage_path("app/public/".$value->cartillaMilitar), '10.-cartillaMilitar.pdf');
             } else {
             }
 
             if ($value->cartaNoPenales != NULL) {
-                $zip->addFile(storage_path("app/public/public/".$value->cartaNoPenales), '11.-cartaNoPenales.pdf');
+                $zip->addFile(storage_path("app/public/".$value->cartaNoPenales), '11.-cartaNoPenales.pdf');
             } else {
             }
 
-            $zip->addFile(storage_path("app/public/public/".$value->credencialIFE), '12.-credencialIFE.pdf');
+            $zip->addFile(storage_path("app/public/".$value->credencialIFE), '12.-credencialIFE.pdf');
 
             if ($value->buroCredito != NULL) {
-                $zip->addFile(storage_path("app/public/public/".$value->buroCredito), '13.-buroCredito.pdf');
+                $zip->addFile(storage_path("app/public/".$value->buroCredito), '13.-buroCredito.pdf');
             } else {
             }
 
-            $zip->addFile(storage_path("app/public/public/".$value->foto), '14.-foto.png');
-            $zip->addFile(storage_path("app/public/public/".$value->cvOsolicitudEmpleo), '15.-cvOsolicitudEmpleo.pdf');
+            $zip->addFile(storage_path("app/public/".$value->foto), '14.-foto.png');
+            $zip->addFile(storage_path("app/public/".$value->cvOsolicitudEmpleo), '15.-cvOsolicitudEmpleo.pdf');
         }
 
         $zip->close();
 
-        return response()->download("app/public/zip/".storage_path("app/public/public/zip/".$descarga[0]->curp.".zip"))->deleteFileAfterSend(true);
+        return response()->download(storage_path("app/public/zip/".$descarga[0]->curp.".zip"))->deleteFileAfterSend(true);
     }
 
     public function showInfo($id)
