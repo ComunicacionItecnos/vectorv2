@@ -176,9 +176,11 @@ class RevisionDoc extends Component
         }
 
         $zip->open(storage_path("public/zip/".$descarga[0]->curp.".zip"), ZipArchive::CREATE);
-
+        $zip->addFile(storage_path("app/public/".$descarga[0]->curpDoc), '01.-CURP.pdf');
+        $zip->close();
+        dd($zip);
         foreach ($descarga as $key => $value) {
-            dd(storage_path("app/public/".$value->curpDoc));
+            
             $zip->addFile(storage_path("app/public/".$value->curpDoc), '01.-CURP.pdf');
             $zip->addFile(storage_path("app/public/".$value->actaNacimiento), '02.-actaNacimiento.pdf');
             $zip->addFile(storage_path("app/public/".$value->constanciaEstudios), '03.-constanciaEstudios.pdf');
