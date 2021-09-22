@@ -1,7 +1,8 @@
 <div class="py-10 grid max-w-5xl grid-cols-1 px-6 mx-auto lg:px-8 md:grid-cols">
 
     {{-- Mostrar mas detallada --}}
-    <section class="sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl @if ($mostrarCandidato) @else hidden @endif">
+    <section
+        class="sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl @if ($mostrarCandidato) @else hidden @endif">
         @if ($candidatoDoc == [])
             <p>Sin candidato</p>
             <button type="button" wire:click="showMore">Regresar</button>
@@ -82,10 +83,11 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label class="text-sm">¿Datos correctos?</label>
 
-                            <label for="Toggle" class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
+                            <label for="Toggle"
+                                class="inline-flex items-center space-x-4 cursor-pointer dark:text-coolGray-100">
                                 <span>No</span>
                                 <span class="relative">
                                     <input id="Toggle" type="checkbox" class="hidden peer"
@@ -111,7 +113,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obscredencial != NULL || $a_obscredencial != NULL)
+                        @if ($r_obscredencial != null || $a_obscredencial != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($credencialValue) hidden @else  @endif">
@@ -123,7 +125,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obscredencial != NULL && $status == 1)
+                        @if ($userLogin == 5 && $r_obscredencial != null && $status == 1)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionCredencial" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -134,7 +136,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obscredencial != NULL)
+                        @if ($userLogin == 5 && $a_obscredencial != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionCredencial" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -180,7 +182,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="city" class="text-sm">¿Datos correctos?</label>
 
                             <label for="actaNacValue"
@@ -210,7 +212,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsfecNac != NULL || $a_obsfecNac != NULL)
+                        @if ($r_obsfecNac != null || $a_obsfecNac != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($actaNacValue) hidden @else @endif">
@@ -222,7 +224,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsfecNac != NULL && $status == 1)
+                        @if ($userLogin == 5 && $r_obsfecNac != null && $status == 1)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionActaNac" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -233,7 +235,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsfecNac != NULL)
+                        @if ($userLogin == 5 && $a_obsfecNac != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionActaNac" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -317,7 +319,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="dirValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="dirValue"
@@ -348,7 +350,7 @@
                         </div>
 
 
-                        @if ($r_obsdomicilio != NULL || $a_obsdomicilio != NULL)
+                        @if ($r_obsdomicilio != null || $a_obsdomicilio != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($dirValue) hidden @else @endif">
@@ -359,7 +361,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsdomicilio != NULL)
+                        @if ($userLogin == 5 && $r_obsdomicilio != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionDir" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -370,7 +372,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsdomicilio != NULL)
+                        @if ($userLogin == 5 && $a_obsdomicilio != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionDir" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -417,7 +419,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="curpDocValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="curpDocValue"
@@ -447,7 +449,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obscurp != NULL || $a_obscurp != NULL)
+                        @if ($r_obscurp != null || $a_obscurp != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($curpDocValue) hidden @else @endif">
@@ -458,7 +460,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obscurp != NULL)
+                        @if ($userLogin == 5 && $r_obscurp != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionCurpDoc" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -469,7 +471,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obscurp != NULL)
+                        @if ($userLogin == 5 && $a_obscurp != null)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionCurpDoc" class="text-sm"><span
@@ -518,7 +520,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="rfcValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="rfcValue"
@@ -548,7 +550,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsrfc != NULL || $a_obsrfc != NULL)
+                        @if ($r_obsrfc != null || $a_obsrfc != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($rfcValue) hidden @else @endif">
@@ -559,7 +561,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsrfc != NULL)
+                        @if ($userLogin == 5 && $r_obsrfc != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionrfc" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -570,7 +572,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsrfc != NULL)
+                        @if ($userLogin == 5 && $a_obsrfc != null)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionrfc" class="text-sm"><span
@@ -618,7 +620,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="imssValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="imssValue"
@@ -648,7 +650,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsimss != NULL || $a_obsimss != NULL)
+                        @if ($r_obsimss != null || $a_obsimss != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($imssValue) hidden @else @endif">
@@ -659,7 +661,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsimss != NULL)
+                        @if ($userLogin == 5 && $r_obsimss != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionimss" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -670,7 +672,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsimss != NULL)
+                        @if ($userLogin == 5 && $a_obsimss != null)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionimss" class="text-sm"><span
@@ -726,7 +728,7 @@
 
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="escolaridadValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="escolaridadValue"
@@ -756,7 +758,7 @@
                             </label>
                         </div>
 
-                        @if ($r_obsNivelEstudios != NULL || $a_obsNivelEstudios != NULL)
+                        @if ($r_obsNivelEstudios != null || $a_obsNivelEstudios != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($escolaridadValue) hidden @else @endif">
@@ -767,7 +769,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obsNivelEstudios != NULL)
+                        @if ($userLogin == 5 && $r_obsNivelEstudios != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionNivelEstudios" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -778,7 +780,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsNivelEstudios != NULL)
+                        @if ($userLogin == 5 && $a_obsNivelEstudios != null)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionNivelEstudios" class="text-sm"><span
@@ -796,14 +798,18 @@
                 {{-- Antecedentes no penales --}}
                 <fieldset class="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm dark:bg-coolGray-900">
                     <div class="space-y-2 col-span-full lg:col-span-1">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2h-1.528A6 6 0 004 9.528V4z" />
-                            <path fill-rule="evenodd" d="M8 10a4 4 0 00-3.446 6.032l-1.261 1.26a1 1 0 101.414 1.415l1.261-1.261A4 4 0 108 10zm-2 4a2 2 0 114 0 2 2 0 01-4 0z" clip-rule="evenodd" />
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-red-400" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2h-1.528A6 6 0 004 9.528V4z" />
+                            <path fill-rule="evenodd"
+                                d="M8 10a4 4 0 00-3.446 6.032l-1.261 1.26a1 1 0 101.414 1.415l1.261-1.261A4 4 0 108 10zm-2 4a2 2 0 114 0 2 2 0 01-4 0z"
+                                clip-rule="evenodd" />
                         </svg>
                     </div>
                     <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 
-                        @if ($cartaNoPenales == NULL)
+                        @if ($cartaNoPenales == null)
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="email" class="text-sm">Carta de antecedentes no penales</label>
                                 <p class="flex items-center text-center">
@@ -833,7 +839,7 @@
                             </div>
                         @endif
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="nopenalesValue" class="text-sm">¿Datos correctos?</label>
 
                             <label for="nopenalesValue"
@@ -863,18 +869,19 @@
                             </label>
                         </div>
 
-                        @if ($r_obscartaNoPenales != NULL || $a_obscartaNoPenales != NULL)
+                        @if ($r_obscartaNoPenales != null || $a_obscartaNoPenales != null)
 
                         @else
                             <div class="col-span-full sm:col-span-6  @if ($nopenalesValue) hidden @else @endif">
                                 <label for="observacionnopenalesValue" class="text-sm">Observaciones</label>
-                                <textarea id="observacionnopenalesValue" wire:model="observacionnopenalesValue" type="text"
+                                <textarea id="observacionnopenalesValue" wire:model="observacionnopenalesValue"
+                                    type="text"
                                     class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                     @if ($nopenalesValue)  @else required @endif></textarea>
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $r_obscartaNoPenales != NULL)
+                        @if ($userLogin == 5 && $r_obscartaNoPenales != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionnopenalesValue" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -885,7 +892,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obscartaNoPenales != NULL)
+                        @if ($userLogin == 5 && $a_obscartaNoPenales != null)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionnopenalesValue" class="text-sm"><span
@@ -929,8 +936,8 @@
                         @endif
 
                         @if ($paternidad == 1)
-                        
-                            @if ($actasHijo == NULL)
+
+                            @if ($actasHijo == null)
 
                             @else
                                 <div class="col-span-full sm:col-span-6 text-center object-center justify-center">
@@ -964,7 +971,7 @@
                             </a>
                         </div>
 
-                        @if ($cartasRecomendacion == NULL || $cartasRecomendacion == NULL)
+                        @if ($cartasRecomendacion == null || $cartasRecomendacion == null)
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="email" class="text-sm">Cartas de recomendación</label>
                                 <p class="flex items-center text-center">
@@ -995,7 +1002,7 @@
                             </div>
                         @endif
 
-                        @if ($cartillaMilitar == NULL)
+                        @if ($cartillaMilitar == null)
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="email" class="text-sm">Cartilla Militar</label>
                                 <p class="flex items-center text-center">
@@ -1025,7 +1032,7 @@
                             </div>
                         @endif
 
-                        @if ($buroCredito == NULL)
+                        @if ($buroCredito == null)
                         @else
                             <div class="col-span-full sm:col-span-3 text-center object-center justify-center">
                                 <label for="city" class="text-sm">Buro de credito</label>
@@ -1042,7 +1049,7 @@
                             </div>
                         @endif
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <label for="obsExtValue" class="text-sm">¿Quieres dejar observaciones
                                 extras?</label>
 
@@ -1079,7 +1086,7 @@
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"></textarea>
                         </div>
 
-                        @if ($userLogin == 5 && $r_obsExtra != NULL)
+                        @if ($userLogin == 5 && $r_obsExtra != null)
                             <div class="col-span-full sm:col-span-6">
                                 <label for="r_observacionExtra" class="text-sm"><span
                                         class="text-red-600">*</span>
@@ -1099,7 +1106,7 @@
                             </div>
                         @endif
 
-                        @if ($userLogin == 5 && $a_obsExtra != NULL)
+                        @if ($userLogin == 5 && $a_obsExtra != null)
 
                             <div class="col-span-full sm:col-span-6">
                                 <label for="a_observacionExtra" class="text-sm"><span
@@ -1126,18 +1133,18 @@
 
                 {{-- Revision --}}
                 <fieldset
-                    class="grid grid-cols-2 gap-6 p-6 rounded-md shadow-sm dark:bg-coolGray-900 @if ($r_userId == NULL && $a_userId == NULL) hidden @else @endif">
+                    class="grid grid-cols-2 gap-6 p-6 rounded-md shadow-sm dark:bg-coolGray-900 @if ($r_userId == null && $a_userId == null) hidden @else @endif">
                     <div
                         class="grid grid-cols-4 gap-4 col-span-full lg:col-span-3 object-center justify-center text-center">
 
-                        <div class="col-span-full sm:col-span-2 @if ($r_userId != NULL) @else hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($r_userId != null) @else hidden @endif">
                             <label for="r_userId" class="text-sm">Revisado por</label>
                             <input id="r_userId" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
                                 value="{{ $r_userId }}" disabled>
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if ($a_userId != NULL) @else hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($a_userId != null) @else hidden @endif">
                             <label for="a_userId" class="text-sm">Revisado por </label>
                             <input id="a_userId" type="text"
                                 class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-blue-400 dark:border-coolGray-700 dark:text-coolGray-900"
@@ -1160,7 +1167,7 @@
                             </button>
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <button type="button"
                                 class="px-8 py-3 font-semibold rounded-full dark:bg-coolGray-100 dark:text-coolGray-800 bg-red-500 text-white"
                                 wire:click="showMore">
@@ -1168,7 +1175,7 @@
                             </button>
                         </div>
 
-                        <div class="col-span-full sm:col-span-2 @if($userLogin == 3 && $status == 2) hidden @endif">
+                        <div class="col-span-full sm:col-span-2 @if ($userLogin == 3 && $status == 2) hidden @endif">
                             <button type="submit"
                                 class="px-8 py-3 font-semibold rounded-full dark:bg-coolGray-100 dark:text-coolGray-800 bg-green-700 text-white">
                                 Guardar
@@ -1184,7 +1191,8 @@
     </section>
 
     {{-- Cards --}}
-    <section class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl  page__style @if ($mostrarTodos) @else hidden @endif">
+    <section
+        class="px-4 sm:px-6 lg:px-4 xl:px-6 pt-4 pb-4 sm:pb-6 lg:pb-4 xl:pb-6 space-y-4 bg-white shadow-lg rounded-xl  page__style @if ($mostrarTodos) @else hidden @endif">
 
         <header class="flex items-center justify-between">
             <h2 class="text-lg leading-6 font-medium text-black">Candidatos</h2>
@@ -1213,9 +1221,10 @@
             <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
 
                 @foreach ($nuevosIngresos as $nI)
-                    @if ($userLogin == $nI->areaRd || $userLogin == NULL)
+                    @if ($userLogin == $nI->areaRd || $userLogin == null)
 
-                        <div class="flex flex-col justify-center max-w-xs p-4 rounded-xl sm:px-8 border-2 border-light-gray-500 border-opacity-100 
+                        <div
+                            class="flex flex-col justify-center max-w-xs p-4 rounded-xl sm:px-8 border-2 border-light-gray-500 border-opacity-100 
                         transition duration-500 ease-in-out hover:shadow-xl transform hover:-translate-y-1 hover:scale-10">
                             <div class="block relative">
                                 <img src="{{ Storage::url($nI->foto) }}" alt="Profile face"
@@ -1247,19 +1256,25 @@
                                     <p class="sm:text-xs md:text-xs lg:text-xs xl:text-xs">
                                         {{ $nI->curp }}
                                     </p>
-                                       
-                                    <button type="button" class="px-8 py-3 rounded-full text-gray-600" wire:click="showInfo({{ $nI->id }})">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z"/>
-                                            <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+
+                                    <button type="button" class="px-8 py-3 rounded-full text-gray-600"
+                                        wire:click="showInfo({{ $nI->id }})">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+                                            <path fill-rule="evenodd"
+                                                d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z"
+                                                clip-rule="evenodd" />
                                         </svg>
                                     </button>
                                 </div>
                                 <div class="flex justify-center pt-2 space-x-4 align-center">
-                                    <a href="whatsapp://send?phone=+521{{ $nI->tel_movil }}" target="_blank" aria-label="Dribble" class="p-2 rounded-md text-gray-500">
+                                    <a href="whatsapp://send?phone=+521{{ $nI->tel_movil }}" target="_blank"
+                                        aria-label="Dribble" class="p-2 rounded-md text-gray-500">
                                         <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
                                             class="w-4 h-4 fill-current">
-                                            <path xmlns="http://www.w3.org/2000/svg" d="M8.002 0h-.004C3.587 0 0 3.588 0 8a7.94 7.94 0 0 0 1.523 4.689l-.997 2.972 3.075-.983A7.93 7.93 0 0 0 8.002 16C12.413 16 16 12.411 16 8s-3.587-8-7.998-8zm4.655 11.297c-.193.545-.959.997-1.57 1.129-.418.089-.964.16-2.802-.602-2.351-.974-3.865-3.363-3.983-3.518-.113-.155-.95-1.265-.95-2.413s.583-1.707.818-1.947c.193-.197.512-.287.818-.287.099 0 .188.005.268.009.235.01.353.024.508.395.193.465.663 1.613.719 1.731.057.118.114.278.034.433-.075.16-.141.231-.259.367-.118.136-.23.24-.348.386-.108.127-.23.263-.094.498.136.23.606.997 1.298 1.613.893.795 1.617 1.049 1.876 1.157.193.08.423.061.564-.089.179-.193.4-.513.625-.828.16-.226.362-.254.574-.174.216.075 1.359.64 1.594.757.235.118.39.174.447.273.056.099.056.564-.137 1.11z">
+                                            <path xmlns="http://www.w3.org/2000/svg"
+                                                d="M8.002 0h-.004C3.587 0 0 3.588 0 8a7.94 7.94 0 0 0 1.523 4.689l-.997 2.972 3.075-.983A7.93 7.93 0 0 0 8.002 16C12.413 16 16 12.411 16 8s-3.587-8-7.998-8zm4.655 11.297c-.193.545-.959.997-1.57 1.129-.418.089-.964.16-2.802-.602-2.351-.974-3.865-3.363-3.983-3.518-.113-.155-.95-1.265-.95-2.413s.583-1.707.818-1.947c.193-.197.512-.287.818-.287.099 0 .188.005.268.009.235.01.353.024.508.395.193.465.663 1.613.719 1.731.057.118.114.278.034.433-.075.16-.141.231-.259.367-.118.136-.23.24-.348.386-.108.127-.23.263-.094.498.136.23.606.997 1.298 1.613.893.795 1.617 1.049 1.876 1.157.193.08.423.061.564-.089.179-.193.4-.513.625-.828.16-.226.362-.254.574-.174.216.075 1.359.64 1.594.757.235.118.39.174.447.273.056.099.056.564-.137 1.11z">
                                             </path>
                                         </svg>
                                     </a>
@@ -1271,30 +1286,51 @@
                                                 d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z" />
                                         </svg>
                                     </a>
-                                    <a href="mailto:{{ $nI->correo }}" aria-label="Email" class="p-2 rounded-md text-gray-500">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
-                                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
+                                    <a href="mailto:{{ $nI->correo }}" aria-label="Email"
+                                        class="p-2 rounded-md text-gray-500">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path
+                                                d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                                             <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
-                                          </svg>
+                                        </svg>
                                     </a>
                                     @if ($userLogin == 5 && ($nI->status == 1 || $nI->status == 3))
-                                        <a href="mailto:{{ $nI->correo }}?subject=Actualización%20de%20documentos&body=Link de acceso para actualizar los documentos:%20https://toolkit.factoraguila.com/actualizar/nuevo-ingreso/{{$nI->id}}" aria-label="Email"
+                                        <a href="mailto:{{ $nI->correo }}?subject=Actualización%20de%20documentos&body=Link de acceso para actualizar los documentos:%20https://toolkit.factoraguila.com/actualizar/nuevo-ingreso/{{ $nI->id }}"
+                                            aria-label="Email"
                                             class="p-2 rounded-md text-gray-500 transform rotate-45">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
-                                                <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z"
+                                                    clip-rule="evenodd" />
                                             </svg>
                                         </a>
                                     @elseif($userLogin == 3 && $nI->status ==2)
-                                        <a wire:click="descargarZip({{$nI->id}})"
+                                        <a wire:click="descargarZip({{ $nI->id }})"
                                             class="p-2 rounded-md text-gray-500 cursor-pointer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current" viewBox="0 0 20 20" fill="currentColor">
-                                                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-                                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
+                                            </svg>
+                                        </a>
+                                    @elseif($userLogin == 1)
+                                        <a wire:click="descargarZip({{ $nI->id }})"
+                                            class="p-2 rounded-md text-gray-500 cursor-pointer">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path
+                                                    d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                                    stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
                                             </svg>
                                         </a>
                                     @endif
 
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -1305,7 +1341,8 @@
             </div>
         @else
             {{-- Error search --}}
-            <div class="grid xs:grid-cols-1 sm:grid-cols-1 px-4 py-3 bg-white border-t border-gray-200 sm:px-6 text-center justify-center object-center">
+            <div
+                class="grid xs:grid-cols-1 sm:grid-cols-1 px-4 py-3 bg-white border-t border-gray-200 sm:px-6 text-center justify-center object-center">
                 <h6 class="text-center text-gray-500">No se encontró a ningún campo que coincida con:
                     "{{ $search }}"</h6>
             </div>
