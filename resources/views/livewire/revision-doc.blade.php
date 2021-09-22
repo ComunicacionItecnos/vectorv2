@@ -1317,7 +1317,7 @@
                                                     stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
                                             </svg>
                                         </a>
-                                    @elseif($userLogin == 1)
+                                    @elseif($userLogin == NULL)
                                         <a wire:click="descargarZip({{ $nI->id }})"
                                             class="p-2 rounded-md text-gray-500 cursor-pointer">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
