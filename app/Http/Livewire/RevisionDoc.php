@@ -171,8 +171,8 @@ class RevisionDoc extends Component
         $descarga = DB::table('v_nuevo_ingresos')->where('id', $id)->get();
 
         $zip = new ZipArchive;
-        dd(storage_path());
-        if (!File::isDirectory(storage_path("app/public/zip/"))) {
+        dd(Storage::allDirectories("public"));
+        if (!File::isDirectory(storage_path("public/zip/"))) {
             Storage::makeDirectory("app/public/zip");
         }
 
