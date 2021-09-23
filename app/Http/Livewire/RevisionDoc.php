@@ -171,6 +171,7 @@ class RevisionDoc extends Component
         $descarga = DB::table('v_nuevo_ingresos')->where('id', $id)->get();
 
         $zip = new ZipArchive;
+        dd(storage_path());
         if (!File::isDirectory(storage_path("app/public/zip/"))) {
             Storage::makeDirectory("app/public/zip");
         }
@@ -178,46 +179,45 @@ class RevisionDoc extends Component
         $zip->open(storage_path("app/public/zip/".$descarga[0]->curp.".zip"), ZipArchive::CREATE);
         
         foreach ($descarga as $value) {
-            dd(Storage::url($value->curpDoc));
-            $zip->addFile(Storage::url($value->curpDoc), '01.-CURP.pdf');
-            $zip->addFile(Storage::url($value->actaNacimiento), '02.-actaNacimiento.pdf');
-            $zip->addFile(Storage::url($value->constanciaEstudios), '03.-constanciaEstudios.pdf');
+            $zip->addFile(storage_path("app/public/".$value->curpDoc), '01.-CURP.pdf');
+            $zip->addFile(storage_path("app/public/".$value->actaNacimiento), '02.-actaNacimiento.pdf');
+            $zip->addFile(storage_path("app/public/".$value->constanciaEstudios), '03.-constanciaEstudios.pdf');
             if ($value->actaMatrimonio != NULL) {
-                $zip->addFile(Storage::url($value->actaMatrimonio), '04.-actaMatrimonio.pdf');
+                $zip->addFile(storage_path("app/public/".$value->actaMatrimonio), '04.-actaMatrimonio.pdf');
             }
 
-            $zip->addFile(Storage::url($value->rfcDocumento), '05.-rfcDocumento.pdf');
-            $zip->addFile(Storage::url($value->altaImssDoc), '06.-altaImssDoc.pdf');
-            $zip->addFile(Storage::url($value->comprobanteDomicilio), '07.-comprobanteDomicilio.pdf');
+            $zip->addFile(storage_path("app/public/".$value->rfcDocumento), '05.-rfcDocumento.pdf');
+            $zip->addFile(storage_path("app/public/".$value->altaImssDoc), '06.-altaImssDoc.pdf');
+            $zip->addFile(storage_path("app/public/".$value->comprobanteDomicilio), '07.-comprobanteDomicilio.pdf');
 
             if ($value->actasHijo != NULL) {
                 foreach (json_decode($value->actasHijo) as $aH) {
-                    $zip->addFile(Storage::url($aH), '08.-actasHijos/'.basename($aH));
+                    $zip->addFile(storage_path("app/public/".$aH), '08.-actasHijos/'.basename($aH));
                 }
             }
 
             if ($value->cartasRecomendacion != NULL) {
                 foreach (json_decode($value->cartasRecomendacion) as $cR) {
-                    $zip->addFile(Storage::url($cR), '09.-cartasRecomendacion/'.basename($cR));
+                    $zip->addFile(storage_path("app/public/".$cR), '09.-cartasRecomendacion/'.basename($cR));
                 }
             }
 
             if ($value->cartillaMilitar != NULL) {
-                $zip->addFile(Storage::url($value->cartillaMilitar), '10.-cartillaMilitar.pdf');
+                $zip->addFile(storage_path("app/public/".$value->cartillaMilitar), '10.-cartillaMilitar.pdf');
             }
 
             if ($value->cartaNoPenales != NULL) {
-                $zip->addFile(Storage::url($value->cartaNoPenales), '11.-cartaNoPenales.pdf');
+                $zip->addFile(storage_path("app/public/".$value->cartaNoPenales), '11.-cartaNoPenales.pdf');
             }
 
-            $zip->addFile(Storage::url($value->credencialIFE), '12.-credencialIFE.pdf');
+            $zip->addFile(storage_path("app/public/".$value->credencialIFE), '12.-credencialIFE.pdf');
 
             if ($value->buroCredito != NULL) {
-                $zip->addFile(Storage::url($value->buroCredito), '13.-buroCredito.pdf');
+                $zip->addFile(storage_path("app/public/".$value->buroCredito), '13.-buroCredito.pdf');
             }
 
-            $zip->addFile(Storage::url($value->foto), '14.-foto.png');
-            $zip->addFile(Storage::url($value->cvOsolicitudEmpleo), '15.-cvOsolicitudEmpleo.pdf');
+            $zip->addFile(storage_path("app/public/".$value->foto), '14.-foto.png');
+            $zip->addFile(storage_path("app/public/".$value->cvOsolicitudEmpleo), '15.-cvOsolicitudEmpleo.pdf');
         }
         
         dd($zip->numFiles,$zip->status,$zip->statusSys,$zip->filename);
