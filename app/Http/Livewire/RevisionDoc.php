@@ -219,7 +219,7 @@ class RevisionDoc extends Component
             $zip->addFile(storage_path("public/".$value->cvOsolicitudEmpleo), '15.-cvOsolicitudEmpleo.pdf');
         }
         
-        dd($zip->numFiles,$zip->status,$zip->statusSys,$zip->filename,$zip->close());
+        dd($zip->numFiles,$zip->status,$zip->statusSys,$zip->filename);
         
         return response()->download(storage_path("public/zip/".$descarga[0]->curp.".zip"))->deleteFileAfterSend(true);
     }
