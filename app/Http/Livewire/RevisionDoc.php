@@ -168,18 +168,20 @@ class RevisionDoc extends Component
 
     public function descargarZip($id){
         $descarga = DB::table('v_nuevo_ingresos')->where('id',$id)->get();
-       /*  dd($descarga); */
+    
         $zip = new ZipArchive();
-        $zip->open(storage_path("app/public/".$descarga[0]->curp.".zip"),ZipArchive::CREATE);
-       
+        if(!File::isDirectory(storage_path("public/zip/"))){
+            Storage::makeDirectory("public/zip");    
+        }
+        
+        $zip->open(storage_path("app/public/zip/".$descarga[0]->curp.".zip"),ZipArchive::CREATE);
+        
         foreach ($descarga as $key => $value) {
             $zip->addFile(storage_path("app/".$value->curpDoc),'01.-CURP.pdf');
             $zip->addFile(storage_path("app/".$value->actaNacimiento),'02.-actaNacimiento.pdf');
             $zip->addFile(storage_path("app/".$value->constanciaEstudios),'03.-constanciaEstudios.pdf');
             if ($value->actaMatrimonio != NULL) {
                 $zip->addFile(storage_path("app/".$value->actaMatrimonio),'04.-actaMatrimonio.pdf');
-            }else{
-                
             }
 
             $zip->addFile(storage_path("app/".$value->rfcDocumento),'05.-rfcDocumento.pdf');
@@ -200,22 +202,16 @@ class RevisionDoc extends Component
 
             if ($value->cartillaMilitar != NULL) {
                 $zip->addFile(storage_path("app/".$value->cartillaMilitar),'10.-cartillaMilitar.pdf');
-            }else{
-
             }
 
             if ($value->cartaNoPenales != NULL) {
                 $zip->addFile(storage_path("app/".$value->cartaNoPenales),'11.-cartaNoPenales.pdf');
-            }else{
-
             }
             
             $zip->addFile(storage_path("app/".$value->credencialIFE),'12.-credencialIFE.pdf');
             
             if ($value->buroCredito != NULL) {
                 $zip->addFile(storage_path("app/".$value->buroCredito),'13.-buroCredito.pdf');
-            }else{
-
             }
 
             $zip->addFile(storage_path("app/".$value->foto),'14.-foto.png');
