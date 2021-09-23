@@ -178,6 +178,7 @@ class RevisionDoc extends Component
         $zip->setPassword(auth()->user()->colaborador_no_colaborador);
         foreach ($descarga as $key => $value) {
             $zip->addFile(storage_path("app/public/".$value->curpDoc),'01.-CURP.pdf');
+            $zip->setEncryptionName('01.-CURP.pdf',ZipArchive::EM_AES_256);
             $zip->addFile(storage_path("app/public/".$value->actaNacimiento),'02.-actaNacimiento.pdf');
             $zip->addFile(storage_path("app/public/".$value->constanciaEstudios),'03.-constanciaEstudios.pdf');
             if ($value->actaMatrimonio != NULL) {
