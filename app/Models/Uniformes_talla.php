@@ -21,4 +21,9 @@ class Uniformes_talla extends Model
     {
         return $this->belongsTo('App\Models\Uniformes_prenda');
     }
+
+    public function colaboradores_uniforme_paquete()
+    {
+        return $this->hasMany('App\Models\Colaborador_paquete_uniforme');
+    }
 }

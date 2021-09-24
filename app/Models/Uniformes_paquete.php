@@ -20,4 +20,9 @@ class Uniformes_paquete extends Model
     {
         return $this->hasMany('App\Models\Uniformes_paquete_prenda');
     }
+
+    public function colaboradores_uniforme_paquete()
+    {
+        return $this->hasMany('App\Models\Colaborador_paquete_uniforme');
+    }
 }

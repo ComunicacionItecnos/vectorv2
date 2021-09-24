@@ -21,7 +21,7 @@ class UniformesTalla extends Migration
                 ->onDelete('cascade')
                 ->onUpdate('cascade');
 
-            $table->string('talla', 5);
+            $table->string('talla', 6);
         });
     }
 
