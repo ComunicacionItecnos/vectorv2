@@ -20,7 +20,7 @@ class RegistroUniformes extends Component
     public $totalSteps = 0;
     public $tope = 0;
     public $currentStep = 0;
-    public $paqueteId = 1;
+    public $paqueteId = 3;
     public $nombrePaquete;
     public $nombrePrenda;
     public $playera60;
@@ -59,16 +59,16 @@ class RegistroUniformes extends Component
         }
         if ($this->paqueteId == 2) {
             if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 13)->get();
             }
             if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 2)->get();
             }
             if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 4)->get();
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
             }
             if ($this->currentStep == 3) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 9)->get();
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 8)->get();
             }
         }
         if ($this->paqueteId == 3) {
