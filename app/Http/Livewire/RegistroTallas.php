@@ -4,26 +4,14 @@ namespace App\Http\Livewire;
 
 use Livewire\Component;
 use App\Models\Colaborador;
-use App\Models\Colaborador_paquete_uniforme;
-use Livewire\WithPagination;
 use App\Models\Uniformes_talla;
 use App\Models\Uniformes_prenda;
 use App\Models\Uniformes_paquete;
 use Illuminate\Support\Facades\DB;
 
-class RegistroUniformes extends Component
+class RegistroTallas extends Component
 {
-    use WithPagination;
-
-    protected $queryString = [
-        'search' => ['except' => ''],
-        'perPage',
-    ];
-
-    public $search, $perPage = '5';
-
     public $colaborador;
-    public $colaboradorBusca;
 
     public $paquetes, $prendas, $tallas;
 
@@ -31,47 +19,29 @@ class RegistroUniformes extends Component
     public $totalSteps = 0;
     public $tope = 0;
     public $currentStep = 0;
-    public $paqueteId = 2;
+    /* public $paqueteId = 2; */
     public $nombrePaquete;
     public $nombrePrenda;
     public $playera60;
     public $genero_id;
 
-    public $nombreCompleto;
-
-    public $userLogin;
-
-    public $mostrarNuevoRegistro = false;
-    public $busquedaNuevo = false;
-    public $mostrarTabla = true;
-    public $mostrarBntEditar = false;
-
-    public function mount(/* $no_colaborador */)
+    public function mount($no_colaborador)
     {
-        $this->userLogin = auth()->user()->role_id;
-        if ($this->userLogin == 1 || $this->userLogin == 3) {
-            $this->mostrarBntEditar = true;
-        }
-
-        /* $this->colaborador = Colaborador::find($no_colaborador);
+        $this->colaborador = Colaborador::findOrFail($no_colaborador);
+        
         $this->genero_id = $this->colaborador->genero_id;
         $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', $this->paqueteId)->get();
         $this->totalSteps = count($this->paquetes) - 1;
         $this->nombrePaquete = $this->paquetes[0]->nombre_paquete;
         $this->prendas = Uniformes_prenda::find(1);
         $this->checkPaquete();
-        $this->tallaMethod(); */
+        $this->tallaMethod();
     }
+
 
     public function render()
     {
-        return view('livewire.registro-uniformes', [
-            'colaborador_uniforme_paquete' => DB::table('vu_colaborador_paquete')->where('no_colaborador','LIKE',"%{$this->search}%")
-            ->orWhere("nombre_desc","LIKE","%{$this->search}%")
-            ->orWhere("nombre_paquete","LIKE","%{$this->search}%")
-            ->orderBy('id', 'DESC')
-            ->paginate($this->perPage)
-        ]);
+        return view('livewire.registro-tallas')->layout('layouts.guest');
     }
 
     public function checkPaquete()
@@ -85,21 +55,21 @@ class RegistroUniformes extends Component
     {
         if ($this->paqueteId == 1) {
             if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 15)->get();
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 1)->get();
             }
         }
         if ($this->paqueteId == 2) {
             if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 13)->get();
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
             }
             if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 2)->get();
-            }
-            if ($this->currentStep == 2) {
                 $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
             }
+            if ($this->currentStep == 2) {
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 4)->get();
+            }
             if ($this->currentStep == 3) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 8)->get();
+                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 9)->get();
             }
         }
         if ($this->paqueteId == 3) {
@@ -370,39 +340,12 @@ class RegistroUniformes extends Component
         $this->tallaMethod();
     }
 
+    public function registro()
+    {
+        dd("Registro");
+    }
+
     public function tallasPaquetes()
     {
     }
-
-    public function showRegistro(){
-        $this->mostrarNuevoRegistro = true;
-        $this->mostrarTabla = false;
-
-        $this->busquedaNuevo = true;
-    }
-
-    public function showTabla(){
-        $this->mostrarNuevoRegistro = false;
-        $this->mostrarTabla = true;
-
-        $this->colaboradorBusca = NULL;
-        $this->nombreCompleto = NULL;
-    }
-
-    public function buscar(){
-        $this->colaborador = DB::table("infocolaborador")->where("no_colaborador","LIKE",$this->colaboradorBusca)->get();
-        $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
-        
-    }
-
-    public function ver($id){
-        $this->mostrarNuevoRegistro = true;
-        $this->mostrarTabla = false;
-    }
-
-    public function editar($id){
-        $this->mostrarNuevoRegistro = true;
-        $this->mostrarTabla = false;
-    }
-
 }
