@@ -653,6 +653,63 @@
                     Opciones
                 </th>
             </tr>
+
+            {{-- Encabezado Tabla Seguridad Patrimonial --}}
+            @elseif (auth()->user()->role_id == 12)
+            <tr>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    <div class="flex justify-start text-left">
+                        Nombre
+                        @if ($sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('ap_paterno')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                            </svg>
+                        </span>
+                        @endif
+                        @if (!$sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('ap_paterno')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                            </svg>
+                        </span>
+                        @endif
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    <div class="flex justify-start text-left">
+                        No. Colaborador
+                        @if ($sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('no_colaborador')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h7a1 1 0 100-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM15 8a1 1 0 10-2 0v5.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L15 13.586V8z" />
+                            </svg>
+                        </span>
+                        @endif
+                        @if (!$sortAsc)
+                        <span class="cursor-pointer" wire:click="sortBy('no_colaborador')">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
+                                fill="currentColor">
+                                <path
+                                    d="M3 3a1 1 0 000 2h11a1 1 0 100-2H3zM3 7a1 1 0 000 2h5a1 1 0 000-2H3zM3 11a1 1 0 100 2h4a1 1 0 100-2H3zM13 16a1 1 0 102 0v-5.586l1.293 1.293a1 1 0 001.414-1.414l-3-3a1 1 0 00-1.414 0l-3 3a1 1 0 101.414 1.414L13 10.414V16z" />
+                            </svg>
+                        </span>
+                        @endif
+                    </div>
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Puesto y Área
+                </th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium tracking-wider text-left text-gray-500 uppercase">
+                    Datos de contacto
+                </th>
+            </tr>
             @endif
 
         </thead>
@@ -1269,6 +1326,64 @@
                                                             rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                             Insignia
                         </a>
+                    </div>
+                </td>
+            </tr>
+            @else
+            @endif
+            @endforeach
+
+            {-- Cuerpo Tabla Seguridad Patrimonial --}}
+
+            @elseif (auth()->user()->role_id == 12)
+            @foreach ($colaboradores as $colaborador)
+            @if ($colaborador->estado_colaborador == 1)
+            <tr>
+                <td class="sm:px-6 py-2 whitespace-nowrap">
+                    <div class="flex items-center">
+                        <div
+                            class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-32 h-38 border-2 shadow-sm">
+                            @if (file_exists(public_path('storage/' . $colaborador->foto)))
+                            <img class="w-32 rounded shadow h-38"
+                                src="{{ asset('storage') . '/' . $colaborador->foto }}" alt="">
+                            @else
+                            <img class="w-32 rounded shadow h-38" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                            @endif
+                        </div>
+                        <div class="ml-4 whitespace-pre-line">
+                            <div class="text-sm font-medium text-gray-900">
+                                <span class="sm:hidden"> {{ $colaborador->no_colaborador }}</span>
+                                <span class="sm:inline-block sm:-mt-6">{{ $colaborador->nombre }}
+                                    {{ $colaborador->ap_paterno }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">
+                        {{ $colaborador->no_colaborador }}
+                    </div>
+                </td>
+                <td class="px-3 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">{{ $colaborador->puesto }}</div>
+                    <div class="text-sm text-gray-500">{{ $colaborador->area }}</div>
+                </td>
+                <td class="px-3 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Extensión: {{ $colaborador->numero_extension }}
+                    </div>
+                    <div class="text-sm text-gray-900">Clave:
+                        {{ $colaborador->clave }}</div>
+                    <div class="text-sm text-gray-900">Movil: {{ $colaborador->tel_movil }}
+                    </div>
+                    <div class="text-sm text-gray-900">Supervisor:
+                        @php
+                        $j_f = DB::table('infocolaborador')->where('no_colaborador',$colaborador->jefe_directo)->get();
+                        @endphp
+                        @if(count($j_f) == 0)
+                        Ninguno
+                        @else
+                        {{$j_f[0]->nombre_desc}}
+                        @endif
                     </div>
                 </td>
             </tr>
