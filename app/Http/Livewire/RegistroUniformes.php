@@ -15,11 +15,13 @@ class RegistroUniformes extends Component
 {
     use WithPagination;
 
+    /* protegidos */
     protected $queryString = [
         'search' => ['except' => ''],
         'perPage',
     ];
 
+    /* Variables */
     public $search, $perPage = '5';
 
     public $colaborador;
@@ -38,6 +40,7 @@ class RegistroUniformes extends Component
     public $genero_id;
 
     public $nombreCompleto;
+    public $area;
 
     public $userLogin;
 
@@ -66,11 +69,11 @@ class RegistroUniformes extends Component
     public function render()
     {
         return view('livewire.registro-uniformes', [
-            'colaborador_uniforme_paquete' => DB::table('vu_colaborador_paquete')->where('no_colaborador','LIKE',"%{$this->search}%")
-            ->orWhere("nombre_desc","LIKE","%{$this->search}%")
-            ->orWhere("nombre_paquete","LIKE","%{$this->search}%")
-            ->orderBy('id', 'DESC')
-            ->paginate($this->perPage)
+            'colaborador_uniforme_paquete' => DB::table('vu_colaborador_paquete')->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                ->orWhere("nombre_desc", "LIKE", "%{$this->search}%")
+                ->orWhere("nombre_paquete", "LIKE", "%{$this->search}%")
+                ->orderBy('id', 'DESC')
+                ->paginate($this->perPage)
         ]);
     }
 
@@ -374,35 +377,67 @@ class RegistroUniformes extends Component
     {
     }
 
-    public function showRegistro(){
+    public function showRegistro()
+    {
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
 
         $this->busquedaNuevo = true;
+        $this->colaborador = 'ocultar';
     }
 
-    public function showTabla(){
+    public function showTabla()
+    {
         $this->mostrarNuevoRegistro = false;
         $this->mostrarTabla = true;
 
+        $this->resetErrorBag();
+        $this->colaborador = NULL;
         $this->colaboradorBusca = NULL;
         $this->nombreCompleto = NULL;
+        $this->area = NULL;
     }
 
-    public function buscar(){
-        $this->colaborador = DB::table("infocolaborador")->where("no_colaborador","LIKE",$this->colaboradorBusca)->get();
-        $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
-        
+    public function buscar()
+    {       
+        $this->resetErrorBag();
+        $this->colaborador = 'ocultar';
+        $this->nombreCompleto = NULL;
+        $this->area = NULL;
+        $this->validate(
+            [
+                'colaboradorBusca' => 'required|digits_between:5,6',
+            ],
+            [
+                'colaboradorBusca.required' => 'El Número de colaborador no puede estar vacío',
+                'colaboradorBusca.digits_between' => 'Solo puede tener 5 dígitos como mínimo y 6 como máximo',
+            ]
+        );
+
+        $this->colaborador = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $this->colaboradorBusca)->get();
+
+        if (count($this->colaborador) == 0) {
+            
+            $this->colaborador = 'error';
+            $this->nombreCompleto = NULL;
+            $this->area = NULL;
+        } else {
+            $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
+            $this->area = $this->colaborador[0]->area;
+        }
     }
 
-    public function ver($id){
+    public function ver($id)
+    {
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
+        $this->busquedaNuevo = false;
     }
 
-    public function editar($id){
+    public function editar($id)
+    {
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
+        $this->busquedaNuevo = false;
     }
-
 }
