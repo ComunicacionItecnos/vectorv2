@@ -1206,7 +1206,7 @@
                         <option value="0">Sin revisar</option>
                         <option value="1">Incompleto</option>
                         <option value="3">Rechazado</option>
-                        <option value="2" class="@if ($userLogin == 5) hidden @else @endif">Completado</option>
+                        <option value="2">Completado</option>
                     </select>
                 </div>
                 <div class="col-span-3 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
@@ -1221,7 +1221,7 @@
             <div class="grid xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-4">
 
                 @foreach ($nuevosIngresos as $nI)
-                    @if ($userLogin == $nI->areaRd || $userLogin == null)
+                    {{-- @if ($userLogin == $nI->areaRd || $userLogin == null) --}}
 
                         <div
                             class="flex flex-col justify-center max-w-xs p-4 rounded-xl sm:px-8 border-2 border-light-gray-500 border-opacity-100 
@@ -1268,7 +1268,7 @@
                                         </svg>
                                     </button>
                                 </div>
-                                <div class="flex justify-center pt-2 space-x-4 align-center">
+                                <div class="flex justify-center pt-2 space-x-2 align-center">
                                     <a href="whatsapp://send?phone=+521{{ $nI->tel_movil }}" target="_blank"
                                         aria-label="Dribble" class="p-2 rounded-md text-gray-500">
                                         <svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
@@ -1306,17 +1306,7 @@
                                                     clip-rule="evenodd" />
                                             </svg>
                                         </a>
-                                    @elseif($userLogin == 3 && $nI->status ==2)
-                                        <a wire:click="descargarZip({{ $nI->id }})"
-                                            class="p-2 rounded-md text-gray-500 cursor-pointer">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
-                                                viewBox="0 0 20 20" fill="currentColor">
-                                                <path
-                                                    d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-                                                <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
-                                            </svg>
-                                        </a>
+                                   
                                     @elseif($userLogin == NULL)
                                         <a wire:click="descargarZip({{ $nI->id }})"
                                             class="p-2 rounded-md text-gray-500 cursor-pointer">
@@ -1330,12 +1320,24 @@
                                         </a>
                                     @endif
 
+                                    {{--  @elseif($userLogin == 3 && $nI->status ==2) --}}
+                                    <a wire:click="descargarZip({{ $nI->id }})"
+                                        class="p-2 rounded-md text-gray-500 cursor-pointer">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 fill-current"
+                                            viewBox="0 0 20 20" fill="currentColor">
+                                            <path
+                                                d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                            <path stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="M10 9v4m0 0l-2-2m2 2l2-2" />
+                                        </svg>
+                                    </a>
+
 
                                 </div>
                             </div>
                         </div>
 
-                    @endif
+                   {{--  @endif --}}
                 @endforeach
 
             </div>

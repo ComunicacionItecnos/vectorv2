@@ -150,7 +150,7 @@ class RevisionDoc extends Component
         return view('livewire.revision-doc', [
             'nuevosIngresos' =>
             DB::table('v_nuevo_ingresos')
-                ->when($this->userLogin, function ($query) {
+                /* ->when($this->userLogin, function ($query) {
 
                     if ($this->mostrarStatus == '') {
                         $query->where('areaRd', $this->userLogin)
@@ -160,8 +160,16 @@ class RevisionDoc extends Component
                             ->where('status', $this->mostrarStatus)
                             ->where('curp', 'LIKE', "%{$this->search}%");
                     }
+                }) */
+                ->when($this->search,function($query){
+                    if ($this->mostrarStatus == '') {
+                        $query->where('curp','LIKE',"%$this->search%");
+                    }elseif($this->mostrarStatus != ''){
+                        $query->where('status',$this->mostrarStatus)
+                        ->where('curp','LIKE',"%{$this->search}%");
+                    }
                 })
-                ->orderBy('updated_at', 'DESC')
+                ->orderBy('created_at', 'DESC')
                 ->paginate($this->perPage)
         ]);
     }
