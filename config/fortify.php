@@ -1,6 +1,7 @@
 <?php
 
 use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Features;
 
 return [
@@ -59,9 +60,17 @@ return [
     | authentication or password reset when the operations are successful
     | and the user is authenticated. You are free to change this value.
     |
-    */
+    */  
+    
+    'home' => function(){
 
-    'home' => RouteServiceProvider::HOME,
+        if (Auth::user()->role_id == 11) {
+            return route('uniformes');
+        }else{
+            return RouteServiceProvider::HOME;
+        }
+
+    },
 
     /*
     |--------------------------------------------------------------------------
