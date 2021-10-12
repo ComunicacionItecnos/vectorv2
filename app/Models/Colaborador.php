@@ -175,9 +175,4 @@ class Colaborador extends Model
         return $this->hasMany('App\Models\Recordatorios');
     }
 
-    public function uniformes_colaborador()
-    {
-        return $this->hasMany('App\Models\Uniformes_colaborador');
-    }
-
 }
