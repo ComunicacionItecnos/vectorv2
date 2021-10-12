@@ -353,7 +353,6 @@ class Insignias extends Component
             ->count();
 
         $this->finalPlata = $this->intentoPlata - $tmpPlata;
-        
 
         if ($this->finalPlata <= 0) {
             $this->finalPlata = 0;
@@ -386,11 +385,7 @@ class Insignias extends Component
             $this->intentoOro = 1;
             $this->intentoPlata = 2;
             $this->intentoBronce = 2;
-        } elseif(auth()->user()->colaborador_no_colaborador == '116180'){
-            $this->intentoOro = 20;
-            $this->intentoPlata = 20;
-            $this->intentoBronce = 20;
-        }else {
+        } else {
             $this->intentoOro = 1;
             $this->intentoPlata = 1;
             $this->intentoBronce = 1;

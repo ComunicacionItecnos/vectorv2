@@ -20,7 +20,7 @@
                                                                                     rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
                                         Excel
                                     </button>
-                                    @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 3)
+                                    @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 2)
                                     <button wire:click="registrar" type="button"
                                         class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent
                                                                                                                                                                 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">

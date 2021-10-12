@@ -11,11 +11,7 @@ use App\Http\Livewire\InsigniaUN;
 use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
-
-use App\Http\Livewire\RegistroUniformes;
-
 use App\Http\Livewire\ActualizarNuevoIngreso;
-use App\Http\Livewire\RegistroTallas;
 
 /*
 |--------------------------------------------------------------------------
@@ -123,11 +119,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/insignias-unidad-negocio/
 Route::get('/descarga-alta-imss/{no_colaborador}', AltaImss::class);
 
 Route::get('/registro-colaborador-estacionamiento/{no_colaborador}', RegistroColaboradorEstacionamiento::class);
-
-Route::get('/registro-tallas/{no_colaborador}', RegistroTallas::class);
-Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
-    return view('registroTallas');
-})->name('uniformes');
 
 Route::get('/colaborador/{no_colaborador}', ComprobarColaborador::class);
 

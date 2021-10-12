@@ -85,14 +85,6 @@ $nav_links10 = [
     ]
 ];
 
-$nav_links11 = [
-    [
-        'name' =>'Uniformes',
-        'route' => route('uniformes'),
-        'active' => request()->routeIS('uniformes')
-    ]
-];
-
 @endphp
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -110,30 +102,30 @@ $nav_links11 = [
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
 
-                    @if(auth()->user()->role_id != 9 && auth()->user()->role_id !=11 )
-                        <div class="hidden sm:flex sm:items-center sm:ml-6">
-                            <x-jet-dropdown align="right">
-                                <x-slot name="trigger">
-                                    <button type="button"
-                                        class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
-                                        Listados
-                                    </button>
-                                </x-slot>
+                    @if(auth()->user()->role_id != 9)
+                    <div class="hidden sm:flex sm:items-center sm:ml-6">
+                        <x-jet-dropdown align="right">
+                            <x-slot name="trigger">
+                                <button type="button"
+                                    class="flex items-center text-sm font-medium text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out">
+                                    Listados
+                                </button>
+                            </x-slot>
 
-                                <x-slot name="content">
+                            <x-slot name="content">
 
-                                    <!-- Team Settings -->
-                                    <x-jet-dropdown-link href="{{  route('dashboard') }}">
-                                        {{ __('Colaborador interno') }}
-                                    </x-jet-dropdown-link>
-                                    <x-jet-dropdown-link href="{{  route('dashboard-externos') }}">
-                                        {{ __('Colaborador externo') }}
-                                    </x-jet-dropdown-link>
+                                <!-- Team Settings -->
+                                <x-jet-dropdown-link href="{{  route('dashboard') }}">
+                                    {{ __('Colaborador interno') }}
+                                </x-jet-dropdown-link>
+                                <x-jet-dropdown-link href="{{  route('dashboard-externos') }}">
+                                    {{ __('Colaborador externo') }}
+                                </x-jet-dropdown-link>
 
-                                </x-slot>
+                            </x-slot>
 
-                            </x-jet-dropdown>
-                        </div>
+                        </x-jet-dropdown>
+                    </div>
                     @endif
 
                     @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 6)
@@ -267,14 +259,6 @@ $nav_links11 = [
 
                     @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 5 )
                         @foreach ($nav_links10 as $nav_link)
-                            <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
-                                {{ $nav_link['name'] }}
-                            </x-jet-nav-link>
-                        @endforeach
-                    @endif
-
-                    @if (auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 11 )
-                        @foreach ($nav_links11 as $nav_link)
                             <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                                 {{ $nav_link['name'] }}
                             </x-jet-nav-link>
@@ -418,7 +402,7 @@ $nav_links11 = [
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
 
-            @if(auth()->user()->role_id != 9 && auth()->user()->role_id != 11)
+            @if(auth()->user()->role_id != 9)
             <div class="pt-4 pb-1 border-t border-gray-200">
                 <div class="flex items-center px-4">
                     <div class="text-base font-medium text-gray-800">{{ __('Listados') }}</div>
