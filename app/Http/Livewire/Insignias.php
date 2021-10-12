@@ -389,7 +389,7 @@ class Insignias extends Component
             $this->intentoOro = 20;
             $this->intentoPlata = 20;
             $this->intentoBronce = 20;
-        }else { else {
+        }else {
             $this->intentoOro = 1;
             $this->intentoPlata = 1;
             $this->intentoBronce = 1;
