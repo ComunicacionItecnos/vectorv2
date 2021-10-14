@@ -51,7 +51,7 @@
                                 Nombre: {{ $nombreCompleto }}
                             </p>
                             <p class="text-center w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                                Área: {{ $area }}
+                                Área: {{ $area }} {{$tipo_usuario}}
                             </p>
                             
                         @endif

@@ -41,6 +41,7 @@ class RegistroUniformes extends Component
 
     public $nombreCompleto;
     public $area;
+    public $tipo_usuario;
 
     public $userLogin;
 
@@ -396,6 +397,7 @@ class RegistroUniformes extends Component
         $this->colaboradorBusca = NULL;
         $this->nombreCompleto = NULL;
         $this->area = NULL;
+        $this->tipo_usuario = NULL;
     }
 
     public function buscar()
@@ -404,6 +406,8 @@ class RegistroUniformes extends Component
         $this->colaborador = 'ocultar';
         $this->nombreCompleto = NULL;
         $this->area = NULL;
+        $this->tipo_usuario = NULL;
+
         $this->validate(
             [
                 'colaboradorBusca' => 'required|digits_between:5,6',
@@ -421,9 +425,11 @@ class RegistroUniformes extends Component
             $this->colaborador = 'error';
             $this->nombreCompleto = NULL;
             $this->area = NULL;
+            $this->tipo_usuario = NULL;
         } else {
             $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
             $this->area = $this->colaborador[0]->area;
+            $this->tipo_usuario = $this->colaborador[0]->nombre_tipo;
         }
     }
 
