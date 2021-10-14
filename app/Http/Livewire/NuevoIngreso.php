@@ -514,8 +514,8 @@ class NuevoIngreso extends Component
                 }else{
                         for ($i=0; $i < count($this->actasHijo) ; $i++) { 
                             $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/08.-actasHijos','actaDeHijo'.$i.'.pdf');
-                            $rutaActaHijo = array();
-                            $rutaActaHijo = $rutaActasHijos2;
+                            /* $rutaActaHijo = array(); */
+                            $rutaActaHijo[] = $rutaActasHijos2;
                         }
                 }
                     
@@ -524,8 +524,8 @@ class NuevoIngreso extends Component
                 }else{
                         for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
                             $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/09.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
-                            $rutaRecomendacion = array();
-                            $rutaRecomendacion = $rutaRecomendacion2; 
+                            /* $rutaRecomendacion = array(); */
+                            $rutaRecomendacion[] = $rutaRecomendacion2; 
                         }
                 }
 
