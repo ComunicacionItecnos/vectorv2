@@ -16,11 +16,6 @@ class UniformesPrenda extends Migration
         Schema::create('uniformes_prenda', function (Blueprint $table) {
             $table->id();
 
-            $table->foreignId('uniformes_proveedor_id')
-                ->constrained('uniformes_proveedor')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
             $table->string('prenda', 50);
             $table->timestamps();
         });

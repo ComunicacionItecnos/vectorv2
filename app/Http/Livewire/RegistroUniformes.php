@@ -42,6 +42,7 @@ class RegistroUniformes extends Component
     public $nombreCompleto;
     public $area;
     public $tipo_usuario;
+    public $genero;
 
     public $userLogin;
 
@@ -407,6 +408,7 @@ class RegistroUniformes extends Component
         $this->nombreCompleto = NULL;
         $this->area = NULL;
         $this->tipo_usuario = NULL;
+        $this->genero = NULL;
 
         $this->validate(
             [
@@ -419,17 +421,19 @@ class RegistroUniformes extends Component
         );
 
         $this->colaborador = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $this->colaboradorBusca)->get();
-
+        dd($this->colaborador);
         if (count($this->colaborador) == 0) {
             
             $this->colaborador = 'error';
             $this->nombreCompleto = NULL;
             $this->area = NULL;
             $this->tipo_usuario = NULL;
+            $this->genero = NULL;
         } else {
             $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
             $this->area = $this->colaborador[0]->area;
             $this->tipo_usuario = $this->colaborador[0]->nombre_tipo;
+            $this->genero = $this->colaborador[0]->nombre_genero;
         }
     }
 
