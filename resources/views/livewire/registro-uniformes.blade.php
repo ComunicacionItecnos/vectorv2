@@ -38,29 +38,160 @@
 
                 </div>
 
-                <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
+                <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 @if ($colaborador == 'ocultar') hidden  @else divide-y-2 divide-gray-200 @endif">
+
+                    {{-- foto,Nombre,tags --}}
                     <div class="col-span-full sm:col-span-6">
                         @if ($colaborador == 'ocultar')
-                            
+
                         @elseif($colaborador == 'error')
-                            <p class="text-center w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900 text-red-500">
-                                {{ __("No existe el colaborador")}}
+                            <p
+                                class="text-center w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900 text-red-500">
+                                {{ __('No existe el colaborador') }}
                             </p>
                         @else
-                            <p class="text-center w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                                Nombre: {{ $nombreCompleto }}
-                            </p>
-                            <p class="text-center w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
-                                Área: {{ $area }} Tipo usuario: {{$tipo_usuario}} Genero: {{$genero}}
-                            </p>
-                            
-                        @endif
+                            <div class="col-span-full sm:col-span-6">
+                                <img src="{{ asset('storage') . '/' . $foto }}" alt="Profile face"
+                                    class="p-1 w-24 h-24 mx-auto rounded-full  object-cover ring-2 ring-offset-4 @if ($genero == 'Masculino') ring-blue-500 @else ring-pink-500 @endif"
+                                    loading="lazy">
+                            </div>
 
+                            <div class="col-span-full sm:col-span-6 p-3">
+
+                                <p
+                                    class="text-center w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 text-xl">
+                                    {{ $nombreCompleto }}
+                                </p>
+
+                                <div class="flex justify-center space-x-1">
+
+                                    <p class="text-center rounded-md text-xl">
+                                        <span class="px-2 py-1  text-sm rounded text-white  bg-gray-400 ">
+                                            {{ $tipo_usuario }}
+                                        </span>
+                                    </p>
+
+                                    <p class="text-center rounded-full text-xl">
+                                        @if ($genero == 'Masculino')
+                                            <p class="px-3 py-2 text-base rounded-full text-white bg-blue-500 w-10 ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-gender-male" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M9.5 2a.5.5 0 0 1 0-1h5a.5.5 0 0 1 .5.5v5a.5.5 0 0 1-1 0V2.707L9.871 6.836a5 5 0 1 1-.707-.707L13.293 2H9.5zM6 6a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" />
+                                                </svg>
+                                            </p>
+                                        @else
+                                            <p class="px-3 py-2 text-base rounded-full text-white  bg-pink-500 w-10 ">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" class="bi bi-gender-female" viewBox="0 0 16 16">
+                                                    <path fill-rule="evenodd"
+                                                        d="M8 1a4 4 0 1 0 0 8 4 4 0 0 0 0-8zM3 5a5 5 0 1 1 5.5 4.975V12h2a.5.5 0 0 1 0 1h-2v2.5a.5.5 0 0 1-1 0V13h-2a.5.5 0 0 1 0-1h2V9.975A5 5 0 0 1 3 5z" />
+                                                </svg>
+                                            </p>
+                                        @endif
+                                    </p>
+
+                                </div>
+
+                            </div>
+
+                        @endif
                     </div>
 
-                    <div class="col-span-full sm:col-span-6">
+                    {{-- Area y seleccion de la operacion al que pertenece --}}
+                    <div class="col-span-full sm:col-span-6 py-3 @if ($colaborador == 'error') hidden @else @endif">
 
-                        
+                        <p
+                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
+                            Área de trabajo: {{ $area }}
+                        </p>
+
+                        <div class="sm:grid row-start-1 grid-cols-4 gap-2 py-4">
+
+                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                <label class="block text-base font-medium text-gray-700" for="unidadNegocioinput">
+                                    Unidad de negocio / Área</label>
+                                <select id="unidadNegocioinput" wire:model="unidadNegocioinput"
+                                    name="unidadNegocioinput"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    <option></option>
+                                    @foreach ($unidadNegocioLineas as $unl)
+                                        <option value="{{ $unl }}">{{ $unl }}</option>
+                                    @endforeach
+                                
+                                </select>
+                                @error('unidadNegocioinput')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+
+                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                <label for="sublineasinput" class="block text-base font-medium text-gray-700">
+                                    Sublinea</label>
+                                <select id="sublineasinput" wire:model="sublineasinput" name="sublineasinput"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    <option></option>
+                                    
+                                    @if ($unidadNegocioinput == NULL)
+                                        @foreach ($sublineas2 as $sl2)
+                                            <option value="{{ $sl2->id }}">{{ $sl2->nombre_sublinea }}</option>
+                                        @endforeach
+                                    @elseif ($sublineasinput == '')
+                                        @foreach ($sublineas2 as $sl2)
+                                            <option value="{{ $sl2->id }}">{{ $sl2->nombre_sublinea }}</option>
+                                        @endforeach
+                                    @else
+                                        @foreach ($sublineas as $sl)
+                                            @foreach ($sl as $subl)
+                                                <option value="{{ $subl->id }}">{{ $subl->nombre_sublinea }}</option>
+                                            @endforeach
+                                        @endforeach
+
+                                    @endif
+                                    
+                                </select>
+
+                                @error('sublineasinput')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                <label for="genero_id" class="block text-base font-medium text-gray-700">
+                                    Calibre</label>
+                                <select id="genero_id" wire:model="genero_id" name="genero_id"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    <option></option>
+
+                                </select>
+                                @error('genero_id')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                            <div class="mb-2 sm:m-0 col-span-1 col-start-4">
+                                <label for="genero_id" class="block text-base font-medium text-gray-700">
+                                    Operación</label>
+                                <select id="genero_id" wire:model="genero_id" name="genero_id"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    <option></option>
+
+                                </select>
+                                @error('genero_id')
+                                    <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                        {{ $message }}
+                                    </p>
+                                @enderror
+                            </div>
+
+                        </div>
 
                     </div>
 
@@ -68,7 +199,8 @@
 
             </fieldset>
 
-            <button wire:click="showTabla" type="button" class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent">Regresar</button>
+            <button wire:click="showTabla" type="button"
+                class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent">Regresar</button>
         </form>
 
     </section>
