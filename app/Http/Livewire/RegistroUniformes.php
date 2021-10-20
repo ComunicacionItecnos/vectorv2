@@ -11,8 +11,6 @@ use App\Models\Uniformes_paquete;
 use Illuminate\Support\Facades\DB;
 use App\Models\Colaborador_paquete_uniforme;
 
-use function PHPUnit\Framework\isEmpty;
-
 class RegistroUniformes extends Component
 {
     use WithPagination;
@@ -61,8 +59,6 @@ class RegistroUniformes extends Component
     public $unidadNegocioLineas2;
     
     public $sublineas;
-    public $sublineas2;
-
     public $calibres;
     public $operaciones;
     public $maquinas;
@@ -74,14 +70,14 @@ class RegistroUniformes extends Component
     public $mostrarTabla = true;
     public $mostrarBntEditar = false;
 
-    public function mount(/* $no_colaborador */)
+    public function mount()
     {
         $this->userLogin = auth()->user()->role_id;
         if ($this->userLogin == 1 || $this->userLogin == 3) {
             $this->mostrarBntEditar = true;
         }
 
-        /* obtener unidadNegocio,line,sublineas,calibre,operacion,maquina */
+        /* obtener unidadNegocio,linea */
         $this->unidadNegocio = DB::table('unidaD_de_negocio')->get();
         
         $this->lineas = DB::table('lineas')->get();
@@ -95,9 +91,10 @@ class RegistroUniformes extends Component
             $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[4]->nombre_linea,
             $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[5]->nombre_linea,
         ];
+        
         $this->unidadNegocioLineas2 = $this->unidadNegocioLineas;
-        $this->sublineas = $this->sublineas2;
-        /* $this->sublineas2 =  DB::table('sublineas')->get(); */
+
+        
         /* $this->colaborador = Colaborador::find($no_colaborador);
         $this->genero_id = $this->colaborador->genero_id;
         $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', $this->paqueteId)->get();
@@ -110,14 +107,15 @@ class RegistroUniformes extends Component
 
     public function render()
     {
-        $this->sublineas2 =  DB::table('sublineas')->get();
+        $this->todosSelect();
+        
         return view('livewire.registro-uniformes', [
             'colaborador_uniforme_paquete' => DB::table('vu_colaborador_paquete')->where('no_colaborador', 'LIKE', "%{$this->search}%")
                 ->orWhere("nombre_desc", "LIKE", "%{$this->search}%")
                 ->orWhere("nombre_paquete", "LIKE", "%{$this->search}%")
                 ->orderBy('id', 'DESC')
                 ->paginate($this->perPage)
-        ,/* 'sublineas'=>$this->sublineas =  DB::table('sublineas')->get() */]);
+        ,]);
     }
 
     public function checkPaquete()
@@ -509,13 +507,10 @@ class RegistroUniformes extends Component
     }
 
     public function updatedunidadNegocioinput(){
-       
-        
         if( $this->unidadNegocioinput == '') {
             $unidadNegocioinput2= NULL;
+            $this->sublineasinput = '';
             $this->unidadNegocioLineas = $this->unidadNegocioLineas2;
-            $this->sublineasinput= '';
-            $this->sublineas = $this->sublineas2;
         }else{
             $this->sublineas = [];
             if ($this->unidadNegocioinput == '1 Fuego Central (Rifle)') {
@@ -548,27 +543,26 @@ class RegistroUniformes extends Component
             }
 
             $buscasublinea = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$unidadNegocioinput2.' && id_linea ='.$this->lineas);
-
+            
             foreach ($buscasublinea as $bs) {
-                $this->sublineas[] = DB::table('sublineas')->where('id','=',$bs->id_sublinea)->get();
+                $this->sublineas[] = DB::table('sublineas')->where('id','=',$bs->id_sublinea)->get()->toArray();
             }
-
+            
         }
 
     }
 
     public function updatedsublineasinput(){
-        
         if ( $this->sublineasinput == '' ) {
             $this->unidadNegocioLineas = $this->unidadNegocioLineas2;
             $this->unidadNegocioinput = '';
             $this->sublineas = $this->sublineas2;
-            /* dd($this->sublineas,$this->unidadNegocioLineas); */
-        }else{
+        }elseif($this->sublineasinput != ''){
+             
             $this->unidadNegocioLineas = [];
 
             $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_sublinea = '.$this->sublineasinput);
-        
+            
             foreach ($buscarUN as $bun) {
                 $this->unidadNegocio = DB::table('unidad_de_negocio')->distinct('id,nombre_unidadNegocio')->where('id', '=', $bun->id_unidadnegocio)->get();
                 $this->lineas = DB::table('lineas')->distinct('id,nombre_lineas')->where('id','=',$bun->id_linea)->get();
@@ -592,5 +586,29 @@ class RegistroUniformes extends Component
         }
    
     }
+
+    public function updatedcalibresinput(){
+        
+        if ($this->calibresinput == '') {
+            dd('esta vacio calibre');
+        }elseif($this->calibresinput != ''){
+            dd('No esta vacio');
+        }
+    }
+
+    public function todosSelect(){
+        $this->sublineas = DB::table('sublineas')->get();
+        $this->calibres = DB::table('calibres')->get();
+        $this->operaciones = DB::table('operaciones')->get();
+
+        if($this->unidadNegocioinput != ''){
+            $this->updatedunidadNegocioinput();
+        }elseif ($this->sublineasinput != '') {
+            $this->updatedsublineasinput();
+        }
+        
+     
+    }
+
 
 }

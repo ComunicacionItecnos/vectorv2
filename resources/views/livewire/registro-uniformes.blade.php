@@ -101,8 +101,7 @@
                     {{-- Area y seleccion de la operacion al que pertenece --}}
                     <div class="col-span-full sm:col-span-6 py-3 @if ($colaborador == 'error') hidden @else @endif">
 
-                        <p
-                            class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
+                        <p class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
                             Área de trabajo: {{ $area }}
                         </p>
 
@@ -118,7 +117,6 @@
                                     @foreach ($unidadNegocioLineas as $unl)
                                         <option value="{{ $unl }}">{{ $unl }}</option>
                                     @endforeach
-                                
                                 </select>
                                 @error('unidadNegocioinput')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -127,31 +125,25 @@
                                 @enderror
                             </div>
 
-
                             <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                 <label for="sublineasinput" class="block text-base font-medium text-gray-700">
                                     Sublinea</label>
                                 <select id="sublineasinput" wire:model="sublineasinput" name="sublineasinput"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                     <option></option>
-                                    
-                                    @if ($unidadNegocioinput == NULL)
-                                        @foreach ($sublineas2 as $sl2)
-                                            <option value="{{ $sl2->id }}">{{ $sl2->nombre_sublinea }}</option>
-                                        @endforeach
-                                    @elseif ($sublineasinput == '')
-                                        @foreach ($sublineas2 as $sl2)
-                                            <option value="{{ $sl2->id }}">{{ $sl2->nombre_sublinea }}</option>
-                                        @endforeach
-                                    @else
+                                    @if ($unidadNegocioinput == '')
                                         @foreach ($sublineas as $sl)
-                                            @foreach ($sl as $subl)
-                                                <option value="{{ $subl->id }}">{{ $subl->nombre_sublinea }}</option>
-                                            @endforeach
+                                            <option value="{{ $sl->id }}">{{ $sl->nombre_sublinea }}</option>
                                         @endforeach
-
-                                    @endif
+                                    @elseif($unidadNegocioinput != '')
                                     
+                                        @for ($i = 0; $i < count($sublineas); $i++)
+                                            @foreach ($sublineas[$i] as $sl)
+                                                <option value="{{ $sl->id }}">{{ $sl->nombre_sublinea }}
+                                                </option>
+                                            @endforeach
+                                        @endfor
+                                    @endif
                                 </select>
 
                                 @error('sublineasinput')
@@ -162,14 +154,17 @@
                             </div>
 
                             <div class="mb-2 sm:m-0 col-span-1 col-start-3">
-                                <label for="genero_id" class="block text-base font-medium text-gray-700">
+                                <label for="calibresinput" class="block text-base font-medium text-gray-700">
                                     Calibre</label>
-                                <select id="genero_id" wire:model="genero_id" name="genero_id"
+                                <select id="calibresinput" wire:model="calibresinput" name="calibresinput"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                     <option></option>
-
+                                    @foreach ($calibres as $cl)
+                                        <option value="{{ $cl->id }}">{{ $cl->nombre_calibre }}</option>
+                                    @endforeach
+                                   
                                 </select>
-                                @error('genero_id')
+                                @error('calibresinput')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                         {{ $message }}
                                     </p>
@@ -182,7 +177,9 @@
                                 <select id="genero_id" wire:model="genero_id" name="genero_id"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                     <option></option>
-
+                                    @foreach ($operaciones as $os)
+                                        <option value="{{ $os->id }}">{{ $os->nombre_operacion }}</option>
+                                    @endforeach
                                 </select>
                                 @error('genero_id')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
