@@ -3,7 +3,6 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use App\Models\Colaborador;
 use Livewire\WithPagination;
 use App\Models\Uniformes_talla;
 use App\Models\Uniformes_prenda;
@@ -47,21 +46,25 @@ class RegistroUniformes extends Component
     public $foto;
 
     public $unidadNegocioinput;
+    public $unidadNegocioinput2;
     public $lineasinput;
     public $sublineasinput;
     public $calibresinput;
-    public $operacioneinputs;
+    public $operacionesinput;
     public $maquinasinput;
 
     public $unidadNegocio;
     public $lineas;
     public $unidadNegocioLineas;
-    public $unidadNegocioLineas2;
-    
+    public $unidadNegocioLineas2;    
     public $sublineas;
     public $calibres;
     public $operaciones;
-    public $maquinas;
+  
+    public $seleccionPersonal = false;
+    public $seleccionPersonalInput;
+    public $seleccionPaquete;
+    public $seleccionPaqueteInput;
 
     public $userLogin;
 
@@ -76,27 +79,8 @@ class RegistroUniformes extends Component
         if ($this->userLogin == 1 || $this->userLogin == 3) {
             $this->mostrarBntEditar = true;
         }
-
-        /* obtener unidadNegocio,linea */
-        $this->unidadNegocio = DB::table('unidaD_de_negocio')->get();
-        
-        $this->lineas = DB::table('lineas')->get();
-        $this->unidadNegocioLineas = [
-            $this->unidadNegocio[0]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Rifle)',
-            $this->unidadNegocio[1]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Pistola)',
-            $this->unidadNegocio[2]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Comunes/Misc)',
-            $this->unidadNegocio[2]->nombre_unidadNegocio.' '.$this->lineas[1]->nombre_linea,
-            $this->unidadNegocio[2]->nombre_unidadNegocio.' '.$this->lineas[2]->nombre_linea,
-            $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[3]->nombre_linea,
-            $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[4]->nombre_linea,
-            $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[5]->nombre_linea,
-        ];
-        
-        $this->unidadNegocioLineas2 = $this->unidadNegocioLineas;
-
-        
-        /* $this->colaborador = Colaborador::find($no_colaborador);
-        $this->genero_id = $this->colaborador->genero_id;
+    
+        /*
         $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', $this->paqueteId)->get();
         $this->totalSteps = count($this->paquetes) - 1;
         $this->nombrePaquete = $this->paquetes[0]->nombre_paquete;
@@ -107,6 +91,7 @@ class RegistroUniformes extends Component
 
     public function render()
     {
+        
         $this->todosSelect();
         
         return view('livewire.registro-uniformes', [
@@ -441,7 +426,7 @@ class RegistroUniformes extends Component
     }
 
     public function buscar()
-    {       
+    {
         $this->resetErrorBag();
         $this->colaborador = 'ocultar';
         $this->nombreCompleto = NULL;
@@ -453,14 +438,15 @@ class RegistroUniformes extends Component
         $this->lineasinput = NULL;
         $this->sublineasinput = NULL;
         $this->calibresinput = NULL;
-        $this->operacioneinputs = NULL;
+        $this->operacionesinput = NULL;
         $this->maquinasinput = NULL;
         $this->unidadNegocio = NULL;
         $this->lineas = NULL;
         $this->sublineas = NULL;
         $this->calibres = NULL;
         $this->operaciones = NULL;
-        $this->maquinas = NULL;
+        $this->seleccionPersonalInput = NULL;
+        $this->seleccionPaqueteInput = NULL;
 
         $this->validate(
             ['colaboradorBusca' => 'required|digits_between:5,6'],
@@ -482,7 +468,8 @@ class RegistroUniformes extends Component
             $this->sublineasinput = NULL;
             $this->calibresinput = NULL;
             $this->operacionesinput = NULL;
-            $this->maquinasinput = NULL;
+            $this->seleccionPersonalInput = NULL;
+            $this->seleccionPaqueteInput = NULL;
         } else {
             $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
             $this->area = $this->colaborador[0]->area;
@@ -506,13 +493,18 @@ class RegistroUniformes extends Component
         $this->busquedaNuevo = false;
     }
 
+    /* Filtrado por unidad de negocio y lineas*/
     public function updatedunidadNegocioinput(){
         if( $this->unidadNegocioinput == '') {
             $unidadNegocioinput2= NULL;
-            $this->sublineasinput = '';
             $this->unidadNegocioLineas = $this->unidadNegocioLineas2;
+            $this->sublineas;
+            $this->calibres;
+            $this->operaciones2 = [];
+            $this->operaciones;
         }else{
-            $this->sublineas = [];
+            $this->reset(['sublineas']);
+
             if ($this->unidadNegocioinput == '1 Fuego Central (Rifle)') {
                 $unidadNegocioinput2 = 1;
                 $this->lineas = 1;
@@ -537,40 +529,85 @@ class RegistroUniformes extends Component
             }elseif($this->unidadNegocioinput == '4 Mezclas Químicas') {
                 $unidadNegocioinput2 = 4;
                 $this->lineas = 5;
-            }elseif($this->unidadNegocioinput == '4 Componentes/Casa 10') {
+            }elseif($this->unidadNegocioinput == '4 Componentes / Casa 10') {
                 $unidadNegocioinput2 = 4;
                 $this->lineas = 6;
             }
 
-            $buscasublinea = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$unidadNegocioinput2.' && id_linea ='.$this->lineas);
+            $buscasublinea = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$unidadNegocioinput2.' && id_linea ='.$this->lineas);
             
             foreach ($buscasublinea as $bs) {
-                $this->sublineas[] = DB::table('sublineas')->where('id','=',$bs->id_sublinea)->get()->toArray();
+                $this->sublineas[] = DB::table('sublineas')->distinct('id,nombre_sublinea')->where('id','=',$bs->id_sublinea)->get()->toArray();
             }
             
+            $this->sublineas = array_unique($this->sublineas, SORT_REGULAR );
+            $this->sublineas = array_values($this->sublineas);
         }
 
     }
-
+    /* Filtrado por sublineas */
     public function updatedsublineasinput(){
         if ( $this->sublineasinput == '' ) {
+            $unidadNegocioinput2= NULL;
             $this->unidadNegocioLineas = $this->unidadNegocioLineas2;
-            $this->unidadNegocioinput = '';
-            $this->sublineas = $this->sublineas2;
-        }elseif($this->sublineasinput != ''){
-             
-            $this->unidadNegocioLineas = [];
-
-            $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_sublinea = '.$this->sublineasinput);
+            $this->sublineas;
+            $this->calibres;
+            $this->operaciones2 = [];
+            $buscarUN = [];
+            $this->operaciones;
+        }else{
+            $this->reset(['calibres', 'unidadNegocioLineas','unidadNegocioLineas2']);
+            $buscarUN = [];
+            if($this->unidadNegocioinput != '')
+            {
+                if ($this->unidadNegocioinput == '1 Fuego Central (Rifle)') {
+                    $unidadNegocioinput2 = 1;
+                    $this->lineas = 1;
+                }elseif($this->unidadNegocioinput == '2 Fuego Central (Pistola)') {
+                    $unidadNegocioinput2 = 2;
+                    $this->lineas = 1;
+                }elseif($this->unidadNegocioinput == '3 Fuego Central (Comunes/Misc)') {
+                    $unidadNegocioinput2 = 3;
+                    $this->lineas = 1;
+                }elseif($this->unidadNegocioinput == '3 Escopeta') {
+                    $unidadNegocioinput2 = 3;
+                    $this->lineas = 2;
+                }elseif($this->unidadNegocioinput == '3 Torre de Plomo') {
+                    $unidadNegocioinput2 = 3;
+                    $this->lineas = 3;
+                }elseif($this->unidadNegocioinput == '4 Fuego Anular') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 4;
+                }elseif($this->unidadNegocioinput == '4 Fuego Anular') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 4;
+                }elseif($this->unidadNegocioinput == '4 Mezclas Químicas') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 5;
+                }elseif($this->unidadNegocioinput == '4 Componentes / Casa 10') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 6;
+                }
             
+                $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$unidadNegocioinput2.' && id_linea ='.$this->lineas. ' && id_sublinea = '.$this->sublineasinput);
+            }else{ 
+                $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_sublinea = '.$this->sublineasinput);
+            }
+
             foreach ($buscarUN as $bun) {
                 $this->unidadNegocio = DB::table('unidad_de_negocio')->distinct('id,nombre_unidadNegocio')->where('id', '=', $bun->id_unidadnegocio)->get();
                 $this->lineas = DB::table('lineas')->distinct('id,nombre_lineas')->where('id','=',$bun->id_linea)->get();
 
                 $this->unidadNegocioLineas[] = $this->unidadNegocio[0]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea;
+                
+                $this->calibres[] = DB::table('calibres')->distinct('id,nombre_calibre')->where('id','=',$bun->id_calibre)->get();
             }
-            
+
             $this->unidadNegocioLineas = array_unique($this->unidadNegocioLineas);
+
+            $this->calibres = array_unique($this->calibres, SORT_REGULAR );
+            $this->calibres = array_values($this->calibres);
+           
 
             foreach ($this->unidadNegocioLineas as $unl) {
                 if ($unl == '1 Fuego Central') {
@@ -582,33 +619,142 @@ class RegistroUniformes extends Component
                     $basura = array_shift($this->unidadNegocioLineas);
                 }
             }
-                     
+    
         }
    
     }
-
+    /* Filtrado por calibres */
     public function updatedcalibresinput(){
         
         if ($this->calibresinput == '') {
-            dd('esta vacio calibre');
-        }elseif($this->calibresinput != ''){
-            dd('No esta vacio');
+            $unidadNegocioinput2= NULL;
+            $this->unidadNegocioLineas = $this->unidadNegocioLineas2;
+            $this->sublineas;
+            $this->calibres;
+            $this->operaciones;
+            $buscarUN = [];
+        }else{
+            $this->reset([ 'unidadNegocioLineas' ,'unidadNegocioLineas2' ,'sublineas','operaciones']);
+            $buscarUN = [];
+            
+            if ($this->unidadNegocioinput != '') {
+                if ($this->unidadNegocioinput == '1 Fuego Central (Rifle)') {
+                    $unidadNegocioinput2 = 1;
+                    $this->lineas = 1;
+                }elseif($this->unidadNegocioinput == '2 Fuego Central (Pistola)') {
+                    $unidadNegocioinput2 = 2;
+                    $this->lineas = 1;
+                }elseif($this->unidadNegocioinput == '3 Fuego Central (Comunes/Misc)') {
+                    $unidadNegocioinput2 = 3;
+                    $this->lineas = 1;
+                }elseif($this->unidadNegocioinput == '3 Escopeta') {
+                    $unidadNegocioinput2 = 3;
+                    $this->lineas = 2;
+                }elseif($this->unidadNegocioinput == '3 Torre de Plomo') {
+                    $unidadNegocioinput2 = 3;
+                    $this->lineas = 3;
+                }elseif($this->unidadNegocioinput == '4 Fuego Anular') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 4;
+                }elseif($this->unidadNegocioinput == '4 Fuego Anular') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 4;
+                }elseif($this->unidadNegocioinput == '4 Mezclas Químicas') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 5;
+                }elseif($this->unidadNegocioinput == '4 Componentes / Casa 10') {
+                    $unidadNegocioinput2 = 4;
+                    $this->lineas = 6;
+                }
+                
+                $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre,id_operacion FROM `area_trabajo_operativo` WHERE id_unidadnegocio ='.$unidadNegocioinput2.' && id_linea = '.$this->lineas.' && id_calibre ='.$this->calibresinput);
+            }elseif($this->sublineasinput != ''){
+                $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre,id_operacion FROM `area_trabajo_operativo` WHERE id_sublinea ='.$this->sublineasinput.' && id_calibre ='.$this->calibresinput);
+            }
+            
+            foreach ($buscarUN as $bun) {
+                $this->unidadNegocio = DB::table('unidad_de_negocio')->distinct('id,nombre_unidadNegocio')->where('id', '=', $bun->id_unidadnegocio)->get();
+                $this->lineas = DB::table('lineas')->distinct('id,nombre_lineas')->where('id','=',$bun->id_linea)->get();
+                $this->unidadNegocioLineas[] = $this->unidadNegocio[0]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea;
+                
+                $this->sublineas[] = DB::table('sublineas')->where('id','=',$bun->id_sublinea)->get()->toArray();
+                
+                $this->operaciones[] = DB::table('operaciones')->where('id','=',$bun->id_operacion)->get();
+            }
+            
+            $this->unidadNegocioLineas = array_unique($this->unidadNegocioLineas); 
+
+            foreach ($this->unidadNegocioLineas as $unl) {
+                if ($unl == '1 Fuego Central') {
+                    $this->unidadNegocioLineas[0] = '1 Fuego Central (Rifle)';
+                } elseif($unl == '2 Fuego Central') {
+                    $this->unidadNegocioLineas[0] = '2 Fuego Central (Pistola)';
+                }elseif($unl == '3 Fuego Central'){
+                    $this->unidadNegocioLineas[] = '3 Fuego Central (Comunes/Misc)';
+                    $basura = array_shift($this->unidadNegocioLineas);
+                }
+            }
+
+            $this->sublineas = array_unique($this->sublineas, SORT_REGULAR );
+            $this->sublineas = array_values($this->sublineas);
+            
         }
     }
-
+    /* funcion para ejecutar en el render y permitir modificar las variables */
     public function todosSelect(){
+        
+        $this->unidadNegocio = DB::table('unidaD_de_negocio')->get();
+        
+        $this->lineas = DB::table('lineas')->get();
+        $this->unidadNegocioLineas = [
+            $this->unidadNegocio[0]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Rifle)',
+            $this->unidadNegocio[1]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Pistola)',
+            $this->unidadNegocio[2]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Comunes/Misc)',
+            $this->unidadNegocio[2]->nombre_unidadNegocio.' '.$this->lineas[1]->nombre_linea,
+            $this->unidadNegocio[2]->nombre_unidadNegocio.' '.$this->lineas[2]->nombre_linea,
+            $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[3]->nombre_linea,
+            $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[4]->nombre_linea,
+            $this->unidadNegocio[3]->nombre_unidadNegocio.' '.$this->lineas[5]->nombre_linea,
+        ];
+        
+        $this->unidadNegocioLineas2 = $this->unidadNegocioLineas;
+    
         $this->sublineas = DB::table('sublineas')->get();
         $this->calibres = DB::table('calibres')->get();
         $this->operaciones = DB::table('operaciones')->get();
+  
 
         if($this->unidadNegocioinput != ''){
             $this->updatedunidadNegocioinput();
-        }elseif ($this->sublineasinput != '') {
+        }
+        
+        if($this->sublineasinput != ''){
             $this->updatedsublineasinput();
         }
         
-     
-    }
+        if ($this->calibresinput != '') {
+            $this->updatedcalibresinput();
+        }
 
+        $this->paquetes = Uniformes_paquete::all();
+     
+    } 
+
+    public function updated(){
+        
+        
+        /* if ($this->seleccionPersonalInput == 'Paileria') {
+            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 14)->get();
+        }elseif($this->seleccionPersonalInput == 'Mantenimiento General'){
+            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 7)->get();
+        }elseif($this->seleccionPersonalInput == 'Manejo de Materiales' || $this->sublineasinput == '8' || $this->unidadNegocioLineas[6] == '4 Mezclas Químicas') {
+            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 4)->get();
+        }elseif($this->operacionesinput == '40'){
+            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 8)->get();
+        }elseif($this->operacionesinput == '64'){
+            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 9)->get();
+        } */
+        
+    }
 
 }
