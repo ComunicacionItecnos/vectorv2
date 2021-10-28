@@ -9,6 +9,7 @@ use App\Models\Uniformes_prenda;
 use App\Models\Uniformes_paquete;
 use Illuminate\Support\Facades\DB;
 use App\Models\Colaborador_paquete_uniforme;
+use App\Models\Uniformes_paquete_prenda;
 
 class RegistroUniformes extends Component
 {
@@ -20,25 +21,24 @@ class RegistroUniformes extends Component
         'perPage',
     ];
 
+    protected $listeners = [
+        'registro',
+        'cancelled',
+    ];
+
     /* Variables */
     public $search, $perPage = '5';
 
     public $colaborador;
     public $colaboradorBusca;
-
-    public $paquetes, $prendas, $tallas;
+    /* public $colaborador_uniforme_paquete = [];
+ */
+    public $paquetes, $prendas, $tallas = [];
 
     public $banderaPrueba = false;
-    public $totalSteps = 0;
-    public $tope = 0;
-    public $currentStep = 0;
-    public $paqueteId = 2;
-    public $nombrePaquete;
-    public $nombrePrenda;
-    public $playera60;
+    public $paqueteId = NULL;
     public $genero_id;
     
-
     public $nombreCompleto;
     public $area;
     public $tipo_usuario;
@@ -51,7 +51,6 @@ class RegistroUniformes extends Component
     public $sublineasinput;
     public $calibresinput;
     public $operacionesinput;
-    public $maquinasinput;
 
     public $unidadNegocio;
     public $lineas;
@@ -62,7 +61,11 @@ class RegistroUniformes extends Component
     public $operaciones;
   
     public $seleccionPersonal = false;
+    public $desabilitarSelect = false;
+    public $desabilitarSelect2 = false;
     public $seleccionPersonalInput;
+    public $paqueteEleccion;
+
     public $seleccionPaquete;
     public $seleccionPaqueteInput;
 
@@ -73,334 +76,211 @@ class RegistroUniformes extends Component
     public $mostrarTabla = true;
     public $mostrarBntEditar = false;
 
+    public $areaExtras;
+
+    public $prendas1 = 'Bota Conductiva';
+    public $prendas2 = 'Bota Antivibracion';
+    public $prendas3 = 'Bota Dielectrica';
+    public $prendas4 = 'Bota Metatarzal';
+    public $prendas5 = 'Bota Para Soldador';
+    public $prendas6 = 'Bota Para Pailero';
+    public $prendas7 = 'Brasiere Blanco';
+    public $prendas8 = 'Calcetas 100% Algodón';
+    public $prendas9 = 'Camisa de Mezclilla';
+    public $prendas10 = 'Camisola Mezclilla';
+    public $prendas11 = 'Camisola Poliester';
+    public $prendas12 = 'Cofia 100% Algodón';
+    public $prendas13 = 'Mandil 100 % Algodón';
+    public $prendas14 = 'Pantalon 100 % Algodón';
+    public $prendas15 = 'Pantalon de Mezclilla';
+    public $prendas16 = 'Pantalon de Poliester';
+    public $prendas17 = 'Playera Tipo Polo';
+    public $prendas18 = 'Playera Tipo Polo Blanca';
+    public $prendas19 = 'Sudadera';
+    public $prendas20 = 'Truza 100% Algodón';
+    public $prendas21 = 'Zapato Conductivo';
+    public $prendas22 = 'Pantaleta 100% Algodón';
+
+    public $Selecionprendas1 = NULL;
+    public $Selecionprendas2 = NULL;
+    public $Selecionprendas3 = NULL;
+    public $Selecionprendas4 = NULL;
+    public $Selecionprendas5 = NULL;
+    public $Selecionprendas6 = NULL;
+    public $Selecionprendas7 = NULL;
+    public $Selecionprendas8 = NULL;
+    public $Selecionprendas9 = NULL;
+    public $Selecionprendas10 = NULL;
+    public $Selecionprendas11 = NULL;
+    public $Selecionprendas12 = NULL;
+    public $Selecionprendas13 = NULL;
+    public $Selecionprendas14 = NULL;
+    public $Selecionprendas15 = NULL;
+    public $Selecionprendas16 = NULL;
+    public $Selecionprendas17 = NULL;
+    public $Selecionprendas18 = NULL;
+    public $Selecionprendas19 = NULL;
+    public $Selecionprendas20 = NULL;
+    public $Selecionprendas21 = NULL;
+    public $Selecionprendas22 = NULL;
+
+    public $modalAbrir = false;
+    
     public function mount()
     {
         $this->userLogin = auth()->user()->role_id;
         if ($this->userLogin == 1 || $this->userLogin == 3) {
             $this->mostrarBntEditar = true;
         }
-    
-        /*
-        $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', $this->paqueteId)->get();
-        $this->totalSteps = count($this->paquetes) - 1;
-        $this->nombrePaquete = $this->paquetes[0]->nombre_paquete;
-        $this->prendas = Uniformes_prenda::find(1);
-        $this->checkPaquete();
-        $this->tallaMethod(); */
     }
 
     public function render()
     {
-        
         $this->todosSelect();
-        
+
         return view('livewire.registro-uniformes', [
             'colaborador_uniforme_paquete' => DB::table('vu_colaborador_paquete')->where('no_colaborador', 'LIKE', "%{$this->search}%")
                 ->orWhere("nombre_desc", "LIKE", "%{$this->search}%")
                 ->orWhere("nombre_paquete", "LIKE", "%{$this->search}%")
+                ->groupBy('no_colaborador')
                 ->orderBy('id', 'DESC')
                 ->paginate($this->perPage)
         ,]);
     }
 
-    public function checkPaquete()
+    public function uniformesPaquetePrenda()
     {
-        if ($this->paqueteId == 5 || $this->paqueteId == 6) {
-            $this->totalSteps = $this->totalSteps - 1;
-        }
+        return Uniformes_paquete_prenda::where('uniformes_paquete_id',$this->paqueteId)->get();
     }
 
     public function tallaMethod()
     {
-        if ($this->paqueteId == 1) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 15)->get();
-            }
-        }
+        $this->tallas = [];
+        $tallasPaquetes = [];
+
+        /*  Paquete 1 TORRE DE PLOMO */
         if ($this->paqueteId == 2) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 13)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 2)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 3) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 8)->get();
-            }
+          
         }
+        /* Paquete 2 Produccion FC,FA y Almacen */
         if ($this->paqueteId == 3) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 16)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 3 BLANCO */
         if ($this->paqueteId == 4) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 13)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 17)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 11)->get();
-            }
-            if ($this->currentStep == 3) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 21)->get();
-            }
-            if ($this->currentStep == 4) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 19)->get();
-            }
-            if ($this->currentStep == 5) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 6)->get();
-            }
-            if ($this->currentStep == 6) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 7)->get();
-            }
-            if ($this->currentStep == 7) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 8) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 20)->get();
-            }
-            if ($this->currentStep == 9) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 12)->get();
-            }
-            if ($this->currentStep == 10) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 18)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 4 Carga FC */
         if ($this->paqueteId == 5) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 16)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 11)->get();
-            }
-            if ($this->currentStep == 3) {
-                if ($this->genero_id == 1) {
-                    $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 19)->get();
-                } elseif ($this->genero_id == 2) {
-                    $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 21)->get();
-                }
-            }
-            if ($this->currentStep == 4) {
-                if ($this->genero_id == 1) {
-                    $this->increaseStep();
-                } elseif ($this->genero_id == 2) {
-                    $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 6)->get();
-                }
-            }
-            if ($this->currentStep == 5) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 6) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 7)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 5 Carga FA (Linea 22) */
         if ($this->paqueteId == 6) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 16)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 11)->get();
-            }
-            if ($this->currentStep == 3) {
-                if ($this->genero_id == 1) {
-                    $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 19)->get();
-                } elseif ($this->genero_id == 2) {
-                    $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 21)->get();
-                }
-            }
-            if ($this->currentStep == 4) {
-                if ($this->genero_id == 1) {
-                    $this->increaseStep();
-                } elseif ($this->genero_id == 2) {
-                    $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 6)->get();
-                }
-            }
-            if ($this->currentStep == 5) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 20)->get();
-            }
-            if ($this->currentStep == 6) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 7) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 7)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 6 MANETENIMIENTO GENERAL */
         if ($this->paqueteId == 7) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 9)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 11)->get();
-            }
-            if ($this->currentStep == 3) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 4) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 19)->get();
-            }
-            if ($this->currentStep == 5) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 7)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 7 LAVADO(S) */
         if ($this->paqueteId == 8) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 15)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 10)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 8 HORNO(S) */
         if ($this->paqueteId == 9) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 9)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 9 Herramientas Especial */
         if ($this->paqueteId == 10) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 9)->get();
-            }
-            if ($this->currentStep == 3) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 16)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 10 CONTROL AMBIENTAL */
         if ($this->paqueteId == 11) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 16)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 11 COMPONENTES (DETONADORES) */
         if ($this->paqueteId == 12) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 10)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 16)->get();
-            }
-            if ($this->currentStep == 3) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 15)->get();
-            }
-            if ($this->currentStep == 4) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 5) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 7)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 12 TROQUELADOS */
         if ($this->paqueteId == 13) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 2)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 8)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paquete 13 PAILERIA */
         if ($this->paqueteId == 14) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 5)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 9)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
+        /* Paqute 14 ENCERADOS */
         if ($this->paqueteId == 15) {
-            if ($this->currentStep == 0) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 14)->get();
-            }
-            if ($this->currentStep == 1) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 3)->get();
-            }
-            if ($this->currentStep == 2) {
-                $this->tallas = Uniformes_talla::where('uniformes_prenda_id', 9)->get();
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
         }
-    }
-
-    public function increaseStep()
-    {
-        /* $this->resetErrorBag(); */
-        /* $this->validateData(); */
-
-        $this->currentStep++;
-        if ($this->currentStep > $this->totalSteps) {
-            $this->currentStep = $this->totalSteps;
+        /* Paquete 15 SINDICATO */
+        if ($this->paqueteId == 16) {
+            $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
+            foreach ($tallasPaquetes as $tP) {
+                $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
+            }
         }
-        $this->tallaMethod();
-    }
 
-    public function decreaseStep()
-    {
-        /* $this->resetErrorBag(); */
-
-        $this->currentStep--;
-        if ($this->currentStep < 0) {
-            $this->currentStep = 0;
-        }
-        $this->tallaMethod();
-    }
-
-    public function doubleDecreaseStep()
-    {
-        /* $this->resetErrorBag(); */
-
-        $this->currentStep--;
-        $this->currentStep--;
-        if ($this->currentStep < 0) {
-            $this->currentStep = 0;
-        }
-        $this->tallaMethod();
-    }
-
-    public function tallasPaquetes()
-    {
+        return $this->tallas;
     }
 
     public function showRegistro()
@@ -439,15 +319,19 @@ class RegistroUniformes extends Component
         $this->sublineasinput = NULL;
         $this->calibresinput = NULL;
         $this->operacionesinput = NULL;
-        $this->maquinasinput = NULL;
         $this->unidadNegocio = NULL;
         $this->lineas = NULL;
         $this->sublineas = NULL;
         $this->calibres = NULL;
         $this->operaciones = NULL;
+        $this->seleccionPersonal = false;
         $this->seleccionPersonalInput = NULL;
         $this->seleccionPaqueteInput = NULL;
-
+        $this->desabilitarSelect = false;
+        $this->desabilitarSelect2 = false;
+        $this->tallas = [];
+        $this->paqueteId = NULL;
+		
         $this->validate(
             ['colaboradorBusca' => 'required|digits_between:5,6'],
             [ 'colaboradorBusca.required' => 'El Número de colaborador no puede estar vacío',
@@ -455,7 +339,7 @@ class RegistroUniformes extends Component
         );
 
         $this->colaborador = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $this->colaboradorBusca)->get();
-        /* dd($this->colaborador); */
+        
         if (count($this->colaborador) == 0) {
             $this->colaborador = 'error';
             $this->nombreCompleto = NULL;
@@ -468,33 +352,42 @@ class RegistroUniformes extends Component
             $this->sublineasinput = NULL;
             $this->calibresinput = NULL;
             $this->operacionesinput = NULL;
+            $this->seleccionPersonal = false;
             $this->seleccionPersonalInput = NULL;
             $this->seleccionPaqueteInput = NULL;
-        } else {
+            $this->desabilitarSelect = false;
+            $this->desabilitarSelect2 = false;
+            $this->tallas = [];
+            $this->paqueteId = NULL;
+        }else{
             $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
             $this->area = $this->colaborador[0]->area;
             $this->tipo_usuario = $this->colaborador[0]->nombre_tipo;
-            $this->genero = $this->colaborador[0]->nombre_genero;
+            $this->genero = $this->colaborador[0]->nombre_genero /* 'Femenino' */;
             $this->foto = $this->colaborador[0]->foto;
         }
     }
 
     public function ver($id)
     {
+        dd($id);
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
         $this->busquedaNuevo = false;
+        
     }
 
     public function editar($id)
     {
+        dd($id);
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
         $this->busquedaNuevo = false;
     }
 
     /* Filtrado por unidad de negocio y lineas*/
-    public function updatedunidadNegocioinput(){
+    public function updatedunidadNegocioinput()
+    {
         if( $this->unidadNegocioinput == '') {
             $unidadNegocioinput2= NULL;
             $this->unidadNegocioLineas = $this->unidadNegocioLineas2;
@@ -502,7 +395,12 @@ class RegistroUniformes extends Component
             $this->calibres;
             $this->operaciones2 = [];
             $this->operaciones;
+
+            $this->seleccionPersonal = false;
+            $this->desabilitarSelect2 = false;
         }else{
+            $this->seleccionPersonal = true;
+            $this->desabilitarSelect2 = true;
             $this->reset(['sublineas']);
 
             if ($this->unidadNegocioinput == '1 Fuego Central (Rifle)') {
@@ -546,7 +444,8 @@ class RegistroUniformes extends Component
 
     }
     /* Filtrado por sublineas */
-    public function updatedsublineasinput(){
+    public function updatedsublineasinput()
+    {
         if ( $this->sublineasinput == '' ) {
             $unidadNegocioinput2= NULL;
             $this->unidadNegocioLineas = $this->unidadNegocioLineas2;
@@ -555,7 +454,11 @@ class RegistroUniformes extends Component
             $this->operaciones2 = [];
             $buscarUN = [];
             $this->operaciones;
+            $this->seleccionPersonal = false;
+            $this->desabilitarSelect2 = false;
         }else{
+            $this->seleccionPersonal = true;
+            $this->desabilitarSelect2 = true;
             $this->reset(['calibres', 'unidadNegocioLineas','unidadNegocioLineas2']);
             $buscarUN = [];
             if($this->unidadNegocioinput != '')
@@ -624,7 +527,8 @@ class RegistroUniformes extends Component
    
     }
     /* Filtrado por calibres */
-    public function updatedcalibresinput(){
+    public function updatedcalibresinput()
+    {
         
         if ($this->calibresinput == '') {
             $unidadNegocioinput2= NULL;
@@ -635,6 +539,7 @@ class RegistroUniformes extends Component
             $buscarUN = [];
         }else{
             $this->reset([ 'unidadNegocioLineas' ,'unidadNegocioLineas2' ,'sublineas','operaciones']);
+
             $buscarUN = [];
             
             if ($this->unidadNegocioinput != '') {
@@ -668,8 +573,12 @@ class RegistroUniformes extends Component
                 }
                 
                 $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre,id_operacion FROM `area_trabajo_operativo` WHERE id_unidadnegocio ='.$unidadNegocioinput2.' && id_linea = '.$this->lineas.' && id_calibre ='.$this->calibresinput);
-            }elseif($this->sublineasinput != ''){
+            }
+            if($this->sublineasinput != ''){
                 $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre,id_operacion FROM `area_trabajo_operativo` WHERE id_sublinea ='.$this->sublineasinput.' && id_calibre ='.$this->calibresinput);
+            }
+            if ($this->unidadNegocioinput != '' && $this->sublineasinput != '') {
+                $buscarUN = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre,id_operacion FROM `area_trabajo_operativo` WHERE id_unidadnegocio ='.$unidadNegocioinput2.' && id_linea = '.$this->lineas.' && id_sublinea ='.$this->sublineasinput.' && id_calibre ='.$this->calibresinput);
             }
             
             foreach ($buscarUN as $bun) {
@@ -700,12 +609,352 @@ class RegistroUniformes extends Component
             
         }
     }
+    /* Seleccion automatico de los paquetes por operaciones */
+    public function updatedoperacionesinput()
+    {
+        if ($this->operacionesinput != '') {
+            $this->reset([ 'paqueteId','Selecionprendas1','Selecionprendas2','Selecionprendas3','Selecionprendas4',
+                'Selecionprendas5','Selecionprendas6','Selecionprendas7','Selecionprendas8','Selecionprendas9',
+                'Selecionprendas10','Selecionprendas11','Selecionprendas12','Selecionprendas13','Selecionprendas14',
+                'Selecionprendas15','Selecionprendas16','Selecionprendas17','Selecionprendas18','Selecionprendas19',
+                'Selecionprendas20','Selecionprendas21','Selecionprendas22'
+            ]);
+            
+            $this->seleccionPersonal = true;
+            $this->desabilitarSelect2 = true;
+            $this->seleccionPersonalInput = NULL;
+            $this->seleccionPaqueteInput = NULL;
+
+            if ($this->unidadNegocioinput != '3 Torre de Plomo' || 
+            $this->sublineasinput != '8' || $this->unidadNegocioinput != '4 Mezclas Químicas' || $this->operacionesinput != '9' ||
+            $this->sublineasinput !='2' || $this->sublineasinput !='3' || $this->sublineasinput !='5' || $this->operacionesinput != '10' ||
+            $this->unidadNegocioinput != '4 Fuego Anular' && $this->operacionesinput != '10' ||
+            $this->operacionesinput != '40' || $this->operacionesinput != '28' || 
+            $this->operacionesinput != '67' || 
+            $this->sublineasinput != '8' || 
+            $this->operacionesinput != '12' || $this->operacionesinput != '23' || $this->operacionesinput != '39' || $this->operacionesinput != '95' || $this->operacionesinput != '96' ||
+            $this->operacionesinput != '27' || $this->operacionesinput == '46' || $this->operacionesinput != '70') {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',3)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+           
+            if($this->unidadNegocioinput == '3 Torre de Plomo'){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',2)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if ($this->sublineasinput == '8' || $this->unidadNegocioinput == '4 Mezclas Químicas' || $this->operacionesinput == '9') {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',4)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            
+            if ($this->unidadNegocioinput == '1 Fuego Central (Rifle)' || $this->unidadNegocioinput == '1 Fuego Central (Pistola)' || $this->unidadNegocioinput == '3 Fuego Central (Comunes/Misc)') {
+                if ($this->sublineasinput =='2' || $this->sublineasinput =='3' || $this->sublineasinput =='5') {
+                    if ($this->operacionesinput == '10' ) {
+                        $this->paqueteEleccion = Uniformes_paquete::where('id',5)->get();
+                
+                        $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                        $idPaquete = $this->paqueteEleccion[0]->id;
+                        $this->paqueteEleccion = $nombrePaquete;
+                        $this->paqueteId = $idPaquete;
+                    }
+                }
+            }
+
+            if ($this->unidadNegocioinput == '4 Fuego Anular' && $this->operacionesinput == '10') {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',6)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if ($this->operacionesinput == '40' || $this->operacionesinput == '28') {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',8)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if ($this->operacionesinput == '67') {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',9)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if ($this->sublineasinput == '8') {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',12)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if ($this->operacionesinput == '12' || $this->operacionesinput == '23' || $this->operacionesinput == '39' || $this->operacionesinput == '95' || $this->operacionesinput == '96') {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',13)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if ($this->operacionesinput == '27' || $this->operacionesinput == '46' || $this->operacionesinput == '70' ) {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',15)->get();
+                
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            $this->tallaMethod();
+
+        }else{
+            $this->seleccionPersonal = false;
+            $this->desabilitarSelect2 = false;
+            $this->paqueteId = NULL;
+        }
+    }
+    /* Seleccion automatico de los paquetes fuera de las operaciones */
+    public function updatedseleccionPersonalInput()
+    {
+        if ($this->seleccionPersonalInput != '') {
+            $this->reset([ 'paqueteId','Selecionprendas1','Selecionprendas2','Selecionprendas3','Selecionprendas4',
+                'Selecionprendas5','Selecionprendas6','Selecionprendas7','Selecionprendas8','Selecionprendas9',
+                'Selecionprendas10','Selecionprendas11','Selecionprendas12','Selecionprendas13','Selecionprendas14',
+                'Selecionprendas15','Selecionprendas16','Selecionprendas17','Selecionprendas18','Selecionprendas19',
+                'Selecionprendas20','Selecionprendas21','Selecionprendas22'
+            ]);
+
+            $this->seleccionPaqueteInput = NULL;
+            $this->seleccionPersonal = true;
+            $this->desabilitarSelect = true;
+            
+            if ($this->seleccionPersonalInput == 1) {
+                $this->paqueteEleccion = Uniformes_paquete::where('id',4)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if($this->seleccionPersonalInput == 2){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',7)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if($this->seleccionPersonalInput == 3){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',10)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if($this->seleccionPersonalInput == 4){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',11)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if($this->seleccionPersonalInput == 5){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',14)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if($this->seleccionPersonalInput == 6){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',16)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            if($this->seleccionPersonalInput == 7){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',3)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            
+            $this->tallaMethod();
+        }else{
+            $this->seleccionPersonal = false;
+            $this->desabilitarSelect = false;
+            $this->tallas = [];
+            $this->paqueteId = NULL;
+        }
+    }
+
+    /* Seleccion de paquete Manual */
+    public function updatedseleccionPaqueteInput()
+    {
+        if ($this->seleccionPaqueteInput !='') {
+            $this->reset([ 'paqueteId','Selecionprendas1','Selecionprendas2','Selecionprendas3','Selecionprendas4',
+                'Selecionprendas5','Selecionprendas6','Selecionprendas7','Selecionprendas8','Selecionprendas9',
+                'Selecionprendas10','Selecionprendas11','Selecionprendas12','Selecionprendas13','Selecionprendas14',
+                'Selecionprendas15','Selecionprendas16','Selecionprendas17','Selecionprendas18','Selecionprendas19',
+                'Selecionprendas20','Selecionprendas21','Selecionprendas22'
+            ]);
+
+            if($this->seleccionPaqueteInput == 2){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',2)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 3){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',3)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 4){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',4)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 5){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',5)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 6){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',6)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 7){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',7)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 8){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',8)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 9){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',9)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 10){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',10)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 11){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',11)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 12){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',12)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 13){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',13)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 14){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',14)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 15){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',15)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+            if($this->seleccionPaqueteInput == 16){
+                $this->paqueteEleccion = Uniformes_paquete::where('id',16)->get();
+                $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
+                $idPaquete = $this->paqueteEleccion[0]->id;
+                $this->paqueteEleccion = $nombrePaquete;
+                $this->paqueteId = $idPaquete;
+            }
+
+            $this->tallaMethod();
+        }else{
+            $this->tallas = [];
+            $this->paqueteId = NULL;
+        }
+    }
+
     /* funcion para ejecutar en el render y permitir modificar las variables */
-    public function todosSelect(){
-        
+    public function todosSelect()
+    {
+
+        /* $this->colaborador_uniforme_paquete = DB::table('vu_colaborador_paquete')->where('no_colaborador', 'LIKE', "%{$this->search}%")
+                ->orWhere("nombre_desc", "LIKE", "%{$this->search}%")
+                ->orWhere("nombre_paquete", "LIKE", "%{$this->search}%")
+                ->orderBy('id', 'DESC')
+                ->groupBy('no_colaborador')
+                ->paginate($this->perPage); */
+            
+        /* dd($this->colaborador_uniforme_paquete,); */
+
         $this->unidadNegocio = DB::table('unidaD_de_negocio')->get();
         
         $this->lineas = DB::table('lineas')->get();
+        
         $this->unidadNegocioLineas = [
             $this->unidadNegocio[0]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Rifle)',
             $this->unidadNegocio[1]->nombre_unidadNegocio.' '.$this->lineas[0]->nombre_linea.' (Pistola)',
@@ -723,7 +972,6 @@ class RegistroUniformes extends Component
         $this->calibres = DB::table('calibres')->get();
         $this->operaciones = DB::table('operaciones')->get();
   
-
         if($this->unidadNegocioinput != ''){
             $this->updatedunidadNegocioinput();
         }
@@ -736,25 +984,244 @@ class RegistroUniformes extends Component
             $this->updatedcalibresinput();
         }
 
+        $this->areaExtras= [
+            ['id'=>1,'extra'=>'Materialistas'],
+            ['id'=>2,'extra'=>'Mantenimiento General'],
+            ['id'=>3,'extra'=>'Herramientas Especial'],
+            ['id'=>4,'extra'=>'Control Ambiental'],
+            ['id'=>5,'extra'=>'Paileria'],
+            ['id'=>6,'extra'=>'Sindicato'],
+            ['id'=>7,'extra'=>'Almacen']
+        ];
+    
         $this->paquetes = Uniformes_paquete::all();
-     
+
+        $this->tallas;
+        $this->paqueteId;
     } 
 
-    public function updated(){
+    public function cancelled()
+    {
+        $this->alert('info', 'Se canceló el registro', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+    }
+
+    public function triggerConfirm()
+    {
+        $this->confirm('¿Deseas terminar el registro?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'confirmButtonText' =>  'Si',
+            'cancelButtonText' => 'No',
+            'onConfirmed' => 'registro',
+            'onCancelled' => 'cancelled'
+        ]);
+    }
+
+    /* Funcion para detectar vacios en los inputs obtenidos */
+    public function vaciosBuscar()
+    {
+        $unidadNegocioinput2 = NULL;
         
-        
-        /* if ($this->seleccionPersonalInput == 'Paileria') {
-            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 14)->get();
-        }elseif($this->seleccionPersonalInput == 'Mantenimiento General'){
-            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 7)->get();
-        }elseif($this->seleccionPersonalInput == 'Manejo de Materiales' || $this->sublineasinput == '8' || $this->unidadNegocioLineas[6] == '4 Mezclas Químicas') {
-            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 4)->get();
-        }elseif($this->operacionesinput == '40'){
-            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 8)->get();
-        }elseif($this->operacionesinput == '64'){
-            $this->paquetes = DB::table('vu_paquete_prenda')->where('paquete_id', 9)->get();
-        } */
-        
+        if($this->unidadNegocioinput == ''){
+            $unidadNegocioinput2 = NULL;
+            $this->lineas = NULL;
+        }elseif ($this->unidadNegocioinput == '1 Fuego Central (Rifle)') {
+            $unidadNegocioinput2 = 1;
+            $this->lineas = 1;
+        }elseif($this->unidadNegocioinput == '2 Fuego Central (Pistola)') {
+            $unidadNegocioinput2 = 2;
+            $this->lineas = 1;
+        }elseif($this->unidadNegocioinput == '3 Fuego Central (Comunes/Misc)') {
+            $unidadNegocioinput2 = 3;
+            $this->lineas = 1;
+        }elseif($this->unidadNegocioinput == '3 Escopeta') {
+            $unidadNegocioinput2 = 3;
+            $this->lineas = 2;
+        }elseif($this->unidadNegocioinput == '3 Torre de Plomo') {
+            $unidadNegocioinput2 = 3;
+            $this->lineas = 3;
+        }elseif($this->unidadNegocioinput == '4 Fuego Anular') {
+            $unidadNegocioinput2 = 4;
+            $this->lineas = 4;
+        }elseif($this->unidadNegocioinput == '4 Fuego Anular') {
+            $unidadNegocioinput2 = 4;
+            $this->lineas = 4;
+        }elseif($this->unidadNegocioinput == '4 Mezclas Químicas') {
+            $unidadNegocioinput2 = 4;
+            $this->lineas = 5;
+        }elseif($this->unidadNegocioinput == '4 Componentes / Casa 10') {
+            $unidadNegocioinput2 = 4;
+            $this->lineas = 6;
+        }  
+
+        $arrayArea = [
+            $this->seleccionPersonalInput,
+            $unidadNegocioinput2,
+            $this->lineas,
+            $this->sublineasinput,
+            $this->calibresinput,
+            $this->operacionesinput,
+        ];
+
+        $arrayObtn = [
+            $this->seleccionPaqueteInput,
+            $this->paqueteId,
+            $this->Selecionprendas1,
+            $this->Selecionprendas2,
+            $this->Selecionprendas3,
+            $this->Selecionprendas4,
+            $this->Selecionprendas5,
+            $this->Selecionprendas6,
+            $this->Selecionprendas7,
+            $this->Selecionprendas8,
+            $this->Selecionprendas9,
+            $this->Selecionprendas10,
+            $this->Selecionprendas11,
+            $this->Selecionprendas12,
+            $this->Selecionprendas13,
+            $this->Selecionprendas14,
+            $this->Selecionprendas15,
+            $this->Selecionprendas16,
+            $this->Selecionprendas17,
+            $this->Selecionprendas18,
+            $this->Selecionprendas19,
+            $this->Selecionprendas20,
+            $this->Selecionprendas22,
+            $this->Selecionprendas22
+        ]; 
+
+        return array($arrayArea,$arrayObtn);
+    }
+
+    public function registro(){
+    
+        DB::transaction(function(){
+
+            $funObtn = $this->vaciosBuscar();
+
+            $arrayArea2 = $funObtn[0];
+            $arrayObtn2 = $funObtn[1];
+
+            $res = null;
+            $res2 = null;
+            $areaInsertar = null;
+
+            /* Evitar registrar doble */
+            $evitarDobleUniformes = DB::table('colaborador_uniforme_paquete')->where('colaborador_no_colaborador',$this->colaboradorBusca)->get();
+            $evitarDobleTrabajo = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$this->colaboradorBusca)->get();
+
+            if (count($evitarDobleTrabajo) > 0 && count($evitarDobleUniformes) > 0) {
+                $this->flash('error', 'Ya se encuentra registrado el colaborador: '.$this->colaboradorBusca, [
+                    'position' =>  'center',
+                    'timer' =>  3500,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cerrar',
+                    'showCancelButton' =>  true,
+                    'showConfirmButton' =>  false,
+                ]);
+                return redirect()->to('/uniformes/');
+            }else{
+
+                if ($arrayArea2[0] == null) {
+
+                    /* Insertar unidades de negocio */
+                
+                    /* Insertar id del area_trabajo_operativo e insertar en la tabla de uniformes*/
+    
+                    $filtrarVaciosPrendas = array_filter($arrayObtn2);
+                    $acomodarFiltroVacios = array_values($filtrarVaciosPrendas);
+                    unset($acomodarFiltroVacios[0]);
+                    $acomodarFiltroVacios = array_values($acomodarFiltroVacios);
+                    
+                    $areaTrabajo = DB::table('area_trabajo_operativo')->where('id_unidadnegocio',$arrayArea2[1])
+                    ->where('id_linea',$arrayArea2[2])->where('id_sublinea',$arrayArea2[3])
+                    ->where('id_calibre',$arrayArea2[4])->where('id_operacion',$arrayArea2[5])->limit(1)->get();
+                    
+                    for ($i=0; $i < count($acomodarFiltroVacios) ; $i++) { 
+                            
+                        $res = DB::table('colaborador_uniforme_paquete')->insert([
+                            'colaborador_no_colaborador'=> $this->colaboradorBusca,
+                            'uniformes_paquete_id'=>$this->paqueteId,
+                            'uniformes_talla_id'=>$acomodarFiltroVacios[$i]
+                        ]);
+                        
+                    }
+
+                    $res2 = DB::table('colaborador_trabajooperativo')->insert([
+                        'no_colaborador' =>$this->colaboradorBusca,
+                        'id_area_trabajo_operativo'=> $areaTrabajo[0]->id,
+                    ]);
+
+                } else {
+                    /* Insertar areasExtras */
+    
+                    $filtrarVaciosPrendas = array_filter($arrayObtn2);
+                    $acomodarFiltroVacios = array_values($filtrarVaciosPrendas);
+                    unset($acomodarFiltroVacios[0]);
+                    $acomodarFiltroVacios = array_values($acomodarFiltroVacios);
+    
+                    for ($i=0; $i < count($acomodarFiltroVacios) ; $i++) { 
+                            
+                        $res = DB::table('colaborador_uniforme_paquete')->insert([
+                            'colaborador_no_colaborador'=> $this->colaboradorBusca,
+                            'uniformes_paquete_id'=>$this->paqueteId,
+                            'uniformes_talla_id'=>$acomodarFiltroVacios[$i]
+                        ]);
+                            
+                    }
+    
+                    foreach ($this->areaExtras as $aE) {
+                        if ( $this->seleccionPersonalInput ==$aE['id'] ) {
+                            $areaInsertar = $aE['extra'];
+                        }
+                    }
+                    
+                    $res2 = DB::table('colaborador_trabajooperativo')->insert([
+                        'no_colaborador' =>$this->colaboradorBusca,
+                        'areaExterna'=> $areaInsertar,
+                    ]);
+    
+                }
+
+            }
+
+            if ($res == true && $res2 == true) {
+                $this->flash('success', 'Se ha insertado correctamente', [
+                    'position' =>  'top-end',
+                    'timer' =>  3500,
+                    'toast' =>  true,
+                    'text' =>  '',
+                    'confirmButtonText' =>  'Ok',
+                    'cancelButtonText' =>  'Cerrar',
+                    'showCancelButton' =>  false,
+                    'showConfirmButton' =>  true,
+                ]);
+                return redirect()->to('/uniformes/');
+            }
+
+        });
+
+    }
+
+    public function abrirModal()
+    {
+        $this->modalAbrir = true;
+    }
+
+    public function cerrarModal(){
+        $this->modalAbrir = false;
     }
 
 }
