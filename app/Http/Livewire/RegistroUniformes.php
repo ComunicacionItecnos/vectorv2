@@ -5,10 +5,8 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Uniformes_talla;
-use App\Models\Uniformes_prenda;
 use App\Models\Uniformes_paquete;
 use Illuminate\Support\Facades\DB;
-use App\Models\Colaborador_paquete_uniforme;
 use App\Models\Uniformes_paquete_prenda;
 
 class RegistroUniformes extends Component
@@ -30,12 +28,11 @@ class RegistroUniformes extends Component
     public $search, $perPage = '5';
 
     public $colaborador;
+    public $colaboradorShow;
     public $colaboradorBusca;
-    /* public $colaborador_uniforme_paquete = [];
- */
+    
     public $paquetes, $prendas, $tallas = [];
 
-    public $banderaPrueba = false;
     public $paqueteId = NULL;
     public $genero_id;
     
@@ -75,6 +72,7 @@ class RegistroUniformes extends Component
     public $busquedaNuevo = false;
     public $mostrarTabla = true;
     public $mostrarBntEditar = false;
+    public $verRegistro = false;
 
     public $areaExtras;
 
@@ -125,6 +123,10 @@ class RegistroUniformes extends Component
     public $Selecionprendas22 = NULL;
 
     public $modalAbrir = false;
+
+    public $uniformesShow = [];
+    public $areaTrabajoUnidadShow = [];
+    public $areaTrabajoExtraShow = NULL;
     
     public function mount()
     {
@@ -290,6 +292,7 @@ class RegistroUniformes extends Component
 
         $this->busquedaNuevo = true;
         $this->colaborador = 'ocultar';
+        $this->areaTrabajoShow = NULL;
     }
 
     public function showTabla()
@@ -297,12 +300,14 @@ class RegistroUniformes extends Component
         $this->mostrarNuevoRegistro = false;
         $this->mostrarTabla = true;
 
-        $this->resetErrorBag();
         $this->colaborador = NULL;
         $this->colaboradorBusca = NULL;
         $this->nombreCompleto = NULL;
         $this->area = NULL;
         $this->tipo_usuario = NULL;
+        $this->areaTrabajoUnidadShow = [];
+        $this->areaTrabajoExtraShow = NULL;
+        $this->uniformesShow = [];
     }
 
     public function buscar()
@@ -363,26 +368,85 @@ class RegistroUniformes extends Component
             $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
             $this->area = $this->colaborador[0]->area;
             $this->tipo_usuario = $this->colaborador[0]->nombre_tipo;
-            $this->genero = $this->colaborador[0]->nombre_genero /* 'Femenino' */;
+            $this->genero = $this->colaborador[0]->nombre_genero;
             $this->foto = $this->colaborador[0]->foto;
         }
     }
 
     public function ver($id)
     {
-        dd($id);
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
         $this->busquedaNuevo = false;
+        $this->verRegistro = true;
+        $this->areaTrabajoUnidadShow = [];
+        $this->areaTrabajoExtraShow = NULL;
+
+        $this->colaboradorShow = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $id)->get();
         
+        if (count($this->colaboradorShow) > 0) {
+            
+            $this->nombreCompleto = $this->colaboradorShow[0]->nombre_completo;
+            $this->area = $this->colaboradorShow[0]->area;
+            $this->tipo_usuario = $this->colaboradorShow[0]->nombre_tipo;
+            $this->genero = $this->colaboradorShow[0]->nombre_genero;
+            $this->foto = $this->colaboradorShow[0]->foto;
+
+            $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id)->get();
+            $this->paqueteId = $this->uniformesShow[0]->nombre_paquete;
+
+            $this->areaTrabajoUnidadShow = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$id)->get();
+            $this->areaTrabajoExtraShow = $this->areaTrabajoUnidadShow;
+
+            if($this->areaTrabajoUnidadShow[0]->areaExterna == NULL){
+                unset($this->areaTrabajoUnidadShow[0]->areaExterna);
+                
+                $this->areaTrabajoUnidadShow = DB::select("SELECT ato.id_unidadnegocio,ls.nombre_linea,sl.nombre_sublinea,os.nombre_operacion FROM `vectorv2`.`area_trabajo_operativo` ato 
+                JOIN lineas ls ON ls.id = ato.id_unidadnegocio 
+                JOIN sublineas sl ON sl.id = ato.id_sublinea
+                JOIN operaciones os ON os.id = ato.id_operacion
+                WHERE ato.id =".$this->areaTrabajoUnidadShow[0]->id);
+
+                $this->areaTrabajoExtraShow = NULL;
+
+            }elseif($this->areaTrabajoExtraShow[0]->id_area_trabajo_operativo == NULL){
+                unset($this->areaTrabajoExtraShow[0]->id_area_trabajo_operativo);
+                $this->areaTrabajoExtraShow = $this->areaTrabajoExtraShow[0]->areaExterna;
+                $this->areaTrabajoUnidadShow = [];
+            }
+
+        }else{
+            $this->nombreCompleto = NULL;
+            $this->area = NULL;
+            $this->genero = NULL;
+            $this->foto = NULL;
+            $this->uniformesShow = [];
+            $this->paqueteId = NULL;
+            $this->areaTrabajoShow = NULL;
+            $this->areaTrabajoExtraShow = NULL;
+            $this->areaTrabajoUnidadShow = [];
+        }
     }
 
     public function editar($id)
     {
-        dd($id);
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
         $this->busquedaNuevo = false;
+        $this->verRegistro = false;
+
+        $this->colaboradorShow = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $id)->get();
+        
+        if (count($this->colaboradorShow) > 0) {
+            $this->nombreCompleto = $this->colaboradorShow[0]->nombre_completo;
+            $this->area = $this->colaboradorShow[0]->area;
+            $this->tipo_usuario = $this->colaboradorShow[0]->nombre_tipo;
+            $this->genero = $this->colaboradorShow[0]->nombre_genero;
+            $this->foto = $this->colaboradorShow[0]->foto;
+        }else{
+
+        }
+
     }
 
     /* Filtrado por unidad de negocio y lineas*/
@@ -635,6 +699,7 @@ class RegistroUniformes extends Component
             $this->operacionesinput != '12' || $this->operacionesinput != '23' || $this->operacionesinput != '39' || $this->operacionesinput != '95' || $this->operacionesinput != '96' ||
             $this->operacionesinput != '27' || $this->operacionesinput == '46' || $this->operacionesinput != '70') {
                 $this->paqueteEleccion = Uniformes_paquete::where('id',3)->get();
+                
                 $nombrePaquete = $this->paqueteEleccion[0]->nombre_paquete;
                 $idPaquete = $this->paqueteEleccion[0]->id;
                 $this->paqueteEleccion = $nombrePaquete;
@@ -941,16 +1006,6 @@ class RegistroUniformes extends Component
     /* funcion para ejecutar en el render y permitir modificar las variables */
     public function todosSelect()
     {
-
-        /* $this->colaborador_uniforme_paquete = DB::table('vu_colaborador_paquete')->where('no_colaborador', 'LIKE', "%{$this->search}%")
-                ->orWhere("nombre_desc", "LIKE", "%{$this->search}%")
-                ->orWhere("nombre_paquete", "LIKE", "%{$this->search}%")
-                ->orderBy('id', 'DESC')
-                ->groupBy('no_colaborador')
-                ->paginate($this->perPage); */
-            
-        /* dd($this->colaborador_uniforme_paquete,); */
-
         $this->unidadNegocio = DB::table('unidaD_de_negocio')->get();
         
         $this->lineas = DB::table('lineas')->get();
