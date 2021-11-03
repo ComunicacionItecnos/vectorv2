@@ -1378,7 +1378,7 @@
 
                                             <x-slot name="content">
                                                 <p class="block text-xl font-medium text-gray-700 py-2">
-                                                    Nombre: {{ $nombreCompleto }} {{-- Número de colaborador: {{$colaboradorBusca}} --}}
+                                                    Nombre: {{ $nombreCompleto }}
                                                 </p>
 
                                                 <p class="block text-lg font-medium text-gray-700 py-2">
@@ -1509,8 +1509,8 @@
 
                                                         <p class="block text-base font-medium text-gray-700">
                                                             @foreach ($tallas[2] as $ts)
-                                                                @if ($Selecionprendas16 == $ts['id'])
-                                                                    {{ $prendas16 }}: {{ $ts['talla'] }}
+                                                                @if ($Selecionprendas17 == $ts['id'])
+                                                                    {{ $prendas17 }}: {{ $ts['talla'] }}
                                                                 @endif
                                                             @endforeach
                                                         </p>
@@ -2219,7 +2219,7 @@
 
                                                     @endif
                                                 @endif
-
+                                                
                                             </x-slot>
 
                                             <x-slot name="footer">
@@ -2368,6 +2368,7 @@
         @endif
 
         @if ($verRegistro == false && $busquedaNuevo == false )
+            {{-- Editar registro --}}
             <fieldset class="grid  gap-6 p-6 rounded-lg shadow-md @if ($verRegistro == false && $busquedaNuevo == false)  @else hidden @endif">
                 <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 @if ($verRegistro == false && $busquedaNuevo == false) divide-y-2 divide-gray-200 @else hidden @endif">
                     {{-- foto,Nombre,tags --}}
@@ -2419,6 +2420,111 @@
 
                     </div>
 
+                    {{-- Editar uniformes --}}
+                    <div class="col-span-full sm:col-span-6 py-3">
+                        
+                        {{-- Area y seleccion de la operacion al que pertenece --}}
+                        <div class="sm:grid row-start-1 grid-cols-4 gap-2 py-4">
+                            @if ($areaTrabajoUnidadShow == [])
+
+                            @else
+                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                    <p class="block text-base font-medium text-gray-700">
+                                        Unidad de negocio/ Área
+                                    </p>
+                                    <p class="block text-base font-medium text-gray-700">
+                                        @if ( $areaTrabajoUnidadShow == [] )
+                                            Area de trabajo: {{ $areaTrabajoExtraShow }}
+                                        @else
+                                            Area de trabajo: {{ $areaTrabajoUnidadShow[0]->id_unidadnegocio }} {{ $areaTrabajoUnidadShow[0]->nombre_linea }}
+                                        @endif
+                                    </p>
+                                </div>
+                                
+                                {{-- Sublineas --}}
+                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                    <label for="sublineasinput2" class="block text-base font-medium text-gray-700">
+                                        Sublinea</label>
+                                    <select id="sublineasinput2" wire:change="sublineaInput2"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                        
+                                        @foreach ($sublineas2 as $sl)
+
+                                            @if ( $areaTrabajoUnidadShow[0]->id_sublinea == $sl[0]->id )
+                                                <option value="{{ $sl[0]->id }}" selected>{{ $sl[0]->nombre_sublinea }}</option>
+                                            @else
+                                                <option value="{{ $sl[0]->id }}">{{ $sl[0]->nombre_sublinea }}</option>
+                                            @endif
+
+                                        @endforeach
+
+                                    </select>
+                                </div>
+
+                                {{-- Calibres --}}
+                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                    <label for="calibresinput2" class="block text-base font-medium text-gray-700">
+                                        Calibre</label>
+                                    <select id="calibresinput2" wire:change="calibreInput2"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base"
+                                        >
+                                        @foreach ($calibres2 as $cs)
+                                            @if ( $areaTrabajoUnidadShow[0]->id_calibre == $cs[0]->id )
+                                                <option value="{{ $cs[0]->id }}" selected>{{ $cs[0]->nombre_calibre }}</option>
+                                            @else
+                                                <option value="{{ $cs[0]->id }}">{{ $cs[0]->nombre_calibre }}</option>
+                                            @endif
+                                        @endforeach
+
+                                    </select>
+                                </div>
+
+                                {{-- Operaciones --}}
+                                <div class="mb-2 sm:m-0 col-span-1 col-start-4">
+                                    <label for="operacionesinput2"
+                                        class="block text-base font-medium text-gray-700">Operación</label>
+                                    <select id="operacionesinput2" wire:change="operacionInput2"
+                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+            
+                                        @foreach ($operaciones2 as $os)
+
+                                            @if ( $areaTrabajoUnidadShow[0]->id_operacion == $os[0]->id )
+                                                <option value="{{ $os[0]->id }}" selected>{{ $os[0]->nombre_operacion }}</option>
+                                            @else
+                                                <option value="{{ $os[0]->id }}">{{ $os[0]->nombre_operacion }}</option>
+                                            @endif
+
+                                        @endforeach
+                                       
+                                    </select>
+                                </div>
+
+                            @endif
+                        </div>
+
+                        <div class="sm:grid row-start-1 grid-cols-5 gap-2 py-4">
+
+                            <div class="mb-2 sm:m-0 col-span-full">
+                                <p class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 text-lg text-center">
+                                    {{ $paqueteId }}
+                                </p>
+                            </div>
+
+                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                <label for="seleccionPaqueteInput"
+                                    class="block text-base font-medium text-gray-700">Paquetes</label>
+                                <select id="seleccionPaqueteInput" wire:model="seleccionPaqueteInput"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    <option></option>
+                                    @foreach ($paquetes as $ps)
+                                        <option value="{{ $ps->id }}">{{ $ps->nombre_paquete }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                        </div>
+
+                    </div>
 
                     <button wire:click="showTabla" type="button"
                         class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Regresar</button>
@@ -2427,7 +2533,6 @@
             </fieldset>
         @endif
         
-
     </section>
 
     {{-- Mostrar todos que ya tienen registrado su talla --}}

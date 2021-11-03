@@ -32,6 +32,7 @@ class RegistroUniformes extends Component
     public $colaboradorBusca;
     
     public $paquetes, $prendas, $tallas = [];
+    public $tallasValidacion = false;
 
     public $paqueteId = NULL;
     public $genero_id;
@@ -128,6 +129,16 @@ class RegistroUniformes extends Component
     public $areaTrabajoUnidadShow = [];
     public $areaTrabajoExtraShow = NULL;
     
+    public $sublineasinput2;
+    public $calibresinput2;
+    public $operacionesinput2;
+    public $sublineas2;
+    public $calibres2;
+    public $operaciones2;
+
+    public $colaboradorTrabajoOperativo;
+    public $paqueteDb;
+
     public function mount()
     {
         $this->userLogin = auth()->user()->role_id;
@@ -396,21 +407,25 @@ class RegistroUniformes extends Component
             $this->paqueteId = $this->uniformesShow[0]->nombre_paquete;
 
             $this->areaTrabajoUnidadShow = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$id)->get();
+            
             $this->areaTrabajoExtraShow = $this->areaTrabajoUnidadShow;
 
             if($this->areaTrabajoUnidadShow[0]->areaExterna == NULL){
+                
                 unset($this->areaTrabajoUnidadShow[0]->areaExterna);
                 
-                $this->areaTrabajoUnidadShow = DB::select("SELECT ato.id_unidadnegocio,ls.nombre_linea,sl.nombre_sublinea,os.nombre_operacion FROM `vectorv2`.`area_trabajo_operativo` ato 
+                $this->areaTrabajoUnidadShow = DB::select("SELECT ato.id_unidadnegocio,ls.nombre_linea,sl.nombre_sublinea,os.nombre_operacion FROM `area_trabajo_operativo` ato 
                 JOIN lineas ls ON ls.id = ato.id_unidadnegocio 
                 JOIN sublineas sl ON sl.id = ato.id_sublinea
                 JOIN operaciones os ON os.id = ato.id_operacion
-                WHERE ato.id =".$this->areaTrabajoUnidadShow[0]->id);
-
+                WHERE ato.id =".$this->areaTrabajoUnidadShow[0]->id_area_trabajo_operativo);
+                
                 $this->areaTrabajoExtraShow = NULL;
 
             }elseif($this->areaTrabajoExtraShow[0]->id_area_trabajo_operativo == NULL){
+
                 unset($this->areaTrabajoExtraShow[0]->id_area_trabajo_operativo);
+                
                 $this->areaTrabajoExtraShow = $this->areaTrabajoExtraShow[0]->areaExterna;
                 $this->areaTrabajoUnidadShow = [];
             }
@@ -435,18 +450,99 @@ class RegistroUniformes extends Component
         $this->busquedaNuevo = false;
         $this->verRegistro = false;
 
+        $this->areaTrabajoUnidadShow = [];
+        $this->areaTrabajoExtraShow = NULL;
+
+        $this->sublineas2 = [];
+        $this->calibres2 = [];
+        $this->operaciones2 = [];
+        $this->editar = NULL;
+
         $this->colaboradorShow = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $id)->get();
         
         if (count($this->colaboradorShow) > 0) {
+
             $this->nombreCompleto = $this->colaboradorShow[0]->nombre_completo;
             $this->area = $this->colaboradorShow[0]->area;
             $this->tipo_usuario = $this->colaboradorShow[0]->nombre_tipo;
             $this->genero = $this->colaboradorShow[0]->nombre_genero;
             $this->foto = $this->colaboradorShow[0]->foto;
+
+            $this->colaboradorTrabajoOperativo = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$id)->get();
+            
+            if($this->colaboradorTrabajoOperativo[0]->id_area_trabajo_operativo != null){
+                
+                $this->areaTrabajoUnidadShow = DB::select("SELECT ato.id_unidadnegocio,ls.nombre_linea,ato.id_sublinea,sl.nombre_sublinea,ato.id_calibre,cs.nombre_calibre,ato.id_operacion,os.nombre_operacion FROM `area_trabajo_operativo` ato 
+                JOIN lineas ls ON ls.id = ato.id_unidadnegocio 
+                JOIN sublineas sl ON sl.id = ato.id_sublinea
+                JOIN calibres cs ON cs.id = ato.id_calibre
+                JOIN operaciones os ON os.id = ato.id_operacion
+                WHERE ato.id =".$this->colaboradorTrabajoOperativo[0]->id_area_trabajo_operativo);
+
+                $buscar = DB::table('area_trabajo_operativo')->where('id',$this->colaboradorTrabajoOperativo[0]->id_area_trabajo_operativo)->get();
+                
+                $editar = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$buscar[0]->id_unidadnegocio.' && id_linea ='.$buscar[0]->id_linea);
+                $editar2 = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$buscar[0]->id_unidadnegocio.' && id_linea ='.$buscar[0]->id_linea.' && id_sublinea='.$buscar[0]->id_sublinea);
+                $editar3 = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre,id_operacion FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$buscar[0]->id_unidadnegocio.' && id_linea ='.$buscar[0]->id_linea.' && id_sublinea='.$buscar[0]->id_sublinea
+                .' && id_calibre='.$buscar[0]->id_calibre);
+
+                /* Sublineas */
+                foreach ($editar as $eR) {
+                    $this->sublineas2[] = DB::table('sublineas')->where('id',$eR->id_sublinea)->get();
+                }
+                $this->sublineas2 = array_unique($this->sublineas2);
+                $this->sublineas2 = array_values($this->sublineas2);
+
+                /* Calibres */
+                foreach ($editar2 as $er2) {
+                    $this->calibres2[] = DB::table('calibres')->where('id',$er2->id_calibre)->get();
+                }
+
+                /* Operacion */
+                foreach ($editar3 as $er3) {
+                    $this->operaciones2[] = DB::table('operaciones')->where('id',$er3->id_operacion)->get();
+                    
+                }
+
+                /* $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id); */
+
+                $this->areaTrabajoExtraShow = NULL;
+                         
+            }else{
+
+                $this->areaTrabajoUnidadShow = NULL;
+
+                dd('Es areaExtra');
+
+            }
+
         }else{
+
+            $this->nombreCompleto = NULL;
+            $this->area = NULL;
+            $this->genero = NULL;
+            $this->foto = NULL;
+
+            $this->areaTrabajoUnidadShow = [];
+            $this->areaTrabajoExtraShow = NULL;
 
         }
 
+    }
+
+    public function sublineaInput2()
+    {
+        dd('Test');
+    }
+
+    public function calibreInput2()
+    {
+        dd('Test');
+    }
+
+    public function operacionInput2()
+    {
+        dd('Test');
     }
 
     /* Filtrado por unidad de negocio y lineas*/
@@ -1253,6 +1349,7 @@ class RegistroUniformes extends Component
             }
 
             if ($res == true && $res2 == true) {
+
                 $this->flash('success', 'Se ha insertado correctamente', [
                     'position' =>  'top-end',
                     'timer' =>  3500,
@@ -1272,7 +1369,25 @@ class RegistroUniformes extends Component
 
     public function abrirModal()
     {
-        $this->modalAbrir = true;
+        $this->tallasValidacion = $this->vaciosBuscar();
+        $this->tallasValidacion = array_filter($this->tallasValidacion[1]);
+        $this->tallasValidacion = array_values($this->tallasValidacion);
+
+        if (count($this->tallasValidacion) == 1){
+            $this->alert('info', 'Debes termiar de registrar las tallas', [
+                'position' =>  'center', 
+                'timer' =>  3000,  
+                'toast' =>  true, 
+                'text' =>  '', 
+                'confirmButtonText' =>  'Ok', 
+                'cancelButtonText' =>  'Cancel', 
+                'showCancelButton' =>  true, 
+                'showConfirmButton' =>  false, 
+          ]);
+        }elseif(count($this->tallasValidacion) == count($this->tallasValidacion)){
+            $this->modalAbrir = true;
+        }
+
     }
 
     public function cerrarModal(){
