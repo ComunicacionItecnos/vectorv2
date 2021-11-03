@@ -5,7 +5,7 @@
         
         @if ($busquedaNuevo == true) 
             {{-- Nuevo Tallas --}}
-            <fieldset class="grid justify-items-center gap-6 p-6 rounded-lg shadow-md place-items-center @if ($busquedaNuevo) @else hidden @endif">
+            <fieldset class="grid justify-items-center gap-6 p-6 rounded-lg shadow-md place-items-center bg-white @if ($busquedaNuevo) @else hidden @endif">
                 
                 <div class="space-y-2 col-span-full lg:col-span-1">
                     <p class="font-medium">Buscar colaborador</p>
@@ -2247,7 +2247,7 @@
         
         @if ($verRegistro == true && $busquedaNuevo == false)
             {{-- Ver registro --}}
-            <fieldset class="grid  gap-6 p-6 rounded-lg shadow-md @if ($verRegistro == true && $busquedaNuevo == false)  @else hidden @endif">  
+            <fieldset class="grid  gap-6 p-6 rounded-lg shadow-md bg-white @if ($verRegistro == true && $busquedaNuevo == false)  @else hidden @endif">  
 
                 <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 @if ($verRegistro == true && $busquedaNuevo == false) divide-y-2 divide-gray-200 @else hidden @endif">
                     
@@ -2369,7 +2369,7 @@
 
         @if ($verRegistro == false && $busquedaNuevo == false )
             {{-- Editar registro --}}
-            <fieldset class="grid  gap-6 p-6 rounded-lg shadow-md @if ($verRegistro == false && $busquedaNuevo == false)  @else hidden @endif">
+            <fieldset class="grid  gap-6 p-6 rounded-lg shadow-md bg-white @if ($verRegistro == false && $busquedaNuevo == false)  @else hidden @endif">
                 <div class="grid grid-cols-6 gap-4 col-span-full lg:col-span-3 @if ($verRegistro == false && $busquedaNuevo == false) divide-y-2 divide-gray-200 @else hidden @endif">
                     {{-- foto,Nombre,tags --}}
                     <div class="col-span-full sm:col-span-6">
