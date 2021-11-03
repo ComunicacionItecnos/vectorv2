@@ -132,3 +132,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', 
 })->name('revision-doc');
 
 Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
+    return view('registro-uniformes');
+})->name('registro-uniformes');
