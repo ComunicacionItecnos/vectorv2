@@ -1102,7 +1102,7 @@ class RegistroUniformes extends Component
     /* funcion para ejecutar en el render y permitir modificar las variables */
     public function todosSelect()
     {
-        $this->unidadNegocio = DB::table('unidaD_de_negocio')->get();
+        $this->unidadNegocio = DB::table('unidad_de_negocio')->get();
         
         $this->lineas = DB::table('lineas')->get();
         
