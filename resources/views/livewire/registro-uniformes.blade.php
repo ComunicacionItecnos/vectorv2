@@ -2427,30 +2427,41 @@
                         <div class="sm:grid row-start-1 grid-cols-4 gap-2 py-4">
                             @if ($areaTrabajoUnidadShow == [])
 
+                            {{-- @elseif() --}}
+
                             @else
                                 <div class="mb-2 sm:m-0 col-span-1 col-start-1">
-                                    <p class="block text-base font-medium text-gray-700">
+                                    <p class="block text-base font-medium text-gray-700 text-center">
                                         Unidad de negocio/ Área
                                     </p>
-                                    <p class="block text-base font-medium text-gray-700">
+                                    <p class="block text-base font-medium text-gray-700 text-center">
                                         @if ( $areaTrabajoUnidadShow == [] )
-                                            Area de trabajo: {{ $areaTrabajoExtraShow }}
+                                            {{ $areaTrabajoExtraShow }}
                                         @else
-                                            Area de trabajo: {{ $areaTrabajoUnidadShow[0]->id_unidadnegocio }} {{ $areaTrabajoUnidadShow[0]->nombre_linea }}
+                                            {{ $areaTrabajoUnidadShow[0]->id_unidadnegocio }} {{ $areaTrabajoUnidadShow[0]->nombre_linea }}
                                         @endif
                                     </p>
                                 </div>
                                 
                                 {{-- Sublineas --}}
                                 <div class="mb-2 sm:m-0 col-span-1 col-start-2">
-                                    <label for="sublineasinput2" class="block text-base font-medium text-gray-700">
-                                        Sublinea</label>
-                                    <select id="sublineasinput2" wire:change="sublineaInput2"
+                                    <p class="block text-base font-medium text-gray-700 text-center">
+                                        Sublinea
+                                    </p>
+                                    <p class="block text-base font-medium text-gray-700 text-center">
+                                        @if ( $areaTrabajoUnidadShow == [] )
+                                            {{ $areaTrabajoExtraShow }}
+                                        @else
+                                            {{ $areaTrabajoUnidadShow[0]->id_unidadnegocio }} {{ $areaTrabajoUnidadShow[0]->nombre_linea }}
+                                        @endif
+                                    </p>
+
+                                    <select id="sublineasinput2" wire:model="sublineasinput2"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                         
                                         @foreach ($sublineas2 as $sl)
 
-                                            @if ( $areaTrabajoUnidadShow[0]->id_sublinea == $sl[0]->id )
+                                            @if ( $areaTrabajoUnidadShow[0]->nombre_sublinea == $sl[0]->id )
                                                 <option value="{{ $sl[0]->id }}" selected>{{ $sl[0]->nombre_sublinea }}</option>
                                             @else
                                                 <option value="{{ $sl[0]->id }}">{{ $sl[0]->nombre_sublinea }}</option>
@@ -2465,7 +2476,7 @@
                                 <div class="mb-2 sm:m-0 col-span-1 col-start-3">
                                     <label for="calibresinput2" class="block text-base font-medium text-gray-700">
                                         Calibre</label>
-                                    <select id="calibresinput2" wire:change="calibreInput2"
+                                    <select id="calibresinput2" {{-- wire:change="calibreInput2" --}}
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base"
                                         >
                                         @foreach ($calibres2 as $cs)
@@ -2483,7 +2494,7 @@
                                 <div class="mb-2 sm:m-0 col-span-1 col-start-4">
                                     <label for="operacionesinput2"
                                         class="block text-base font-medium text-gray-700">Operación</label>
-                                    <select id="operacionesinput2" wire:change="operacionInput2"
+                                    <select id="operacionesinput2" wire:model="operacionesinput2" wire:change="operacioneinput2"
                                         class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
             
                                         @foreach ($operaciones2 as $os)
@@ -2511,9 +2522,9 @@
                             </div>
 
                             <div class="mb-2 sm:m-0 col-span-1 col-start-3">
-                                <label for="seleccionPaqueteInput"
+                                <label for="seleccionPaqueteInput2"
                                     class="block text-base font-medium text-gray-700">Paquetes</label>
-                                <select id="seleccionPaqueteInput" wire:model="seleccionPaqueteInput"
+                                <select id="seleccionPaqueteInput2" wire:change="seleccionPaqueteInput2"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
                                     <option></option>
                                     @foreach ($paquetes as $ps)

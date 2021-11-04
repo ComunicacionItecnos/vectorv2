@@ -216,6 +216,11 @@ $nav_links11 = [
                         {{ $nav_link['name'] }}
                     </x-jet-nav-link>
                     @endforeach
+                    @foreach ($nav_links11 as $nav_link)
+                    <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                        {{ $nav_link['name'] }}
+                    </x-jet-nav-link>
+                    @endforeach
 
                     @elseif(auth()->user()->role_id == 4)
                     @foreach ($nav_links4 as $nav_link)

@@ -8,6 +8,7 @@ use App\Models\Uniformes_talla;
 use App\Models\Uniformes_paquete;
 use Illuminate\Support\Facades\DB;
 use App\Models\Uniformes_paquete_prenda;
+use Symfony\Component\Console\Input\Input;
 
 class RegistroUniformes extends Component
 {
@@ -138,6 +139,7 @@ class RegistroUniformes extends Component
 
     public $colaboradorTrabajoOperativo;
     public $paqueteDb;
+    public $seleccionPaqueteInput2;
 
     public function mount()
     {
@@ -457,6 +459,7 @@ class RegistroUniformes extends Component
         $this->calibres2 = [];
         $this->operaciones2 = [];
         $this->editar = NULL;
+        $this->uniformesShow = [];
 
         $this->colaboradorShow = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $id)->get();
         
@@ -504,14 +507,14 @@ class RegistroUniformes extends Component
                     
                 }
 
-                /* $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id); */
-
+                $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id)->get();
+                $this->paqueteId = $this->uniformesShow[0]->nombre_paquete;
+                
                 $this->areaTrabajoExtraShow = NULL;
                          
             }else{
 
                 $this->areaTrabajoUnidadShow = NULL;
-
                 dd('Es areaExtra');
 
             }
@@ -530,19 +533,19 @@ class RegistroUniformes extends Component
 
     }
 
-    public function sublineaInput2()
-    {
-        dd('Test');
-    }
-
     public function calibreInput2()
     {
-        dd('Test');
+        dd($this->calibresinput2);
     }
 
-    public function operacionInput2()
+    public function operacioneinput2()
     {
-        dd('Test');
+        dd($this->operacionesinput2);
+        /* dd($this->operacionesinput2); */
+    }
+
+    public function seleccionPaqueteInput2(){
+        dd('Cambio');
     }
 
     /* Filtrado por unidad de negocio y lineas*/
