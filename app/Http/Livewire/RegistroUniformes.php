@@ -136,10 +136,14 @@ class RegistroUniformes extends Component
     public $sublineas2;
     public $calibres2;
     public $operaciones2;
-
-    public $colaboradorTrabajoOperativo;
-    public $paqueteDb;
     public $seleccionPaqueteInput2;
+
+    public $EditarPaquete;
+    public $id_unidadNegocio;
+    public $nombre_linea;
+    public $nombre_sublinea;
+    public $nombre_calibre;
+    public $nombre_operacion;
 
     public function mount()
     {
@@ -157,7 +161,7 @@ class RegistroUniformes extends Component
             'colaborador_uniforme_paquete' => DB::table('vu_colaborador_paquete')->orwhere('no_colaborador', 'LIKE', "%{$this->search}%")
                 ->orWhere("nombre_desc", "LIKE", "%{$this->search}%")
                 ->orWhere("nombre_paquete", "LIKE", "%{$this->search}%")
-                ->groupBy('no_colaborador','paquete_id')
+                ->groupBy('no_colaborador')
                 ->orderBy('id', 'DESC')
                 ->paginate($this->perPage)
         ,]);
@@ -455,15 +459,15 @@ class RegistroUniformes extends Component
 
         $this->areaTrabajoUnidadShow = [];
         $this->areaTrabajoExtraShow = NULL;
-
-        $this->sublineas2 = [];
-        $this->calibres2 = [];
-        $this->operaciones2 = [];
-        $this->editar = NULL;
-        $this->uniformesShow = [];
+        $this->EditarPaquete = NULL;
+        $this->id_unidadNegocio = NULL;
+        $this->nombre_linea = NULL;
+        $this->nombre_sublinea = NULL;
+        $this->nombre_calibre = NULL;
+        $this->nombre_operacion = NULL;
+        $this->paqueteEleccion = NULL;
 
         $this->colaboradorShow = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $id)->get();
-        
         if (count($this->colaboradorShow) > 0) {
 
             $this->nombreCompleto = $this->colaboradorShow[0]->nombre_completo;
@@ -472,74 +476,58 @@ class RegistroUniformes extends Component
             $this->genero = $this->colaboradorShow[0]->nombre_genero;
             $this->foto = $this->colaboradorShow[0]->foto;
 
-            $this->colaboradorTrabajoOperativo = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$id)->get();
+            $this->areaTrabajoUnidadShow = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$id)->get();
+            $this->areaTrabajoExtraShow = $this->areaTrabajoUnidadShow;
+
+            $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id)->get();
+            $this->paqueteEleccion = $this->uniformesShow[0]->nombre_paquete;
             
-            if($this->colaboradorTrabajoOperativo[0]->id_area_trabajo_operativo != null){
+
+            if($this->areaTrabajoUnidadShow[0]->areaExterna == NULL){
                 
-                $this->areaTrabajoUnidadShow = DB::select("SELECT ato.id,ato.id_unidadnegocio,ato.id_linea,ls.nombre_linea,ato.id_sublinea,sl.nombre_sublinea,ato.id_calibre,cs.nombre_calibre,ato.id_operacion,os.nombre_operacion FROM `area_trabajo_operativo` ato 
+                unset($this->areaTrabajoUnidadShow[0]->areaExterna);
+                
+                $this->areaTrabajoUnidadShow = DB::select("SELECT ato.id_unidadnegocio,ls.nombre_linea,sl.nombre_sublinea,cs.nombre_calibre,os.nombre_operacion FROM `area_trabajo_operativo` ato 
                 JOIN lineas ls ON ls.id = ato.id_unidadnegocio 
                 JOIN sublineas sl ON sl.id = ato.id_sublinea
                 JOIN calibres cs ON cs.id = ato.id_calibre
                 JOIN operaciones os ON os.id = ato.id_operacion
-                WHERE ato.id =".$this->colaboradorTrabajoOperativo[0]->id_area_trabajo_operativo);
+                WHERE ato.id =".$this->areaTrabajoUnidadShow[0]->id_area_trabajo_operativo);
 
-                $buscar = DB::table('area_trabajo_operativo')->where('id',$this->colaboradorTrabajoOperativo[0]->id_area_trabajo_operativo)->get();
-                   
-                $editar2 = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$buscar[0]->id_unidadnegocio.' && id_linea ='.$buscar[0]->id_linea.' && id_sublinea='.$buscar[0]->id_sublinea);
-                $editar3 = DB::select('SELECT DISTINCT id_unidadnegocio,id_linea,id_sublinea,id_calibre,id_operacion FROM `area_trabajo_operativo` WHERE id_unidadnegocio = '.$buscar[0]->id_unidadnegocio.' && id_linea ='.$buscar[0]->id_linea.' && id_sublinea='.$buscar[0]->id_sublinea
-                .' && id_calibre='.$buscar[0]->id_calibre);
+                $this->id_unidadNegocio = $this->areaTrabajoUnidadShow[0]->id_unidadnegocio;
+                $this->nombre_linea = $this->areaTrabajoUnidadShow[0]->nombre_linea;
+                $this->nombre_sublinea = $this->areaTrabajoUnidadShow[0]->nombre_sublinea;
+                $this->nombre_calibre = $this->areaTrabajoUnidadShow[0]->nombre_calibre;
+                $this->nombre_operacion = $this->areaTrabajoUnidadShow[0]->nombre_operacion;
 
-                /* Calibres */
-                foreach ($editar2 as $er2) {
-                    $this->calibres2[] = DB::table('calibres')->where('id',$er2->id_calibre)->get();
-                }
-
-                /* Operacion */
-                foreach ($editar3 as $er3) {
-                    $this->operaciones2[] = DB::table('operaciones')->where('id',$er3->id_operacion)->get();
-                    
-                }
-
-                $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id)->get();
-                $this->paqueteId = $this->uniformesShow[0]->nombre_paquete;
-                
                 $this->areaTrabajoExtraShow = NULL;
-                         
-            }else{
 
-                $this->areaTrabajoUnidadShow = NULL;
-                dd('Es areaExtra');
+            }elseif($this->areaTrabajoExtraShow[0]->id_area_trabajo_operativo == NULL){
 
+                unset($this->areaTrabajoExtraShow[0]->id_area_trabajo_operativo);
+                
+                $this->areaTrabajoExtraShow = $this->areaTrabajoExtraShow[0]->areaExterna;
+                $this->areaTrabajoUnidadShow = [];
             }
 
-        }else{
 
+        }else{
             $this->nombreCompleto = NULL;
             $this->area = NULL;
             $this->genero = NULL;
             $this->foto = NULL;
-
-            $this->areaTrabajoUnidadShow = [];
+            $this->uniformesShow = [];
+            $this->paqueteId = NULL;
+            $this->areaTrabajoShow = NULL;
             $this->areaTrabajoExtraShow = NULL;
-
+            $this->areaTrabajoUnidadShow = [];
         }
-
     }
 
-    public function calibreInput2()
-    {
-        dd($this->calibresinput2);
-    }
-
-    public function operacioneinput2()
-    {
-        dd($this->operacionesinput2);
-        /* dd($this->operacionesinput2); */
-    }
-
-    public function seleccionPaqueteInput2(){
-        dd('Cambio');
-    }
+    /* public function updatedEditarPaquete(){
+        $this->areaTrabajoUnidadShow;
+        $this->EditarPaquete;
+    } */
 
     /* Filtrado por unidad de negocio y lineas*/
     public function updatedunidadNegocioinput()
@@ -1264,10 +1252,10 @@ class RegistroUniformes extends Component
             $areaInsertar = null;
 
             /* Evitar registrar doble */
-           /*  $evitarDobleUniformes = DB::table('colaborador_uniforme_paquete')->where('colaborador_no_colaborador',$this->colaboradorBusca)->get();
-            $evitarDobleTrabajo = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$this->colaboradorBusca)->get(); */
+            $evitarDobleUniformes = DB::table('colaborador_uniforme_paquete')->where('colaborador_no_colaborador',$this->colaboradorBusca)->get();
+            $evitarDobleTrabajo = DB::table('colaborador_trabajooperativo')->where('no_colaborador',$this->colaboradorBusca)->get();
 
-            /* if (count($evitarDobleTrabajo) > 0 && count($evitarDobleUniformes) > 0) {
+            if (count($evitarDobleTrabajo) > 0 && count($evitarDobleUniformes) > 0) {
                 $this->flash('error', 'Ya se encuentra registrado el colaborador: '.$this->colaboradorBusca, [
                     'position' =>  'center',
                     'timer' =>  3500,
@@ -1279,7 +1267,7 @@ class RegistroUniformes extends Component
                     'showConfirmButton' =>  false,
                 ]);
                 return redirect()->to('/uniformes/');
-            }else{ */
+            }else{
 
                 if ($arrayArea2[0] == null) {
 
@@ -1342,7 +1330,7 @@ class RegistroUniformes extends Component
     
                 }
 
-            /* } */
+            } 
 
             if ($res == true && $res2 == true) {
 

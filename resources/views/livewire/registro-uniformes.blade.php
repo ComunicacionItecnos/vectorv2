@@ -2236,10 +2236,13 @@
                             
                         </form>
 
+
+                        <button wire:click="showTabla" type="button"
+                        class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Regresar</button>
+
                     </div>
 
-                    <button wire:click="showTabla" type="button"
-                        class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Regresar</button>
+                    
                 </div>
 
             </fieldset>
@@ -2307,10 +2310,14 @@
                             Área: {{ $area }}
                         </p>
                         <p class="py-4 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
+                            Área de trabajo:
                             @if ( $areaTrabajoUnidadShow == [] )
-                                Area de trabajo: {{ $areaTrabajoExtraShow }}
+                                {{ $areaTrabajoExtraShow }}
                             @else
-                                Area de trabajo: {{ $areaTrabajoUnidadShow[0]->id_unidadnegocio }} {{ $areaTrabajoUnidadShow[0]->nombre_linea }} {{ $areaTrabajoUnidadShow[0]->nombre_sublinea }} {{ $areaTrabajoUnidadShow[0]->nombre_calibre }} / {{ $areaTrabajoUnidadShow[0]->nombre_operacion }}
+                                @foreach ($areaTrabajoUnidadShow as $aU)
+                                    {{ $aU->id_unidadnegocio }} {{ $aU->nombre_linea }} {{ $aU->nombre_sublinea }} {{ $aU->nombre_calibre }} / {{ $aU->nombre_operacion }}
+                                @endforeach
+                                {{-- {{ $areaTrabajoUnidadShow[0]->id_unidadnegocio }} {{ $areaTrabajoUnidadShow[0]->nombre_linea }} {{ $areaTrabajoUnidadShow[0]->nombre_sublinea }} {{ $areaTrabajoUnidadShow[0]->nombre_calibre }} / {{ $areaTrabajoUnidadShow[0]->nombre_operacion }} --}}
                             @endif
                         </p>
 
@@ -2421,105 +2428,59 @@
 
                     {{-- Editar uniformes --}}
                     <div class="col-span-full sm:col-span-6 py-3">
-                        
-                        {{-- Area y seleccion de la operacion al que pertenece --}}
-                        <div class="sm:grid row-start-1 grid-cols-4 gap-2 py-4">
-                            @if ($areaTrabajoUnidadShow == [])
-                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
-                                    <p class="block text-base font-medium text-gray-700 text-center">
-                                        Unidad de negocio/ Área
-                                    </p>
-                                    <p class="block text-base font-medium text-gray-700 text-center">
-                                        {{ $areaTrabajoExtraShow }}
-                                    </p>
-                                </div>
-                            @else
-                                {{-- Unidad de negocio --}}
-                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
-                                    <p class="block text-base font-medium text-gray-700 text-center">
-                                        Unidad de negocio/ Área
-                                    </p>
-                                    <p class="block text-base font-medium text-gray-700 text-center">
-                                        {{ $areaTrabajoUnidadShow[0]->id_unidadnegocio }} {{ $areaTrabajoUnidadShow[0]->nombre_linea }}
-                                    </p>
-                                </div>
-                                
-                                {{-- Sublineas --}}
-                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
-                                    <p class="block text-base font-medium text-gray-700 text-center">
-                                        Sublinea
-                                    </p>
-                                    <p class="block text-base font-medium text-gray-700 text-center">
-                                        @if ( $areaTrabajoUnidadShow == [] )
-                                            {{ $areaTrabajoExtraShow }}
-                                        @else
-                                            {{ $areaTrabajoUnidadShow[0]->nombre_sublinea }}
-                                        @endif
-                                    </p>
-                                </div>
 
-                                {{-- Calibres --}}
-                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
-                                    <label for="calibresinput2" class="block text-base font-medium text-gray-700">
-                                        Calibre</label>
-                                    <select id="calibresinput2" {{-- wire:model="calibresinput2" --}} 
-                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base"
-                                        >
-                                        @foreach ($calibres2 as $cs)
-                                            @if ( $areaTrabajoUnidadShow[0]->id_calibre == $cs[0]->id )
-                                                <option value="{{ $cs[0]->id }}" selected>{{ $cs[0]->nombre_calibre }}</option>
-                                            @else
-                                                <option value="{{ $cs[0]->id }}">{{ $cs[0]->nombre_calibre }}</option>
-                                            @endif
-                                        @endforeach
-
-                                    </select>
-                                </div>
-
-                                {{-- Operaciones --}}
-                                <div class="mb-2 sm:m-0 col-span-1 col-start-4">
-                                    <label for="operacionesinput2"
-                                        class="block text-base font-medium text-gray-700">Operación</label>
-                                    <select id="operacionesinput2" {{-- wire:model="operacionesinput2" --}}
-                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-            
-                                        @foreach ($operaciones2 as $os)
-
-                                            @if ( $areaTrabajoUnidadShow[0]->id_operacion == $os[0]->id )
-                                                <option value="{{ $os[0]->id }}" selected>{{ $os[0]->nombre_operacion }}</option>
-                                            @else
-                                                <option value="{{ $os[0]->id }}">{{ $os[0]->nombre_operacion }}</option>
-                                            @endif
-
-                                        @endforeach
-                                       
-                                    </select>
-                                </div>
-
+                        <p class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
+                            Área: {{ $area }}
+                        </p>
+                        <p class="py-4 w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
+                            Área de trabajo:
+                            @if ( $areaTrabajoUnidadShow == [] )
+                                {{ $areaTrabajoExtraShow }}
+                            @elseif($areaTrabajoExtraShow == NULL)
+                                {{ $id_unidadNegocio }} 
+                                {{ $nombre_linea }}
+                                {{ $nombre_sublinea }}
+                                {{ $nombre_calibre }} /
+                                {{ $nombre_operacion }}
                             @endif
-                        </div>
+                        </p>
 
-                        <div class="sm:grid row-start-1 grid-cols-5 gap-2 py-4">
-
-                            <div class="mb-2 sm:m-0 col-span-full">
-                                <p class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 text-lg text-center">
-                                    {{ $paqueteId }}
-                                </p>
-                            </div>
-
-                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
-                                <label for="seleccionPaqueteInput2"
-                                    class="block text-base font-medium text-gray-700">Paquetes</label>
-                                <select id="seleccionPaqueteInput2" wire:change="seleccionPaqueteInput2"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
-                                    <option></option>
-                                    @foreach ($paquetes as $ps)
-                                        <option value="{{ $ps->id }}">{{ $ps->nombre_paquete }}</option>
-                                    @endforeach
+                        {{-- Area y seleccion de la operacion al que pertenece --}}
+                        <div class="sm:grid row-start-1 grid-cols-3 gap-2 py-4">
+                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                <label for="EditarPaquete" class="block text-base font-medium text-gray-700">
+                                ¿Qué desea realizar?</label>
+                                <select id="EditarPaquete" wire:model="EditarPaquete"
+                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base"
+                                    >
+                                    <option value="0"></option>
+                                    <option value="1">Editar Tallas</option>
+                                    <option value="2">Nuevo Paquete</option>
+                                    <option value="3">Ver Paquetes Asignados</option>
                                 </select>
                             </div>
+                        </div>  
+                        
+                        @if ($EditarPaquete == 1)
 
-                        </div>
+                            <div class="sm:grid row-start-1 grid-cols-3 gap-2 py-4">
+
+                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                    <p class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
+                                        {{ $paqueteEleccion }}
+                                    </p>
+                                    
+                                </div>
+                                
+                            </div>
+                            
+                        @elseif($EditarPaquete == 2)
+                            <p>Dentro de nuevo paquete</p>
+                        @elseif($EditarPaquete == 3)
+                            <p>Todos los paquetes y tallas asignados con anterioridad</p>
+                        @else
+                            <p>Vacio</p>
+                        @endif
 
                     </div>
 
