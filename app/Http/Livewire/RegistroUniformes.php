@@ -488,7 +488,7 @@ class RegistroUniformes extends Component
             $this->areaTrabajoExtraShow = $this->areaTrabajoUnidadShow;
 
             $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id)->get();
-            dd($this->uniformesShow);
+            /* dd($this->uniformesShow); */
             $this->paqueteEleccion = $this->uniformesShow[0]->nombre_paquete;
             $this->paqueteId = $this->uniformesShow[0]->paquete_id;
             
@@ -1396,7 +1396,6 @@ class RegistroUniformes extends Component
     public function excelDescargar()
     {
         $this->reset(['lista','paqueteEleccion']);
-        $nombre_Paquete = NULL;
 
         $fecha = Carbon::now();
         if ($this->exportarUniformes == "" || $this->exportarUniformes == null || $this->exportarUniformes == 0) {
