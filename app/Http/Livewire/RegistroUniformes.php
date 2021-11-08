@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use Carbon\Carbon;
 use Livewire\Component;
 use Livewire\WithPagination;
 use App\Models\Uniformes_talla;
+use App\Exports\UniformesExport;
 use App\Models\Uniformes_paquete;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Uniformes_paquete_prenda;
-use Symfony\Component\Console\Input\Input;
+
 
 class RegistroUniformes extends Component
 {
@@ -144,6 +147,10 @@ class RegistroUniformes extends Component
     public $nombre_sublinea;
     public $nombre_calibre;
     public $nombre_operacion;
+
+    public $exportarUniformes;
+    public $exportarModal =false;
+    public $lista;
 
     public function mount()
     {
@@ -466,6 +473,7 @@ class RegistroUniformes extends Component
         $this->nombre_calibre = NULL;
         $this->nombre_operacion = NULL;
         $this->paqueteEleccion = NULL;
+        $this->paqueteId = NULL;
 
         $this->colaboradorShow = DB::table("infocolaborador")->where("no_colaborador", "LIKE", $id)->get();
         if (count($this->colaboradorShow) > 0) {
@@ -480,8 +488,11 @@ class RegistroUniformes extends Component
             $this->areaTrabajoExtraShow = $this->areaTrabajoUnidadShow;
 
             $this->uniformesShow = DB::table('vu_colaborador_paquete')->where('no_colaborador',$id)->get();
+            dd($this->uniformesShow);
             $this->paqueteEleccion = $this->uniformesShow[0]->nombre_paquete;
+            $this->paqueteId = $this->uniformesShow[0]->paquete_id;
             
+            $this->tallaMethod();
 
             if($this->areaTrabajoUnidadShow[0]->areaExterna == NULL){
                 
@@ -523,11 +534,6 @@ class RegistroUniformes extends Component
             $this->areaTrabajoUnidadShow = [];
         }
     }
-
-    /* public function updatedEditarPaquete(){
-        $this->areaTrabajoUnidadShow;
-        $this->EditarPaquete;
-    } */
 
     /* Filtrado por unidad de negocio y lineas*/
     public function updatedunidadNegocioinput()
@@ -1376,6 +1382,50 @@ class RegistroUniformes extends Component
 
     public function cerrarModal(){
         $this->modalAbrir = false;
+    }
+
+
+    /* Mostrar y ocultar modal Excel */
+    public function modalExcel()
+    {
+        $this->exportarModal = !$this->exportarModal;
+        $this->reset(['exportarUniformes','lista']);
+    }
+
+    /* Exportar paquete */
+    public function excelDescargar()
+    {
+        $this->reset(['lista','paqueteEleccion']);
+        $nombre_Paquete = NULL;
+
+        $fecha = Carbon::now();
+        if ($this->exportarUniformes == "" || $this->exportarUniformes == null || $this->exportarUniformes == 0) {
+            $this->lista = DB::select('SELECT cup.colaborador_no_colaborador,cr.nombre_1,cr.nombre_2,cr.ap_paterno,cr.ap_materno,up.nombre_paquete,upa.prenda,ut.talla FROM colaborador_uniforme_paquete AS cup
+            JOIN colaborador cr ON cr.no_colaborador = cup.colaborador_no_colaborador
+            JOIN uniformes_paquete up ON up.id = cup.uniformes_paquete_id
+            JOIN uniformes_talla ut ON ut.id = cup.uniformes_talla_id
+            JOIN uniformes_prenda upa ON upa.id = ut.uniformes_prenda_id');
+            $this->lista = collect($this->lista);
+            
+            return Excel::download(new UniformesExport($this->lista), 'Uniformes-TodosLosPaquetes(' . $fecha . ').xlsx');
+        } else {
+            $this->lista = DB::select('SELECT cup.colaborador_no_colaborador,cr.nombre_1,cr.nombre_2,cr.ap_paterno,cr.ap_materno,up.nombre_paquete,upa.prenda,ut.talla FROM colaborador_uniforme_paquete AS cup
+            JOIN colaborador cr ON cr.no_colaborador = cup.colaborador_no_colaborador
+            JOIN uniformes_paquete up ON up.id = cup.uniformes_paquete_id
+            JOIN uniformes_talla ut ON ut.id = cup.uniformes_talla_id
+            JOIN uniformes_prenda upa ON upa.id = ut.uniformes_prenda_id
+            WHERE cup.uniformes_paquete_id ='.$this->exportarUniformes);
+            $this->lista = collect($this->lista);
+            
+            foreach ($this->paquetes as $ps) {
+                if ($this->exportarUniformes ==  $ps->id) {
+                    $this->paqueteEleccion = $ps->nombre_paquete;
+                }
+            }
+            
+            return Excel::download(new UniformesExport($this->lista), 'Uniformes-'.$this->paqueteEleccion.'(' . $fecha . ').xlsx');
+        }
+        
     }
 
 }

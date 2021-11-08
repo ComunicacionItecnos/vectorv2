@@ -2236,12 +2236,10 @@
                             
                         </form>
 
-
                         <button wire:click="showTabla" type="button"
                         class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Regresar</button>
 
                     </div>
-
                     
                 </div>
 
@@ -2425,7 +2423,7 @@
                         </div>
 
                     </div>
-
+                    
                     {{-- Editar uniformes --}}
                     <div class="col-span-full sm:col-span-6 py-3">
 
@@ -2465,13 +2463,1114 @@
 
                             <div class="sm:grid row-start-1 grid-cols-3 gap-2 py-4">
 
+                                {{-- Paquete y Tallas --}}
                                 <div class="mb-2 sm:m-0 col-span-1 col-start-2">
                                     <p class="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-violet-400 dark:border-coolGray-700 dark:text-coolGray-900">
                                         {{ $paqueteEleccion }}
                                     </p>
-                                    
                                 </div>
-                                
+
+                                <div class="mb-2 sm:m-0 col-span-full col-start-full">
+                                    
+                                    <div class="sm:grid row-start-1 grid-cols-4 gap-2 py-4">
+                                        
+                                        {{-- Paquete 1 TORRE DE PLOMO --}}
+                                        @if ($paqueteId == 2)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas4"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas4 }}</label>
+                                                <select id="Selecionprendas4" wire:model="Selecionprendas4"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas9"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas9 }}</label>
+                                                <select id="Selecionprendas9" wire:model="Selecionprendas9"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[3] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Paquete 2 PRODUCCION FC,FA Y ALAMACEN --}}
+                                        @if ($paqueteId == 3)
+
+                                            @foreach ($uniformesShow as $uS )
+                                                
+                                                @if ($uS['prenda'] == $prendas15)
+                                                    <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                        <p>{{ $uS['prenda'] }}</p>
+                                                        <p>{{ $uS['talla'] }}</p>
+                                                    </div>
+
+                                                    <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                        <label for="Selecionprendas15"
+                                                            class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                        <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                            <option></option>
+                                                            @foreach ($tallas[0] as $ts)
+                                                                <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                @elseif($uS['prenda'] == $prendas3)
+                                                    <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                        <p>{{ $uS['prenda'] }}</p>
+                                                        <p>{{ $uS['talla'] }}</p>
+                                                    </div>
+
+                                                    <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                        <label for="Selecionprendas3"
+                                                            class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                        <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                            <option></option>
+                                                            @foreach ($tallas[1] as $ts)
+                                                                <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                @elseif($uS['prenda'] == $prendas17)
+                                                    <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                        <p>{{ $uS['prenda'] }}</p>
+                                                        <p>{{ $uS['talla'] }}</p>
+                                                    </div>
+
+                                                    <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                        <label for="Selecionprendas17"
+                                                            class="block text-base font-medium text-gray-700">{{ $prendas17 }}</label>
+                                                        <select id="Selecionprendas17" wire:model="Selecionprendas17"
+                                                            class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                            <option></option>
+                                                            @foreach ($tallas[2] as $ts)
+                                                                <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                @endif
+
+                                            @endforeach
+                                            
+                                        @endif
+                                        {{-- Paquete 3 BLANCO --}}
+                                        @if ($paqueteId == 4)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas14"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas14 }}</label>
+                                                <select id="Selecionprendas14" wire:model="Selecionprendas14"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas18"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas18 }}</label>
+                                                <select id="Selecionprendas18" wire:model="Selecionprendas18"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas12"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas12 }}</label>
+                                                <select id="Selecionprendas12" wire:model="Selecionprendas12"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            @if ($this->genero == 'Masculino')
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas20"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas20 }}</label>
+                                                    <select id="Selecionprendas20" wire:model="Selecionprendas20"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[4] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[6] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas11"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas11 }}</label>
+                                                    <select id="Selecionprendas11" wire:model="Selecionprendas11"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[7] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas3"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                    <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[8] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas21"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas21 }}</label>
+                                                    <select id="Selecionprendas21" wire:model="Selecionprendas21"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[9] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas13"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas13 }}</label>
+                                                    <select id="Selecionprendas13" wire:model="Selecionprendas13"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[10] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
+                                            @if ($this->genero == 'Femenino')
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas22"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas22 }}</label>
+                                                    <select id="Selecionprendas22" wire:model="Selecionprendas22"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[3] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas7"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas7 }}</label>
+                                                    <select id="Selecionprendas7" wire:model="Selecionprendas7"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[5] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[6] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas11"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas11 }}</label>
+                                                    <select id="Selecionprendas11" wire:model="Selecionprendas11"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[7] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas3"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                    <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[8] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas21"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas21 }}</label>
+                                                    <select id="Selecionprendas21" wire:model="Selecionprendas21"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[9] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas13"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas13 }}</label>
+                                                    <select id="Selecionprendas13" wire:model="Selecionprendas13"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[10] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas19"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas19 }}</label>
+                                                <select id="Selecionprendas19" wire:model="Selecionprendas19"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[11] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                        @endif
+                                        {{-- Paquete 4 Carga FC --}}
+                                        @if ($paqueteId == 5)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas17"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas17 }}</label>
+                                                <select id="Selecionprendas17" wire:model="Selecionprendas17"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas12"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas12 }}</label>
+                                                <select id="Selecionprendas12" wire:model="Selecionprendas12"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            @if ($this->genero == 'Masculino')
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas20"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas20 }}</label>
+                                                    <select id="Selecionprendas20" wire:model="Selecionprendas20"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[4] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas1"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas1 }}</label>
+                                                    <select id="Selecionprendas1" wire:model="Selecionprendas1"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[6] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas3"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                    <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[7] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[8] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
+                                            @if ($this->genero == 'Femenino')
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas22"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas22 }}</label>
+                                                    <select id="Selecionprendas22" wire:model="Selecionprendas22"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[3] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas7"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas7 }}</label>
+                                                    <select id="Selecionprendas7" wire:model="Selecionprendas5"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[5] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas1"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas1 }}</label>
+                                                    <select id="Selecionprendas1" wire:model="Selecionprendas1"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[6] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas3"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                    <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[7] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[8] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
+                                        @endif
+                                        {{-- Paquete 5 Carga FA (Linea 22) --}}
+                                        @if ($paqueteId == 6)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas17"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas17 }}</label>
+                                                <select id="Selecionprendas17" wire:model="Selecionprendas17"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas12"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas12 }}</label>
+                                                <select id="Selecionprendas12" wire:model="Selecionprendas12"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            @if ($this->genero == 'Masculino')
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas20"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas20 }}</label>
+                                                    <select id="Selecionprendas20" wire:model="Selecionprendas20"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[4] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas1"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas1 }}</label>
+                                                    <select id="Selecionprendas1" wire:model="Selecionprendas1"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[6] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas3"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                    <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[7] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[8] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
+                                            @if ($this->genero == 'Femenino')
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas22"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas22 }}</label>
+                                                    <select id="Selecionprendas22" wire:model="Selecionprendas22"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[3] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas7"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas7 }}</label>
+                                                    <select id="Selecionprendas7" wire:model="Selecionprendas5"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[5] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas1"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas1 }}</label>
+                                                    <select id="Selecionprendas1" wire:model="Selecionprendas1"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[6] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                    <label for="Selecionprendas3"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                    <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[7] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[8] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
+                                        @endif
+                                        {{-- Paquete 6 MANETENIMIENTO GENERAL --}}
+                                        @if ($paqueteId == 7)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas10"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas10 }}</label>
+                                                <select id="Selecionprendas10" wire:model="Selecionprendas10"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas12"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas12 }}</label>
+                                                <select id="Selecionprendas12" wire:model="Selecionprendas12"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[3] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            @if ($this->genero == 'Femenino')
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[5] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @else
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                    <label for="Selecionprendas20"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas20 }}</label>
+                                                    <select id="Selecionprendas20" wire:model="Selecionprendas20"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[4] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+
+                                                <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                    <label for="Selecionprendas8"
+                                                        class="block text-base font-medium text-gray-700">{{ $prendas8 }}</label>
+                                                    <select id="Selecionprendas8" wire:model="Selecionprendas8"
+                                                        class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                        <option></option>
+                                                        @foreach ($tallas[5] as $ts)
+                                                            <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            @endif
+
+                                        @endif
+                                        {{-- Paquete 7 LAVADO(S) --}}
+                                        @if ($paqueteId == 8)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas16"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas16 }}</label>
+                                                <select id="Selecionprendas16" wire:model="Selecionprendas16"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas11"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas11 }}</label>
+                                                <select id="Selecionprendas11" wire:model="Selecionprendas11"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Paquete 8 HORNO(S) --}}
+                                        @if ($paqueteId == 9)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas10"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas10 }}</label>
+                                                <select id="Selecionprendas10" wire:model="Selecionprendas10"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Paquete 9 Herramientas Especial --}}
+                                        @if ($paqueteId == 10)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas10"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas10 }}</label>
+                                                <select id="Selecionprendas10" wire:model="Selecionprendas10"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas17"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas17 }}</label>
+                                                <select id="Selecionprendas17" wire:model="Selecionprendas17"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[3] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                        @endif
+                                        {{-- Paquete 10 CONTROL AMBIENTAL --}}
+                                        @if ($paqueteId == 11)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas10"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas10 }}</label>
+                                                <select id="Selecionprendas10" wire:model="Selecionprendas10"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                        @endif
+                                        {{-- Paquete 11 COMPONENTES (DETONADORES) --}}
+                                        @if ($paqueteId == 12)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas11"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas11 }}</label>
+                                                <select id="Selecionprendas11" wire:model="Selecionprendas11"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas17"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas17 }}</label>
+                                                <select id="Selecionprendas17" wire:model="Selecionprendas17"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas16"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas16 }}</label>
+                                                <select id="Selecionprendas16" wire:model="Selecionprendas16"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[3] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[4] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Paquete 12 TROQUELADOS --}}
+                                        @if ($paqueteId == 13)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas2"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas2 }}</label>
+                                                <select id="Selecionprendas2" wire:model="Selecionprendas2"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas9"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas9 }}</label>
+                                                <select id="Selecionprendas9" wire:model="Selecionprendas9"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Paquete 13 PAILERIA --}}
+                                        @if ($paqueteId == 14)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas6"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas6 }}</label>
+                                                <select id="Selecionprendas6" wire:model="Selecionprendas6"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas10"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas10 }}</label>
+                                                <select id="Selecionprendas10" wire:model="Selecionprendas10"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Paqute 14 ENCERADOS --}}
+                                        @if ($paqueteId == 15)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas10"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas10 }}</label>
+                                                <select id="Selecionprendas10" wire:model="Selecionprendas10"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif
+                                        {{-- Paquete 15 SINDICATO --}}
+                                        @if ($paqueteId == 16)
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-1">
+                                                <label for="Selecionprendas15"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas15 }}</label>
+                                                <select id="Selecionprendas15" wire:model="Selecionprendas15"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[0] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-2">
+                                                <label for="Selecionprendas3"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas3 }}</label>
+                                                <select id="Selecionprendas3" wire:model="Selecionprendas3"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[1] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+
+                                            <div class="mb-2 sm:m-0 col-span-1 col-start-3">
+                                                <label for="Selecionprendas17"
+                                                    class="block text-base font-medium text-gray-700">{{ $prendas17 }}</label>
+                                                <select id="Selecionprendas17" wire:model="Selecionprendas17"
+                                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                                    <option></option>
+                                                    @foreach ($tallas[2] as $ts)
+                                                        <option value="{{ $ts['id'] }}">{{ $ts['talla'] }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        @endif  
+                                    </div>
+
+                                </div>
                             </div>
                             
                         @elseif($EditarPaquete == 2)
@@ -2501,7 +3600,7 @@
                     <div class="grid grid-cols-4">
                         <div class="col-span-1 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
                             <select wire:model='perPage'
-                                class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
+                                class="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
                                 <option value="5">5</option>
                                 <option value="10">10</option>
                                 <option value="25">25</option>
@@ -2510,9 +3609,17 @@
                             </select>
 
                             <button type="button" wire:click="showRegistro"
-                                class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+                                mr-2">
                                 Nuevo
                             </button>
+
+                            <button type="button" wire:click="modalExcel"
+                                class="ml-1 inline-flex justify-center px-4 py-2 text-sm font-black text-white bg-green-600 border border-transparent rounded-md shadow-sm hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500
+                                mr-2">
+                                Exportar
+                            </button>
+
                         </div>
 
                         <div class="col-span-3 flex px-2 py-2 bg-white border-t border-gray-200 sm:px-3">
@@ -2596,6 +3703,63 @@
         <div class="grid xs:grid-cols-1 sm:grid-cols-1 bg-white border-t border-gray-200 sm:px-6 py-4">
             {{ $colaborador_uniforme_paquete->links() }}
         </div>
+
+
+        <!-- This example requires Tailwind CSS v2.0+ -->
+        <div class="fixed z-10 inset-0 overflow-y-auto @if($exportarModal) @else hidden @endif" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+               
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            
+                <!-- This element is to trick the browser into centering the modal contents. -->
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+            
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-green-500 sm:mx-0 sm:h-10 sm:w-10">
+                            <!-- Heroicon name: outline/exclamation -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-white" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M7.707 10.293a1 1 0 10-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 11.586V6h5a2 2 0 012 2v7a2 2 0 01-2 2H4a2 2 0 01-2-2V8a2 2 0 012-2h5v5.586l-1.293-1.293zM9 4a1 1 0 012 0v2H9V4z" />
+                            </svg>
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                    Exportar uniformes
+                                </h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">
+                                        Seleccion alguna de estas opciones
+                                    </p>
+
+                                    <select wire:model='exportarUniformes'
+                                    class="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4">
+                                        <option></option>
+                                        <option value="0">Todos los paquetes</option>
+                                        @foreach ($paquetes as $ps)
+                                            <option value="{{ $ps->id }}">{{ $ps->nombre_paquete }}</option>
+                                        @endforeach
+                                    </select>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue-600 text-base font-medium text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:ml-3 sm:w-auto sm:text-sm"
+                        wire:click="excelDescargar">
+                            Descargar
+                        </button>
+                        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        wire:click="modalExcel">
+                            Cancel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+  
+
     </section>
 
 </div>
