@@ -1404,7 +1404,7 @@ class RegistroUniformes extends Component
             JOIN colaborador cr ON cr.no_colaborador = cup.colaborador_no_colaborador
             JOIN uniformes_paquete up ON up.id = cup.uniformes_paquete_id
             JOIN uniformes_talla ut ON ut.id = cup.uniformes_talla_id
-            JOIN uniformes_prenda upa ON upa.id = ut.uniformes_prenda_id');
+            JOIN uniformes_prenda upa ON upa.id = ut.uniformes_prenda_id ORDER BY cup.colaborador_no_colaborador');
             $this->lista = collect($this->lista);
             
             return Excel::download(new UniformesExport($this->lista), 'Uniformes-TodosLosPaquetes(' . $fecha . ').xlsx');
@@ -1414,7 +1414,7 @@ class RegistroUniformes extends Component
             JOIN uniformes_paquete up ON up.id = cup.uniformes_paquete_id
             JOIN uniformes_talla ut ON ut.id = cup.uniformes_talla_id
             JOIN uniformes_prenda upa ON upa.id = ut.uniformes_prenda_id
-            WHERE cup.uniformes_paquete_id ='.$this->exportarUniformes);
+            WHERE cup.uniformes_paquete_id ='.$this->exportarUniformes.' ORDER BY cup.colaborador_no_colaborador');
             $this->lista = collect($this->lista);
             
             foreach ($this->paquetes as $ps) {
