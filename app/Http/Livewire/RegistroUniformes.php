@@ -26,6 +26,8 @@ class RegistroUniformes extends Component
     protected $listeners = [
         'registro',
         'cancelled',
+        'actulizarTallas',
+        'cancelled2'
     ];
 
     /* Variables */
@@ -184,9 +186,33 @@ class RegistroUniformes extends Component
         $this->tallas = [];
         $tallasPaquetes = [];
 
+        $this->Selecionprendas1 = NULL;
+        $this->Selecionprendas2 = NULL;
+        $this->Selecionprendas3 = NULL;
+        $this->Selecionprendas4 = NULL;
+        $this->Selecionprendas5 = NULL;
+        $this->Selecionprendas6 = NULL;
+        $this->Selecionprendas7 = NULL;
+        $this->Selecionprendas8 = NULL;
+        $this->Selecionprendas9 = NULL;
+        $this->Selecionprendas10 = NULL;
+        $this->Selecionprendas11 = NULL;
+        $this->Selecionprendas12 = NULL;
+        $this->Selecionprendas13 = NULL;
+        $this->Selecionprendas14 = NULL;
+        $this->Selecionprendas15 = NULL;
+        $this->Selecionprendas16 = NULL;
+        $this->Selecionprendas17 = NULL;
+        $this->Selecionprendas18 = NULL;
+        $this->Selecionprendas19 = NULL;
+        $this->Selecionprendas20 = NULL;
+        $this->Selecionprendas21 = NULL;
+        $this->Selecionprendas22 = NULL;
+
         /*  Paquete 1 TORRE DE PLOMO */
         if ($this->paqueteId == 2) {
             $tallasPaquetes = $this->uniformesPaquetePrenda();
+            
             
             foreach ($tallasPaquetes as $tP) {
                 $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
@@ -204,7 +230,7 @@ class RegistroUniformes extends Component
         /* Paquete 3 BLANCO */
         if ($this->paqueteId == 4) {
             $tallasPaquetes = $this->uniformesPaquetePrenda();
-            
+
             foreach ($tallasPaquetes as $tP) {
                 $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
@@ -224,6 +250,7 @@ class RegistroUniformes extends Component
             foreach ($tallasPaquetes as $tP) {
                 $this->tallas[] = Uniformes_talla::where('uniformes_prenda_id', $tP->uniformes_prenda_id)->get();
             }
+            
         }
         /* Paquete 6 MANETENIMIENTO GENERAL */
         if ($this->paqueteId == 7) {
@@ -332,6 +359,7 @@ class RegistroUniformes extends Component
         $this->areaTrabajoUnidadShow = [];
         $this->areaTrabajoExtraShow = NULL;
         $this->uniformesShow = [];
+        $this->colaborador = NULL;
     }
 
     public function buscar()
@@ -360,6 +388,29 @@ class RegistroUniformes extends Component
         $this->desabilitarSelect2 = false;
         $this->tallas = [];
         $this->paqueteId = NULL;
+
+        $this->Selecionprendas1 = NULL;
+        $this->Selecionprendas2 = NULL;
+        $this->Selecionprendas3 = NULL;
+        $this->Selecionprendas4 = NULL;
+        $this->Selecionprendas5 = NULL;
+        $this->Selecionprendas6 = NULL;
+        $this->Selecionprendas7 = NULL;
+        $this->Selecionprendas8 = NULL;
+        $this->Selecionprendas9 = NULL;
+        $this->Selecionprendas10 = NULL;
+        $this->Selecionprendas11 = NULL;
+        $this->Selecionprendas12 = NULL;
+        $this->Selecionprendas13 = NULL;
+        $this->Selecionprendas14 = NULL;
+        $this->Selecionprendas15 = NULL;
+        $this->Selecionprendas16 = NULL;
+        $this->Selecionprendas17 = NULL;
+        $this->Selecionprendas18 = NULL;
+        $this->Selecionprendas19 = NULL;
+        $this->Selecionprendas20 = NULL;
+        $this->Selecionprendas21 = NULL;
+        $this->Selecionprendas22 = NULL;
 		
         $this->validate(
             ['colaboradorBusca' => 'required|digits_between:5,6'],
@@ -388,6 +439,30 @@ class RegistroUniformes extends Component
             $this->desabilitarSelect2 = false;
             $this->tallas = [];
             $this->paqueteId = NULL;
+
+            $this->Selecionprendas1 = NULL;
+            $this->Selecionprendas2 = NULL;
+            $this->Selecionprendas3 = NULL;
+            $this->Selecionprendas4 = NULL;
+            $this->Selecionprendas5 = NULL;
+            $this->Selecionprendas6 = NULL;
+            $this->Selecionprendas7 = NULL;
+            $this->Selecionprendas8 = NULL;
+            $this->Selecionprendas9 = NULL;
+            $this->Selecionprendas10 = NULL;
+            $this->Selecionprendas11 = NULL;
+            $this->Selecionprendas12 = NULL;
+            $this->Selecionprendas13 = NULL;
+            $this->Selecionprendas14 = NULL;
+            $this->Selecionprendas15 = NULL;
+            $this->Selecionprendas16 = NULL;
+            $this->Selecionprendas17 = NULL;
+            $this->Selecionprendas18 = NULL;
+            $this->Selecionprendas19 = NULL;
+            $this->Selecionprendas20 = NULL;
+            $this->Selecionprendas21 = NULL;
+            $this->Selecionprendas22 = NULL;
+
         }else{
             $this->nombreCompleto = $this->colaborador[0]->nombre_completo;
             $this->area = $this->colaborador[0]->area;
@@ -459,6 +534,7 @@ class RegistroUniformes extends Component
 
     public function editar($id)
     {
+        $this->colaborador = $id;
         $this->mostrarNuevoRegistro = true;
         $this->mostrarTabla = false;
         $this->busquedaNuevo = false;
@@ -533,6 +609,99 @@ class RegistroUniformes extends Component
             $this->areaTrabajoExtraShow = NULL;
             $this->areaTrabajoUnidadShow = [];
         }
+    }
+
+    public function actulizarTallas()
+    {
+
+        DB::transaction(function(){
+            
+            $funObtn = $this->vaciosBuscar();
+
+            $arrayObtn2 = $funObtn[1];
+            $filtrarVaciosPrendas = NULL;
+            /* $actualizar = NULL; */
+            $res = NULL;
+            /* Editar paquete actual */
+            if ($this->EditarPaquete == 1) {
+                
+                unset($arrayObtn2[0],$arrayObtn2[1]);
+                $filtrarVaciosPrendas = array_filter($arrayObtn2);
+                $filtrarVaciosPrendas = array_values($filtrarVaciosPrendas);
+
+                if ($filtrarVaciosPrendas == []) {
+                    $this->alert('success', 'No hay cambios en las tallas', [
+                        'position' =>  'top-end',
+                        'timer' =>  3500,
+                        'toast' =>  true,
+                        'text' =>  '',
+                        'confirmButtonText' =>  'Ok',
+                        'cancelButtonText' =>  'Cerrar',
+                        'showCancelButton' =>  false,
+                        'showConfirmButton' =>  true,
+                    ]);
+                    $this->EditarPaquete = 0;
+                }else{
+                    $actualizar = DB::table('colaborador_uniforme_paquete')->where('colaborador_no_colaborador','=',$this->colaborador)
+                    ->where('uniformes_paquete_id','=',$this->paqueteId)->get();
+
+                    for ($i=0; $i < count($actualizar) ; $i++) { 
+                    
+                        for ($i=0; $i < count($filtrarVaciosPrendas); $i++) { 
+                            $res = DB::table('colaborador_uniforme_paquete')
+                            ->where('colaborador_no_colaborador','=',$this->colaborador)
+                            ->where('uniformes_paquete_id','=',$this->paqueteId)
+                            ->where('uniformes_talla_id','=',$actualizar[$i]->uniformes_talla_id)
+                            ->update(['uniformes_talla_id' => $filtrarVaciosPrendas[$i]]);
+                        }
+                    }
+
+                }
+
+                if ($res) {
+                    $this->flash('success', 'Se actualizo '.$this->colaborador, [
+                        'position' =>  'center',
+                        'timer' =>  3500,
+                        'toast' =>  true,
+                        'text' =>  '',
+                        'confirmButtonText' =>  'Ok',
+                        'cancelButtonText' =>  'Cerrar',
+                        'showCancelButton' =>  true,
+                        'showConfirmButton' =>  false,
+                    ]);
+
+                    return redirect()->to('/uniformes/');
+                }
+
+            }
+        });
+    }
+
+    public function cancelled2()
+    {
+        $this->alert('info', 'Se canceló el registro', [
+            'position' =>  'top-end',
+            'timer' =>  3000,
+            'toast' =>  true,
+            'text' =>  '',
+            'confirmButtonText' =>  'Ok',
+            'cancelButtonText' =>  'Cancel',
+            'showCancelButton' =>  false,
+            'showConfirmButton' =>  false,
+        ]);
+    }
+
+    public function triggerConfirm2()
+    {
+        $this->confirm('¿Deseas terminar el registro?', [
+            'toast' => false,
+            'position' => 'center',
+            'showConfirmButton' => true,
+            'confirmButtonText' =>  'Si',
+            'cancelButtonText' => 'No',
+            'onConfirmed' => 'actulizarTallas',
+            'onCancelled' => 'cancelled'
+        ]);
     }
 
     /* Filtrado por unidad de negocio y lineas*/
@@ -1215,8 +1384,8 @@ class RegistroUniformes extends Component
         ];
 
         $arrayObtn = [
-            $this->seleccionPaqueteInput,
-            $this->paqueteId,
+            /* $this->seleccionPaqueteInput,
+            $this->paqueteId, */
             $this->Selecionprendas1,
             $this->Selecionprendas2,
             $this->Selecionprendas3,
@@ -1237,7 +1406,7 @@ class RegistroUniformes extends Component
             $this->Selecionprendas18,
             $this->Selecionprendas19,
             $this->Selecionprendas20,
-            $this->Selecionprendas22,
+            $this->Selecionprendas21,
             $this->Selecionprendas22
         ]; 
 
@@ -1280,11 +1449,11 @@ class RegistroUniformes extends Component
                     /* Insertar unidades de negocio */
                 
                     /* Insertar id del area_trabajo_operativo e insertar en la tabla de uniformes*/
-    
+                    
                     $filtrarVaciosPrendas = array_filter($arrayObtn2);
                     $acomodarFiltroVacios = array_values($filtrarVaciosPrendas);
-                    unset($acomodarFiltroVacios[0]);
-                    $acomodarFiltroVacios = array_values($acomodarFiltroVacios);
+                    /* unset($acomodarFiltroVacios[0]);
+                    $acomodarFiltroVacios = array_values($acomodarFiltroVacios); */
                     
                     $areaTrabajo = DB::table('area_trabajo_operativo')->where('id_unidadnegocio',$arrayArea2[1])
                     ->where('id_linea',$arrayArea2[2])->where('id_sublinea',$arrayArea2[3])
@@ -1307,12 +1476,14 @@ class RegistroUniformes extends Component
 
                 } else {
                     /* Insertar areasExtras */
-    
+                    
                     $filtrarVaciosPrendas = array_filter($arrayObtn2);
+                    
                     $acomodarFiltroVacios = array_values($filtrarVaciosPrendas);
-                    unset($acomodarFiltroVacios[0]);
-                    $acomodarFiltroVacios = array_values($acomodarFiltroVacios);
-    
+                    
+                    /* unset($acomodarFiltroVacios[0]);
+                    $acomodarFiltroVacios = array_values($acomodarFiltroVacios); */
+                    
                     for ($i=0; $i < count($acomodarFiltroVacios) ; $i++) { 
                             
                         $res = DB::table('colaborador_uniforme_paquete')->insert([
@@ -1413,18 +1584,19 @@ class RegistroUniformes extends Component
             JOIN uniformes_paquete up ON up.id = cup.uniformes_paquete_id
             JOIN uniformes_talla ut ON ut.id = cup.uniformes_talla_id
             JOIN uniformes_prenda upa ON upa.id = ut.uniformes_prenda_id
-            WHERE cup.uniformes_paquete_id ='.$this->exportarUniformes.' ORDER BY cup.colaborador_no_colaborador');
+            WHERE cup.uniformes_paquete_id ='.$this->exportarUniformes.' ORDER BY cup.colaborador_no_colaborador LIMIT 4');
             $this->lista = collect($this->lista);
-            
+
             foreach ($this->paquetes as $ps) {
                 if ($this->exportarUniformes ==  $ps->id) {
                     $this->paqueteEleccion = $ps->nombre_paquete;
                 }
             }
-            
-            return Excel::download(new UniformesExport($this->lista), 'Uniformes-'.$this->paqueteEleccion.'(' . $fecha . ').xlsx');
+
+            /* return Excel::download(new UniformesExport($this->lista), 'Uniformes-'.$this->paqueteEleccion.'(' . $fecha . ').xlsx'); */
         }
         
     }
+
 
 }
