@@ -377,9 +377,9 @@ class Insignias extends Component
             auth()->user()->colaborador_no_colaborador == '131901' ||
             auth()->user()->colaborador_no_colaborador == '152090'
         ) {
-            $this->intentoOro = 2;
-            $this->intentoPlata = 2;
-            $this->intentoBronce = 1;
+            $this->intentoOro = 10;
+            $this->intentoPlata = 15;
+            $this->intentoBronce = 20;
         } else {
             $this->intentoOro = 1;
             $this->intentoPlata = 1;
