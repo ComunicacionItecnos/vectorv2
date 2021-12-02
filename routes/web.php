@@ -12,6 +12,7 @@ use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
 use App\Http\Livewire\ActualizarNuevoIngreso;
+use App\Http\Livewire\EvaluacionDesempeno;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,6 +127,7 @@ Route::get('/utiles-escolares/{no_colaborador}',UtilesEscolares::class);
 
 Route::get('/nuevo-ingreso',NuevoIngreso::class);
 
+Route::get('/evaluacionDesempeño/{no_colaborador}',EvaluacionDesempeno::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
     return view('revision-doc');
