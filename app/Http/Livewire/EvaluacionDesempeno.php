@@ -20,6 +20,7 @@ class EvaluacionDesempeno extends Component
 
         /* Por sino tienen foto */
         $this->fotoRandom = Http::get('https://randomuser.me/api/');
+        
         $this->fotoRandom = $this->fotoRandom->json();
         $this->fotoRandom = $this->fotoRandom['results'][0]['picture'];
         $this->fotoRandom = $this->fotoRandom['large'];
