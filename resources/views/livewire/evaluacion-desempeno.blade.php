@@ -1,4 +1,4 @@
-<div class="py-2">
+<div class="py-2 bg-white">
     <p class="text-center text-3xl font-bold text-red-800">
         Evaluación de desempeño
     </p>
@@ -11,19 +11,19 @@
             </path>
         </svg>
     </p>
-    <div class="flex items-center space-y-24 md:space-y-0 flex-col {{-- md:flex-row --}} {{-- justify-center --}}">
+    <div class="flex items-center space-y-24 md:space-y-0 flex-col">
         <div class="p-4 relative">
             <div class="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2">
-                <a href="#" class="block relative">
-                    <img alt="profil" src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png" class="mx-auto object-cover rounded-lg h-40 w-40  border-2 border-white dark:border-gray-800" loading="lazy" />
+                <a class="block relative">
+                    <img alt="profil" src="https://i.pinimg.com/736x/8b/16/7a/8b167af653c2399dd93b952a48740620.jpg" class="mx-auto object-cover rounded-lg h-40 w-40  border-2"  style="border-color: #E9F0F2;" loading="lazy" />
                 </a>
             </div>
-            <div class="bg-white dark:bg-gray-800 rounded-lg shadow px-8 py-4 pt-24">
+            <div class="rounded-lg shadow px-8 py-4 pt-24" style="background-color: #E9F0F2;">
                 <div class="text-center">
-                    <p class="text-2xl text-gray-800 dark:text-white mr-2">
+                    <p class="text-2xl text-gray-800 mr-2">
                         Hola ¡{{ $nombre }}!
                     </p>
-                    <p class="text-xl text-gray-500 dark:text-gray-200 font-light">
+                    <p class="text-xl text-gray-500 font-light">
                         Estos son tus resultados:
                     </p>
                 </div>
@@ -44,8 +44,7 @@
 
                     </div>
 
-                    <div
-                        class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
 
                         <div>
                             <p class="text-xl font-semibold leading-snug">{{ $evaluacionValor }}%</p>
@@ -58,12 +57,11 @@
 
                     </div>
 
-                    <div
-                        class="pt-2 pb-2 flex w-full mx-auto text-gray-300 {{-- items-center --}} justify-center  text-center">
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-700 {{-- items-center --}} justify-center  text-center">
 
                         <div>
                             <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}%</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">total</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Final</p>
                         </div>
 
                     </div>
@@ -78,14 +76,13 @@
                             <p class="font-semibold leading-snug" style="font-size: 10px;">Clima</p>
                         </div>
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resFinanciero }}%</p>
+                            <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionValor }}%</p>
                             <p class="font-semibold leading-snug" style="font-size: 10px;">Auto evaluación</p>
                         </div>
 
                     </div>
 
-                    <div
-                        class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
 
                         <div>
                             <p class="text-xl font-semibold leading-snug">{{ $evaluacionValor }}%</p>
@@ -98,8 +95,7 @@
 
                     </div>
 
-                    <div
-                        class="pt-2 pb-2 flex w-full mx-auto text-gray-300 {{-- items-center --}} justify-center  text-center">
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-700 {{-- items-center --}} justify-center  text-center">
 
                         <div>
                             <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}%</p>
@@ -117,7 +113,7 @@
                             <p class="font-semibold leading-snug" style="font-size: 10px;">Clima</p>
                         </div>
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resFinanciero }}%</p>
+                            <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionValor }}%</p>
                             <p class="font-semibold leading-snug" style="font-size: 10px;">Auto evaluación</p>
                         </div>
 
@@ -134,7 +130,7 @@
                     </div>
 
                     <div
-                        class="pt-2 pb-2 flex w-full mx-auto text-gray-300 {{-- items-center --}} justify-center  text-center">
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-700 {{-- items-center --}} justify-center  text-center">
 
                         <div>
                             <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}%</p>
@@ -145,91 +141,129 @@
 
                 @endif
 
-                <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-200">
+                {{-- NINEBOX --}}
+                <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400">
 
-                    <p class="text-xl text-gray-500 dark:text-gray-200 font-light">
-                        NINEBOX
-                        <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
-                            <path fill-rule="evenodd"
-                                d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
-                                clip-rule="evenodd" />
-                        </svg>
+                    <p class="text-xl text-gray-500 font-light">
+                        Tu ubicación en 9 Box:
                     </p>
 
                 </div>
-
+                {{-- NINEBOX --}}
                 <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white">
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-yellow-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md
                         @if ($box1 == null)
-                            <br><br>
+                            bg-yellow-300
+                        @else
+                            bg-yellow-500
+                        @endif box-border border-2" style="border-color: #E9F0F2;">
+                        @if ($box1 == null)
+                            <br><br><br>
                         @else
                             {!! $box1 !!}
                         @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-green-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md 
+                    @if ($box2 == null)
+                        bg-green-300
+                    @else
+                        bg-green-600
+                    @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box2 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box2 !!}
                         @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-green-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md
+                    @if ($box3 == null)
+                        bg-green-400
+                    @else
+                        bg-green-800
+                    @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box3 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box3 !!}
                         @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-red-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md 
+                    @if ($box4 == null)
+                        bg-red-300
+                    @else
+                        bg-red-600
+                    @endif  box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box4 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box4 !!}
                         @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-yellow-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md 
+                    @if ($box5 == null)
+                        bg-yellow-300
+                    @else
+                        bg-yellow-500
+                    @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box5 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box5 !!}
                         @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-green-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md 
+                    @if ($box6 == null)
+                        bg-green-300
+                    @else
+                        bg-green-600
+                    @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box6 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box6 !!}
                         @endif
-
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-red-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md 
+                    @if ($box7 == null)
+                        bg-red-400
+                    @else
+                        bg-red-800
+                    @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box7 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box7 !!}
                         @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-red-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md 
+                    @if ($box8 == null)
+                        bg-red-300
+                    @else
+                        bg-red-600
+                    @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box8 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box8 !!}
                         @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-yellow-600 box-border border-2 border-gray-800">
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md 
+                    @if ($box9 == null)
+                        bg-yellow-300
+                    @else
+                        bg-yellow-500
+                    @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box9 == null)
-                            <br><br>
+                            <br><br><br>
                         @else
                             {!! $box9 !!}
                         @endif
@@ -244,11 +278,33 @@
     <!-- Accordion 2 start -->
     <div class="flex justify-center">
         <div>
-            <div class="px-10 py-12 space-y-4 bg-gray-100 shadow-xl">
-                <h3 class="text-2xl font-bold">Más iformación</h3>
+            <div class="px-10 py-2 space-y-4 shadow-xl"  style="background-color: #E9F0F2;">
+                <h3 class="text-2xl text-gray-700 text-center">Más información</h3>
                 <div class="flex justify-between p-2 bg-white divide-x-2">
                     <button type="button" onclick="abrir()">
-                        <p class="text-lg text-center">Alto desempeño / Potencial medio</p>
+                        <p class="text-xl text-center">
+                            
+                            @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
+                                Bajo desempeño / Alto potencial
+                            @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
+                                Medio desempeño / Alto potencial
+                            @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
+                               Alto desempeño / Alto potencial
+                            @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
+                               Bajo desempeño / Potencial medio
+                            @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
+                               Desempeño medio / Potencial medio
+                            @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
+                               Alto Desempeño / Potencial medio
+                            @elseif ( $resDesempeno < 69 )
+                               Baja
+                            @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
+                                Desempeño medio / Potencial bajo
+                            @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
+                                Alto Desempeño / Bajo potencial 
+                            @endif
+
+                        </p>
                         <span class="">
                             <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
@@ -259,17 +315,110 @@
                     </button>
 
                 </div>
-                <div class="p-2 border-l-4 border-black border-red-400 bg-green-50 hidden" id="foo">
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.lorem </p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.lorem </p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.lorem </p>
+                <div class="p-2 border-l-4 border-black 
+                @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
+                    border-yellow-500
+                @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
+                    border-green-600
+                @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
+                    border-green-800
+                @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
+                    border-red-600
+                @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
+                    border-yellow-500
+                @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
+                    border-green-600
+                @elseif ( $resDesempeno < 69 )
+                    border-red-800
+                @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
+                    border-red-600
+                @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
+                    border-yellow-500
+                @endif bg-white hidden" id="foo">
+
+                    @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
+                        <p>Tiene potencial para mejorar su desempeño.</p>
+                        <br>
+                        <p>Capacidad para moverse lateralmente entre las funciones de negocio a fin de avanzar.</p>
+                        <br>
+                        <p>Alto nivel de madurez emocional.</p>
+                        <br>
+                        <p>Fuerte compromiso con el negocio.</p>
+                        <br>
+                        <p>Potencial para crecer una posición hacia arriba.</p>
+                    @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
+                        <p>Cumple y ocasionalmente excede los objetivos organizacionales.</p>
+                        <br>
+                        <p>Puede dirigir proyectos organizacionales.</p>
+                        <br>
+                        <p>Demuestra capacidad para transferir habilidades y conocimientos a nuevas áreas.</p>
+                        <br>
+                        <p>Potencial para creecer una posición hacia arriba.</p>
+                    @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
+                        <p>Excelentes resultados en la obtención de los objetivos organizacionales.</p>
+                        <br>
+                        <p>Dispuesto a moverse lateralmente entre las funciones del negocio a fin de avanzar.</p>
+                        <br>
+                        <p>Modelo de rol para la organización.</p>
+                        <br>
+                        <p>Potencial para ascender dos posiciones.</p>
+                    @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
+                        <p>Potencial para moverse lateralmente entre las funciones de negocio a fin de avanzar.</p>
+                        <br>
+                        <p>Consistentemente muestra habilidades y competencias requeridas para su rol.</p>
+                        <br>
+                        <p>La persona no cumple con los resultados definidos y esperados(bajo desempeño).</p>
+                        <br>
+                        <p>Reconoce emociones y sentimientos propios y de los demás, así como su impacto.</p>
+                    @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
+                        <p>Consistentemente cumple los objetivos definidos por la organización.</p>
+                        <br>
+                        <p>Demuestra compromiso con la compañía y el equipo.</p>
+                        <br>
+                        <p>Tiene potencial para moverse dentro de la empresa y adaptarse a roles.</p>
+                        <br>
+                        <p>Tiene potencial para desarrollarse y creecer como un futuro líder con un poco de guía y orientación.</p>
+                    @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
+                        <p>Excede los resultados esperados mientras modela la cultura.</p>
+                        <br>
+                        <p>Potencial para moverse al rededor de la compañia siempre y cuando mantenga el alto desempeño.</p>
+                        <br>
+                        <p>Toma el liderazgo de varios proyectos.</p>
+                        <br>
+                        <p>Demuestra mejora continua y se mantiene actualizado en mejores prácticas.</p>
+                        <br>
+                        <p>Potencial para convertirse en un líder en desempeño y potencial.</p>
+                        <br>
+                        <p>Potencial para crecer una posición hacia arriba.</p>
+                    @elseif ( $resDesempeno < 69 )
+                        <p>La persona no vive los valores Águila y muestra una significativa brecha en sus competencias.</p>
+                        <br>
+                        <p>Falta de habilidad y deseo de tomar e incrementar sus responsabilidades y roles.</p>
+                        <br>
+                        <p>Falta de madurez emocional y agilidad en el aprendizaje.</p>
+                        <br>
+                        <p>Falta de pasión por el negocio.</p>
+                    @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
+                        <p>La persona cumple los objetivos de acuerdo a las competencias Águila y los valores.</p>
+                        <br>
+                        <p>Falta de habilidad y/o deseo de tomar e incrementar sus responsabilidades y roles.</p>
+                        <br>
+                        <p>Falta de madurez emocional y/o agilidad en el aprendizaje, y/o falta de pasión por el negocio.</p>
+                    @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
+                        <p>La persona cumple los objetivo de una manera sobresaliente.</p>
+                        <br>
+                        <p>Puede faltarle habilidad y/o deseo de tomar e incrementar sus responsabilidades y roles.</p>
+                        <br>
+                        <p>Puede faltarle madurez emocional y/o agilidad en el aprendizaje y/o el alcance de su pasión se limita a su área de competencia o experencia.</p>
+                    @endif
+
                 </div>
 
             </div>
         </div>
     </div>
 
-    <script>
+    <script defer>
         function abrir() {
             acordion = document.getElementById("foo");
 
