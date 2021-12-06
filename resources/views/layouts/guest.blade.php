@@ -14,12 +14,11 @@
     <style>
         @font-face {
             font-family: "DIN Next LT Pro";
-            src: url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.eot");
-            src: url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.eot?#iefix") format("embedded-opentype"), 
-            url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.woff2") format("woff2"), 
-            url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.woff") format("woff"), 
-            url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.ttf") format("truetype"), 
-            url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.svg#DIN Next LT Pro") format("svg");
+            
+            src: url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.woff2") format("woff2"), 
+            /* url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.woff") format("woff"),  */
+            url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.ttf") format("truetype")
+            /* , url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.svg#DIN Next LT Pro") format("svg") */;
         }
 
     </style>

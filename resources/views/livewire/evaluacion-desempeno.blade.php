@@ -1,4 +1,4 @@
-<div class="p-4">
+<div class="py-2">
     <p class="text-center text-3xl font-bold text-red-800">
         Evaluación de desempeño
     </p>
@@ -11,13 +11,11 @@
             </path>
         </svg>
     </p>
-    <div class="flex items-center space-y-24 md:space-y-0 flex-col {{-- md:flex-row --}} justify evenly">
+    <div class="flex items-center space-y-24 md:space-y-0 flex-col {{-- md:flex-row --}} {{-- justify-center --}}">
         <div class="p-4 relative">
             <div class="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2">
                 <a href="#" class="block relative">
-                    <img alt="profil" src="{{ $fotoRandom }}"
-                        class="mx-auto object-cover rounded-lg h-40 w-40  border-2 border-white dark:border-gray-800"
-                        loading="lazy" />
+                    <img alt="profil" src="https://w7.pngwing.com/pngs/340/946/png-transparent-avatar-user-computer-icons-software-developer-avatar-child-face-heroes.png" class="mx-auto object-cover rounded-lg h-40 w-40  border-2 border-white dark:border-gray-800" loading="lazy" />
                 </a>
             </div>
             <div class="bg-white dark:bg-gray-800 rounded-lg shadow px-8 py-4 pt-24">
@@ -30,50 +28,127 @@
                     </p>
                 </div>
 
-                <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+                {{-- Director --}}
+                @if ($puesto == 'Director')
 
-                    <div>
-                        <p class="text-xl font-semibold leading-snug">90%</p>
-                        <p class="font-semibold leading-snug" style="font-size: 10px;">Clima</p>
-                    </div>
-                    <div>
-                        <p class="text-xl font-semibold leading-snug">95%</p>
-                        <p class="font-semibold leading-snug" style="font-size: 10px;">Res.Financiero</p>
-                    </div>
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
 
-                </div>
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $climaValor }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $resFinanciero }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Res.Financiero</p>
+                        </div>
 
-                <div
-                    class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
-
-                    <div>
-                        <p class="text-xl font-semibold leading-snug">90%</p>
-                        <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación</p>
-                    </div>
-                    <div>
-                        <p class="text-xl font-semibold leading-snug">95%</p>
-                        <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación 270</p>
                     </div>
 
-                </div>
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
 
-                <div
-                    class="pt-2 pb-2 flex w-full mx-auto text-gray-300 {{-- items-center --}} justify-center  text-center">
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionValor }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $valor270 }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación 270</p>
+                        </div>
 
-                    <div>
-                        <p class="text-xl font-semibold leading-snug">90%</p>
-                        <p class="font-semibold leading-snug" style="font-size: 10px;">total</p>
                     </div>
 
-                </div>
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-300 {{-- items-center --}} justify-center  text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">total</p>
+                        </div>
+
+                    </div>
 
 
-                <div
-                    class="pt-2 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-200">
+                @elseif($puesto == 'Gerente')
+
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $climaValor }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $resFinanciero }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Auto evaluación</p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionValor }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $valor270 }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación 270</p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-300 {{-- items-center --}} justify-center  text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">total</p>
+                        </div>
+
+                    </div>
+
+                @else
+
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $climaValor }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $resFinanciero }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Auto evaluación</p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-500 {{-- items-center --}} space-x-8 justify-center text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionValor }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación</p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-300 {{-- items-center --}} justify-center  text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}%</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">total</p>
+                        </div>
+
+                    </div>
+
+                @endif
+
+                <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-200">
 
                     <p class="text-xl text-gray-500 dark:text-gray-200 font-light">
                         NINEBOX
-
                         <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path d="M4 3a2 2 0 100 4h12a2 2 0 100-4H4z" />
@@ -81,56 +156,83 @@
                                 d="M3 8h14v7a2 2 0 01-2 2H5a2 2 0 01-2-2V8zm5 3a1 1 0 011-1h2a1 1 0 110 2H9a1 1 0 01-1-1z"
                                 clip-rule="evenodd" />
                         </svg>
-
                     </p>
 
                 </div>
 
-
                 <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white">
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-yellow-600 box-border border-2 border-gray-800">
-                        <br><br>
+                        @if ($box1 == null)
+                            <br><br>
+                        @else
+                            {!! $box1 !!}
+                        @endif
                     </div>
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-green-600 box-border border-2 border-gray-800">
-                        <br><br>
+                        @if ($box2 == null)
+                            <br><br>
+                        @else
+                            {!! $box2 !!}
+                        @endif
                     </div>
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-green-600 box-border border-2 border-gray-800">
-                        <br><br>
+                        @if ($box3 == null)
+                            <br><br>
+                        @else
+                            {!! $box3 !!}
+                        @endif
                     </div>
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-red-600 box-border border-2 border-gray-800">
-                        <br><br>
+                        @if ($box4 == null)
+                            <br><br>
+                        @else
+                            {!! $box4 !!}
+                        @endif
                     </div>
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-yellow-600 box-border border-2 border-gray-800">
-                        <br><br>
+                        @if ($box5 == null)
+                            <br><br>
+                        @else
+                            {!! $box5 !!}
+                        @endif
                     </div>
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-green-600
-                         box-border border-2 border-gray-800">
-                        {{-- <br><br> --}}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12" viewBox="0 0 20 20"
-                            fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M10 18a8 8 0 100-16 8 8 0 000 16zM7 9a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zm-.464 5.535a1 1 0 10-1.415-1.414 3 3 0 01-4.242 0 1 1 0 00-1.415 1.414 5 5 0 007.072 0z"
-                                clip-rule="evenodd" />
-                        </svg>
-                        {{-- <br> --}}
-                    </div>
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-green-600 box-border border-2 border-gray-800">
+                        @if ($box6 == null)
+                            <br><br>
+                        @else
+                            {!! $box6 !!}
+                        @endif
 
-                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-red-600 box-border border-2 border-gray-800">
-                        <br><br>
                     </div>
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-red-600 box-border border-2 border-gray-800">
-                        <br><br>
+                        @if ($box7 == null)
+                            <br><br>
+                        @else
+                            {!! $box7 !!}
+                        @endif
+                    </div>
+
+                    <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-red-600 box-border border-2 border-gray-800">
+                        @if ($box8 == null)
+                            <br><br>
+                        @else
+                            {!! $box8 !!}
+                        @endif
                     </div>
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md bg-yellow-600 box-border border-2 border-gray-800">
-                        <br><br>
+                        @if ($box9 == null)
+                            <br><br>
+                        @else
+                            {!! $box9 !!}
+                        @endif
                     </div>
 
                 </div>
@@ -138,4 +240,50 @@
             </div>
         </div>
     </div>
+
+    <!-- Accordion 2 start -->
+    <div class="flex justify-center">
+        <div>
+            <div class="px-10 py-12 space-y-4 bg-gray-100 shadow-xl">
+                <h3 class="text-2xl font-bold">Más iformación</h3>
+                <div class="flex justify-between p-2 bg-white divide-x-2">
+                    <button type="button" onclick="abrir()">
+                        <p class="text-lg text-center">Alto desempeño / Potencial medio</p>
+                        <span class="">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" fill="none"
+                                viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </span>
+                    </button>
+
+                </div>
+                <div class="p-2 border-l-4 border-black border-red-400 bg-green-50 hidden" id="foo">
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.lorem </p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.lorem </p>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.lorem </p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function abrir() {
+            acordion = document.getElementById("foo");
+
+            var acordionValor = acordion.classList;
+            var arrayAcordion = Array.from(acordionValor);
+            var buscarHidden = arrayAcordion.includes('hidden');
+
+            if (buscarHidden == true) {
+                acordion.classList.remove('hidden');
+            } else {
+                acordion.classList.add('hidden');
+            }
+        }
+    </script>
+    <!-- Accordion 2 end -->
+
 </div>
