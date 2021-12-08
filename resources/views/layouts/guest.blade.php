@@ -33,7 +33,7 @@
 </head>
 
 <body style="font-family: DIN Next LT Pro; !important">
-    <div class="min-h-screen min-w-full bg-gray-100">
+    <div class="min-h-screen min-w-full {{-- bg-gray-100 --}} bg-white">
         <main>
             {{ $slot }}
         </main>
