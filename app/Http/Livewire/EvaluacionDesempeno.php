@@ -380,15 +380,15 @@ class EvaluacionDesempeno extends Component
 
         /* Info del resultado */
 
-        if ( ($resultado >= 80) && ($resultado<= 82.5) ) {
+        if ( ($resultado >= 80) && ($resultado<= 82.50) ) {
             return $this->box1 = $iconoRegular; 
-        }elseif( ($resultado >= 92.6) && ($resultado<= 94.5) ){
+        }elseif( ($resultado >= 92.60) && ($resultado<= 94.50) ){
             return $this->box2 = $iconoBien; 
         }elseif( ($resultado >= 95) && ($resultado<= 100) ){
             return $this->box3 = $iconoExcelente; 
-        }elseif( ($resultado >= 70) && ($resultado<= 74.9) ){
+        }elseif( ($resultado >= 70) && ($resultado<= 74.90) ){
             return $this->box4 = $iconoMal; 
-        }elseif( ($resultado >= 82.6) && ($resultado<= 84.9) ){
+        }elseif( ($resultado >= 82.6) && ($resultado<= 84.99) ){
             return $this->box5 = $iconoRegular; 
         }elseif( ($resultado >= 90) && ($resultado<= 92.5) ){
             return $this->box6 = $iconoBien; 
@@ -396,7 +396,7 @@ class EvaluacionDesempeno extends Component
             return $this->box7 = $iconoMal; 
         }elseif( ($resultado >= 75) && ($resultado<= 79) ){
             return $this->box8 = $iconoMal; 
-        }elseif( ($resultado >= 85) && ($resultado<= 89.9) ){
+        }elseif( ($resultado >= 85) && ($resultado<= 89.99) ){
             return $this->box9 = $iconoRegular; 
         }
 
