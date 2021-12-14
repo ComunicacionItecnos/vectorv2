@@ -46,8 +46,8 @@ class EvaluacionDesempeno extends Component
             $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$resFinancieroObtn,$this->puesto);
             
             /* Evaluacion */
-            $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion);
-            $EvaluacionValor = $this->camposNull($EvaluacionValor);
+            /* $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion); */
+            $EvaluacionValor = $this->camposNull(/* $EvaluacionValor */95);
             $this->evaluacionForm = $EvaluacionValor;
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$EvaluacionValor,$this->puesto);
             
@@ -361,7 +361,7 @@ class EvaluacionDesempeno extends Component
 
     /* Pasa el valor obtenido a un float de con dos digitos(12.00) */
     public function formatonumero($cantidad){
-        return (float)number_format($cantidad,2);
+        return (float)number_format($cantidad,1);
         
     }
 
@@ -380,24 +380,24 @@ class EvaluacionDesempeno extends Component
 
         /* Info del resultado */
 
-        if ( ($resultado >= 80) && ($resultado<= 82.50) ) {
-            return $this->box1 = $iconoRegular; 
-        }elseif( ($resultado >= 92.60) && ($resultado<= 94.50) ){
-            return $this->box2 = $iconoBien; 
+        if ( ($resultado >= 80) && ($resultado<= 82.5) ) {
+            return $this->box1 = $iconoBien; 
+        }elseif( ($resultado >= 92.6) && ($resultado<= 94.5) ){
+            return $this->box2 = $iconoExcelente; 
         }elseif( ($resultado >= 95) && ($resultado<= 100) ){
             return $this->box3 = $iconoExcelente; 
-        }elseif( ($resultado >= 70) && ($resultado<= 74.90) ){
-            return $this->box4 = $iconoMal; 
-        }elseif( ($resultado >= 82.6) && ($resultado<= 84.99) ){
-            return $this->box5 = $iconoRegular; 
+        }elseif( ($resultado >= 70) && ($resultado<= 74.9) ){
+            return $this->box4 = $iconoRegular; 
+        }elseif( ($resultado >= 82.6) && ($resultado<= 84.9) ){
+            return $this->box5 = $iconoBien; 
         }elseif( ($resultado >= 90) && ($resultado<= 92.5) ){
-            return $this->box6 = $iconoBien; 
+            return $this->box6 = $iconoExcelente; 
         }elseif( $resultado < 69 ) {
             return $this->box7 = $iconoMal; 
         }elseif( ($resultado >= 75) && ($resultado<= 79) ){
-            return $this->box8 = $iconoMal; 
-        }elseif( ($resultado >= 85) && ($resultado<= 89.99) ){
-            return $this->box9 = $iconoRegular; 
+            return $this->box8 = $iconoRegular; 
+        }elseif( ($resultado >= 85) && ($resultado<= 89.9) ){
+            return $this->box9 = $iconoBien; 
         }
 
     }

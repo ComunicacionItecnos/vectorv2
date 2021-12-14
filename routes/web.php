@@ -13,6 +13,7 @@ use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
 use App\Http\Livewire\ActualizarNuevoIngreso;
 use App\Http\Livewire\EvaluacionDesempeno;
+use App\Http\Livewire\EvalucacionDesempenoExcel;
 
 /*
 |--------------------------------------------------------------------------
@@ -127,7 +128,10 @@ Route::get('/utiles-escolares/{no_colaborador}',UtilesEscolares::class);
 
 Route::get('/nuevo-ingreso',NuevoIngreso::class);
 
-Route::get('/evaluacionDesempeño/{no_colaborador}',EvaluacionDesempeno::class);
+Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
+
+/* Borrar despues */
+Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
     return view('revision-doc');

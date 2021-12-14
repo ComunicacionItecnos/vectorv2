@@ -388,23 +388,23 @@
                     <button type="button" onclick="abrir()">
                         <p class="text-xl text-center">
                             
-                            @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.50) )
+                            @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
                                 Bajo desempeño / Alto potencial
-                            @elseif ( ($resDesempeno >= 92.60) && ($resDesempeno<= 94.50) )
+                            @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
                                 Medio desempeño / Alto potencial
                             @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
                                Alto desempeño / Alto potencial
-                            @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.50) )
+                            @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
                                Bajo desempeño / Potencial medio 
-                            @elseif ( ($resDesempeno >= 82.60) && ($resDesempeno<= 84.99) )
+                            @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
                                Desempeño medio / Potencial medio
-                            @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.50) )
+                            @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
                                Alto desempeño / Potencial medio
                             @elseif ( $resDesempeno < 69 )
                                Bajo desempeño / Bajo potencial
                             @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
                                 Desempeño medio / Bajo potencial
-                            @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.99) )
+                            @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
                                 Alto desempeño / Bajo potencial 
                             @endif
 
@@ -420,100 +420,80 @@
 
                 </div>
                 <div class="p-2 border-l-4 border-black 
-                @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.50) )
+                @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
                     border-yellow-500
-                @elseif ( ($resDesempeno >= 92.60) && ($resDesempeno<= 94.50) )
+                @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
                     border-green-600
                 @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
                     border-green-800
-                @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.50) )
+                @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
                     border-red-600
-                @elseif ( ($resDesempeno >= 82.60) && ($resDesempeno<= 84.99) )
+                @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
                     border-yellow-500
-                @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.50) )
+                @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
                     border-green-600
                 @elseif ( $resDesempeno < 69 )
                     border-red-800
                 @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
                     border-red-600
-                @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.99) )
+                @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
                     border-yellow-500
                 @endif bg-white hidden" id="foo">
 
-                    @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.50) )
-                        <p>Tiene potencial para mejorar su desempeño.</p>
-                        <br>
-                        <p>Capacidad para moverse lateralmente entre las funciones de negocio a fin de avanzar.</p>
-                        <br>
-                        <p>Alto nivel de madurez emocional.</p>
-                        <br>
-                        <p>Fuerte compromiso con el negocio.</p>
-                        <br>
-                        <p>Potencial para crecer una posición hacia arriba.</p>
-                    @elseif ( ($resDesempeno >= 92.60) && ($resDesempeno<= 94.50) )
-                        <p>Cumple y ocasionalmente excede los objetivos organizacionales.</p>
-                        <br>
-                        <p>Puede dirigir proyectos organizacionales.</p>
-                        <br>
-                        <p>Demuestra capacidad para transferir habilidades y conocimientos a nuevas áreas.</p>
-                        <br>
-                        <p>Potencial para creecer una posición hacia arriba.</p>
+                    @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
+                        <p>
+                            Tienes potencial para mejorar tu desempeño con una gran capacidad para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
+                            a su vez, tienes un alto nivel de madurez y un fuerte compromiso con la empresa con potencial para crecer una posición hacia arriba.
+                        </p>
+                    @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
+                        <p>
+                            Cumples y ocasionalmente excedes los objetivos, tienes una gran capacidad de dirigir proyectos organizacionales, 
+                            además, cuentas con la destreza para transferir habilidades y conocimientos con potencial para crecer una posición hacia arriba.
+                        </p>
                     @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
-                        <p>Excelentes resultados en la obtención de los objetivos organizacionales.</p>
-                        <br>
-                        <p>Dispuesto a moverse lateralmente entre las funciones del negocio a fin de avanzar.</p>
-                        <br>
-                        <p>Modelo de rol para la organización.</p>
-                        <br>
-                        <p>Potencial para ascender dos posiciones.</p>
-                    @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.50) )
-                        <p>Potencial para moverse lateralmente entre las funciones de negocio a fin de avanzar.</p>
-                        <br>
-                        <p>Consistentemente muestra habilidades y competencias requeridas para su rol.</p>
-                        <br>
-                        <p>La persona no cumple con los resultados definidos y esperados(bajo desempeño).</p>
-                        <br>
-                        <p>Reconoce emociones y sentimientos propios y de los demás, así como su impacto.</p>
-                    @elseif ( ($resDesempeno >= 82.60) && ($resDesempeno<= 84.99) )
-                        <p>Consistentemente cumple los objetivos definidos por la organización.</p>
-                        <br>
-                        <p>Demuestra compromiso con la compañía y el equipo.</p>
-                        <br>
-                        <p>Tiene potencial para moverse dentro de la empresa y adaptarse a roles.</p>
-                        <br>
-                        <p>Tiene potencial para desarrollarse y creecer como un futuro líder con un poco de guía y orientación.</p>
-                    @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.50) )
-                        <p>Excede los resultados esperados mientras modela la cultura.</p>
-                        <br>
-                        <p>Potencial para moverse al rededor de la compañia siempre y cuando mantenga el alto desempeño.</p>
-                        <br>
-                        <p>Toma el liderazgo de varios proyectos.</p>
-                        <br>
-                        <p>Demuestra mejora continua y se mantiene actualizado en mejores prácticas.</p>
-                        <br>
-                        <p>Potencial para convertirse en un líder en desempeño y potencial.</p>
-                        <br>
-                        <p>Potencial para crecer una posición hacia arriba.</p>
+                        <p>
+                            Tienes excelentes resultados en la obtención de tus objetivos organizacionales, 
+                            además estas dispuesto a moverte lateralmente entre las funciones del negocio a fin de avanzar y eres un modelo a seguir para la organización.
+                        </p>
+                    @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
+                        <p>
+                            Tienes potencial para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
+                            muy constantemente muestras habilidades y competencias requeridas para tu rol, a veces no cumples con los resultados definidos y esperados, 
+                            pero sabes reconocer emociones y sentimientos propios y de los demás, así como su impacto.
+                        </p>
+                    @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
+                        <p>
+                            Constantemente cumples los objetivos definidos por la organización demostrando que tienes un compromiso con la empresa y tu equipo.
+                        </p>
+                        <p>
+                            Además, tienes potencial para moverte dentro del negocio para adaptarte al rol que se te asigne con el fin de desarrollarte y crecer como un futuro líder, 
+                            sólo necesitas un poco de guía y orientación.
+                        </p>
+                    @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
+                        <p>
+                            Excedes tus resultados asignados mientras modelas la cultura organizacional tomando el liderazgo de varios proyectos con ayuda de la mejora continua y actualizando a mejores prácticas, 
+                            esto demuestra que tienes el potencial para moverte alrededor de la organización siempre y cuando mantengas el alto desempeño.
+                        </p>
+                        <p>
+                            Tienes potencial para convertirte en un líder en desempeño y tener la posibilidad de crecer una posición hacia arriba.
+                        </p>
                     @elseif ( $resDesempeno < 69 )
-                        <p>La persona no vive los valores Águila y muestra una significativa brecha en sus competencias.</p>
-                        <br>
-                        <p>Falta de habilidad y deseo de tomar e incrementar sus responsabilidades y roles.</p>
-                        <br>
-                        <p>Falta de madurez emocional y agilidad en el aprendizaje.</p>
-                        <br>
-                        <p>Falta de pasión por el negocio.</p>
+                        <p>
+                            No vives los valores Aguila, tienes una brecha significativa en tus competencias, demostrando falta de habilidad, madurez emocional, agilidad en el aprendizaje, 
+                            pasión por el negocio, deseo de tomar e incrementar tus responsabilidades y roles asignados.
+                        </p>
                     @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
-                        <p>La persona cumple los objetivos de acuerdo a las competencias Águila y los valores.</p>
-                        <br>
-                        <p>Falta de habilidad y/o deseo de tomar e incrementar sus responsabilidades y roles.</p>
-                        <br>
-                        <p>Falta de madurez emocional y/o agilidad en el aprendizaje, y/o falta de pasión por el negocio.</p>
-                    @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.99) )
-                        <p>La persona cumple los objetivo de una manera sobresaliente.</p>
-                        <br>
-                        <p>Puede faltarle habilidad y/o deseo de tomar e incrementar sus responsabilidades y roles.</p>
-                        <br>
-                        <p>Puede faltarle madurez emocional y/o agilidad en el aprendizaje y/o el alcance de su pasión se limita a su área de competencia o experencia.</p>
+                        <p>
+                            Cumples con los objetivos de acuerdo con las competencias y valores de Aguila, pero a su vez demuestras una falta de madurez emocional, 
+                            agilidad en el aprendizaje, pasión por el negocio y la habilidad y deseo de tomar o incrementar tus responsabilidades y roles.
+                        </p>
+                    @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
+                        <p>
+                            Cumples tus objetivos de una manera sobresaliente, pero te hace falta madurez emocional, agilidad en el aprendizaje, 
+                            habilidad y deseo de tomar o incrementar tus responsabilidades y roles. 
+
+                            Esto podría deberse a que el alcance de tu pasión se limita a tu área de competencia o experiencia.
+                        </p>
                     @endif
 
                 </div>
