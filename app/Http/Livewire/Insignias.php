@@ -380,6 +380,7 @@ class Insignias extends Component
         } elseif (
             auth()->user()->colaborador_no_colaborador == '143010' ||
             auth()->user()->colaborador_no_colaborador == '131901' ||
+            auth()->user()->colaborador_no_colaborador == '113830' ||
             auth()->user()->colaborador_no_colaborador == '152090'
         ) {
             $this->intentoOro = 10;
