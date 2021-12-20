@@ -379,6 +379,10 @@ class Insignias extends Component
             $this->intentoPlatino = 3;
         } elseif (
             auth()->user()->colaborador_no_colaborador == '143010' ||
+<<<<<<< HEAD
+=======
+            auth()->user()->colaborador_no_colaborador == '113830' ||
+>>>>>>> InsigniasV3
             auth()->user()->colaborador_no_colaborador == '131901' ||
             auth()->user()->colaborador_no_colaborador == '152090'
         ) {
