@@ -3,17 +3,17 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
+use Carbon\CarbonInterface;
 use Livewire\Component;
-use PhpParser\Node\Expr\FuncCall;
 
 class EvaluacionColores extends Component
 {
     public $fecha;
 
-    public $totalSteps = 28;
+    public $totalSteps = 29;
     public $currentStep = 1;
 
-    public $inicio = /* true */false;
+    public $inicio = /* true */ false;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
@@ -104,17 +104,47 @@ class EvaluacionColores extends Component
     public $mostrarModal = false;
     public $titulomsj ='', $msj = '' ,$color ,$bgIcono ,$iconomsj ,$btnTexto;
 
+
+    public $inicioCount, $finalCount,$Contador;
+
+
     public function mount()
     {
         $this->fecha = Carbon::now();
         $this->fecha = $this->fecha->format('d-m-y');
     
-        $this->currentStep = 1;
+        $this->currentStep = 29;   
     }
 
     public function render()
     {
         return view('livewire.evaluacion-colores')->layout('layouts.guest');
+    }
+
+    public function cuentaAtras(){
+        $this->inicioCount = now();
+
+        if ($this->inicioCount->diffInSeconds($this->finalCount,false) <= 0) {
+            $this->Contador = 'Sin tiempo';
+            $this->mostrarModal = true;
+            $this->titulomsj = 'Sin timepo';
+            $this->bgIcono = 'bg-red-100';
+            $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>';
+            $this->msj = 'Se acabado el tiempo ';
+            $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
+            $this->btnTexto = 'Cerrar';
+            
+        }else{
+            $this->Contador = $this->finalCount->diffForHumans($this->inicioCount,[
+                'options' =>Carbon::JUST_NOW,
+                'syntax' => CarbonInterface::DIFF_ABSOLUTE,
+                'parts' => 3,
+                'short' => true
+            ]);
+        }
+
     }
 
 
@@ -176,7 +206,64 @@ class EvaluacionColores extends Component
             $this->validarItem($this->noMasDeDos( [$this->marcadorQuestion27_0,$this->marcadorQuestion27_1, $this->marcadorQuestion27_2, $this->marcadorQuestion27_3] ));
         }elseif($this->currentStep == 28){
             $this->validarItem($this->noMasDeDos( [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3] ));
+        }elseif($this->currentStep == 29){
+
         }
+
+        /* dd(
+            'Item 1', [$this->marcadorQuestion1_0,$this->marcadorQuestion1_1, $this->marcadorQuestion1_2, $this->marcadorQuestion1_3],
+            'Item 2', [$this->marcadorQuestion2_0,$this->marcadorQuestion2_1, $this->marcadorQuestion2_2, $this->marcadorQuestion2_3],
+            'Item 3', [$this->marcadorQuestion3_0,$this->marcadorQuestion3_1, $this->marcadorQuestion3_2, $this->marcadorQuestion3_3],
+            'Item 4', [$this->marcadorQuestion4_0,$this->marcadorQuestion4_1, $this->marcadorQuestion4_2, $this->marcadorQuestion4_3],
+            'Item 5', [$this->marcadorQuestion5_0,$this->marcadorQuestion5_1, $this->marcadorQuestion5_2, $this->marcadorQuestion5_3],
+           
+            'Item 6', [$this->marcadorQuestion6_0,$this->marcadorQuestion6_1, $this->marcadorQuestion6_2, $this->marcadorQuestion6_3],
+            
+            'Item 7',[$this->marcadorQuestion7_0,$this->marcadorQuestion7_1, $this->marcadorQuestion7_2, $this->marcadorQuestion7_3],
+            
+            'Item 8',[$this->marcadorQuestion8_0,$this->marcadorQuestion8_1, $this->marcadorQuestion8_2, $this->marcadorQuestion8_3],
+            
+            'Item 9',[$this->marcadorQuestion9_0,$this->marcadorQuestion9_1, $this->marcadorQuestion9_2, $this->marcadorQuestion9_3],
+            
+            'Item 10',[$this->marcadorQuestion10_0,$this->marcadorQuestion10_1, $this->marcadorQuestion10_2, $this->marcadorQuestion10_3],
+            
+            'Item 11',[$this->marcadorQuestion11_0,$this->marcadorQuestion11_1, $this->marcadorQuestion11_2, $this->marcadorQuestion11_3],
+            
+            'Item 12',[$this->marcadorQuestion12_0,$this->marcadorQuestion12_1, $this->marcadorQuestion12_2, $this->marcadorQuestion12_3],
+            
+            'Item 13',[$this->marcadorQuestion13_0,$this->marcadorQuestion13_1, $this->marcadorQuestion13_2, $this->marcadorQuestion13_3],
+            
+            'Item 14',[$this->marcadorQuestion14_0,$this->marcadorQuestion14_1, $this->marcadorQuestion14_2, $this->marcadorQuestion14_3],
+            
+            'Item 15',[$this->marcadorQuestion15_0,$this->marcadorQuestion15_1, $this->marcadorQuestion15_2, $this->marcadorQuestion15_3],
+            
+            'Item 16',[$this->marcadorQuestion16_0,$this->marcadorQuestion16_1, $this->marcadorQuestion16_2, $this->marcadorQuestion16_3],
+            
+            'Item 17',[$this->marcadorQuestion17_0,$this->marcadorQuestion17_1, $this->marcadorQuestion17_2, $this->marcadorQuestion17_3],
+            
+            'Item 18',[$this->marcadorQuestion18_0,$this->marcadorQuestion18_1, $this->marcadorQuestion18_2, $this->marcadorQuestion18_3],
+            
+            'Item 19',[$this->marcadorQuestion19_0,$this->marcadorQuestion19_1, $this->marcadorQuestion19_2, $this->marcadorQuestion19_3],
+            
+            'Item 20',[$this->marcadorQuestion20_0,$this->marcadorQuestion20_1, $this->marcadorQuestion20_2, $this->marcadorQuestion20_3], 
+            
+            'Item 21',[$this->marcadorQuestion21_0,$this->marcadorQuestion21_1, $this->marcadorQuestion21_2, $this->marcadorQuestion21_3],
+            
+            'Item 22',[$this->marcadorQuestion22_0,$this->marcadorQuestion22_1, $this->marcadorQuestion22_2, $this->marcadorQuestion22_3],
+            
+            'Item 23',[$this->marcadorQuestion23_0,$this->marcadorQuestion23_1, $this->marcadorQuestion23_2, $this->marcadorQuestion23_3],
+            
+            'Item 24',[$this->marcadorQuestion24_0,$this->marcadorQuestion24_1, $this->marcadorQuestion24_2, $this->marcadorQuestion24_3],
+            
+            'Item 25',[$this->marcadorQuestion25_0,$this->marcadorQuestion25_1, $this->marcadorQuestion25_2, $this->marcadorQuestion25_3],
+            
+            'Item 26',[$this->marcadorQuestion26_0,$this->marcadorQuestion26_1, $this->marcadorQuestion26_2, $this->marcadorQuestion26_3],
+            
+            'Item 27',[$this->marcadorQuestion27_0,$this->marcadorQuestion27_1, $this->marcadorQuestion27_2, $this->marcadorQuestion27_3],
+            
+            'Item 28',[$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3],
+        ); */
+
     }
 
     public function ocultarInicio(){
@@ -186,6 +273,9 @@ class EvaluacionColores extends Component
 
     public function ocultarInstuccion(){
         $this->instruccion = false;
+
+        $this->finalCount = now();
+        $this->finalCount->addMinute(10)->addSecond(2);
     }
 
     public function noMasDeDos($valor)
@@ -195,56 +285,73 @@ class EvaluacionColores extends Component
         $contadorMenos = 0;
         $contarNull = 0;
 
-        foreach ($valor as $key) {
+        if($this->inicioCount->diffInSeconds($this->finalCount, false)  <= 0)
+        {
+            $this->mostrarModal = true;
+            $this->titulomsj = 'Sin timepo';
+            $this->bgIcono = 'bg-red-100';
+            $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>';
+            $this->msj = 'Se acabado el tiempo ';
+            $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
+            $this->btnTexto = 'Cerrar';
             
-            if ( count($key) == 0 ) {
-                $contarNull++;
-            }elseif( count($key) == 2 ){
+        }else{
+
+            foreach ($valor as $key) {
+                
+                if ( count($key) == 0 ) {
+                    $contarNull++;
+                }elseif( count($key) == 2 ){
+                    $this->mostrarModal = true;
+                    $this->titulomsj = 'Error';
+                    $this->bgIcono = 'bg-red-100';
+                    $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>';
+                    $this->msj = 'No es permitido seleccionar más y menos a la vez';
+                    $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
+                    $this->btnTexto = 'Cerrar';
+                    break;
+                    return false;
+                }elseif( count($key) == 1 ){
+                    if($key[0] == 1){
+                        $contadorMas++;
+                    }elseif($key[0] == 0){
+                        $contadorMenos++;
+                    }
+                }
+
+            }
+
+            if($contarNull > 2){
                 $this->mostrarModal = true;
                 $this->titulomsj = 'Error';
                 $this->bgIcono = 'bg-red-100';
                 $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>';
-                $this->msj = 'No es permitido seleccionar más y menos a la vez';
+                </svg>';
+                $this->msj = 'No has seleccionado ninguna de las opciones ó solo seleccionaste una sola opcion.';
                 $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
                 $this->btnTexto = 'Cerrar';
-                break;
-                return false;
-            }elseif( count($key) == 1 ){
-                if($key[0] == 1){
-                    $contadorMas++;
-                }elseif($key[0] == 0){
-                    $contadorMenos++;
-                }
+            }elseif( $contadorMas >= 2 || $contadorMenos >= 2 ){
+                $this->mostrarModal = true;
+                $this->titulomsj = 'Error';
+                $this->bgIcono = 'bg-red-100';
+                $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                </svg>';
+                $this->msj = 'No es permitido seleccionar más de dos opciones iguales ó seleccionar más y menos a la vez';
+                $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
+                $this->btnTexto = 'Cerrar';
+            }elseif($contadorMas == 1 && $contadorMenos == 1) {
+                return true;
             }
-        }
 
-        if($contarNull > 2){
-            $this->mostrarModal = true;
-            $this->titulomsj = 'Error';
-            $this->bgIcono = 'bg-red-100';
-            $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>';
-            $this->msj = 'No has seleccionado ninguna de las opciones';
-            $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
-            $this->btnTexto = 'Cerrar';
-        }elseif( $contadorMas >= 2 || $contadorMenos >= 2 ){
-            $this->mostrarModal = true;
-            $this->titulomsj = 'Error';
-            $this->bgIcono = 'bg-red-100';
-            $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-          </svg>';
-            $this->msj = 'No es permitido seleccionar más de dos opciones iguales ó seleccionar más y menos a la vez';
-            $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
-            $this->btnTexto = 'Cerrar';
-        }elseif($contadorMas == 1 && $contadorMenos == 1) {
-            return true;
-        }
+            /* return 'nulos:'.$contarNull.' contarMas:'.$contadorMas.' contarMenos:'.$contadorMenos.'    MENSAJE: '.$msj; */
 
-        /* return 'nulos:'.$contarNull.' contarMas:'.$contadorMas.' contarMenos:'.$contadorMenos.'    MENSAJE: '.$msj; */
+        }
 
     }
 
@@ -260,6 +367,11 @@ class EvaluacionColores extends Component
                 $this->currentStep = $this->totalSteps;
             }
         }
+    }
+
+    public function resultadosGenerar()
+    {
+        
     }
 
 }
