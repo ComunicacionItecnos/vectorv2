@@ -384,9 +384,20 @@
                             <p class="text-xl text-gray-500 font-light">
                                 Este año no eres acredor para un incremento salarial.
                             </p>
-                        @else
+                        @elseif( ($resDesempeno >= 80 || $resDesemepno <=80.0 ) && ($resDesempeno <= 90 || $resDesempeno <= 90.0) )
+                            {{-- Aqui solo se mostrara el porcentaje del incremento --}}
                             <p class="text-xl text-gray-500 font-light">
                                 Este año eres acredor a un incremento del X% salarial.
+                            </p>
+                        @elseiF( ($resDesempeno >= 91 || $resDesempeno >= 91.0) && ($resDesempeno <= 95 || $resDesempeno <= 95.0) )
+                            {{-- Aqui solo se mostrara el porcentaje del incremento+2 --}}
+                            <p class="text-xl text-gray-500 font-light">
+                                Este año eres acredor a un incremento del X+2% salarial.
+                            </p>
+                        @elseiF( ($resDesempeno >= 96 || $resDesempeno >= 96.0) && ($resDesempeno <= 100) )
+                            {{-- Aqui solo se mostrara el porcentaje del incremento+3 --}}
+                            <p class="text-xl text-gray-500 font-light">
+                                Este año eres acredor a un incremento del X+3% salarial.
                             </p>
                         @endif
 
