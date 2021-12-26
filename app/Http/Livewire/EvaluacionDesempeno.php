@@ -3,9 +3,11 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Artisan;
 
 class EvaluacionDesempeno extends Component
 {
@@ -13,16 +15,13 @@ class EvaluacionDesempeno extends Component
     public $foto,$nombre,$puesto;
     public $fotoRandom;
 
-    public $evaluacionValor,$climaValor,$autoevaluacionValor,$resFinanciero,$resDesempeno,$valor270,$nineBox;
+    public $evaluacionValor,$climaValor,$autoevaluacionValor,$resFinanciero,$resDesempeno,$resDesempeno2,$valor270,$nineBox;
     public $climaForm,$resFinancieroForm,$autoevaluacionForm,$evaluacionForm,$evaluacion_270Form;
 
     public $box1,$box2,$box3,$box4,$box5,$box6,$box7,$box8,$box9;
 
     public function mount($no_colaborador)
     {
-        /* Limpia el cache */
-        clearstatcache();
-
         $check = 'lUgZ/C2axY8B7bJHHkVwKGmaJJ9JJm3otAosfRhoCeg';
 
         $this->colaborador =  $this->buscaColaborador($no_colaborador);
@@ -46,8 +45,8 @@ class EvaluacionDesempeno extends Component
             $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$resFinancieroObtn,$this->puesto);
             
             /* Evaluacion */
-            /* $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion); */
-            $EvaluacionValor = $this->camposNull(/* $EvaluacionValor */95);
+            $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion);
+            $EvaluacionValor = $this->camposNull($EvaluacionValor);
             $this->evaluacionForm = $EvaluacionValor;
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$EvaluacionValor,$this->puesto);
             
@@ -91,18 +90,19 @@ class EvaluacionDesempeno extends Component
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
-    
-            $this->nineBoxUbicar($this->resDesempeno);
+            $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
+
+            $this->nineBoxUbicar($this->resDesempeno2);
             
         }elseif($this->puesto == 'Director_270'){
             /* Clima */
-            $this->climaForm = 'No aplica';
+            $this->climaForm = /* 'No aplica' */0;
             
             /* Resultado Financiero */
             $this->resFinancieroForm = 'No aplica';
             
             /* Evaluacion */
-            $this->evaluacionForm = 'No aplica';
+            $this->evaluacionForm = /* 'No aplica' */0;
             
             /* Autoevaluacion */
             $this->autoevaluacionForm = 'No aplica';
@@ -141,6 +141,9 @@ class EvaluacionDesempeno extends Component
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
+            $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
+
+            $this->nineBoxUbicar($this->resDesempeno2);
     
         }elseif($this->puesto == 'Gerente'){
             
@@ -182,7 +185,9 @@ class EvaluacionDesempeno extends Component
             /* Suma de todas las calificaciones y mostrar resultado */
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
-            $this->nineBoxUbicar($this->resDesempeno);
+            $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
+
+            $this->nineBoxUbicar($this->resDesempeno2);
 
         }elseif($this->puesto == 'Gerente_270'){
 
@@ -193,7 +198,7 @@ class EvaluacionDesempeno extends Component
             $this->resFinancieroForm = 'No aplica';
             
             /* Evaluacion */
-            $this->evaluacionForm = 'No aplica';
+            $this->evaluacionForm = 0;
             
             /* Autoevaluacion */
             $this->autoevaluacionForm = 'No aplica';
@@ -218,7 +223,9 @@ class EvaluacionDesempeno extends Component
             /* Suma de todas las calificaciones y mostrar resultado */
             $total = [$this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
+            $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,/* $this->climaForm */0);
 
+            $this->nineBoxUbicar($this->resDesempeno2);
         }else{
             /* Clima */
             $this->climaValor = $this->calcularPorcentaje('clima',$clima,$this->puesto);
@@ -380,23 +387,23 @@ class EvaluacionDesempeno extends Component
 
         /* Info del resultado */
 
-        if ( ($resultado >= 80) && ($resultado<= 82.5) ) {
+        if ( ($resultado >= 80 || $resultado >= 80.0) && ($resultado<= 82.5) ) {
             return $this->box1 = $iconoBien; 
         }elseif( ($resultado >= 92.6) && ($resultado<= 94.5) ){
             return $this->box2 = $iconoExcelente; 
-        }elseif( ($resultado >= 95) && ($resultado<= 100) ){
+        }elseif( ($resultado >= 95 || $resultado >= 95.0) && ($resultado<= 100) ){
             return $this->box3 = $iconoExcelente; 
-        }elseif( ($resultado >= 70) && ($resultado<= 74.9) ){
+        }elseif( ($resultado >= 70 || $resultado >= 70.0) && ($resultado<= 74.9) ){
             return $this->box4 = $iconoRegular; 
         }elseif( ($resultado >= 82.6) && ($resultado<= 84.9) ){
             return $this->box5 = $iconoBien; 
-        }elseif( ($resultado >= 90) && ($resultado<= 92.5) ){
+        }elseif( ($resultado >= 90 || $resultado >= 90.0) && ($resultado<= 92.5) ){
             return $this->box6 = $iconoExcelente; 
         }elseif( $resultado < 69 ) {
             return $this->box7 = $iconoMal; 
-        }elseif( ($resultado >= 75) && ($resultado<= 79) ){
+        }elseif( ($resultado >= 75 || $resultado >= 75.0) && ($resultado<= 79 || $resultado <=79.9) ){
             return $this->box8 = $iconoRegular; 
-        }elseif( ($resultado >= 85) && ($resultado<= 89.9) ){
+        }elseif( ($resultado >= 85 || $resultado >= 85.0) && ($resultado<= 89.9) ){
             return $this->box9 = $iconoBien; 
         }
 
@@ -408,6 +415,8 @@ class EvaluacionDesempeno extends Component
         /* colaborador aguila ammunation */
         $buscar = DB::table('infocolaborador')->where('no_colaborador',$no_colaborador)->get();
         if ( count($buscar) > 0) {
+            /* Limpia el cache */
+            Artisan::call('cache:clear');
 
             $formResultados = $this->buscarFormulario($buscar[0]->no_colaborador);
 
@@ -418,10 +427,16 @@ class EvaluacionDesempeno extends Component
             if (count($buscar) > 0) {
 
                 if(count($buscar) == 2){
+                    /* Limpia el cache */
+                    Artisan::call('cache:clear');
+
                     $formResultados = $this->buscarFormulario($buscar[1]->no_colaborador);
                     $buscar = collect([0=>$buscar[1]]);
                     return [$buscar,$formResultados];
                 }else{
+                    /* Limpia el cache */
+                    Artisan::call('cache:clear');
+
                     $formResultados = $this->buscarFormulario($buscar[0]->no_colaborador);
 
                     return [$buscar,$formResultados];
@@ -447,6 +462,27 @@ class EvaluacionDesempeno extends Component
         }else{
             return ($valor != null) ? $valor : 0 ;
         }
+    }
+
+    /* calcular el nineBox 2 =Directores,Gerentes= */
+    public function nineBox2($jefeDirecto,$eval270,$clima)
+    {
+        $jDRes = $jefeDirecto*.70;
+        $eval270Res = $eval270*0.20;
+        $climaRes = $clima*0.10;
+
+        $jDRes = $this->formatonumero($jDRes);
+        $eval270Res = $this->formatonumero($eval270Res);
+        $climaRes = $this->formatonumero($climaRes);
+
+        return $jDRes+$eval270Res+$climaRes;
+
+    }
+
+    /* Exportar pdf */
+    public function pdfExportar()
+    {
+        
     }
 
 }

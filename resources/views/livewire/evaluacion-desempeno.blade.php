@@ -254,7 +254,7 @@
 
                 </div>
                 {{-- NINEBOX --}}
-                <div class="flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pb-2 flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md
                         @if ($box1 == null)
@@ -375,6 +375,31 @@
 
                 </div>
 
+                {{-- Mensaje para mostrar el porcentaje del aumento --}}
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+
+                    @if ($puesto == 'Administrativo')
+                        
+                        @if ($resDesempeno <= 79.8)
+                            <p class="text-xl text-gray-500 font-light">
+                                Este año no eres acredor para un incremento salarial.
+                            </p>
+                        @else
+                            <p class="text-xl text-gray-500 font-light">
+                                Este año eres acredor a un incremento del X% salarial.
+                            </p>
+                        @endif
+
+                    @else
+  
+                        <p class="text-xl text-gray-500 font-light">
+                            Este año eres acredor a un bono del {{$resDesempeno}}%.
+                        </p>
+                        
+                    @endif
+
+                </div>
+
             </div>
         </div>
     </div>
@@ -388,23 +413,23 @@
                     <button type="button" onclick="abrir()">
                         <p class="text-xl text-center">
                             
-                            @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
+                            @if ( ($resDesempeno >= 80 || $resDesempeno >= 80.0) && ($resDesempeno<= 82.5) )
                                 Bajo desempeño / Alto potencial
                             @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
                                 Medio desempeño / Alto potencial
-                            @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
+                            @elseif ( ($resDesempeno >= 95 || $resDesempeno >=95.0) && ($resDesempeno<= 100) )
                                Alto desempeño / Alto potencial
-                            @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
+                            @elseif ( ($resDesempeno >= 70 || $resDesempeno >=70.0) && ($resDesempeno<= 74.5) )
                                Bajo desempeño / Potencial medio 
                             @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
                                Desempeño medio / Potencial medio
-                            @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
+                            @elseif ( ($resDesempeno >= 90 || $resDesempeno >=90.0) && ($resDesempeno<= 92.5) )
                                Alto desempeño / Potencial medio
                             @elseif ( $resDesempeno < 69 )
                                Bajo desempeño / Bajo potencial
-                            @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
+                            @elseif ( ($resDesempeno >= 75 || $resDesempeno >= 75.0) && ($resDesempeno<= 79 || $resDesempeno <=79.9) )
                                 Desempeño medio / Bajo potencial
-                            @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
+                            @elseif ( ($resDesempeno >= 85 || $resDesempeno >= 85.0) && ($resDesempeno<= 89.9) )
                                 Alto desempeño / Bajo potencial 
                             @endif
 
@@ -420,23 +445,23 @@
 
                 </div>
                 <div class="p-2 border-l-4 border-black 
-                @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
+                @if ( ($resDesempeno >= 80 || $resDesempeno >=80.0) && ($resDesempeno<= 82.5) )
                     border-yellow-500
                 @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
                     border-green-600
-                @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
+                @elseif ( ($resDesempeno >= 95 || $resDesempeno >=95.0) && ($resDesempeno<= 100) )
                     border-green-800
-                @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
+                @elseif ( ($resDesempeno >= 70 || $resDesempeno >=70.0) && ($resDesempeno<= 74.5) )
                     border-red-600
                 @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
                     border-yellow-500
-                @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
+                @elseif ( ($resDesempeno >= 90 || $resDesempeno >=90.0) && ($resDesempeno<= 92.5) )
                     border-green-600
                 @elseif ( $resDesempeno < 69 )
                     border-red-800
-                @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
+                @elseif ( ($resDesempeno >= 75 || $resDesempeno >= 75.0) && ($resDesempeno<= 79 || $resDesempeno <=79.9) )
                     border-red-600
-                @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
+                @elseif ( ($resDesempeno >= 85 || $resDesempeno >= 85.0) && ($resDesempeno<= 89.9) )
                     border-yellow-500
                 @endif bg-white hidden" id="foo">
 

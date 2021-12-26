@@ -8,12 +8,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Support\Facades\Artisan;
 
 class EvalucacionDesempenoExcel extends Component
 {
 
     public $opcionSelect,$selectTipo;
-    public $fecha_actual;
     public $lista = [];
 
     public $check = 'lUgZ/C2axY8B7bJHHkVwKGmaJJ9JJm3otAosfRhoCeg';
@@ -90,30 +90,10 @@ class EvalucacionDesempenoExcel extends Component
 
     public function export()
     {
-        $check = 'lUgZ/C2axY8B7bJHHkVwKGmaJJ9JJm3otAosfRhoCeg';
-        
-        $formulariosIdAguila = DB::select('call evaluacion(?,?)',array($this->selectTipo,$this->opcionSelect));
-        
-        
-        return $this->lista = $formulariosIdAguila /* $formulariosIdExterno */;
-
-
-        $this->fecha_actual = Carbon::now();
-        /* $this->lista = DB::table('colaborador_estacionamiento')->select('id', 'no_colaborador', 'placa', 'marca', 'modelo', 'fecha_modelo', 'color', 'tipo_vehiculo', 'no_marbete')->get();
-        if (count($this->lista) == 0) {
-            $this->alert('info', 'No hay ningún colaborador registrado', [
-                'position' =>  'top-end',
-                'timer' =>  3000,
-                'toast' =>  true,
-                'text' =>  '',
-                'confirmButtonText' =>  'Ok',
-                'cancelButtonText' =>  'Cancel',
-                'showCancelButton' =>  false,
-                'showConfirmButton' =>  false,
-            ]);
-        } else {
-            return Excel::download(new VehiculosExport($this->lista), 'registro-vehiculos-externos(' . $this->fecha_actual . ').xlsx');
-        } */
+        /* Limpia el cache */
+        Artisan::call('cache:clear');
+                
+        return $this->lista = DB::select('call evaluacion(?,?)',array($this->selectTipo,$this->opcionSelect));
     }
 
 }
