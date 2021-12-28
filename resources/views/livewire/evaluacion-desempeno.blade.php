@@ -62,8 +62,8 @@
                     <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Autoevaluación</p>
+                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno2 }}</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Calificación ninebox</p>
                         </div>
 
                     </div>
@@ -72,7 +72,7 @@
 
                         <div>
                             <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Final</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Calificación bono</p>
                         </div>
 
                     </div>
@@ -418,14 +418,14 @@
 
                 </div>
 
-                {{-- <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
                     
-                    <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
+                    {{-- <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
                     wire:click="pdfExportar()">
                         Descargar
-                    </button>
+                    </button> --}}
                     
-                </div> --}}
+                </div>
 
             </div>
         </div>
