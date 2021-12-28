@@ -340,14 +340,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center" wire:click="modalNineBoxVacio(2)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(2)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" >
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -380,14 +380,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center" wire:click="modalNineBoxVacio(3)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(3)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" >
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -420,14 +420,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center" wire:click="modalNineBoxVacio(4)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(4)"> 
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" > 
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -460,14 +460,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center" wire:click="modalNineBoxVacio(5)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(5)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -500,14 +500,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center" wire:click="modalNineBoxVacio(6)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(6)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -540,14 +540,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center"  wire:click="modalNineBoxVacio(7)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(7)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -580,14 +580,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center"  wire:click="modalNineBoxVacio(8)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(8)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
@@ -620,14 +620,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center" wire:click="modalNineBoxVacio(9)">
         
                                         <div class="">
                                             
                                         </div>
                                       
                                         <div class="col-start-2">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(9)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor">
                                                 <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                             </svg>
                                         </div>
