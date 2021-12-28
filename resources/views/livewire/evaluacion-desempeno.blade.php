@@ -41,7 +41,7 @@
                             <div class="grid grid-cols-5">
 
                                 <div class="col-start-1 col-span-2">
-                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $climaForm }}</p>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800" wire:click="modalClima(0)">{{ $climaForm }}</p>
                                     <p class="font-semibold leading-snug" style="font-size: 12px;">Clima laboral</p>
                                     <br>
                                     <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacionForm }}</p>
@@ -69,7 +69,7 @@
                             <div class="grid grid-cols-3">
 
                                 <div class="col-span-2">
-                                    <p class="font-semibold leading-snug text-base ">Tu calificación para el bono de desempeño es: </p>
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para el bono de desempeño es: </p>
                                 </div>
                               
                                 <div class="">
@@ -297,14 +297,14 @@
 
                                 <div>
         
-                                    <div class="grid justify-items-center">
+                                    <div class="grid justify-items-center" wire:click="modalNineBoxVacio(1)">
                                         <div class="">
                                             
                                         </div>
                                       
                                         
                                             <div class="col-start-2">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(1)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" >
                                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
                                                 </svg>
                                             </div>
@@ -686,6 +686,50 @@
                             <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-{{$iconoColor}}-100 sm:mx-0 sm:h-10 sm:w-10">
                                 <!-- Heroicon name: outline/exclamation -->
                                 {!! $iconoModal !!}
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                    {{$tituloModal}}
+                                </h3>
+                                <h4 class="text-base leading-6 font-medium text-gray-900" id="modal-title">
+                                    {{$subtituloModal}}
+                                </h4>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">
+                                    {!! $infoModal !!}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 pt-2 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        
+                        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-{{$iconoColor}}-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        wire:click="modalNineBoxVacio(0)">
+                            Cerrar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Modal para Clima laboral -->
+        <div class="fixed z-10 inset-0 overflow-y-auto @if($abrirModalCima) @else hidden @endif" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+               
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+  
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+  
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-{{$iconoColor}}-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <!-- Heroicon name: outline/exclamation -->
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                </svg>
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">

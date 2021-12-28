@@ -21,6 +21,8 @@ class EvaluacionDesempeno extends Component
     public $box1,$box2,$box3,$box4,$box5,$box6,$box7,$box8,$box9;
     public $abrirModal = false,$iconoModal,$iconoColor,$tituloModal,$subtituloModal,$infoModal;
 
+    public $abrirModalCima= false;
+
     public function mount($no_colaborador)
     {
         $check = 'lUgZ/C2axY8B7bJHHkVwKGmaJJ9JJm3otAosfRhoCeg';
@@ -28,7 +30,13 @@ class EvaluacionDesempeno extends Component
         $this->colaborador =  $this->buscaColaborador($no_colaborador);
         
         $this->foto = $this->colaborador[0][0]->foto;
-        $this->nombre = $this->colaborador[0][0]->nombre;
+        if ($this->colaborador[0][0]->nombre_2 == null) {
+            $this->nombre = $this->colaborador[0][0]->nombre;
+        }else{
+            $this->nombre = $this->colaborador[0][0]->nombre.' '.$this->colaborador[0][0]->nombre_2;
+        }
+
+        
         $this->puesto = $this->colaborador[1][0]->tipo;
 
         /* Clima Laboral - General */
@@ -477,7 +485,7 @@ class EvaluacionDesempeno extends Component
             $this->abrirModal=!$this->abrirModal;
         }elseif ($box == 7) {
             $this->tituloModal = 'Bajo desempeño / Bajo potencial';
-            $this->subtituloModal = 'Menor del 69';
+            $this->subtituloModal = 'Menor de 69';
             $this->infoModal = 'No vives los valores Aguila, tienes una brecha significativa en tus competencias, demostrando falta de habilidad, madurez emocional, agilidad en el aprendizaje, 
             pasión por el negocio, deseo de tomar e incrementar tus responsabilidades y roles asignados.';
             $this->iconoModal = ' <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -509,6 +517,11 @@ class EvaluacionDesempeno extends Component
             $this->abrirModal=!$this->abrirModal;
         }
 
+    }
+
+
+    public function modalClima(){
+        $this->abrirModalCima =! $this->abrirModalCima;
     }
 
     /* Buscar colaborador */
