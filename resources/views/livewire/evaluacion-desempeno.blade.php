@@ -691,9 +691,12 @@
                                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
                                     {{$tituloModal}}
                                 </h3>
+                                <h4 class="text-base leading-6 font-medium text-gray-900" id="modal-title">
+                                    {{$subtituloModal}}
+                                </h4>
                                 <div class="mt-2">
                                     <p class="text-sm text-gray-500">
-                                    {{$infoModal}}
+                                    {!! $infoModal !!}
                                     </p>
                                 </div>
                             </div>
@@ -701,7 +704,7 @@
                     </div>
                     <div class="bg-gray-50 px-4 pt-2 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         
-                        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-{{$iconoColor}}-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
                         wire:click="modalNineBoxVacio(0)">
                             Cerrar
                         </button>
