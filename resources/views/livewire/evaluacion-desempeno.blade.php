@@ -376,40 +376,56 @@
                 </div>
 
                 {{-- Mensaje para mostrar el porcentaje del aumento --}}
-                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400">
 
                     @if ($puesto == 'Administrativo')
                         
                         @if ($resDesempeno <= 79.8)
                             <p class="text-xl text-gray-500 font-light">
-                                Este año no eres acredor para un incremento salarial.
+                                Este año no eres acreedor para un incremento salarial.
                             </p>
                         @elseif( ($resDesempeno >= 80 || $resDesemepno <=80.0 ) && ($resDesempeno <= 90 || $resDesempeno <= 90.0) )
                             {{-- Aqui solo se mostrara el porcentaje del incremento --}}
                             <p class="text-xl text-gray-500 font-light">
-                                Este año eres acredor a un incremento del X% salarial.
+                                Este año eres acreedor a un incremento del X% salarial.
                             </p>
                         @elseiF( ($resDesempeno >= 91 || $resDesempeno >= 91.0) && ($resDesempeno <= 95 || $resDesempeno <= 95.0) )
                             {{-- Aqui solo se mostrara el porcentaje del incremento+2 --}}
                             <p class="text-xl text-gray-500 font-light">
-                                Este año eres acredor a un incremento del X+2% salarial.
+                                Este año eres acreedor a un incremento del X+2% salarial.
                             </p>
                         @elseiF( ($resDesempeno >= 96 || $resDesempeno >= 96.0) && ($resDesempeno <= 100) )
                             {{-- Aqui solo se mostrara el porcentaje del incremento+3 --}}
                             <p class="text-xl text-gray-500 font-light">
-                                Este año eres acredor a un incremento del X+3% salarial.
+                                Este año eres acreedor a un incremento del X+3% salarial.
                             </p>
                         @endif
 
                     @else
-  
-                        <p class="text-xl text-gray-500 font-light">
-                            Este año eres acredor a un bono del {{$resDesempeno}}%.
-                        </p>
+
+                        @if ($resDesempeno <= 79.8)
+                            <p class="text-xl text-gray-500 font-light">
+                                Este año no eres acreedor <br> para el bono de desempeño.
+                            </p>
+                         @elseif( ($resDesempeno >= 80 || $resDesemepno <=80.0 ) && ($resDesempeno <= 90 || $resDesempeno <= 90.0) )
+                            {{-- Aqui solo se mostrara el porcentaje del incremento --}}
+                            <p class="text-xl text-gray-500 font-light">
+                                Este año eres acreedor al  {{$resDesempeno}}% <br> de tu bono de desempeño.
+                            </p>
+                        @endif
                         
                     @endif
 
                 </div>
+
+                {{-- <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                    
+                    <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
+                    wire:click="pdfExportar()">
+                        Descargar
+                    </button>
+                    
+                </div> --}}
 
             </div>
         </div>

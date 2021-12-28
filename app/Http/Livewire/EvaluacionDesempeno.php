@@ -3,7 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
-use Barryvdh\DomPDF\PDF;
+use Barryvdh\DomPDF\Facade as PDF;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
@@ -91,7 +91,7 @@ class EvaluacionDesempeno extends Component
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
-
+            /* dd($this->resDesempeno,$this->resDesempeno2); */
             $this->nineBoxUbicar($this->resDesempeno2);
             
         }elseif($this->puesto == 'Director_270'){
@@ -131,13 +131,15 @@ class EvaluacionDesempeno extends Component
     
             $evaluacion_270 = [
                 $EvaluacionValor270_1,$EvaluacionValor270_2,
-                $EvaluacionValor270_3
+                $EvaluacionValor270_3,$EvaluacionValor270_4,
+                $EvaluacionValor270_5,$EvaluacionValor270_6,$EvaluacionValor270_7
             ];
 
             $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
             $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
             
             $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);
+            
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
@@ -186,7 +188,7 @@ class EvaluacionDesempeno extends Component
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
-
+            /* dd($this->resDesempeno,$this->resDesempeno2); */
             $this->nineBoxUbicar($this->resDesempeno2);
 
         }elseif($this->puesto == 'Gerente_270'){
@@ -259,6 +261,10 @@ class EvaluacionDesempeno extends Component
     /* Obtener datos del MagicForm desde la API de Factor */
     public function apiObtn($check,$valor)
     {
+        
+        /* Limpia el cache */
+        Artisan::call('cache:clear');
+
         /* Consumir una api */
         $res = Http::get('https://factoraguila.com/restapi/index.php',[
             'check'=>$check,
@@ -482,7 +488,41 @@ class EvaluacionDesempeno extends Component
     /* Exportar pdf */
     public function pdfExportar()
     {
+        $viewData = [];
+
+        if($this->puesto == 'Administrativo')
+        {
+
+            $viewData = [
+                'foto' =>$this->foto,
+                'nombre'=>$this->nombre,
+                'puesto'=>$this->puesto,
+                'climaForm'=>$this->climaForm,
+                'autoevaluacionForm'=>$this->autoevaluacionForm,
+                'evaluacionForm'=>$this->evaluacionForm ,
+                'resDesempeno'=>$this->resDesempeno,
+                'box1'=>$this->box1,
+                'box2'=>$this->box2,
+                'box3'=>$this->box3,
+                'box4'=>$this->box4,
+                'box5'=>$this->box5,
+                'box6'=>$this->box6,
+                'box7'=>$this->box7,
+                'box8'=>$this->box8,
+                'box9'=>$this->box9,
+            ];
+            
+            
+            
+        }
+
+        $pdf = PDF::loadView('pdf.evaluacion_desempeno_pdf',$viewData)->output();
+
         
+        return response()->streamDownload(
+            fn () => print($pdf),
+            'test'. ".pdf"
+        );
     }
 
 }
