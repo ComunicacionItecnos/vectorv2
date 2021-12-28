@@ -1,17 +1,17 @@
 <div class="py-3 bg-white">
-    <p class="text-center text-3xl font-bold text-red-800">
-        Evaluación de desempeño
+    {{-- <p class="text-center text-3xl font-black text-red-800">
+        MISIÓN POSIBLE
     </p>
-    <p class="text-center mb-28 text-xl font-normal text-gray-500">
-        Resultados
-        <svg class="inline-block w-6 h-6" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            stroke="currentColor" viewBox="0 0 24 24">
-            <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
-            </path>
-        </svg>
-    </p>
+    <p class="text-center mb-20 text-xl font-normal text-gray-500">
+        2021
+    </p> --}}
+
+    <div class=" mb-20">
+        <img src="{{asset('images/nineBox/Resultados-Banner.png')}}" class="mx-auto object-cover" style="width:75%;height:auto;" loading="lazy">
+    </div>
+
     <div class="flex items-center space-y-24 md:space-y-0 flex-col">
-        <div class="p-4 relative">
+        <div class="p-3 pb-10 relative">
             <div class="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2">
                 <a class="block relative">
                     @if (file_exists(public_path('storage/'.$foto)))
@@ -23,59 +23,87 @@
             </div>
             <div class="rounded-lg shadow px-8 py-4 pt-24" style="background-color: #E9F0F2;">
                 <div class="text-center">
-                    <p class="text-2xl text-gray-800 mr-2">
+                    <p class="text-2xl text-gray-800 mr-2 pt-2 pb-4 border-b border-gray-400">
                         Hola ¡{{ $nombre }}!
                     </p>
-                    <p class="text-xl text-gray-500 font-light">
+                    <p class="text-xl text-gray-500 pt-2 font-light">
                         Estos son tus resultados:
                     </p>
                 </div>
 
                 {{-- Director --}}
                 @if ($puesto == 'Director')
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center font-bold border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $climaForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima laboral</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resFinancieroForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Resultado financiero</p>
-                        </div>
 
-                    </div>
+                            <div class="grid grid-cols-5">
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de jefe directo</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacion_270Form }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de compañeros</p>
-                        </div>
-
-                    </div>
-
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno2 }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Calificación ninebox</p>
+                                <div class="col-start-1 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $climaForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Clima laboral</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacionForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de jefe directo</p>
+                                </div>
+                            
+                                <div class="col-start-4 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $resFinancieroForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Resultado financiero</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacion_270Form }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de compañeros</p>
+                                </div>
+                            
+                            </div>
+                
                         </div>
 
                     </div>
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-700 justify-center  text-center">
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Calificación bono</p>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base ">Tu calificación para el bono de desempeño es: </p>
+                                </div>
+                              
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno2 }}</p>
+                                </div>
+                              
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">Esta calificación está compuesta por el <b>resultado financiero</b>,<b>clima laboral</b>, la <b>evaluación de tu jefe</b> y la <b>evaluación de tus compañeros</b>. </p>
                         </div>
 
                     </div>
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base ">Tu calificación de 9·BOX: </p>
+                                </div>
+                              
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno }}</p>
+                                </div>
+                              
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">Esta calificación está compuesta por la <b>evaluación de tu jefe</b>, la <b>evaluación de tus compañeros</b> y <b>clima laboral</b>. </p>
+                        </div>
+
+                    </div>
+
                 @elseif($puesto == 'Director_270')
 
                     <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
@@ -246,10 +274,10 @@
                 @endif
 
                 {{-- NINEBOX --}}
-                <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
 
-                    <p class="text-xl text-gray-500 font-light">
-                        Tu ubicación en 9 Box:
+                    <p class="text-xl text-gray-500 font-semibold">
+                        Tu ubicación en 9·BOX:
                     </p>
 
                 </div>
@@ -262,10 +290,42 @@
                         @else
                             bg-yellow-400
                         @endif box-border border-2" style="border-color: #E9F0F2;">
+
                         @if ($box1 == null)
-                            <br><br><br>
+
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        
+                                            <div class="col-start-2">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(1)">
+                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                                </svg>
+                                            </div>
+
+                                            <div class="col-start-2">
+                                                <p class="font-semibold text-sm text-center">  </p>
+
+                                                <p class="font-semibold text-xs text-center opacity-40"> 80 - 82.5</p>
+
+                                            </div>
+                                        
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
+
                         @else
-                            {!! $box1 !!}
+                            <div class="pt-6 pb-6">
+                                {!! $box1 !!}
+                            </div>
                         @endif
                     </div>
 
@@ -276,7 +336,34 @@
                         bg-green-500
                     @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box2 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(2)">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> 92.6 - 94.5</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box2 !!}
                         @endif
@@ -289,7 +376,34 @@
                         bg-green-700
                     @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box3 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(3)">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> 95 - 100</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box3 !!}
                         @endif
@@ -302,7 +416,34 @@
                         bg-red-500
                     @endif  box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box4 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(4)"> 
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> 70 - 74.9</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box4 !!}
                         @endif
@@ -315,7 +456,34 @@
                         bg-yellow-400
                     @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box5 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(5)">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> 82.6 - 84.9</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box5 !!}
                         @endif
@@ -328,7 +496,34 @@
                         bg-green-400
                     @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box6 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(6)">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> 90 - 92.5</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box6 !!}
                         @endif
@@ -341,7 +536,34 @@
                         bg-red-700
                     @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box7 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(7)">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> < 69</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box7 !!}
                         @endif
@@ -354,7 +576,34 @@
                         bg-red-500
                     @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box8 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(8)">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> 75 - 79.9</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box8 !!}
                         @endif
@@ -367,7 +616,34 @@
                         bg-yellow-400
                     @endif box-border border-2" style="border-color: #E9F0F2;">
                         @if ($box9 == null)
-                            <br><br><br>
+                            <div class="pt-5 pb-5 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                                <div>
+        
+                                    <div class="grid justify-items-center">
+        
+                                        <div class="">
+                                            
+                                        </div>
+                                      
+                                        <div class="col-start-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 opacity-20 text-black " viewBox="0 0 20 20" fill="currentColor" wire:click="modalNineBoxVacio(9)">
+                                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z" clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+
+                                        <div class="col-start-2 ">
+                                            <p class="font-semibold text-sm text-center">  </p>
+
+                                            <p class="font-semibold text-xs text-center opacity-40"> 85 - 89.9</p>
+
+                                        </div>
+                                      
+                                    </div>
+                                    
+                                </div>
+        
+                            </div>
                         @else
                             {!! $box9 !!}
                         @endif
@@ -375,200 +651,68 @@
 
                 </div>
 
-                {{-- Mensaje para mostrar el porcentaje del aumento --}}
-                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center ">
 
-                    @if ($puesto == 'Administrativo')
-                        
-                        @if ($resDesempeno <= 79.8)
-                            <p class="text-xl text-gray-500 font-light">
-                                Este año no eres acreedor para un incremento salarial.
-                            </p>
-                        @elseif( ($resDesempeno >= 80 || $resDesemepno <=80.0 ) && ($resDesempeno <= 90 || $resDesempeno <= 90.0) )
-                            {{-- Aqui solo se mostrara el porcentaje del incremento --}}
-                            <p class="text-xl text-gray-500 font-light">
-                                Este año eres acreedor a un incremento del X% salarial.
-                            </p>
-                        @elseiF( ($resDesempeno >= 91 || $resDesempeno >= 91.0) && ($resDesempeno <= 95 || $resDesempeno <= 95.0) )
-                            {{-- Aqui solo se mostrara el porcentaje del incremento+2 --}}
-                            <p class="text-xl text-gray-500 font-light">
-                                Este año eres acreedor a un incremento del X+2% salarial.
-                            </p>
-                        @elseiF( ($resDesempeno >= 96 || $resDesempeno >= 96.0) && ($resDesempeno <= 100) )
-                            {{-- Aqui solo se mostrara el porcentaje del incremento+3 --}}
-                            <p class="text-xl text-gray-500 font-light">
-                                Este año eres acreedor a un incremento del X+3% salarial.
-                            </p>
-                        @endif
-
-                    @else
-
-                        @if ($resDesempeno <= 79.8)
-                            <p class="text-xl text-gray-500 font-light">
-                                Este año no eres acreedor <br> para el bono de desempeño.
-                            </p>
-                         @elseif( ($resDesempeno >= 80 || $resDesemepno <=80.0 ) && ($resDesempeno <= 90 || $resDesempeno <= 90.0) )
-                            {{-- Aqui solo se mostrara el porcentaje del incremento --}}
-                            <p class="text-xl text-gray-500 font-light">
-                                Este año eres acreedor al  {{$resDesempeno}}% <br> de tu bono de desempeño.
-                            </p>
-                        @endif
-                        
-                    @endif
+                    <div>
+                        <p class="leading-snug" style="font-size: 12px;"> <b>Haz clic en la ubicación marcada con el engrane para conocer tu resultado</b>, tambien puedes hacer clic en los signos de más para conocer la descripción de los demás cuadrentes.</p>
+                    </div>
 
                 </div>
 
-                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+               {{--  <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
                     
-                    {{-- <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
+                     <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
                     wire:click="pdfExportar()">
                         Descargar
-                    </button> --}}
+                    </button> 
                     
-                </div>
+                </div> --}}
 
             </div>
         </div>
-    </div>
 
-    <!-- Accordion 2 start -->
-    <div class="flex justify-center @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
-        <div>
-            <div class="px-10 py-2 space-y-4 shadow-xl"  style="background-color: #E9F0F2;">
-                <h3 class="text-2xl text-gray-700 text-center">Más información</h3>
-                <div class="flex justify-between p-2 bg-white divide-x-2">
-                    <button type="button" onclick="abrir()">
-                        <p class="text-xl text-center">
-                            
-                            @if ( ($resDesempeno >= 80 || $resDesempeno >= 80.0) && ($resDesempeno<= 82.5) )
-                                Bajo desempeño / Alto potencial
-                            @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
-                                Medio desempeño / Alto potencial
-                            @elseif ( ($resDesempeno >= 95 || $resDesempeno >=95.0) && ($resDesempeno<= 100) )
-                               Alto desempeño / Alto potencial
-                            @elseif ( ($resDesempeno >= 70 || $resDesempeno >=70.0) && ($resDesempeno<= 74.5) )
-                               Bajo desempeño / Potencial medio 
-                            @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
-                               Desempeño medio / Potencial medio
-                            @elseif ( ($resDesempeno >= 90 || $resDesempeno >=90.0) && ($resDesempeno<= 92.5) )
-                               Alto desempeño / Potencial medio
-                            @elseif ( $resDesempeno < 69 )
-                               Bajo desempeño / Bajo potencial
-                            @elseif ( ($resDesempeno >= 75 || $resDesempeno >= 75.0) && ($resDesempeno<= 79 || $resDesempeno <=79.9) )
-                                Desempeño medio / Bajo potencial
-                            @elseif ( ($resDesempeno >= 85 || $resDesempeno >= 85.0) && ($resDesempeno<= 89.9) )
-                                Alto desempeño / Bajo potencial 
-                            @endif
 
-                        </p>
-                        <span class="">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="inline-block w-6 h-6" fill="none"
-                                viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-                            </svg>
-                        </span>
-                    </button>
-
+        <!-- Modal para 9box campos vacios -->
+        <div class="fixed z-10 inset-0 overflow-y-auto @if($abrirModal) @else hidden @endif" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+               
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+  
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+  
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-{{$iconoColor}}-100 sm:mx-0 sm:h-10 sm:w-10">
+                                <!-- Heroicon name: outline/exclamation -->
+                                {!! $iconoModal !!}
+                            </div>
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+                                    {{$tituloModal}}
+                                </h3>
+                                <div class="mt-2">
+                                    <p class="text-sm text-gray-500">
+                                    {{$infoModal}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 pt-2 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        
+                        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        wire:click="modalNineBoxVacio(0)">
+                            Cerrar
+                        </button>
+                    </div>
                 </div>
-                <div class="p-2 border-l-4 border-black 
-                @if ( ($resDesempeno >= 80 || $resDesempeno >=80.0) && ($resDesempeno<= 82.5) )
-                    border-yellow-500
-                @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
-                    border-green-600
-                @elseif ( ($resDesempeno >= 95 || $resDesempeno >=95.0) && ($resDesempeno<= 100) )
-                    border-green-800
-                @elseif ( ($resDesempeno >= 70 || $resDesempeno >=70.0) && ($resDesempeno<= 74.5) )
-                    border-red-600
-                @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
-                    border-yellow-500
-                @elseif ( ($resDesempeno >= 90 || $resDesempeno >=90.0) && ($resDesempeno<= 92.5) )
-                    border-green-600
-                @elseif ( $resDesempeno < 69 )
-                    border-red-800
-                @elseif ( ($resDesempeno >= 75 || $resDesempeno >= 75.0) && ($resDesempeno<= 79 || $resDesempeno <=79.9) )
-                    border-red-600
-                @elseif ( ($resDesempeno >= 85 || $resDesempeno >= 85.0) && ($resDesempeno<= 89.9) )
-                    border-yellow-500
-                @endif bg-white hidden" id="foo">
-
-                    @if ( ($resDesempeno >= 80) && ($resDesempeno<= 82.5) )
-                        <p>
-                            Tienes potencial para mejorar tu desempeño con una gran capacidad para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
-                            a su vez, tienes un alto nivel de madurez y un fuerte compromiso con la empresa con potencial para crecer una posición hacia arriba.
-                        </p>
-                    @elseif ( ($resDesempeno >= 92.6) && ($resDesempeno<= 94.5) )
-                        <p>
-                            Cumples y ocasionalmente excedes los objetivos, tienes una gran capacidad de dirigir proyectos organizacionales, 
-                            además, cuentas con la destreza para transferir habilidades y conocimientos con potencial para crecer una posición hacia arriba.
-                        </p>
-                    @elseif ( ($resDesempeno >= 95) && ($resDesempeno<= 100) )
-                        <p>
-                            Tienes excelentes resultados en la obtención de tus objetivos organizacionales, 
-                            además estas dispuesto a moverte lateralmente entre las funciones del negocio a fin de avanzar y eres un modelo a seguir para la organización.
-                        </p>
-                    @elseif ( ($resDesempeno >= 70) && ($resDesempeno<= 74.5) )
-                        <p>
-                            Tienes potencial para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
-                            muy constantemente muestras habilidades y competencias requeridas para tu rol, a veces no cumples con los resultados definidos y esperados, 
-                            pero sabes reconocer emociones y sentimientos propios y de los demás, así como su impacto.
-                        </p>
-                    @elseif ( ($resDesempeno >= 82.6) && ($resDesempeno<= 84.9) )
-                        <p>
-                            Constantemente cumples los objetivos definidos por la organización demostrando que tienes un compromiso con la empresa y tu equipo.
-                        </p>
-                        <p>
-                            Además, tienes potencial para moverte dentro del negocio para adaptarte al rol que se te asigne con el fin de desarrollarte y crecer como un futuro líder, 
-                            sólo necesitas un poco de guía y orientación.
-                        </p>
-                    @elseif ( ($resDesempeno >= 90) && ($resDesempeno<= 92.5) )
-                        <p>
-                            Excedes tus resultados asignados mientras modelas la cultura organizacional tomando el liderazgo de varios proyectos con ayuda de la mejora continua y actualizando a mejores prácticas, 
-                            esto demuestra que tienes el potencial para moverte alrededor de la organización siempre y cuando mantengas el alto desempeño.
-                        </p>
-                        <p>
-                            Tienes potencial para convertirte en un líder en desempeño y tener la posibilidad de crecer una posición hacia arriba.
-                        </p>
-                    @elseif ( $resDesempeno < 69 )
-                        <p>
-                            No vives los valores Aguila, tienes una brecha significativa en tus competencias, demostrando falta de habilidad, madurez emocional, agilidad en el aprendizaje, 
-                            pasión por el negocio, deseo de tomar e incrementar tus responsabilidades y roles asignados.
-                        </p>
-                    @elseif ( ($resDesempeno >= 75) && ($resDesempeno<= 79) )
-                        <p>
-                            Cumples con los objetivos de acuerdo con las competencias y valores de Aguila, pero a su vez demuestras una falta de madurez emocional, 
-                            agilidad en el aprendizaje, pasión por el negocio y la habilidad y deseo de tomar o incrementar tus responsabilidades y roles.
-                        </p>
-                    @elseif ( ($resDesempeno >= 85) && ($resDesempeno<= 89.9) )
-                        <p>
-                            Cumples tus objetivos de una manera sobresaliente, pero te hace falta madurez emocional, agilidad en el aprendizaje, 
-                            habilidad y deseo de tomar o incrementar tus responsabilidades y roles. 
-
-                            Esto podría deberse a que el alcance de tu pasión se limita a tu área de competencia o experiencia.
-                        </p>
-                    @endif
-
-                </div>
-
             </div>
         </div>
+
+      
+
+
     </div>
-
-    <script defer>
-        function abrir() {
-            acordion = document.getElementById("foo");
-
-            var acordionValor = acordion.classList;
-            var arrayAcordion = Array.from(acordionValor);
-            var buscarHidden = arrayAcordion.includes('hidden');
-
-            if (buscarHidden == true) {
-                acordion.classList.remove('hidden');
-            } else {
-                acordion.classList.add('hidden');
-            }
-        }
-    </script>
-    <!-- Accordion 2 end -->
 
 </div>

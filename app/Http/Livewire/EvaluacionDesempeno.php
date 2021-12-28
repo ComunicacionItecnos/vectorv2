@@ -19,6 +19,7 @@ class EvaluacionDesempeno extends Component
     public $climaForm,$resFinancieroForm,$autoevaluacionForm,$evaluacionForm,$evaluacion_270Form;
 
     public $box1,$box2,$box3,$box4,$box5,$box6,$box7,$box8,$box9;
+    public $abrirModal = false,$iconoModal,$iconoColor,$tituloModal,$infoModal;
 
     public function mount($no_colaborador)
     {
@@ -383,34 +384,129 @@ class EvaluacionDesempeno extends Component
         
         $this->reset([ 'box1','box2','box3','box4','box5','box6','box7','box8','box9' ]);
 
-        $iconoExcelente = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:76%;height:auto;" loading="lazy" />';
+        $iconoExcelente = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:85%;height:auto;" wire:click="modalNineBoxVacio($abrirModal)" loading="lazy" />';
 
-        $iconoBien = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:76%;height:auto;" loading="lazy" />';
+        $iconoBien = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:85%;height:auto;" wire:click="modalNineBoxVacio($abrirModal)" loading="lazy" />';
 
-        $iconoRegular = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:76%;height:auto;" loading="lazy" />';
+        $iconoRegular = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:85%;height:auto;" wire:click="modalNineBoxVacio($abrirModal)" loading="lazy" />';
 
-        $iconoMal = '<img alt="profil" src="'.asset('images/nineBox/Mal_Emoticon.png').'" class="mx-auto object-cover" style="width:76%;height:auto;" loading="lazy" />';
+        $iconoMal = '<img alt="profil" src="'.asset('images/nineBox/Mal_Emoticon.png').'" class="mx-auto object-cover" style="width:85%;height:auto;" wire:click="modalNineBoxVacio($abrirModal)" loading="lazy" />';
 
         /* Info del resultado */
 
         if ( ($resultado >= 80 || $resultado >= 80.0) && ($resultado<= 82.5) ) {
-            return $this->box1 = $iconoBien; 
+            $this->box1 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(1)" loading="lazy" />'; 
         }elseif( ($resultado >= 92.6) && ($resultado<= 94.5) ){
-            return $this->box2 = $iconoExcelente; 
+            $this->box2 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(2)" loading="lazy" />'; 
         }elseif( ($resultado >= 95 || $resultado >= 95.0) && ($resultado<= 100) ){
-            return $this->box3 = $iconoExcelente; 
+            $this->box3 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(3)" loading="lazy" />'; 
         }elseif( ($resultado >= 70 || $resultado >= 70.0) && ($resultado<= 74.9) ){
-            return $this->box4 = $iconoRegular; 
+            $this->box4 = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(4)" loading="lazy" />'; 
         }elseif( ($resultado >= 82.6) && ($resultado<= 84.9) ){
-            return $this->box5 = $iconoBien; 
+            $this->box5 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(5)" loading="lazy" />'; 
         }elseif( ($resultado >= 90 || $resultado >= 90.0) && ($resultado<= 92.5) ){
-            return $this->box6 = $iconoExcelente; 
+            $this->box6 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(6)" loading="lazy" />'; 
         }elseif( $resultado < 69 ) {
-            return $this->box7 = $iconoMal; 
+            $this->box7 = '<img alt="profil" src="'.asset('images/nineBox/Mal_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(7)" loading="lazy" />'; 
         }elseif( ($resultado >= 75 || $resultado >= 75.0) && ($resultado<= 79 || $resultado <=79.9) ){
-            return $this->box8 = $iconoRegular; 
+            $this->box8 = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(8)" loading="lazy" />'; 
         }elseif( ($resultado >= 85 || $resultado >= 85.0) && ($resultado<= 89.9) ){
-            return $this->box9 = $iconoBien; 
+            $this->box9 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(9)" loading="lazy" />'; 
+        }
+
+    }
+
+    public function modalNineBoxVacio($box){
+        if($box == 0)
+        {
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 1) {
+            $this->tituloModal = 'Bajo desempeño / Alto potencial';
+            $this->infoModal = 'Tienes potencial para mejorar tu desempeño con una gran capacidad para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
+            a su vez, tienes un alto nivel de madurez y un fuerte compromiso con la empresa con potencial para crecer una posición hacia arriba.';
+            $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>';
+            $this->iconoColor = 'yellow';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 2) {
+            $this->tituloModal = 'Medio desempeño / Alto potencial';
+            $this->infoModal = 'Cumples y ocasionalmente excedes los objetivos, tienes una gran capacidad de dirigir proyectos organizacionales, 
+            además, cuentas con la destreza para transferir habilidades y conocimientos con potencial para crecer una posición hacia arriba.';
+            $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+            </svg>';
+            $this->iconoColor = 'green';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 3) {
+            $this->tituloModal = 'Alto desempeño / Alto potencial';
+            $this->infoModal = 'Tienes excelentes resultados en la obtención de tus objetivos organizacionales, 
+            además estas dispuesto a moverte lateralmente entre las funciones del negocio a fin de avanzar y eres un modelo a seguir para la organización.';
+            $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        </svg>';
+        $this->iconoColor = 'green';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 4) {
+            $this->tituloModal = 'Bajo desempeño / Potencial medio ';
+            $this->infoModal = 'Tienes potencial para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
+            muy constantemente muestras habilidades y competencias requeridas para tu rol, a veces no cumples con los resultados definidos y esperados, 
+            pero sabes reconocer emociones y sentimientos propios y de los demás, así como su impacto.';
+            $this->iconoModal = '
+            <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>';
+            $this->iconoColor = 'red';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 5) {
+            $this->tituloModal = 'Desempeño medio / Potencial medio';
+            $this->infoModal = 'Constantemente cumples los objetivos definidos por la organización demostrando que tienes un compromiso con la empresa y tu equipo.
+            Además, tienes potencial para moverte dentro del negocio para adaptarte al rol que se te asigne con el fin de desarrollarte y crecer como un futuro líder, 
+                                        sólo necesitas un poco de guía y orientación.';
+            $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>';
+                                    $this->iconoColor = 'yellow';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 6) {
+            $this->tituloModal = 'Alto desempeño / Potencial medio';
+            $this->infoModal = 'Excedes tus resultados asignados mientras modelas la cultura organizacional tomando el liderazgo de varios proyectos con ayuda de la mejora continua y actualizando a mejores prácticas, 
+            esto demuestra que tienes el potencial para moverte alrededor de la organización siempre y cuando mantengas el alto desempeño.
+            Tienes potencial para convertirte en un líder en desempeño y tener la posibilidad de crecer una posición hacia arriba.';
+            $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+        </svg>';
+        $this->iconoColor = 'green';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 7) {
+            $this->tituloModal = 'Bajo desempeño / Bajo potencial';
+            $this->infoModal = 'No vives los valores Aguila, tienes una brecha significativa en tus competencias, demostrando falta de habilidad, madurez emocional, agilidad en el aprendizaje, 
+            pasión por el negocio, deseo de tomar e incrementar tus responsabilidades y roles asignados.';
+            $this->iconoModal = ' <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>';
+        $this->iconoColor = 'red';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 8) {
+            $this->tituloModal = 'Desempeño medio / Bajo potencial';
+            $this->infoModal = 'Cumples con los objetivos de acuerdo con las competencias y valores de Aguila, pero a su vez demuestras una falta de madurez emocional, 
+            agilidad en el aprendizaje, pasión por el negocio y la habilidad y deseo de tomar o incrementar tus responsabilidades y roles.';
+            $this->iconoModal = '<svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>';
+        $this->iconoColor = 'red';
+            $this->abrirModal=!$this->abrirModal;
+        }elseif ($box == 9) {
+            $this->tituloModal = 'Alto desempeño / Bajo potencial';
+            $this->infoModal = 'Cumples tus objetivos de una manera sobresaliente, pero te hace falta madurez emocional, agilidad en el aprendizaje, 
+            habilidad y deseo de tomar o incrementar tus responsabilidades y roles. 
+
+            Esto podría deberse a que el alcance de tu pasión se limita a tu área de competencia o experiencia.';
+            $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>';
+        $this->iconoColor = 'yellow';
+            $this->abrirModal=!$this->abrirModal;
         }
 
     }
