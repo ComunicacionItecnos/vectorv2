@@ -10,7 +10,18 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
+    {{-- <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap"> --}}
+    <style>
+        @font-face {
+            font-family: "DIN Next LT Pro";
+            
+            src: url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.woff2") format("woff2"), 
+            /* url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.woff") format("woff"),  */
+            url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.ttf") format("truetype")
+            /* , url("//db.onlinewebfonts.com/t/5b0be84ee7019608e3e098c541290494.svg#DIN Next LT Pro") format("svg") */;
+        }
+
+    </style>
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
@@ -21,8 +32,8 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body>
-    <div class="min-h-screen min-w-full bg-gray-100">
+<body style="font-family: DIN Next LT Pro; !important">
+    <div class="min-h-screen min-w-full {{-- bg-gray-100 --}} bg-white">
         <main>
             {{ $slot }}
         </main>
