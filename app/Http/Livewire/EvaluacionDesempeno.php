@@ -105,13 +105,13 @@ class EvaluacionDesempeno extends Component
             
         }elseif($this->puesto == 'Director_270'){
             /* Clima */
-            $this->climaForm = /* 'No aplica' */0;
+            $this->climaForm = /* 'No aplica' */75;
             
             /* Resultado Financiero */
             $this->resFinancieroForm = 'No aplica';
             
             /* Evaluacion */
-            $this->evaluacionForm = /* 'No aplica' */0;
+            $this->evaluacionForm = /* 'No aplica' */70;
             
             /* Autoevaluacion */
             $this->autoevaluacionForm = 'No aplica';
@@ -580,44 +580,5 @@ class EvaluacionDesempeno extends Component
 
     }
 
-    /* Exportar pdf */
-    public function pdfExportar()
-    {
-        $viewData = [];
-
-        if($this->puesto == 'Administrativo')
-        {
-
-            $viewData = [
-                'foto' =>$this->foto,
-                'nombre'=>$this->nombre,
-                'puesto'=>$this->puesto,
-                'climaForm'=>$this->climaForm,
-                'autoevaluacionForm'=>$this->autoevaluacionForm,
-                'evaluacionForm'=>$this->evaluacionForm ,
-                'resDesempeno'=>$this->resDesempeno,
-                'box1'=>$this->box1,
-                'box2'=>$this->box2,
-                'box3'=>$this->box3,
-                'box4'=>$this->box4,
-                'box5'=>$this->box5,
-                'box6'=>$this->box6,
-                'box7'=>$this->box7,
-                'box8'=>$this->box8,
-                'box9'=>$this->box9,
-            ];
-            
-            
-            
-        }
-
-        $pdf = PDF::loadView('pdf.evaluacion_desempeno_pdf',$viewData)->output();
-
-        
-        return response()->streamDownload(
-            fn () => print($pdf),
-            'test'. ".pdf"
-        );
-    }
 
 }
