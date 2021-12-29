@@ -41,8 +41,8 @@
                             <div class="grid grid-cols-5">
 
                                 <div class="col-start-1 col-span-2">
-                                    <p class="text-xl font-semibold leading-snug text-gray-800" wire:click="modalClima(0)">{{ $climaForm }}</p>
-                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Clima laboral</p>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800" wire:click="modalClima(1)">{{ $climaForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;" wire:click="modalClima(1)">Clima laboral</p>
                                     <br>
                                     <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacionForm }}</p>
                                     <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de jefe directo</p>
@@ -73,12 +73,12 @@
                                 </div>
                               
                                 <div class="">
-                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno2 }}</p>
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno }}</p>
                                 </div>
                               
                             </div>
                             <br>
-                            <p class="leading-snug" style="font-size: 12px;">Esta calificación está compuesta por el <b>resultado financiero</b>,<b>clima laboral</b>, la <b>evaluación de tu jefe</b> y la <b>evaluación de tus compañeros</b>. </p>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación está integrada por el <b>resultado ponderado de clima laboral, la evaluación de tu jefe, la evaluación de tus compañeros y los resultados financieros de la empresa</b>. </p>
                         </div>
 
                     </div>
@@ -94,58 +94,84 @@
                                 </div>
                               
                                 <div class="">
-                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno }}</p>
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno2 }}</p>
                                 </div>
                               
                             </div>
                             <br>
-                            <p class="leading-snug" style="font-size: 12px;">Esta calificación está compuesta por la <b>evaluación de tu jefe</b>, la <b>evaluación de tus compañeros</b> y <b>clima laboral</b>. </p>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación se integra por el <b>resultado ponderado de la evaluación de tu jefe</b>, la <b>evaluación de tus compañeros</b> y <b>clima laboral</b>. </p>
                         </div>
 
                     </div>
 
                 @elseif($puesto == 'Director_270')
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center font-bold border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $climaForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima laboral</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resFinancieroForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Resultado financiero</p>
-                        </div>
 
-                    </div>
+                            <div class="grid grid-cols-5">
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de jefe directo</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacion_270Form }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de compañeros</p>
-                        </div>
-
-                    </div>
-
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Autoevaluación</p>
+                                <div class="col-start-1 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800" wire:click="modalClima(1)">{{ $climaForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;" wire:click="modalClima(1)">Clima laboral</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacionForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de jefe directo</p>
+                                </div>
+                            
+                                <div class="col-start-4 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $resFinancieroForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Resultado financiero</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacion_270Form }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de compañeros</p>
+                                </div>
+                            
+                            </div>
+                
                         </div>
 
                     </div>
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-700 justify-center  text-center">
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacion_270Form }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Final</p>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para el bono de desempeño es: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno }}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación está integrada por el <b>resultado ponderado de clima laboral, la evaluación de tu jefe, la evaluación de tus compañeros y los resultados financieros de la empresa</b>. </p>
+                        </div>
+
+                    </div>
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base ">Tu calificación de 9·BOX: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno2 }}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación se integra por el <b>resultado ponderado de la evaluación de tu jefe</b>, la <b>evaluación de tus compañeros</b> y <b>clima laboral</b>. </p>
                         </div>
 
                     </div>
@@ -725,7 +751,7 @@
                 <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                     <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                         <div class="sm:flex sm:items-start">
-                            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-{{$iconoColor}}-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-gray-100 sm:mx-0 sm:h-10 sm:w-10">
                                 <!-- Heroicon name: outline/exclamation -->
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 8v8m-4-5v5m-4-2v2m-2 4h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -733,23 +759,23 @@
                             </div>
                             <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                 <h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
-                                    {{$tituloModal}}
+                                    Estos son los resultados de clima laboral de tu área:
                                 </h3>
-                                <h4 class="text-base leading-6 font-medium text-gray-900" id="modal-title">
-                                    {{$subtituloModal}}
-                                </h4>
                                 <div class="mt-2">
-                                    <p class="text-sm text-gray-500">
+                                    {{-- <p class="text-sm text-gray-500">
                                     {!! $infoModal !!}
-                                    </p>
+                                    </p> --}}
+
+                                    <canvas id="myChart"></canvas>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="bg-gray-50 px-4 pt-2 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                         
-                        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-{{$iconoColor}}-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
-                        wire:click="modalNineBoxVacio(0)">
+                        <button type="button" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm"
+                        wire:click="modalClima(0)">
                             Cerrar
                         </button>
                     </div>
@@ -762,6 +788,55 @@
 
     </div>
 
-    <script src=""></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        numerosRandom();
+
+        const labels = [
+          'Liderazgo',
+          'XXXXX1',
+          'XXXXX2',
+          'XXXXX3',
+          'XXXXX4',
+          'XXXXX5',
+          'XXXXX6',
+          'XXXXX7',
+          'XXXXX8',
+          'XXXXX9',
+          'XXXXX10',
+          'XXXXX11',
+        ];
+
+        function numerosRandom(){
+            return  Math.floor( Math.random() * (100 - 1) + 1);
+        }
+      
+        const data = {
+          labels: labels,
+          datasets: [{
+            label: 'Resultado',
+            backgroundColor: 'rgb(255, 99, 132)',
+            borderColor: 'rgb(255, 99, 132)',
+            data: [numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom()],
+          }]
+        };
+      
+        const config = {
+          type: 'bar',
+          data: data,
+          options: {
+            indexAxis: 'y',
+          }
+        };
+    </script>
+
+    <script>
+        const myChart = new Chart(
+        document.getElementById('myChart'),
+        config
+        );
+    </script>
+  
+      
 
 </div>
