@@ -431,7 +431,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 2) {
             $this->tituloModal = 'Medio desempeño / Alto potencial';
             $this->subtituloModal = 'Rango del 92.6 - 94.5';
-            $this->infoModal = 'Le va extremadamente bien en el trabajo actual con potencial para hacer más; establece asignaciones para ayudarlo a prepararse para el próximo nivel.';
+            $this->infoModal = 'Le va extremadamente bien en el trabajo actual con potencial para hacer más; establecerle asignaciones para ayudarlo a prepararse para el próximo nivel.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
             </svg>';
@@ -449,7 +449,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 4) {
             $this->tituloModal = 'Bajo desempeño / Potencial medio ';
             $this->subtituloModal = 'Rango del 70 - 74.9';
-            $this->infoModal = 'Con el entrenamiento adecuado podría progresar dentro del nivel; enfócate en las metas para este empleado.';
+            $this->infoModal = 'Con el entrenamiento adecuado podría progresar dentro de su puesto; enfócandonos en la asginación de metas concretas.';
             $this->iconoModal = '
             <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -459,7 +459,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 5) {
             $this->tituloModal = 'Desempeño medio / Potencial medio';
             $this->subtituloModal = 'Rango del 82 - 84.9';
-            $this->infoModal = 'Puede considerarse para la ampliación del empleo al mismo nivel, pero puede necesitar entrenamiento en varias áreas, incluida la gestión de personas.';
+            $this->infoModal = 'Puede considerarse para la ampliación del empleo al mismo nivel, pero necesita entrenamiento en varias áreas, incluida la gestión de personas.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>';
@@ -468,7 +468,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 6) {
             $this->tituloModal = 'Alto desempeño / Potencial medio';
             $this->subtituloModal = 'Rango del 90 - 92.5';
-            $this->infoModal = 'El rol actual aún puede brindar oportunidades de crecimiento centrado en lo táctico; El enfoque debe ser ayudar a mejorar su pensamiento estratégico.';
+            $this->infoModal = 'Le va muy bien en su rol actual; el enfoque debe ser ayudarlo a mejorar su pensamiento estratégico.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
         </svg>';
@@ -477,7 +477,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 7) {
             $this->tituloModal = 'Bajo desempeño / Bajo potencial';
             $this->subtituloModal = 'Menor de 69';
-            $this->infoModal = 'Puede ser candidato para reasignación, reclasificación a un nivel inferior o para salir de la organización.';
+            $this->infoModal = 'Puede ser candidato para reasignación, reclasificación o para salir de la organización.';
             $this->iconoModal = ' <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
         </svg>';
@@ -486,7 +486,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 8) {
             $this->tituloModal = 'Desempeño medio / Bajo potencial';
             $this->subtituloModal = 'Rango del 75 - 79.9';
-            $this->infoModal = 'Ejecutante efectivo, pero puede haber alcanzado el potencial profesional; trate de entrenar a los empleados para que sean más innovadores.';
+            $this->infoModal = 'Ejecutante efectivo, pero puede haber alcanzado su potencial profesional; tratemos de entrenarlo en temas de innovación.';
             $this->iconoModal = '<svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
         </svg>';
