@@ -422,8 +422,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 1) {
             $this->tituloModal = 'Bajo desempeño / Alto potencial';
             $this->subtituloModal = 'Rango del 80 - 82.5';
-            $this->infoModal = 'Tienes potencial para mejorar tu desempeño con una gran capacidad para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
-            a su vez, tienes un alto nivel de madurez y un fuerte compromiso con la empresa con potencial para crecer una posición hacia arriba.';
+            $this->infoModal = 'Profesional experimentado capaz de ampliar su rol, pero puede estar experimentando problemas que requieren entrenamiento y orientación.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>';
@@ -432,8 +431,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 2) {
             $this->tituloModal = 'Medio desempeño / Alto potencial';
             $this->subtituloModal = 'Rango del 92.6 - 94.5';
-            $this->infoModal = 'Cumples y ocasionalmente excedes los objetivos, tienes una gran capacidad de dirigir proyectos organizacionales, 
-            además, cuentas con la destreza para transferir habilidades y conocimientos con potencial para crecer una posición hacia arriba.';
+            $this->infoModal = 'Le va extremadamente bien en el trabajo actual con potencial para hacer más; establece asignaciones para ayudarlo a prepararse para el próximo nivel.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
             </svg>';
@@ -442,8 +440,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 3) {
             $this->tituloModal = 'Alto desempeño / Alto potencial';
             $this->subtituloModal = 'Rango del 95 - 100';
-            $this->infoModal = 'Tienes excelentes resultados en la obtención de tus objetivos organizacionales, 
-            además estas dispuesto a moverte lateralmente entre las funciones del negocio a fin de avanzar y eres un modelo a seguir para la organización.';
+            $this->infoModal = 'Constantemente se desempeña bien en una variedad de tareas; empleado superestrella. Piensa en grande; solucionador de problemas; auto motivado.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
         </svg>';
@@ -452,9 +449,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 4) {
             $this->tituloModal = 'Bajo desempeño / Potencial medio ';
             $this->subtituloModal = 'Rango del 70 - 74.9';
-            $this->infoModal = 'Tienes potencial para moverte lateralmente entre las funciones del negocio a fin de avanzar, 
-            muy constantemente muestras habilidades y competencias requeridas para tu rol, a veces no cumples con los resultados definidos y esperados, 
-            pero sabes reconocer emociones y sentimientos propios y de los demás, así como su impacto.';
+            $this->infoModal = 'Con el entrenamiento adecuado podría progresar dentro del nivel; enfócate en las metas para este empleado.';
             $this->iconoModal = '
             <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -464,9 +459,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 5) {
             $this->tituloModal = 'Desempeño medio / Potencial medio';
             $this->subtituloModal = 'Rango del 82 - 84.9';
-            $this->infoModal = 'Constantemente cumples los objetivos definidos por la organización demostrando que tienes un compromiso con la empresa y tu equipo. <br><br>
-            Además, tienes potencial para moverte dentro del negocio para adaptarte al rol que se te asigne con el fin de desarrollarte y crecer como un futuro líder, 
-                                        sólo necesitas un poco de guía y orientación.';
+            $this->infoModal = 'Puede considerarse para la ampliación del empleo al mismo nivel, pero puede necesitar entrenamiento en varias áreas, incluida la gestión de personas.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>';
@@ -475,9 +468,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 6) {
             $this->tituloModal = 'Alto desempeño / Potencial medio';
             $this->subtituloModal = 'Rango del 90 - 92.5';
-            $this->infoModal = 'Excedes tus resultados asignados mientras modelas la cultura organizacional tomando el liderazgo de varios proyectos con ayuda de la mejora continua y actualizando a mejores prácticas, 
-            esto demuestra que tienes el potencial para moverte alrededor de la organización siempre y cuando mantengas el alto desempeño. <br> <br>
-            Tienes potencial para convertirte en un líder en desempeño y tener la posibilidad de crecer una posición hacia arriba.';
+            $this->infoModal = 'El rol actual aún puede brindar oportunidades de crecimiento centrado en lo táctico; El enfoque debe ser ayudar a mejorar su pensamiento estratégico.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
         </svg>';
@@ -486,8 +477,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 7) {
             $this->tituloModal = 'Bajo desempeño / Bajo potencial';
             $this->subtituloModal = 'Menor de 69';
-            $this->infoModal = 'No vives los valores Aguila, tienes una brecha significativa en tus competencias, demostrando falta de habilidad, madurez emocional, agilidad en el aprendizaje, 
-            pasión por el negocio, deseo de tomar e incrementar tus responsabilidades y roles asignados.';
+            $this->infoModal = 'Puede ser candidato para reasignación, reclasificación a un nivel inferior o para salir de la organización.';
             $this->iconoModal = ' <svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
         </svg>';
@@ -496,8 +486,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 8) {
             $this->tituloModal = 'Desempeño medio / Bajo potencial';
             $this->subtituloModal = 'Rango del 75 - 79.9';
-            $this->infoModal = 'Cumples con los objetivos de acuerdo con las competencias y valores de Aguila, pero a su vez demuestras una falta de madurez emocional, 
-            agilidad en el aprendizaje, pasión por el negocio y la habilidad y deseo de tomar o incrementar tus responsabilidades y roles.';
+            $this->infoModal = 'Ejecutante efectivo, pero puede haber alcanzado el potencial profesional; trate de entrenar a los empleados para que sean más innovadores.';
             $this->iconoModal = '<svg class="h-6 w-6 text-red-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
         </svg>';
@@ -506,10 +495,7 @@ class EvaluacionDesempeno extends Component
         }elseif ($box == 9) {
             $this->tituloModal = 'Alto desempeño / Bajo potencial';
             $this->subtituloModal = 'Rango del 85 - 89.9';
-            $this->infoModal = 'Cumples tus objetivos de una manera sobresaliente, pero te hace falta madurez emocional, agilidad en el aprendizaje, 
-            habilidad y deseo de tomar o incrementar tus responsabilidades y roles. <br><br>
-
-            Esto podría deberse a que el alcance de tu pasión se limita a tu área de competencia o experiencia.';
+            $this->infoModal = 'Experimentado y de alto rendimiento pero ha alcanzado el límite del potencial profesional. Sigue siendo un empleado valioso y puede ser alentado a desarrollar habilidades de comunicación y delegación.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-yellow-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>';
