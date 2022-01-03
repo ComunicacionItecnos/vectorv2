@@ -64,7 +64,7 @@
                             <div class="grid grid-cols-3">
 
                                 <div class="col-span-2">
-                                    <p class="font-semibold leading-snug text-base">Tu calificación para el bono de desempeño es: </p>
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono de desempeño es: </p>
                                 </div>
                               
                                 <div class="">
@@ -136,7 +136,7 @@
                             <div class="grid grid-cols-3">
 
                                 <div class="col-span-2">
-                                    <p class="font-semibold leading-snug text-base">Tu calificación para el bono de desempeño es: </p>
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono de desempeño es: </p>
                                 </div>
                             
                                 <div class="">
@@ -207,7 +207,7 @@
                             <div class="grid grid-cols-3">
 
                                 <div class="col-span-2">
-                                    <p class="font-semibold leading-snug text-base">Tu calificación para el bono de desempeño es: </p>
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono de desempeño es: </p>
                                 </div>
                             
                                 <div class="">
@@ -323,13 +323,20 @@
                 {{-- NINEBOX --}}
                 <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
 
-                    <p class="text-xl text-gray-500 font-semibold">
+                    <div>
+                        <p class="text-xl text-gray-500 font-semibold">
                         Tu ubicación en 9·BOX:
                     </p>
+                    <p class="text-lg text-gray-500 font-normal text-center">
+                        Eje vertical: potencial · Eje horizontal: desempeño
+                    </p>
+
+                    </div>
+                    
 
                 </div>
                 {{-- NINEBOX --}}
-                <div class="pb-2 flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pb-2 flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white {{-- @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif --}}">
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md
                         @if ($box1 == null)
@@ -706,7 +713,7 @@
 
                 </div>
 
-                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 {{-- @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif --}}">
                     
                      <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
                     id="getPDF" onclick="getPDF()">

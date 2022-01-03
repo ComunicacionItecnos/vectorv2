@@ -8,16 +8,17 @@
         </header>
         {{-- <form class="relative"> --}}
         <div class="grid {{-- grid-cols-3 --}} border-t border-gray-200">
-            {{-- <div class="px-2 py-2 bg-white sm:px-2">
-                    <select wire:model.debounce.200ms='mostrarStatus'
+            <div class="px-2 py-2 bg-white sm:px-2">
+                <label for="">Empresa</label>
+                    <select wire:model.debounce.200ms='empresa'
                         class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4 w-full">
-                        <option value="" selected>Todos</option>
-                        <option value="0">Sin revisar</option>
-                        <option value="1">Incompleto</option>
-                        <option value="3">Rechazado</option>
-                        <option value="2">Completado</option>
+                        <option value=""></option>
+                        <option value="0">Grupo Aguila</option>
+                        <option value="1">TXAT LATAM</option>
+                        <option value="2">Aguila SPV3</option>
                     </select>
-                </div> --}}
+                    
+                </div>
 
             <div class="px-2 py-2 bg-white sm:px-2">
                 <input wire:model.debounce.200ms="search" type="search" placeholder="Buscar"
@@ -141,14 +142,14 @@
                 
             @endif
 
-            <div class="pb-4 pt-4">
+            {{-- <div class="pb-4 pt-4">
                 
                 <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-400 focus:ring-opacity-80">
                     Descargar
                 </button>
-            </div>
+            </div> --}}
             
-            <div class="pb-4">
+            <div class="pb-4 pt-4">
                 <button type="button" class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-400 focus:ring-opacity-80"
                 wire:click="abrirModalInfo(1,0)">
                     Regresar

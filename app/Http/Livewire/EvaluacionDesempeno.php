@@ -111,13 +111,24 @@ class EvaluacionDesempeno extends Component
             
         }elseif($this->puesto == 'Director_270'){
             /* Clima */
-            $this->climaForm = /* 'No aplica' */0;
+            $this->climaValor = $this->calcularPorcentaje('clima',/* $clima */0,$this->puesto);
             
             /* Resultado Financiero */
-            $this->resFinancieroForm = 'No aplica';
+            /* $resFinancieroObtn = $this->camposNull($this->colaborador[1][0]->resultFinanciero); */
+            $this->resFinancieroForm = 65;
+            $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$this->resFinancieroForm,$this->puesto);
             
             /* Evaluacion */
-            $this->evaluacionForm = /* 'No aplica' */0;
+            if ($this->no_colaborador == 6) {
+                $this->evaluacionForm = 70;
+                $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
+            }elseif($this->no_colaborador == 2){
+                $this->evaluacionForm = 95;
+                $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
+            }else{
+                $this->evaluacionForm = 0;
+                $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
+            }            
             
             /* Autoevaluacion */
             $this->autoevaluacionForm = 'No aplica';
@@ -156,7 +167,8 @@ class EvaluacionDesempeno extends Component
             $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);
             
             /* Suma de las todas las calificaciones y mostrar resultado */
-            $total = [$this->valor270];
+            $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor,$this->valor270];
+            
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
 
@@ -212,11 +224,12 @@ class EvaluacionDesempeno extends Component
             $this->climaForm = 'No aplica';
             
             /* Resultado Financiero */
-            $this->resFinancieroForm = 'No aplica';
+            $this->resFinancieroForm = 65;
+            $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$this->resFinancieroForm,$this->puesto);
             
             /* Evaluacion */
             $this->evaluacionForm = 0;
-            
+            $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
             /* Autoevaluacion */
             $this->autoevaluacionForm = 'No aplica';
 
@@ -238,6 +251,7 @@ class EvaluacionDesempeno extends Component
             $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);
             
             /* Suma de todas las calificaciones y mostrar resultado */
+            /* $total = [0, $this->resFinanciero, $this->evaluacionValor,$this->valor270]; */
             $total = [$this->valor270];
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,/* $this->climaForm */0);
