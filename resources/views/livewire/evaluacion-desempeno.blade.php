@@ -1,10 +1,12 @@
 <div class="py-3 bg-white" id="resultadoDesempenoPDF">
-    <div class=" mb-20">
-        <img src="{{asset('images/nineBox/Resultados-Banner.png')}}" class="mx-auto object-cover" style="width:75%;height:auto;" loading="lazy">
+    
+    <div class="relative mb-20">
+        <img src="{{asset('images/nineBox/Resultados-Banner.png')}}" class="mx-auto object-cover" style="width:300px;height:auto;" loading="lazy">
     </div>
 
     <div class="flex items-center space-y-24 md:space-y-0 flex-col">
-        <div class="p-3 pb-10 relative">
+
+        <div class="p-3 pb-10 relative  max-w-lg">
             <div class="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2">
                 <a class="block relative">
                     @if (file_exists(public_path('storage/'.$foto)))
@@ -800,43 +802,35 @@
             </div>
         </div>
 
-      
-
-
     </div>
 
     <!-- jsPDF library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-html2canvas@latest/dist/jspdf-html2canvas.min.js"></script>
 
     <script>
 
         function getPDF() {
-            const { jsPDF } = window.jspdf;
-            
-            var pdf = new jsPDF('l', 'mm', [200 , 500]);
-            var pdfjs = document.querySelector('#resultadoDesempenoPDF')/* body */;
+            let page = document.getElementById('resultadoDesempenoPDF');
 
-            pdf.html(pdfjs,{
-                callback: function(pdf){
-                    pdf.setProperties({
-                        title: 'Title',
-                        subject: 'This is the subject',
-                        author: 'James Hall',
-                        keywords: 'generated, javascript, web 2.0, ajax',
-                        creator: 'MEEE'
-                    });
-                    pdf.save("output.pdf");
+            html2PDF(page, {
+                jsPDF:{
+                    unit: 'px',
+                    format: 'letter',
+                    x:0,
+                    y:0
                 },
-                x:0,
-                y:0
+                html2canvas: {
+                    height: 1700,
+                    scrollX: -window.scrollX,
+                    scrollY: -window.scrollY
+                },
+                output: '{{ $no_colaborador }}.pdf'
             });
-            
         }
-
 
     </script>
   
-      
-
+    
 </div>

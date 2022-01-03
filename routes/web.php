@@ -130,6 +130,10 @@ Route::get('/nuevo-ingreso',NuevoIngreso::class);
 
 Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboard', function () {
+    return view('revision-desempeno');
+})->name('revision-desempeno');
+
 /* Borrar despues */
 Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
 
