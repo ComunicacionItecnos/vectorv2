@@ -10,7 +10,7 @@ class EvaluacionDesempenoDashboard extends Component
 {
     use WithPagination;
 
-    public $search,$resultados;
+    public $search,$resultados,$empresa;
     public $evaDesColaborador;
     
     public $buscarOcultar = true;
@@ -31,28 +31,48 @@ class EvaluacionDesempenoDashboard extends Component
     public function buscar($busca)
     {
 
+        if ($this->empresa == 0) {
+            return [];
+        }elseif ($this->empresa == 1) {
+            # code...
+        }
+
         if ($busca == null) {
             return [];
         }else{
 
             $int = (int) filter_var($busca,FILTER_SANITIZE_NUMBER_INT);
 
-            dd($int);
-
-            /* select('SELECT * FROM colaborador WHERE CONCAT(nombre_1,nombre_2,ap_paterno,ap_materno) LIKE "%'.$busca.'%"') */
-            $busca = DB::table('colaborador')
-                ->orWhere('no_colaborador','LIKE','%'.$busca.'%')
+            if ($int == 0) {
                 
-                /* ->where('concat(no_colaborador,nombre_1,nombre_2,ap_paterno,ap_materno)', 'LIKE', '"%'.$busca.'%"') */
-                ->paginate(5);
+                if (strpos($busca, " ")) {
 
-            if ($busca == []) {
+                    $busca = explode(' ',$busca);
+
+                    return dd(DB::table('colaborador')
+                    ->where('nombre_1','LIKE','%'.$busca[0].'%')
+                    ->where('ap_paterno','LIKE', '%'.$busca[1].'%')
+                    ->paginate(5));
+                    
+                }else{
+                    return DB::table('colaborador')
+                    ->where('nombre_1','LIKE','%'.$busca.'%')
+                    ->paginate(5);
+                }
+
+            }else{
+                return DB::table('colaborador')
+                ->where('no_colaborador','LIKE','%'.$busca.'%')
+                ->paginate(5);
+            }
+
+            /* if ($busca == []) {
                 $busca = DB::table('colaborador_sapi_spv3')->where('no_colaborador',$busca)->get();
             }else{
                 $busca = $busca;
             }
 
-            return $busca;
+            return $busca; */
 
         }
         
