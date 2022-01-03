@@ -93,6 +93,14 @@ $nav_links11 = [
     ]
 ];
 
+$nav_links12 = [
+    [
+        'name' =>'Mision posible',
+        'route' => route('revision-desempeno'),
+        'active' => request()->routeIS('revision-desempeno')
+    ]
+];
+
 @endphp
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -199,6 +207,12 @@ $nav_links11 = [
                     </x-jet-nav-link>
                     @endforeach
 
+                    @foreach ($nav_links12 as $nav_link)
+                    <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                        {{ $nav_link['name'] }}
+                    </x-jet-nav-link>
+                    @endforeach
+
                     @elseif(auth()->user()->role_id == 2)
                     @foreach ($nav_links2 as $nav_link)
                     <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
@@ -249,13 +263,24 @@ $nav_links11 = [
                     </x-jet-nav-link>
                     @endforeach
                     @elseif(auth()->user()->role_id == 8)
-                    @foreach ($nav_links8 as $nav_link)
+
+                        @if (auth()->user()->id == 4)
+                        @foreach ($nav_links12 as $nav_link)
+                        <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                            {{ $nav_link['name'] }}
+                        </x-jet-nav-link>
+                        @endforeach
+                        @endif
+                    
+                    @elseif(auth()->user()->role_id == 9)
+                    @foreach ($nav_links9 as $nav_link)
                     <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                         {{ $nav_link['name'] }}
                     </x-jet-nav-link>
                     @endforeach
-                    @elseif(auth()->user()->role_id == 9)
-                    @foreach ($nav_links9 as $nav_link)
+
+                    @elseif(auth()->user()->role_id == 13)
+                    @foreach ($nav_links12 as $nav_link)
                     <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                         {{ $nav_link['name'] }}
                     </x-jet-nav-link>
@@ -448,6 +473,14 @@ $nav_links11 = [
                     </x-jet-responsive-nav-link>
                 </div>
             </div>
+            @endif
+
+            @if (auth()->user()->role_id == 1 || (auth()->user()->role_id == 8 && auth()->user()->id == 4) || (auth()->user()->role_id == 13 && auth()->user()->id == 53))
+            @foreach ($nav_links12 as $nav_link)
+            <x-jet-responsive-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                {{ $nav_link['name'] }}
+            </x-jet-responsive-nav-link>
+            @endforeach
             @endif
 
             @if(auth()->user()->role_id == 1 || auth()->user()->role_id == 3 || auth()->user()->role_id == 6)

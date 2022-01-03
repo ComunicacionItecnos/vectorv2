@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Artisan;
 
 class EvaluacionDesempeno extends Component
 {
-    public $colaborador;
+    public $colaborador,$no_colaborador;
     public $foto,$nombre,$puesto;
     public $fotoRandom;
 
@@ -26,9 +26,9 @@ class EvaluacionDesempeno extends Component
     public function mount($no_colaborador)
     {
         $check = 'lUgZ/C2axY8B7bJHHkVwKGmaJJ9JJm3otAosfRhoCeg';
-
-        $this->colaborador =  $this->buscaColaborador($no_colaborador);
         
+        $this->colaborador =  $this->buscaColaborador($no_colaborador);
+        $this->no_colaborador = $no_colaborador;
         $this->foto = $this->colaborador[0][0]->foto;
         if ($this->colaborador[0][0]->nombre_2 == null) {
             $this->nombre = $this->colaborador[0][0]->nombre;
@@ -365,6 +365,7 @@ class EvaluacionDesempeno extends Component
             }
 
         }else{
+            
             /* Administrativo */
             if ($tipo == 'clima') {
                 return $this->formatonumero($valor * 0.20);
@@ -394,23 +395,23 @@ class EvaluacionDesempeno extends Component
 
         /* Info del resultado */
         if ( ($resultado >= 80 || $resultado >= 80.0) && ($resultado<= 82.5) ) {
-            $this->box1 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(1)" loading="lazy" />'; 
+            $this->box1 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(1)" loading="lazy" />'; 
         }elseif( ($resultado >= 92.6) && ($resultado<= 94.5) ){
-            $this->box2 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(2)" loading="lazy" />'; 
+            $this->box2 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(2)" loading="lazy" />'; 
         }elseif( ($resultado >= 95 || $resultado >= 95.0) && ($resultado<= 100) ){
-            $this->box3 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(3)" loading="lazy" />'; 
+            $this->box3 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(3)" loading="lazy" />'; 
         }elseif( ($resultado >= 70 || $resultado >= 70.0) && ($resultado<= 74.9) ){
-            $this->box4 = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(4)" loading="lazy" />'; 
+            $this->box4 = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(4)" loading="lazy" />'; 
         }elseif( ($resultado >= 82.6) && ($resultado<= 84.9) ){
-            $this->box5 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(5)" loading="lazy" />'; 
+            $this->box5 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(5)" loading="lazy" />'; 
         }elseif( ($resultado >= 90 || $resultado >= 90.0) && ($resultado<= 92.5) ){
-            $this->box6 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(6)" loading="lazy" />'; 
+            $this->box6 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(6)" loading="lazy" />'; 
         }elseif( $resultado < 69 ) {
-            $this->box7 = '<img alt="profil" src="'.asset('images/nineBox/Mal_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(7)" loading="lazy" />'; 
+            $this->box7 = '<img alt="profil" src="'.asset('images/nineBox/Mal_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(7)" loading="lazy" />'; 
         }elseif( ($resultado >= 75 || $resultado >= 75.0) && ($resultado<= 79 || $resultado <=79.9) ){
-            $this->box8 = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(8)" loading="lazy" />'; 
+            $this->box8 = '<img alt="profil" src="'.asset('images/nineBox/Regular_Emoticon.png').'" class="mx-auto object-cover overflow-hidden" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(8)" loading="lazy" />'; 
         }elseif( ($resultado >= 85 || $resultado >= 85.0) && ($resultado<= 89.9) ){
-            $this->box9 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75%;height:auto;" wire:click="modalNineBoxVacio(9)" loading="lazy" />'; 
+            $this->box9 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(9)" loading="lazy" />'; 
         }
 
     }
@@ -580,44 +581,5 @@ class EvaluacionDesempeno extends Component
 
     }
 
-    /* Exportar pdf */
-    public function pdfExportar()
-    {
-        $viewData = [];
-
-        if($this->puesto == 'Administrativo')
-        {
-
-            $viewData = [
-                'foto' =>$this->foto,
-                'nombre'=>$this->nombre,
-                'puesto'=>$this->puesto,
-                'climaForm'=>$this->climaForm,
-                'autoevaluacionForm'=>$this->autoevaluacionForm,
-                'evaluacionForm'=>$this->evaluacionForm ,
-                'resDesempeno'=>$this->resDesempeno,
-                'box1'=>$this->box1,
-                'box2'=>$this->box2,
-                'box3'=>$this->box3,
-                'box4'=>$this->box4,
-                'box5'=>$this->box5,
-                'box6'=>$this->box6,
-                'box7'=>$this->box7,
-                'box8'=>$this->box8,
-                'box9'=>$this->box9,
-            ];
-            
-            
-            
-        }
-
-        $pdf = PDF::loadView('pdf.evaluacion_desempeno_pdf',$viewData)->output();
-
-        
-        return response()->streamDownload(
-            fn () => print($pdf),
-            'test'. ".pdf"
-        );
-    }
 
 }

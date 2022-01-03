@@ -21,6 +21,8 @@
             Gerente Unidad de Negocio
             @elseif (auth()->user()->role_id == 10)
             Capacitación
+            @elseif (auth()->user()->role_id == 13)
+            Desarrollo organizacional
             @endif
         </h2>
     </x-slot>

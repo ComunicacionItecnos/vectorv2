@@ -1,17 +1,12 @@
-<div class="py-3 bg-white">
-    {{-- <p class="text-center text-3xl font-black text-red-800">
-        MISIÓN POSIBLE
-    </p>
-    <p class="text-center mb-20 text-xl font-normal text-gray-500">
-        2021
-    </p> --}}
-
-    <div class=" mb-20">
-        <img src="{{asset('images/nineBox/Resultados-Banner.png')}}" class="mx-auto object-cover" style="width:75%;height:auto;" loading="lazy">
+<div class="py-3 bg-white" id="resultadoDesempenoPDF">
+    
+    <div class="relative mb-20">
+        <img src="{{asset('images/nineBox/Resultados-Banner.png')}}" class="mx-auto object-cover" style="width:300px;height:auto;" loading="lazy">
     </div>
 
     <div class="flex items-center space-y-24 md:space-y-0 flex-col">
-        <div class="p-3 pb-10 relative">
+
+        <div class="p-3 pb-10 relative  max-w-lg">
             <div class="text-center mb-4 absolute -top-16 right-1/2 transform translate-x-1/2">
                 <a class="block relative">
                     @if (file_exists(public_path('storage/'.$foto)))
@@ -177,46 +172,72 @@
                     </div>
 
                 @elseif($puesto == 'Gerente')
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center font-bold border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $climaForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima laboral</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resFinancieroForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Resultado financiero</p>
-                        </div>
 
-                    </div>
+                            <div class="grid grid-cols-5">
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de jefe directo</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacion_270Form }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de compañero</p>
-                        </div>
-
-                    </div>
-
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Autoevaluación</p>
+                                <div class="col-start-1 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800" wire:click="modalClima(1)">{{ $climaForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;" wire:click="modalClima(1)">Clima laboral</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacionForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de jefe directo</p>
+                                </div>
+                            
+                                <div class="col-start-4 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $resFinancieroForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Resultado financiero</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacion_270Form }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de compañeros</p>
+                                </div>
+                            
+                            </div>
+                
                         </div>
 
                     </div>
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-700 justify-center  text-center">
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Final</p>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para el bono de desempeño es: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno }}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación está integrada por el <b>resultado ponderado de clima laboral, la evaluación de tu jefe, la evaluación de tus compañeros y los resultados financieros de la empresa</b>. </p>
+                        </div>
+
+                    </div>
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base ">Tu calificación de 9·BOX: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno2 }}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación se integra por el <b>resultado ponderado de la evaluación de tu jefe</b>, la <b>evaluación de tus compañeros</b> y <b>clima laboral</b>. </p>
                         </div>
 
                     </div>
@@ -685,14 +706,14 @@
 
                 </div>
 
-               {{--  <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
                     
                      <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
-                    wire:click="pdfExportar()">
+                    id="getPDF" onclick="getPDF()">
                         Descargar
                     </button> 
                     
-                </div> --}}
+                </div>
 
             </div>
         </div>
@@ -766,8 +787,6 @@
                                     {!! $infoModal !!}
                                     </p> --}}
 
-                                    <canvas id="myChart"></canvas>
-
                                 </div>
                             </div>
                         </div>
@@ -783,60 +802,35 @@
             </div>
         </div>
 
-      
-
-
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- jsPDF library -->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-html2canvas@latest/dist/jspdf-html2canvas.min.js"></script>
+
     <script>
-        numerosRandom();
 
-        const labels = [
-          'Liderazgo',
-          'XXXXX1',
-          'XXXXX2',
-          'XXXXX3',
-          'XXXXX4',
-          'XXXXX5',
-          'XXXXX6',
-          'XXXXX7',
-          'XXXXX8',
-          'XXXXX9',
-          'XXXXX10',
-          'XXXXX11',
-        ];
+        function getPDF() {
+            let page = document.getElementById('resultadoDesempenoPDF');
 
-        function numerosRandom(){
-            return  Math.floor( Math.random() * (100 - 1) + 1);
+            html2PDF(page, {
+                jsPDF:{
+                    unit: 'px',
+                    format: 'letter',
+                    x:0,
+                    y:0
+                },
+                html2canvas: {
+                    height: 1700,
+                    scrollX: -window.scrollX,
+                    scrollY: -window.scrollY
+                },
+                output: '{{ $no_colaborador }}.pdf'
+            });
         }
-      
-        const data = {
-          labels: labels,
-          datasets: [{
-            label: 'Resultado',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom(), numerosRandom()],
-          }]
-        };
-      
-        const config = {
-          type: 'bar',
-          data: data,
-          options: {
-            indexAxis: 'y',
-          }
-        };
-    </script>
 
-    <script>
-        const myChart = new Chart(
-        document.getElementById('myChart'),
-        config
-        );
     </script>
   
-      
-
+    
 </div>
