@@ -14,8 +14,7 @@
                         class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4 w-full">
                         <option value=""></option>
                         <option value="0">Grupo Aguila</option>
-                        <option value="1">TXAT LATAM</option>
-                        <option value="2">Aguila SPV3</option>
+                        <option value="1">TXAT LATAM / AguilaSPV3</option>
                     </select>
                     
                 </div>
@@ -74,16 +73,16 @@
                                             class="rounded hidden sm:inline-block opacity-100 flex-grow-0 flex-shrink-0 w-20 h-24 border-2 shadow-sm">
                                             @if (file_exists(public_path('storage/' . $rs->foto)))
                                                 <img class="w-20 rounded shadow h-24"
-                                                    src="{{ asset('storage') . '/' . $rs->foto }}" alt="">
+                                                    src="{{ asset('storage') . '/' . $rs->foto }}" alt="" loading="lazy">
                                             @else
                                                 <img class="w-20 rounded shadow h-24"
-                                                    src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                                                    src="{{ asset('images/user_toolkit.jpg') }}" alt="" loading="lazy">
                                             @endif
                                         </div>
                                         <div class="ml-4 whitespace-pre-line">
                                             <div class="text-sm font-medium text-gray-900">
                                                 <span class="sm:hidden"> {{ $rs->no_colaborador }}</span>
-                                                <span class="sm:inline-block sm:-mt-6">{{ $rs->nombre_1 }}
+                                                <span class="sm:inline-block sm:-mt-6">{{ $rs->nombre }}
                                                     {{ $rs->ap_paterno }}</span>
                                             </div>
                                         </div>
@@ -115,7 +114,7 @@
                         <tr>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-800 text-center" colspan="3">
                                 <div class="grid grid-cols-1 bg-white sm:px-6 pt-4">
-                                    {{-- {{ $resultados2->links() }} --}}
+                                    {{ $resultados2->links() }}
                                 </div>
                             </td>
                         </tr>
@@ -137,17 +136,16 @@
                 
             @else
                 <div>
-                    <iframe class="w-96 h-screen" src="https://toolkit.factoraguila.com/evaluacionDesempeno/{{$evaDesColaborador}}" frameborder="0"></iframe>
+                    <iframe class="w-96 h-screen" src="https://toolkit.factoraguila.com/evaluacionDesempeno/{{$evaDesColaborador}}" frameborder="0" id="pdfDescargar"></iframe>
                 </div>
                 
             @endif
 
-            {{-- <div class="pb-4 pt-4">
-                
-                <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-400 focus:ring-opacity-80">
-                    Descargar
-                </button>
-            </div> --}}
+            <div class="pb-4 pt-4">
+                <a target="_blank" href="https://toolkit.factoraguila.com/evaluacionDesempeno/{{$evaDesColaborador}}" class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-blue-800 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-400 focus:ring-opacity-80">
+                    Interactuar
+                </a>
+            </div>
             
             <div class="pb-4 pt-4">
                 <button type="button" class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-gray-800 rounded-md hover:bg-gray-600 focus:outline-none focus:ring focus:ring-gray-400 focus:ring-opacity-80"
@@ -160,7 +158,6 @@
         </div>
         
     </section>
-
    
     
 
