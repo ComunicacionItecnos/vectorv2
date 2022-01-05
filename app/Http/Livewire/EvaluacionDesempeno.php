@@ -188,7 +188,16 @@ class EvaluacionDesempeno extends Component
             /* Evaluacion */
             $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion);
             $EvaluacionValor = $this->camposNull($EvaluacionValor);
+            
+            if ($this->no_colaborador == 144910) {
+                $EvaluacionValor = round($EvaluacionValor,0,PHP_ROUND_HALF_UP);
+            }else{
+                $EvaluacionValor;
+            }
+
             $this->evaluacionForm = $EvaluacionValor;
+
+
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$EvaluacionValor,$this->puesto);
 
             /* Autoevaluacion */
