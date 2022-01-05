@@ -55,6 +55,13 @@ class EvaluacionDesempeno extends Component
             /* Evaluacion */
             $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion);
             $EvaluacionValor = $this->camposNull($EvaluacionValor);
+            
+            if ($this->no_colaborador == 116180) {
+                $EvaluacionValor = round($EvaluacionValor,0,PHP_ROUND_HALF_UP);
+            }else{
+                $EvaluacionValor;
+            }
+
             $this->evaluacionForm = $EvaluacionValor;
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$EvaluacionValor,$this->puesto);
             
@@ -98,14 +105,7 @@ class EvaluacionDesempeno extends Component
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
 
-            if ($this->no_colaborador == 116180) {
-                $this->resDesempeno = 85;
-                $this->resDesempeno2 = 91;
-            }else{    
-                $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
-                $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
-            }
-
+            $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
             
             $this->nineBoxUbicar($this->resDesempeno2);
