@@ -13,8 +13,8 @@
                     <select wire:model.debounce.200ms='empresa'
                         class=" border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mr-4 w-full">
                         <option value=""></option>
-                        <option value="0">Grupo Aguila</option>
-                        <option value="1">TXAT LATAM / AguilaSPV3</option>
+                        <option value="0">AGUILA AMMUNITION</option>
+                        <option value="1">TXAT LATAM / GRUPO AGUILA</option>
                     </select>
                     
                 </div>
