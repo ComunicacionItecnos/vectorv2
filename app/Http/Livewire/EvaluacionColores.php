@@ -122,6 +122,7 @@ class EvaluacionColores extends Component
     }
 
     public function cuentaAtras(){
+        
         $this->inicioCount = now();
 
         if ($this->inicioCount->diffInSeconds($this->finalCount,false) <= 0) {
