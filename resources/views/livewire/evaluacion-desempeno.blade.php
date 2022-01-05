@@ -136,7 +136,7 @@
                             <div class="grid grid-cols-3">
 
                                 <div class="col-span-2">
-                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono de desempeño es: </p>
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono es: </p>
                                 </div>
                             
                                 <div class="">
@@ -207,7 +207,7 @@
                             <div class="grid grid-cols-3">
 
                                 <div class="col-span-2">
-                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono de desempeño es: </p>
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono es: </p>
                                 </div>
                             
                                 <div class="">
@@ -278,7 +278,7 @@
                             <div class="grid grid-cols-3">
 
                                 <div class="col-span-2">
-                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono de desempeño es: </p>
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono es: </p>
                                 </div>
                             
                                 <div class="">
