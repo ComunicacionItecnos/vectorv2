@@ -242,46 +242,73 @@
 
                     </div>
                 @elseif($puesto == 'Gerente_270')
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center font-bold border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $climaForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima laboral</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resFinancieroForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Resultado financiero</p>
-                        </div>
 
-                    </div>
+                            <div class="grid grid-cols-5">
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de jefe directo</p>
-                        </div>
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $evaluacion_270Form }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de compañero</p>
-                        </div>
-
-                    </div>
-
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
-
-                        <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Autoevaluación</p>
+                                <div class="col-start-1 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800" wire:click="modalClima(1)">{{ $climaForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;" wire:click="modalClima(1)">Clima laboral</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacionForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de jefe directo</p>
+                                </div>
+                            
+                                <div class="col-start-4 col-span-2">
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $resFinancieroForm }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Resultado financiero</p>
+                                    <br>
+                                    <p class="text-xl font-semibold leading-snug text-gray-800">{{ $evaluacion_270Form }}</p>
+                                    <p class="font-semibold leading-snug" style="font-size: 12px;">Evaluación de compañeros</p>
+                                </div>
+                            
+                            </div>
+                
                         </div>
 
                     </div>
 
-                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-700 justify-center  text-center">
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center border-b border-gray-400">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Final</p>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base">Tu calificación para bono de desempeño es: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno }}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación está integrada por el <b>resultado ponderado de clima laboral, la evaluación de tu jefe, la evaluación de tus compañeros y los resultados financieros de la empresa</b>. </p>
+                        </div>
+
+                    </div>
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base ">Tu calificación de 9·BOX: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno2 }}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación se integra por el <b>resultado ponderado de la evaluación de tu jefe</b>, la <b>evaluación de tus compañeros</b> y <b>clima laboral</b>. </p>
                         </div>
 
                     </div>
@@ -321,14 +348,14 @@
                 @endif
 
                 {{-- NINEBOX --}}
-                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400">
 
                     <div>
                         <p class="text-xl text-gray-500 font-semibold">
                         Tu ubicación en 9·BOX:
                     </p>
-                    <p class="text-lg text-gray-500 font-normal text-center">
-                        Eje vertical: potencial · Eje horizontal: desempeño
+                    <p class="text-gray-500 font-semibold text-center" style="font-size: 12px;">
+                        Eje vertical: <b>potencial</b> · Eje horizontal: <b>desempeño</b>
                     </p>
 
                     </div>
@@ -336,7 +363,7 @@
 
                 </div>
                 {{-- NINEBOX --}}
-                <div class="pb-2 flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white {{-- @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif --}}">
+                <div class="pb-2 flex flex-wrap -mx-2 overflow-hidden sm:-mx-2 md:-mx-2 lg:-mx-2 xl:-mx-2 items-center text-white">
 
                     <div class="my-1 px-1 w-1/3 overflow-hidden sm:my-1 sm:px-1 sm:w-1/3 md:my-1 md:px-1 md:w-1/3 lg:my-1 lg:px-1 lg:w-1/3 xl:my-1 xl:px-1 xl:w-1/3 rounded-md
                         @if ($box1 == null)
@@ -713,7 +740,7 @@
 
                 </div>
 
-                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400 {{-- @if($puesto == 'Director_270' || $puesto == 'Gerente_270') hidden @endif --}}">
+                <div class="pt-4 pb-2 flex w-full mx-auto text-gray-500 justify-center text-center border-t border-gray-400">
                     
                      <button class="px-4 py-2 font-medium tracking-wide text-white capitalize transition-colors duration-200 transform bg-red-800 rounded-md hover:bg-red-700 focus:outline-none focus:ring focus:ring-red-500 focus:ring-opacity-80"
                     id="getPDF" onclick="getPDF()">

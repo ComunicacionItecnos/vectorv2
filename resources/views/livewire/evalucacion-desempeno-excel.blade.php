@@ -44,8 +44,8 @@
                     <th class="border border-gray-300">Evaluación</th>
                     {{-- <th class="border border-gray-300">270_1</th> 
                     <th class="border border-gray-300">270_2</th>
-                    <th class="border border-gray-300">270_3 </th>
-                    <th class="border border-gray-300">270_4</th>
+                    <th class="border border-gray-300">270_3 </th> --}}
+                    {{-- <th class="border border-gray-300">270_4</th>
                     <th class="border border-gray-300">270_5</th>
                     <th class="border border-gray-300">270_6</th>
                     <th class="border border-gray-300">270_7</th> --}}
@@ -77,8 +77,8 @@
                         </td>
                         <td class="border border-gray-300">
                             {{ $this->camposNull($this->apiObtn($check,$l->evaluacion270_3)) }}
-                        </td>
-                        <td class="border border-gray-300">
+                        </td> --}}
+                        {{-- <td class="border border-gray-300">
                             {{ $this->camposNull($this->apiObtn($check,$l->evaluacion270_4)) }}
                         </td>
                         <td class="border border-gray-300">

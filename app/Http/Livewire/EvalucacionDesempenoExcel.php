@@ -26,6 +26,9 @@ class EvalucacionDesempenoExcel extends Component
     /* Obtener datos del MagicForm desde la API de Factor */
     public function apiObtn($check,$valor)
     {
+        /* Limpia el cache */
+        Artisan::call('cache:clear');
+        
         /* Consumir una api */
         $res = Http::get('https://factoraguila.com/restapi/index.php',[
             'check'=>$check,
