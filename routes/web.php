@@ -12,8 +12,7 @@ use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
 use App\Http\Livewire\ActualizarNuevoIngreso;
-use App\Http\Livewire\EvaluacionDesempeno;
-use App\Http\Livewire\EvalucacionDesempenoExcel;
+use App\Http\Livewire\EvaluacionColores;
 
 /*
 |--------------------------------------------------------------------------
@@ -142,6 +141,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', 
 })->name('revision-doc');
 
 Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
+
+Route::get('disc',EvaluacionColores::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
     return view('registroTallas');
