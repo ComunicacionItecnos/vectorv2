@@ -7,7 +7,7 @@
         </div>
     </header>
     
-    <div class="mt-8 mb-8 max-w-4xl px-8 py-4 mx-auto bg-white rounded-lg shadow-lg">
+    <div class="mt-8 mb-8 max-w-4xl px-8 py-4 mx-auto bg-white rounded-lg shadow-xl border border-gray-300">
 
         {{-- Inicio - descripcion del test DISC --}}
         <div class="flex items-center justify-between @if($inicio) @else hidden @endif">

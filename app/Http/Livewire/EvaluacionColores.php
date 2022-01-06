@@ -104,7 +104,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion22_0 = [], $marcadorQuestion22_1 = [], $marcadorQuestion22_2 = [], $marcadorQuestion22_3 = [];
     public $request22 = [];
 
-    public $question23  = [0=>'Sitemático',1=>'Tolerante',2=>'Sociable',3=>'Viguroso'];
+    public $question23  = [0=>'Sistemático',1=>'Tolerante',2=>'Sociable',3=>'Viguroso'];
     public $marcadorQuestion23_0 = [], $marcadorQuestion23_1 = [], $marcadorQuestion23_2 = [], $marcadorQuestion23_3 = [];
     public $request23 = [];
 
@@ -112,7 +112,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion24_0 = [], $marcadorQuestion24_1 = [], $marcadorQuestion24_2 = [], $marcadorQuestion24_3 = [];
     public $request24 = [];
 
-    public $question25  = [0=>'Le agrada descutir',1=>'Comedido',2=>'Metódico',3=>'Desenvuelto'];
+    public $question25  = [0=>'Le agrada discutir',1=>'Comedido',2=>'Metódico',3=>'Desenvuelto'];
     public $marcadorQuestion25_0 = [], $marcadorQuestion25_1 = [], $marcadorQuestion25_2 = [], $marcadorQuestion25_3 = [];
     public $request25 = [];
 
