@@ -11,9 +11,9 @@ class EvaluacionColores extends Component
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = 1;
+    public $currentStep = 28;
 
-    public $inicio = true /* false */;
+    public $inicio = /* true */ false;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
@@ -167,6 +167,8 @@ class EvaluacionColores extends Component
             $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
             $this->btnTexto = 'Cerrar';
             
+            $this->increaseStep($this->validarItem(29));
+
         }else{
             $this->Contador = $this->finalCount->diffForHumans($this->inicioCount,[
                 'options' =>Carbon::JUST_NOW,
@@ -265,18 +267,23 @@ class EvaluacionColores extends Component
         }elseif($this->currentStep == 28){
             $this->validarItem($this->noMasDeDos( [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3] ));
             $this->request28 = [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3];
-            
-            /* $this->resultados = $this->resultadosGenerar(); */
 
             if($this->currentStep == 29){
-                /* $this->resultados = ['rojo'=>-3,'amarillo'=>13,'verde'=>-2,'azul'=>10];
-                $this->resultados = $this->ordenarArray($this->resultados); */
+                $this->resultados = ['rojo'=>-3,'amarillo'=>13,'verde'=>-2,'azul'=>10];
+                $this->resultados = $this->ordenarArray($this->resultados);
 
-                /* dd( */$this->resultados = $this->resultadosGenerar()/* ) */;
+                /* dd($this->resultados = $this->resultadosGenerar()); */
                
                 $this->emit('resultadosFinal'); 
             }
-            
+        }elseif($this->currentStep == 29){
+
+            $this->resultados = ['rojo'=>13,'amarillo'=>10,'verde'=>-2,'azul'=>-3];
+            $this->resultados = $this->ordenarArray($this->resultados);
+
+            /* dd($this->resultados = $this->resultadosGenerar()); */
+           
+            $this->emit('resultadosFinal');
 
         }
         
@@ -587,29 +594,28 @@ class EvaluacionColores extends Component
 
         $colorBorde = '';
         $colorFondo = '';
+        /* $letraDisc =''; */
 
-        $this->aksort($arrayRespuesta/* , true  */);
+        $this->aksort($arrayRespuesta/* , true */);
 
         foreach ($arrayRespuesta as $key => $value) {
-            /* return $value; */
-            /* if ($value < 0) {
-                $value = 0;
-            }else {
-                $value = $value;
-            } */
-
+            
             if($key == 'rojo'){
                 $colorBorde = '#EF4444';
                 $colorFondo = '#DC2626';
+                /* $letraDisc = 'D'; */
             }elseif ($key == 'amarillo') {
                 $colorBorde = '#F59E0B';
-                $colorFondo = '#D97706';
+                $colorFondo = '#FBBF24';
+                /* $letraDisc = 'I'; */
             }elseif ($key == 'verde') {
                 $colorBorde = '#10B981';
                 $colorFondo = '#059669';
+                /* $letraDisc = 'S'; */
             }elseif ($key == 'azul') {
                 $colorBorde = '#3B82F6';
                 $colorFondo = '#2563EB';
+                /* $letraDisc = 'C'; */
             }
 
             $arryRetornar[] = [$key,$value,$colorBorde,$colorFondo];

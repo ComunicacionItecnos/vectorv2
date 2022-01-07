@@ -2125,9 +2125,9 @@
                 
             
             @elseif($currentStep == 29)
-                <div>
+                <div id="resultadoDesempenoPDF" class="pt-4">
                     <div class="mt-2 my-2 text-center">
-                        <a class="text-2xl font-bold text-gray-800 my-4 ">
+                        <a class="text-3xl font-bold text-gray-800 my-4 ">
                             Grafica de resultado
                         </a>
 
@@ -2139,36 +2139,37 @@
 
 
                             <div class="col-span-3 w-full h-full text-black">
-                                <a class="text-xl font-bold text-gray-800 my-4">
+                                <a class="text-2xl font-bold text-gray-800 my-4">
                                     Interpretación de los resultados
                                 </a>
                             </div>
+                            
+                            <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
+                                
+                                @if ($resultos[3][0] == 'rojo')
 
-                        </div>
+                                    @if ( ($resultados[3][1] > $resultados[3][1]) && () && () && ())
+                                        
+                                    @endif
 
-                        {{-- <div class="grid grid-cols-3 gap-4 text-center place-items-center pt-4">
-                        
-                            <div></div>
+                                @elseif($resultos[3][0] == 'amarillo')
 
-                            <div>
-                                <p> {{$resultados[3][0]}} - {{$resultados[3][1]}}</p>
-                                <br>
-                                <p> {{$resultados[2][0]}} -  {{$resultados[2][1]}}</p>
-                                <br>
-                                <p> {{$resultados[1][0]}} - {{$resultados[1][1]}}</p>
-                                <br>
-                                <p> {{$resultados[0][0]}} - {{$resultados[0][1]}}</p>
+                                @elseif($resultos[3][0] == 'verde')
+
+                                @elseif($resultos[3][0] == 'azul')
+
+                                @endif
+
                             </div>
-
-                            <div></div>
-                        
-                        </div> --}}
+                       
+                        </div>
 
                     </div>
                 </div>
 
                 <div class="flex items-center justify-center mt-4">
-                    <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
+                    <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" 
+                    onclick="getPDF()">
                         Descargar
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block ml-1" viewBox="0 0 20 20" fill="currentColor">
@@ -2260,10 +2261,10 @@
     {{-- Fin modal --}}
 
 
+    {{-- Chartjs --}}
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js" defer></script>
 
     <script>
-        
         let ctx = '';
         let currenstep = '';
         let resultados  = [];
@@ -2275,9 +2276,9 @@
                 currenstep = @this.currentStep;
                 resultados = @this.resultados;
 
-                if( currenstep == 29 && resultados.length > 0){
+                console.log(resultados);
 
-                    console.log('if',resultados,'currentStep',currenstep);
+                if( currenstep == 29 && resultados.length > 0){
 
                     var ctx = document.getElementById("myChart");
 
@@ -2315,6 +2316,34 @@
             });
 
         });
+    </script>
+
+
+    <!-- jsPDF library -->
+    <script src="https://unpkg.com/jspdf@latest/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.7/dist/html2canvas.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-html2canvas@latest/dist/jspdf-html2canvas.min.js"></script>
+
+    <script>
+        function getPDF() {
+            let page = document.getElementById('resultadoDesempenoPDF');
+
+            html2PDF(page, {
+                jsPDF:{
+                    unit: 'px',
+                    format: 'letter',
+                    x:0,
+                    y:0
+                },
+                html2canvas: {
+                    height: 1700,
+                    scrollX: -window.scrollX,
+                    scrollY: -window.scrollY
+                },
+                output: 'disc_resultados.pdf'
+            });
+        }
+
     </script>
 
 </div>
