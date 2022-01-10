@@ -306,7 +306,9 @@ class EvaluacionDesempeno extends Component
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$evaluacionObtn,$this->puesto);
             
             /* Suma de las 3 calificaciones y mostrar resultado */
-            $total = [$this->climaValor, $this->autoevaluacionValor, $this->evaluacionValor];
+            $total = [$this->climaValor, /* $this->autoevaluacionValor, */ $this->evaluacionValor];
+            
+
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->nineBoxUbicar($this->resDesempeno);
         }
@@ -421,11 +423,9 @@ class EvaluacionDesempeno extends Component
             /* Administrativo */
             if ($tipo == 'clima') {
                 return $this->formatonumero($valor * 0.20);
-            }elseif($tipo == 'autoevaluacion'){
-                return $this->formatonumero($valor * 0.05);
             }elseif($tipo == 'evaluacion'){
-                return $this->formatonumero($valor * 0.75);
-            }else{
+                return $this->formatonumero($valor * 0.80);
+            }elseif($tipo == 'total'){
                 /* Total */
                 return array_sum($valor);
             }
