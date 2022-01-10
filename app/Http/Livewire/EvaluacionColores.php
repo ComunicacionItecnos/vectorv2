@@ -140,6 +140,8 @@ class EvaluacionColores extends Component
     public $concienzudo_azul = [];
     public $resultados = [];
 
+    public $perfil,$descripcion;
+
     public function mount()
     {
         $this->fecha = Carbon::now();
@@ -168,7 +170,6 @@ class EvaluacionColores extends Component
             $this->btnTexto = 'Cerrar';
             
             $this->increaseStep($this->validarItem(29));
-
         }else{
             $this->Contador = $this->finalCount->diffForHumans($this->inicioCount,[
                 'options' =>Carbon::JUST_NOW,
@@ -271,8 +272,6 @@ class EvaluacionColores extends Component
             if($this->currentStep == 29){
                 $this->resultados = ['rojo'=>-3,'amarillo'=>13,'verde'=>-2,'azul'=>10];
                 $this->resultados = $this->ordenarArray($this->resultados);
-
-                /* dd($this->resultados = $this->resultadosGenerar()); */
                
                 $this->emit('resultadosFinal'); 
             }
@@ -281,10 +280,8 @@ class EvaluacionColores extends Component
             $this->resultados = ['rojo'=>13,'amarillo'=>10,'verde'=>-2,'azul'=>-3];
             $this->resultados = $this->ordenarArray($this->resultados);
 
-            /* dd($this->resultados = $this->resultadosGenerar()); */
-           
             $this->emit('resultadosFinal');
-
+            
         }
         
     }
@@ -594,7 +591,6 @@ class EvaluacionColores extends Component
 
         $colorBorde = '';
         $colorFondo = '';
-        /* $letraDisc =''; */
 
         $this->aksort($arrayRespuesta/* , true */);
 
@@ -603,19 +599,15 @@ class EvaluacionColores extends Component
             if($key == 'rojo'){
                 $colorBorde = '#EF4444';
                 $colorFondo = '#DC2626';
-                /* $letraDisc = 'D'; */
             }elseif ($key == 'amarillo') {
                 $colorBorde = '#F59E0B';
                 $colorFondo = '#FBBF24';
-                /* $letraDisc = 'I'; */
             }elseif ($key == 'verde') {
                 $colorBorde = '#10B981';
                 $colorFondo = '#059669';
-                /* $letraDisc = 'S'; */
             }elseif ($key == 'azul') {
                 $colorBorde = '#3B82F6';
                 $colorFondo = '#2563EB';
-                /* $letraDisc = 'C'; */
             }
 
             $arryRetornar[] = [$key,$value,$colorBorde,$colorFondo];
@@ -623,6 +615,5 @@ class EvaluacionColores extends Component
 
         return $arryRetornar;
     }
-
 
 }

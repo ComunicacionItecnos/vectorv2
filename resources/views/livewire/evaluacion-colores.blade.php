@@ -2148,18 +2148,18 @@
                                 
                                 @if ($resultados[3][0] == 'rojo')
 
-                                    @if ( $resultados[3][2] > $resultados[2][2] && $resultados[3][2] > $resultados[1][2] && $resultados[3][2] > $resultados[0][2] )
-                                        <p>Rojo </p>
-                                    @else
+                                    @if ( ($resultados[3][1] > $resultados[2][1]) && ($resultados[3][1] > $resultados[1][1]) && ($resultados[3][1] > $resultados[0][1]) )
                                         
+
+
                                     @endif
 
-                                @elseif($resultados[3][0] == 'amarillo')
+                                @elseif ($resultados[3][0] == 'amarillo')
 
-                                @elseif($resultados[3][0] == 'verde')
+                                @elseif ($resultados[3][0] == 'verde')
 
-                                @elseif($resultados[3][0] == 'azul')
-
+                                @elseif ($resultados[3][0] == 'azul')
+                                    
                                 @endif
 
                             </div>
@@ -2285,7 +2285,7 @@
                     var ctx = document.getElementById("myChart");
 
                     var myChart = new Chart(ctx, {
-                        type: 'bar',
+                        type: 'line',
                         data: {
                             labels: [''+resultados[3][0]+'',''+resultados[2][0]+'',''+resultados[1][0]+'',''+resultados[0][0]+''],
                             datasets: [
