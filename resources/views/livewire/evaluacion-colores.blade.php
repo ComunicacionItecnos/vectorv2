@@ -2146,17 +2146,19 @@
                             
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
                                 
-                                @if ($resultos[3][0] == 'rojo')
+                                @if ($resultados[3][0] == 'rojo')
 
-                                    @if ( ($resultados[3][1] > $resultados[3][1]) && () && () && ())
+                                    @if ( $resultados[3][2] > $resultados[2][2] && $resultados[3][2] > $resultados[1][2] && $resultados[3][2] > $resultados[0][2] )
+                                        <p>Rojo </p>
+                                    @else
                                         
                                     @endif
 
-                                @elseif($resultos[3][0] == 'amarillo')
+                                @elseif($resultados[3][0] == 'amarillo')
 
-                                @elseif($resultos[3][0] == 'verde')
+                                @elseif($resultados[3][0] == 'verde')
 
-                                @elseif($resultos[3][0] == 'azul')
+                                @elseif($resultados[3][0] == 'azul')
 
                                 @endif
 
