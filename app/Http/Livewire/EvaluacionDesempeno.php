@@ -124,7 +124,13 @@ class EvaluacionDesempeno extends Component
             
         }elseif($this->puesto == 'Director_270'){
             /* Clima */
-            $this->climaForm = 80;
+
+            if ($this->no_colaborador == 6) {
+                $this->climaForm = 78;
+            }else{
+                $this->climaForm = 80;
+            }
+
             $this->climaValor = $this->calcularPorcentaje('clima',$this->climaForm,$this->puesto);
             
             /* Resultado Financiero */
