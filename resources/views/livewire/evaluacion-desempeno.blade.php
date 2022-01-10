@@ -316,8 +316,8 @@
                     <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
 
                         <div>
-                            <p class="text-xl font-semibold leading-snug">{{ $climaForm }}</p>
-                            <p class="font-semibold leading-snug" style="font-size: 10px;">Clima laboral</p>
+                            <p class="text-xl font-semibold leading-snug" wire:click="modalClima(1)">{{ $climaForm }}</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;" wire:click="modalClima(1)">Clima laboral</p>
                         </div>
                         <div>
                             <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionForm }}</p>
@@ -820,6 +820,10 @@
                                     {{-- <p class="text-sm text-gray-500">
                                     {!! $infoModal !!}
                                     </p> --}}
+                                    <p>
+                                        Hola
+                                    </p>
+                                    <div class="chart"></div>
 
                                 </div>
                             </div>
@@ -844,7 +848,6 @@
     <script src="https://cdn.jsdelivr.net/npm/jspdf-html2canvas@latest/dist/jspdf-html2canvas.min.js"></script>
 
     <script>
-
         function getPDF() {
             let page = document.getElementById('resultadoDesempenoPDF');
 
@@ -865,6 +868,5 @@
         }
 
     </script>
-  
-    
+
 </div>
