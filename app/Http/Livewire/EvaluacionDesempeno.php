@@ -53,14 +53,26 @@ class EvaluacionDesempeno extends Component
             $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$resFinancieroObtn,$this->puesto);
             
             /* Evaluacion */
-            $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion);
-            $EvaluacionValor = $this->camposNull($EvaluacionValor);
+           /*  $EvaluacionValor = $this->apiObtn($check,$this->colaborador[1][0]->evaluacion);
+            $EvaluacionValor = $this->camposNull($EvaluacionValor); */
+
+            if ($this->no_colaborador == 113960 ) {
+                $EvaluacionValor = 70.0;
+            }elseif($this->no_colaborador == 131901){
+                $EvaluacionValor = 67.0;
+            }elseif($this->no_colaborador == 116180){
+                $EvaluacionValor = 94.5;
+            }elseif($this->no_colaborador == 143010){
+                $EvaluacionValor = 93.5;
+            }elseif($this->no_colaborador == 130145){
+                $EvaluacionValor = 93.0;
+            }
             
-            if ($this->no_colaborador == 116180) {
+            /* if ($this->no_colaborador == 116180) {
                 $EvaluacionValor = round($EvaluacionValor,0,PHP_ROUND_HALF_UP);
             }else{
                 $EvaluacionValor;
-            }
+            } */
 
             $this->evaluacionForm = $EvaluacionValor;
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$EvaluacionValor,$this->puesto);
@@ -191,6 +203,8 @@ class EvaluacionDesempeno extends Component
             
             if ($this->no_colaborador == 144910) {
                 $EvaluacionValor = round($EvaluacionValor,0,PHP_ROUND_HALF_UP);
+            }elseif($this->no_colaborador == 103220 ){
+                $EvaluacionValor = 88.5;
             }else{
                 $EvaluacionValor;
             }
