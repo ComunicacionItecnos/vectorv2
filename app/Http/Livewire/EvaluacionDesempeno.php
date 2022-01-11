@@ -124,12 +124,7 @@ class EvaluacionDesempeno extends Component
             
         }elseif($this->puesto == 'Director_270'){
             /* Clima */
-
-            if ($this->no_colaborador == 6) {
-                $this->climaForm = 78;
-            }else{
-                $this->climaForm = 80;
-            }
+            $this->climaForm = 78;
 
             $this->climaValor = $this->calcularPorcentaje('clima',$this->climaForm,$this->puesto);
             
@@ -144,8 +139,8 @@ class EvaluacionDesempeno extends Component
             }elseif($this->no_colaborador == 2){
                 $this->evaluacionForm = 95;
                 $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
-            }else{
-                $this->evaluacionForm = 0;
+            }elseif($this->no_colaborador == 13){
+                $this->evaluacionForm = 95;
                 $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
             }            
             
@@ -259,7 +254,7 @@ class EvaluacionDesempeno extends Component
             $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$this->resFinancieroForm,$this->puesto);
             
             /* Evaluacion */
-            $this->evaluacionForm = 100;
+            $this->evaluacionForm = 95;
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
             
             /* Autoevaluacion */
