@@ -2125,7 +2125,7 @@
                 
             
             @elseif($currentStep == 29)
-                <div id="resultadoDesempenoPDF" class="pt-4">
+                <div id="resultadoDesempenoPDF" class="pt-4 w-11/12">
                     <div class="mt-2 my-2 text-center">
                         <a class="text-3xl font-bold text-gray-800 my-4 ">
                             Grafica de resultado
@@ -2308,7 +2308,12 @@
                                     display: true,
                                     text: 'DISC'
                                 }
+                            },
+
+                            scales: {
+                                
                             }
+
                         }
 
                     });
