@@ -345,6 +345,59 @@
                         </div>
 
                     </div>
+
+                    
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center border-t border-gray-400">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base ">Tu calificación de 9·BOX: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno}}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación se integra por el <b>resultado ponderado de la evaluación de tu jefe</b>, tu <b>autoevaluación</b> y <b>clima laboral</b>. </p>
+                        </div>
+
+                    </div> 
+
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-3">
+                                    @if ($resDesempeno < 79.9 || $resDesempeno < 79)
+                                        <p class="font-semibold leading-snug text-base">Este año no eres acreedor a un aumento salarial</p>
+
+                                    @elseif( ($resDesempeno  >= 80 || $resDesempeno >=80.0) && ($resDesempeno <= 90 || $resDesempeno <= 90.0) )
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del i</p>
+
+                                    @elseif( ($resDesempeno  >= 91 || $resDesempeno >= 91.0) && ($resDesempeno <= 95 || $resDesempeno <= 95.0) )
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del i+2</p>
+                                    
+                                    @elseif( ($resDesempeno  >= 96 || $resDesempeno >= 96.0) && ($resDesempeno <= 100 || $resDesempeno <= 100.0) )
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del i+3</p>
+                                        
+                                    @endif
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
                 @endif
 
                 {{-- NINEBOX --}}
@@ -353,11 +406,10 @@
                     <div>
                         <p class="text-xl text-gray-500 font-semibold">
                         Tu ubicación en 9·BOX:
-                    </p>
-                    <p class="text-gray-500 font-semibold text-center" style="font-size: 12px;">
-                        Eje vertical: <b>potencial</b> · Eje horizontal: <b>desempeño</b>
-                    </p>
-
+                        </p>
+                        <p class="text-gray-500 font-semibold text-center" style="font-size: 12px;">
+                            Eje vertical: <b>potencial</b> · Eje horizontal: <b>desempeño</b>
+                        </p>
                     </div>
                     
 

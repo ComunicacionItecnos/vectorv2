@@ -124,7 +124,8 @@ class EvaluacionDesempeno extends Component
             
         }elseif($this->puesto == 'Director_270'){
             /* Clima */
-            $this->climaForm = 80;
+            $this->climaForm = 78;
+
             $this->climaValor = $this->calcularPorcentaje('clima',$this->climaForm,$this->puesto);
             
             /* Resultado Financiero */
@@ -138,8 +139,8 @@ class EvaluacionDesempeno extends Component
             }elseif($this->no_colaborador == 2){
                 $this->evaluacionForm = 95;
                 $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
-            }else{
-                $this->evaluacionForm = 0;
+            }elseif($this->no_colaborador == 13){
+                $this->evaluacionForm = 95;
                 $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
             }            
             
@@ -253,7 +254,7 @@ class EvaluacionDesempeno extends Component
             $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$this->resFinancieroForm,$this->puesto);
             
             /* Evaluacion */
-            $this->evaluacionForm = 100;
+            $this->evaluacionForm = 95;
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
             
             /* Autoevaluacion */
@@ -300,7 +301,9 @@ class EvaluacionDesempeno extends Component
             $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$evaluacionObtn,$this->puesto);
             
             /* Suma de las 3 calificaciones y mostrar resultado */
-            $total = [$this->climaValor, $this->autoevaluacionValor, $this->evaluacionValor];
+            $total = [$this->climaValor, /* $this->autoevaluacionValor, */ $this->evaluacionValor];
+            
+
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->nineBoxUbicar($this->resDesempeno);
         }
@@ -415,11 +418,9 @@ class EvaluacionDesempeno extends Component
             /* Administrativo */
             if ($tipo == 'clima') {
                 return $this->formatonumero($valor * 0.20);
-            }elseif($tipo == 'autoevaluacion'){
-                return $this->formatonumero($valor * 0.05);
             }elseif($tipo == 'evaluacion'){
-                return $this->formatonumero($valor * 0.75);
-            }else{
+                return $this->formatonumero($valor * 0.80);
+            }elseif($tipo == 'total'){
                 /* Total */
                 return array_sum($valor);
             }
