@@ -312,6 +312,86 @@
                         </div>
 
                     </div>
+
+                @elseif($puesto == 'Supervisor')
+
+                    <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug" wire:click="modalClima(1)">{{ $climaForm }}</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;" wire:click="modalClima(1)">Clima laboral</p>
+                        </div>
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $autoevaluacionForm }}</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Autoevaluación</p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $evaluacionForm }}</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Evaluación de jefe directo</p>
+                        </div>
+
+                    </div>
+
+                    <div
+                        class="pt-2 pb-2 flex w-full mx-auto text-gray-700 justify-center  text-center">
+
+                        <div>
+                            <p class="text-xl font-semibold leading-snug">{{ $resDesempeno }}</p>
+                            <p class="font-semibold leading-snug" style="font-size: 10px;">Final</p>
+                        </div>
+
+                    </div>
+
+                    
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center border-t border-gray-400">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-2">
+                                    <p class="font-semibold leading-snug text-base ">Tu calificación de 9·BOX: </p>
+                                </div>
+                            
+                                <div class="">
+                                    <p class="text-xl font-semibold leading-snug text-blue-700">{{ $resDesempeno}}</p>
+                                </div>
+                            
+                            </div>
+                            <br>
+                            <p class="leading-snug" style="font-size: 12px;">La calificación se integra por el <b>resultado ponderado de la evaluación de tu jefe</b>, tu <b>autoevaluación</b> y <b>clima laboral</b>. </p>
+                        </div>
+
+                    </div> 
+
+
+                    <div class="pt-4 pb-4 flex w-full mx-auto text-gray-500 space-x-8 justify-center text-center">
+
+                        <div>
+
+                            <div class="grid grid-cols-3">
+
+                                <div class="col-span-3">
+                                    @if ($resDesempeno < 79.9 || $resDesempeno < 79)
+                                        <p class="font-semibold leading-snug text-base">Este año no eres acreedor a un bono</p>
+                                    @elseif( $resDesempeno  >= 80 || $resDesempeno >=80.0 )
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un bono del {{$resDesempeno}}.</p>
+                                    @endif
+                                </div>
+                            
+                            </div>
+                            
+                        </div>
+
+                    </div>    
+
                 @else
                     <div class="pt-2 pb-2 flex w-full mx-auto text-gray-500 space-x-10 justify-center text-center">
 
@@ -387,7 +467,7 @@
                                         <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del 9.36%.</p>
                                     
                                     @elseif( ($resDesempeno  >= 96 || $resDesempeno >= 96.0) && ($resDesempeno <= 100 || $resDesempeno <= 100.0) )
-                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del 10.36.</p>
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del 10.36%.</p>
                                         
                                     @endif
                                 </div>
