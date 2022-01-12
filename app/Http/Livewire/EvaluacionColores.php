@@ -270,16 +270,18 @@ class EvaluacionColores extends Component
             $this->request28 = [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3];
 
             if($this->currentStep == 29){
-                $this->resultados = ['rojo'=>-3,'amarillo'=>13,'verde'=>-2,'azul'=>10];
-                $this->resultados = $this->ordenarArray($this->resultados);
+                /* $this->resultados = ['rojo'=>-3,'amarillo'=>13,'verde'=>-2,'azul'=>10]; */
+                $this->resultados = ['rojo'=>13,'amarillo'=>10,'verde'=>-2,'azul'=>-3];
+                /* $this->resultados = $this->ordenarArray($this->resultados); */
                
                 $this->emit('resultadosFinal'); 
+
             }
         }elseif($this->currentStep == 29){
 
-            $this->resultados = ['rojo'=>13,'amarillo'=>10,'verde'=>-2,'azul'=>-3];
-            $this->resultados = $this->ordenarArray($this->resultados);
-
+            $this->resultados = ['rojo'=>7,'amarillo'=>-2,'verde'=>-8,'azul'=>3];
+            /* $this->resultados = $this->ordenarArray($this->resultados); */
+            
             $this->emit('resultadosFinal');
             
         }
@@ -306,6 +308,7 @@ class EvaluacionColores extends Component
 
         if($this->inicioCount->diffInSeconds($this->finalCount, false)  <= 0)
         {
+
             $this->mostrarModal = true;
             $this->titulomsj = 'Sin tiempo';
             $this->bgIcono = 'bg-red-100';
@@ -315,7 +318,7 @@ class EvaluacionColores extends Component
             $this->msj = 'Se acabado el tiempo ';
             $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
             $this->btnTexto = 'Cerrar';
-            
+
         }else{
 
             foreach ($valor as $key) {
@@ -528,17 +531,13 @@ class EvaluacionColores extends Component
         $this->influyente_amarillo  = $this->calcularDisc($this->influyente_amarillo);
         $this->Estable_verde = $this->calcularDisc($this->Estable_verde);
         $this->concienzudo_azul = $this->calcularDisc($this->concienzudo_azul);
-
-        /* dd(['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul]); */
         
         $this->dominante_rojo = $this->dominante_rojo[0]-$this->dominante_rojo[1];
         $this->influyente_amarillo = $this->influyente_amarillo[0]-$this->influyente_amarillo[1];
         $this->Estable_verde = $this->Estable_verde[0]-$this->Estable_verde[1]; 
         $this->concienzudo_azul = $this->concienzudo_azul[0]-$this->concienzudo_azul[1];
         
-        /* dd(['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul]); */
-        
-        return $this->ordenarArray( ['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul] );
+        return ['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul];
 
     }
 
@@ -614,6 +613,17 @@ class EvaluacionColores extends Component
         }
 
         return $arryRetornar;
+    }
+
+
+    public function graficaDescripcion()
+    {
+        $res = $this->resultados;
+
+        $rango = [28,27,26,25,24,23,22,21,20,19,18,17,16,15,14,13,12,11,10,9,8,7,6,5,4,3,2,1,0,-1,-2,-3,-4,-5,-6,-7,-8,-9,-10,-11,-12,-13,-14,-15,-16,-17,-18,-19,-20,-21,-22,-23,-24,-25,-26,-27,-28];
+
+        
+
     }
 
 }

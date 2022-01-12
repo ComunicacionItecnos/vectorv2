@@ -2125,7 +2125,7 @@
                 
             
             @elseif($currentStep == 29)
-                <div id="resultadoDesempenoPDF" class="pt-4 w-11/12">
+                <div id="resultadoDesempenoPDF" class="pt-4">
                     <div class="mt-2 my-2 text-center">
                         <a class="text-3xl font-bold text-gray-800 my-4 ">
                             Grafica de resultado
@@ -2146,21 +2146,7 @@
                             
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
                                 
-                                @if ($resultados[3][0] == 'rojo')
-
-                                    @if ( ($resultados[3][1] > $resultados[2][1]) && ($resultados[3][1] > $resultados[1][1]) && ($resultados[3][1] > $resultados[0][1]) )
-                                        
-
-
-                                    @endif
-
-                                @elseif ($resultados[3][0] == 'amarillo')
-
-                                @elseif ($resultados[3][0] == 'verde')
-
-                                @elseif ($resultados[3][0] == 'azul')
-                                    
-                                @endif
+                                
 
                             </div>
                        
@@ -2267,6 +2253,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.0/dist/chart.min.js" defer></script>
 
     <script>
+
         let ctx = '';
         let currenstep = '';
         let resultados  = [];
@@ -2280,11 +2267,11 @@
 
                 console.log(resultados);
 
-                if( currenstep == 29 && resultados.length > 0){
+                if( currenstep == 29 /* && resultados.length > 0 */){
 
                     var ctx = document.getElementById("myChart");
 
-                    var myChart = new Chart(ctx, {
+                    /* var myChart = new Chart(ctx, {
                         type: 'line',
                         data: {
                             labels: [''+resultados[3][0]+'',''+resultados[2][0]+'',''+resultados[1][0]+'',''+resultados[0][0]+''],
@@ -2308,14 +2295,30 @@
                                     display: true,
                                     text: 'DISC'
                                 }
-                            },
-
-                            scales: {
-                                
                             }
 
                         }
 
+                    }); */
+
+                    
+                    var myChart = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Rojo','Amarillo','Verde','Azul'],
+                            datasets: [
+                                { 
+                                    label: 'DISC',
+                                    borderColor: ['#EF4444','#F59E0B','#10B981','#3B82F6'],
+                                    backgroundColor: ['#DC2626','#FBBF24','#059669','#2563EB'],
+                                    data: [resultados['rojo'],resultados['amarillo'],resultados['verde'],resultados['azul']]
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true
+
+                        }
                     });
 
                 }
