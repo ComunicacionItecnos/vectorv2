@@ -381,13 +381,13 @@
                                         <p class="font-semibold leading-snug text-base">Este año no eres acreedor a un aumento salarial</p>
 
                                     @elseif( ($resDesempeno  >= 80 || $resDesempeno >=80.0) && ($resDesempeno <= 90 || $resDesempeno <= 90.0) )
-                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del i</p>
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del 7.36%.</p>
 
                                     @elseif( ($resDesempeno  >= 91 || $resDesempeno >= 91.0) && ($resDesempeno <= 95 || $resDesempeno <= 95.0) )
-                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del i+2</p>
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del 9.36%.</p>
                                     
                                     @elseif( ($resDesempeno  >= 96 || $resDesempeno >= 96.0) && ($resDesempeno <= 100 || $resDesempeno <= 100.0) )
-                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del i+3</p>
+                                        <p class="font-semibold leading-snug text-base">Este año eres acreedor a un posible aumento salarial del 10.36.</p>
                                         
                                     @endif
                                 </div>
