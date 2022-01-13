@@ -536,9 +536,7 @@
                             </div>
 
                         @else
-                            <div class="pt-6 pb-6">
-                                {!! $box1 !!}
-                            </div>
+                            {!! $box1 !!}
                         @endif
                     </div>
 
