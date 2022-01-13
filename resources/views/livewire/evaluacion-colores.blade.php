@@ -2134,7 +2134,7 @@
                         <div class="grid grid-cols-3 gap-4 text-center place-items-center pt-4">
 
                             <div class="col-span-3 w-full h-full text-black">
-                                <canvas id="myChart" class="w-11/12 h-5/6"></canvas>
+                                <canvas id="myChart"></canvas>
                             </div>
 
 
@@ -2146,6 +2146,20 @@
                             
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
                                 
+                                @if ($resultados['rojo'] >= 6 && $resultados['amarillo'] == 3 && $resultados['verde'] == 3 && $resultados['azul'] ==3 )
+                                    <p>Director</p>
+
+                                @elseif($resultados['rojo'] == 6 && $resultados['amarillo'] == 2 && $resultados['verde'] == 3 && $resultados['azul'] == 6 )
+                                    <p>Creativo</p>
+
+                                @elseif($resultados['rojo'] == 6 && $resultados['amarillo'] == 3 && $resultados['verde'] == 2 && $resultados['azul'] == 5 )
+                                    <p>Pionero</p>
+
+                                
+
+                                @else
+                                    <p>Sin coincidencia de patron</p>
+                                @endif
                                 
 
                             </div>
@@ -2270,37 +2284,6 @@
                 if( currenstep == 29 /* && resultados.length > 0 */){
 
                     var ctx = document.getElementById("myChart");
-
-                    /* var myChart = new Chart(ctx, {
-                        type: 'line',
-                        data: {
-                            labels: [''+resultados[3][0]+'',''+resultados[2][0]+'',''+resultados[1][0]+'',''+resultados[0][0]+''],
-                            datasets: [
-                                {
-                                    label: resultados[3][0],
-                                    borderColor: [resultados[3][2],resultados[2][2],resultados[1][2],resultados[0][2]],
-                                    backgroundColor: [resultados[3][3],resultados[2][3],resultados[1][3],resultados[0][3]],
-
-                                    data: [resultados[3][1],resultados[2][1],resultados[1][1],resultados[0][1]],
-                                }
-                            ]
-                        },
-                        options: {
-                            responsive: true,
-                            plugins: {
-                                legend: {
-                                    position: 'top',
-                                },
-                                title: {
-                                    display: true,
-                                    text: 'DISC'
-                                }
-                            }
-
-                        }
-
-                    }); */
-
                     
                     var myChart = new Chart(ctx, {
                         type: 'line',
@@ -2308,7 +2291,7 @@
                             labels: ['Rojo','Amarillo','Verde','Azul'],
                             datasets: [
                                 { 
-                                    label: 'DISC',
+                                    label: 'Segemento',
                                     borderColor: ['#EF4444','#F59E0B','#10B981','#3B82F6'],
                                     backgroundColor: ['#DC2626','#FBBF24','#059669','#2563EB'],
                                     data: [resultados['rojo'],resultados['amarillo'],resultados['verde'],resultados['azul']]
@@ -2316,7 +2299,15 @@
                             ]
                         },
                         options: {
-                            responsive: true
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    type: 'linear',
+                                    min: 1,
+                                    max: 7
+                                }
+                                
+                            }
 
                         }
                     });

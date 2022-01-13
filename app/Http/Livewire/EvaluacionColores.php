@@ -11,7 +11,7 @@ class EvaluacionColores extends Component
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = 28;
+    public $currentStep = 28/* 1 */;
 
     public $inicio = /* true */ false;
     public $instruccion = false;
@@ -270,23 +270,23 @@ class EvaluacionColores extends Component
             $this->request28 = [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3];
 
             if($this->currentStep == 29){
-                /* $this->resultados = ['rojo'=>-3,'amarillo'=>13,'verde'=>-2,'azul'=>10]; */
-                $this->resultados = ['rojo'=>13,'amarillo'=>10,'verde'=>-2,'azul'=>-3];
-                /* $this->resultados = $this->ordenarArray($this->resultados); */
+    
+                /* $this->resultados = $this->resultadosGenerar(); */
+
+                /* $this->resultados = ['rojo'=>13,'amarillo'=>10,'verde'=>-2,'azul'=>-3]; */
+                
                
                 $this->emit('resultadosFinal'); 
 
             }
         }elseif($this->currentStep == 29){
 
-            /* $this->resultados = ['rojo'=>7,'amarillo'=>-2,'verde'=>-8,'azul'=>3]; */
+            /* $this->resultados = $this->resultadosGenerar(); */
 
-            $this->resultados = ['rojo'=>$this->segmento(7,'rojo'),'amarillo'=>$this->segmento(-2,'amarillo'),'verde'=>$this->segmento(-8,'verde'),'azul'=>$this->segmento(3,'azul')];
-            dd($this->resultados);
-            
+            /* $this->resultados = ['rojo'=>$this->segmento(7,'rojo'),'amarillo'=>$this->segmento(-2,'amarillo'),'verde'=>$this->segmento(-8,'verde'),'azul'=>$this->segmento(3,'azul')]; */
+            /* $this->resultados = ['rojo'=>$this->segmento(-1,'rojo'),'amarillo'=>$this->segmento(7,'amarillo'),'verde'=>$this->segmento(-6,'verde'),'azul'=>$this->segmento(0,'azul')]; */
+            $this->resultados = ['rojo'=>6,'amarillo'=>2,'verde'=>3,'azul'=>6];
 
-            /* $this->resultados = $this->ordenarArray($this->resultados); */
-            
             $this->emit('resultadosFinal');
             
         }
@@ -542,13 +542,10 @@ class EvaluacionColores extends Component
         $this->Estable_verde = $this->Estable_verde[0]-$this->Estable_verde[1]; 
         $this->concienzudo_azul = $this->concienzudo_azul[0]-$this->concienzudo_azul[1];
 
-        /* mostrar graficas */
-        dd(
-            $this->segmentoRojo
-        );
-
-
-        return ['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul];
+        return ['rojo'=>$this->segmento($this->dominante_rojo,'rojo'),
+                'amarillo'=>$this->segmento($this->influyente_amarillo,'amarillo'),
+                'verde'=>$this->segmento($this->Estable_verde,'verde'),
+                'azul'=>$this->segmento($this->concienzudo_azul,'azul')];
 
     }
 
@@ -631,69 +628,121 @@ class EvaluacionColores extends Component
     {
 
         if ($color == 'rojo') {
-            if ( ($valor >= -8) && ($valor <= -28 )  ) {
-                return 1;
-            }elseif( ($valor >= -4) && ($valor <= -7) ){
-                return 2;
-            }elseif( ($valor >= -1) && ($valor <= -3) ){
-                return 3;
-            }elseif( ($valor >= 0) && ($valor <= 1) ){
-                return 4;
-            }elseif( ($valor >= 2) && ($valor <= 4) ){
-                return 5;
-            }elseif( ($valor >= 5) && ($valor <= 8) ){
-                return 6;
-            }elseif( ($valor >= 9) && ($valor <= 28) ){
-                return 7;
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 8 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 4 && $valor <= 7 ){
+                    return 2;
+                }elseif( $valor >= 1 && $valor <= 3 ){
+                    return 3;
+                }
+
+            }else{
+
+                if( $valor >= 0 && $valor <= 1 ){
+                    return 4;
+                }elseif( $valor >= 2 && $valor <= 4 ){
+                    return 5;
+                }elseif( $valor >= 5 && $valor <= 8 ){
+                    return 6;
+                }elseif( $valor >= 9 && $valor <= 28 ){
+                    return 7;
+                }
+
             }
+
         }elseif($color == 'amarillo'){
-            if ( ($valor >= -8) && ($valor <= -28 )  ) {
-                return 1;
-            }elseif( ($valor >= -4) && ($valor <= -7) ){
-                return 2;
-            }elseif( ($valor >= '-2') && ($valor <= '-3') ){
-                return 3;
-            }elseif( ($valor >= -1) && ($valor <= 1) ){
-                return 4;
-            }elseif( ($valor >= 2) && ($valor <= 3) ){
-                return 5;
-            }elseif( ($valor >= 4) && ($valor <= 6) ){
-                return 6;
-            }elseif( ($valor >= 7) && ($valor <= 28) ){
-                return 7;
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 8 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 4 && $valor <= 7 ){
+                    return 2;
+                }elseif( $valor >= 2 && $valor <= 3 ){
+                    return 3;
+                }elseif($valor == 1){
+                    return 4;
+                }
+
+            }else{
+
+                if ( $valor == 0 ) {
+                    return 4;
+                }elseif( $valor == 1 ){
+                    return 4;
+                }elseif( $valor >= 2 && $valor <= 3 ){
+                    return 5;
+                }elseif( $valor >= 4 && $valor <= 6 ){
+                    return 6;
+                }elseif( $valor >= 7 && $valor <= 28){
+                    return 7;
+                }
+
             }
+
         }elseif($color == 'verde'){
-            if ( ($valor >= -11) && ($valor <= -28 )  ) {
-                return 1;
-            }elseif( ($valor >= -7) && ($valor <= -10) ){
-                return 2;
-            }elseif( ($valor >= -4) && ($valor <= -6) ){
-                return 3;
-            }elseif( ($valor >= -1) && ($valor <= -3) ){
-                return 4;
-            }elseif( ($valor >= 0) && ($valor <= 2) ){
-                return 5;
-            }elseif( ($valor >= 3) && ($valor <= 7) ){
-                return 6;
-            }elseif( ($valor >= 8) && ($valor <= 28) ){
-                return 7;
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 11 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 7 && $valor <= 10 ){
+                    return 2;
+                }elseif( $valor >= 4 && $valor <= 6 ){
+                    return 3;
+                }elseif( $valor >= 1 && $valor <= 3 ){
+                    return 4;
+                }
+
+            }else{
+
+                if( $valor >= 0 && $valor <= 2 ){
+                    return 5;
+                }elseif( $valor >= 3 && $valor <= 7 ){
+                    return 6;
+                }elseif( $valor >= 8 && $valor <= 28 ){
+                    return 7;
+                }
+
             }
+
         }elseif($color == 'azul'){
-            if ( ($valor >= -6) && ($valor <= -28 )  ) {
-                return 1;
-            }elseif( ($valor >= -3) && ($valor <= -5) ){
-                return 2;
-            }elseif( ($valor >= -1) && ($valor <= -2) ){
-                return 3;
-            }elseif( ($valor >= 0) && ($valor <= 2) ){
-                return 4;
-            }elseif( ($valor >= 3) && ($valor <= 4) ){
-                return 5;
-            }elseif( ($valor >= 5) && ($valor <= 8) ){
-                return 6;
-            }elseif( ($valor >= 9) && ($valor <= 28) ){
-                return 7;
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 6 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 3 && $valor <= 5 ){
+                    return 2;
+                }elseif( $valor >= 1 && $valor <= 2 ){
+                    return 3;
+                }
+
+            }else{
+
+                if( $valor >= 0 && $valor <= 2 ){
+                    return 4;
+                }elseif( $valor >= 3 && $valor <= 4 ){
+                    return 5;
+                }elseif( $valor >= 5 && $valor <= 8 ){
+                    return 6;
+                }elseif( $valor >= 9 && $valor <= 28 ){
+                    return 7;
+                }
+
             }
+
         }
         
     }
