@@ -175,10 +175,6 @@
                 </svg>
             </button>
             
-            {{-- <div class="flex items-center">
-                <img class="hidden object-cover w-10 h-10 mx-4 rounded-full sm:block" src="https://images.unsplash.com/photo-1502980426475-b83966705988?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=40&q=80" alt="avatar">
-                <a class="font-bold text-gray-700 cursor-pointer dark:text-gray-200">Khatab wedaa</a>
-            </div> --}}
         </div>
         {{-- Fin - intrucciones --}}
 
@@ -2145,22 +2141,527 @@
                             </div>
                             
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
+
+                                @if ($resultados2 == 'Desarrollador')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona autosuficiente que prefieren buscar sus propias soluciones creativas e individualistas. 
+                                    </p>
+                                    <p>
+                                        De voluntad fuerte y prefieres estar libre de influencias restrictivas. 
+                                    </p>
+                                    <p>
+                                        Los desarrolladores están más interesados ​​en las oportunidades de avance logrando los objetivos que se propusieron. 
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Un reto y nuevas oportunidades.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Capacidad para cumplir con sus estándares.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Ser un buscador de soluciones.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Solucionador de problemas innovador: la responsabilidad se detiene con ellos.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Se vuelve beligerante si las cosas no salen como quieren.
+                                    </p>
+
+                                @elseif($resultados2 == 'Orientado a resultados')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Buscas lograr resultados. 
+                                        Valoras la independencia y muestras una confianza en ti mismo que algunos pueden percibir como arrogancia.
+                                    </p>
+                                    <p>
+                                        Eres una persona competitiva y te gusta las tareas dificiles y los altos cargos. 
+                                    </p>
+                                    <p>
+                                        Las personas orientadas a los resultados tienden a criticar a los demás que no piensan tan rápido como ellos.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Control, Dominio e Independencia.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Habilidad para realizar tareas rápidamente.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Diligencia y fuerza de carácter.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Persistencia y determinación.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Detección de fallas, crítica, sobrepasa los límites.
+                                    </p>
+
+
+                                @elseif($resultados2 == 'Inspiracional')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Tiendes a influir en los pensamientos y acciones de los demás.
+                                    </p>
+                                    <p>
+                                        Intentas controlar tu entorno y dirigir el comportamiento de los demás hacia una meta predeterminada. 
+                                    </p>
+                                    <p>
+                                        El personal inspirador tiene resultados claros en mente y pueden ser encantadores en sus interacciones.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Control de su entorno y objetivos.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Estatus social, fuerza de carácter personal.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Encanto persuasivo, intimidación y uso de recompensas.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Inicia, exige, tiende a ser un "movedor y agitador".
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Tiende a ser manipulador, beligerante o pendenciero.
+                                    </p>
+
+                                @elseif($resultados2 == 'Creativo')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Te expresas a partir de fuerzas conductuales opuestas y deseas resultados inmediatos, pero tienes un deseo fuerte de perfección.
+                                    </p>
+                                    <p>
+                                        Observarás agresividad y será atemperada por la sensibilidad.
+                                    </p>
+                                    <p>
+                                        Las personas creativas quieren libertad para explorar y la autoridad para probar y volver a probar los hallazgos. Las decisiones diarias son fáciles para ellos, pero tienen mucho cuidado al tomar decisiones más importantes.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Logros únicos y dominio.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Cumplimiento de tareas y dominio.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Enfoques innovadores y desarrollo de sistemas.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Puede ser un agente de cambio positivo.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Se vuelve independiente y se aburre con el trabajo rutinario.
+                                    </p>
+
+                                @elseif($resultados2 == 'Promotor')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres generalmente sociable.
+                                    </p>
+                                    <p>
+                                        Eres verbal y generoso con la creación de apoyo para otros proyectos.
+                                    </p>
+                                    <p>
+                                        Los promotores son persuasivos y entusiastas; tienden a percibir a los demás bajo una luz favorable sin investigar todos los hechos.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Aceptación social y popularidad.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Habilidades verbales y habilidades persuasivas.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Aprobación verbal, aprecio, elogio, favores.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Trae ligereza, alivia la tensión, promueve personas y tareas.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Tiende a ser desorganizado, descuidado y disperso.
+                                    </p>
+
+                                @elseif($resultados2 == 'Persuasivo')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Te encanta trabajar con y a través de las personas para lograr sus propios objetivos.
+                                    </p>
+                                    <p>
+                                        Fácilmente ganas apoyo y respeto por tu personalidad extovertida y persuasiva.
+                                    </p>
+                                    <p>
+                                        desean libertad de expresión y libertad de tareas y rutinas aburridas. Necesitan mantenerse enfocados en la tarea y equilibrar su entusiasmo con enfoques realistas.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Estatus, prestigio y autoridad.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Su flexibilidad y capacidad para expresarse.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Habilidades verbales y naturaleza amistosa y abierta.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Preparado y confiado, delega, vende y cierra.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Se convence fácilmente, se puede organizar para que se vea bien.
+                                    </p>
+
+                                @elseif($resultados2 == 'Consejero')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona que contruyes relaciones a largo plazo.
+                                    </p>
+                                    <p>
+                                        Buen oyente y efectivo en la resolución de problemas, y a su vez usas un enfoque indirecto cuando tratas con otro.
+                                    </p>
+                                    <p>
+                                        Tiendes a poner a als personas en primer lugar al birndar reconocimineto a los demás, atribuyes menos importancia al cumplimineto de tareas.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Colaboración, amistad y un ambiente tranquilo.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Voluntad de buscar el bien en los demás.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Relaciones personales sinceras y disponibilidad para los demás.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Habilidades de escucha efectiva, estabilidad y previsibilidad.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Confía demasiado en los demás y se vuelve demasiado flexible.
+                                    </p>
                                 
-                                @if ($resultados['rojo'] >= 6 && $resultados['amarillo'] == 3 && $resultados['verde'] == 3 && $resultados['azul'] ==3 )
-                                    <p>Director</p>
+                                @elseif($resultados2 == 'Tasador')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona asertiva en lugar de ser agresiva.
+                                    </p>
+                                    <p>
+                                        Obtienes la cooperación de los demás al mostrar consideración y usas la persuasión para involucrar a otros en los proyectos.
+                                    </p>
+                                    <p>
+                                        Los tasadores son prácticos y aseguran resultados progresivos mediante el desarrollo de un plan de acción detallado. Tienen el deseo de ganar y pueden impacientarse cuando no se cumplen sus altos estándares.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        ¡Ganando con estilo! ¡Victoria!.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Su disposición y capacidad para tomar la iniciativa.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Involucrarlos y ofrecerles reconocimiento.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Ser un jugador de equipo y lograr objetivos.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Se vuelve crítico e impaciente.
+                                    </p>
 
-                                @elseif($resultados['rojo'] == 6 && $resultados['amarillo'] == 2 && $resultados['verde'] == 3 && $resultados['azul'] == 6 )
-                                    <p>Creativo</p>
-
-                                @elseif($resultados['rojo'] == 6 && $resultados['amarillo'] == 3 && $resultados['verde'] == 2 && $resultados['azul'] == 5 )
-                                    <p>Pionero</p>
-
+                                @elseif($resultados2 == 'Especialista')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona considerada,paciente y siempre estas listo para ayudar a los demás.
+                                    </p>
+                                    <p>
+                                        Debido a tu personalidad modesta y de buenos modales te llevas bien con los demás.
+                                    </p>
+                                    <p>
+                                        Los especialistas prefieren procedimientos prácticos, probados y verdaderos que garanticen la estabilidad. Les gustan los patrones familiares y predecibles que producen resultados consistentes y confiables.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Entorno estable controlado, manteniendo el status quo.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Sinceridad, amabilidad y competencia.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Rendimiento consistente y predecible.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Naturaleza calmante constante y rendimiento constante.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Capitula y se adapta a los que están en autoridad.
+                                    </p>
                                 
+                                @elseif($resultados2 == 'Triunfador')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona con un sentido fuerte de responsabilidad personal,
+                                        confias en tus logros laborales y personales y puedes ser racio a delegar tareas cuando estas bajo estés.
+                                    </p>
+                                    <p>
+                                        Prosperas cuando tienes un fuerte sentido de dirección sobre su trabajo y su vida personal. 
+                                        Estás continuamente en la búsqueda de nuevos logros. 
+                                    </p>
+                                    <p>
+                                        El estilo dual de S y D hace que sea difícil predecir las reacciones del Triunfador. A veces están en modo D, directos y orientados a los resultados, y otras veces están en modo S, atentos y complacientes. Son muy independientes, pero pueden querer ser parte de un equipo de alto rendimiento. Expresan una lealtad feroz a las personas en sus vidas.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Logros personales.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Habilidad para lograr resultados medibles.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Responsabilidad personal por el trabajo asignado.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Independencia y completa las tareas de manera efectiva.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Muestra impaciencia y frustración.
+                                    </p>
 
-                                @else
-                                    <p>Sin coincidencia de patron</p>
+                                @elseif($resultados2 == 'Agente')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona relajada y sigues la corriente.
+                                    </p>
+                                    <p>
+                                        Te esfuerzas para mantener la armonía en las relaciones y te comprometes a tratar a las personas con respeto;
+                                        una distinción clave es que tiendes a pensar primero en los demás y luego en ti mismo.
+                                    </p>
+                                    <p>
+                                        Los agentes también tienen excelentes habilidades relacionadas con las tareas y agregan estabilidad a su entorno de trabajo mediante el cumplimiento de los procedimientos y la finalización de las tareas. Aunque por lo general evitan los conflictos, los Si están dispuestos a mediar entre los demás para restaurar la armonía en el lugar de trabajo. 
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Aceptación de su grupo.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Inclusión de todas las personas.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Amistades leales y empatía.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Servicio, crea armonía y empatía.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Usa amistades clave para influir.
+                                    </p>
+
+                                @elseif($resultados2 == 'Investigador')
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona obstinada hacia las metas y el seguimiento.
+                                    </p>
+                                    <p>
+                                        Tienes claros los resultados que quieres, persigues con calma y firmeza hacia una meta fija.
+                                    </p>
+                                    <p>
+                                        Los investigadores valoran lograr las cosas de una manera bien hecha. Asumen una gran responsabilidad y están atentos a los detalles importantes. Tienen una gran capacidad para aprender de la experiencia y pueden tomar medidas correctivas cuando sea necesario.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Cargo, título o autoridad del título de la función.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Su uso de información fáctica y confiable.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Tenacidad y determinación personal.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Determinado enfoque en la tarea y seguimiento.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Guarda rencor e interioriza el conflicto.
+                                    </p>
+
+                                @elseif($resultados2 == 'Pensador Objetivo')
+
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona enfocada en lograr una precisión total y completa en todo lo que haces.
+                                    </p>
+                                    <p>
+                                        Cuestionas continuamente ideas y procesos para asegurarse de que las cosas se hagan correctamente.
+                                    </p>
+                                    <p>
+                                        Los pensadores objetivos toman decisiones basadas en el análisis lógico de información observable y cuantificable, en lugar de guiarse por las emociones de una situación. A menudo prefieren trabajar de forma independiente, pero siguen siendo objetivos y diplomáticos cuando tratan con los demás.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Precisión, exactitud y lógica.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Pensamiento lógico e información fáctica.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Lógica, hechos y datos.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Recopilación de datos y pruebas de información.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Tiende a inquietarse y preocuparse.
+                                    </p>
+
+                                @elseif($resultados2 == 'Perfeccionista')
+                                 
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona impulsada por la necesidad de precisión y lógica.
+                                    </p>
+                                    <p>
+                                        Necesitas presión y estar impulsada por la paciencia lo que da resultado como una persona enfocada en claidad.
+                                    </p>
+                                    <p>
+                                        Los perfeccionistas son pensadores precisos y emplean planes y procedimientos tanto para su vida personal como profesional, evitando así lo inesperado. Utilizan la diligencia debida cuando se les solicita una precisión detallada. Cuestionan suposiciones y requieren mucha información que puedan analizar al explorar alternativas y antes de tomar una decisión o llegar a conclusiones.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Resultados predecibles y estables.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Precisión y altos estándares.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Precisión y atención al detalle.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Control de calidad y mantenimiento de estándares.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Recurre al tacto y la diplomacia.
+                                    </p>
+
+                                @elseif($resultados2 == 'Practicante')
+                                 
+                                    <p>{{$resultados2}}</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona que disfrutas ser un miembro del equipo y ayudas a otros a tener exito.
+                                    </p>
+                                    <p>
+                                        No quieres responsabilidades de deciciones importantes o de asumir riesgos, cuando tienes mucho tiempo
+                                        para pensar las cosas, pueden aportar información valiosa al proceso del equipo.
+                                    </p>
+                                    <p>
+                                        Los practicantes prefieren un ambiente cómodo y cooperativo donde las personas sean confiables y agradables. Prosperan cuando pueden contribuir a proyectos que requieren atención a los detalles.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Apoyar e interactuar con otros.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Estado de posición y autodisciplina.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Habilidad con la resolución de problemas y la tecnología.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Puede especializarse y ser competente.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Demasiado sensible a las críticas y comedido.
+                                    </p>
+
                                 @endif
-                                
 
                             </div>
                        
@@ -2288,7 +2789,7 @@
                     var myChart = new Chart(ctx, {
                         type: 'line',
                         data: {
-                            labels: ['Rojo','Amarillo','Verde','Azul'],
+                            labels: ['D','I','S','C'],
                             datasets: [
                                 { 
                                     label: 'Segemento',
@@ -2304,7 +2805,7 @@
                                 y: {
                                     type: 'linear',
                                     min: 1,
-                                    max: 7
+                                    max: 8
                                 }
                                 
                             }
