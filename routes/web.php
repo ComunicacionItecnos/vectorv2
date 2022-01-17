@@ -136,11 +136,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboa
 })->name('revision-desempeno');
 
 /* Borrar despues */
-Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
+Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
-    return view('revision-doc');
-})->name('revision-doc');
+Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboard', function () {
+    return view('revision-desempeno');
+})->name('revision-desempeno');
 
 Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
 
