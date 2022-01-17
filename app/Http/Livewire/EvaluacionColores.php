@@ -11,9 +11,9 @@ class EvaluacionColores extends Component
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = 28/* 1 */;
+    public $currentStep = /* 28 */1;
 
-    public $inicio = /* true */ false;
+    public $inicio = true /* false */;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
