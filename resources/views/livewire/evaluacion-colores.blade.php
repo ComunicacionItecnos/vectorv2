@@ -1,8 +1,8 @@
 <div>
     <header class="p-4 bg-white">
         <div class="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
-            <a href="#" aria-label="Back to homepage" class="flex items-center p-2">
-                <img src="{{ asset('images/logo_factor-c.png') }}" loading="lazy" class=" object-cover h-10 w-100">
+            <a aria-label="Back to homepage" class="flex items-center p-2 content-center">
+                <img src="{{ asset('images/disc/FACTOR_logo_new.svg') }}" loading="lazy" class=" object-cover h-10 w-100">
             </a>
         </div>
     </header>
@@ -10,30 +10,29 @@
     <div class="mt-8 mb-8 max-w-4xl px-8 py-4 mx-auto bg-white rounded-lg shadow-xl border border-gray-300">
 
         {{-- Inicio - descripcion del test DISC --}}
-        <div class="flex items-center justify-between @if($inicio) @else hidden @endif">
+        {{-- <div class="flex items-center justify-between @if($inicio) @else hidden @endif">
             <span class="text-sm font-light text-gray-600 dark:text-gray-400">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
                 </svg>
                 {{$fecha}}
             </span>
-        </div>
+        </div> --}}
 
         <div class="mt-2 my-2 @if($inicio) @else hidden @endif">
-            <a class="text-2xl font-bold text-gray-800">
-                Test de colores  - DISC 
+            <a class="flex items-center content-center object-center justify-center">
+
+                <img src="{{ asset('images/disc/DISC_banner_home.svg') }}" loading="lazy" class="w-full lg:w-6/12">
+                {{-- Test de colores  - DISC 
 
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 inline-block"><path fill="none" d="M0 0h24v24H0z"/>
                     <path d="M2 13h6v8H2v-8zM9 3h6v18H9V3zm7 5h6v13h-6V8z"/>
-                </svg>
+                </svg> --}}
 
             </a>
+            <br>
             <p class="mt-2 text-gray-600">
-                ¿Qué es el test DISC?
-
-            </p>
-            <p class="mt-2 text-gray-600">
-                En general, todos tenemos una o dos dimensiones que sobresalen sobre las demás, dando como resultado una combinación concreta: el perfil DISC, que nos permite evaluar cómo se relaciona una persona con su entorno. Se trata de uno de los recursos más comprensibles y fáciles de aplicar en las empresas, ya que, se puede aplicar para cumplir distintos tipos de objetivos, como la integración de un equipo eficiente o la elaboración de estrategias de ventas dependiendo de la personalidad de los posibles clientes.
+                En general, todos tenemos una o dos dimensiones que sobre salen sobre las demás, dando como resultado una combinación concreta: el perfil DISC, que nos permite evaluar cómo se relaciona una persona con su entorno. Se trata de uno de los recursos más comprensibles y fáciles de aplicar en las empresas, ya que, se puede aplicar para cumplir distintos tipos de objetivos, como la integración de un equipo eficiente o la elaboración de estrategias de ventas dependiendo de la personalidad de los posibles clientes.
             </p>
             <p class="mt-2 text-gray-600">
                 Además de identificar las características de la personalidad, el DISC detecta también ciertas habilidades, pues podemos averiguar cómo entendemos el mundo y reaccionamos frente a distintas circunstancias.
