@@ -1,41 +1,27 @@
-<div>
+<div style="margin-left: 5%; margin-right: 5%;">
     <header class="p-4 bg-white">
-        <div class="container flex justify-between h-16 mx-auto md:justify-center md:space-x-8">
-            <a aria-label="Back to homepage" class="flex items-center p-2 content-center">
+            <a aria-label="Back to homepage" class="flex justify-center p-2 content-center">
                 <img src="{{ asset('images/disc/FACTOR_logo_new.svg') }}" loading="lazy" class=" object-cover h-10 w-100">
             </a>
-        </div>
     </header>
     
-    <div class="mt-8 mb-8 max-w-4xl px-8 py-4 mx-auto bg-white rounded-lg shadow-xl border border-gray-300">
-
-        {{-- Inicio - descripcion del test DISC --}}
-        {{-- <div class="flex items-center justify-between @if($inicio) @else hidden @endif">
-            <span class="text-sm font-light text-gray-600 dark:text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                </svg>
-                {{$fecha}}
-            </span>
-        </div> --}}
+    <div class="mb-8 max-w-4xl px-8 py-4 mx-auto bg-white rounded-lg shadow-xl border border-gray-300" >
 
         <div class="mt-2 my-2 @if($inicio) @else hidden @endif">
-            <a class="flex items-center content-center object-center justify-center">
+            <a class="flex justify-center">
 
                 <img src="{{ asset('images/disc/DISC_banner_home.svg') }}" loading="lazy" class="w-full lg:w-6/12">
-                {{-- Test de colores  - DISC 
-
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 inline-block"><path fill="none" d="M0 0h24v24H0z"/>
-                    <path d="M2 13h6v8H2v-8zM9 3h6v18H9V3zm7 5h6v13h-6V8z"/>
-                </svg> --}}
 
             </a>
             <br>
             <p class="mt-2 text-gray-600">
-                En general, todos tenemos una o dos dimensiones que sobre salen sobre las demás, dando como resultado una combinación concreta: el perfil DISC, que nos permite evaluar cómo se relaciona una persona con su entorno. Se trata de uno de los recursos más comprensibles y fáciles de aplicar en las empresas, ya que, se puede aplicar para cumplir distintos tipos de objetivos, como la integración de un equipo eficiente o la elaboración de estrategias de ventas dependiendo de la personalidad de los posibles clientes.
+                En general, todos tenemos una o dos dimensiones que sobresalen sobre las demás, dando como resultado una combinación concreta: el perfil DISC. 
             </p>
             <p class="mt-2 text-gray-600">
-                Además de identificar las características de la personalidad, el DISC detecta también ciertas habilidades, pues podemos averiguar cómo entendemos el mundo y reaccionamos frente a distintas circunstancias.
+                Este nos permite evaluar <b>cómo se relaciona una persona con su entorno</b>. Se trata de uno de los recursos más comprensibles y fáciles de aplicar en las empresas, ya que puede cumplir distintos tipos de objetivos, como la integración de un equipo eficiente o la elaboración de estrategias de ventas dependiendo de las fortalezas de cada integrante.
+            </p>
+            <p class="mt-2 text-gray-600">
+                Además de identificar las características de la personalidad, el DISC también detecta ciertas habilidades, pues es una forma sencilla de ver cómo nos relacionamos con el mundo y reaccionamos frente a diferentes circunstancias.
             </p>
 
         </div>
@@ -48,14 +34,6 @@
         {{-- Fin - descripcion del test DISC --}}
 
         {{-- Inicio - intrucciones --}}
-        <div class="flex items-center justify-between @if($instruccion) @else hidden @endif">
-            <span class="text-sm font-light text-gray-600 dark:text-gray-400">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                </svg>
-                {{$fecha}}
-            </span>
-        </div>
 
         <div class="mt-2 my-2 @if($instruccion) @else hidden @endif">
             <a class="text-2xl font-bold text-gray-800">
@@ -71,7 +49,7 @@
                 El test <b>DISC</b> esta conformado por 28 secciones, cada una de ellas por 4 adjetivos.
             </p>
             <p class="mt-2 text-gray-600">
-                Escoje y marca la palabra que <b>más(+)</b> te describe y la que <b>menos(-)</b> te describe (colocando el símbolo respectio en la casilla <b>"Marcador"</b>)
+                Escoje y marca la palabra que <b>más(+)</b> te describe y la que <b>menos(-)</b> te describe (colocando el símbolo respectivo en la casilla <b>"Marcador"</b>)
                 por cada ítem de acuerdo a su persepción personal y/o su forma de trabajo.
             </p>
 
@@ -89,79 +67,10 @@
                 
                 <div class="flex flex-wrap overflow-hidden items-center">
 
-                    <div class="w-1/2 overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2">
-                        <p class="mt-2 text-gray-600">
-                            ITEM
-                        </p>
-
-                        
-                        <div class="flex flex-wrap overflow-hidden  text-center">
-
-                            <div class="w-1/2 overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2">
-                                <p class="text-xl text-center">1</p>
-                            </div>
-                          
-                            <div class="w-1/2 overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2">
-                                
-                                <div class="flex flex-wrap overflow-hidden">
-
-                                    <div class="w-full overflow-hidden" >
-                                        Ejemplo 1
-                                    </div>
-                                  
-                                    <div class="w-full overflow-hidden">
-                                        Ejemplo 2
-                                    </div>
-                                  
-                                    <div class="w-full overflow-hidden">
-                                        Ejemplo 3
-                                    </div>
-                                  
-                                    <div class="w-full overflow-hidden">
-                                        Ejemplo 4
-                                    </div>
-                                  
-                                </div>
-
-                            </div>
-                          
-                        </div>
-
-                        
-
-                    </div>
-                  
-                    <div class="w-1/2 overflow-hidden sm:w-1/2 md:w-1/2 lg:w-1/2 xl:w-1/2">
-                        <p class="mt-2 text-gray-600">
-                            Marcador
-                        </p>
-
-                        <div class="flex flex-wrap overflow-hidden">
-
-                            <div class="w-full overflow-hidden" style="border-">
-                                <br>
-                            </div>
-                          
-                            <div class="w-full overflow-hidden">
-                                <br>
-                            </div>
-                          
-                            <div class="w-full overflow-hidden">
-                                -
-                            </div>
-                          
-                            <div class="w-full overflow-hidden">
-                                +
-                            </div>
-                          
-                        </div>
-
-
-                    </div>
+                    <img src="{{ asset('images/disc/item1.png') }}" loading="lazy" class="w-full lg:w-full">
                   
                 </div>
             
-
             </div>
 
         </div>
@@ -181,11 +90,7 @@
         @if ($inicio == false && $instruccion == false)
             {{-- Inicio - Barra de progreso --}}            
             <div class="flex items-center justify-between @if($currentStep == 29) hidden @endif">
-                <span class="text-sm font-bold text-gray-600">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
-                        <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd" />
-                    </svg>
-                    {{$fecha}}
+                <span>
                 </span>
                 
                 <a class="px-3 py-1 text-sm font-bold text-gray-600"  @if ($inicio == false && $instruccion == false)  @if($Contador == 'Sin tiempo')  @elseif($currentStep == 29) {{$Contador = 'Haz finalizado'}}  @else wire:poll.1000ms='cuentaAtras'  @endif @endif>
