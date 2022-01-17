@@ -15,6 +15,7 @@ use App\Http\Livewire\ActualizarNuevoIngreso;
 use App\Http\Livewire\EvaluacionDesempeno;
 use App\Http\Livewire\EvalucacionDesempenoExcel;
 use App\Http\Livewire\EvaluacionColores;
+use App\Http\Livewire\RevisionDoc;
 
 /*
 |--------------------------------------------------------------------------
@@ -130,6 +131,10 @@ Route::get('/utiles-escolares/{no_colaborador}',UtilesEscolares::class);
 Route::get('/nuevo-ingreso',NuevoIngreso::class);
 
 Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
+    return view('revision-doc');
+})->name('revision-doc');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
     return view('registroTallas');
