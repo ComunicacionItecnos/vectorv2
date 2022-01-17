@@ -69,7 +69,7 @@
 
             </p>
             <p class="mt-2 text-gray-600">
-                El test <b>DISC</b> esta conformado por 28 secciones cada uno de ellos por 4 adjetivos.
+                El test <b>DISC</b> esta conformado por 28 secciones, cada una de ellas por 4 adjetivos.
             </p>
             <p class="mt-2 text-gray-600">
                 Escoje y marca la palabra que <b>más(+)</b> te describe y la que <b>menos(-)</b> te describe (colocando el símbolo respectio en la casilla <b>"Marcador"</b>)
