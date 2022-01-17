@@ -104,7 +104,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion22_0 = [], $marcadorQuestion22_1 = [], $marcadorQuestion22_2 = [], $marcadorQuestion22_3 = [];
     public $request22 = [];
 
-    public $question23  = [0=>'Sistemático',1=>'Tolerante',2=>'Sociable',3=>'Viguroso'];
+    public $question23  = [0=>'Sistemático',1=>'Tolerante',2=>'Sociable',3=>'Vigoroso'];
     public $marcadorQuestion23_0 = [], $marcadorQuestion23_1 = [], $marcadorQuestion23_2 = [], $marcadorQuestion23_3 = [];
     public $request23 = [];
 
@@ -275,7 +275,8 @@ class EvaluacionColores extends Component
     
                 
                 $this->resultados = $this->resultadosGenerar(); 
-                $this->resultados2 = $this->metodosPerfil($this->resultados);
+                $this->resultados3 = $this->ordenarArray($this->resultados);
+                $this->resultados2 = $this->metodosPerfil($this->resultados3);
                       
                
                 $this->emit('resultadosFinal'); 
@@ -284,7 +285,8 @@ class EvaluacionColores extends Component
         }elseif($this->currentStep == 29){
 
             $this->resultados = $this->resultadosGenerar(); 
-            $this->resultados2 = $this->metodosPerfil($this->resultados);
+            $this->resultados3 = $this->ordenarArray($this->resultados);
+            $this->resultados2 = $this->metodosPerfil($this->resultados3);
 
             /* $this->resultados = ['rojo'=>$this->segmento(8,'rojo'),'amarillo'=>$this->segmento(-2,'amarillo'),'verde'=>$this->segmento(-6,'verde'),'azul'=>$this->segmento(6,'azul')];
             
