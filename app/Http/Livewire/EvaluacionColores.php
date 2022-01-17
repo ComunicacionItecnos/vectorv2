@@ -11,9 +11,9 @@ class EvaluacionColores extends Component
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = 1;
+    public $currentStep = 28/* 1 */;
 
-    public $inicio = true /* false */;
+    public $inicio = /* true */ false;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
@@ -104,7 +104,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion22_0 = [], $marcadorQuestion22_1 = [], $marcadorQuestion22_2 = [], $marcadorQuestion22_3 = [];
     public $request22 = [];
 
-    public $question23  = [0=>'Sitemático',1=>'Tolerante',2=>'Sociable',3=>'Viguroso'];
+    public $question23  = [0=>'Sistemático',1=>'Tolerante',2=>'Sociable',3=>'Viguroso'];
     public $marcadorQuestion23_0 = [], $marcadorQuestion23_1 = [], $marcadorQuestion23_2 = [], $marcadorQuestion23_3 = [];
     public $request23 = [];
 
@@ -112,7 +112,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion24_0 = [], $marcadorQuestion24_1 = [], $marcadorQuestion24_2 = [], $marcadorQuestion24_3 = [];
     public $request24 = [];
 
-    public $question25  = [0=>'Le agrada descutir',1=>'Comedido',2=>'Metódico',3=>'Desenvuelto'];
+    public $question25  = [0=>'Le agrada discutir',1=>'Comedido',2=>'Metódico',3=>'Desenvuelto'];
     public $marcadorQuestion25_0 = [], $marcadorQuestion25_1 = [], $marcadorQuestion25_2 = [], $marcadorQuestion25_3 = [];
     public $request25 = [];
 
@@ -139,6 +139,10 @@ class EvaluacionColores extends Component
     public $Estable_verde = [];
     public $concienzudo_azul = [];
     public $resultados = [];
+    public $resultados2 = [];
+    public $resultados3 = [];
+
+    public $perfil,$descripcion;
 
     public function mount()
     {
@@ -158,7 +162,7 @@ class EvaluacionColores extends Component
         if ($this->inicioCount->diffInSeconds($this->finalCount,false) <= 0) {
             $this->Contador = 'Sin tiempo';
             $this->mostrarModal = true;
-            $this->titulomsj = 'Sin timepo';
+            $this->titulomsj = 'Sin tiempo';
             $this->bgIcono = 'bg-red-100';
             $this->iconomsj = '<svg class="h-6 w-6 text-red-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -167,6 +171,7 @@ class EvaluacionColores extends Component
             $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
             $this->btnTexto = 'Cerrar';
             
+            $this->increaseStep($this->validarItem(29));
         }else{
             $this->Contador = $this->finalCount->diffForHumans($this->inicioCount,[
                 'options' =>Carbon::JUST_NOW,
@@ -265,19 +270,31 @@ class EvaluacionColores extends Component
         }elseif($this->currentStep == 28){
             $this->validarItem($this->noMasDeDos( [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3] ));
             $this->request28 = [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3];
-            
-            /* $this->resultados = $this->resultadosGenerar(); */
 
             if($this->currentStep == 29){
-                /* $this->resultados = ['rojo'=>-3,'amarillo'=>13,'verde'=>-2,'azul'=>10];
-                $this->resultados = $this->ordenarArray($this->resultados); */
-
-                /* dd( */$this->resultados = $this->resultadosGenerar()/* ) */;
+    
+                
+                $this->resultados = $this->resultadosGenerar(); 
+                $this->resultados2 = $this->metodosPerfil($this->resultados);
+                      
                
                 $this->emit('resultadosFinal'); 
-            }
-            
 
+            }
+        }elseif($this->currentStep == 29){
+
+            $this->resultados = $this->resultadosGenerar(); 
+            $this->resultados2 = $this->metodosPerfil($this->resultados);
+
+            /* $this->resultados = ['rojo'=>$this->segmento(8,'rojo'),'amarillo'=>$this->segmento(-2,'amarillo'),'verde'=>$this->segmento(-6,'verde'),'azul'=>$this->segmento(6,'azul')];
+            
+            $this->resultados3 = $this->ordenarArray($this->resultados); */
+
+            /* $this->resultados2 = 'Promotor'; *//* $this->metodosPerfil( $this->resultados3); */
+            /* dd($this->resultados2); */
+
+            $this->emit('resultadosFinal');
+            
         }
         
     }
@@ -302,6 +319,7 @@ class EvaluacionColores extends Component
 
         if($this->inicioCount->diffInSeconds($this->finalCount, false)  <= 0)
         {
+
             $this->mostrarModal = true;
             $this->titulomsj = 'Sin tiempo';
             $this->bgIcono = 'bg-red-100';
@@ -311,7 +329,7 @@ class EvaluacionColores extends Component
             $this->msj = 'Se acabado el tiempo ';
             $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
             $this->btnTexto = 'Cerrar';
-            
+
         }else{
 
             foreach ($valor as $key) {
@@ -524,17 +542,16 @@ class EvaluacionColores extends Component
         $this->influyente_amarillo  = $this->calcularDisc($this->influyente_amarillo);
         $this->Estable_verde = $this->calcularDisc($this->Estable_verde);
         $this->concienzudo_azul = $this->calcularDisc($this->concienzudo_azul);
-
-        /* dd(['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul]); */
         
         $this->dominante_rojo = $this->dominante_rojo[0]-$this->dominante_rojo[1];
         $this->influyente_amarillo = $this->influyente_amarillo[0]-$this->influyente_amarillo[1];
         $this->Estable_verde = $this->Estable_verde[0]-$this->Estable_verde[1]; 
         $this->concienzudo_azul = $this->concienzudo_azul[0]-$this->concienzudo_azul[1];
-        
-        /* dd(['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul]); */
-        
-        return $this->ordenarArray( ['rojo'=>$this->dominante_rojo,'amarillo'=>$this->influyente_amarillo,'verde'=>$this->Estable_verde,'azul'=>$this->concienzudo_azul] );
+
+        return ['rojo'=>$this->segmento($this->dominante_rojo,'rojo'),
+                'amarillo'=>$this->segmento($this->influyente_amarillo,'amarillo'),
+                'verde'=>$this->segmento($this->Estable_verde,'verde'),
+                'azul'=>$this->segmento($this->concienzudo_azul,'azul')];
 
     }
 
@@ -585,38 +602,244 @@ class EvaluacionColores extends Component
     {
         $arryRetornar = [];
 
-        $colorBorde = '';
-        $colorFondo = '';
-
-        $this->aksort($arrayRespuesta/* , true  */);
+        $this->aksort($arrayRespuesta,true,true);
 
         foreach ($arrayRespuesta as $key => $value) {
-            /* return $value; */
-            /* if ($value < 0) {
-                $value = 0;
-            }else {
-                $value = $value;
-            } */
-
-            if($key == 'rojo'){
-                $colorBorde = '#EF4444';
-                $colorFondo = '#DC2626';
-            }elseif ($key == 'amarillo') {
-                $colorBorde = '#F59E0B';
-                $colorFondo = '#D97706';
-            }elseif ($key == 'verde') {
-                $colorBorde = '#10B981';
-                $colorFondo = '#059669';
-            }elseif ($key == 'azul') {
-                $colorBorde = '#3B82F6';
-                $colorFondo = '#2563EB';
-            }
-
-            $arryRetornar[] = [$key,$value,$colorBorde,$colorFondo];
+            
+            $arryRetornar[] = [$key,$value];
         }
 
         return $arryRetornar;
     }
 
+
+    public function segmento($valor,$color)
+    {
+
+        if ($color == 'rojo') {
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 8 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 4 && $valor <= 7 ){
+                    return 2;
+                }elseif( $valor >= 1 && $valor <= 3 ){
+                    return 3;
+                }
+
+            }else{
+
+                if( $valor >= 0 && $valor <= 1 ){
+                    return 4;
+                }elseif( $valor >= 2 && $valor <= 4 ){
+                    return 5;
+                }elseif( $valor >= 5 && $valor <= 8 ){
+                    return 6;
+                }elseif( $valor >= 9 && $valor <= 28 ){
+                    return 7;
+                }
+
+            }
+
+        }elseif($color == 'amarillo'){
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 8 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 4 && $valor <= 7 ){
+                    return 2;
+                }elseif( $valor >= 2 && $valor <= 3 ){
+                    return 3;
+                }elseif($valor == 1){
+                    return 4;
+                }
+
+            }else{
+
+                if ( $valor == 0 ) {
+                    return 4;
+                }elseif( $valor == 1 ){
+                    return 4;
+                }elseif( $valor >= 2 && $valor <= 3 ){
+                    return 5;
+                }elseif( $valor >= 4 && $valor <= 6 ){
+                    return 6;
+                }elseif( $valor >= 7 && $valor <= 28){
+                    return 7;
+                }
+
+            }
+
+        }elseif($color == 'verde'){
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 11 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 7 && $valor <= 10 ){
+                    return 2;
+                }elseif( $valor >= 4 && $valor <= 6 ){
+                    return 3;
+                }elseif( $valor >= 1 && $valor <= 3 ){
+                    return 4;
+                }
+
+            }else{
+
+                if( $valor >= 0 && $valor <= 2 ){
+                    return 5;
+                }elseif( $valor >= 3 && $valor <= 7 ){
+                    return 6;
+                }elseif( $valor >= 8 && $valor <= 28 ){
+                    return 7;
+                }
+
+            }
+
+        }elseif($color == 'azul'){
+
+            if ($valor < 0) {
+
+                $valor = abs($valor);
+
+                if ( $valor >= 6 && $valor <= 28 ) {
+                    return 1;
+                }elseif( $valor >= 3 && $valor <= 5 ){
+                    return 2;
+                }elseif( $valor >= 1 && $valor <= 2 ){
+                    return 3;
+                }
+
+            }else{
+
+                if( $valor >= 0 && $valor <= 2 ){
+                    return 4;
+                }elseif( $valor >= 3 && $valor <= 4 ){
+                    return 5;
+                }elseif( $valor >= 5 && $valor <= 8 ){
+                    return 6;
+                }elseif( $valor >= 9 && $valor <= 28 ){
+                    return 7;
+                }
+
+            }
+
+        }
+        
+    }
+
+    public function metodosPerfil($valor)
+    {
+        /* return$valor; */
+        if($valor[0][1] == $valor[1][1])
+        {
+            if ($valor[0][0] == 'rojo' && $valor[1][0] == 'amarillo') {
+                if($valor[2][0] == 'verde' && $valor[3][1] == $valor[2][1]+1 ){
+                    return 'Perseptivo';
+                }else{
+                    return 'Orientado a resultados';
+                }
+            }elseif($valor[0][0] == 'rojo' && $valor[1][0] == 'verde') {
+                if ($valor[2][1] <= 4 && $valor[3][1] <= 4) {
+                    return 'Agente';
+                }
+            }elseif($valor[0][0] == 'rojo' && $valor[1][0] == 'azul'){
+                if ($valor[2][1] <= 4 && $valor[3][1] <= 4) {
+                    return 'Creativo';
+                }
+            }elseif ($valor[0][0] == 'amarillo'&& $valor[1][0] == 'verde') {
+                if ($valor[2][1] < 4 && $valor[3][1] < 4) {
+                    return 'Consejero';
+                }elseif($valor[2][1] <= 4 && $valor[3][1] <= 4){
+                    return 'Agente';
+                }
+            }elseif ($valor[0][0] == 'amarillo'&& $valor[1][0] == 'azul') {
+                if($valor[2][1] <=4 && $valor[3][1] <=4){
+                    return 'Tasador';
+                } 
+            }elseif($valor[0][0] == 'azul' && $valor[1][0] == 'verde' ){
+                if($valor[2][1] <=4 && $valor[3][1] <=4){
+                    return 'Perfeccionista';
+                } 
+            }
+        
+        }elseif( ($valor[0][1] == $valor[1][1]) && ($valor[0][1] == $valor[2][1]) && ($valor[1][1] == $valor[2][1]) )
+        {
+            
+            if ($valor[3][0] == 'amarillo' && $valor[3][1] <= 4) {
+                return 'Investigador';
+            }elseif($valor[3][0] == 'rojo' && $valor[3][1] <= 4){
+                return 'Practicante';
+            }elseif($valor[3][0] == 'verde' && $valor[3][1] < 4){
+                return 'Tasador';
+            }
+
+        }else{
+            
+            if($valor[0][0] == 'rojo'){
+
+                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                    return 'Desarrollador';
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+
+                    if ($valor[1][1] == $valor[0][1]-1) {
+                        return 'Inspiracional';
+                    }else{
+                        return 'Orientado a resultados';
+                    }
+                    
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                    return 'Creativo';
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                    return 'Maratonero';
+                }
+
+            }elseif($valor[0][0] == 'amarillo'){
+
+                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                    return 'Promotor';
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                    return 'Consejero';
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                    return 'Tasador';
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                    return 'Persuasivo';
+                }
+
+            }elseif($valor[0][0] == 'verde'){
+
+                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                    return 'Especialista';
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                    return 'Agente';
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                    return 'Investigador';
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                    return 'Triunfador';
+                }
+
+            }elseif($valor[0][0] == 'azul'){
+
+                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                    return 'Pensador Objetivo';
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                    return 'Perfeccionista';
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                    return 'Practicante';
+                }
+
+            }
+
+        }
+
+    }
 
 }

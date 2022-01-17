@@ -12,8 +12,8 @@ use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
 use App\Http\Livewire\ActualizarNuevoIngreso;
-use App\Http\Livewire\EvaluacionDesempeno;
-use App\Http\Livewire\EvalucacionDesempenoExcel;
+/* use App\Http\Livewire\EvaluacionDesempeno; */
+/* use App\Http\Livewire\EvalucacionDesempenoExcel; */
 use App\Http\Livewire\EvaluacionColores;
 
 /*
@@ -150,8 +150,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
     return view('registroTallas');
 })->name('registroTallas');
 
-Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
+/* Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboard', function () {
     return view('revision-desempeno');
-})->name('revision-desempeno');
+})->name('revision-desempeno'); */
