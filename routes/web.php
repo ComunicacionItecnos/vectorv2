@@ -129,6 +129,18 @@ Route::get('/utiles-escolares/{no_colaborador}',UtilesEscolares::class);
 
 Route::get('/nuevo-ingreso',NuevoIngreso::class);
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
+    return view('revision-doc');
+})->name('revision-doc');
+
+Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
+    return view('registroTallas');
+})->name('registroTallas');
+
+
+
 Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboard', function () {
@@ -138,20 +150,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboa
 /* Borrar despues */
 Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
-    return view('revision-doc');
-})->name('revision-doc');
-
-Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
 
 Route::get('disc',EvaluacionColores::class);
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
-    return view('registroTallas');
-})->name('registroTallas');
-
-Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboard', function () {
-    return view('revision-desempeno');
-})->name('revision-desempeno');
