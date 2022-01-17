@@ -6,7 +6,7 @@
         <header class="flex items-center justify-between">
             <h2 class="text-lg leading-3 font-medium text-black">Resultados</h2>
         </header>
-        {{-- <form class="relative"> --}}
+        
         <div class="grid {{-- grid-cols-3 --}} border-t border-gray-200">
             <div class="px-2 py-2 bg-white sm:px-2">
                 <label for="">Empresa</label>
@@ -26,7 +26,7 @@
 
         </div>
 
-        {{-- </form> --}}
+        
 
 
         <div>
