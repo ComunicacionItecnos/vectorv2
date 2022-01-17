@@ -52,7 +52,6 @@ class EvaluacionDesempeno extends Component
             $this->resFinanciero = $this->calcularPorcentaje('resultadoFinanciero',$resFinancieroObtn,$this->puesto);
             
             /* Evaluacion */
-
             if ($this->no_colaborador == 113960 ) {
                 $EvaluacionValor = 70.0;
             }elseif($this->no_colaborador == 131901){
