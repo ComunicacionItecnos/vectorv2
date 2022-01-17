@@ -150,8 +150,11 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
     return view('registroTallas');
 })->name('registroTallas');
 
+<<<<<<< HEAD
 /* Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboard', function () {
     return view('revision-desempeno');
 })->name('revision-desempeno'); */
+=======
+>>>>>>> evalucionDesempeño
