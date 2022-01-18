@@ -120,7 +120,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion26_0 = [], $marcadorQuestion26_1 = [], $marcadorQuestion26_2 = [], $marcadorQuestion26_3 = [];
     public $request26 = [];
 
-    public $question27  = [0=>'Cuidadoso',1=>'Amable',2=>'Inquieto',3=>'Eloquente'];
+    public $question27  = [0=>'Cuidadoso',1=>'Amable',2=>'Inquieto',3=>'Elocuente'];
     public $marcadorQuestion27_0 = [], $marcadorQuestion27_1 = [], $marcadorQuestion27_2 = [], $marcadorQuestion27_3 = [];
     public $request27 = [];
 
@@ -768,22 +768,23 @@ class EvaluacionColores extends Component
         
         }elseif( ($valor[0][1] == $valor[1][1]) && ($valor[0][1] == $valor[2][1]) && ($valor[1][1] == $valor[2][1]) )
         {
-            
-            if ($valor[3][0] == 'amarillo' && $valor[3][1] <= 4) {
-                return 'Investigador';
-            }elseif($valor[3][0] == 'rojo' && $valor[3][1] <= 4){
+            if ($valor[3][0] == 'rojo' && $valor[3][1] <= 4) {
                 return 'Practicante';
-            }elseif($valor[3][0] == 'verde' && $valor[3][1] < 4){
-                return 'Tasador';
+            }elseif ($valor[3][0] == 'amarillo' && $valor[3][1] <= 4) {
+                return 'Investigador';
+            }elseif ($valor[3][0] == 'verde' && $valor[3][1] <= 4) {
+                return 'Inpaciente';
+            }elseif ($valor[3][0] == 'azul' && $valor[3][1] <= 4) {
+                return 'Independiente';
             }
 
         }else{
             
             if($valor[0][0] == 'rojo'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Desarrollador';
-                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
 
                     if ($valor[1][1] == $valor[0][1]-1) {
                         return 'Inspiracional';
@@ -791,44 +792,46 @@ class EvaluacionColores extends Component
                         return 'Orientado a resultados';
                     }
                     
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Creativo';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Maratonero';
                 }
 
             }elseif($valor[0][0] == 'amarillo'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Promotor';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Consejero';
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Tasador';
-                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Persuasivo';
                 }
 
             }elseif($valor[0][0] == 'verde'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Especialista';
-                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Agente';
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Investigador';
-                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Triunfador';
                 }
 
             }elseif($valor[0][0] == 'azul'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Pensador Objetivo';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Perfeccionista';
-                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Practicante';
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1])){
+                    return 'Escéptico';
                 }
 
             }
