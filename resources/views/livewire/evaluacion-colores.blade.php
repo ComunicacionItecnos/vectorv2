@@ -2581,9 +2581,9 @@
                                     <p>Independiente</p>
 
 
-                                @elseif($resultados2 == 'Inpaciente')
+                                @elseif($resultados2 == 'Impaciente')
                                  
-                                    <p>Independiente</p>
+                                    <p>Impaciente</p>
                                     
 
                                 @endif

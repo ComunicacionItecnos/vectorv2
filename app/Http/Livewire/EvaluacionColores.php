@@ -773,7 +773,7 @@ class EvaluacionColores extends Component
             }elseif ($valor[3][0] == 'amarillo' && $valor[3][1] <= 4) {
                 return 'Investigador';
             }elseif ($valor[3][0] == 'verde' && $valor[3][1] <= 4) {
-                return 'Inpaciente';
+                return 'Impaciente';
             }elseif ($valor[3][0] == 'azul' && $valor[3][1] <= 4) {
                 return 'Independiente';
             }
