@@ -2047,7 +2047,12 @@
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
 
                                 @if ($resultados2 == 'Desarrollador')
-                                    <p>Dictador</p>
+                                    {{-- <p>Dictador</p> --}}
+
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
+                                    
                                     <br>
                                     <p>
                                         Eres una persona autosuficiente que prefieren buscar sus propias soluciones creativas e individualistas. 
@@ -2056,7 +2061,7 @@
                                         De voluntad fuerte y prefieres estar libre de influencias restrictivas. 
                                     </p>
                                     <p>
-                                        Los desarrolladores están más interesados ​​en las oportunidades de avance logrando los objetivos que se propusieron. 
+                                        Las personas con este tipo de personalidad están más interesados ​​en las oportunidades de avance logrando los objetivos que se propusieron. 
                                     </p>
                                     <br>
                                     <p>
@@ -2080,9 +2085,41 @@
                                         Se vuelve beligerante si las cosas no salen como quieren.
                                     </p>
 
+                                    <br>
+
+                                    <p>
+                                        Personas que quizás conozcas con esta personalidad:  
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                      </div>
+
+
                                 @elseif($resultados2 == 'Orientado a resultados')
                                 
-                                    <p>Pragmático</p>
+                                    {{-- <p>Pragmático</p> --}}
+
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/rojo/Banner_Rojo_Pragmatico.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
+
                                     <br>
                                     <p>
                                         Buscas lograr resultados. 
@@ -2092,7 +2129,7 @@
                                         Eres una persona competitiva y te gusta las tareas dificiles y los altos cargos. 
                                     </p>
                                     <p>
-                                        Las personas orientadas a los resultados tienden a criticar a los demás que no piensan tan rápido como ellos.
+                                        Las personas con este tipo de personalidad tienden a criticar a los demás que no piensan tan rápido como ellos.
                                     </p>
                                     <br>
                                     <p>
@@ -2116,9 +2153,37 @@
                                         Detección de fallas, crítica, sobrepasa los límites.
                                     </p>
 
+                                    <br>
+
+                                    <p>
+                                        Personas que quizás conozcas con esta personalidad:  
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                    </div>
 
                                 @elseif($resultados2 == 'Inspiracional')
-                                    <p>{{$resultados2}}</p>
+                                    {{-- <p>{{$resultados2}}</p> --}}
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/rojo/Banner_Rojo_Inspiracional.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Tiendes a influir en los pensamientos y acciones de los demás.
@@ -2127,7 +2192,7 @@
                                         Intentas controlar tu entorno y dirigir el comportamiento de los demás hacia una meta predeterminada. 
                                     </p>
                                     <p>
-                                        El personal inspirador tiene resultados claros en mente y pueden ser encantadores en sus interacciones.
+                                        Las personas con este tipo de personalidad tienen resultados claros en mente y pueden ser encantadores en sus interacciones.
                                     </p>
                                     <br>
                                     <p>
@@ -2151,8 +2216,37 @@
                                         Tiende a ser manipulador, beligerante o pendenciero.
                                     </p>
 
+                                    <br>
+
+                                    <p>
+                                        Personas que quizás conozcas con esta personalidad:  
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Creativo')
-                                    <p>Arquitecto</p>
+                                    {{-- <p>Arquitecto</p> --}}
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/rojo/Banner_Rojo_Arquitecto.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Te expresas a partir de fuerzas conductuales opuestas y deseas resultados inmediatos, pero tienes un deseo fuerte de perfección.
@@ -2161,7 +2255,7 @@
                                         Observarás agresividad y será atemperada por la sensibilidad.
                                     </p>
                                     <p>
-                                        Las personas creativas quieren libertad para explorar y la autoridad para probar y volver a probar los hallazgos. Las decisiones diarias son fáciles para ellos, pero tienen mucho cuidado al tomar decisiones más importantes.
+                                        Las personas con este tipo de personalidad quieren libertad para explorar y la autoridad para probar y volver a probar los hallazgos. Las decisiones diarias son fáciles para ellos, pero tienen mucho cuidado al tomar decisiones más importantes.
                                     </p>
                                     <br>
                                     <p>
@@ -2185,9 +2279,66 @@
                                         Se vuelve independiente y se aburre con el trabajo rutinario.
                                     </p>
 
+                                    <br>
+
+                                    <p>
+                                        Personas que quizás conozcas con esta personalidad:  
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Maratonero')
                                     <p>Maratonero</p>
-                                    
+                                    <br>
+                                    <p>
+                                        Eres un trabajador persistente.
+                                    Muestras tenacidad y empujas los límites para cumplir con las tareas que se te encomiendan, sin importar cuanto tiempo te tome o los obstáculos que tengas que superar.
+                                    </p>
+                                    <p>
+                                        Eres una persona terca por su compromiso de acabar las cosas que empieza. 
+                                    </p>
+                                    <p>
+                                        Las personas con este tipo de personalidad tienen una combinación única de querer ser amigable con los demás, de ver armonía en su equipo y querer que todos hagan su trabajo en tiempo y forma.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Persistencia, determinación y la harmonía.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Falta de compromiso.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Inspirar confianza .
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Trabajador incanzable, amigüero.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Impaciente, terco, no se sabe comunicar.
+                                    </p>
 
                                 @elseif($resultados2 == 'Promotor')
                                     <p>{{$resultados2}}</p>
@@ -2199,7 +2350,7 @@
                                         Eres verbal y generoso con la creación de apoyo para otros proyectos.
                                     </p>
                                     <p>
-                                        Los promotores son persuasivos y entusiastas; tienden a percibir a los demás bajo una luz favorable sin investigar todos los hechos.
+                                        Las personas con este tipo de personalidad son persuasivos y entusiastas; tienden a percibir a los demás bajo una luz favorable sin investigar todos los hechos.
                                     </p>
                                     <br>
                                     <p>
@@ -2233,7 +2384,7 @@
                                         Fácilmente ganas apoyo y respeto por tu personalidad extovertida y persuasiva.
                                     </p>
                                     <p>
-                                        desean libertad de expresión y libertad de tareas y rutinas aburridas. Necesitan mantenerse enfocados en la tarea y equilibrar su entusiasmo con enfoques realistas.
+                                        Las personas con este tipo de personalidad desean libertad de expresión y libertad de tareas y rutinas aburridas. Necesitan mantenerse enfocados en la tarea y equilibrar su entusiasmo con enfoques realistas.
                                     </p>
                                     <br>
                                     <p>
@@ -2258,7 +2409,10 @@
                                     </p>
 
                                 @elseif($resultados2 == 'Consejero')
-                                    <p>{{$resultados2}}</p>
+                                    {{-- <p>{{$resultados2}}</p> --}}
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Consejero.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona que contruyes relaciones a largo plazo.
@@ -2267,7 +2421,7 @@
                                         Buen oyente y efectivo en la resolución de problemas, y a su vez usas un enfoque indirecto cuando tratas con otro.
                                     </p>
                                     <p>
-                                        Tiendes a poner a als personas en primer lugar al birndar reconocimineto a los demás, atribuyes menos importancia al cumplimineto de tareas.
+                                        Tiendes a poner a las personas en primer lugar al birndar reconocimineto a los demás, atribuyes menos importancia al cumplimineto de tareas.
                                     </p>
                                     <br>
                                     <p>
@@ -2290,6 +2444,32 @@
                                         <b>Cuando está estresado:</b> 
                                         Confía demasiado en los demás y se vuelve demasiado flexible.
                                     </p>
+
+                                    <br>
+
+                                    <p>
+                                        Personas que quizás conozcas con esta personalidad:  
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                    </div>
                                 
                                 @elseif($resultados2 == 'Tasador')
                                     <p>Estimador</p>
@@ -2301,7 +2481,7 @@
                                         Obtienes la cooperación de los demás al mostrar consideración y usas la persuasión para involucrar a otros en los proyectos.
                                     </p>
                                     <p>
-                                        Los tasadores son prácticos y aseguran resultados progresivos mediante el desarrollo de un plan de acción detallado. Tienen el deseo de ganar y pueden impacientarse cuando no se cumplen sus altos estándares.
+                                        Las personas con este tipo de personalidad son prácticos y aseguran resultados progresivos mediante el desarrollo de un plan de acción detallado. Tienen el deseo de ganar y pueden impacientarse cuando no se cumplen sus altos estándares.
                                     </p>
                                     <br>
                                     <p>
@@ -2335,7 +2515,7 @@
                                         Debido a tu personalidad modesta y de buenos modales te llevas bien con los demás.
                                     </p>
                                     <p>
-                                        Los especialistas prefieren procedimientos prácticos, probados y verdaderos que garanticen la estabilidad. Les gustan los patrones familiares y predecibles que producen resultados consistentes y confiables.
+                                        Las personas con este tipo de personalidad prefieren procedimientos prácticos, probados y verdaderos que garanticen la estabilidad. Les gustan los patrones familiares y predecibles que producen resultados consistentes y confiables.
                                     </p>
                                     <br>
                                     <p>
@@ -2371,7 +2551,7 @@
                                         Estás continuamente en la búsqueda de nuevos logros. 
                                     </p>
                                     <p>
-                                        El estilo dual de S y D hace que sea difícil predecir las reacciones del Triunfador. A veces están en modo D, directos y orientados a los resultados, y otras veces están en modo S, atentos y complacientes. Son muy independientes, pero pueden querer ser parte de un equipo de alto rendimiento. Expresan una lealtad feroz a las personas en sus vidas.
+                                        Las personas con este tipo de personalidad dual hace que sea difícil predecir las reacciones del Triunfador. A veces son directos y orientados a los resultados, y otras veces están atentos y complacientes. Son muy independientes, pero pueden querer ser parte de un equipo de alto rendimiento. Expresan una lealtad feroz a las personas en sus vidas.
                                     </p>
                                     <br>
                                     <p>
@@ -2406,7 +2586,7 @@
                                         una distinción clave es que tiendes a pensar primero en los demás y luego en ti mismo.
                                     </p>
                                     <p>
-                                        Los agentes también tienen excelentes habilidades relacionadas con las tareas y agregan estabilidad a su entorno de trabajo mediante el cumplimiento de los procedimientos y la finalización de las tareas. Aunque por lo general evitan los conflictos, los Si están dispuestos a mediar entre los demás para restaurar la armonía en el lugar de trabajo. 
+                                        Las personas con este tipo de personalidad tienen excelentes habilidades relacionadas con las tareas y agregan estabilidad a su entorno de trabajo mediante el cumplimiento de los procedimientos y la finalización de las tareas. Aunque por lo general evitan los conflictos, los Si están dispuestos a mediar entre los demás para restaurar la armonía en el lugar de trabajo. 
                                     </p>
                                     <br>
                                     <p>
@@ -2440,7 +2620,7 @@
                                         Tienes claros los resultados que quieres, persigues con calma y firmeza hacia una meta fija.
                                     </p>
                                     <p>
-                                        Los investigadores valoran lograr las cosas de una manera bien hecha. Asumen una gran responsabilidad y están atentos a los detalles importantes. Tienen una gran capacidad para aprender de la experiencia y pueden tomar medidas correctivas cuando sea necesario.
+                                        Las personas con este tipo de personalidad valoran lograr las cosas de una manera bien hecha. Asumen una gran responsabilidad y están atentos a los detalles importantes. Tienen una gran capacidad para aprender de la experiencia y pueden tomar medidas correctivas cuando sea necesario.
                                     </p>
                                     <br>
                                     <p>
@@ -2475,7 +2655,7 @@
                                         Cuestionas continuamente ideas y procesos para asegurarse de que las cosas se hagan correctamente.
                                     </p>
                                     <p>
-                                        Los pensadores objetivos toman decisiones basadas en el análisis lógico de información observable y cuantificable, en lugar de guiarse por las emociones de una situación. A menudo prefieren trabajar de forma independiente, pero siguen siendo objetivos y diplomáticos cuando tratan con los demás.
+                                        Las personas con este tipo de personalidad toman decisiones basadas en el análisis lógico de información observable y cuantificable, en lugar de guiarse por las emociones de una situación. A menudo prefieren trabajar de forma independiente, pero siguen siendo objetivos y diplomáticos cuando tratan con los demás.
                                     </p>
                                     <br>
                                     <p>
@@ -2510,7 +2690,7 @@
                                         Necesitas presión y estar impulsada por la paciencia lo que da resultado como una persona enfocada en claidad.
                                     </p>
                                     <p>
-                                        Los perfeccionistas son pensadores precisos y emplean planes y procedimientos tanto para su vida personal como profesional, evitando así lo inesperado. Utilizan la diligencia debida cuando se les solicita una precisión detallada. Cuestionan suposiciones y requieren mucha información que puedan analizar al explorar alternativas y antes de tomar una decisión o llegar a conclusiones.
+                                        Las personas con este tipo de personalidad son pensadores precisos y emplean planes y procedimientos tanto para su vida personal como profesional, evitando así lo inesperado. Utilizan la diligencia debida cuando se les solicita una precisión detallada. Cuestionan suposiciones y requieren mucha información que puedan analizar al explorar alternativas y antes de tomar una decisión o llegar a conclusiones.
                                     </p>
                                     <br>
                                     <p>
@@ -2546,7 +2726,7 @@
                                         para pensar las cosas, pueden aportar información valiosa al proceso del equipo.
                                     </p>
                                     <p>
-                                        Los practicantes prefieren un ambiente cómodo y cooperativo donde las personas sean confiables y agradables. Prosperan cuando pueden contribuir a proyectos que requieren atención a los detalles.
+                                        Las personas con este tipo de personalidad prefieren un ambiente cómodo y cooperativo donde las personas sean confiables y agradables. Prosperan cuando pueden contribuir a proyectos que requieren atención a los detalles.
                                     </p>
                                     <br>
                                     <p>
@@ -2574,17 +2754,112 @@
                                 @elseif($resultados2 == 'Escéptico')
                                  
                                     <p>Escéptico</p>
+                                    <br>
+                                    <p>
+                                        Eres una persona que prioriza el espacio personal, la privacidad y la autonomía.
+                                    De hecho, tu acercamiento a las personas y situaciones sin mezclar sentimientos te permite mantener una distancia cómoda, sin involucrar las emociones en las decisiones.
+                                </p>
+                                    <p>
+                                        Utilizas un lenguaje objetivo y persigues las metas sin tomar mucho tiempo para interactuar con los demás. 
+                                    </p>
+                                    <p>
+                                        Las personas con este tipo de personalidad se sobreponen agresivamente a la oposición y la competencia, siendo impacientes cuando el progreso de una tarea es bloqueado.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Respeto, orientación al negocio, autonomía.
+                                </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Falta de seguimiento, ser amigüero.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Su facilidad de traducir problemas complejos y su forma clara y precisa para dirigir.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Enseña a las personas a realizar procesos lógicos y secuenciales.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Microgestiona, es cerrado, no se involucra, se aisla, su comunicación es robótica.
+                                    </p>
+
 
 
                                 @elseif($resultados2 == 'Independiente')
                                  
                                     <p>Independiente</p>
+                                    <br>
+                                    <p>
+                                    Eres una persona con metas claras y la voluntad para llegar a ellas.
+                                    Es raro encontrar a una persona con tu perfil, por lo cual tienes un sentido único de persistencia y de voluntad de trabajar con firmeza y diligencia en la consecusión de tus objetivos.
+                                    </p>
+                                    <p>
+                                        Hay un aspecto sociable y de apertura en este tipo de personas, pero siempre con un sentido subyacente de determinación y asertividad que sale a la luz cuando se encuentran en situaciones difíciles o exigentes.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Control de sus circunstancias, oportunidades que se alinean con sus ambiciones.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Su falta de introspección.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Ser consciente de su automestima, lo que le permite relacionarse facilmente con extraños o desenvolverse en situaciones incomodas.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Son facilitadores, tienen un gran sentido de responsabilidad.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Son agresivos protegiendo y defiendiendo su punto de vista e identidad .
+                                    </p>
+
 
 
                                 @elseif($resultados2 == 'Impaciente')
                                  
                                     <p>Impaciente</p>
-                                    
+                                    <br>
+                                    <p>
+                                    Eres una persona con un sentido de urgencia y velocidad de respuesta dominante, esto te permite ser muy dinámico.
+                                    Tienes la capacidad de controlarte y eres ambicioso, esto te da la capacidad de desenvolverte en situaciones informales y abiertas.
+                                    </p>
+                                    <p>
+                                        Las personas con este tipo de personalidad la ambición y la asertividad son elementos importantes, además su conciencia de las necesidades de los demás y sentido del orden, los hace mucho menos impulsivos e impredecibles que otros tipos igualmente extrovertidos.
+                                    </p>
+                                    <p>
+                                        Si bien desean lograr el éxito propio, entienden que las necesidades de la organización requerirán de vez en cuando que supriman sus propias ambiciones por el bien del equipo.
+                                    </p>
+
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Ambición personal, aceptación y apobación de terceros, certeza de su posición.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Falta de compromiso o responsabilidad.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                    Ser abierto y entusiasta en circunstancias informales y sociales. Ser asertivo y autocontrolado en circunstancias formales o reguladas.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Son encantadores y directos, se adaptan a su entorno.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Sus motivaciones pueden entrar en conflicto, el entorno se tiene que adaptar a la persona .
+                                    </p>
 
                                 @endif
 
@@ -2668,9 +2943,7 @@
                 currenstep = @this.currentStep;
                 resultados = @this.resultados;
 
-                console.log(resultados);
-
-                if( currenstep == 29 /* && resultados.length > 0 */){
+                if( currenstep == 29){
 
                     var ctx = document.getElementById("myChart");
                     

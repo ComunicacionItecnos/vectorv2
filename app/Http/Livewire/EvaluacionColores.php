@@ -11,9 +11,9 @@ class EvaluacionColores extends Component
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = /* 28 */ 1;
+    public $currentStep = 28 /* 1 */;
 
-    public $inicio = true /* false */;
+    public $inicio = /* true */ false;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
@@ -284,9 +284,14 @@ class EvaluacionColores extends Component
             }
         }elseif($this->currentStep == 29){
 
-            $this->resultados = $this->resultadosGenerar(); 
+           /*  $this->resultados = $this->resultadosGenerar(); 
             $this->resultados3 = $this->ordenarArray($this->resultados);
-            $this->resultados2 = $this->metodosPerfil($this->resultados3);
+            $this->resultados2 = $this->metodosPerfil($this->resultados3); */
+
+            $this->resultados = ['rojo'=> 7,'amarillo'=>4,'verde'=>6,'azul'=>2 ];
+            $this->resultados3 = $this->ordenarArray($this->resultados);
+            $this->resultados2 = 'Consejero';
+            
 
             $this->emit('resultadosFinal');
             
