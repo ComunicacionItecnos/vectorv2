@@ -2047,7 +2047,7 @@
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
 
                                 @if ($resultados2 == 'Desarrollador')
-                                    <p>{{$resultados2}}</p>
+                                    <p>Dictador</p>
                                     <br>
                                     <p>
                                         Eres una persona autosuficiente que prefieren buscar sus propias soluciones creativas e individualistas. 
@@ -2081,6 +2081,7 @@
                                     </p>
 
                                 @elseif($resultados2 == 'Orientado a resultados')
+                                
                                     <p>Pragmatico</p>
                                     <br>
                                     <p>
