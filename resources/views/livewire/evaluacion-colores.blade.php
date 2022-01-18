@@ -2187,37 +2187,7 @@
 
                                 @elseif($resultados2 == 'Maratonero')
                                     <p>Maratonero</p>
-                                    <br>
-                                    <p>
-                                        Te expresas a partir de fuerzas conductuales opuestas y deseas resultados inmediatos, pero tienes un deseo fuerte de perfección.
-                                    </p>
-                                    <p>
-                                        Observarás agresividad y será atemperada por la sensibilidad.
-                                    </p>
-                                    <p>
-                                        Las personas creativas quieren libertad para explorar y la autoridad para probar y volver a probar los hallazgos. Las decisiones diarias son fáciles para ellos, pero tienen mucho cuidado al tomar decisiones más importantes.
-                                    </p>
-                                    <br>
-                                    <p>
-                                        <b>Motivado por:</b> 
-                                        Logros únicos y dominio.
-                                    </p>
-                                    <p>
-                                        <b>Juzga a los demás por:</b> 
-                                        Cumplimiento de tareas y dominio.
-                                    </p>
-                                    <p>
-                                        <b>Influye en otros por:</b> 
-                                        Enfoques innovadores y desarrollo de sistemas.
-                                    </p>
-                                    <p>
-                                        <b>Valor para el equipo:</b> 
-                                        Puede ser un agente de cambio positivo.
-                                    </p>
-                                    <p>
-                                        <b>Cuando está estresado:</b> 
-                                        Se vuelve independiente y se aburre con el trabajo rutinario.
-                                    </p>
+                                    
 
                                 @elseif($resultados2 == 'Promotor')
                                     <p>{{$resultados2}}</p>
@@ -2254,7 +2224,7 @@
                                     </p>
 
                                 @elseif($resultados2 == 'Persuasivo')
-                                    <p>{{$resultados2}}</p>
+                                    <p>Protagonista</p>
                                     <br>
                                     <p>
                                         Te encanta trabajar con y a través de las personas para lograr sus propios objetivos.
@@ -2322,7 +2292,7 @@
                                     </p>
                                 
                                 @elseif($resultados2 == 'Tasador')
-                                    <p>{{$resultados2}}</p>
+                                    <p>Estimador</p>
                                     <br>
                                     <p>
                                         Eres una persona asertiva en lugar de ser agresiva.
@@ -2496,7 +2466,7 @@
 
                                 @elseif($resultados2 == 'Pensador Objetivo')
 
-                                    <p>{{$resultados2}}</p>
+                                    <p>Objetivo</p>
                                     <br>
                                     <p>
                                         Eres una persona enfocada en lograr una precisión total y completa en todo lo que haces.
@@ -2566,7 +2536,7 @@
 
                                 @elseif($resultados2 == 'Practicante')
                                  
-                                    <p>{{$resultados2}}</p>
+                                    <p>Voluntario</p>
                                     <br>
                                     <p>
                                         Eres una persona que disfrutas ser un miembro del equipo y ayudas a otros a tener exito.
@@ -2599,6 +2569,22 @@
                                         <b>Cuando está estresado:</b> 
                                         Demasiado sensible a las críticas y comedido.
                                     </p>
+
+
+                                @elseif($resultados2 == 'Escéptico')
+                                 
+                                    <p>Escéptico</p>
+
+
+                                @elseif($resultados2 == 'Independiente')
+                                 
+                                    <p>Independiente</p>
+
+
+                                @elseif($resultados2 == 'Inpaciente')
+                                 
+                                    <p>Independiente</p>
+                                    
 
                                 @endif
 
