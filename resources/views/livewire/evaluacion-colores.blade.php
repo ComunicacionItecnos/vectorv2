@@ -2082,7 +2082,7 @@
 
                                 @elseif($resultados2 == 'Orientado a resultados')
                                 
-                                    <p>Pragmatico</p>
+                                    <p>Pragmático</p>
                                     <br>
                                     <p>
                                         Buscas lograr resultados. 
