@@ -79,8 +79,8 @@ class FactorPresentacion extends Component
         'Comunicación multicanal para localizar al colaborador o sus contactos de emergencia',
 
     ];
-
-    public $plataforma;
+    
+    public $modal= false, $titulomsj,$msj,$btnTexto;
 
     public function mount(){
 
@@ -95,8 +95,17 @@ class FactorPresentacion extends Component
     {
 
         if ($valor == 1) {
-            
+            $this->modal = true;
+            $this->titulomsj = 'Comparación';
+            $this->msj = 'hola';
+            $this->btnTexto = 'Cerrar';
         }
 
     }
+
+
+    public function ocultarModal(){
+        $this->modal = false;
+    }
+
 }
