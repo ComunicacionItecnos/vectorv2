@@ -11,7 +11,7 @@ class EvaluacionColores extends Component
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = /* 28 */1;
+    public $currentStep = /* 28 */ 1;
 
     public $inicio = true /* false */;
     public $instruccion = false;
@@ -287,13 +287,6 @@ class EvaluacionColores extends Component
             $this->resultados = $this->resultadosGenerar(); 
             $this->resultados3 = $this->ordenarArray($this->resultados);
             $this->resultados2 = $this->metodosPerfil($this->resultados3);
-
-            /* $this->resultados = ['rojo'=>$this->segmento(8,'rojo'),'amarillo'=>$this->segmento(-2,'amarillo'),'verde'=>$this->segmento(-6,'verde'),'azul'=>$this->segmento(6,'azul')];
-            
-            $this->resultados3 = $this->ordenarArray($this->resultados); */
-
-            /* $this->resultados2 = 'Promotor'; *//* $this->metodosPerfil( $this->resultados3); */
-            /* dd($this->resultados2); */
 
             $this->emit('resultadosFinal');
             
