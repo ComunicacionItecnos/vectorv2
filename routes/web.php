@@ -17,6 +17,8 @@ use App\Http\Livewire\EvalucacionDesempenoExcel;
 use App\Http\Livewire\EvaluacionColores;
 use App\Http\Livewire\RevisionDoc;
 
+use App\Http\Livewire\FactorPresentacion;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -153,3 +155,6 @@ Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
 
 
 Route::get('disc',EvaluacionColores::class);
+
+
+Route::get('factor2',FactorPresentacion::class);
