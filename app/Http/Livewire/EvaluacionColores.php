@@ -120,7 +120,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion26_0 = [], $marcadorQuestion26_1 = [], $marcadorQuestion26_2 = [], $marcadorQuestion26_3 = [];
     public $request26 = [];
 
-    public $question27  = [0=>'Cuidadoso',1=>'Amable',2=>'Inquieto',3=>'Eloquente'];
+    public $question27  = [0=>'Cuidadoso',1=>'Amable',2=>'Inquieto',3=>'Elocuente'];
     public $marcadorQuestion27_0 = [], $marcadorQuestion27_1 = [], $marcadorQuestion27_2 = [], $marcadorQuestion27_3 = [];
     public $request27 = [];
 
