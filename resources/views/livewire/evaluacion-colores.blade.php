@@ -2087,26 +2087,28 @@
 
                                     <br>
 
-                                    <p>
-                                        Personas que quizás conozcas con esta personalidad:  
+                                    
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
                                     </p>
+                                    
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                       </div>
