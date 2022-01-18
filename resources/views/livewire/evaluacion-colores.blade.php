@@ -2151,7 +2151,41 @@
                                     </p>
 
                                 @elseif($resultados2 == 'Creativo')
-                                    <p>{{$resultados2}}</p>
+                                    <p>Arquitecto</p>
+                                    <br>
+                                    <p>
+                                        Te expresas a partir de fuerzas conductuales opuestas y deseas resultados inmediatos, pero tienes un deseo fuerte de perfección.
+                                    </p>
+                                    <p>
+                                        Observarás agresividad y será atemperada por la sensibilidad.
+                                    </p>
+                                    <p>
+                                        Las personas creativas quieren libertad para explorar y la autoridad para probar y volver a probar los hallazgos. Las decisiones diarias son fáciles para ellos, pero tienen mucho cuidado al tomar decisiones más importantes.
+                                    </p>
+                                    <br>
+                                    <p>
+                                        <b>Motivado por:</b> 
+                                        Logros únicos y dominio.
+                                    </p>
+                                    <p>
+                                        <b>Juzga a los demás por:</b> 
+                                        Cumplimiento de tareas y dominio.
+                                    </p>
+                                    <p>
+                                        <b>Influye en otros por:</b> 
+                                        Enfoques innovadores y desarrollo de sistemas.
+                                    </p>
+                                    <p>
+                                        <b>Valor para el equipo:</b> 
+                                        Puede ser un agente de cambio positivo.
+                                    </p>
+                                    <p>
+                                        <b>Cuando está estresado:</b> 
+                                        Se vuelve independiente y se aburre con el trabajo rutinario.
+                                    </p>
+
+                                @elseif($resultados2 == 'Maratonero')
+                                    <p>Maratonero</p>
                                     <br>
                                     <p>
                                         Te expresas a partir de fuerzas conductuales opuestas y deseas resultados inmediatos, pero tienes un deseo fuerte de perfección.
