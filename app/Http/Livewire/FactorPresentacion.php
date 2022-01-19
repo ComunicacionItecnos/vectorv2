@@ -96,7 +96,7 @@ class FactorPresentacion extends Component
 
         if ($valor == 1) {
             $this->modal = true;
-            $this->titulomsj = 'Comparación';
+            $this->titulomsj = 'Comparación de Factor 2.0 y humand.';
             $this->msj = 'hola';
             $this->btnTexto = 'Cerrar';
         }
