@@ -2027,7 +2027,8 @@
             @elseif($currentStep == 29)
                 <div id="resultadoDesempenoPDF" class="pt-4">
                     <div class="mt-2 my-2 text-center">
-                        <a class="text-3xl font-bold text-gray-800 my-4 ">
+
+                        <a class="text-3xl font-bold text-gray-800 my-4">
                             Grafica de resultado
                         </a>
 
@@ -2044,6 +2045,7 @@
                                 </a>
                             </div>
                             
+                            {{-- Imagenes de personalidad --}}
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
 
                                 @if ($resultados2 == 'Desarrollador')
@@ -3391,14 +3393,23 @@
             html2PDF(page, {
                 jsPDF:{
                     unit: 'px',
-                    format: 'letter',
-                    x:0,
-                    y:0
+                    format: 'a4',
+                    /* x:2,
+                    y:2 */
                 },
                 html2canvas: {
                     height: 1700,
                     scrollX: -window.scrollX,
                     scrollY: -window.scrollY
+                    
+                },
+                imageType: 'image/jpeg',
+                imageQuality: 1,
+                margin: {
+                    top: 1,
+                    right: 1,
+                    bottom: 1,
+                    left: 1,
                 },
                 output: 'disc_resultados.pdf'
             });
