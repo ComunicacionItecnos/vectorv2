@@ -3398,8 +3398,8 @@
                     y:0
                 },
                 html2canvas: {
-                    height: 1700,
-                    scrollX: -window.scrollX,
+                    /* height: 1700, */
+                    scrollX: 0,
                     scrollY: -window.scrollY
                 },
                 output: 'disc_resultados.pdf'
