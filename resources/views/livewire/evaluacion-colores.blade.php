@@ -2029,7 +2029,7 @@
                     <div class="mt-2 my-2 text-center">
 
                         <a class="text-3xl font-bold text-gray-800 my-4">
-                            Grafica de resultado
+                            Gráfica de resultado
                         </a>
 
                         <div class="grid grid-cols-3 gap-4 text-center place-items-center pt-4">
@@ -2057,13 +2057,13 @@
                                     
                                     <br>
                                     <p>
-                                        Eres una persona autosuficiente que prefieren buscar sus propias soluciones creativas e individualistas. 
+                                        Eres una persona autosuficiente que prefiere buscar sus propias soluciones creativas e individualistas. 
                                     </p>
                                     <p>
                                         De voluntad fuerte y prefieres estar libre de influencias restrictivas. 
                                     </p>
                                     <p>
-                                        Las personas con este tipo de personalidad están más interesados ​​en las oportunidades de avance logrando los objetivos que se propusieron. 
+                                        Las personas con este tipo de personalidad están más interesados ​en las oportunidades de avance logrando los objetivos que se propusieron. 
                                     </p>
                                     <br>
                                     <p>
@@ -3393,23 +3393,14 @@
             html2PDF(page, {
                 jsPDF:{
                     unit: 'px',
-                    format: 'a4',
-                    /* x:2,
-                    y:2 */
+                    format: 'letter',
+                    x:0,
+                    y:0
                 },
                 html2canvas: {
                     height: 1700,
                     scrollX: -window.scrollX,
                     scrollY: -window.scrollY
-                    
-                },
-                imageType: 'image/jpeg',
-                imageQuality: 1,
-                margin: {
-                    top: 1,
-                    right: 1,
-                    bottom: 1,
-                    left: 1,
                 },
                 output: 'disc_resultados.pdf'
             });
