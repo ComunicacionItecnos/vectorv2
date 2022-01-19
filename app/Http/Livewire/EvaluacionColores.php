@@ -290,7 +290,7 @@ class EvaluacionColores extends Component
 
             $this->resultados = ['rojo'=> 7,'amarillo'=>4,'verde'=>6,'azul'=>2 ];
             $this->resultados3 = $this->ordenarArray($this->resultados);
-            $this->resultados2 = 'Desarrollador';
+            $this->resultados2 = 'Escéptico';
             
 
             $this->emit('resultadosFinal');

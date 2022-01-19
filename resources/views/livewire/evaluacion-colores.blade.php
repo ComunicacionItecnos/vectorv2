@@ -2087,7 +2087,6 @@
 
                                     <br>
 
-                                    
                                     <p class="text-2xl font-bold text-gray-800 text-center">
                                         Personas que quizás conozcas con esta personalidad:
                                     </p>
@@ -2096,22 +2095,22 @@
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/personas/dictador/dictador-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
-                                      </div>
+                                    </div>
 
 
                                 @elseif($resultados2 == 'Orientado a resultados')
@@ -2164,25 +2163,25 @@
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                     </div>
 
                                 @elseif($resultados2 == 'Inspiracional')
-                                    {{-- <p>{{$resultados2}}</p> --}}
+                                    
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/rojo/Banner_Rojo_Inspiracional.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -2227,19 +2226,19 @@
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                     </div>
@@ -2290,25 +2289,28 @@
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
                                       
                                     </div>
 
                                 @elseif($resultados2 == 'Maratonero')
-                                    <p>Maratonero</p>
+                                    
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/rojo/Banner_Rojo_Maratonero.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres un trabajador persistente.
@@ -2342,8 +2344,38 @@
                                         Impaciente, terco, no se sabe comunicar.
                                     </p>
 
+                                    
+                                    <br>
+
+                                    <p>
+                                        Personas que quizás conozcas con esta personalidad:  
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-1.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-2.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-3.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-4.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Promotor')
-                                    <p>{{$resultados2}}</p>
+                                    
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Promotor.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres generalmente sociable.
@@ -2376,8 +2408,38 @@
                                         Tiende a ser desorganizado, descuidado y disperso.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+                                    
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Persuasivo')
-                                    <p>Protagonista</p>
+                                    {{-- <p>Protagonista</p> --}}
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Protagonista.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Te encanta trabajar con y a través de las personas para lograr sus propios objetivos.
@@ -2410,8 +2472,34 @@
                                         Se convence fácilmente, se puede organizar para que se vea bien.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Consejero')
-                                    {{-- <p>{{$resultados2}}</p> --}}
+                                    
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Consejero.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -2449,32 +2537,35 @@
 
                                     <br>
 
-                                    <p>
-                                        Personas que quizás conozcas con esta personalidad:  
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
                                     </p>
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
-                                            <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-11/12">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
                                       
                                     </div>
                                 
                                 @elseif($resultados2 == 'Tasador')
-                                    <p>Estimador</p>
+                                    {{-- <p>Estimador</p> --}}
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Estimador.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona asertiva en lugar de ser agresiva.
@@ -2507,8 +2598,37 @@
                                         Se vuelve crítico e impaciente.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Especialista')
-                                    <p>{{$resultados2}}</p>
+
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/verde/Banner_Verde_Especialista.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona considerada,paciente y siempre estas listo para ayudar a los demás.
@@ -2540,9 +2660,37 @@
                                         <b>Cuando está estresado:</b> 
                                         Capitula y se adapta a los que están en autoridad.
                                     </p>
+
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
                                 
                                 @elseif($resultados2 == 'Triunfador')
-                                    <p>{{$resultados2}}</p>
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/verde/Banner_Verde_Triunfador.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona con un sentido fuerte de responsabilidad personal,
@@ -2577,8 +2725,36 @@
                                         Muestra impaciencia y frustración.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Agente')
-                                    <p>{{$resultados2}}</p>
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/verde/Banner_Verde_Agente.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona relajada y sigues la corriente.
@@ -2612,8 +2788,36 @@
                                         Usa amistades clave para influir.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Agentes/agente-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Agentes/agente-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Agentes/agente-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Agentes/agente-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Investigador')
-                                    <p>{{$resultados2}}</p>
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/verde/Banner_Verde_Investigador.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona obstinada hacia las metas y el seguimiento.
@@ -2646,9 +2850,38 @@
                                         Guarda rencor e interioriza el conflicto.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Pensador Objetivo')
 
-                                    <p>Objetivo</p>
+                                    {{-- <p>Objetivo</p> --}}
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/azul/Banner_Azul_Objetivo.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona enfocada en lograr una precisión total y completa en todo lo que haces.
@@ -2681,9 +2914,37 @@
                                         Tiende a inquietarse y preocuparse.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Perfeccionista')
                                  
-                                    <p>{{$resultados2}}</p>
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/azul/Banner_Azul_Perfeccionista.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona impulsada por la necesidad de precisión y lógica.
@@ -2716,9 +2977,38 @@
                                         Recurre al tacto y la diplomacia.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
+
                                 @elseif($resultados2 == 'Practicante')
                                  
-                                    <p>Voluntario</p>
+                                    {{-- <p>Voluntario</p> --}}
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/azul/Banner_Azul_Voluntario.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona que disfrutas ser un miembro del equipo y ayudas a otros a tener exito.
@@ -2752,15 +3042,42 @@
                                         Demasiado sensible a las críticas y comedido.
                                     </p>
 
+                                    <br>
+
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
 
                                 @elseif($resultados2 == 'Escéptico')
                                  
-                                    <p>Escéptico</p>
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/azul/Banner_Azul_Esceptico.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                         Eres una persona que prioriza el espacio personal, la privacidad y la autonomía.
-                                    De hecho, tu acercamiento a las personas y situaciones sin mezclar sentimientos te permite mantener una distancia cómoda, sin involucrar las emociones en las decisiones.
-                                </p>
+                                        De hecho, tu acercamiento a las personas y situaciones sin mezclar sentimientos te permite mantener una distancia cómoda, sin involucrar las emociones en las decisiones.
+                                    </p>
                                     <p>
                                         Utilizas un lenguaje objetivo y persigues las metas sin tomar mucho tiempo para interactuar con los demás. 
                                     </p>
@@ -2771,7 +3088,7 @@
                                     <p>
                                         <b>Motivado por:</b> 
                                         Respeto, orientación al negocio, autonomía.
-                                </p>
+                                    </p>
                                     <p>
                                         <b>Juzga a los demás por:</b> 
                                         Falta de seguimiento, ser amigüero.
@@ -2789,11 +3106,37 @@
                                         Microgestiona, es cerrado, no se involucra, se aisla, su comunicación es robótica.
                                     </p>
 
+                                    <br>
 
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
 
                                 @elseif($resultados2 == 'Independiente')
                                  
-                                    <p>Independiente</p>
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Independiente.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
                                     Eres una persona con metas claras y la voluntad para llegar a ellas.
@@ -2824,15 +3167,41 @@
                                         Son agresivos protegiendo y defiendiendo su punto de vista e identidad .
                                     </p>
 
+                                    <br>
 
+                                    <p class="text-2xl font-bold text-gray-800 text-center">
+                                        Personas que quizás conozcas con esta personalidad:
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-1.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-2.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-3.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-4.png') }}" loading="lazy" class="lg:w-10/12">
+                                        </div>
+                                      
+                                    </div>
 
                                 @elseif($resultados2 == 'Impaciente')
                                  
-                                    <p>Impaciente</p>
+                                    <div class="flex justify-center">
+                                        <img src="{{ asset('images/disc/rojo/Banner_Rojo_Impaciente.png') }}" loading="lazy" class="lg:w-max">
+                                    </div>
                                     <br>
                                     <p>
-                                    Eres una persona con un sentido de urgencia y velocidad de respuesta dominante, esto te permite ser muy dinámico.
-                                    Tienes la capacidad de controlarte y eres ambicioso, esto te da la capacidad de desenvolverte en situaciones informales y abiertas.
+                                        Eres una persona con un sentido de urgencia y velocidad de respuesta dominante, esto te permite ser muy dinámico.
+                                        Tienes la capacidad de controlarte y eres ambicioso, esto te da la capacidad de desenvolverte en situaciones informales y abiertas.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad la ambición y la asertividad son elementos importantes, además su conciencia de las necesidades de los demás y sentido del orden, los hace mucho menos impulsivos e impredecibles que otros tipos igualmente extrovertidos.
@@ -2852,7 +3221,7 @@
                                     </p>
                                     <p>
                                         <b>Influye en otros por:</b> 
-                                    Ser abierto y entusiasta en circunstancias informales y sociales. Ser asertivo y autocontrolado en circunstancias formales o reguladas.
+                                        Ser abierto y entusiasta en circunstancias informales y sociales. Ser asertivo y autocontrolado en circunstancias formales o reguladas.
                                     </p>
                                     <p>
                                         <b>Valor para el equipo:</b> 
@@ -2862,6 +3231,32 @@
                                         <b>Cuando está estresado:</b> 
                                         Sus motivaciones pueden entrar en conflicto, el entorno se tiene que adaptar a la persona .
                                     </p>
+
+                                    <br>
+
+                                    <p>
+                                        Personas que quizás conozcas con esta personalidad:  
+                                    </p>
+
+                                    <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
+
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-1.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-2.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-3.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                        <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
+                                            <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-4.png') }}" loading="lazy" class="lg:w-11/12">
+                                        </div>
+                                      
+                                    </div>
 
                                 @endif
 
