@@ -5,7 +5,7 @@ $nav_links1 = [
 'name' => 'Centro de Control',
 'route' => route('control-center'),
 'active' => request()->routeIs('control-center'),
-],
+]
 ];
 
 $nav_links2 = [
@@ -100,6 +100,16 @@ $nav_links12 = [
         'active' => request()->routeIS('revision-desempeno')
     ]
 ];
+
+$nav_links13 = [
+
+    [
+    'name' => 'Disc',
+    'route' => route('revision-disc'),
+    'active' => request()->routeIs('revision-disc'),
+    ]
+];
+
 
 @endphp
 
@@ -213,6 +223,12 @@ $nav_links12 = [
                     </x-jet-nav-link>
                     @endforeach
 
+                    @foreach ($nav_links13 as $nav_link)
+                    <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                        {{ $nav_link['name'] }}
+                    </x-jet-nav-link>
+                    @endforeach
+
                     @elseif(auth()->user()->role_id == 2)
                     @foreach ($nav_links2 as $nav_link)
                     <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
@@ -266,6 +282,11 @@ $nav_links12 = [
 
                         @if (auth()->user()->id == 4)
                         @foreach ($nav_links12 as $nav_link)
+                        <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                            {{ $nav_link['name'] }}
+                        </x-jet-nav-link>
+                        @endforeach
+                        @foreach ($nav_links13 as $nav_link)
                         <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
                             {{ $nav_link['name'] }}
                         </x-jet-nav-link>

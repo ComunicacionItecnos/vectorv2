@@ -153,3 +153,7 @@ Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
 
 
 Route::get('disc',EvaluacionColores::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/disc-resultados', function () {
+    return view('revision-disc');
+})->name('revision-disc');
