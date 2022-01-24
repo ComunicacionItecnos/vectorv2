@@ -152,7 +152,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboa
 Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
 
 
-Route::get('disc',EvaluacionColores::class);
+Route::get('disc/{tipo}/{numero}',EvaluacionColores::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/disc-resultados', function () {
     return view('revision-disc');

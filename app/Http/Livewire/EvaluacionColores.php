@@ -3,8 +3,9 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use Livewire\Component;
+use Carbon\CarbonInterface;
+use Illuminate\Support\Facades\DB;
 
 class EvaluacionColores extends Component
 {
@@ -13,7 +14,7 @@ class EvaluacionColores extends Component
     public $totalSteps = 29;
     public $currentStep = /* 28 */ 1;
 
-    public $inicio = true /* false */;
+    public $inicio = false;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
@@ -144,10 +145,64 @@ class EvaluacionColores extends Component
 
     public $perfil,$descripcion;
 
-    public function mount()
+    public $pemitirDisc = true,$tipoValor;
+
+    public $nombreColaborador,$mostrarResAnteriores;
+
+    public $nombre_1,$nombre_2,$ap_pateno,$ap_materno,$curp;
+
+    public function mount($tipo,$numero)
     {
+
+        if($tipo != 'colaborador' && $tipo != 'candidato'){
+
+            abort(404);
+
+        }else{
+
+            if($tipo == 'colaborador'){
+
+                /* Buscar en infocolaborador */
+                $this->nombreColaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$numero);
+                
+                if (empty($this->nombreColaborador)) {
+                    abort(404);
+                }else{
+                    
+                    $buscarDisc = DB::select('SELECT * FROM disc_resultados WHERE no_colaborador ='.$this->nombreColaborador[0]->no_colaborador);
+                    
+                    if(empty($buscarDisc))
+                    {
+                        $this->nombreColaborador = $this->nombreColaborador[0]->nombre;
+                        $this->tipoValor = $tipo;
+                    }else{
+                        /* Cambio de año para reaizarla nuevamente*/
+                        /* $this->tipoValor = (substr($buscarDisc[0]->created_at,0,4) == date('Y')) ? 'negado' : 'colaborador' ; */
+                        
+                        if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
+                            $this->mostrarResAnteriores = $buscarDisc;
+                            $this->tipoValor = 'resultados';
+                        }else{
+                            $this->nombreColaborador = $this->nombreColaborador[0]->nombre;
+                            $this->tipoValor = $tipo;
+                        }
+
+                        /* $fecha = Carbon::now()->toDateTimeString(); */
+                    }   
+                }
+            }elseif($tipo == 'candidato' && $numero == 1){
+    
+                /* Mostrar un formulario para insertar nombre completo y curp */
+                dd('candidato');
+                
+            }else{
+                abort(404);
+            }
+        }
+
         $this->fecha = Carbon::now();
         $this->fecha = $this->fecha->format('d-m-y');
+
     }
 
     public function render()
@@ -297,6 +352,11 @@ class EvaluacionColores extends Component
             
         }
         
+    }
+
+    public function ocultarBienvenida(){
+        $this->pemitirDisc = false;
+        $this->inicio = true;
     }
 
     public function ocultarInicio(){

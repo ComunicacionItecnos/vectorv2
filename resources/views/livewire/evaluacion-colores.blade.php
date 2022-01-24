@@ -7,6 +7,61 @@
     
     <div class="mb-8 max-w-4xl px-8 py-4 mx-auto bg-white rounded-lg shadow-xl border border-gray-300" >
 
+        <div class="mt-2 my-2 @if($pemitirDisc) @else hidden @endif">
+
+            @if ($tipoValor == 'colaborador')
+                <p>Colaborador</p>
+
+                <p>{{$nombreColaborador}}</p>
+
+            @elseif($tipoValor == 'resultados')
+                <p>Resultados</p>
+
+                {{-- {{dd($mostrarResAnteriores)}} --}}
+                <ol class="list-decimal">
+                    @for ($i = 0; $i < count($mostrarResAnteriores); $i++)
+                         
+                        <li>
+                            {{$mostrarResAnteriores[$i]->personalidad}}
+                            {{$mostrarResAnteriores[$i]->resultados}}
+                        </li>
+
+                    @endfor
+
+                </ol>
+                
+
+            @elseif($tipoValor == 'candidato')
+                <p>candidato</p>
+
+            @elseif($tipoValor == 'negado')
+                <p>Ya realizaste la prueba</p>
+            @endif
+
+            {{-- <a class="flex justify-center">
+
+                <img src="{{ asset('images/disc/DISC_banner_home.svg') }}" loading="lazy" class="w-full lg:w-6/12">
+
+            </a>
+            <br>
+            <p class="mt-2 text-gray-600">
+                colaborador
+            </p>
+            <p class="mt-2 text-gray-600">
+                
+            </p>
+            <p class="mt-2 text-gray-600">
+                
+            </p> --}}
+
+        </div>
+        
+        <div class="flex items-center justify-center mt-4 @if($pemitirDisc) @else hidden @endif">
+            <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="ocultarBienvenida">
+                Empezar 
+            </button>
+        </div>
+
         <div class="mt-2 my-2 @if($inicio) @else hidden @endif">
             <a class="flex justify-center">
 
@@ -87,7 +142,7 @@
         {{-- Fin - intrucciones --}}
 
 
-        @if ($inicio == false && $instruccion == false)
+        @if ($inicio == false && $instruccion == false && $pemitirDisc == false)
             {{-- Inicio - Barra de progreso --}}            
             <div class="flex items-center justify-between @if($currentStep == 29) hidden @endif">
                 <span>
