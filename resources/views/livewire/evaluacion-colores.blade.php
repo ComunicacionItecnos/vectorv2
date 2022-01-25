@@ -9,26 +9,96 @@
 
         <div class="mt-2 my-2 @if($pemitirDisc) @else hidden @endif">
 
-            @if ($tipoValor == 'colaborador')
-                <p>Colaborador</p>
+            @if ($tipoValor == 'colaborador')  
+                    
+                <div class="flex justify-center">
+                    @if (file_exists(public_path('storage/'.$foto_colaborador )))
+                        <img class="w-28 rounded shadow-md h-30" src="{{ asset('storage').'/'.$foto_colaborador }}" alt="">
+                    @else
+                        <img class="w-28 rounded shadow-md h-30" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                    @endif
 
-                <p>{{$nombreColaborador}}</p>
+                </div>
+
+
+                <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1  mt-2">
+
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <p class="text-center text-gray-600">
+                            Hola 
+                            {{ $nom_colaborador }} 
+                        </p>
+                    </div>
+                    
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <p class="text-center text-gray-600">
+                            ¡Te doy la bienvenida a la prueba DISC!
+                        </p>
+                    </div>
+                  
+                </div>
+
 
             @elseif($tipoValor == 'resultados')
-                <p>Resultados</p>
+            
+                <div class="flex justify-center">
+                    @if (file_exists(public_path('storage/'.$foto_colaborador )))
+                        <img class="w-28 rounded shadow-md h-30" src="{{ asset('storage').'/'.$foto_colaborador }}" alt="">
+                    @else
+                        <img class="w-28 rounded shadow-md h-30" src="{{ asset('images/user_toolkit.jpg') }}" alt="">
+                    @endif
 
-                {{-- {{dd($mostrarResAnteriores)}} --}}
-                <ol class="list-decimal">
-                    @for ($i = 0; $i < count($mostrarResAnteriores); $i++)
-                         
-                        <li>
-                            {{$mostrarResAnteriores[$i]->personalidad}}
-                            {{$mostrarResAnteriores[$i]->resultados}}
+                </div>
+
+
+                <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1  mt-2">
+
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <p class="text-center text-gray-600">
+                            Hola 
+                            {{ $nom_colaborador }} 
+                        </p>
+                    </div>
+
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <p class="mb-2 text-gray-600 text-center">Estos son tus anteriores resultados:</p>
+                    </div>
+
+                </diV>
+                
+
+                
+                <ul class="px-0">
+                    {{-- @for ($i = 0; $i < count($mostrarResAnteriores); $i++) --}}
+                    @foreach ( $mostrarResAnteriores as $mra )
+                        
+                    
+                    
+                        <li class="border bg-white list-none rounded-sm px-3 py-3 cursor-pointer hover:text-white hover:bg-red-800" wire:click="GraficaMostrar">
+
+                            {{-- <p>
+                                {{$mostrarResAnteriores[$i]->personalidad}}
+                            </p>
+                            <p>
+                                {{$mostrarResAnteriores[$i]->created_at}}
+                            </p> --}}
+                            {{-- <p>
+                                {{$mostrarResAnteriores[$i]->resultados}}
+                            </p> --}}
+
+                            <p>
+                                {{$mra->personalidad}}
+                            </p>
+                            <p>
+                                {{$mra->created_at}}
+                            </p>
+
                         </li>
 
-                    @endfor
+                    @endforeach
+                    {{-- @endfor --}}
 
-                </ol>
+                </ul>
                 
 
             @elseif($tipoValor == 'candidato')
@@ -38,25 +108,9 @@
                 <p>Ya realizaste la prueba</p>
             @endif
 
-            {{-- <a class="flex justify-center">
-
-                <img src="{{ asset('images/disc/DISC_banner_home.svg') }}" loading="lazy" class="w-full lg:w-6/12">
-
-            </a>
-            <br>
-            <p class="mt-2 text-gray-600">
-                colaborador
-            </p>
-            <p class="mt-2 text-gray-600">
-                
-            </p>
-            <p class="mt-2 text-gray-600">
-                
-            </p> --}}
-
         </div>
         
-        <div class="flex items-center justify-center mt-4 @if($pemitirDisc) @else hidden @endif">
+        <div class="flex items-center justify-center mt-4 @if($pemitirDisc)  @if($tipoValor == 'resultados') hidden @else @endif  @else hidden @endif">
             <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="ocultarBienvenida">
                 Empezar 
             </button>
@@ -83,7 +137,10 @@
         
         <div class="flex items-center justify-center mt-4 @if($inicio) @else hidden @endif">
             <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="ocultarInicio">
-                Empezar 
+                Siguiente 
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                </svg>
             </button>
         </div>
         {{-- Fin - descripcion del test DISC --}}
@@ -3433,6 +3490,7 @@
             });
 
         });
+
     </script>
 
 

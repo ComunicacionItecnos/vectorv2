@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Livewire\Component;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
+use Psy\CodeCleaner\FunctionReturnInWriteContextPass;
 
 class EvaluacionColores extends Component
 {
@@ -147,7 +148,9 @@ class EvaluacionColores extends Component
 
     public $pemitirDisc = true,$tipoValor;
 
-    public $nombreColaborador,$mostrarResAnteriores;
+    public $colaborador,$no_colaborador,$nom_colaborador,$foto_colaborador,$mostrarResAnteriores;
+
+    public $personalidad,$resultadosDisc,$created_at;
 
     public $nombre_1,$nombre_2,$ap_pateno,$ap_materno,$curp;
 
@@ -163,34 +166,49 @@ class EvaluacionColores extends Component
             if($tipo == 'colaborador'){
 
                 /* Buscar en infocolaborador */
-                $this->nombreColaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$numero);
+                $this->colaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$numero);
                 
-                if (empty($this->nombreColaborador)) {
+                if (empty($this->colaborador)) {
                     abort(404);
                 }else{
                     
-                    $buscarDisc = DB::select('SELECT * FROM disc_resultados WHERE no_colaborador ='.$this->nombreColaborador[0]->no_colaborador);
+                    $buscarDisc = DB::select('SELECT * FROM disc_resultados WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
                     
-                    if(empty($buscarDisc))
-                    {
-                        $this->nombreColaborador = $this->nombreColaborador[0]->nombre;
+                    if(empty($buscarDisc)){
+                        $this->colaborador = $this->colaborador;
                         $this->tipoValor = $tipo;
                     }else{
-                        /* Cambio de año para reaizarla nuevamente*/
+                        /* Cambio de año para realizarla nuevamente*/
                         /* $this->tipoValor = (substr($buscarDisc[0]->created_at,0,4) == date('Y')) ? 'negado' : 'colaborador' ; */
                         
                         if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
                             $this->mostrarResAnteriores = $buscarDisc;
+                            /* dd($this->mostrarResAnteriores); */
+                            /* $this->personalidad;
+                            $this->resultadosDisc;
+                            $this->created_at; */
+
+                            $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                            $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                            $this->foto_colaborador= $this->colaborador[0]->foto;
+
+
                             $this->tipoValor = 'resultados';
                         }else{
-                            $this->nombreColaborador = $this->nombreColaborador[0]->nombre;
+                            $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                            $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                            $this->foto_colaborador= $this->colaborador[0]->foto;
+
                             $this->tipoValor = $tipo;
                         }
 
-                        /* $fecha = Carbon::now()->toDateTimeString(); */
                     }   
                 }
-            }elseif($tipo == 'candidato' && $numero == 1){
+            }elseif($tipo == 'candidato' && $numero == 25){
     
                 /* Mostrar un formulario para insertar nombre completo y curp */
                 dd('candidato');
@@ -336,6 +354,10 @@ class EvaluacionColores extends Component
                
                 $this->emit('resultadosFinal'); 
 
+                
+                $this->guardarResultados();
+                
+
             }
         }elseif($this->currentStep == 29){
 
@@ -347,9 +369,9 @@ class EvaluacionColores extends Component
             $this->resultados3 = $this->ordenarArray($this->resultados);
             $this->resultados2 = 'Escéptico'; */
             
-
             $this->emit('resultadosFinal');
             
+            $this->guardarResultados();
         }
         
     }
@@ -903,6 +925,28 @@ class EvaluacionColores extends Component
 
         }
 
+    }
+
+
+    public function guardarResultados(){
+
+        $resultados3 = json_encode($this->resultados3);
+        $fecha = Carbon::now()->toDateTimeString();
+
+        if($this->tipoValor == 'colaborador'){
+            
+            DB::insert('insert into disc_resultados (no_colaborador,resultados,personalidad,created_at) values (?,?,?,?) ',[$this->no_colaborador,
+            $resultados3,$this->resultados2,$fecha]);
+
+        }else{
+
+        }
+
+    }
+
+
+    public function GraficaMostrar(){
+        $this->currentStep= 29;
     }
 
 }
