@@ -7,9 +7,8 @@ use Livewire\Component;
 class FactorPresentacion extends Component
 {
 
-    public $factor_vs_hu =
+    public $factor =
     [
-
         'Muro social',
         'Encuestas segmentadas',
         'Perfil del colaborador',
@@ -77,13 +76,12 @@ class FactorPresentacion extends Component
         'Gestión por área, cada quién nutre de información al sistema',
         'Generación de listados',
         'Comunicación multicanal para localizar al colaborador o sus contactos de emergencia',
-
     ];
     
     public $modal= false, $titulomsj,$msj,$btnTexto;
 
     public function mount(){
-
+        
     }
 
     public function render()
@@ -96,8 +94,23 @@ class FactorPresentacion extends Component
 
         if ($valor == 1) {
             $this->modal = true;
-            $this->titulomsj = 'Comparación de Factor 2.0 y humand.';
-            $this->msj = 'hola';
+            $this->titulomsj = 'Comparación de Factor 2.0 y Humand';
+            $this->btnTexto = 'Cerrar';
+        }elseif($valor == 2){
+            $this->modal = true;
+            $this->titulomsj = 'Comparación de Factor 2.0 y Factorial';
+            $this->btnTexto = 'Cerrar';
+        }elseif($valor == 3){
+            $this->modal = true;
+            $this->titulomsj = 'Comparación de Factor 2.0 y Prysmex';
+            $this->btnTexto = 'Cerrar';
+        }elseif($valor == 4){
+            $this->modal = true;
+            $this->titulomsj = 'Comparación de Factor 2.0 y Oracle';
+            $this->btnTexto = 'Cerrar';
+        }elseif($valor == 5){
+            $this->modal = true;
+            $this->titulomsj = 'Comparación de Factor 2.0 y TimeBlock';
             $this->btnTexto = 'Cerrar';
         }
 
