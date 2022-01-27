@@ -175,25 +175,25 @@ class EvaluacionColores extends Component
                     $buscarDisc = DB::select('SELECT * FROM disc_resultados WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
                     
                     if(empty($buscarDisc)){
-                        $this->colaborador = $this->colaborador;
+                        $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                        $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                        $this->foto_colaborador= $this->colaborador[0]->foto;
+                        
                         $this->tipoValor = $tipo;
+                        
                     }else{
                         /* Cambio de año para realizarla nuevamente*/
-                        /* $this->tipoValor = (substr($buscarDisc[0]->created_at,0,4) == date('Y')) ? 'negado' : 'colaborador' ; */
-                        
                         if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
                             $this->mostrarResAnteriores = $buscarDisc;
-                            /* dd($this->mostrarResAnteriores); */
-                            /* $this->personalidad;
-                            $this->resultadosDisc;
-                            $this->created_at; */
+                            
 
                             $this->no_colaborador = $this->colaborador[0]->no_colaborador;
 
                             $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
                             
                             $this->foto_colaborador= $this->colaborador[0]->foto;
-
 
                             $this->tipoValor = 'resultados';
                         }else{
@@ -202,6 +202,7 @@ class EvaluacionColores extends Component
                             $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
                             
                             $this->foto_colaborador= $this->colaborador[0]->foto;
+                            dd($this->foto_colaborador);
 
                             $this->tipoValor = $tipo;
                         }
@@ -931,6 +932,7 @@ class EvaluacionColores extends Component
     public function guardarResultados(){
 
         $resultados3 = json_encode($this->resultados3);
+        
         $fecha = Carbon::now()->toDateTimeString();
 
         if($this->tipoValor == 'colaborador'){
@@ -942,11 +944,6 @@ class EvaluacionColores extends Component
 
         }
 
-    }
-
-
-    public function GraficaMostrar(){
-        $this->currentStep= 29;
     }
 
 }

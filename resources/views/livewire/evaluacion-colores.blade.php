@@ -69,23 +69,22 @@
 
                 
                 <ul class="px-0">
-                    {{-- @for ($i = 0; $i < count($mostrarResAnteriores); $i++) --}}
+        
                     @foreach ( $mostrarResAnteriores as $mra )
                         
-                    
-                    
-                        <li class="border bg-white list-none rounded-sm px-3 py-3 cursor-pointer hover:text-white hover:bg-red-800" wire:click="GraficaMostrar">
+                        <li class="border bg-white list-none rounded-sm px-3 py-3 cursor-pointer hover:text-white 
+                            @if ( json_decode( $mra->resultados )[0][0] == 'rojo' ) 
+                                hover:bg-red-500 
+                            @elseif(json_decode( $mra->resultados )[0][0] == 'amarillo') 
+                                hover:bg-yellow-500 
 
-                            {{-- <p>
-                                {{$mostrarResAnteriores[$i]->personalidad}}
-                            </p>
-                            <p>
-                                {{$mostrarResAnteriores[$i]->created_at}}
-                            </p> --}}
-                            {{-- <p>
-                                {{$mostrarResAnteriores[$i]->resultados}}
-                            </p> --}}
-
+                            @elseif(json_decode( $mra->resultados )[0][0] == 'verde') 
+                                hover:bg-green-500 
+                                
+                            @elseif(json_decode( $mra->resultados )[0][0] == 'azul') 
+                                hover:bg-blue-500 
+                            @endif">
+                            
                             <p>
                                 {{$mra->personalidad}}
                             </p>
@@ -96,13 +95,12 @@
                         </li>
 
                     @endforeach
-                    {{-- @endfor --}}
 
                 </ul>
                 
 
             @elseif($tipoValor == 'candidato')
-                <p>candidato</p>
+                
 
             @elseif($tipoValor == 'negado')
                 <p>Ya realizaste la prueba</p>
