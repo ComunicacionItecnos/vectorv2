@@ -38,7 +38,6 @@
                   
                 </div>
 
-
             @elseif($tipoValor == 'resultados')
             
                 <div class="flex justify-center">
@@ -100,15 +99,133 @@
                 
 
             @elseif($tipoValor == 'candidato')
+
+                <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1  mt-2">
+
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <p class="text-center text-gray-600">
+                            Antes de empezar a realizar tu prueba necesitamos que contestes el siguiente formulario
+                        </p>
+                    </div>
+                    
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <form wire:submit.prevent="submit" enctype="multipart/form-data">
+                        
+                            <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1">
+
+                                <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
+                                    <label class="block text-base font-medium text-gray-700" for="nombre_1">
+                                        <span class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                        Primer nombre</label>
+                                    <input type="text" wire:model="nombre_1" name="nombre_1" id="nombre_1"
+                                        value="{{ old('nombre_1') }}"
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    @error('nombre_1')
+                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+                              
+                                <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
+                                    <label class="block text-base font-medium text-gray-700"
+                                    for="nombre_2">Segundo nombre</label>
+                                    <input type="text" wire:model="nombre_2" name="nombre_2" id="nombre_2"
+                                        value="{{ old('nombre_2') }}"
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    @error('nombre_2')
+                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+                              
+                                <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
+                                    <label class="block text-base font-medium text-gray-700"
+                                    for="ap_paterno"><span
+                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                    Apellido paterno</label>
+                                    <input type="text" wire:model="ap_paterno" name="ap_paterno"
+                                        id="ap_paterno" value="{{ old('ap_paterno') }}"
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    @error('ap_paterno')
+                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror    
+                                </div>
+                              
+                                <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
+                                    <label class="block text-base font-medium text-gray-700"
+                                    for="ap_materno"><span
+                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                    Apellido materno</label>
+                                    <input type="text" wire:model="ap_materno" name="ap_materno"
+                                        id="ap_materno" value="{{ old('ap_materno') }}"
+                                        class="block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-base">
+                                    @error('ap_materno')
+                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+
+                            </div>
+
+
+                            <div class="flex flex-wrap overflow-hidden">
+
+                                <div class="w-full overflow-hidden">
+                                    <label class="block text-base font-medium text-gray-700"
+                                    for="curp"><span
+                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                    CURP</label>
+                                    <input type="text" name="curp" id="curp" wire:model="curp"
+                                    class="uppercase block w-full mt-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                    @error('curp')
+                                        <p class="mt-1 mb-1 text-base text-red-600 italic">
+                                            {{ $message }}
+                                        </p>
+                                    @enderror
+                                </div>
+                              
+                            </div>
+
+                            <div class="flex items-center justify-center mt-4">
+                                <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer"
+                                type="submit">
+                                    Empezar 
+                                </button>
+                            </div>
+                        </form>
+
+                    </div>
                 
+                </div>
 
             @elseif($tipoValor == 'negado')
-                <p>Ya realizaste la prueba</p>
+
+                <div class="flex justify-center items-center flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1 mt-2">
+
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <img src="https://cdn.pixabay.com/photo/2013/07/13/09/51/unauthorised-156169_960_720.png" loading="lazy" class="w-24 h-24 mx-auto	"  alt="">
+                    </div>
+
+                    <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
+                        <p class="text-center text-gray-600">
+                            Ya realizaste la prueba DISC, espera instrucciones de tu reclutador.
+                        </p>
+                        <p class="text-center text-gray-600">
+                            Por favor cierrra esta ventana.
+                        </p>
+                    </div>
+
+                </div>
             @endif
 
         </div>
         
-        <div class="flex items-center justify-center mt-4 @if($pemitirDisc)  @if($tipoValor == 'resultados') hidden @else @endif  @else hidden @endif">
+        <div class="flex items-center justify-center mt-4 @if($pemitirDisc)  @if($tipoValor == 'resultados' || $tipoValor == 'candidato' || $tipoValor == 'negado') hidden @else @endif  @else hidden @endif">
             <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="ocultarBienvenida">
                 Empezar 
             </button>

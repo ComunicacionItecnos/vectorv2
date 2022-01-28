@@ -152,7 +152,13 @@ class EvaluacionColores extends Component
 
     public $personalidad,$resultadosDisc,$created_at;
 
-    public $nombre_1,$nombre_2,$ap_pateno,$ap_materno,$curp;
+    public $nombre_1,$nombre_2,$ap_paterno,$ap_materno,$curp, $formularioValidado = false;
+
+    protected $rules = [
+        'curp' => '',
+        'nombre_1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'nombre_2' => 'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+    ];
 
     public function mount($tipo,$numero)
     {
@@ -172,7 +178,7 @@ class EvaluacionColores extends Component
                     abort(404);
                 }else{
                     
-                    $buscarDisc = DB::select('SELECT * FROM disc_resultados WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
+                    $buscarDisc = DB::select('SELECT * FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
                     
                     if(empty($buscarDisc)){
                         $this->no_colaborador = $this->colaborador[0]->no_colaborador;
@@ -202,17 +208,16 @@ class EvaluacionColores extends Component
                             $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
                             
                             $this->foto_colaborador= $this->colaborador[0]->foto;
-                            dd($this->foto_colaborador);
 
                             $this->tipoValor = $tipo;
                         }
 
                     }   
                 }
-            }elseif($tipo == 'candidato' && $numero == 25){
+            }elseif($tipo == 'candidato' && $numero == 1){
     
                 /* Mostrar un formulario para insertar nombre completo y curp */
-                dd('candidato');
+                $this->tipoValor = $tipo;
                 
             }else{
                 abort(404);
@@ -937,12 +942,60 @@ class EvaluacionColores extends Component
 
         if($this->tipoValor == 'colaborador'){
             
-            DB::insert('insert into disc_resultados (no_colaborador,resultados,personalidad,created_at) values (?,?,?,?) ',[$this->no_colaborador,
+            DB::insert('insert into disc_resultados_colaborador (no_colaborador,resultados,personalidad,created_at) values (?,?,?,?) ',[$this->no_colaborador,
             $resultados3,$this->resultados2,$fecha]);
 
         }else{
 
+            if($this->formularioValidado == true){
+                DB::insert('insert into disc_resultados_candidatos (cup,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
+            $this->nombre_2,$this->ap_paterno,$this->ap_materno,$this->resultados3,$this->resultados2,$fecha]);
+            }
+
         }
+
+    }
+
+
+    public function submit(){
+
+        $this->validate(
+            [
+                'curp' =>'required|regex:/^([a-zA-Z0-9]+)$/|min:18|max:18',
+                'nombre_1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'nombre_2'=>'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'ap_paterno'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'ap_materno'=>'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/'
+            ],
+            [
+                'curp.required'=>'Este campo no puede permanecer vacío',
+                'curp.regex'=>'Solo puede contener letras y números',
+                'curp.min'=>'Debe contener mínimo 18 caracteres',
+                'curp.max'=>'Debe contener maximo 18 caracteres',
+
+                'nombre_1.required'=>'Este campo no puede permanecer vacío',
+                'nombre_1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
+                'nombre_2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
+                'ap_paterno.required'=>'Este campo no puede permanecer vacío',
+                'ap_paterno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+                
+                'ap_materno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+            ],
+        );
+
+        $curpRegistrada = DB::table('disc_resultados_candidatos')->where('curp','=',$this->curp)->get();
+
+        if( count($curpRegistrada) == 0 ){
+            $this->formularioValidado = true;
+            $this->pemitirDisc = false;
+            $this->inicio = true;
+        }else{
+            $this->tipoValor = 'negado';
+        }
+
+        
 
     }
 
