@@ -3,8 +3,10 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use Livewire\Component;
+use Carbon\CarbonInterface;
+use Illuminate\Support\Facades\DB;
+use Psy\CodeCleaner\FunctionReturnInWriteContextPass;
 
 class EvaluacionColores extends Component
 {
@@ -13,7 +15,7 @@ class EvaluacionColores extends Component
     public $totalSteps = 29;
     public $currentStep = /* 28 */ 1;
 
-    public $inicio = true /* false */;
+    public $inicio = false;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
@@ -144,10 +146,87 @@ class EvaluacionColores extends Component
 
     public $perfil,$descripcion;
 
-    public function mount()
+    public $pemitirDisc = true,$tipoValor;
+
+    public $colaborador,$no_colaborador,$nom_colaborador,$foto_colaborador,$mostrarResAnteriores;
+
+    public $personalidad,$resultadosDisc,$created_at;
+
+    public $nombre_1,$nombre_2,$ap_paterno,$ap_materno,$curp, $formularioValidado = false;
+
+    protected $rules = [
+        'curp' => '',
+        'nombre_1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'nombre_2' => 'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+    ];
+
+    public function mount($tipo,$numero)
     {
+
+        if($tipo != 'colaborador' && $tipo != 'candidato'){
+
+            abort(404);
+
+        }else{
+
+            if($tipo == 'colaborador'){
+
+                /* Buscar en infocolaborador */
+                $this->colaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$numero);
+                
+                if (empty($this->colaborador)) {
+                    abort(404);
+                }else{
+                    
+                    $buscarDisc = DB::select('SELECT * FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
+                    
+                    if(empty($buscarDisc)){
+                        $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                        $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                        $this->foto_colaborador= $this->colaborador[0]->foto;
+                        
+                        $this->tipoValor = $tipo;
+                        
+                    }else{
+                        /* Cambio de año para realizarla nuevamente*/
+                        if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
+                            $this->mostrarResAnteriores = $buscarDisc;
+                            
+
+                            $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                            $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                            $this->foto_colaborador= $this->colaborador[0]->foto;
+
+                            $this->tipoValor = 'resultados';
+                        }else{
+                            $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                            $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                            $this->foto_colaborador= $this->colaborador[0]->foto;
+
+                            $this->tipoValor = $tipo;
+                        }
+
+                    }   
+                }
+            }elseif($tipo == 'candidato' && $numero == 1){
+    
+                /* Mostrar un formulario para insertar nombre completo y curp */
+                $this->tipoValor = $tipo;
+                
+            }else{
+                abort(404);
+            }
+        }
+
         $this->fecha = Carbon::now();
         $this->fecha = $this->fecha->format('d-m-y');
+
     }
 
     public function render()
@@ -281,6 +360,10 @@ class EvaluacionColores extends Component
                
                 $this->emit('resultadosFinal'); 
 
+                
+                $this->guardarResultados();
+                
+
             }
         }elseif($this->currentStep == 29){
 
@@ -288,10 +371,20 @@ class EvaluacionColores extends Component
             $this->resultados3 = $this->ordenarArray($this->resultados);
             $this->resultados2 = $this->metodosPerfil($this->resultados3);
 
+            /* $this->resultados = ['rojo'=> 7,'amarillo'=>4,'verde'=>6,'azul'=>2 ];
+            $this->resultados3 = $this->ordenarArray($this->resultados);
+            $this->resultados2 = 'Escéptico'; */
+            
             $this->emit('resultadosFinal');
             
+            $this->guardarResultados();
         }
         
+    }
+
+    public function ocultarBienvenida(){
+        $this->pemitirDisc = false;
+        $this->inicio = true;
     }
 
     public function ocultarInicio(){
@@ -837,6 +930,72 @@ class EvaluacionColores extends Component
             }
 
         }
+
+    }
+
+
+    public function guardarResultados(){
+
+        $resultados3 = json_encode($this->resultados3);
+        
+        $fecha = Carbon::now()->toDateTimeString();
+
+        if($this->tipoValor == 'colaborador'){
+            
+            DB::insert('insert into disc_resultados_colaborador (no_colaborador,resultados,personalidad,created_at) values (?,?,?,?) ',[$this->no_colaborador,
+            $resultados3,$this->resultados2,$fecha]);
+
+        }else{
+
+            if($this->formularioValidado == true){
+                DB::insert('insert into disc_resultados_candidatos (cup,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
+            $this->nombre_2,$this->ap_paterno,$this->ap_materno,$this->resultados3,$this->resultados2,$fecha]);
+            }
+
+        }
+
+    }
+
+
+    public function submit(){
+
+        $this->validate(
+            [
+                'curp' =>'required|regex:/^([a-zA-Z0-9]+)$/|min:18|max:18',
+                'nombre_1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'nombre_2'=>'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'ap_paterno'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'ap_materno'=>'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/'
+            ],
+            [
+                'curp.required'=>'Este campo no puede permanecer vacío',
+                'curp.regex'=>'Solo puede contener letras y números',
+                'curp.min'=>'Debe contener mínimo 18 caracteres',
+                'curp.max'=>'Debe contener maximo 18 caracteres',
+
+                'nombre_1.required'=>'Este campo no puede permanecer vacío',
+                'nombre_1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
+                'nombre_2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
+                'ap_paterno.required'=>'Este campo no puede permanecer vacío',
+                'ap_paterno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+                
+                'ap_materno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+            ],
+        );
+
+        $curpRegistrada = DB::table('disc_resultados_candidatos')->where('curp','=',$this->curp)->get();
+
+        if( count($curpRegistrada) == 0 ){
+            $this->formularioValidado = true;
+            $this->pemitirDisc = false;
+            $this->inicio = true;
+        }else{
+            $this->tipoValor = 'negado';
+        }
+
+        
 
     }
 
