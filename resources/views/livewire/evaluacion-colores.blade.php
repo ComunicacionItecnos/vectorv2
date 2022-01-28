@@ -71,7 +71,7 @@
         
                     @foreach ( $mostrarResAnteriores as $mra )
                         
-                        <li class="border bg-white list-none rounded-sm px-3 py-3 cursor-pointer hover:text-white 
+                        <li class="border bg-white list-none rounded-sm px-3 py-3 {{-- cursor-pointer --}} hover:text-white 
                             @if ( json_decode( $mra->resultados )[0][0] == 'rojo' ) 
                                 hover:bg-red-500 
                             @elseif(json_decode( $mra->resultados )[0][0] == 'amarillo') 

@@ -39,7 +39,7 @@ class AdminDisc extends Component
                 ->where('nombre_completo','LIKE','%'.$this->search.'%')
                 ->orWhere('personalidad','LIKE','%'.$this->search.'%')
                 ->orWhere('created_at','LIKE','%'.$this->search.'%')
-                ->paginate(2), 'contador'=>count($contador)]);
+                ->paginate(5), 'contador'=>count($contador)]);
 
         }
 
