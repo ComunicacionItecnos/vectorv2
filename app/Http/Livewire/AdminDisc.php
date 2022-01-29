@@ -23,7 +23,7 @@ class AdminDisc extends Component
 
         if ( auth()->user()->role_id == 5 ) {
 
-            return view('livewire.Admin-disc'
+            return view('livewire.admin-disc'
                 ,['resultados'=> DB::table('disc_view_candidato')
                 ->where('nombre_completo','LIKE','%'.$this->search.'%')
                 ->orWhere('personalidad','LIKE','%'.$this->search.'%')
@@ -34,7 +34,7 @@ class AdminDisc extends Component
 
             $contador = DB::table('disc_view_colaborador')->get();
             
-            return view('livewire.Admin-disc'
+            return view('livewire.admin-disc'
                 ,['resultados'=> DB::table('disc_view_colaborador')
                 ->where('nombre_completo','LIKE','%'.$this->search.'%')
                 ->orWhere('personalidad','LIKE','%'.$this->search.'%')
