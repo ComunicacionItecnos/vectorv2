@@ -2356,7 +2356,7 @@
                                         Valoras la independencia y muestras una confianza en ti mismo que algunos pueden percibir como arrogancia.
                                     </p>
                                     <p>
-                                        Eres una persona competitiva y te gusta las tareas dificiles y los altos cargos. 
+                                        Eres una persona competitiva y te gusta las tareas difíciles y los altos cargos. 
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad tienden a criticar a los demás que no piensan tan rápido como ellos.
@@ -2562,11 +2562,11 @@
                                     </p>
                                     <p>
                                         <b>Influye en otros por:</b> 
-                                        Inspirar confianza .
+                                        Inspirar confianza.
                                     </p>
                                     <p>
                                         <b>Valor para el equipo:</b> 
-                                        Trabajador incanzable, amigüero.
+                                        Trabajador incansable, amiguero.
                                     </p>
                                     <p>
                                         <b>Cuando está estresado:</b> 
@@ -2674,7 +2674,7 @@
                                         Te encanta trabajar con y a través de las personas para lograr sus propios objetivos.
                                     </p>
                                     <p>
-                                        Fácilmente ganas apoyo y respeto por tu personalidad extovertida y persuasiva.
+                                        Fácilmente ganas apoyo y respeto por tu personalidad extrovertida y persuasiva.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad desean libertad de expresión y libertad de tareas y rutinas aburridas. Necesitan mantenerse enfocados en la tarea y equilibrar su entusiasmo con enfoques realistas.
@@ -2734,13 +2734,13 @@
                                     </div>
                                     <br>
                                     <p>
-                                        Eres una persona que contruyes relaciones a largo plazo.
+                                        Eres una persona que construyes relaciones a largo plazo.
                                     </p>
                                     <p>
                                         Buen oyente y efectivo en la resolución de problemas, y a su vez usas un enfoque indirecto cuando tratas con otro.
                                     </p>
                                     <p>
-                                        Tiendes a poner a las personas en primer lugar al birndar reconocimineto a los demás, atribuyes menos importancia al cumplimineto de tareas.
+                                        Tiendes a poner a las personas en primer lugar al brindar reconocimiento a los demás, atribuyes menos importancia al cumplimiento de tareas.
                                     </p>
                                     <br>
                                     <p>
@@ -2860,7 +2860,7 @@
                                     </div>
                                     <br>
                                     <p>
-                                        Eres una persona considerada,paciente y siempre estas listo para ayudar a los demás.
+                                        Eres una persona considerada, paciente y siempre estas listo para ayudar a los demás.
                                     </p>
                                     <p>
                                         Debido a tu personalidad modesta y de buenos modales te llevas bien con los demás.
@@ -2923,14 +2923,14 @@
                                     <br>
                                     <p>
                                         Eres una persona con un sentido fuerte de responsabilidad personal,
-                                        confias en tus logros laborales y personales y puedes ser racio a delegar tareas cuando estas bajo estés.
+                                        confías en tus logros laborales y personales y puedes ser racio a delegar tareas cuando estas bajo estrés.
                                     </p>
                                     <p>
                                         Prosperas cuando tienes un fuerte sentido de dirección sobre su trabajo y su vida personal. 
                                         Estás continuamente en la búsqueda de nuevos logros. 
                                     </p>
                                     <p>
-                                        Las personas con este tipo de personalidad dual hace que sea difícil predecir las reacciones del Triunfador. A veces son directos y orientados a los resultados, y otras veces están atentos y complacientes. Son muy independientes, pero pueden querer ser parte de un equipo de alto rendimiento. Expresan una lealtad feroz a las personas en sus vidas.
+                                        Las personas con este tipo de personalidad dual hacen que sea difícil predecir las reacciones del Triunfador. A veces son directos y orientados a los resultados, y otras veces están atentos y complacientes. Son muy independientes, pero pueden querer ser parte de un equipo de alto rendimiento. Expresan una lealtad feroz a las personas en sus vidas.
                                     </p>
                                     <br>
                                     <p>
@@ -3179,7 +3179,7 @@
                                         Eres una persona impulsada por la necesidad de precisión y lógica.
                                     </p>
                                     <p>
-                                        Necesitas presión y estar impulsada por la paciencia lo que da resultado como una persona enfocada en claidad.
+                                        Necesitas presión y estar impulsada por la paciencia lo que da resultado como una persona enfocada en calidad.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad son pensadores precisos y emplean planes y procedimientos tanto para su vida personal como profesional, evitando así lo inesperado. Utilizan la diligencia debida cuando se les solicita una precisión detallada. Cuestionan suposiciones y requieren mucha información que puedan analizar al explorar alternativas y antes de tomar una decisión o llegar a conclusiones.
@@ -3240,10 +3240,10 @@
                                     </div>
                                     <br>
                                     <p>
-                                        Eres una persona que disfrutas ser un miembro del equipo y ayudas a otros a tener exito.
+                                        Eres una persona que disfrutas ser un miembro del equipo y ayudas a otros a tener éxito.
                                     </p>
                                     <p>
-                                        No quieres responsabilidades de deciciones importantes o de asumir riesgos, cuando tienes mucho tiempo
+                                        No quieres responsabilidades de decisiones importantes o de asumir riesgos, cuando tienes mucho tiempo
                                         para pensar las cosas, pueden aportar información valiosa al proceso del equipo.
                                     </p>
                                     <p>
@@ -3332,7 +3332,7 @@
                                     </p>
                                     <p>
                                         <b>Cuando está estresado:</b> 
-                                        Microgestiona, es cerrado, no se involucra, se aisla, su comunicación es robótica.
+                                        Micro gestiona, es cerrado, no se involucra, se aisla, su comunicación es robótica.
                                     </p>
 
                                     <br>
@@ -3369,7 +3369,7 @@
                                     <br>
                                     <p>
                                     Eres una persona con metas claras y la voluntad para llegar a ellas.
-                                    Es raro encontrar a una persona con tu perfil, por lo cual tienes un sentido único de persistencia y de voluntad de trabajar con firmeza y diligencia en la consecusión de tus objetivos.
+                                    Es raro encontrar a una persona con tu perfil, por lo cual tienes un sentido único de persistencia y de voluntad de trabajar con firmeza y diligencia en la consecución de tus objetivos.
                                     </p>
                                     <p>
                                         Hay un aspecto sociable y de apertura en este tipo de personas, pero siempre con un sentido subyacente de determinación y asertividad que sale a la luz cuando se encuentran en situaciones difíciles o exigentes.
@@ -3385,7 +3385,7 @@
                                     </p>
                                     <p>
                                         <b>Influye en otros por:</b> 
-                                        Ser consciente de su automestima, lo que le permite relacionarse facilmente con extraños o desenvolverse en situaciones incomodas.
+                                        Ser consciente de su autoestima, lo que le permite relacionarse fácilmente con extraños o desenvolverse en situaciones incomodas.
                                     </p>
                                     <p>
                                         <b>Valor para el equipo:</b> 
@@ -3393,7 +3393,7 @@
                                     </p>
                                     <p>
                                         <b>Cuando está estresado:</b> 
-                                        Son agresivos protegiendo y defiendiendo su punto de vista e identidad .
+                                        Son agresivos protegiendo y defendiendo su punto de vista e identidad.
                                     </p>
 
                                     <br>
@@ -3433,7 +3433,7 @@
                                         Tienes la capacidad de controlarte y eres ambicioso, esto te da la capacidad de desenvolverte en situaciones informales y abiertas.
                                     </p>
                                     <p>
-                                        Las personas con este tipo de personalidad la ambición y la asertividad son elementos importantes, además su conciencia de las necesidades de los demás y sentido del orden, los hace mucho menos impulsivos e impredecibles que otros tipos igualmente extrovertidos.
+                                        Las personas con este tipo de personalidad la ambición y el asertividad son elementos importantes, además su conciencia de las necesidades de los demás y sentido del orden, los hace mucho menos impulsivos e impredecibles que otros tipos igualmente extrovertidos.
                                     </p>
                                     <p>
                                         Si bien desean lograr el éxito propio, entienden que las necesidades de la organización requerirán de vez en cuando que supriman sus propias ambiciones por el bien del equipo.
@@ -3442,7 +3442,7 @@
                                     <br>
                                     <p>
                                         <b>Motivado por:</b> 
-                                        Ambición personal, aceptación y apobación de terceros, certeza de su posición.
+                                        Ambición personal, aceptación y aprobación de terceros, certeza de su posición.
                                     </p>
                                     <p>
                                         <b>Juzga a los demás por:</b> 
@@ -3458,7 +3458,7 @@
                                     </p>
                                     <p>
                                         <b>Cuando está estresado:</b> 
-                                        Sus motivaciones pueden entrar en conflicto, el entorno se tiene que adaptar a la persona .
+                                        Sus motivaciones pueden entrar en conflicto, el entorno se tiene que adaptar a la persona.
                                     </p>
 
                                     <br>
