@@ -438,7 +438,7 @@ class EvaluacionDesempeno extends Component
         /* Info del resultado */
         if ( ($resultado >= 80 || $resultado >= 80.0) && ($resultado<= 82.5) ) {
             $this->box1 = '<img alt="profil" src="'.asset('images/nineBox/Bien_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(1)" loading="lazy" />'; 
-        }elseif( ($resultado >= 92.6) && ($resultado<= 94.5) ){
+        }elseif( ($resultado >= 92.6) && ($resultado<= 94.9) ){
             $this->box2 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(2)" loading="lazy" />'; 
         }elseif( ($resultado >= 95 || $resultado >= 95.0) && ($resultado<= 100) ){
             $this->box3 = '<img alt="profil" src="'.asset('images/nineBox/Excelente_Emoticon.png').'" class="mx-auto object-cover" style="width:75px;height:auto;" wire:click="modalNineBoxVacio(3)" loading="lazy" />'; 
@@ -473,7 +473,7 @@ class EvaluacionDesempeno extends Component
             $this->abrirModal=!$this->abrirModal;
         }elseif ($box == 2) {
             $this->tituloModal = 'Medio desempeño / Alto potencial';
-            $this->subtituloModal = 'Rango del 92.6 - 94.5';
+            $this->subtituloModal = 'Rango del 92.6 - 94.9';
             $this->infoModal = 'Le va extremadamente bien en el trabajo actual con potencial para hacer más; establecerle asignaciones para ayudarlo a prepararse para el próximo nivel.';
             $this->iconoModal = '<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
