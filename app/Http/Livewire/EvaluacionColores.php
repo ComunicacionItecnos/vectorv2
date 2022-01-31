@@ -948,8 +948,10 @@ class EvaluacionColores extends Component
         }else{
 
             if($this->formularioValidado == true){
-                DB::insert('insert into disc_resultados_candidatos (cup,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
-            $this->nombre_2,$this->ap_paterno,$this->ap_materno,$this->resultados3,$this->resultados2,$fecha]);
+            
+                DB::insert('insert into disc_resultados_candidatos (curp,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
+            $this->nombre_2,$this->ap_paterno,$this->ap_materno,$resultados3,$this->resultados2,$fecha]);
+            
             }
 
         }
