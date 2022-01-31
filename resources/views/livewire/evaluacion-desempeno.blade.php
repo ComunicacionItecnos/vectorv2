@@ -566,7 +566,7 @@
                                         <div class="col-start-2 ">
                                             <p class="font-semibold text-sm text-center">  </p>
 
-                                            <p class="font-semibold text-xs text-center opacity-40"> 92.6 - 94.5</p>
+                                            <p class="font-semibold text-xs text-center opacity-40"> 92.6 - 94.9</p>
 
                                         </div>
                                       
