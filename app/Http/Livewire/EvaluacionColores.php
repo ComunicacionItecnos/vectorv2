@@ -6,7 +6,6 @@ use Carbon\Carbon;
 use Livewire\Component;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
-use Psy\CodeCleaner\FunctionReturnInWriteContextPass;
 
 class EvaluacionColores extends Component
 {
@@ -937,20 +936,38 @@ class EvaluacionColores extends Component
     public function guardarResultados(){
 
         $resultados3 = json_encode($this->resultados3);
+
+        $resultados2 = $this->resultados2;
         
         $fecha = Carbon::now()->toDateTimeString();
+
+        if($resultados2 == 'Desarrollador'){
+            $resultados2 = 'Dictador';
+        }elseif($resultados2 == 'Orientado a resultados'){
+            $resultados2 = 'Pragmático';
+        }elseif($resultados2 == 'Creativo'){
+            $resultados2 = 'Arquitecto';
+        }elseif($resultados2 == 'Persuasivo'){
+            $resultados2 = 'Protagonista';
+        }elseif($resultados2 == 'Tasador'){
+            $resultados2 = 'Estimador';
+        }elseif($resultados2 == 'Pensador Objetivo'){
+            $resultados2 = 'Objetivo';
+        }elseif($resultados2 == 'Practicante'){
+            $resultados2 = 'Voluntario';
+        }
 
         if($this->tipoValor == 'colaborador'){
             
             DB::insert('insert into disc_resultados_colaborador (no_colaborador,resultados,personalidad,created_at) values (?,?,?,?) ',[$this->no_colaborador,
-            $resultados3,$this->resultados2,$fecha]);
+            $resultados3,$resultados2,$fecha]);
 
         }else{
 
             if($this->formularioValidado == true){
             
                 DB::insert('insert into disc_resultados_candidatos (curp,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
-            $this->nombre_2,$this->ap_paterno,$this->ap_materno,$resultados3,$this->resultados2,$fecha]);
+            $this->nombre_2,$this->ap_paterno,$this->ap_materno,$resultados3,$resultados2,$fecha]);
             
             }
 
