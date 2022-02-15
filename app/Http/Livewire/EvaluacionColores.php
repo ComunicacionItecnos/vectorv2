@@ -159,6 +159,8 @@ class EvaluacionColores extends Component
         'nombre_2' => 'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
     ];
 
+    public $numero;
+
     public function mount($tipo,$numero)
     {
 
@@ -170,6 +172,7 @@ class EvaluacionColores extends Component
 
             if($tipo == 'colaborador'){
 
+                $this->numero = $numero;
                 /* Buscar en infocolaborador */
                 $this->colaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$numero);
                 
@@ -177,7 +180,7 @@ class EvaluacionColores extends Component
                     abort(404);
                 }else{
                     
-                    $buscarDisc = DB::select('SELECT * FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
+                    $buscarDisc = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
                     
                     if(empty($buscarDisc)){
                         $this->no_colaborador = $this->colaborador[0]->no_colaborador;
@@ -191,8 +194,10 @@ class EvaluacionColores extends Component
                     }else{
                         /* Cambio de año para realizarla nuevamente*/
                         if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
-                            $this->mostrarResAnteriores = $buscarDisc;
+                            $this->mostrarResAnteriores = collect($buscarDisc);
                             
+                            /* dd($buscarDisc,$this->mostrarResAnteriores); */
+                           /*  dd(json_decode($buscarDisc[0]->resultados)); */
 
                             $this->no_colaborador = $this->colaborador[0]->no_colaborador;
 
@@ -202,6 +207,7 @@ class EvaluacionColores extends Component
 
                             $this->tipoValor = 'resultados';
                         }else{
+                            
                             $this->no_colaborador = $this->colaborador[0]->no_colaborador;
 
                             $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
@@ -226,6 +232,13 @@ class EvaluacionColores extends Component
         $this->fecha = Carbon::now();
         $this->fecha = $this->fecha->format('d-m-y');
 
+    }
+
+    public function hydrate(){
+        /* Buscar en infocolaborador */
+        $this->colaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$this->numero);
+
+        $this->mostrarResAnteriores = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
     }
 
     public function render()
@@ -1016,6 +1029,29 @@ class EvaluacionColores extends Component
 
         
 
+    }
+
+    public function verResultados($id){
+        
+        
+        $buscarDatos = DB::select('SELECT id,no_colaborador,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE id ='.$id.' ORDER BY created_at DESC');
+        /* dd( json_decode($buscarDatos[0]->resultados) ); */
+
+        /* $this->mostrarModal = true;
+        $this->titulomsj = "Ir a currentStep 29";
+        $this->iconomsj = "";
+        $this->msj = "Mostar datos";
+        $this->color = "";
+        $this->btnTexto = "Cerrar"; */
+        $this->pemitirDisc = false;
+        
+        $this->currentStep = 29;
+
+        $this->resultados = json_decode($buscarDatos[0]->resultados);
+        
+        $this->resultados2 = $buscarDatos[0]->personalidad;
+
+        $this->emit('resultadosFinal');
     }
 
 }

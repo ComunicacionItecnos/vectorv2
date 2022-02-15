@@ -24,14 +24,14 @@
                 <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1  mt-2">
 
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
-                        <p class="text-center text-gray-600">
+                        <p class="text-center text-gray-600 text-xl">
                             Hola 
                             {{ $nom_colaborador }} 
                         </p>
                     </div>
                     
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
-                        <p class="text-center text-gray-600">
+                        <p class="text-center text-gray-600 text-lg">
                             ¡Te doy la bienvenida a la prueba DISC!
                         </p>
                     </div>
@@ -53,14 +53,14 @@
                 <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1  mt-2">
 
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
-                        <p class="text-center text-gray-600">
+                        <p class="text-center text-gray-600 text-xl">
                             Hola 
                             {{ $nom_colaborador }} 
                         </p>
                     </div>
 
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
-                        <p class="mb-2 text-gray-600 text-center">Estos son tus anteriores resultados:</p>
+                        <p class="mb-2 text-gray-600 text-center text-lg">Estos son tus anteriores resultados:</p>
                     </div>
 
                 </diV>
@@ -69,30 +69,32 @@
                 
                 <ul class="px-0">
         
-                    @foreach ( $mostrarResAnteriores as $mra )
-                        
-                        <li class="border bg-white list-none rounded-sm px-3 py-3 {{-- cursor-pointer --}} hover:text-white 
-                            @if ( json_decode( $mra->resultados )[0][0] == 'rojo' ) 
-                                hover:bg-red-500 
-                            @elseif(json_decode( $mra->resultados )[0][0] == 'amarillo') 
-                                hover:bg-yellow-500 
+                    @foreach( $mostrarResAnteriores as $mra )
 
-                            @elseif(json_decode( $mra->resultados )[0][0] == 'verde') 
-                                hover:bg-green-500 
-                                
-                            @elseif(json_decode( $mra->resultados )[0][0] == 'azul') 
-                                hover:bg-blue-500 
+                        <li wire:key = "{{ $loop->index }}" class="border bg-white list-none rounded-sm px-3 py-3 {{-- cursor-pointer --}}  hover:text-white    
+                               
+                            @if (trim($mra->resultPonderante ,'"') == 'rojo')
+                                hover:bg-red-500
+                            @elseif (trim($mra->resultPonderante,'"') == 'amarillo')
+                                hover:bg-yellow-500
+                            @elseif (trim($mra->resultPonderante ,'"') == 'verde')
+                                hover:bg-green-500
+                            @elseif (trim($mra->resultPonderante ,'"') == 'azul')
+                                hover:bg-blue-500
                             @endif">
+
                             
                             <p>
                                 {{$mra->personalidad}}
                             </p>
                             <p>
-                                {{$mra->created_at}}
+                                {{ \Carbon\Carbon::parse($mra->created_at)->diffForHumans() }}
                             </p>
-
+                            <button wire:click="verResultados( {{ $mra->id }} )">
+                                Ver
+                            </button>
                         </li>
-
+                           
                     @endforeach
 
                 </ul>
@@ -2275,7 +2277,7 @@
                             {{-- Imagenes de personalidad --}}
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
 
-                                @if ($resultados2 == 'Desarrollador')
+                                @if ($resultados2 == 'Desarrollador' || $resultados2 == 'Dictador')
                                     {{-- <p>Dictador</p> --}}
 
                                     <div class="flex justify-center">
@@ -2342,7 +2344,7 @@
                                     </div>
 
 
-                                @elseif($resultados2 == 'Orientado a resultados')
+                                @elseif($resultados2 == 'Orientado a resultados' || $resultados2 == 'Pragmático')
                                 
                                     {{-- <p>Pragmático</p> --}}
 
@@ -2472,7 +2474,7 @@
                                       
                                     </div>
 
-                                @elseif($resultados2 == 'Creativo')
+                                @elseif($resultados2 == 'Creativo' || $resultados2 == 'Arquitecto')
                                     {{-- <p>Arquitecto</p> --}}
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/rojo/Banner_Rojo_Arquitecto.png') }}" loading="lazy" class="lg:w-max">
@@ -2664,7 +2666,7 @@
                                       
                                     </div>
 
-                                @elseif($resultados2 == 'Persuasivo')
+                                @elseif($resultados2 == 'Persuasivo' || $resultados2 == 'Protagonista')
                                     {{-- <p>Protagonista</p> --}}
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Protagonista.png') }}" loading="lazy" class="lg:w-max">
@@ -2790,7 +2792,7 @@
                                       
                                     </div>
                                 
-                                @elseif($resultados2 == 'Tasador')
+                                @elseif($resultados2 == 'Tasador' || $resultados2 == 'Estimador')
                                     {{-- <p>Estimador</p> --}}
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Estimador.png') }}" loading="lazy" class="lg:w-max">
@@ -2915,7 +2917,7 @@
                                         </div>
                                       
                                     </div>
-                                
+
                                 @elseif($resultados2 == 'Triunfador')
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/verde/Banner_Verde_Triunfador.png') }}" loading="lazy" class="lg:w-max">
@@ -3105,7 +3107,7 @@
                                       
                                     </div>
 
-                                @elseif($resultados2 == 'Pensador Objetivo')
+                                @elseif($resultados2 == 'Pensador Objetivo' || $resultados2 == 'Objetivo')
 
                                     {{-- <p>Objetivo</p> --}}
                                     <div class="flex justify-center">
@@ -3232,7 +3234,7 @@
                                       
                                     </div>
 
-                                @elseif($resultados2 == 'Practicante')
+                                @elseif($resultados2 == 'Practicante' || $resultados2 == 'Voluntario')
                                  
                                     {{-- <p>Voluntario</p> --}}
                                     <div class="flex justify-center">
