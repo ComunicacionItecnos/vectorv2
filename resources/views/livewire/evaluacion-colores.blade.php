@@ -3499,7 +3499,21 @@
                 </div>
 
                 <div class="flex items-center justify-center mt-4">
-                    <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" 
+
+                    @if($tipoValor != 'resultados')
+
+                    @elseif($tipoValor == 'resultados')
+                        <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" 
+                        wire:click="regresar()">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm.707-10.293a1 1 0 00-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L9.414 11H13a1 1 0 100-2H9.414l1.293-1.293z" clip-rule="evenodd" />
+                            </svg>
+                            Regresar
+                        </button>
+                    @endif
+
+                    <button class="inline-flex ml-4 items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" 
                     onclick="getPDF()">
                         Descargar
 
@@ -3507,6 +3521,7 @@
                             <path fill-rule="evenodd" d="M2 9.5A3.5 3.5 0 005.5 13H9v2.586l-1.293-1.293a1 1 0 00-1.414 1.414l3 3a1 1 0 001.414 0l3-3a1 1 0 00-1.414-1.414L11 15.586V13h2.5a4.5 4.5 0 10-.616-8.958 4.002 4.002 0 10-7.753 1.977A3.5 3.5 0 002 9.5zm9 3.5H9V8a1 1 0 012 0v5z" clip-rule="evenodd" />
                         </svg>
                     </button>
+
                 </div>
             
             @endif
@@ -3563,6 +3578,12 @@
         let ctx = '';
         let currenstep = '';
         let resultados  = [];
+        let tipoValor = '';
+
+        let rojo = '';
+        let amarillo = '';
+        let verde = '';
+        let azul = '';
 
         document.addEventListener('livewire:load', () => {
 
@@ -3571,7 +3592,9 @@
                 currenstep = @this.currentStep;
                 resultados = @this.resultados;
 
-                if( currenstep == 29){
+                tipoValor = @this.tipoValor;
+
+                if( currenstep == 29 && tipoValor != 'resultados'){
 
                     var ctx = document.getElementById("myChart");
                     
@@ -3602,6 +3625,61 @@
                         }
                     });
 
+                }
+                
+                if(tipoValor == 'resultados'){                    
+
+                    resultados.forEach(asignarValores);
+
+                    function asignarValores(item){
+
+                        if(item[0] == 'rojo'){
+                            rojo = item[1];
+                        }
+
+                        if(item[0] == 'amarillo'){
+                            amarillo = item[1];
+                        }
+
+                        if(item[0] == 'verde'){
+                            verde = item[1];
+                        }
+
+                        if(item[0] == 'azul'){
+                            azul = item[1];
+                        }
+
+                    }
+                    
+
+                    var ctx = document.getElementById("myChart");
+                    
+                    var myChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['D','I','S','C'],
+                            datasets: [
+                                { 
+                                    label: 'Segmento',
+                                    borderColor: ['#EF4444','#F59E0B','#10B981','#3B82F6'],
+                                    backgroundColor: ['#DC2626','#FBBF24','#059669','#2563EB'],
+                                    data: [rojo,amarillo,verde,azul]
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            scales: {
+                                y: {
+                                    type: 'linear',
+                                    min: 1,
+                                    max: 8
+                                }
+                                
+                            }
+
+                        }
+                    });
                 }
 
             });

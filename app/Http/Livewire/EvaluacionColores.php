@@ -12,7 +12,7 @@ class EvaluacionColores extends Component
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = /* 28 */ 1;
+    public $currentStep = 1;
 
     public $inicio = false;
     public $instruccion = false;
@@ -145,7 +145,7 @@ class EvaluacionColores extends Component
 
     public $perfil,$descripcion;
 
-    public $pemitirDisc = true,$tipoValor;
+    public $pemitirDisc = true,$tipoValor='';
 
     public $colaborador,$no_colaborador,$nom_colaborador,$foto_colaborador,$mostrarResAnteriores;
 
@@ -195,9 +195,6 @@ class EvaluacionColores extends Component
                         /* Cambio de año para realizarla nuevamente*/
                         if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
                             $this->mostrarResAnteriores = collect($buscarDisc);
-                            
-                            /* dd($buscarDisc,$this->mostrarResAnteriores); */
-                           /*  dd(json_decode($buscarDisc[0]->resultados)); */
 
                             $this->no_colaborador = $this->colaborador[0]->no_colaborador;
 
@@ -236,7 +233,7 @@ class EvaluacionColores extends Component
 
     public function hydrate(){
         /* Buscar en infocolaborador */
-        $this->colaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$this->numero);
+        $this->colaborador =  DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$this->numero);
 
         $this->mostrarResAnteriores = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
     }
@@ -261,8 +258,8 @@ class EvaluacionColores extends Component
             $this->msj = 'Se acabado el tiempo ';
             $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
             $this->btnTexto = 'Cerrar';
-            
-            $this->increaseStep($this->validarItem(29));
+            $this->currentStep = 29;
+            $this->increaseStep();
         }else{
             $this->Contador = $this->finalCount->diffForHumans($this->inicioCount,[
                 'options' =>Carbon::JUST_NOW,
@@ -368,8 +365,7 @@ class EvaluacionColores extends Component
                 $this->resultados = $this->resultadosGenerar(); 
                 $this->resultados3 = $this->ordenarArray($this->resultados);
                 $this->resultados2 = $this->metodosPerfil($this->resultados3);
-                      
-               
+
                 $this->emit('resultadosFinal'); 
 
                 
@@ -383,10 +379,6 @@ class EvaluacionColores extends Component
             $this->resultados3 = $this->ordenarArray($this->resultados);
             $this->resultados2 = $this->metodosPerfil($this->resultados3);
 
-            /* $this->resultados = ['rojo'=> 7,'amarillo'=>4,'verde'=>6,'azul'=>2 ];
-            $this->resultados3 = $this->ordenarArray($this->resultados);
-            $this->resultados2 = 'Escéptico'; */
-            
             $this->emit('resultadosFinal');
             
             $this->guardarResultados();
@@ -980,7 +972,7 @@ class EvaluacionColores extends Component
             if($this->formularioValidado == true){
             
                 DB::insert('insert into disc_resultados_candidatos (curp,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
-            $this->nombre_2,$this->ap_paterno,$this->ap_materno,$resultados3,$resultados2,$fecha]);
+                $this->nombre_2,$this->ap_paterno,$this->ap_materno,$resultados3,$resultados2,$fecha]);
             
             }
 
@@ -1033,16 +1025,8 @@ class EvaluacionColores extends Component
 
     public function verResultados($id){
         
-        
         $buscarDatos = DB::select('SELECT id,no_colaborador,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE id ='.$id.' ORDER BY created_at DESC');
-        /* dd( json_decode($buscarDatos[0]->resultados) ); */
-
-        /* $this->mostrarModal = true;
-        $this->titulomsj = "Ir a currentStep 29";
-        $this->iconomsj = "";
-        $this->msj = "Mostar datos";
-        $this->color = "";
-        $this->btnTexto = "Cerrar"; */
+       
         $this->pemitirDisc = false;
         
         $this->currentStep = 29;
@@ -1051,7 +1035,14 @@ class EvaluacionColores extends Component
         
         $this->resultados2 = $buscarDatos[0]->personalidad;
 
+        $this->tipoValor;
+
         $this->emit('resultadosFinal');
+    }
+
+    public function regresar()
+    {
+        $this->pemitirDisc = true;
     }
 
 }
