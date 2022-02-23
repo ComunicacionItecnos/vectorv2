@@ -296,6 +296,11 @@ $nav_links13 = [
                                 {{ $nav_link['name'] }}
                             </x-jet-nav-link>
                         @endforeach
+                        @foreach ($nav_links13 as $nav_link)
+                                <x-jet-nav-link href="{{ $nav_link['route'] }}" :active="$nav_link['active']">
+                                    {{ $nav_link['name'] }}
+                                </x-jet-nav-link>
+                        @endforeach
                     @endif
 
                     <!-- Servicios -->
