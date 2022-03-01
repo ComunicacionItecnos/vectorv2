@@ -154,9 +154,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboa
 Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
 
 
-Route::get('disc',EvaluacionColores::class);
-
-
 Route::get('factor2',FactorPresentacion::class);
 Route::get('disc/{tipo}/{numero}',EvaluacionColores::class);
 
