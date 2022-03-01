@@ -232,13 +232,18 @@ class EvaluacionColores extends Component
     }
 
     public function hydrate(){
-        if($this->tipoValor = 'colaborador'){
+
+        if($this->tipoValor == 'colaborador' || $this->tipoValor == 'resultados' ){
             /* Buscar en infocolaborador */
             $this->colaborador =  DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$this->numero);
 
             $this->mostrarResAnteriores = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
+        
         }else{
             
+            $this->colaborador = '';
+            $this->mostrarResAnteriores = '';
+
         }
         
     }
