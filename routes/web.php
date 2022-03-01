@@ -13,8 +13,11 @@ use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
 use App\Http\Livewire\ActualizarNuevoIngreso;
 use App\Http\Livewire\EvaluacionDesempeno;
-/* use App\Http\Livewire\EvalucacionDesempenoExcel; */
+use App\Http\Livewire\EvalucacionDesempenoExcel;
 use App\Http\Livewire\EvaluacionColores;
+use App\Http\Livewire\RevisionDoc;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -131,16 +134,29 @@ Route::get('/nuevo-ingreso',NuevoIngreso::class);
 
 Route::get('/actualizar/nuevo-ingreso/{id_ni}',ActualizarNuevoIngreso::class);
 
+Route::middleware(['auth:sanctum', 'verified'])->get('/revision-documentacion', function () {
+    return view('revision-doc');
+})->name('revision-doc');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/uniformes', function () {
     return view('registroTallas');
 })->name('registroTallas');
 
 
 
-Route::get('disc',EvaluacionColores::class);
-
 Route::get('/evaluacionDesempeno/{no_colaborador}',EvaluacionDesempeno::class);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/evaluacionDesempeoDashboard', function () {
     return view('revision-desempeno');
 })->name('revision-desempeno');
+
+/* Borrar despues */
+Route::get('/evaluacionDesempenoExcel',EvalucacionDesempenoExcel::class);
+
+
+
+Route::get('disc/{tipo}/{numero}',EvaluacionColores::class);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/disc-resultados', function () {
+    return view('revision-disc');
+})->name('revision-disc');

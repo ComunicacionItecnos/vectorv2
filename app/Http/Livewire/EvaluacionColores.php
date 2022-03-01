@@ -3,17 +3,18 @@
 namespace App\Http\Livewire;
 
 use Carbon\Carbon;
-use Carbon\CarbonInterface;
 use Livewire\Component;
+use Carbon\CarbonInterface;
+use Illuminate\Support\Facades\DB;
 
 class EvaluacionColores extends Component
 {
     public $fecha;
 
     public $totalSteps = 29;
-    public $currentStep = 28/* 1 */;
+    public $currentStep = 1;
 
-    public $inicio = /* true */ false;
+    public $inicio = false;
     public $instruccion = false;
 
     public $question1   = [0=>'Rápido',1=>'Entusiasta',2=>'Lógico',3=>'Apacible'];
@@ -104,7 +105,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion22_0 = [], $marcadorQuestion22_1 = [], $marcadorQuestion22_2 = [], $marcadorQuestion22_3 = [];
     public $request22 = [];
 
-    public $question23  = [0=>'Sistemático',1=>'Tolerante',2=>'Sociable',3=>'Viguroso'];
+    public $question23  = [0=>'Sistemático',1=>'Tolerante',2=>'Sociable',3=>'Vigoroso'];
     public $marcadorQuestion23_0 = [], $marcadorQuestion23_1 = [], $marcadorQuestion23_2 = [], $marcadorQuestion23_3 = [];
     public $request23 = [];
 
@@ -120,7 +121,7 @@ class EvaluacionColores extends Component
     public $marcadorQuestion26_0 = [], $marcadorQuestion26_1 = [], $marcadorQuestion26_2 = [], $marcadorQuestion26_3 = [];
     public $request26 = [];
 
-    public $question27  = [0=>'Cuidadoso',1=>'Amable',2=>'Inquieto',3=>'Eloquente'];
+    public $question27  = [0=>'Cuidadoso',1=>'Amable',2=>'Inquieto',3=>'Elocuente'];
     public $marcadorQuestion27_0 = [], $marcadorQuestion27_1 = [], $marcadorQuestion27_2 = [], $marcadorQuestion27_3 = [];
     public $request27 = [];
 
@@ -144,10 +145,102 @@ class EvaluacionColores extends Component
 
     public $perfil,$descripcion;
 
-    public function mount()
+    public $pemitirDisc = true,$tipoValor='';
+
+    public $colaborador,$no_colaborador,$nom_colaborador,$foto_colaborador,$mostrarResAnteriores;
+
+    public $personalidad,$resultadosDisc,$created_at;
+
+    public $nombre_1,$nombre_2,$ap_paterno,$ap_materno,$curp, $formularioValidado = false;
+
+    protected $rules = [
+        'curp' => '',
+        'nombre_1' => 'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+        'nombre_2' => 'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+    ];
+
+    public $numero;
+
+    public function mount($tipo,$numero)
     {
+
+        if($tipo != 'colaborador' && $tipo != 'candidato'){
+
+            abort(404);
+
+        }else{
+
+            if($tipo == 'colaborador'){
+
+                $this->numero = $numero;
+                /* Buscar en infocolaborador */
+                $this->colaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$numero);
+                
+                if (empty($this->colaborador)) {
+                    abort(404);
+                }else{
+                    
+                    $buscarDisc = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
+                    
+                    if(empty($buscarDisc)){
+                        $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                        $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                        $this->foto_colaborador= $this->colaborador[0]->foto;
+                        
+                        $this->tipoValor = $tipo;
+                        
+                    }else{
+                        /* Cambio de año para realizarla nuevamente*/
+                        if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
+                            $this->mostrarResAnteriores = collect($buscarDisc);
+
+                            $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                            $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                            $this->foto_colaborador= $this->colaborador[0]->foto;
+
+                            $this->tipoValor = 'resultados';
+                        }else{
+                            
+                            $this->no_colaborador = $this->colaborador[0]->no_colaborador;
+
+                            $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
+                            
+                            $this->foto_colaborador= $this->colaborador[0]->foto;
+
+                            $this->tipoValor = $tipo;
+                        }
+
+                    }   
+                }
+            }elseif($tipo == 'candidato' && $numero == 1){
+    
+                /* Mostrar un formulario para insertar nombre completo y curp */
+                $this->tipoValor = $tipo;
+                
+            }else{
+                abort(404);
+            }
+        }
+
         $this->fecha = Carbon::now();
         $this->fecha = $this->fecha->format('d-m-y');
+
+    }
+
+    public function hydrate(){
+        if($this->tipoValor = 'colaborador'){
+            /* Buscar en infocolaborador */
+            $this->colaborador =  DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$this->numero);
+
+            $this->mostrarResAnteriores = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
+        }else{
+            
+        }
+        
     }
 
     public function render()
@@ -170,8 +263,8 @@ class EvaluacionColores extends Component
             $this->msj = 'Se acabado el tiempo ';
             $this->color = "bg-red-600 text-white hover:bg-red-700 focus:ring-red-500";
             $this->btnTexto = 'Cerrar';
-            
-            $this->increaseStep($this->validarItem(29));
+            $this->currentStep = 29;
+            $this->increaseStep();
         }else{
             $this->Contador = $this->finalCount->diffForHumans($this->inicioCount,[
                 'options' =>Carbon::JUST_NOW,
@@ -275,28 +368,32 @@ class EvaluacionColores extends Component
     
                 
                 $this->resultados = $this->resultadosGenerar(); 
-                $this->resultados2 = $this->metodosPerfil($this->resultados);
-                      
-               
+                $this->resultados3 = $this->ordenarArray($this->resultados);
+                $this->resultados2 = $this->metodosPerfil($this->resultados3);
+
                 $this->emit('resultadosFinal'); 
+
+                
+                $this->guardarResultados();
+                
 
             }
         }elseif($this->currentStep == 29){
 
             $this->resultados = $this->resultadosGenerar(); 
-            $this->resultados2 = $this->metodosPerfil($this->resultados);
-
-            /* $this->resultados = ['rojo'=>$this->segmento(8,'rojo'),'amarillo'=>$this->segmento(-2,'amarillo'),'verde'=>$this->segmento(-6,'verde'),'azul'=>$this->segmento(6,'azul')];
-            
-            $this->resultados3 = $this->ordenarArray($this->resultados); */
-
-            /* $this->resultados2 = 'Promotor'; *//* $this->metodosPerfil( $this->resultados3); */
-            /* dd($this->resultados2); */
+            $this->resultados3 = $this->ordenarArray($this->resultados);
+            $this->resultados2 = $this->metodosPerfil($this->resultados3);
 
             $this->emit('resultadosFinal');
             
+            $this->guardarResultados();
         }
         
+    }
+
+    public function ocultarBienvenida(){
+        $this->pemitirDisc = false;
+        $this->inicio = true;
     }
 
     public function ocultarInicio(){
@@ -773,22 +870,23 @@ class EvaluacionColores extends Component
         
         }elseif( ($valor[0][1] == $valor[1][1]) && ($valor[0][1] == $valor[2][1]) && ($valor[1][1] == $valor[2][1]) )
         {
-            
-            if ($valor[3][0] == 'amarillo' && $valor[3][1] <= 4) {
-                return 'Investigador';
-            }elseif($valor[3][0] == 'rojo' && $valor[3][1] <= 4){
+            if ($valor[3][0] == 'rojo' && $valor[3][1] <= 4) {
                 return 'Practicante';
-            }elseif($valor[3][0] == 'verde' && $valor[3][1] < 4){
-                return 'Tasador';
+            }elseif ($valor[3][0] == 'amarillo' && $valor[3][1] <= 4) {
+                return 'Investigador';
+            }elseif ($valor[3][0] == 'verde' && $valor[3][1] <= 4) {
+                return 'Impaciente';
+            }elseif ($valor[3][0] == 'azul' && $valor[3][1] <= 4) {
+                return 'Independiente';
             }
 
         }else{
             
             if($valor[0][0] == 'rojo'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Desarrollador';
-                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
 
                     if ($valor[1][1] == $valor[0][1]-1) {
                         return 'Inspiracional';
@@ -796,50 +894,160 @@ class EvaluacionColores extends Component
                         return 'Orientado a resultados';
                     }
                     
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Creativo';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Maratonero';
                 }
 
             }elseif($valor[0][0] == 'amarillo'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Promotor';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Consejero';
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Tasador';
-                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Persuasivo';
                 }
 
             }elseif($valor[0][0] == 'verde'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Especialista';
-                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Agente';
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Investigador';
-                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Triunfador';
                 }
 
             }elseif($valor[0][0] == 'azul'){
 
-                if($valor[0][1] > 4 && ($valor[1][1] <= 4 && $valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Pensador Objetivo';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= 4 && $valor[3][1] <=4) ){                    
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
                     return 'Perfeccionista';
-                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= 4 && $valor[3][1] <= 4) ){
+                }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Practicante';
+                }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1])){
+                    return 'Escéptico';
                 }
 
             }
 
         }
 
+    }
+
+
+    public function guardarResultados(){
+
+        $resultados3 = json_encode($this->resultados3);
+
+        $resultados2 = $this->resultados2;
+        
+        $fecha = Carbon::now()->toDateTimeString();
+
+        if($resultados2 == 'Desarrollador'){
+            $resultados2 = 'Dictador';
+        }elseif($resultados2 == 'Orientado a resultados'){
+            $resultados2 = 'Pragmático';
+        }elseif($resultados2 == 'Creativo'){
+            $resultados2 = 'Arquitecto';
+        }elseif($resultados2 == 'Persuasivo'){
+            $resultados2 = 'Protagonista';
+        }elseif($resultados2 == 'Tasador'){
+            $resultados2 = 'Estimador';
+        }elseif($resultados2 == 'Pensador Objetivo'){
+            $resultados2 = 'Objetivo';
+        }elseif($resultados2 == 'Practicante'){
+            $resultados2 = 'Voluntario';
+        }
+
+        if($this->tipoValor == 'colaborador'){
+            
+            DB::insert('insert into disc_resultados_colaborador (no_colaborador,resultados,personalidad,created_at) values (?,?,?,?) ',[$this->no_colaborador,
+            $resultados3,$resultados2,$fecha]);
+
+        }else{
+
+            if($this->formularioValidado == true){
+            
+                DB::insert('insert into disc_resultados_candidatos (curp,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
+                $this->nombre_2,$this->ap_paterno,$this->ap_materno,$resultados3,$resultados2,$fecha]);
+            
+            }
+
+        }
+
+    }
+
+
+    public function submit(){
+
+        $this->validate(
+            [
+                'curp' =>'required|regex:/^([a-zA-Z0-9]+)$/|min:18|max:18',
+                'nombre_1'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'nombre_2'=>'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'ap_paterno'=>'required|regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/',
+                'ap_materno'=>'regex:/^([a-zA-ZùÙüÜäàáëèéïìíöòóüùúÄÀÁËÈÉÏÌÍÖÒÓÜÚñÑ\s]+)$/'
+            ],
+            [
+                'curp.required'=>'Este campo no puede permanecer vacío',
+                'curp.regex'=>'Solo puede contener letras y números',
+                'curp.min'=>'Debe contener mínimo 18 caracteres',
+                'curp.max'=>'Debe contener maximo 18 caracteres',
+
+                'nombre_1.required'=>'Este campo no puede permanecer vacío',
+                'nombre_1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
+                'nombre_2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+
+                'ap_paterno.required'=>'Este campo no puede permanecer vacío',
+                'ap_paterno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+                
+                'ap_materno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
+            ],
+        );
+
+        $curpRegistrada = DB::table('disc_resultados_candidatos')->where('curp','=',$this->curp)->get();
+
+        if( count($curpRegistrada) == 0 ){
+            $this->formularioValidado = true;
+            $this->pemitirDisc = false;
+            $this->inicio = true;
+        }else{
+            $this->tipoValor = 'negado';
+        }
+
+        
+
+    }
+
+    public function verResultados($id){
+        
+        $buscarDatos = DB::select('SELECT id,no_colaborador,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE id ='.$id.' ORDER BY created_at DESC');
+       
+        $this->pemitirDisc = false;
+        
+        $this->currentStep = 29;
+
+        $this->resultados = json_decode($buscarDatos[0]->resultados);
+        
+        $this->resultados2 = $buscarDatos[0]->personalidad;
+
+        $this->tipoValor;
+
+        $this->emit('resultadosFinal');
+    }
+
+    public function regresar()
+    {
+        $this->pemitirDisc = true;
     }
 
 }
