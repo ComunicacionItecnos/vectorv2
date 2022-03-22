@@ -53,7 +53,7 @@ class EvaluacionDesempeno extends Component
             
             /* Evaluacion */
             if ($this->no_colaborador == 113960 ) {
-                $EvaluacionValor = 70.0;
+                $EvaluacionValor = 72.0;
             }elseif($this->no_colaborador == 131901){
                 $EvaluacionValor = 67.0;
             }elseif($this->no_colaborador == 116180){
