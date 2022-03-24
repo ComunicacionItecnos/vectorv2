@@ -124,7 +124,7 @@ class EvaluacionDesempeno extends Component
             
             /* Evaluacion */
             if ($this->no_colaborador == 6) {
-                $this->evaluacionForm = 90;
+                $this->evaluacionForm = 80;
                 $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
             }elseif($this->no_colaborador == 2){
                 $this->evaluacionForm = 95;
