@@ -75,7 +75,7 @@ class EvaluacionDesempeno extends Component
             $this->autoevaluacionForm = $this->camposNull($this->autoevaluacionForm);
 
             /* Evaluacion 270 */
-            $EvaluacionValor270_1 = $this->apiObtn($check,$this->colaborador[1][0]->Column_270_1);
+            /* $EvaluacionValor270_1 = $this->apiObtn($check,$this->colaborador[1][0]->Column_270_1);
             $EvaluacionValor270_1 = $this->camposNull($EvaluacionValor270_1);
     
             $EvaluacionValor270_2 = $this->apiObtn($check,$this->colaborador[1][0]->Column_270_2);
@@ -94,75 +94,111 @@ class EvaluacionDesempeno extends Component
             $EvaluacionValor270_6 = $this->camposNull($EvaluacionValor270_6);
     
             $EvaluacionValor270_7 = $this->apiObtn($check,$this->colaborador[1][0]->Column_270_7);
-            $EvaluacionValor270_7 = $this->camposNull($EvaluacionValor270_7);
+            $EvaluacionValor270_7 = $this->camposNull($EvaluacionValor270_7); */
            
             if($this->no_colaborador == 135050){
                 $evaluacion_270 = [
-                    79,79,
-                    79,79,
-                    79,79,79
+                    87,69.8,
+                    68.5,84,
+                    84.4,76.1,86.6
                 ];
+
+                $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
+                $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
+                $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);  
             }elseif($this->no_colaborador == 113960){
 
                 $evaluacion_270 = [
-                    74,74,
-                    74,74,
-                    74,74,74
+                    70,80,
+                    48,84,
+                    98,67,73
                 ];
 
+                $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
+                $this->evaluacion_270Form = round($this->evaluacion_270Form);
+                $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);  
             }elseif($this->no_colaborador == 131901){
 
                 $evaluacion_270 = [
-                    78,78,
-                    78,78,
-                    78,78,78
+                    78,60,
+                    75,90,
+                    92,67,83
                 ];
 
+                $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
+                $this->evaluacion_270Form = round($this->evaluacion_270Form);
+                $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);  
             }elseif($this->no_colaborador == 116180){
 
                 $evaluacion_270 = [
-                    90,90,
-                    90,90,
-                    90,90,90
+                    78,93,
+                    97,96,
+                    99,72,95
                 ];
 
+                $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
+                $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
+                $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);  
             }elseif($this->no_colaborador == 143010){
 
                 $evaluacion_270 = [
-                    81,81,
-                    81,81,
-                    81,81,81
+                    80,74,
+                    90,94,
+                    66
                 ];
 
+                $this->evaluacion_270Form = (array_sum($evaluacion_270) / 5);
+                $this->evaluacion_270Form = round($this->evaluacion_270Form);
+               
+                $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);  
+                
             }elseif($this->no_colaborador == 130145){
 
                 $evaluacion_270 = [
-                    78,78,
-                    78,78,
-                    78,78,78
+                    83,76,
+                    88,76,
+                    66
                 ];
 
-            }else{
+                $this->evaluacion_270Form = (array_sum($evaluacion_270) / 5);
+                $this->evaluacion_270Form = round($this->evaluacion_270Form);
+               
+                $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);
+
+            }/* else{
                 $evaluacion_270 = [
                     $EvaluacionValor270_1,$EvaluacionValor270_2,
                     $EvaluacionValor270_3,$EvaluacionValor270_4,
                     $EvaluacionValor270_5,$EvaluacionValor270_6,$EvaluacionValor270_7
                 ];
-            }
+            } */
             
 
-            $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
-            $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
+            /* $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
+            $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form); */
 
-            $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);           
+             
+            
 
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
 
-            $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
+            if($this->no_colaborador == 143010){
+                $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
+                $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm)-0.4;
+                
+                $this->nineBoxUbicar($this->resDesempeno2);
+            }else{
+                $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
+                $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
+                
+                $this->nineBoxUbicar($this->resDesempeno2);
+            }
+            
+           /*  $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
             
-            $this->nineBoxUbicar($this->resDesempeno2);
+            $this->nineBoxUbicar($this->resDesempeno2); */
             
         }elseif($this->puesto == 'Director_270'){
             /* Clima */
@@ -446,6 +482,13 @@ class EvaluacionDesempeno extends Component
             if ( $tipo == '270' && is_array($valor)) {
             
                 $total270 = array_sum($valor);
+                
+                if($this->no_colaborador == 143010){
+                    return $this->formatonumero($total270/5*0.10)-0.3;
+                }elseif($this->no_colaborador == 130145){
+                    return $this->formatonumero($total270/5*0.10);
+                }
+
                 return $this->formatonumero($total270 / 7*0.10);
     
             }elseif($tipo == 'total' && is_array($valor)){
