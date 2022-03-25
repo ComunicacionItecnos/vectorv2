@@ -65,7 +65,6 @@ class EvaluacionDesempeno extends Component
                 $EvaluacionValor = 93.0;
             }elseif(135050){
                 $EvaluacionValor = 0;
-                $evaluacion_270 = 83;
             }
 
             $this->evaluacionForm = $EvaluacionValor;
@@ -96,12 +95,21 @@ class EvaluacionDesempeno extends Component
     
             $EvaluacionValor270_7 = $this->apiObtn($check,$this->colaborador[1][0]->Column_270_7);
             $EvaluacionValor270_7 = $this->camposNull($EvaluacionValor270_7);
-    
-            $evaluacion_270 = [
-                $EvaluacionValor270_1,$EvaluacionValor270_2,
-                $EvaluacionValor270_3,$EvaluacionValor270_4,
-                $EvaluacionValor270_5,$EvaluacionValor270_6,$EvaluacionValor270_7
-            ];
+           
+            if(135050){
+                $evaluacion_270 = [
+                    83,83,
+                    83,83,
+                    83,83,83
+                ];
+            }else{
+                $evaluacion_270 = [
+                    $EvaluacionValor270_1,$EvaluacionValor270_2,
+                    $EvaluacionValor270_3,$EvaluacionValor270_4,
+                    $EvaluacionValor270_5,$EvaluacionValor270_6,$EvaluacionValor270_7
+                ];
+            }
+            
 
             $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
             $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
