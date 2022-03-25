@@ -102,8 +102,17 @@ class EvaluacionDesempeno extends Component
             $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
             $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
 
+            if(135050){
+                $this->climaValor = 75;
+                $EvaluacionValor = 0;
+                $evaluacion_270 = 83;
+
+            }
+
             $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);
     
+           
+
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
 
