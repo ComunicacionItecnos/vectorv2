@@ -36,6 +36,7 @@ class EvaluacionDesempeno extends Component
         }
        
         $this->puesto = $this->colaborador[1][0]->tipo;
+        
 
         /* Clima Laboral - General */
         $clima = $this->camposNull($this->colaborador[1][0]->climaLaboral);
@@ -62,6 +63,9 @@ class EvaluacionDesempeno extends Component
                 $EvaluacionValor = 93.5;
             }elseif($this->no_colaborador == 130145){
                 $EvaluacionValor = 93.0;
+            }elseif(135050){
+                $EvaluacionValor = 0;
+                $evaluacion_270 = 83;
             }
 
             $this->evaluacionForm = $EvaluacionValor;
@@ -102,16 +106,7 @@ class EvaluacionDesempeno extends Component
             $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
             $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
 
-            if(135050){
-                $this->climaValor = 75;
-                $EvaluacionValor = 0;
-                $evaluacion_270 = 83;
-
-            }
-
-            $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);
-    
-           
+            $this->valor270 = $this->calcularPorcentaje('270',$evaluacion_270,$this->puesto);           
 
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor, $this->valor270];
