@@ -54,13 +54,13 @@ class EvaluacionDesempeno extends Component
             
             /* Evaluacion */
             if ($this->no_colaborador == 113960 ) {
-                $EvaluacionValor = 72.0;
+                $EvaluacionValor = 70.0;
             }elseif($this->no_colaborador == 131901){
                 $EvaluacionValor = 67.0;
             }elseif($this->no_colaborador == 116180){
-                $EvaluacionValor = 94.5;
+                $EvaluacionValor = 95;
             }elseif($this->no_colaborador == 143010){
-                $EvaluacionValor = 93.5;
+                $EvaluacionValor = 94;
             }elseif($this->no_colaborador == 130145){
                 $EvaluacionValor = 93.0;
             }elseif(135050){
@@ -96,12 +96,52 @@ class EvaluacionDesempeno extends Component
             $EvaluacionValor270_7 = $this->apiObtn($check,$this->colaborador[1][0]->Column_270_7);
             $EvaluacionValor270_7 = $this->camposNull($EvaluacionValor270_7);
            
-            if(135050){
+            if($this->no_colaborador == 135050){
                 $evaluacion_270 = [
-                    83,83,
-                    83,83,
-                    83,83,83
+                    79,79,
+                    79,79,
+                    79,79,79
                 ];
+            }elseif($this->no_colaborador == 113960){
+
+                $evaluacion_270 = [
+                    74,74,
+                    74,74,
+                    74,74,74
+                ];
+
+            }elseif($this->no_colaborador == 131901){
+
+                $evaluacion_270 = [
+                    78,78,
+                    78,78,
+                    78,78,78
+                ];
+
+            }elseif($this->no_colaborador == 116180){
+
+                $evaluacion_270 = [
+                    90,90,
+                    90,90,
+                    90,90,90
+                ];
+
+            }elseif($this->no_colaborador == 143010){
+
+                $evaluacion_270 = [
+                    81,81,
+                    81,81,
+                    81,81,81
+                ];
+
+            }elseif($this->no_colaborador == 130145){
+
+                $evaluacion_270 = [
+                    78,78,
+                    78,78,
+                    78,78,78
+                ];
+
             }else{
                 $evaluacion_270 = [
                     $EvaluacionValor270_1,$EvaluacionValor270_2,
@@ -171,11 +211,32 @@ class EvaluacionDesempeno extends Component
             $EvaluacionValor270_7 = $this->apiObtn($check,$this->colaborador[1][0]->Column_270_7);
             $EvaluacionValor270_7 = $this->camposNull($EvaluacionValor270_7);
     
-            $evaluacion_270 = [
-                $EvaluacionValor270_1,$EvaluacionValor270_2,
-                $EvaluacionValor270_3,$EvaluacionValor270_4,
-                $EvaluacionValor270_5,$EvaluacionValor270_6,$EvaluacionValor270_7
-            ];
+            if($this->no_colaborador == 6){
+                $evaluacion_270 = [
+                    73,73,
+                    73,73,
+                    73,73,73
+                ];
+            }elseif($this->no_colaborador == 13){
+                $evaluacion_270 = [
+                    88,88,
+                    88,88,
+                    88,88,88
+                ];
+            }elseif($this->no_colaborador == 2){
+                $evaluacion_270 = [
+                    73,73,
+                    73,73,
+                    73,73,73
+                ];
+            }else{
+
+                $evaluacion_270 = [
+                    $EvaluacionValor270_1,$EvaluacionValor270_2,
+                    $EvaluacionValor270_3,$EvaluacionValor270_4,
+                    $EvaluacionValor270_5,$EvaluacionValor270_6,$EvaluacionValor270_7
+                ];
+            }
 
             $this->evaluacion_270Form = (array_sum($evaluacion_270) / 7);
             $this->evaluacion_270Form = $this->formatonumero($this->evaluacion_270Form);
