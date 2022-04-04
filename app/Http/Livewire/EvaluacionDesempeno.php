@@ -54,7 +54,7 @@ class EvaluacionDesempeno extends Component
             
             /* Evaluacion */
             if ($this->no_colaborador == 113960 ) {
-                $EvaluacionValor = 70.0;
+                $EvaluacionValor = 87.0;
             }elseif($this->no_colaborador == 131901){
                 $EvaluacionValor = 67.0;
             }elseif($this->no_colaborador == 116180){
@@ -212,7 +212,7 @@ class EvaluacionDesempeno extends Component
             
             /* Evaluacion */
             if ($this->no_colaborador == 6) {
-                $this->evaluacionForm = 80;
+                $this->evaluacionForm = 86;
                 $this->evaluacionValor = $this->calcularPorcentaje('evaluacion',$this->evaluacionForm,$this->puesto);
             }elseif($this->no_colaborador == 2){
                 $this->evaluacionForm = 95;
@@ -282,8 +282,14 @@ class EvaluacionDesempeno extends Component
             /* Suma de las todas las calificaciones y mostrar resultado */
             $total = [$this->climaValor, $this->resFinanciero, $this->evaluacionValor,$this->valor270];
             
+            
+
             $this->resDesempeno = $this->calcularPorcentaje('total',$total,$this->puesto);
             $this->resDesempeno2 = $this->nineBox2($this->evaluacionForm,$this->evaluacion_270Form,$this->climaForm);
+
+            if($this->no_colaborador == 6){
+                $this->resDesempeno = round($this->resDesempeno);                
+            }
 
             $this->nineBoxUbicar($this->resDesempeno2);
     
