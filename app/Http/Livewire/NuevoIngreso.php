@@ -147,7 +147,7 @@ class NuevoIngreso extends Component
     {
         /* Buscar curp para seguir con el proceso */
         $curpvalidar = Nuevo_ingreso::where('curp', $this->curp)->get();
-        
+
         if ( sizeof($curpvalidar) === 0 ) {
             $this->resetErrorBag();
             $this->validateData();
@@ -209,18 +209,18 @@ class NuevoIngreso extends Component
                     [
                         'nombre_1.required'=>'Este campo no puede permanecer vacío',
                         'nombre_1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-    
+
                         'ap_paterno.required'=>'Este campo no puede permanecer vacío',
                         'ap_paterno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-                        
+
                         'ap_materno.required'=>'Este campo no puede permanecer vacío',
                         'ap_materno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-                        
+
                         'fecha_nacimiento.required'=>'Este campo no puede permanecer vacío',
                         'genero_id.required'=>'Esta opción no puede permanecer vacía',
                         'nacionalidad_id.required'=>'Esta opción no puede permanecer vacía'
                     ],
-    
+
                 );
             } else {
                 $this->validate(
@@ -238,21 +238,21 @@ class NuevoIngreso extends Component
                         'nombre_1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
 
                         'nombre_2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-    
+
                         'ap_paterno.required'=>'Este campo no puede permanecer vacío',
                         'ap_paterno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-                        
+
                         'ap_materno.required'=>'Este campo no puede permanecer vacío',
                         'ap_materno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-                        
+
                         'fecha_nacimiento.required'=>'Este campo no puede permanecer vacío',
                         'genero_id'=>'Esta opción no puede permanecer vacía',
                         'nacionalidad_id.required'=>'Esta opción no puede permanecer vacía'
                     ],
-    
+
                 );
             }
-            
+
         }elseif($this->currentStep === 4){
             $this->validate(
                 [
@@ -269,7 +269,7 @@ class NuevoIngreso extends Component
                     'actaNacimiento.required'=>'Debes seleccionar un archivo',
                     'actaNacimiento.mimes'=>'Debe ser un archivo con formato: pdf',
                 ],
-                
+
             );
         }elseif($this->currentStep === 5){
             $this->validate(
@@ -289,7 +289,7 @@ class NuevoIngreso extends Component
 
                     'rfcDoc.required'=>'Debes seleccionar un archivo',
                     'rfDoc.mimes'=>'Debe ser un archivo con formato: pdf',
-                    
+
                     'no_seguro_social.required'=>'Este campo no puede permanecer vacío',
                     'no_seguro_social.regex'=>'Solo puede contener números',
                     'no_seguro_social.min'=>'Debe contener mínimo 11 caracteres',
@@ -303,7 +303,7 @@ class NuevoIngreso extends Component
                     'credencialIFE.mimes'=>'Debe ser un archivo con formato: pdf'
                 ],
             );
-            
+
         }elseif($this->currentStep === 6){
             $this->validate(
                 [
@@ -316,7 +316,7 @@ class NuevoIngreso extends Component
                     'tallaPlayera.required'=>'Esta opción no puede permanecer vacía',
                     'tallazapatos.required'=>'Esta opción no puede permanecer vacía',
                 ],
-                
+
             );
         }elseif($this->currentStep === 7){
 
@@ -333,7 +333,7 @@ class NuevoIngreso extends Component
                 [
                     'domicilio.required'=>'Este campo no puede permanecer vacío',
                     'domicilio.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-    
+
                     'colonia.required'=>'Este campo no puede permanecer vacío',
                     'colonia.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
 
@@ -346,11 +346,11 @@ class NuevoIngreso extends Component
 
                     'pais.required'=>'Este cmapo no puede permanecer vacio',
                     'estado.required'=>'Este campo no puede permanecer vacío',
-                    
+
                     'comprobranteDomicilio.required'=>'Debes seleccionar un archivo',
                     'comprobranteDomicilio.mimes'=>'Debe ser un archivo con formato: pdf'
                 ],
-                
+
             );
         }elseif($this->currentStep === 8){
             $this->validate(
@@ -364,7 +364,7 @@ class NuevoIngreso extends Component
                     'tel_fijo.regex'=>'Solo puede contener números',
                     'tel_fijo.min'=>'Debe contener mínimo 10 números',
                     'tel_fijo.max'=>'Debe contener maximo 10 números',
-                    
+
                     'tel_movil.required'=>'Este campo no puede permanecer vacío',
                     'tel_movil.regex'=>'Solo puede contener números',
                     'tel_movil.min'=>'Debe contener mínimo 10 números',
@@ -373,7 +373,7 @@ class NuevoIngreso extends Component
                     'correo.required'=>'Este campo no puede permanecer vacío',
                     'correo.regex'=>'No es un email valido',
                 ],
-                
+
             );
         }elseif($this->currentStep === 9){
             $this->validate(
@@ -391,7 +391,7 @@ class NuevoIngreso extends Component
                 [
                     'nombreEmergencia1.required'=>'Este campo no puede permanecer vacío',
                     'nombreEmergencia1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-                    
+
                     'parentescoEmergencia1.required'=>'Este campo no puede permanecer vacío',
                     'parentescoEmergencia1.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
 
@@ -405,7 +405,7 @@ class NuevoIngreso extends Component
 
                     'nombreEmergencia2.required'=>'Este campo no puede permanecer vacío',
                     'nombreEmergencia2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-                    
+
                     'parentescoEmergencia2.required'=>'Este campo no puede permanecer vacío',
                     'parentescoEmergencia2.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
 
@@ -432,7 +432,7 @@ class NuevoIngreso extends Component
 
                         'constanciaEstudios.required'=>'Debes seleccionar un archivo',
                         'constanciaEstudios.mimes'=>'Debe ser un archivo con formato: pdf',
-                        
+
                         'especialidadEstudios.required'=>'Este campo no puede permanecer vacío',
                         'especialidadEstudios.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ'
                     ],
@@ -449,12 +449,12 @@ class NuevoIngreso extends Component
                         'constanciaEstudios.required'=>'Debes seleccionar un archivo',
                         'constanciaEstudios.mimes'=>'Debe ser un archivo con formato: pdf'
                     ],
-                    
+
                 );
             }
-            
+
         }
-        
+
     }
 
     public function registro()
@@ -493,14 +493,14 @@ class NuevoIngreso extends Component
             DB::transaction(function () {
                 /* Archivos */
                 $this->curp = strtoupper( $this->curp );
-                    
+
                 /* Asignando las carpetas donde se guardaran los docuemntos del registro */
                 $this->curpDoc = $this->curpDoc->storeAs('public/nuevoIngreso/'.$this->curp,'01.-CURP.pdf');
                 $this->actaNacimiento = $this->actaNacimiento->storeAs('public/nuevoIngreso/'.$this->curp,'02.-actaDeNacimiento.pdf');
                 $this->constanciaEstudios = $this->constanciaEstudios->storeAs('public/nuevoIngreso/'.$this->curp,'03.-constanciaDeEstudios.pdf');
 
                 if (empty( $this->actaMatrimonio) ) {
-                        $this->actaMatrimonio = NULL;            
+                        $this->actaMatrimonio = NULL;
                 }else{
                         $this->actaMatrimonio = $this->actaMatrimonio->storeAs('public/nuevoIngreso/'.$this->curp,'04.-actaDeMatrimonio.pdf');
                 }
@@ -512,20 +512,20 @@ class NuevoIngreso extends Component
                 if ($this->actasHijo == []) {
                         $rutaActaHijo = NULL;
                 }else{
-                        for ($i=0; $i < count($this->actasHijo) ; $i++) { 
+                        for ($i=0; $i < count($this->actasHijo) ; $i++) {
                             $rutaActasHijos2 = $this->actasHijo[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/08.-actasHijos','actaDeHijo'.$i.'.pdf');
                             /* $rutaActaHijo = array(); */
                             $rutaActaHijo[] = $rutaActasHijos2;
                         }
                 }
-                    
+
                 if ($this->cartasRecomendacion == []) {
                         $rutaRecomendacion = NULL;
                 }else{
-                        for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) { 
+                        for ($i=0; $i < count($this->cartasRecomendacion) ; $i++) {
                             $rutaRecomendacion2 = $this->cartasRecomendacion[$i]->storeAs('public/nuevoIngreso/'.$this->curp.'/09.-cartasRecomendacion','cartaDeRecomendacion'.$i.'.pdf');
                             /* $rutaRecomendacion = array(); */
-                            $rutaRecomendacion[] = $rutaRecomendacion2; 
+                            $rutaRecomendacion[] = $rutaRecomendacion2;
                         }
                 }
 
@@ -534,15 +534,15 @@ class NuevoIngreso extends Component
                 } else {
                         $this->cartillaMilitar = NULL;
                 }
-                    
+
                 if ($this->cartaNoPenales != '') {
                         $this->cartaNoPenales = $this->cartaNoPenales->storeAs('public/nuevoIngreso/'.$this->curp,'11.-cartaDeAntecedentesNoPenales.pdf');
                 }else{
                         $this->cartaNoPenales = NULL;
                 }
-                    
+
                 $this->credencialIFE = $this->credencialIFE->storeAs('public/nuevoIngreso/'.$this->curp,'12.-credencialIFE.pdf');
-                    
+
                 if ($this->buroCredito != '') {
                         $this->buroCredito = $this->buroCredito->storeAs('public/nuevoIngreso/'.$this->curp,'13.-buroDeCredito.pdf');
                 } else {
@@ -551,7 +551,7 @@ class NuevoIngreso extends Component
 
                 $this->foto = $this->foto->storeAs('public/nuevoIngreso/'.$this->curp,'14.-foto.'.$this->foto->extension());
                 $this->cvOsolicitudEmpleo = $this->cvOsolicitudEmpleo->storeAs('public/nuevoIngreso/'.$this->curp,'15.-cvOsolicitudDeEmpleo.pdf');
-                    
+
                 /* Insercion */
                 $nuevo_ingreso = Nuevo_ingreso::create([
                         'curp'=>$this->curp,
@@ -587,7 +587,7 @@ class NuevoIngreso extends Component
                         'cartaNoPenales'=>$this->cartaNoPenales,
                         'credencialIFE'=>$this->credencialIFE,
                         'buroCredito'=>$this->buroCredito,
-                        'foto'=>$this->foto,       
+                        'foto'=>$this->foto,
                         'correo'=>$this->correo,
                         'tel_fijo'=>$this->tel_fijo,
                         'tel_movil'=>$this->tel_movil,
@@ -598,7 +598,7 @@ class NuevoIngreso extends Component
                         'numExt'=>$this->numeroExterior,
                         'numInt'=>$this->numeroInterior
                 ]);
-        
+
                 DB::table('contactos_emergencia_nuevos')->insert([
                         [
                             'id_nuevoIngreso'=>$nuevo_ingreso->id,
@@ -628,7 +628,7 @@ class NuevoIngreso extends Component
                         'nuevo_ingreso_id'=>$nuevo_ingreso->id
                     ]);
                 }
-                
+
 
             });
 
@@ -654,8 +654,8 @@ class NuevoIngreso extends Component
                     'showCancelButton' =>  false,
                     'showConfirmButton' =>  false,
             ]);
-        }  
-        
+        }
+
     }
 
     public function abrirModal()

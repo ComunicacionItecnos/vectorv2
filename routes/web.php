@@ -12,6 +12,7 @@ use App\Http\Livewire\RegistroColaboradorEstacionamiento;
 use App\Http\Livewire\UtilesEscolares;
 use App\Http\Livewire\NuevoIngreso;
 use App\Http\Livewire\ActualizarNuevoIngreso;
+use App\Http\Livewire\DiaNinoRegistro;
 use App\Http\Livewire\EvaluacionDesempeno;
 use App\Http\Livewire\EvalucacionDesempenoExcel;
 use App\Http\Livewire\EvaluacionColores;
@@ -160,3 +161,5 @@ Route::get('disc/{tipo}/{numero}',EvaluacionColores::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/disc-resultados', function () {
     return view('revision-disc');
 })->name('revision-disc');
+
+Route::get('dia-nino/{no_colaborador}',DiaNinoRegistro::class);
