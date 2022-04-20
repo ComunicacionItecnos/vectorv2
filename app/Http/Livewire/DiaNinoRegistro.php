@@ -6,11 +6,11 @@ use Carbon\Carbon;
 use Livewire\Component;
 use App\Models\Colaborador;
 use Illuminate\Support\Facades\DB;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
+/* use Jantinnerezo\LivewireAlert\LivewireAlert; */
 
 class DiaNinoRegistro extends Component
 {
-    use LivewireAlert;
+    /* use LivewireAlert; */
 
     public $colaborador,$no_colaborador,$dianinoRegistro;
     public $no_kids,$conteoRegistros,$kidsValor1,$kidsValor2,$kidsValor3,$kidsValor4,$kidsValor5;
