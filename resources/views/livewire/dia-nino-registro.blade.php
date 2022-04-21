@@ -1,6 +1,9 @@
 <div class="sm:p-8 p-2 mx-auto bg-gray-100">
     <header class="bg-white rounded-md shadow">
         <div class="px-4 py-6 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="flex items-center justify-center">
+                <img src="{{asset('images/diaNino/regalo.png')}}" class="w-40 h-full">
+            </div>
             <h2 class="text-xl text-center font-semibold leading-tight text-red-700 uppercase">
                 día del niño
             </h2>
@@ -81,8 +84,7 @@
                                     <br>
                                     <p>
                                       Nota:
-                                        Si tienes más de un mes ó menos de 1 año de antiguedad deberás traer el acta de
-                                        nacimiento de cada niño que registraste.
+                                        Deberás traer el acta de nacimiento de cada niño que registraste.
                                     </p>
                                 </p>
                             </div>

@@ -65,7 +65,7 @@ class DiaNinoRegistro extends Component
     public function revisarCupo()
     {
         $conteo = DB::table('dianinoregistro')->get()->count();
-        ($conteo == 600) ? $this->banderaCupo = true : $this->banderaCupo = false;
+        ($conteo == 550) ? $this->banderaCupo = true : $this->banderaCupo = false;
     }
 
     public function setNull()
