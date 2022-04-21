@@ -60,13 +60,13 @@
                             <div class="mt-4 ml-3">
                                 <p class="text-center text-xl font-medium text-gray-700">
                                     <p>
-                                        Usa el selector para elegir el número de niños
-                                        que deseas registrar para el regalo del día de niño, en seguida tendrás que
-                                        seleccionar la edad.
+                                        Usa el selector para elegir el número de hijos
+                                        que deseas registrar para obtener el regalo del Día del Niño. Además,
+                                        deberas seleccionar su edad.
                                     </p>
                                     <br>
                                     <p>
-                                        Al final toca el botón verde que dice: "Registrar" para almacenar los datos.
+                                        Al final, presiona el botón de "Registrar", para almacenar tus datos.
                                     </p>
                                     <br>
                                     <p class="text-red-500">
@@ -81,7 +81,7 @@
                                     <br>
                                     <p>
                                       Nota:
-                                        Si tienes más de un mes ó menos de 1 año de antiguedad deberas traer la acta de
+                                        Si tienes más de un mes ó menos de 1 año de antiguedad deberás traer el acta de
                                         nacimiento de cada niño que registraste.
                                     </p>
                                 </p>
