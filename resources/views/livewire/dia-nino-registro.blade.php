@@ -26,7 +26,12 @@
                                     <p>
                                         Niño {{$i+1}}
 
-                                        Edad {{$dianinoRegistro[$i]->edadHijo}}
+                                        @if ($dianinoRegistro[$i]->edadHijo == 1)
+                                            Edad {{$dianinoRegistro[$i]->edadHijo}} año
+                                        @else
+                                            Edad {{$dianinoRegistro[$i]->edadHijo}} años
+                                        @endif
+
                                     </p>
                                 @endfor
                             </p>
@@ -73,7 +78,7 @@
                                     </p>
                                     <br>
                                     <p class="text-red-500">
-                                        Puedes registrar un máximo de 5 niños.
+                                        Puedes registrar un máximo de 3 niños.
                                     </p>
                                     <br>
                                     <p>
@@ -84,7 +89,10 @@
                                     <br>
                                     <p>
                                       Nota:
-                                        Deberás traer el acta de nacimiento de cada niño que registraste.
+                                        <br>
+                                        •Deberás traer el acta de nacimiento de cada niño que registraste.
+                                        <br>
+                                        •Edad maxima 12 años.
                                     </p>
                                 </p>
                             </div>
@@ -110,8 +118,6 @@
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
                                 </select>
                                 @error('no_kids')
                                     <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -128,15 +134,19 @@
                                     <select name="kidsValor1" id="kidsValor1" wire:model="kidsValor1"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
+                                        <option value="0">0 años</option>
+                                        <option value="1">1 año</option>
+                                        <option value="2">2 años</option>
+                                        <option value="3">3 años</option>
+                                        <option value="4">4 años</option>
+                                        <option value="5">5 años</option>
+                                        <option value="6">6 años</option>
+                                        <option value="7">7 años</option>
+                                        <option value="8">8 años</option>
+                                        <option value="9">9 años</option>
+                                        <option value="10">10 años</option>
+                                        <option value="11">11 años</option>
+                                        <option value="12">12 años</option>
                                     </select>
                                     @error('kidsValor1')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -150,15 +160,19 @@
                                     <select name="kidsValor1" id="kidsValor1" wire:model="kidsValor1"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
+                                        <option value="0">0 años</option>
+                                        <option value="1">1 año</option>
+                                        <option value="2">2 años</option>
+                                        <option value="3">3 años</option>
+                                        <option value="4">4 años</option>
+                                        <option value="5">5 años</option>
+                                        <option value="6">6 años</option>
+                                        <option value="7">7 años</option>
+                                        <option value="8">8 años</option>
+                                        <option value="9">9 años</option>
+                                        <option value="10">10 años</option>
+                                        <option value="11">11 años</option>
+                                        <option value="12">12 años</option>
                                     </select>
                                     @error('kidsValor1')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -171,15 +185,19 @@
                                     <select name="kidsValor2" id="kidsValor2" wire:model="kidsValor2"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
+                                        <option value="0">0 años</option>
+                                        <option value="1">1 año</option>
+                                        <option value="2">2 años</option>
+                                        <option value="3">3 años</option>
+                                        <option value="4">4 años</option>
+                                        <option value="5">5 años</option>
+                                        <option value="6">6 años</option>
+                                        <option value="7">7 años</option>
+                                        <option value="8">8 años</option>
+                                        <option value="9">9 años</option>
+                                        <option value="10">10 años</option>
+                                        <option value="11">11 años</option>
+                                        <option value="12">12 años</option>
                                     </select>
                                     @error('kidsValor2')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -193,15 +211,19 @@
                                     <select name="kidsValor1" id="kidsValor1" wire:model="kidsValor1"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
+                                        <option value="0">0 años</option>
+                                        <option value="1">1 año</option>
+                                        <option value="2">2 años</option>
+                                        <option value="3">3 años</option>
+                                        <option value="4">4 años</option>
+                                        <option value="5">5 años</option>
+                                        <option value="6">6 años</option>
+                                        <option value="7">7 años</option>
+                                        <option value="8">8 años</option>
+                                        <option value="9">9 años</option>
+                                        <option value="10">10 años</option>
+                                        <option value="11">11 años</option>
+                                        <option value="12">12 años</option>
                                     </select>
                                     @error('kidsValor1')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -214,15 +236,19 @@
                                     <select name="kidsValor2" id="kidsValor2" wire:model="kidsValor2"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
+                                        <option value="0">0 años</option>
+                                        <option value="1">1 año</option>
+                                        <option value="2">2 años</option>
+                                        <option value="3">3 años</option>
+                                        <option value="4">4 años</option>
+                                        <option value="5">5 años</option>
+                                        <option value="6">6 años</option>
+                                        <option value="7">7 años</option>
+                                        <option value="8">8 años</option>
+                                        <option value="9">9 años</option>
+                                        <option value="10">10 años</option>
+                                        <option value="11">11 años</option>
+                                        <option value="12">12 años</option>
                                     </select>
                                     @error('kidsValor2')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
@@ -235,209 +261,21 @@
                                     <select name="kidsValor3" id="kidsValor3" wire:model="kidsValor3"
                                     class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                                         <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
+                                        <option value="0">0 años</option>
+                                        <option value="1">1 año</option>
+                                        <option value="2">2 años</option>
+                                        <option value="3">3 años</option>
+                                        <option value="4">4 años</option>
+                                        <option value="5">5 años</option>
+                                        <option value="6">6 años</option>
+                                        <option value="7">7 años</option>
+                                        <option value="8">8 años</option>
+                                        <option value="9">9 años</option>
+                                        <option value="10">10 años</option>
+                                        <option value="11">11 años</option>
+                                        <option value="12">12 años</option>
                                     </select>
                                     @error('kidsValor3')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                            @elseif ($no_kids == 4)
-                                <div class="mt-4 mb-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor1" class="block text-sm font-medium text-gray-700">Niño 1</label>
-                                    <select name="kidsValor1" id="kidsValor1" wire:model="kidsValor1"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor1')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                                <div class="mt-4 mb-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor2" class="block text-sm font-medium text-gray-700">Niño 2</label>
-                                    <select name="kidsValor2" id="kidsValor2" wire:model="kidsValor2"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor2')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                                <div class="mt-4 mb-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor3" class="block text-sm font-medium text-gray-700">Niño 3</label>
-                                    <select name="kidsValor3" id="kidsValor3" wire:model="kidsValor3"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor3')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                                <div class="mt-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor4" class="block text-sm font-medium text-gray-700">Niño 4</label>
-                                    <select name="kidsValor4" id="kidsValor4" wire:model="kidsValor4"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor4')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-
-                            @elseif ($no_kids == 5)
-                                <div class="mt-4 mb-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor1" class="block text-sm font-medium text-gray-700">Niño 1</label>
-                                    <select name="kidsValor1" id="kidsValor1" wire:model="kidsValor1"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor1')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                                <div class="mt-4 mb-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor2" class="block text-sm font-medium text-gray-700">Niño 2</label>
-                                    <select name="kidsValor2" id="kidsValor2" wire:model="kidsValor2"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor2')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                                <div class="mt-4 mb-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor3" class="block text-sm font-medium text-gray-700">Niño 3</label>
-                                    <select name="kidsValor3" id="kidsValor3" wire:model="kidsValor3"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor3')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                                <div class="mt-4 mb-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor4" class="block text-sm font-medium text-gray-700">Niño 4</label>
-                                    <select name="kidsValor4" id="kidsValor4" wire:model="kidsValor4"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor4')
-                                        <p class="mt-1 mb-1 text-xs text-red-600 italic">
-                                            {{ $message }}
-                                        </p>
-                                    @enderror
-                                </div>
-                                <div class="mt-4 sm:m-0 col-span-1 col-start-2">
-                                    <label for="kidsValor5" class="block text-sm font-medium text-gray-700">Niño 5</label>
-                                    <select name="kidsValor5" id="kidsValor5" wire:model="kidsValor5"
-                                    class="block w-full px-3 py-2 mt-1 bg-white border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                        <option></option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                    </select>
-                                    @error('kidsValor5')
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                             {{ $message }}
                                         </p>
@@ -449,7 +287,7 @@
                                 <div class="h-16 p-3 mt-6 grid grid-cols-2">
 
                                     <div class="flex justify-start px-4 col-span-1 col-start-1">
-                                        <a href="https://factoraguila.com/blog/2021/07/28/paquetes/"
+                                        <a href="https://factoraguila.com/blog/2022/04/22/dianino/"
                                             class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                                             Regresar</a>
                                     </div>
@@ -478,7 +316,7 @@
                     <br>
                 </div>
                 <div class="flex justify-center px-4 col-span-1 col-start-1">
-                    <a href="https://factoraguila.com/blog/2021/07/28/paquetes/"
+                    <a href="https://factoraguila.com/blog/2022/04/22/dianino/"
                         class="inline-flex items-center px-4 py-2 bg-red-700 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-800 active:bg-red-900 focus:outline-none focus:border-red-900 focus:shadow-outline-gray disabled:opacity-25 transition ease-in-out duration-150">
                         Regresar</a>
                 </div>
