@@ -14,7 +14,7 @@ class DiaNinoRegistro extends Component
 
     public $colaborador,$no_colaborador,$dianinoRegistro;
     public $no_kids,$conteoRegistros,$kidsValor1,$kidsValor2,$kidsValor3;
-    public $banderaCupo,$bandera,$popupRegistro;
+    public $banderaCupo = true,$bandera,$popupRegistro;
 
     protected $listeners = [
         'registro',
@@ -51,7 +51,7 @@ class DiaNinoRegistro extends Component
 
     public function mount($no_colaborador)
     {
-        $this->revisarCupo();
+        /* $this->revisarCupo(); */
         $this->no_colaborador = $no_colaborador;
         $this->colaborador = Colaborador::find($no_colaborador);
         $this->dianinoRegistro = DB::table('dianinoregistro')->where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
