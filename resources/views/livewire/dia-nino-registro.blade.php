@@ -11,7 +11,7 @@
     </header>
 
     <div class="p-2 grid grid-rows-1 rounded-md shadow-2xl">
-        @if ($banderaCupo === false)
+        @if ($banderaCupo)
             <div class="p-4 grid">
                 @if (count($dianinoRegistro) >= 1)
                     <div class="">

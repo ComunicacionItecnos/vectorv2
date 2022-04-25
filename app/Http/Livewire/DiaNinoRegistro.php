@@ -51,10 +51,18 @@ class DiaNinoRegistro extends Component
 
     public function mount($no_colaborador)
     {
-        /* $this->revisarCupo(); */
-        $this->no_colaborador = $no_colaborador;
-        $this->colaborador = Colaborador::find($no_colaborador);
-        $this->dianinoRegistro = DB::table('dianinoregistro')->where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
+        $conteo = DB::table('dianinoregistro')->get()->count();
+
+        if($conteo >= 639){
+            $this->banderaCupo = false;
+        }else{
+
+            $this->banderaCupo = true;
+            $this->no_colaborador = $no_colaborador;
+            $this->colaborador = Colaborador::find($no_colaborador);
+            $this->dianinoRegistro = DB::table('dianinoregistro')->where('colaborador_no_colaborador', $this->colaborador->no_colaborador)->get();
+        }
+
     }
 
     public function render()
@@ -64,8 +72,9 @@ class DiaNinoRegistro extends Component
 
     public function revisarCupo()
     {
-        $conteo = DB::table('dianinoregistro')->get()->count();
-        ($conteo == 400) ? $this->banderaCupo = true : $this->banderaCupo = false;
+
+
+        /* () ?  :  */
     }
 
     public function setNull()
