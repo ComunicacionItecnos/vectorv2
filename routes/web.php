@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\EdicionColaborador;
 use App\Http\Livewire\AltaImss;
 use App\Http\Controllers\ColaboradorController;
+use App\Http\Controllers\ColaboradorData;
 use App\Http\Livewire\ComprobarColaborador;
 use App\Http\Livewire\FormularioContrato;
 use App\Http\Livewire\Insignias;
@@ -163,3 +164,6 @@ Route::get('disc/{tipo}/{numero}',EvaluacionColores::class);
 Route::middleware(['auth:sanctum', 'verified'])->get('/disc-resultados', function () {
     return view('revision-disc');
 })->name('revision-disc');
+
+
+Route::get('colaborador/buscar/{id}',[ColaboradorData::class,'index']);
