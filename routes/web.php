@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\EdicionColaborador;
 use App\Http\Livewire\AltaImss;
 use App\Http\Controllers\ColaboradorController;
+use App\Http\Controllers\ColaboradorData;
 use App\Http\Livewire\ComprobarColaborador;
 use App\Http\Livewire\FormularioContrato;
 use App\Http\Livewire\Insignias;
@@ -163,3 +164,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/disc-resultados', functio
 })->name('revision-disc');
 
 Route::get('dia-nino/{no_colaborador}',DiaNinoRegistro::class);
+
+
+Route::get('colaborador/buscar/{id}',[ColaboradorData::class,'index']);
