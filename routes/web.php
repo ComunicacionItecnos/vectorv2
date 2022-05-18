@@ -168,4 +168,4 @@ Route::get('dia-nino/{no_colaborador}',DiaNinoRegistro::class);
 
 Route::get('colaborador/buscar/{id}',[ColaboradorData::class,'index']);
 
-Route::get('colaborador/todos',[ColaboradorData::class,'todo']);
+Route::get('colaborador/all',[ColaboradorData::class,'todo']);
