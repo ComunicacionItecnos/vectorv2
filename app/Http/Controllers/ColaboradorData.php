@@ -12,7 +12,7 @@ class ColaboradorData extends Controller
         return response()->json( Colaborador::where('no_colaborador','=',$id)->get() );
     }
 
-    public function todo()
+    public function show()
     {
         return response()->json( Colaborador::all());
     }
