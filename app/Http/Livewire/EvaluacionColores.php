@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Livewire\Component;
 use Carbon\CarbonInterface;
 use Illuminate\Support\Facades\DB;
+use Log;
 
 class EvaluacionColores extends Component
 {
@@ -247,7 +248,11 @@ class EvaluacionColores extends Component
         }
         
     }
-
+    /**
+     * Aquí es donde inicia la vista del livewire para el renderizado del contenido
+     *
+     * @return void
+     */
     public function render()
     {
         return view('livewire.evaluacion-colores')->layout('layouts.guest');
@@ -284,6 +289,7 @@ class EvaluacionColores extends Component
 
     public function increaseStep()
     {
+        // Log::info($this->currentStep);
         if($this->currentStep == 1) {
             $this->validarItem($this->noMasDeDos( [$this->marcadorQuestion1_0,$this->marcadorQuestion1_1, $this->marcadorQuestion1_2, $this->marcadorQuestion1_3] ));
             $this->request1 = [$this->marcadorQuestion1_0,$this->marcadorQuestion1_1, $this->marcadorQuestion1_2, $this->marcadorQuestion1_3];
@@ -370,12 +376,11 @@ class EvaluacionColores extends Component
             $this->request28 = [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3];
 
             if($this->currentStep == 29){
-    
-                
+                Log::info('entra paso 29');            
                 $this->resultados = $this->resultadosGenerar(); 
                 $this->resultados3 = $this->ordenarArray($this->resultados);
+                Log::info($this->resultados3);
                 $this->resultados2 = $this->metodosPerfil($this->resultados3);
-
                 $this->emit('resultadosFinal'); 
 
                 
@@ -843,34 +848,34 @@ class EvaluacionColores extends Component
         /* return$valor; */
         if($valor[0][1] == $valor[1][1])
         {
-            if ($valor[0][0] == 'rojo' && $valor[1][0] == 'amarillo') {
+            if ($valor[0][0] == 'rojo' && $valor[1][0] == 'amarillo' || $valor[0][0] == 'amarillo' && $valor[1][0] == 'rojo') {
                 if($valor[2][0] == 'verde' && $valor[3][1] == $valor[2][1]+1 ){
                     return 'Perseptivo';
                 }else{
                     return 'Orientado a resultados';
                 }
-            }elseif($valor[0][0] == 'rojo' && $valor[1][0] == 'verde') {
+            }elseif($valor[0][0] == 'rojo' && $valor[1][0] == 'verde' || $valor[0][0] == 'verde' && $valor[1][0] == 'rojo') {
                 if ($valor[2][1] <= 4 && $valor[3][1] <= 4) {
                     return 'Agente';
                 }
-            }elseif($valor[0][0] == 'rojo' && $valor[1][0] == 'azul'){
+            }elseif($valor[0][0] == 'rojo' && $valor[1][0] == 'azul' || $valor[0][0] == 'azul' && $valor[1][0] == 'rojo'){
                 if ($valor[2][1] <= 4 && $valor[3][1] <= 4) {
                     return 'Creativo';
                 }
-            }elseif ($valor[0][0] == 'amarillo'&& $valor[1][0] == 'verde') {
+            }elseif ($valor[0][0] == 'amarillo'&& $valor[1][0] == 'verde' || $valor[0][0] == 'azul'&& $valor[1][0] == 'amarillo') {
                 if ($valor[2][1] < 4 && $valor[3][1] < 4) {
                     return 'Consejero';
                 }elseif($valor[2][1] <= 4 && $valor[3][1] <= 4){
                     return 'Agente';
                 }
-            }elseif ($valor[0][0] == 'amarillo'&& $valor[1][0] == 'azul') {
+            }elseif ($valor[0][0] == 'amarillo'&& $valor[1][0] == 'azul' || $valor[0][0] == 'azul'&& $valor[1][0] == 'amarillo') {
                 if($valor[2][1] <=4 && $valor[3][1] <=4){
                     return 'Tasador';
                 } 
-            }elseif($valor[0][0] == 'azul' && $valor[1][0] == 'verde' ){
+            }elseif($valor[0][0] == 'azul' && $valor[1][0] == 'verde' || $valor[0][0] == 'verde' && $valor[1][0] == 'azul'){
                 if($valor[2][1] <=4 && $valor[3][1] <=4){
                     return 'Perfeccionista';
-                } 
+                }
             }
         
         }elseif( ($valor[0][1] == $valor[1][1]) && ($valor[0][1] == $valor[2][1]) && ($valor[1][1] == $valor[2][1]) )
