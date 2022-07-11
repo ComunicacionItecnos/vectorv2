@@ -176,22 +176,22 @@ class EvaluacionColores extends Component
                 $this->numero = $numero;
                 /* Buscar en infocolaborador */
                 $this->colaborador = DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$numero);
-                
+
                 if (empty($this->colaborador)) {
                     abort(404);
                 }else{
-                    
+
                     $buscarDisc = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
-                    
+
                     if(empty($buscarDisc)){
                         $this->no_colaborador = $this->colaborador[0]->no_colaborador;
 
                         $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
-                            
+
                         $this->foto_colaborador= $this->colaborador[0]->foto;
-                        
+
                         $this->tipoValor = $tipo;
-                        
+
                     }else{
                         /* Cambio de año para realizarla nuevamente*/
                         if ( substr($buscarDisc[0]->created_at,0,4) == date('Y') ) {
@@ -200,28 +200,28 @@ class EvaluacionColores extends Component
                             $this->no_colaborador = $this->colaborador[0]->no_colaborador;
 
                             $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
-                            
+
                             $this->foto_colaborador= $this->colaborador[0]->foto;
 
                             $this->tipoValor = 'resultados';
                         }else{
-                            
+
                             $this->no_colaborador = $this->colaborador[0]->no_colaborador;
 
                             $this->nom_colaborador = ($this->colaborador[0]->nombre_2 == '') ? $this->colaborador[0]->nombre : $this->colaborador[0]->nombre.' '.$this->colaborador[0]->nombre_2;
-                            
+
                             $this->foto_colaborador= $this->colaborador[0]->foto;
 
                             $this->tipoValor = $tipo;
                         }
 
-                    }   
+                    }
                 }
             }elseif($tipo == 'candidato' && $numero == 1){
-    
+
                 /* Mostrar un formulario para insertar nombre completo y curp */
                 $this->tipoValor = $tipo;
-                
+
             }else{
                 abort(404);
             }
@@ -239,14 +239,14 @@ class EvaluacionColores extends Component
             $this->colaborador =  DB::select('SELECT * FROM infocolaborador WHERE no_colaborador = '.$this->numero);
 
             $this->mostrarResAnteriores = DB::select('SELECT id,no_colaborador,JSON_EXTRACT( resultados , "$[0][0]") AS resultPonderante ,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE no_colaborador ='.$this->colaborador[0]->no_colaborador.' ORDER BY created_at DESC');
-        
+
         }else{
-            
+
             $this->colaborador = '';
             $this->mostrarResAnteriores = '';
 
         }
-        
+
     }
     /**
      * Aquí es donde inicia la vista del livewire para el renderizado del contenido
@@ -259,7 +259,7 @@ class EvaluacionColores extends Component
     }
 
     public function cuentaAtras(){
-        
+
         $this->inicioCount = now();
 
         if ($this->inicioCount->diffInSeconds($this->finalCount,false) <= 0) {
@@ -376,29 +376,29 @@ class EvaluacionColores extends Component
             $this->request28 = [$this->marcadorQuestion28_0,$this->marcadorQuestion28_1, $this->marcadorQuestion28_2, $this->marcadorQuestion28_3];
 
             if($this->currentStep == 29){
-                Log::info('entra paso 29');            
-                $this->resultados = $this->resultadosGenerar(); 
+                /* Log::info('entra paso 29'); */
+                $this->resultados = $this->resultadosGenerar();
                 $this->resultados3 = $this->ordenarArray($this->resultados);
-                Log::info($this->resultados3);
+                /* Log::info($this->resultados3); */
                 $this->resultados2 = $this->metodosPerfil($this->resultados3);
-                $this->emit('resultadosFinal'); 
+                $this->emit('resultadosFinal');
 
-                
+
                 $this->guardarResultados();
-                
+
 
             }
         }elseif($this->currentStep == 29){
 
-            $this->resultados = $this->resultadosGenerar(); 
+            $this->resultados = $this->resultadosGenerar();
             $this->resultados3 = $this->ordenarArray($this->resultados);
             $this->resultados2 = $this->metodosPerfil($this->resultados3);
 
             $this->emit('resultadosFinal');
-            
+
             $this->guardarResultados();
         }
-        
+
     }
 
     public function ocultarBienvenida(){
@@ -440,7 +440,7 @@ class EvaluacionColores extends Component
         }else{
 
             foreach ($valor as $key) {
-                
+
                 if ( count($key) == 0 ) {
                     $contarNull++;
                 }elseif( count($key) == 2 ){
@@ -649,10 +649,10 @@ class EvaluacionColores extends Component
         $this->influyente_amarillo  = $this->calcularDisc($this->influyente_amarillo);
         $this->Estable_verde = $this->calcularDisc($this->Estable_verde);
         $this->concienzudo_azul = $this->calcularDisc($this->concienzudo_azul);
-        
+
         $this->dominante_rojo = $this->dominante_rojo[0]-$this->dominante_rojo[1];
         $this->influyente_amarillo = $this->influyente_amarillo[0]-$this->influyente_amarillo[1];
-        $this->Estable_verde = $this->Estable_verde[0]-$this->Estable_verde[1]; 
+        $this->Estable_verde = $this->Estable_verde[0]-$this->Estable_verde[1];
         $this->concienzudo_azul = $this->concienzudo_azul[0]-$this->concienzudo_azul[1];
 
         return ['rojo'=>$this->segmento($this->dominante_rojo,'rojo'),
@@ -675,16 +675,16 @@ class EvaluacionColores extends Component
     {
         $contadorMas = 0;
         $contadorMenos = 0;
-        for ($i=0; $i < count($valorDisc); $i++) { 
-            
+        for ($i=0; $i < count($valorDisc); $i++) {
+
             if ($valorDisc[$i] == 2) {
                 $contadorMas = $contadorMas +1;
             }elseif($valorDisc[$i] ==  1){
                 $contadorMenos = $contadorMenos +1 ;
             }else {
-            
+
             }
-            
+
         }
 
         return [$contadorMas,$contadorMenos];
@@ -712,7 +712,7 @@ class EvaluacionColores extends Component
         $this->aksort($arrayRespuesta,true,true);
 
         foreach ($arrayRespuesta as $key => $value) {
-            
+
             $arryRetornar[] = [$key,$value];
         }
 
@@ -840,7 +840,7 @@ class EvaluacionColores extends Component
             }
 
         }
-        
+
     }
 
     public function metodosPerfil($valor)
@@ -871,13 +871,13 @@ class EvaluacionColores extends Component
             }elseif ($valor[0][0] == 'amarillo'&& $valor[1][0] == 'azul' || $valor[0][0] == 'azul'&& $valor[1][0] == 'amarillo') {
                 if($valor[2][1] <=4 && $valor[3][1] <=4){
                     return 'Tasador';
-                } 
+                }
             }elseif($valor[0][0] == 'azul' && $valor[1][0] == 'verde' || $valor[0][0] == 'verde' && $valor[1][0] == 'azul'){
                 if($valor[2][1] <=4 && $valor[3][1] <=4){
                     return 'Perfeccionista';
                 }
             }
-        
+
         }elseif( ($valor[0][1] == $valor[1][1]) && ($valor[0][1] == $valor[2][1]) && ($valor[1][1] == $valor[2][1]) )
         {
             if ($valor[3][0] == 'rojo' && $valor[3][1] <= 4) {
@@ -891,7 +891,7 @@ class EvaluacionColores extends Component
             }
 
         }else{
-            
+
             if($valor[0][0] == 'rojo'){
 
                 if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
@@ -903,8 +903,8 @@ class EvaluacionColores extends Component
                     }else{
                         return 'Orientado a resultados';
                     }
-                    
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
+
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Creativo';
                 }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Maratonero';
@@ -914,7 +914,7 @@ class EvaluacionColores extends Component
 
                 if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Promotor';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Consejero';
                 }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Tasador';
@@ -928,7 +928,7 @@ class EvaluacionColores extends Component
                     return 'Especialista';
                 }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Agente';
-                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
+                }elseif($valor[1][0] == 'azul' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Investigador';
                 }elseif($valor[1][0] == 'rojo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Triunfador';
@@ -938,7 +938,7 @@ class EvaluacionColores extends Component
 
                 if($valor[0][1] > 4 && ($valor[1][1] <= $valor[0][1] && $valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Pensador Objetivo';
-                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){                    
+                }elseif($valor[1][0] == 'verde' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <=$valor[0][1]) ){
                     return 'Perfeccionista';
                 }elseif($valor[1][0] == 'amarillo' && ($valor[2][1] <= $valor[0][1] && $valor[3][1] <= $valor[0][1]) ){
                     return 'Practicante';
@@ -958,7 +958,7 @@ class EvaluacionColores extends Component
         $resultados3 = json_encode($this->resultados3);
 
         $resultados2 = $this->resultados2;
-        
+
         $fecha = Carbon::now()->toDateTimeString();
 
         if($resultados2 == 'Desarrollador'){
@@ -978,17 +978,17 @@ class EvaluacionColores extends Component
         }
 
         if($this->tipoValor == 'colaborador'){
-            
+
             DB::insert('insert into disc_resultados_colaborador (no_colaborador,resultados,personalidad,created_at) values (?,?,?,?) ',[$this->no_colaborador,
             $resultados3,$resultados2,$fecha]);
 
         }else{
 
             if($this->formularioValidado == true){
-            
+
                 DB::insert('insert into disc_resultados_candidatos (curp,nombre_1,nombre_2,ap_paterno,ap_materno,resultados,personalidad,created_at) value (?,?,?,?,?,?,?,?)', [$this->curp,$this->nombre_1,
                 $this->nombre_2,$this->ap_paterno,$this->ap_materno,$resultados3,$resultados2,$fecha]);
-            
+
             }
 
         }
@@ -1019,7 +1019,7 @@ class EvaluacionColores extends Component
 
                 'ap_paterno.required'=>'Este campo no puede permanecer vacío',
                 'ap_paterno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
-                
+
                 'ap_materno.regex'=>'Solo puede contener letras mayúsculas y minúsculas con o sin tilde/diéresis así como la letra ñ',
             ],
         );
@@ -1034,20 +1034,20 @@ class EvaluacionColores extends Component
             $this->tipoValor = 'negado';
         }
 
-        
+
 
     }
 
     public function verResultados($id){
-        
+
         $buscarDatos = DB::select('SELECT id,no_colaborador,resultados,personalidad,created_at FROM disc_resultados_colaborador WHERE id ='.$id.' ORDER BY created_at DESC');
-       
+
         $this->pemitirDisc = false;
-        
+
         $this->currentStep = 29;
 
         $this->resultados = json_decode($buscarDatos[0]->resultados);
-        
+
         $this->resultados2 = $buscarDatos[0]->personalidad;
 
         $this->tipoValor;
