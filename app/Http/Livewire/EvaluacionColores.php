@@ -633,18 +633,16 @@ class EvaluacionColores extends Component
             $this->buscarArrasVacios($this->request28[0])
         ];
 
-        dd($this->dominante_rojo);
-
-        $this->dominante_rojo = array_filter($this->dominante_rojo, null);
+        $this->dominante_rojo = array_filter($this->dominante_rojo);
         $this->dominante_rojo = array_values($this->dominante_rojo);
 
-        $this->influyente_amarillo = array_filter($this->influyente_amarillo, null);
+        $this->influyente_amarillo = array_filter($this->influyente_amarillo);
         $this->influyente_amarillo = array_values($this->influyente_amarillo);
 
-        $this->Estable_verde = array_filter($this->Estable_verde, null);
+        $this->Estable_verde = array_filter($this->Estable_verde);
         $this->Estable_verde = array_values($this->Estable_verde);
 
-        $this->concienzudo_azul = array_filter($this->concienzudo_azul, null);
+        $this->concienzudo_azul = array_filter($this->concienzudo_azul);
         $this->concienzudo_azul = array_values($this->concienzudo_azul);
 
         $this->dominante_rojo = $this->calcularDisc($this->dominante_rojo);
