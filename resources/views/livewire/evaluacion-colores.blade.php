@@ -4,13 +4,13 @@
                 <img src="{{ asset('images/disc/FACTOR_logo_new.svg') }}" loading="lazy" class=" object-cover h-10 w-100">
             </a>
     </header>
-    
+
     <div class="mb-8 max-w-4xl px-8 py-4 mx-auto bg-white rounded-lg shadow-xl border border-gray-300" >
 
         <div class="mt-2 my-2 @if($pemitirDisc) @else hidden @endif">
 
-            @if ($tipoValor == 'colaborador')  
-                    
+            @if ($tipoValor == 'colaborador')
+
                 <div class="flex justify-center">
                     @if (file_exists(public_path('storage/'.$foto_colaborador )))
                         <img class="w-28 rounded shadow-md h-30" src="{{ asset('storage').'/'.$foto_colaborador }}" alt="">
@@ -25,21 +25,21 @@
 
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
                         <p class="text-center text-gray-600 text-xl">
-                            Hola 
-                            {{ $nom_colaborador }} 
+                            Hola
+                            {{ $nom_colaborador }}
                         </p>
                     </div>
-                    
+
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
                         <p class="text-center text-gray-600 text-lg">
                             ¡Te doy la bienvenida a la prueba DISC!
                         </p>
                     </div>
-                  
+
                 </div>
 
             @elseif($tipoValor == 'resultados')
-            
+
                 <div class="flex justify-center">
                     @if (file_exists(public_path('storage/'.$foto_colaborador )))
                         <img class="w-28 rounded shadow-md h-30" src="{{ asset('storage').'/'.$foto_colaborador }}" alt="">
@@ -54,8 +54,8 @@
 
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
                         <p class="text-center text-gray-600 text-xl">
-                            Hola 
-                            {{ $nom_colaborador }} 
+                            Hola
+                            {{ $nom_colaborador }}
                         </p>
                     </div>
 
@@ -64,15 +64,15 @@
                     </div>
 
                 </diV>
-                
 
-                
+
+
                 <ul class="px-0">
-        
+
                     @foreach( $mostrarResAnteriores as $mra )
 
-                        <li wire:key = "{{ $loop->index }}" class="border bg-white list-none rounded-sm px-3 py-3 {{-- cursor-pointer --}}  hover:text-white    
-                               
+                        <li wire:key = "{{ $loop->index }}" class="border bg-white list-none rounded-sm px-3 py-3 {{-- cursor-pointer --}}  hover:text-white
+
                             @if (trim($mra->resultPonderante ,'"') == 'rojo')
                                 hover:bg-red-500
                             @elseif (trim($mra->resultPonderante,'"') == 'amarillo')
@@ -83,7 +83,7 @@
                                 hover:bg-blue-500
                             @endif">
 
-                            
+
                             <p>
                                 {{$mra->personalidad}}
                             </p>
@@ -94,11 +94,11 @@
                                 Ver
                             </button>
                         </li>
-                           
+
                     @endforeach
 
                 </ul>
-                
+
 
             @elseif($tipoValor == 'candidato')
 
@@ -109,10 +109,10 @@
                             Antes de empezar a realizar tu prueba necesitamos que contestes el siguiente formulario
                         </p>
                     </div>
-                    
+
                     <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-full md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-full xl:my-1 xl:px-1 xl:w-full">
                         <form wire:submit.prevent="submit" enctype="multipart/form-data">
-                        
+
                             <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-1 lg:-mx-1 xl:-mx-1">
 
                                 <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
@@ -128,7 +128,7 @@
                                         </p>
                                     @enderror
                                 </div>
-                              
+
                                 <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
                                     <label class="block text-base font-medium text-gray-700"
                                     for="nombre_2">Segundo nombre</label>
@@ -141,7 +141,7 @@
                                         </p>
                                     @enderror
                                 </div>
-                              
+
                                 <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
                                     <label class="block text-base font-medium text-gray-700"
                                     for="ap_paterno"><span
@@ -154,13 +154,12 @@
                                         <p class="mt-1 mb-1 text-xs text-red-600 italic">
                                             {{ $message }}
                                         </p>
-                                    @enderror    
+                                    @enderror
                                 </div>
-                              
+
                                 <div class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 sm:w-1/2 md:my-1 md:px-1 md:w-full lg:my-1 lg:px-1 lg:w-1/2 xl:my-1 xl:px-1 xl:w-1/2">
                                     <label class="block text-base font-medium text-gray-700"
-                                    for="ap_materno"><span
-                                        class="mt-1 mb-1 text-base text-red-600 italic">*</span>
+                                    for="ap_materno">
                                     Apellido materno</label>
                                     <input type="text" wire:model="ap_materno" name="ap_materno"
                                         id="ap_materno" value="{{ old('ap_materno') }}"
@@ -190,19 +189,19 @@
                                         </p>
                                     @enderror
                                 </div>
-                              
+
                             </div>
 
                             <div class="flex items-center justify-center mt-4">
                                 <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer"
                                 type="submit">
-                                    Empezar 
+                                    Empezar
                                 </button>
                             </div>
                         </form>
 
                     </div>
-                
+
                 </div>
 
             @elseif($tipoValor == 'negado')
@@ -226,10 +225,10 @@
             @endif
 
         </div>
-        
+
         <div class="flex items-center justify-center mt-4 @if($pemitirDisc)  @if($tipoValor == 'resultados' || $tipoValor == 'candidato' || $tipoValor == 'negado') hidden @else @endif  @else hidden @endif">
             <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="ocultarBienvenida">
-                Empezar 
+                Empezar
             </button>
         </div>
 
@@ -241,7 +240,7 @@
             </a>
             <br>
             <p class="mt-2 text-gray-600">
-                En general, todos tenemos una o dos dimensiones que sobresalen sobre las demás, dando como resultado una combinación concreta: el perfil DISC. 
+                En general, todos tenemos una o dos dimensiones que sobresalen sobre las demás, dando como resultado una combinación concreta: el perfil DISC.
             </p>
             <p class="mt-2 text-gray-600">
                 Este nos permite evaluar <b>cómo se relaciona una persona con su entorno</b>. Se trata de uno de los recursos más comprensibles y fáciles de aplicar en las empresas, ya que puede cumplir distintos tipos de objetivos, como la integración de un equipo eficiente o la elaboración de estrategias de ventas dependiendo de las fortalezas de cada integrante.
@@ -251,10 +250,10 @@
             </p>
 
         </div>
-        
+
         <div class="flex items-center justify-center mt-4 @if($inicio) @else hidden @endif">
             <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="ocultarInicio">
-                Siguiente 
+                Siguiente
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                 </svg>
@@ -266,7 +265,7 @@
 
         <div class="mt-2 my-2 @if($instruccion) @else hidden @endif">
             <a class="text-2xl font-bold text-gray-800">
-        
+
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-6 w-6 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm-1-11v6h2v-6h-2zm0-4v2h2V7h-2z"/></svg>
                 Instrucciones
             </a>
@@ -293,44 +292,44 @@
 
 
             <div class="my-4">
-                
+
                 <div class="flex flex-wrap overflow-hidden items-center">
 
                     <img src="{{ asset('images/disc/item1.png') }}" loading="lazy" class="w-full lg:w-full">
-                  
+
                 </div>
-            
+
             </div>
 
         </div>
-        
+
         <div class="flex items-center justify-center mt-4 @if($instruccion) @else hidden @endif">
             <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="ocultarInstuccion">
-                Siguiente 
+                Siguiente
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                     <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                 </svg>
             </button>
-            
+
         </div>
         {{-- Fin - intrucciones --}}
 
 
         @if ($inicio == false && $instruccion == false && $pemitirDisc == false)
-            {{-- Inicio - Barra de progreso --}}            
+            {{-- Inicio - Barra de progreso --}}
             <div class="flex items-center justify-between @if($currentStep == 29) hidden @endif">
                 <span>
                 </span>
-                
+
                 <a class="px-3 py-1 text-sm font-bold text-gray-600"  @if ($inicio == false && $instruccion == false)  @if($Contador == 'Sin tiempo')  @elseif($currentStep == 29) {{$Contador = 'Haz finalizado'}}  @else wire:poll.1000ms='cuentaAtras'  @endif @endif>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 inline-block"  fill="currentColor">
                         <path fill="none" d="M0 0h24v24H0z"/>
                         <path d="M17.618 5.968l1.453-1.453 1.414 1.414-1.453 1.453a9 9 0 1 1-1.414-1.414zM11 8v6h2V8h-2zM8 1h8v2H8V1z"/>
-                    </svg> 
+                    </svg>
                     {{ $Contador }}
                 </a>
             </div>
-                
+
             <div class="mb-8 @if($currentStep == 29) hidden @endif">
                 <div class="rounded-lg block p-4 m-auto">
                     <div class="w-full h-4 bg-gray-400 rounded-full mt-3">
@@ -350,7 +349,7 @@
                 </div>
 
             </div>
-            {{-- Fin - Barra de progreso --}}  
+            {{-- Fin - Barra de progreso --}}
 
             @if($currentStep == 1)
 
@@ -359,8 +358,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 1
                     </a>
-                    
-                
+
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -412,15 +411,15 @@
 
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                </div>    
+                </div>
 
             @elseif ($currentStep == 2)
 
@@ -429,8 +428,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 2
                     </a>
-                    
-                
+
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -482,15 +481,15 @@
 
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                </div>   
+                </div>
 
             @elseif ($currentStep == 3)
 
@@ -499,7 +498,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 3
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -550,15 +549,15 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                </div>  
+                </div>
 
             @elseif ($currentStep == 4)
 
@@ -567,7 +566,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 4
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -618,24 +617,24 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
-                </div> 
+                </div>
 
-            @elseif ($currentStep == 5)  
+            @elseif ($currentStep == 5)
 
                 <div class="mt-2 my-2">
                     <a class="text-2xl font-bold text-gray-800 my-4">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 5
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -686,10 +685,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -703,7 +702,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 6
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -754,16 +753,16 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
                 </div>
-                
+
             @elseif ($currentStep == 7)
 
                 <div class="mt-2 my-2">
@@ -771,7 +770,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 7
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -822,10 +821,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -838,7 +837,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 8
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -889,10 +888,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -905,7 +904,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 9
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -956,10 +955,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -973,7 +972,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 10
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1024,10 +1023,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1040,7 +1039,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 11
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1091,10 +1090,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1107,7 +1106,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 12
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1158,10 +1157,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1173,7 +1172,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 13
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1224,10 +1223,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1240,7 +1239,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 14
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1291,10 +1290,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1308,7 +1307,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 15
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1359,10 +1358,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1376,7 +1375,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 16
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1427,10 +1426,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1444,7 +1443,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 17
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1495,10 +1494,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1512,7 +1511,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 18
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1563,10 +1562,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1580,7 +1579,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 19
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1631,10 +1630,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1648,7 +1647,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 20
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1699,10 +1698,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1715,7 +1714,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 21
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1766,10 +1765,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1783,7 +1782,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 22
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1834,10 +1833,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1851,7 +1850,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 23
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1902,10 +1901,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1919,7 +1918,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 24
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -1970,10 +1969,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -1987,7 +1986,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 25
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -2038,10 +2037,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -2055,7 +2054,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 26
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -2106,10 +2105,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -2123,7 +2122,7 @@
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 27
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -2174,10 +2173,10 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
@@ -2185,13 +2184,13 @@
                 </div>
 
             @elseif ($currentStep == 28)
-                
+
                 <div class="mt-2 my-2">
                     <a class="text-2xl font-bold text-gray-800 my-4">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"class="h-5 w-5 inline-block"><path fill="none" d="M0 0h24v24H0z"/><path d="M16.757 3l-7.466 7.466.008 4.247 4.238-.007L21 7.243V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h12.757zm3.728-.9L21.9 3.516l-9.192 9.192-1.412.003-.002-1.417L20.485 2.1z"/></svg>
                         ITEM 28
                     </a>
-                
+
                     <div class="grid grid-cols-3 mt-4">
                         <div></div>
                         <div class="text-center">Más(+)</div>
@@ -2242,17 +2241,17 @@
                     </div>
 
                 </div>
-                
+
                 <div class="flex items-center justify-center mt-4" >
                     <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" wire:click="increaseStep">
-                        Siguiente 
+                        Siguiente
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
                         </svg>
                     </button>
                 </div>
-                
-            
+
+
             @elseif($currentStep == 29)
                 <div id="resultadoDesempenoPDF" class="pt-4">
                     <div class="mt-2 my-2 text-center">
@@ -2273,7 +2272,7 @@
                                     Interpretación de los resultados
                                 </a>
                             </div>
-                            
+
                             {{-- Imagenes de personalidad --}}
                             <div class="col-span-3 w-full h-full text-gray-700 text-left ml-3">
 
@@ -2283,36 +2282,36 @@
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/rojo/Banner_Rojo_Dictador.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
-                                    
+
                                     <br>
                                     <p>
-                                        Eres una persona autosuficiente que prefiere buscar sus propias soluciones creativas e individualistas. 
+                                        Eres una persona autosuficiente que prefiere buscar sus propias soluciones creativas e individualistas.
                                     </p>
                                     <p>
-                                        De voluntad fuerte y prefieres estar libre de influencias restrictivas. 
+                                        De voluntad fuerte y prefieres estar libre de influencias restrictivas.
                                     </p>
                                     <p>
-                                        Las personas con este tipo de personalidad están más interesados ​en las oportunidades de avance logrando los objetivos que se propusieron. 
+                                        Las personas con este tipo de personalidad están más interesados ​en las oportunidades de avance logrando los objetivos que se propusieron.
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Un reto y nuevas oportunidades.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Capacidad para cumplir con sus estándares.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Ser un buscador de soluciones.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Solucionador de problemas innovador: la responsabilidad se detiene con ellos.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Se vuelve beligerante si las cosas no salen como quieren.
                                     </p>
 
@@ -2321,31 +2320,31 @@
                                     <p class="text-2xl font-bold text-gray-800 text-center">
                                         Personas que quizás conozcas con esta personalidad:
                                     </p>
-                                    
+
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Dictadores/dictador-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
 
                                 @elseif($resultados2 == 'Orientado a resultados' || $resultados2 == 'Pragmático')
-                                
+
                                     {{-- <p>Pragmático</p> --}}
 
                                     <div class="flex justify-center">
@@ -2354,41 +2353,41 @@
 
                                     <br>
                                     <p>
-                                        Buscas lograr resultados. 
+                                        Buscas lograr resultados.
                                         Valoras la independencia y muestras una confianza en ti mismo que algunos pueden percibir como arrogancia.
                                     </p>
                                     <p>
-                                        Eres una persona competitiva y te gusta las tareas difíciles y los altos cargos. 
+                                        Eres una persona competitiva y te gusta las tareas difíciles y los altos cargos.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad tienden a criticar a los demás que no piensan tan rápido como ellos.
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Control, Dominio e Independencia.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Habilidad para realizar tareas rápidamente.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Diligencia y fuerza de carácter.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Persistencia y determinación.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Detección de fallas, crítica, sobrepasa los límites.
                                     </p>
 
                                     <br>
 
                                     <p>
-                                        Personas que quizás conozcas con esta personalidad:  
+                                        Personas que quizás conozcas con esta personalidad:
                                     </p>
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
@@ -2396,23 +2395,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Pragmáticos/pragmatico-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Inspiracional')
-                                    
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/rojo/Banner_Rojo_Inspiracional.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -2421,37 +2420,37 @@
                                         Tiendes a influir en los pensamientos y acciones de los demás.
                                     </p>
                                     <p>
-                                        Intentas controlar tu entorno y dirigir el comportamiento de los demás hacia una meta predeterminada. 
+                                        Intentas controlar tu entorno y dirigir el comportamiento de los demás hacia una meta predeterminada.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad tienen resultados claros en mente y pueden ser encantadores en sus interacciones.
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Control de su entorno y objetivos.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Estatus social, fuerza de carácter personal.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Encanto persuasivo, intimidación y uso de recompensas.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Inicia, exige, tiende a ser un "movedor y agitador".
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Tiende a ser manipulador, beligerante o pendenciero.
                                     </p>
 
                                     <br>
 
                                     <p>
-                                        Personas que quizás conozcas con esta personalidad:  
+                                        Personas que quizás conozcas con esta personalidad:
                                     </p>
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
@@ -2459,19 +2458,19 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Inspiracionales/inspiracional-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Creativo' || $resultados2 == 'Arquitecto')
@@ -2491,30 +2490,30 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Logros únicos y dominio.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Cumplimiento de tareas y dominio.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Enfoques innovadores y desarrollo de sistemas.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Puede ser un agente de cambio positivo.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Se vuelve independiente y se aburre con el trabajo rutinario.
                                     </p>
 
                                     <br>
 
                                     <p>
-                                        Personas que quizás conozcas con esta personalidad:  
+                                        Personas que quizás conozcas con esta personalidad:
                                     </p>
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
@@ -2522,23 +2521,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Arquitectos/arquitecto-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Maratonero')
-                                    
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/rojo/Banner_Rojo_Maratonero.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -2548,38 +2547,38 @@
                                     Muestras tenacidad y empujas los límites para cumplir con las tareas que se te encomiendan, sin importar cuanto tiempo te tome o los obstáculos que tengas que superar.
                                     </p>
                                     <p>
-                                        Eres una persona terca por su compromiso de acabar las cosas que empieza. 
+                                        Eres una persona terca por su compromiso de acabar las cosas que empieza.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad tienen una combinación única de querer ser amigable con los demás, de ver armonía en su equipo y querer que todos hagan su trabajo en tiempo y forma.
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Persistencia, determinación y la harmonía.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Falta de compromiso.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Inspirar confianza.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Trabajador incansable, amiguero.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Impaciente, terco, no se sabe comunicar.
                                     </p>
 
-                                    
+
                                     <br>
 
                                     <p>
-                                        Personas que quizás conozcas con esta personalidad:  
+                                        Personas que quizás conozcas con esta personalidad:
                                     </p>
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
@@ -2587,23 +2586,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Maratoneros/maratonero-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Promotor')
-                                    
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Promotor.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -2619,23 +2618,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Aceptación social y popularidad.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Habilidades verbales y habilidades persuasivas.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Aprobación verbal, aprecio, elogio, favores.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Trae ligereza, alivia la tensión, promueve personas y tareas.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Tiende a ser desorganizado, descuidado y disperso.
                                     </p>
 
@@ -2644,26 +2643,26 @@
                                     <p class="text-2xl font-bold text-gray-800 text-center">
                                         Personas que quizás conozcas con esta personalidad:
                                     </p>
-                                    
+
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
 
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Promotores/promotor-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Persuasivo' || $resultados2 == 'Protagonista')
@@ -2683,23 +2682,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Estatus, prestigio y autoridad.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Su flexibilidad y capacidad para expresarse.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Habilidades verbales y naturaleza amistosa y abierta.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Preparado y confiado, delega, vende y cierra.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Se convence fácilmente, se puede organizar para que se vea bien.
                                     </p>
 
@@ -2714,23 +2713,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Protagonistas/protagonista-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Consejero')
-                                    
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Consejero.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -2746,23 +2745,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Colaboración, amistad y un ambiente tranquilo.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Voluntad de buscar el bien en los demás.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Relaciones personales sinceras y disponibilidad para los demás.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Habilidades de escucha efectiva, estabilidad y previsibilidad.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Confía demasiado en los demás y se vuelve demasiado flexible.
                                     </p>
 
@@ -2777,21 +2776,21 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Consejeros/consejero-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
-                                
+
                                 @elseif($resultados2 == 'Tasador' || $resultados2 == 'Estimador')
                                     {{-- <p>Estimador</p> --}}
                                     <div class="flex justify-center">
@@ -2809,23 +2808,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         ¡Ganando con estilo! ¡Victoria!.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Su disposición y capacidad para tomar la iniciativa.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Involucrarlos y ofrecerles reconocimiento.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Ser un jugador de equipo y lograr objetivos.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Se vuelve crítico e impaciente.
                                     </p>
 
@@ -2840,19 +2839,19 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Estimadores/estimador-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Especialista')
@@ -2872,23 +2871,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Entorno estable controlado, manteniendo el status quo.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Sinceridad, amabilidad y competencia.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Rendimiento consistente y predecible.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Naturaleza calmante constante y rendimiento constante.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Capitula y se adapta a los que están en autoridad.
                                     </p>
 
@@ -2903,19 +2902,19 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Especialistas/especialista-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Triunfador')
@@ -2928,31 +2927,31 @@
                                         confías en tus logros laborales y personales y puedes ser racio a delegar tareas cuando estas bajo estrés.
                                     </p>
                                     <p>
-                                        Prosperas cuando tienes un fuerte sentido de dirección sobre su trabajo y su vida personal. 
-                                        Estás continuamente en la búsqueda de nuevos logros. 
+                                        Prosperas cuando tienes un fuerte sentido de dirección sobre su trabajo y su vida personal.
+                                        Estás continuamente en la búsqueda de nuevos logros.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad dual hacen que sea difícil predecir las reacciones del Triunfador. A veces son directos y orientados a los resultados, y otras veces están atentos y complacientes. Son muy independientes, pero pueden querer ser parte de un equipo de alto rendimiento. Expresan una lealtad feroz a las personas en sus vidas.
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Logros personales.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Habilidad para lograr resultados medibles.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Responsabilidad personal por el trabajo asignado.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Independencia y completa las tareas de manera efectiva.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Muestra impaciencia y frustración.
                                     </p>
 
@@ -2967,19 +2966,19 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Triunfadores/triunfador-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Agente')
@@ -2995,27 +2994,27 @@
                                         una distinción clave es que tiendes a pensar primero en los demás y luego en ti mismo.
                                     </p>
                                     <p>
-                                        Las personas con este tipo de personalidad tienen excelentes habilidades relacionadas con las tareas y agregan estabilidad a su entorno de trabajo mediante el cumplimiento de los procedimientos y la finalización de las tareas. Aunque por lo general evitan los conflictos, los Si están dispuestos a mediar entre los demás para restaurar la armonía en el lugar de trabajo. 
+                                        Las personas con este tipo de personalidad tienen excelentes habilidades relacionadas con las tareas y agregan estabilidad a su entorno de trabajo mediante el cumplimiento de los procedimientos y la finalización de las tareas. Aunque por lo general evitan los conflictos, los Si están dispuestos a mediar entre los demás para restaurar la armonía en el lugar de trabajo.
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Aceptación de su grupo.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Inclusión de todas las personas.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Amistades leales y empatía.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Servicio, crea armonía y empatía.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Usa amistades clave para influir.
                                     </p>
 
@@ -3030,19 +3029,19 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Agentes/agente-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Agentes/agente-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Agentes/agente-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Agentes/agente-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Investigador')
@@ -3061,23 +3060,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Cargo, título o autoridad del título de la función.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Su uso de información fáctica y confiable.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Tenacidad y determinación personal.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Determinado enfoque en la tarea y seguimiento.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Guarda rencor e interioriza el conflicto.
                                     </p>
 
@@ -3092,19 +3091,19 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/verde/personas/Investigadores/investigador-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Pensador Objetivo' || $resultados2 == 'Objetivo')
@@ -3125,23 +3124,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Precisión, exactitud y lógica.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Pensamiento lógico e información fáctica.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Lógica, hechos y datos.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Recopilación de datos y pruebas de información.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Tiende a inquietarse y preocuparse.
                                     </p>
 
@@ -3156,23 +3155,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Objetivos/objetivo-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Perfeccionista')
-                                 
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/azul/Banner_Azul_Perfeccionista.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -3188,23 +3187,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Resultados predecibles y estables.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Precisión y altos estándares.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Precisión y atención al detalle.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Control de calidad y mantenimiento de estándares.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Recurre al tacto y la diplomacia.
                                     </p>
 
@@ -3219,23 +3218,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Perfeccionistas/perfeccionista-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Practicante' || $resultados2 == 'Voluntario')
-                                 
+
                                     {{-- <p>Voluntario</p> --}}
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/azul/Banner_Azul_Voluntario.png') }}" loading="lazy" class="lg:w-max">
@@ -3253,23 +3252,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Apoyar e interactuar con otros.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Estado de posición y autodisciplina.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Habilidad con la resolución de problemas y la tecnología.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Puede especializarse y ser competente.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Demasiado sensible a las críticas y comedido.
                                     </p>
 
@@ -3284,23 +3283,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Voluntarios/voluntario-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Escéptico')
-                                 
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/azul/Banner_Azul_Esceptico.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -3310,30 +3309,30 @@
                                         De hecho, tu acercamiento a las personas y situaciones sin mezclar sentimientos te permite mantener una distancia cómoda, sin involucrar las emociones en las decisiones.
                                     </p>
                                     <p>
-                                        Utilizas un lenguaje objetivo y persigues las metas sin tomar mucho tiempo para interactuar con los demás. 
+                                        Utilizas un lenguaje objetivo y persigues las metas sin tomar mucho tiempo para interactuar con los demás.
                                     </p>
                                     <p>
                                         Las personas con este tipo de personalidad se sobreponen agresivamente a la oposición y la competencia, siendo impacientes cuando el progreso de una tarea es bloqueado.
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Respeto, orientación al negocio, autonomía.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Falta de seguimiento, ser amigüero.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Su facilidad de traducir problemas complejos y su forma clara y precisa para dirigir.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Enseña a las personas a realizar procesos lógicos y secuenciales.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Micro gestiona, es cerrado, no se involucra, se aisla, su comunicación es robótica.
                                     </p>
 
@@ -3348,23 +3347,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/azul/personas/Escépticos/esceptico-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Independiente')
-                                 
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/amarillo/Banner_Amarillo_Independiente.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -3378,23 +3377,23 @@
                                     </p>
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Control de sus circunstancias, oportunidades que se alinean con sus ambiciones.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Su falta de introspección.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Ser consciente de su autoestima, lo que le permite relacionarse fácilmente con extraños o desenvolverse en situaciones incomodas.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Son facilitadores, tienen un gran sentido de responsabilidad.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Son agresivos protegiendo y defendiendo su punto de vista e identidad.
                                     </p>
 
@@ -3409,23 +3408,23 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-1.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-2.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-3.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/amarillo/personas/Independientes/independiente-4.png') }}" loading="lazy" class="lg:w-10/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @elseif($resultados2 == 'Impaciente')
-                                 
+
                                     <div class="flex justify-center">
                                         <img src="{{ asset('images/disc/rojo/Banner_Rojo_Impaciente.png') }}" loading="lazy" class="lg:w-max">
                                     </div>
@@ -3443,30 +3442,30 @@
 
                                     <br>
                                     <p>
-                                        <b>Motivado por:</b> 
+                                        <b>Motivado por:</b>
                                         Ambición personal, aceptación y aprobación de terceros, certeza de su posición.
                                     </p>
                                     <p>
-                                        <b>Juzga a los demás por:</b> 
+                                        <b>Juzga a los demás por:</b>
                                         Falta de compromiso o responsabilidad.
                                     </p>
                                     <p>
-                                        <b>Influye en otros por:</b> 
+                                        <b>Influye en otros por:</b>
                                         Ser abierto y entusiasta en circunstancias informales y sociales. Ser asertivo y autocontrolado en circunstancias formales o reguladas.
                                     </p>
                                     <p>
-                                        <b>Valor para el equipo:</b> 
+                                        <b>Valor para el equipo:</b>
                                         Son encantadores y directos, se adaptan a su entorno.
                                     </p>
                                     <p>
-                                        <b>Cuando está estresado:</b> 
+                                        <b>Cuando está estresado:</b>
                                         Sus motivaciones pueden entrar en conflicto, el entorno se tiene que adaptar a la persona.
                                     </p>
 
                                     <br>
 
                                     <p>
-                                        Personas que quizás conozcas con esta personalidad:  
+                                        Personas que quizás conozcas con esta personalidad:
                                     </p>
 
                                     <div class="flex flex-wrap -mx-1 overflow-hidden sm:-mx-2 md:-mx-1 lg:-mx-2 xl:-mx-1 justify-center mt-2">
@@ -3474,25 +3473,25 @@
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-1.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-2.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-3.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                         <div class="my-1 px-1 w-full overflow-hidden sm:my-2 sm:px-2 sm:w-1/2 md:my-1 md:px-1 md:w-1/2 lg:my-2 lg:px-2 lg:w-1/4 xl:my-1 xl:px-1 xl:w-1/4">
                                             <img src="{{ asset('images/disc/rojo/personas/Impacientes/impaciente-4.png') }}" loading="lazy" class="lg:w-11/12">
                                         </div>
-                                      
+
                                     </div>
 
                                 @endif
 
                             </div>
-                       
+
                         </div>
 
                     </div>
@@ -3503,7 +3502,7 @@
                     @if($tipoValor != 'resultados')
 
                     @elseif($tipoValor == 'resultados')
-                        <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" 
+                        <button class="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer"
                         wire:click="regresar()">
 
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -3513,7 +3512,7 @@
                         </button>
                     @endif
 
-                    <button class="inline-flex ml-4 items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer" 
+                    <button class="inline-flex ml-4 items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded-md text-white bg-red-600 hover:bg-red-800 cursor-pointer"
                     onclick="getPDF()">
                         Descargar
 
@@ -3523,9 +3522,9 @@
                     </button>
 
                 </div>
-            
+
             @endif
-            
+
         @endif
 
     </div>
@@ -3534,17 +3533,17 @@
     <!-- This example requires Tailwind CSS v2.0+ -->
     <div class="fixed z-10 inset-0 overflow-y-auto @if($mostrarModal) @else hidden @endif" aria-labelledby="modal-title" role="dialog" aria-modal="true">
         <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
-        
+
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
-  
+
             <!-- This element is to trick the browser into centering the modal contents. -->
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-  
+
             <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div class="sm:flex sm:items-start">
                         <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full {{$bgIcono}} sm:mx-0 sm:h-10 sm:w-10">
-                       
+
                         {!! $iconomsj !!}
                         </div>
                         <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -3597,13 +3596,13 @@
                 if( currenstep == 29 && tipoValor != 'resultados'){
 
                     var ctx = document.getElementById("myChart");
-                    
+
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: ['D','I','S','C'],
                             datasets: [
-                                { 
+                                {
                                     label: 'Segmento',
                                     borderColor: ['#EF4444','#F59E0B','#10B981','#3B82F6'],
                                     backgroundColor: ['#DC2626','#FBBF24','#059669','#2563EB'],
@@ -3619,15 +3618,15 @@
                                     min: 1,
                                     max: 8
                                 }
-                                
+
                             }
 
                         }
                     });
 
                 }
-                
-                if(tipoValor == 'resultados'){                    
+
+                if(tipoValor == 'resultados'){
 
                     resultados.forEach(asignarValores);
 
@@ -3650,16 +3649,16 @@
                         }
 
                     }
-                    
+
 
                     var ctx = document.getElementById("myChart");
-                    
+
                     var myChart = new Chart(ctx, {
                         type: 'bar',
                         data: {
                             labels: ['D','I','S','C'],
                             datasets: [
-                                { 
+                                {
                                     label: 'Segmento',
                                     borderColor: ['#EF4444','#F59E0B','#10B981','#3B82F6'],
                                     backgroundColor: ['#DC2626','#FBBF24','#059669','#2563EB'],
@@ -3675,7 +3674,7 @@
                                     min: 1,
                                     max: 8
                                 }
-                                
+
                             }
 
                         }
