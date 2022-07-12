@@ -633,6 +633,8 @@ class EvaluacionColores extends Component
             $this->buscarArrasVacios($this->request28[0])
         ];
 
+        dd($this->dominante_rojo);
+
         $this->dominante_rojo = array_filter($this->dominante_rojo, null);
         $this->dominante_rojo = array_values($this->dominante_rojo);
 
